@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Install Extbase and Fluid</title>
+
+  <para>Since TYPO3 version 4.3 Extbase and Fluid are included into the TYPO3
+  core as so called <emphasis>System Extensions</emphasis>. To install these,
+  go to the Extension Manager and select <emphasis>Install
+  Extensions</emphasis>. Click the little plus icon at the beginnings of the
+  entries for the Extensions <emphasis>extbase</emphasis> and
+  <emphasis>fluid</emphasis>. Afterwards -if neccessary- there will by a
+  dialogue, adjusting the TYPO3 database a little, because Extbase will need a
+  new database table to store cache informations.</para>
+
+  <para>Now you have installed Extbase and Fluid and can use them for
+  Extension development. To check if Extbase and Fluid are working, we will
+  install a Blog Example Extension, which was created for testing Extbase and
+  Fluid. We will have a closer look at this Extension in chapter 3.</para>
+
+  <para>Again open the Extension Manager and open the submodule
+  <emphasis>Import extensions</emphasis> this time. Click
+  <emphasis>Retrieve/Update</emphasis> to download the current list of
+  available Extensions. Now you can search for the Extension
+  <emphasis>blog_example</emphasis>. With a click on the red arrow next to the
+  result, you will start to download the Extension to your TYPO3 instance.
+  After that you can click <emphasis>Install extension</emphasis> right away,
+  to have it installed.</para>
+
+  <para>After completing that, you'll find a new submodule
+  <emphasis>Blogs</emphasis> inside the <emphasis>Web</emphasis> module. If
+  you can't see it, you should reload the TYPO3 backend in your browser. With
+  a click on <emphasis>Create example data</emphasis>, some dummy records will
+  be created. The Blog Example is now working and can go on with Extbase and
+  Fluid.</para>
+
+  <para>The development of Extbase and Fluid proceeds quite fast. If you miss
+  certain functionalities or experiencing an issue, you should install the
+  development versions of Extbase and Fluid from the software versionining
+  system Subversion. Open the <emphasis>typo3conf/ext/</emphasis> directory of
+  your TYPO3 instance on the command line and get the development versions
+  (called trunk) of Extbase and Fluid with the command line tool
+  Subversion:</para>
+
+  <para><code>svn checkout
+  https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/extbase/trunk
+  extbase</code></para>
+
+  <para><code>svn checkout
+  https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/fluid/trunk
+  fluid</code></para>
+
+  <para><code><remark>TODO: Please check the markup of the code
+  example.</remark></code></para>
+
+  <para><sidebar>
+      <para>Report issues or help at development</para>
+
+      <para>If you find an issue in Extbase or Fluid, you should have a look
+      at the development platform forge.typo3.org. These projects are
+      developed there by the community and you will find a bug tracker and a
+      wiki for the projects:</para>
+
+      <para><itemizedlist>
+          <listitem>
+            <para>Development of Extbase:
+            http://forge.typo3.org/projects/show/typo3v4-mvc</para>
+          </listitem>
+
+          <listitem>
+            <para>Development of Fluid:
+            http://forge.typo3.org/projects/show/package-fluid</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <para>Additionally there is a special newsgroup and mailing list, which
+      you can use for your Extbase and Fluid related questions. You'll find
+      the mailing list called <emphasis>TYPO3-project-typo3v4mvc</emphasis> on
+      <emphasis>http://lists.typo3.org</emphasis>. The according newsgroup is
+      also found on <emphasis>lists.typo3.org</emphasis> by searching for
+      <emphasis>typo3.projects.typo3v4mvc</emphasis>. Questions posted to the
+      mailing list and newsgroup normally are answered by committed members of
+      the community.</para>
+    </sidebar>
+</para>
+</section>

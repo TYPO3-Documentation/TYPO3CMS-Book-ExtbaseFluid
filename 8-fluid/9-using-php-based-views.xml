@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Using PHP based views</title>
+
+  <para>So far we have used Fluid as template engine. Most textual output
+  formats are well representable with Fluid. For some use cases it is
+  reasonable to use pure PHP for the output. An example of such an use case is
+  the creation of JSON files.</para>
+
+  <para>For this reason, Extbase also supports PHP based views. Assume we want
+  create a JSON based output for the <code>list</code> action in the
+  <code>post</code> controller of the BlogExample. To be able to do so we need
+  a PHP based view.</para>
+
+  <para>When no Fluid template is found for a controller/action/format
+  combination, a PHP based view will be used. This PHP class is resolved
+  against a naming convention which is defined in the
+  <code>ActionController</code> in the class variable
+  <code>$viewObjectNamePattern</code>. The default naming convention is
+  following:</para>
+
+  <para><code>Tx_@extension_View_@controller_@action_@format</code></para>
+
+  <para>All parts beginning with <code>@</code> will be replaced accordingly.
+  When no class with this name can be found, the <code>@format</code> will be
+  removed from the naming convention and a matching class again searched
+  for.</para>
+
+  <para>Our PHP based view for the list view of the post controller should
+  have the class name <code>Tx_BlogExample_view_Post_ListJSON</code>, because
+  it applies only for the format JSON. So that the class according to the
+  naming convention must be implemented in the file
+  <emphasis>EXT:blog_example/Classes/View/Post/ListJSON.php</emphasis>.<remark>???
+  Check for correctness.. This does not match with the format mentioned above.
+  One would expect the class to be
+  Tx_BlogExample_view_Post_List_JSON</remark></para>
+
+  <para>Each view must implement the interface
+  <code>Tx_Extbase_MVC_View_ViewInterface</code>. This consists off some
+  initializing methods and the <code>render()</code> method, which is called
+  by the controller for displaying the view.</para>
+
+  <para>It is often helpful to inherit directly from
+  <code>Tx_Extbase_MVC_View_AbstractView</code> which provides default
+  initializing methods and you only have to implement the
+  <code>render()</code> method. A minimal view would like this:</para>
+
+  <para><programlisting><code>class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
+  public function render() {
+    return 'Hello World';
+  }
+}</code></programlisting></para>
+
+  <para>Now we have the full expression power of PHP available and we can
+  implement our own output logic. For example our JSON view could look like
+  this:</para>
+
+  <para><programlisting><code>class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
+  public function render() {
+    $postList = $this-&gt;viewData['posts'];
+    return json_encode($postList);
+  }
+}</code></programlisting>Here we can see that the data that is passed to the
+  view is available in the array <code>$this-&gt;viewData</code>. These are
+  converted to JSON data using the function <code>json_encode </code>and then
+  returned.</para>
+
+  <tip>
+    <para>PHP based views are also helpful for specially complex kind of
+    output like the rendering of PDF files.</para>
+  </tip>
+
+  <section>
+    <title>View configuration options in the controller</title>
+
+    <para>You have some methods in the controller that you can overwrite to
+    control the resolution of the view. In the most cases the customization of
+    <code>$viewObjectNamePattern</code> should be flexible enough, but
+    sometimes you have to put more logic into it.</para>
+
+    <para>For example you might have to initialize your view in a special
+    manner before it can be used. For this there is the template method
+    <code>initializeView($view)</code> inside the
+    <code>ActionContoller</code>, which gets the view as parameter. In this
+    method you should write your own initializing routine for your
+    view.</para>
+
+    <para>If you want to control the resolving and initializing of the view
+    completely, you have to rewrite the method <code>resolveView()</code>.
+    This method has to return a view that implements
+    <code>Tx_Extbase_MVC_ViewInterface</code>. Sometimes it is enough to just
+    overwrite the resolution of the view object name. Therefore you must
+    overwrite the method <code>resolveViewObjectName()</code>. This method
+    returns the name of the PHP class which should be used as view.</para>
+
+    <tip>
+      <para>If you have a look at the source code of Extbase at these points,
+      in the comment blocks of the above mentioned methods you see an
+      <code>@api</code> annotation. These methods are part of the
+      <emphasis>official API</emphasis> of Extbase and could be overwritten
+      for personal use.</para>
+
+      <para>Methods without an API annotation should never be overwritten
+      (although it is technically possible), because they could be directly
+      changed in feature versions of Extbase.</para>
+    </tip>
+
+    <para>Now you have learned about the most helpful functions of Fluid. In
+    the following section we would show the interaction of these functions
+    during the creation of a real template, to give you a better feeling for
+    the work with Fluid.</para>
+  </section>
+</section>

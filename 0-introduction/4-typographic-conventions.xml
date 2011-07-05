@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Typographic conventions</title>
+
+  <para>This book uses the following typographic conventions:</para>
+
+  <para><filename>File names and directories</filename></para>
+
+  <para><emphasis>emphasiszed content</emphasis></para>
+
+  <para><classname>class names</classname>, <methodname>method
+  names</methodname>, <code>inline code</code></para>
+
+  <para><code><replaceable>cursive non-proportional fonts</replaceable></code>
+  are used if the user should replace certain code parts.</para>
+
+  <note>
+    <para>This stands for a general advice or hint.</para>
+  </note>
+
+  <tip>
+    <para>This stands for a tip or a suggestion.</para>
+  </tip>
+
+  <warning>
+    <para>With this symbol, certain special behavior is explained, which could
+    lead to problems or impose a risk.</para>
+  </warning>
+</section>

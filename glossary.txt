@@ -1,0 +1,72 @@
+FORMATTING
+==========
+
+ViewHelpers:
+ * ViewHelpers in continuous text should be formatted like that:
+	... the <code>cObject</code> ViewHelper
+	... there exists a ViewHelper <code>format.date</code>
+
+Code Snippets:
+ * Code Snippets are indented with a single TAB character
+
+GLOSSARY
+========
+
+The glossary should provide information on how certain german words should be translated. Please update the glossary if you come over any special words.
+
+German = English
+
+Ablaufmuster = schedule model
+Action	= Action
+	Eine Methode als Teil eines Controllers
+Aggregate = Aggregate
+	im Sinne von Domain-Driven Design
+Allgegenwärtige Sprache	= Ubiquitous Language
+	Feststehender Begriff in Domain Driven Design
+Anmerkung = Annotation
+Annotation = Ein konfigurations-relevanter "Doc Comment", z.B. @scope
+Ausnahme = Exception
+Controller = Controller
+Domänenmodell = Domain Model
+	Variante eines Models das dem Domain-Driven Design Prinzipien entspricht
+Domain-Driven Design (DDD) = Domain-Driven Design
+	Programmier-Paradigma zur Modellierung von Domänen mit Fokus auf die Geschäftslogik
+Entität = Entity
+	Individuelles Objekt nach DDD
+Entwurfsmuster = Design Pattern
+	Formale Beschreibung einer Lösung für ein gängiges Design-Problem
+Exception = Exception
+	Eine Ausnahmesituation, technisch umgesetzt durch PHPs Exception Handler
+Exception werfen = ... throw Exception ...
+Fehler = Error
+Fehlerbehandlung = Error Handling
+Fabrik = Factory
+	spezielles Design Pattern
+Interface = Interface
+	Im Sinne von PHP "interface"
+Schnittstelle = Interface
+Lazy Loading = Lazy Loading
+Modell = Model
+	Komponente aus dem MVC Pattern
+Namensraum = Namespace
+	Namentliche Abgrenzung von Klassen, Interfaces aber auch Parametern.
+Paket = Package
+	Ein FLOW3 Paket
+Persistenz = Persistence
+Prototyp = Prototype
+	(Design Pattern)
+Reflection = Reflection
+Repository = Repository
+	Teil des DDD, allgemeines Konstrukt zur Aufbewahrung von Entities
+Anfrage = Request
+	Anfrage an das Framework z.B. über einen Web Browser oder die Kommandozeile
+Request Handler
+Service = Service
+	im Sinne von Domain-Driven Design
+Singleton	(Design Pattern)
+Type Hint
+	Klassen- oder Interfacename vor einem Methoden- oder Funktionsargument. foo(TypeHint $bar)
+Value Object (VO)
+	ein Design Pattern, verwendet in DDD
+View
+View Helper

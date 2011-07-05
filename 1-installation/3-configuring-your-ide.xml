@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Configuring your IDE</title>
+
+  <para>An Extension based on Extbase consists of many files, so it is helpful
+  to use a PHP development environment (IDE) instead of a simple editor. Among
+  syntax highlighting an IDE offers code completion in first place and a
+  direct view of the code documentation. Some development environments also
+  have an integrated debugger, which makes detecting errors easier and faster.
+  To give you an example we'll show you how to set up NetBeans and Eclipse for
+  Extension development. Both IDEs have comparable functionalities, so it
+  depends on your personal preferences which one you should use.</para>
+
+  <sidebar>
+    <para>Sources</para>
+
+    <para>The NetBeans IDE is offered for Windows, Linux and Mac OS X. We use
+    NetBeans PHP, which you can download from
+    <emphasis>http://netbeans.org</emphasis>.</para>
+
+    <para>Eclipse is also available for all important Operating Systems. The
+    PHP IDE is called Eclipse PDT, which you can download from
+    <emphasis>http://eclipse.org/pdt</emphasis>.</para>
+  </sidebar>
+
+  <para>In general you should create projects in NetBeans repectively (????)
+  Eclipse for Extbase and Fluid. You will be able to have a look at the
+  Extbase and Fluid source code and the documentation whenever you need
+  it.</para>
+
+  <para>Using NetBeans, in the <emphasis>File</emphasis> menu select
+  <emphasis>New Project</emphasis> and choose <emphasis>PHP</emphasis> as
+  category and then the entry <emphasis>PHP Application with Existing
+  Sources</emphasis>. On the next page of the wizard you can select the
+  Extension folder of Fluid or Extbase. If you use the development version of
+  Extbase or Fluid you should select the directory
+  <emphasis>/path-to-your-typo3-installation/typo3conf/ext/extbase/</emphasis>
+  (or <emphasis>.../fluid/</emphasis>). If you want to use the version shipped
+  with TYPO3, you'll find it at
+  <emphasis>/path-to-your-typo3-installation/typo3/sysext/extbase/</emphasis>
+  (or <emphasis>.../fluid/</emphasis>).</para>
+
+  <tip>
+    <para>By default NetBeans uses space chars for code indentation. But as
+    the TYPO3 Coding Guidelines demand Tabs for indentation, you should
+    configure NetBeans accordingly. Open the preferences dialogue of NetBeans
+    and choose the entry <emphasis>Editor</emphasis>. Now, in the section
+    <emphasis>Formatting</emphasis>, deactivate the option <emphasis>Expand
+    Tabs to Spaces</emphasis> and adjust the options <emphasis>Number of
+    Spaces per Indent</emphasis> and <emphasis>Tab Size</emphasis> to the same
+    values (e.g. 4).</para>
+  </tip>
+
+  <para>In Eclipse creating projects for Extbase and Fluid will work like
+  this: Click on <emphasis>File</emphasis> → <emphasis>New Project</emphasis>
+  and choose <emphasis>Create project from existing source</emphasis>. Then
+  choose the according folder for Extbase or Fluid and provide a name for the
+  project. Click on <emphasis>Finish</emphasis> to create the project with
+  your settings.</para>
+
+  <para>When developing an Extension by yourself you should also create a
+  dedicated project for it in NetBeans or Eclipse.</para>
+</section>

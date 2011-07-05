@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Outlook</title>
+
+  <para>Even if Extbase and Fluid are very powerful tools, there is an advance
+  in development. In this chapter we would like to show an outlook of the
+  current development. In the first section we will introduce the new
+  Kickstarter for Extbase-Extensions, which will speed up the initial setup of
+  an extension massivly. In the second section we will show you, not only how
+  to write Fronted-Plugins with Extbase, but also how to write Backend-Modules
+  with it. You can now make use of your accumulated knowlegde on Extbase and
+  Fluid immediately. The chapter will be closed with an outlook on FLOW3,
+  since Extbase is a bridging technology to FLOW3.</para>
+
+  <xi:include href="1-foo.xml" />
+
+  <xi:include href="2-bar.xml" />
+</chapter>

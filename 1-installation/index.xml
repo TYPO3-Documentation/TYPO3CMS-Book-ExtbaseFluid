@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Installation</title>
+
+  <para>In this chapter we want to help you to set up an effecient working
+  environment. There are some notes how to set up the development server to
+  start with. After that there will be an explanation how to install the two
+  TYPO3 Extensions <emphasis>extbase</emphasis> and <emphasis>fluid</emphasis> which this book is about. Furthermore we
+  will give you some recommendations how set up your development environment
+  (IDE), to have code completion und the IDE integrated Debugger right at your
+  hand. A list of some more TYPO3 Extensions that might be helpful to you,
+  will round up this chapter - including information from which sources to get
+  them.</para>
+
+  <para>We assume that you already have some knowledge how to set up a TYPO3
+  environment and therefore we will concentrate on the installation of Extbase
+  and Fluid and their related components.</para>
+
+  <xi:include href="1-configuring-the-server.xml" />
+
+  <xi:include href="2-install-extbase-and-fluid.xml" />
+
+  <xi:include href="3-configuring-your-ide.xml" />
+
+  <xi:include href="4-extbase-and-fluid-autocompletion.xml" />
+
+  <xi:include href="5-debugging-with-xdebug.xml" />
+
+  <xi:include href="6-more-helpful-extensions.xml" />
+</chapter>

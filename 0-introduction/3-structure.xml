@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Structure of this book</title>
+
+  <para>This chapter is structured into ten chapters and three appendixes. The
+  chapters discuss the following topics:</para>
+
+  <para>Chapter 1, <emphasis>Installation</emphasis>, leads you through the
+  installation of Extbase and Fluid. To make extension development most
+  effective, we give suggestions for development environments and tips and
+  tricks for debugging.</para>
+
+  <para>Chapter 2, <emphasis>Basic principles</emphasis>, begins with an
+  overview about the concepts of object oriented programming, because these
+  are essential for working with Extbase. After that, we dive into
+  Domain-Driven Design, a programming paradigm which is supported optimally by
+  Extbase. After that, you'll learn the design pattern Model-View-Controller,
+  which is the technical basis of every Extbase Extension. Finally, the
+  chapter explains Test-Driven Development to the reader.</para>
+
+  <para>Chapter 3, <emphasis>Journey through the Blog Example</emphasis>,
+  should give you a feeling how the concepts from chapter 2 were implemented
+  in Extbase. Based on a given example extension we explain how a blog posting
+  is created and goes through the different system stages until it is
+  shown.</para>
+
+  <para>In chapter 4, <emphasis>Creating a first extension</emphasis>, we show
+  you a minimal extension. With this extension, data is managed through the
+  TYPO3 backend, and displayed in the Frontend.</para>
+
+  <para>Chapter 5, <emphasis>Modelling the Domain</emphasis>, shows
+  Domain-Driven Design with a practical example. It shows how a model can be
+  planned and implemented.</para>
+
+  <para>If the domain model is finished, the necessary TYPO3 infrastructure
+  must be created: Database tables and backend editing forms. The relevant
+  information is explained in chapter 6, <emphasis>setting up the persistence
+  layer</emphasis>.</para>
+
+  <para>After chapters 5 and 6 have explained the model layer in detail, we
+  now focus on the application flow of the extension in chapter 7,
+  <emphasis>controlling the flow with controllers</emphasis>. These are
+  implemented in the controller layer.</para>
+
+  <para>Now, only the output layer of the extension is missing, the so-called
+  <emphasis>view</emphasis>. In chapter 8, <emphasis>styling the output with
+  Fluid</emphasis>, Fluid is explained in detail and its functionalities are
+  shown with several examples. At the end of the chapter, the explained
+  functionalities are combined and demonstrated at the example
+  extension.</para>
+
+  <para>Chapter 9, <emphasis>internationalization, validation and
+  security</emphasis> deals with advanced topics and tasks. This includes the
+  multilingual capabilities of extensions, the validation of data and the
+  handling of security aspects.</para>
+
+  <para>Chapter 10, <emphasis>outlook</emphasis>, gives a glimpse into code
+  which is currently being developed. The focus lies on the kickstarter and
+  the use of Extbase in the TYPO3 Backend. Additionally, this chapter shows
+  you parts of FLOW3 and explains how Extbase Extensions can be ported to
+  TYPO3 v5.</para>
+
+  <para>Extbase mostly uses the conventions of FLOW3. In <emphasis>Appendix A,
+  Coding Guidelines</emphasis>, they are summarized.</para>
+
+  <para>Appendix B <emphasis>Reference of Extbase</emphasis> contains an
+  overview about important Extbase concepts and an alphabetical listing of the
+  API.</para>
+
+  <para>In Appendix C, <emphasis>Reference of Fluid</emphasis>, you can find a
+  reference of all standard Fluid ViewHelpers and the API which is needed to
+  create own ViewHelpers.</para>
+</section>

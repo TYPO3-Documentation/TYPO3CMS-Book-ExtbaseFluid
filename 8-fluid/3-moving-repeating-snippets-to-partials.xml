@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section version="5.0" xml:id="Fluid_using_partials"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Moving Repeating Snippets To Partials</title>
+
+  <para>During developing of templates, you often reach a point, where you
+  need a template snippet that you wrote already before somewhere else. To
+  avoid duplicating code and to guarantee a consistent look with such
+  recurring elements, Fluid supports so called <emphasis>Partials.</emphasis>
+  You can think of partials as of a small code snippets that you can include
+  anywhere within a template. In our blog example there is a list of tags,
+  which are used in different views. In the list view of all posts and in the
+  detail view of a single blog post. In this case it makes sense to move the
+  view of the tag list to a partial.</para>
+
+  <para>All Partials are Fluid templates and are located in
+  <filename>Resources/Private/Partials/</filename>. For example we could save
+  our tag-view-partial in
+  <filename>Resources/Private/Partials/tags.html</filename> and it could
+  contain the following code to display the list of the tags:</para>
+
+  <para><code>&lt;b&gt;Tags&lt;/b&gt;: &lt;f:for each="{tags}"
+  as="tag"&gt;{tag}&lt;/f:for&gt;</code></para>
+
+  <para>We use the ViewHelper <code>f:render partial="..." to call a Partial
+  in a template:</code></para>
+
+  <para><programlisting>&lt;ul&gt;
+  &lt;f:for each="{blogPosts}" as="post"&gt;
+    &lt;li&gt;&lt;b&gt;{post.title}&lt;/b&gt;&lt;br /&gt;
+      <emphasis role="bold">&lt;f:render partial="tags" arguments="{tags: post.tags}" /&gt;</emphasis>
+    &lt;/li&gt;
+  &lt;/f:for&gt;
+&lt;/ul&gt;</programlisting>With <code>partial="tags"</code>, the ViewHelper
+  is being told to render the Partial called <code>tags</code>. Further on,
+  the list of the tags is being passed to the ViewHelper as parameter. All
+  variables needed in the Partial, have to be passed to it explicitely with
+  <code>arguments="..."</code>.</para>
+
+  <para><tip>
+      <para>We referenced the Partial with the ending .html. In doing so, the
+      current format is being used. Therefore a different format of the output
+      is applied automatically when changing the format. If you specify the
+      ending of the Partial explicitely, then this Partial is always used, no
+      matter in which format the data is being outputted. More information
+      about formats can be found in »Using Different Output Formats« in the
+      previous chapter.</para>
+    </tip></para>
+
+  <para></para>
+</section>

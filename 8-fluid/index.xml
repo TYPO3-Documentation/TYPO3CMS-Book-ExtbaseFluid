@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xhtml="http://www.w3.org/1999/xhtml"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:ns="http://docbook.org/ns/docbook"
+         xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+  <title>Styling the output with Fluid</title>
+
+  <para>Up to now you have learned how to represent the business logic of an
+  application with a model and how to manipulate the model with the use of
+  controllers. So far we have covered the output of data for the user only
+  marginally. We want to take a closer look at this now. We will show you how
+  you can create output for the user simple and fast. To make this work most
+  efficient, specially for TYPO3 and FLOW3 a new templating engine named
+  <emphasis>Fluid</emphasis> was developed, which is flexible and extensible,
+  but easy to learn.</para>
+
+  <para>In this chapter you will start with learning the basic concepts of
+  Fluid. After that we will show you some functions which are helpful in
+  templating with the help of various examples. Beside this we show you the
+  development of a ViewHelper using an example. Finally we show you how you
+  can apply the learned technologies with the help of a practical
+  sample.</para>
+
+  <xi:include href="1-basic-concepts.xml" />
+
+  <xi:include href="2-using-different-output-formats.xml" />
+
+  <xi:include href="3-moving-repeating-snippets-to-partials.xml" />
+
+  <xi:include href="4-creating-a-consistent-look-and-feel-with-layouts.xml" />
+
+  <xi:include href="5-using-typoscript-for-rendering-the-cobject-viewhelper.xml" />
+
+  <xi:include href="6-adding-additional-tag-attributes-with-additionalattributes.xml" />
+
+  <xi:include href="7-using-boolean-conditions.xml" />
+
+  <xi:include href="8-developing-a-custom-viewhelper.xml" />
+
+  <xi:include href="9-using-php-based-views.xml" />
+
+  <xi:include href="10-template-creation-by-example.xml" />
+
+  <xi:include href="11-conclusion.xml" />
+</chapter>
