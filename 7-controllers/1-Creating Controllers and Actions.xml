@@ -32,7 +32,7 @@
 
   <para>When realizing the desired tasks through <emphasis>Action</emphasis>
   methods you will often stumble upon very similar flows and patterns. Each
-  task will be transacted by a single <emphasis>Action</emphasis> or a chain
+  task will be carried out by a single <emphasis>Action</emphasis> or a chain
   of <emphasis>Actions</emphasis>:</para>
 
   <orderedlist>
@@ -300,11 +300,105 @@
     </classname>Objects contained in the
     <classname>RegionRepository</classname>. The view creates the output of
     the form in frontend, using a template, which we focus on in chapter 8 in
-    section "<remark>TODO: Insert correct section name</remark>". </para>
+    section "<remark>TODO: Insert correct section name</remark>". After the
+    user filled in the data of the offer and submitted the form, the Method
+    <classname>createAction()</classname> is called. It expects as Arguments
+    an <classname>Organization </classname>Object and an Object of the class
+    <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. For that extbase
+    instantiates the Object and "fills" its Properties with the appropriate
+    Form data. If all Arguments are valid, the Action
+    <classname>createAction()</classname> is called.</para>
+
+    <para><remark>TODO: Insert Code</remark></para>
+
+    <para>The new offer is allocated to the organization and inversly the
+    organization is allocated to the offer. Thanks to this allocation extbase
+    will cause the persistence of the new offer in the dispatcher before
+    returning to TYPO3.</para>
+
+    <para>After creating the new offer, the appropriate organization is to be
+    displayed with all of its offers. We therefore start a new request
+    (<emphasis>request-response-cycle</emphasis>) by redirecting to
+    <classname>showAction()</classname> of the
+    <classname>OrganizationController</classname> using the Method
+    <classname>redirect()</classname>. The actual organization is hereby
+    passed on as an argument. Inside the
+    <classname>ActionCotroller</classname> you have the following Methods for
+    redirecting to other Actions at your disposal:</para>
+
+    <para><remark>TODO: Insert Code</remark></para>
+
+    <para>Using the <classname>redirect(</classname>) Method, you can start a
+    new request-response-cycle on the spot, similar to clicking on a link: The
+    given Action (specified in <classname>$actionName</classname>) of the
+    appropriate controller (specified in
+    <classname>$controllerName</classname>) in the given extension (specified
+    in <classname>$extensionName</classname>) is called. If you did not
+    specify a controller or extension, extbase assumes, that you stay in the
+    same context. In the fourth parameter <classname>$arguments</classname>
+    you can pass an Array of arguments. In our example<classname>
+    array('organization' =&gt; $organization)</classname> <remark>TODO:
+    "organization" should be "emphasis" in addition to "classname". I did not
+    get it, sorry!</remark> would look like this in the URL:
+    <classname>tx_sjroffers_pi1[organization]=5</classname>. The Array key is
+    transcribed to the parameter name, while the organization object in
+    <classname>$organization</classname> is transformed into the number 5,
+    which is the appropriate UID. If you want to link to another page inside
+    the TYPO3 installation, you can pass its uid in the 5th parameter
+    (<classname>$pageUid</classname>). A delay before redirecting can be
+    achieved by using the 6th parameter (<classname>$delay</classname>). By
+    default the reason for redirecting is set to status code 303 (which means
+    <emphasis>See Other</emphasis>).You can use the 7th parameter
+    (<classname>$statusCode</classname>) to override this (for example with
+    301, which means <emphasis>Moved Permanentely</emphasis>).</para>
+
+    <para>In our example, the following code is sent to the Browser. It
+    provokes the immedeate reload of the page with the given URL:</para>
+
+    <para><remark>TODO: insert Code</remark></para>
+
+    <para>The Method <classname>redirectToURI()</classname> corresponds to the
+    Method <classname>redirect()</classname>, but you can directly set a URL
+    respectively URI as string, e.g. <remark>TODO: insert Code</remark>. With
+    this, you have all the freedom to do what you need. The Method
+    <classname>forward()</classname>, at last, does a redirect of the request
+    to another Action on the spot, just as the two redirect Methods. In
+    contrast to them, no request-response-cycle ist started, though. The
+    request Object is only updated with the details concerning Action,
+    Controller and Extension, and then passed back to the dispatcher for
+    processing. The dispatcher then passes on the actual
+    <classname>Request-</classname> and
+    <classname>Response-</classname>Objects to the appropriate Controller.
+    Here, too, applies: If no Controller or Extension is set, the actual
+    context is kept.</para>
+
+    <para>This procedure can be done multiple times when calling a page. There
+    is the risk, though, that the process runs into an infinite loop (A
+    redirects to B, B redirects to A again). In this case, extbase stops the
+    processing after some steps.</para>
+
+    <para>There is another important difference to the redirect Methods. When
+    redirecting using the Method <classname>forward()</classname>, new objects
+    will not (yet) be persisted to database. This is not done until at the end
+    of a request-response-cycle. Therefore no UID has yet been assigned to a
+    new Object and the transcription to a URL parameter fails. You can
+    manually trigger the action of presisting before the redirection, by using
+    <classname>Tx_Extbase_Dispatcher::getPersistenceManager()-&gt;persistAll()</classname>,
+    though.</para>
+
+    <para>When calling the Method <classname>createAction(),</classname> we
+    already described the case of all Arguments being valid. But what happens,
+    if a Frontend user inserts invalid data or even manipulates the form to
+    deliberately attack the website?<tip>
+        <para>You find detailed information about validation and security in
+        chapter 9</para>
+      </tip></para>
+
+    <para></para>
   </section>
 
   <section version="5.0">
-    <title>with Ablaufmuster</title>
+    <title>UIDwith AblaufmusterThis procedure </title>
 
     <para>Text</para>
   </section>
