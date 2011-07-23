@@ -11,7 +11,7 @@
   <para>The Controller classes are stored in the folder <link
   linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the
   Controller is composed by the name of the Domain Model and the Suffix
-  <classname>Controller</classname>. So the Controller
+  <classname><emphasis>Controller</emphasis></classname>. So the Controller
   <classname>Tx_SjrOffers_Controller_OfferController</classname> is assigned
   to the Aggegate Root Object
   <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. And the Name of the
@@ -124,16 +124,12 @@
 
     <para><code>protected $offerRepository;</code></para>
 
-    <para><code></code></para>
-
     <para><code>pubilc function initializeActio() {</code></para>
 
     <para><code>$this-&gt;offerRepository =
     t3lib_div::makeInstance('Tx_JjrOffers_Domain_Repository_OfferRepository');</code></para>
 
     <para><code>}</code></para>
-
-    <para><code></code></para>
 
     <para><code>public function indexAction() {</code></para>
 
@@ -145,9 +141,10 @@
     <para><classname>ActionController</classname> not only calls hte Method
     <classname>initializeAction()</classname>, which is executed before any
     Action in the Controller, but also a Method in the Form of
-    <classname>initializeFooAction()</classname>, which is called only before
-    the Method <classname>fooAction()</classname>. The Method for the
-    initializing of Action is of course not only useful for preparing
+    <classname>initialize<emphasis>Foo</emphasis>Action()</classname>, which
+    is called only before the Method
+    <classname><emphasis>foo</emphasis>Action()</classname>. The Method for
+    the initializing of Action is of course not only useful for preparing
     Repositories. You can also use them for integrating JavaScript libraries
     or to check if a specific FE user is logged in.</para>
 
@@ -164,8 +161,8 @@
     <para>The second pattern is best put into action by a single Mehod as
     well. We call it <classname>showAction()</classname>. In contrast to
     <classname>indexAction</classname> we have to to tell this Method from
-    outside which Domain Object is to be displayed. In our case th offer to be
-    shown is passed to the Method as Argument:</para>
+    outside which Domain Object is to be displayed. In our case, the offer to
+    be shown is passed to the Method as Argument:</para>
 
     <para><code>/**</code></para>
 
@@ -191,41 +188,43 @@
 
     <para>Due to the 2 Arguments
     <code>tx_sjroffers_pi1[controller=Offer]</code> and
-    <code>tx_sjroffers_pi1[action]=show</code>, the dispatcher of extbase
+    <code>tx_sjroffers_pi1[action]=show</code>, the dispatcher of Extbase
     passes the request to the <classname>OfferController</classname>. In the
     request we find the information that the Action <emphasis>show
     </emphasis>is to be called. Before passing on the further processing to
     the Method <classname>showAction()</classname>, the Controller tries to
     map the Arguments received by the URL on the arguments of the Method.
-    Extbase maps the arguments by their names. In our example extbase detects
-    the GET Argument <classname>tx_sjroffers_pi1[offer]=3
+    Extbase maps the arguments by their names. In our example Extbase detects,
+    that the GET Argument <classname>tx_sjroffers_pi1[offer]=3
     </classname>corresponds to the Method Argument
     <classname>$offer</classname>:
-    <classname>showAction(Tx_SjrOffers_Domain_Model_Offer $offer)</classname>.
-    The type of this Argument is fetched by extbase from the Method signature:
-    <classname>showAction(Tx_SjrOffers_Domain_Model_Offer $offer)</classname>.
-    In case this so called <emphasis>Type Hint </emphasis>should not be
-    present, or (e.g. for the types <emphasis>string </emphasis>or
-    <emphasis>int</emphasis> in PHP) not possible, extbase reads the type from
-    the commentary written above the Method: <classname>@param
-    Tx_SjrOffers_Domain_Model_Offer $offer</classname>.</para>
+    <classname>showAction(Tx_SjrOffers_Domain_Model_Offer
+    <emphasis>$offer</emphasis>)</classname>. The type of this Argument is
+    fetched by Extbase from the Method signature:
+    <classname>showAction(<emphasis>Tx_SjrOffers_Domain_Model_Offer</emphasis>
+    $offer)</classname>. In case this so called <emphasis>Type Hint
+    </emphasis>should not be present, or (e.g. for the types <emphasis>string
+    </emphasis>or <emphasis>int</emphasis> in PHP) not possible, Extbase reads
+    the type from the commentary written above the Method: <classname>@param
+    <emphasis>Tx_SjrOffers_Domain_Model_Offer</emphasis>
+    $offer</classname>.</para>
 
     <para>After successful assigning, the value of the incoming Argument has
-    to be casted in the target type as well as checked for validity. (read
-    more about validation in cahpter 9 in section "Validating Domain
-    Objects"). In our case the incoming value is "3". Target type is the class
-    <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. So extbase
-    interprets the the incoming value as uid of the Object to be created and
-    sends a request to the <emphasis>Storage Backend</emphasis> to find an
-    Object with this uid. If the Object can be reconstructed fully valid it is
-    passed to the Method as argument. Inside of the Method
+    to be casted in the target type as well as checked for validity (read more
+    about validation in chapter 9 in section "Validating Domain Objects"). In
+    our case the incoming value is "3". Target type is the class
+    <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. So Extbase
+    interprets the incoming value as uid of the Object to be created and sends
+    a request to the <emphasis>Storage Backend</emphasis> to find an Object
+    with this uid. If the Object can be reconstructed fully valid it is passed
+    to the Method as argument. Inside of the Method
     <classname>showAction()</classname> the newly created Object is passed on
     to the view, which is taking care of the HTML output as usual.</para>
 
     <para><tip>
         <para>Inside of the Template you can access all Properties of the
         Domain Object, including all existing child objects. Thus this Flow
-        Pattern does not only cover single Domain Objects but in the event
+        Pattern does not only cover single Domain Objects but, in the event,
         also a complex Aggregate.</para>
       </tip>If an Argument is identified as invalid, the already implemented
     Method <classname>errorAction()</classname> of
@@ -239,21 +238,21 @@
   <section version="5.0">
     <title>Flow Pattern "creating a new Domain Object"</title>
 
-    <para>For the third Flow Pattern, the one fpor vreating a new Domain
-    Object, two steps are required: First, a form for inputting the FDomain
-    Data has to be shown in Frontend. Second, a new Domain Object hast to be
-    created (using the incomin form data) and put in the appropriate
+    <para>For the third Flow Pattern, the one for creating a new Domain
+    Object, two steps are required: First, a form for inputting the Domain
+    Data has to be shown in Frontend. Second, a new Domain Object has to be
+    created (using the incoming form data) and put in the appropriate
     Repository. We're going to implement these two steps in the Methods
     <classname>newAction() </classname>and
     <classname>createAction()</classname>.</para>
 
     <para><tip>
-        <para>We already described these steps in cahpter 3 in section
-        "<remark>TODO: Insert correct section name</remark>." We shortly
-        revise this Flow using our example extension and focus on some further
+        <para>We already described these steps in chapter 3 in section
+        "Alternative route: creating a new posting". We now shortly revise
+        this Flow using our example extension and focus on some further
         aspects.</para>
       </tip>First the Method <classname>newAction() </classname>is called by a
-    Link in frontend withe the following URL:</para>
+    Link in frontend with the following URL:</para>
 
     <para><code>http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer</code></para>
 
@@ -262,9 +261,10 @@
     as it was the case with the <classname>Offer </classname>Object in the
     Method <classname>showAction()</classname>. In the URL are no information
     (yet) though, which value the Argument <classname>$newOffer
-    </classname>shall have. So the default value (=NULL) set in the Method
-    signature is used. With these Arguments, the controller passes the further
-    processing to the Method <classname>newAction()</classname>.</para>
+    </classname>shall have. So the default value
+    (<classname>=NULL</classname>) set in the Method signature is used. With
+    these Arguments, the controller passes the further processing to the
+    Method <classname>newAction()</classname>.</para>
 
     <para><code>/**</code></para>
 
@@ -294,17 +294,17 @@
     <para><code>}</code></para>
 
     <para>This Action passes to the view: in
-    <classname>organization</classname> the <classname>organization
-    </classname>Object, in <classname>newOffer</classname> NULL (to begin
-    with) the and in <classname>region </classname>all <classname>region
-    </classname>Objects contained in the
+    <classname>organization</classname> the <classname>Organization
+    </classname>Object, in <classname>newOffer</classname>
+    <classname>NULL</classname> (to begin with) the and in <classname>region
+    </classname>all <classname>Region </classname>Objects contained in the
     <classname>RegionRepository</classname>. The view creates the output of
     the form in frontend, using a template, which we focus on in chapter 8 in
-    section "<remark>TODO: Insert correct section name</remark>". After the
-    user filled in the data of the offer and submitted the form, the Method
+    section "Template Creation by example". After the user filled in the data
+    of the offer and submitted the form, the Method
     <classname>createAction()</classname> is called. It expects as Arguments
     an <classname>Organization </classname>Object and an Object of the class
-    <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. For that extbase
+    <classname>Tx_SjrOffers_Domain_Model_Offer</classname>. Therefore Extbase
     instantiates the Object and "fills" its Properties with the appropriate
     Form data. If all Arguments are valid, the Action
     <classname>createAction()</classname> is called.</para>
@@ -312,7 +312,7 @@
     <para><remark>TODO: Insert Code</remark></para>
 
     <para>The new offer is allocated to the organization and inversly the
-    organization is allocated to the offer. Thanks to this allocation extbase
+    organization is allocated to the offer. Thanks to this allocation Extbase
     will cause the persistence of the new offer in the dispatcher before
     returning to TYPO3.</para>
 
@@ -334,7 +334,7 @@
     appropriate controller (specified in
     <classname>$controllerName</classname>) in the given extension (specified
     in <classname>$extensionName</classname>) is called. If you did not
-    specify a controller or extension, extbase assumes, that you stay in the
+    specify a controller or extension, Extbase assumes, that you stay in the
     same context. In the fourth parameter <classname>$arguments</classname>
     you can pass an Array of arguments. In our example<classname>
     array('organization' =&gt; $organization)</classname> <remark>TODO:
@@ -374,7 +374,7 @@
 
     <para>This procedure can be done multiple times when calling a page. There
     is the risk, though, that the process runs into an infinite loop (A
-    redirects to B, B redirects to A again). In this case, extbase stops the
+    redirects to B, B redirects to A again). In this case, Extbase stops the
     processing after some steps.</para>
 
     <para>There is another important difference to the redirect Methods. When
@@ -382,67 +382,74 @@
     will not (yet) be persisted to database. This is not done until at the end
     of a request-response-cycle. Therefore no UID has yet been assigned to a
     new Object and the transcription to a URL parameter fails. You can
-    manually trigger the action of presisting before the redirection, by using
+    manually trigger the action of persisting before the redirection, by using
     <classname>Tx_Extbase_Dispatcher::getPersistenceManager()-&gt;persistAll()</classname>,
     though.</para>
 
     <para>When calling the Method <classname>createAction(),</classname> we
     already described the case of all Arguments being valid. But what happens,
-    if a Frontend user inserts invalid data or even manipulates the form to
+    if a Frontend user inserts invalid data - or even manipulates the form to
     deliberately attack the website?<tip>
         <para>You find detailed information about validation and security in
         chapter 9</para>
       </tip></para>
 
     <para>Fluid adds multiple hidden fields to the form generated by the
-    Method newAction(). These contain information about the origin of the form
-    (__referrer) as well as, in encrypted form (__hmac), the structure of the
-    form (shorted in the example below).</para>
+    Method <classname>newAction()</classname>. These contain information about
+    the origin of the form (<classname>__referrer</classname>) as well as, in
+    encrypted form (<classname>__hmac</classname>), the structure of the form
+    (shorted in the example below).</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
     <para>If now a validation error occurs when calling the Method
-    createActio(), an error message ist saved and the processing is passed
-    back to the previous Action, including all already inserted form data.
-    Extbase reads the neccessary information from the hidden fields__referrer.
-    In our case the Method newAction() is called again. In contrast to the
-    first call, extbase now tries to create an (invalid) offer object from the
-    form data and to pass it to the Method in $newOffer. Due to the annotation
-    @dontvalidate $newOffer extbase this time acceptes the invalid object and
-    displays the form once more.formerly filled in data is put in the fields
-    again and the previously saved error message is displayed if the template
-    is intenting so.</para>
+    <classname>createAction()</classname>, an error message ist saved and the
+    processing is passed back to the previous Action, including all already
+    inserted form data. Extbase reads the neccessary information from the
+    hidden fields<classname>__referrer</classname>. In our case the Method
+    <classname>newAction()</classname> is called again. In contrast to the
+    first call, Extbase now tries to create an (invalid)
+    <classname>Offer</classname> Object from the form data, and to pass it to
+    the Method in <classname>$newOffer</classname>. Due to the annotation
+    <classname>@dontvalidate $newOffer</classname> Extbase this time acceptes
+    the invalid object and displays the form once more. Formerly filled in
+    data is put in the fields again and the previously saved error message is
+    displayed if the template is intenting so.</para>
 
     <para><remark>TODO: Insert OImage with caption: Fig. 7-1: Wrong input in
     the form of an offer leads to an error mesage (in this case a modal
     JavaScript window) </remark></para>
 
     <para><tip>
-        <para>Standard error messages of extbase are not yet localized in
+        <para>Standard error messages of Extbase are not yet localized in
         Version 1.2. In section "Localize error messages" in chapter 8, we
-        describe a possibility to translate the too, though.</para>
-      </tip>Usig the hidden field __hmac, extbase compares in an early stage
-    the structure of a form inbetween delivery to the browser and arrival of
-    the form data. If the structure has changed, extbase assumes an evil
-    assault and aborts the request with an error message. You can skip this
-    check by annotting the Method with @dontverifyrequesthash, though. So you
-    have two annotiations for Action Methods at your disposal:</para>
+        describe a possibility to translate them too, though.</para>
+      </tip>Usig the hidden field <classname>__hmac</classname>, Extbase
+    compares in an early stage the structure of a form inbetween delivery to
+    the browser and arrival of the form data. If the structure has changed,
+    Extbase assumes an evil assault and aborts the request with an error
+    message. You can skip this check by annotting the Method with
+    @dontverifyrequesthash, though. So you have two annotiations for Action
+    Methods at your disposal:</para>
 
     <para><itemizedlist>
         <listitem>
-          <para>@dontvalidate $argumentName</para>
+          <para><classname>@dontvalidate
+          <emphasis>$argumentName</emphasis></classname></para>
         </listitem>
 
         <listitem>
-          <para>@dontverifyrequesthash</para>
+          <para><classname>@dontverifyrequesthash</classname></para>
         </listitem>
-      </itemizedlist>Using the annotation @dontvalidate $argumentName you tell
-    extbase that the argument is not to be validated. If the argument is an
-    Object, the validation of its properties is also bypassed.</para>
+      </itemizedlist>Using the annotation <classname>@dontvalidate
+    <emphasis>$argumentName</emphasis></classname> you tell Extbase that the
+    argument is not to be validated. If the argument is an Object, the
+    validation of its properties is also bypassed.</para>
 
-    <para>The annotation @dontverifyrequesthash makes extbase skip the check
-    of integrity of the form. It is not checked any more, if the frontend user
-    has e.g. added a password field. This annotation comes in handy for
+    <para>The annotation <classname>@dontverifyrequesthash</classname> makes
+    Extbase skip the check of integrity of the form. It is not checked any
+    more, if the frontend user has e.g. added a
+    <classname>password</classname> field. This annotation comes in handy for
     example, if you have to work with data of a form which you did not create
     yourself.</para>
   </section>
@@ -451,34 +458,38 @@
     <title>Flow Pattern "Editing an existing Domain Object"</title>
 
     <para>The flow pattern we will now present is quite similar to the
-    previuos one. We again need two action Methods, which we call editAction()
-    and updateAction() this time. The Method editsAction() provides the form
-    for editing, while updateAction() updates the Object in the Repository. In
-    contrast to newAction() it is not necessary to pass an organization to the
-    Method editAction(). It is sufficvient to pass the offer to be edited as
-    an Argument.</para>
+    previuos one. We again need two action Methods, which this time we call
+    <classname>editAction()</classname> and
+    <classname>updateAction()</classname>. The Method
+    <classname>editAction()</classname> provides the form for editing, while
+    <classname>updateAction()</classname> updates the Object in the
+    Repository. In contrast to <classname>newAction()</classname> it is not
+    necessary to pass an organization to the Method
+    <classname>editAction()</classname>. It is sufficient to pass the offer to
+    be edited as an Argument.</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
-    <para>Note once again the annotation @donvalidate $offer. The Method
-    updateAction() receives the changed offer and updates it in the
-    repository. Afterwards a new request os started and the organization is
-    shown with its udated offers.</para>
+    <para>Note once again the annotation <classname>@donvalidate
+    $offer</classname>. The Method <classname>updateAction()</classname>
+    receives the changed offer and updates it in the repository. Afterwards a
+    new request is started and the organization is shown with its updated
+    offers.</para>
 
     <para><warning>
-        <para>Do not forget to expicitly update the cahnged Domain Object
-        using update(). Extbase will not do tis automatically for you, for
-        doing so could lead to unexpected results. For example if you have to
-        manipulate the incomning Domain Object inside your Action
-        Method.</para>
+        <para>Do not forget to expicitly update the changed Domain Object
+        using <classname>update()</classname>. Extbase will not do this
+        automatically for you, for doing so could lead to unexpected results.
+        For example if you have to manipulate the incoming Domain Object
+        inside your Action Method.</para>
       </warning>At this point we have to ask ourselves how to prevent
     unauthorized changes of our Domain data. The organization and offer data
-    are not to be changed by all visitors after all. So an administrator is
-    allocated to each organization, authorized to cahnge the data of that
-    organization. The administrator can change the contact data of the
-    organization, create and delete offers and ocntact persons as well as edit
-    existing offers. Securing against unauthorized acces can be done on
-    different levels.</para>
+    are not to be changed by all visitors after all. So an
+    <emphasis>administrator</emphasis> is allocated to each organization,
+    authorized to change the data of that organization. The administrator can
+    change the contact data of the organization, create and delete offers and
+    contact persons as well as edit existing offers. Securing against
+    unauthorized acces can be done on different levels:</para>
 
     <para><itemizedlist>
         <listitem>
@@ -487,7 +498,7 @@
         </listitem>
 
         <listitem>
-          <para>inside the Action it is checked, if access is authorized. In
+          <para>Inside the Action, it is checked, if access is authorized. In
           our case it has to be checked if the administrator of the
           organization is logged in.</para>
         </listitem>
@@ -497,105 +508,144 @@
           has no access are blinded out.</para>
         </listitem>
       </itemizedlist>Of these three levels, only the first two offer reliable
-    protection. We do not take a closer look on the fiorst level in this book.
+    protection. We do not take a closer look on the first level in this book.
     You can find detailed information for setting up the rights framework in
-    your TYPO3 system in the Core Documentation "Inside TYPO3" at
-    http://typo3.org/documentation/document-library/core-documentation/doc_core_inside/4.2.0/view/2/4/.
+    your TYPO3 system in the <emphasis>Core Documentation</emphasis>
+    "<emphasis>Inside TYPO3</emphasis>" at <link
+    linkend="???">http://typo3.org/documentation/document-library/core-documentation/doc_core_inside/4.2.0/view/2/4/</link>.
     The second level, we are going to implement in all "critcal" Actions.
-    Let's look at an example with the Method updateAction().</para>
+    Let's look at an example with the Method
+    <classname>updateAction()</classname>.</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
-    <para>We ask a previously instantiated AccessControlService if the
-    administrator of the organization reponsible for the offer is logged in in
-    frontend. If yes, we do update the offer. If no, an error message is
-    generated, which is displayed in the subsequently displayed organization
-    overview.</para>
+    <para>We ask a previously instantiated
+    <classname>AccessControlService</classname> if the administrator of the
+    organization reponsible for the offer is logged in in frontend. If yes, we
+    do update the offer. If no, an error message is generated, which is
+    displayed in the subsequently called organization overview.</para>
 
     <para>Extbase does not yet offer an API for access control. We therefore
-    implemented an AccessControlService on ourselves. The description of the
-    class is to be found in the file
-    EXT:sjr_offers/Classes/Service/AccessControlService.php.</para>
+    implemented an <classname>AccessControlService</classname> on ourselves.
+    The description of the class is to be found in the file <link
+    linkend="???">EXT:sjr_offers/Classes/Service/AccessControlService.php</link>.</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
     <para>The third level can easily be bypassed by manually typing the link
     or the form data. It therefore only reduces the confusion for honest
-    visitors and the stimulus for the bad ones.Let's take a short look on this
-    snippet from a template:</para>
+    visitors and the stimulus for the bad ones. Let's take a short look on
+    this snippet from a template:</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
     <para><tip>
-        <para>A Service is often used to implement functionalitites that are
-        need on mulitple places in your extensions and are not related to one
-        Domain Object.</para>
+        <para>A <emphasis>Service</emphasis> is often used to implement
+        functionalitites that are needed on mulitple places in your extensions
+        and are not related to one Domain Object.</para>
 
         <para>Services are often stateless. In this context that means that
         their function does not dependend on previous access. This does not
         rule out dependency to the "environment". In our example you can be
-        sure, that a verification by isLoggendIn() always leads to the same
-        result, regardless of any earlier verification - given that the
-        "environment" has not changed (considerably), e.g. by the
-        Administrator logging out or even losing his acces rights.</para>
+        sure, that a verification by <classname>isLoggendIn()</classname>
+        always leads to the same result, regardless of any earlier
+        verification - given that the "environment" has not changed
+        (considerably), e.g. by the Administrator logging out or even losing
+        his acces rights.</para>
 
-        <para>Service usually can be built as Singleton (implements
-        t3lib_Singleton). You can find detailed information to Singleton in
-        cahpter 2 in section "Singleton".</para>
+        <para>Services usually can be built as <emphasis>Singleton</emphasis>
+        (<classname>implements t3lib_Singleton</classname>). You can find
+        detailed information to <emphasis>Singleton</emphasis> in chapter 2 in
+        section "Singleton".</para>
 
-        <para>The AccessControlService is not Part of the Domain of our
-        extension. IT "belongs" to the Domain of the Content Management
-        System. There are Domain Services also of course, like a Service
-        creating a continuous invoice number. They are usually located in
-        EXT:my_ext/Classes/Domain/Service/.</para>
+        <para>The <classname>AccessControlService</classname> is not Part of
+        the Domain of our extension. It "belongs" to the Domain of the Content
+        Management System. There are Domain Services also of course, like a
+        Service creating a continuous invoice number. They are usually located
+        in <link
+        linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.</para>
       </tip></para>
 
-    <para>We make use of an IfAuthenticatedViewHelper to acces the
-    AccessControllService. The class file IfAuthenticatedViewHelper.php is in
-    our case located in EXT:sjr_offers/Classes/ViewHelpers/Security/.</para>
+    <para>We make use of an <classname>IfAuthenticatedViewHelper</classname>
+    to acces the <classname>AccessControlService</classname>. The class file
+    <link linkend="???">IfAuthenticatedViewHelper.php</link> is in our case
+    located in <link
+    linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
-    <para>The IfAuthenticatedViewHelper extends the If-ViewHelper of fluid and
-    therefore provides the opportunity to use if-else branches. It delegates
-    the access check to the AccessControlService. If the check gives a
-    positive result, in our case a link with an edit icon is generated, which
-    leads to the Method editAction of the OfferController.</para>
+    <para>The <classname>IfAuthenticatedViewHelper</classname> extends the
+    <classname>If</classname>-ViewHelper of fluid and therefore provides the
+    opportunity to use if-else branches. It delegates the access check to the
+    <classname>AccessControlService</classname>. If the check gives a positive
+    result, in our case a link with an edit icon is generated, which leads to
+    the Method <classname>editAction()</classname> of the
+    <classname>OfferController</classname>.</para>
   </section>
 
   <section version="5.0">
     <title>Flow Pattern "Deleting a Domain Object"</title>
 
-    <para>The last Flow pattern realizes the deleting of an existin Domain
-    Object in a single Action. The appropriates Method DeleteAction() is kind
-    of straightforward:</para>
+    <para>The last Flow pattern realizes the deletion of an existing Domain
+    Object in one single Action. The appropriates Method
+    <classname>deleteAction()</classname> is kind of straightforward:</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
     <para>The importat thing here is that you delete the given Offer from the
-    Repository using the method remove(). After running through your
-    extension, extbase will delete the assosciated record from the Database
-    respectively mark it as deleted.</para>
+    Repository using the method <classname>remove()</classname>. After running
+    through your extension, Extbase will delete the assosciated record from
+    the Database respectively mark it as deleted.</para>
 
     <para><tip>
         <para>In principle it doesn't matter how you generate the result
         (usually HTML code) inside the Action. You can even decide to use the
-        traditional way of building extensions - with SQL Queries ans
-        maker-based Templating - inside yuor Action. We invite you to pursue
-        the path we chose up to now, though.</para>
+        traditional way of building extensions in your Action - with SQL
+        Queries and maker-based Templating. We invite you to pursue the path
+        we chose up till now, though.</para>
       </tip></para>
 
-    <para>The Flow patterns we present here are meant to be blueprints for
+    <para>The flow patterns we present here are meant to be blueprints for
     your own flows. In real life projects they may get way more complex. The
-    Method indexAction() of the OfferController looks like this in it's final
-    stage:</para>
+    Method <classname>indexAction()</classname> of the
+    <classname>OfferController</classname> looks like this in it's "final
+    stage":</para>
 
     <para><remark>TODO: Insert Code</remark></para>
 
     <para>In the first few lines of the script, configuration options, set in
     the TypoScript template as comma seperated list, are transcribed to
-    arrays. Then the information are passed to the view piece by piece.</para>
+    arrays. Then this information is passed to the <emphasis>View</emphasis>
+    piece by piece.</para>
 
-    <para></para>
+    <para>One requirement our extension has to realize, is that a visitor of
+    the website can define a special demand, which is then used to filter the
+    range of offers. We already implemented an appropriate Method
+    <classname>findDemanded()</classname> (see chaper 6, <remark>TODO: enter
+    correct section name</remark>). To define his demand, the visitor chooses
+    the accordant options in a form (see pic. 7-2).</para>
+
+    <para><remark>TODO: Insert Image with caption: Fig. 7-2: The buildup of
+    the "demand" in a form above the offer list. </remark></para>
+
+    <para><warning>
+        <para>Watch out, that you do not implement logic, which actually
+        belongs in the domain, inside of the Controller. Concentrate on the
+        mere Flow.</para>
+      </warning></para>
+
+    <para><tip>
+        <para>In real life you will often need similar functionality in some
+        or even all Controllers, the previously mentioned access control is a
+        good example. In our example extension we sourced it out to a
+        <emphasis>service</emphasis> object. Another possibility is to create
+        a basis Controller which extends the
+        <classname>ActionController</classname> of Extbase. Inside you
+        implement the shared functionality. Then the concrete controllers with
+        you Actions extend this Basis Controller again.</para>
+      </tip>The Flow inside of a Controller is triggered from outside by
+    TYPO3. For extensions which generate content for the frontend, this is
+    usually done by a plugin, placed on the appropriate page. How to configure
+    such a plugin you'll see in the following section:</para>
   </section>
 </section>
