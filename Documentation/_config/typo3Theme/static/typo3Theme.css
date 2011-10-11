@@ -1,0 +1,103 @@
+@import url("agogo.css");
+@import url("share-web-font/stylesheet.css");
+
+div.header div.rel a {
+	color: white;
+}
+
+/* Code examples should have a normal line height; makes them more readable */
+.highlight {
+	line-height: 1em;
+}
+
+.highlight pre {
+	overflow: auto;
+	padding-bottom:1ex;
+}
+
+p.caption {
+	font-style: italic;
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+hr.docutils {
+	margin: 0.8em 0;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	height: 1px;
+}
+
+div.content {
+	margin-top: 3em;
+}
+
+div.sidebar a.current {
+	font-weight: bold;
+}
+div.sidebar.sidebarFixed .sidebarInner {
+	position: fixed;
+	top: 0px;
+	width: 20em; /* like .sidebar */
+}
+
+div.body {
+	text-align: left;
+}
+
+div.body div.sidebar {
+	margin: 1em;
+	padding:1ex;
+	border:solid 1px #ccc;
+}
+
+h2 {
+	border-bottom: 1px solid #ccc;
+}
+
+div.document h2 {
+	margin-top: 3em;
+}
+
+div.document h1 + .section > h2 {
+	margin-top: 0.7em;
+}
+
+div.document dt {
+	font-weight: bold;
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+div.header div.rel a,
+div.footer .left {
+	text-transform: none;
+}
+
+table.footnote td.label {
+	padding-right: 6px;
+}
+table.footnote td {
+	padding: 4px 0;
+}
+
+table.docutils {
+	border-collapse: collapse;
+	border-color: #ccc;
+	margin-bottom: 1em;
+}
+
+table.docutils th, table.docutils td {
+	border-color: #ccc;
+	padding: 4px;
+}
+
+div.footer-wrapper {
+	background: #444;
+}
+
+div.footer .left a {
+	color: #fff;
+}
