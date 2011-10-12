@@ -92,7 +92,6 @@ Control (e.g. ``disabled``, ``hidden``, ``starttime``, ``endtime``,
 ``languageField``).
 
 
-
 ``interface``
 This part contains information about the representation of the table data in the 
 Backend's List Module. The key ``showRecordFieldList`` contains a 
@@ -218,13 +217,13 @@ Fig. 6-1: An example for the field type "input" used as a name field.
 The field type ``input`` may be used for date and time inputs::
 
 	'minimum_value' => array(
-	'label'	=> 'valid since',
-	'config' => array(
-	'type'	=> 'input',
-	'size' => 8,
-	'checkbox' => '',
-	'eval' => 'date'
-	)
+		'label'	=> 'valid since',
+		'config' => array(
+		'type'	=> 'input',
+		'size' => 8,
+		'checkbox' => '',
+		'eval' => 'date'
+		)
 	),
 
 The value then will be tested for being given in a sane date format. 
@@ -270,6 +269,7 @@ The field type ``check`` allows the definition of a single option (see Fig. 6-4)
  e.g. you can define whether a rowset should be hidden or not.
 
 ::
+
 	'hidden' => array(
 		'label'	=> 'Hide:',
 		'config' => array(
@@ -287,6 +287,7 @@ field (see Fig. 6-5). This may be helpful e.g. for a selection of valid weekdays
 or recommended training levels of a certain exercise.
 
 :: 
+
 	'level' => array(
 		'exclude' => 1,
 		'label' => 'Property for',
@@ -359,6 +360,7 @@ The field type "select" provides a space-saving way to render multiple values
 (see Fig. 6-7). Examples could be a member status, a product color or a region.
 
 :: 
+
 	'status' => array(
 		'exclude' => 0,
 		'label'	=> 'Status',
@@ -593,6 +595,7 @@ Let's change the configuration of the table ``tx_myext_domain_model_track`` to a
 simple 1:n-relationship with ``cd`` as a foreign key.
 
 ::
+
 	'tracks' => array(
 	'label' => 'Track',
 	'config' => array(
@@ -610,6 +613,7 @@ depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
 
 ::
+
 	'categories' => array(
 		'label' => 'Categories',
 		'config' => array(
@@ -899,7 +903,7 @@ rewritten. This option is normally activated.
 
 .. note::
 
-		Usually, datasets will be saved into Folders in the Page Tree though the 
+	Usually, datasets will be saved into Folders in the Page Tree though the 
 	pages using those datasets will be somewhere else. If their cache should be 
 	cleared as well then you should set up their PIDs in the field *TSConfig* of 
 	the page's preferences of the directory. For example, out Offers will be 

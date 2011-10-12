@@ -58,38 +58,15 @@ language file. Every text which is to be translated is given an identifier
 that can be inserted in the template later. Table 9-1 shows the identifier
 used in the sample and their translations into german and english.
 
-*Table 9-1: The texts how we want to translate
-them*
+*Table 9-1: The texts how we want to translate them*
 
-<table>
-<thead>
-<tr>
-<th>Identifier</th>
+==============  ===========   =============
+Identifier      English       German
+==============  ===========   =============
+author_prefix   By:           Von:
+comment_header  Comments      Kommentare
+==============  ===========   =============
 
-<th>English</th>
-
-<th>German</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>author_prefix</td>
-
-<td>By:</td>
-
-<td>Von:</td>
-</tr>
-
-<tr>
-<td>comment_header</td>
-
-<td>Comments</td>
-
-<td>Kommentare</td>
-</tr>
-</tbody>
-</table>
 
 In TYPO3 (and also in Extbase) the language file, in which the
 translated terms are stored, is named :file:`locallang.xml`.
@@ -97,7 +74,7 @@ It should contain all terms that have to be translated, in our example
 "By:" and "Comments", and their translations. Using Extbase the the file
 :file:`locallang.xml` must reside in the folder
 :file:`Resources/Private/Language/`. To localize the above
-terms we create the :file:`locallang.xml `file the following
+terms we create the :file:`locallang.xml` file the following
 way:
 
 <remark>TODO: insert code here</remark>
@@ -240,7 +217,7 @@ this.
 
 If, for example, you want use the text "Remarks" instead of the
 text "Comments", you have to overwrite the identifier
-``comment_header ``for the English language. For this you can
+``comment_header`` for the English language. For this you can
 add following line to your TypoScript template:
 
 ``plugin.tx_blogexample._LOCAL_LANG.default.comment_header =
