@@ -18,6 +18,7 @@ following steps are necessary for implementation:
 #. Install and test the extension
 
 .. tip::
+
 	We choose the step order inside the example extension, so the
 	connection will stay visible and a »natural« growth of extension and
 	knowledge is given. After gathering the first experience in programming

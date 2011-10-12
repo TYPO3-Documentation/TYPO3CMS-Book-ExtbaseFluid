@@ -24,9 +24,9 @@ easier.
 
 	If you use a debugger, it can be interesting to follow a full cycle
 	in the single step modus. For that you have to set a breakpoint in the
-	file <filename>Dispatcher.php</filename>. You will find this class - like
+	file :file:`Dispatcher.php`. You will find this class - like
 	every other class of Extbase also - in the folder
-	<filename>typo3/sysext/extbase/Classes/</filename>.
+	:file:`typo3/sysext/extbase/Classes/`.
 
 At the end of this chapter you will find a short comparison of the
 traditional way to code an extension and an approach with Extbase and

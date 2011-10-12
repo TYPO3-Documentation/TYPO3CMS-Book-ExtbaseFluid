@@ -2,13 +2,14 @@ Using boolean conditions
 ================================================
 
 *Boolean conditions* are queries that compare two
-values with each other (e.g. with ``==`` or ``&gt;=``) and
+values with each other (e.g. with ``==`` or ``>=``) and
 then returns the value ``true`` or ``false``. Which values
 are interpreted as ``true`` or ``false`` by Fluid depends
 on the data type. A number for example is evaluated as ``true`` if
 it is greater than 0.
 
 .. tip::
+
 	You find a complete list of all evaluating possibilities in appendix
 	C in the section "Boolean expressions".
 
@@ -21,39 +22,40 @@ appropriate message should be displayed. In Fluid the
 Simple ``if`` queries (without an else term) looks like
 this::
 
-	&lt;f:if condition="{blog.posts}"&gt;
+	<f:if condition="{blog.posts}">
 	This is only shown if blog posts are available.
-	&lt;/f:if&gt;
+	</f:if>
 
 .. tip::
+
 	If none comparison operator like ``==`` is given, per
 	default empty lists are interpreted as ``false`` and list with at
 	least one element as ``true``.
 
 Using the inline notation it looks like this::
 
-	&lt;div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable')}"&gt;
+	<div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable')}">
 	This div has the CSS class 'BlogPostAvailable', if blog posts are available.
-	&lt;/div&gt;
+	</div>
 
 Also ``if-then-else`` structures are possible. In that case
 the ``then`` tag is required::
 
-	&lt;f:if condition="{blog.posts}"&gt;
-	&lt;f:then&gt;
+	<f:if condition="{blog.posts}">
+	<f:then>
 	This is only shown if blog posts are available.
-	&lt;/f:then&gt;
-	&lt;f:else&gt;
+	</f:then>
+	<f:else>
 	No blog posts available.
-	&lt;/f:else&gt;
-	&lt;/f:if&gt;
+	</f:else>
+	</f:if>
 
 This is also possible in the inline notation::
 
-	&lt;div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable', else: 'noPosts')}"&gt;
+	<div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable', else: 'noPosts')}">
 	This div has the CSS class 'BlogPostAvailable', if blog posts are available.
 	If no posts are available this div container gets the CSS class 'noPosts' assigned.
-	&lt;/div&gt;
+	</div>
 
 
 Realize complex comparisons
@@ -64,26 +66,27 @@ the syntax you have learned until now, no comparisons or modulo operations
 are possible. Fluid supports these conditions as well. Here is a short
 example::
 
-	&lt;f:if condition="{posts.viewCount} % 2"&gt;
+	<f:if condition="{posts.viewCount} % 2">
 	viewCount is an even number.
-	&lt;/f:if&gt;
+	</f:if>
 
 Note the enhanced syntax inside the condition.
-The compare operators ``&gt;``, ``&gt;=``,
-``&lt;``, ``&lt;=``, ``==``, ``!=``
+The compare operators ``>``, ``>=``,
+``<``, ``<=``, ``==``, ``!=``
 and ``%`` are available. The parameter left and right of the
 operators could be numbers, object accessors, arrays and ViewHelpers in
 inline notation, but not strings.
 
 .. tip::
-  Comparisons with strings, like ``&lt;f:if condition="{gender}
-  == 'male'"&gt;....&lt;/f:if&gt;``, are not possible with Fluid yet
+
+  Comparisons with strings, like ``<f:if condition="{gender}
+  == 'male'">....</f:if>``, are not possible with Fluid yet
   because of the complex implementation. If you need such a condition, you
   have to write a ViewHelper that returns the needed string. Then you can
   compare the object accessor with the output of the ViewHelper:
 
-  ``&lt;f:if condition="{gender}" ==
-  {my:male()}"&gt;...&lt;/f:if&gt;``
+  ``<f:if condition="{gender}" ==
+  {my:male()}">...</f:if>``
 
 The just shown detailed notation for comparisons and modulo
 operations is not only available for the ``if`` ViewHelper but
@@ -91,6 +94,7 @@ for all ViewHelpers which have a parameter of the type
 ``boolean``.
 
 .. tip::
+
   Once you develop an own ViewHelper - like described in the section
   "<xref linkend="Fluid_custom_viewHelper" />" later on in this chapter -
   you can use boolean expressions as arguments. Therefore the ViewHelper

@@ -31,6 +31,7 @@ extension *phpunit*, which is also available for download
 at the TER.
 
 .. tip::
+
 	Please note that we, the authors are also in a proceeding learning process. With our todays knowledge, the printed code can be described as 
 
 	*good*

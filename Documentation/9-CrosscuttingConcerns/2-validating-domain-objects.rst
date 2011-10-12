@@ -36,21 +36,22 @@ A validator is a PHP class that has to check a certain invariant. If
 the invariant is fulfilled than the validator returns ``true``
 otherwise ``false``. In Extbase all validators have to implement
 the interface
-<classname>Tx_Extbase_Validation_Validator_ValidatorInterface</classname>.
+:class:`Tx_Extbase_Validation_Validator_ValidatorInterface`.
 In this interface some are methods defined. The most important is called
 ``isValid($object)``. An object or value is passed over to it and
 it must return ``true`` when the object or value is valid,
 otherwise it returns ``false``. There are some more methods in
-the <classname>ValidatorInterface</classname> to make it possible to pass
+the :class:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
-<classname>Tx_Extbase_Validation_Validator_ValidatorInterface</classname>,
+:class:`Tx_Extbase_Validation_Validator_ValidatorInterface`,
 because you get a default implemetation of the helper methods and you only
-have to implement the <methodname>IsValid()</methodname> method.
+have to implement the :methodname:`IsValid()` method.
 
 .. tip::
+
 	You will find the complete reference of the
-	<classname>ValidatorInterface</classname> in Appendix B.
+	:class:`ValidatorInterface` in Appendix B.
 
 For example, a validator which checks whether the passed string is
 an email address looks like this:
@@ -63,6 +64,7 @@ error message is generated using ``addError()`` and then it
 returns ``false``.
 
 .. tip::
+
 	The method ``addError()`` expects an error message and an
 	error code. The latter should be unique, therefore we recommend to use
 	the UNIX timestamp of the creation time of the source code. With the
@@ -70,7 +72,7 @@ returns ``false``.
 	example in bug reports.
 
 In the package
-<classname>Tx_Extbase_Validation_Validator_*</classname> Extbase offers
+:class:`Tx_Extbase_Validation_Validator_*` Extbase offers
 many validators for default requirements like the validation of emails,
 numbers or strings.
 
@@ -99,6 +101,7 @@ requested action of the extension is called and it can continue processing
 the given objects for example give it to the view for displaying.
 
 .. tip::
+
 	Certainly it would be helpful if the validation is also be done
 	during the persisting of the objects to the database. At the moment it
 	is not done since the data is stored in the database after sending the
@@ -108,19 +111,20 @@ the given objects for example give it to the view for displaying.
 	Extbase in the medium term.
 
 When an error occurs during validation, the method
-<methodname>errorAction()</methodname> of the current controller is
+:methodname:`errorAction()` of the current controller is
 called. The provided default ``errorAction()`` redirects the user
 to the last used form when possible, in order to give him a chance to
 correct the errors.
 
 .. tip::
-	You may ask how the <methodname>errorAction()</methodname> knows
+
+	You may ask how the :methodname:`errorAction()` knows
 	which form was the last displayed one. This information is created by
 	the ``form`` ViewHelper. He adds automaticly the property
 	``__referrer`` to every generated form, which contains
 	information about the current extension, controller and action
 	combination. This data can be used by the
-	<methodname>errorAction()</methodname> to display the erroneous form
+	:methodname:`errorAction()` to display the erroneous form
 	again.
 
 Registering validators
@@ -180,7 +184,7 @@ class using
 ``Tx_Extbase_Validation_Validator_*ValidatorName*Validator``.
 Using the above given annotation ``@validate StringLength`` the
 validator
-<classname>Tx_Extbase_Validation_Validator_StringLengthValidator</classname>
+:class:`Tx_Extbase_Validation_Validator_StringLengthValidator`
 is used.
 
 When you have created your own validator to check the invariants
@@ -202,7 +206,7 @@ class name, like shown in the following example::
 	}
 
 Here we validate the property ``$title`` with the
-<classname>Tx_BlogExample_Domain_Validator_TitleValidator</classname>.
+:class:`Tx_BlogExample_Domain_Validator_TitleValidator`.
 This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
 blog post is always build-on the scheme *Maintopic:
@@ -237,9 +241,9 @@ access to all object properties is possible.
 
 Important hereby is the correct naming convention. If you need a
 validator for the class
-<classname>Tx_ExtbaseExample_Domain_Model_User</classname> it must be
+:class:`Tx_ExtbaseExample_Domain_Model_User` it must be
 implemented in the class
-<classname>Tx_ExtbaseExample_Domain_Validator_UserValidator</classname>.
+:class:`Tx_ExtbaseExample_Domain_Validator_UserValidator`.
 The name of the validator for a model object is incidental by replacing
 the namespace ``Model`` with ``Validator`` and also
 append ``Validator``. When following the naming convention the
@@ -255,7 +259,7 @@ case::
 	class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
 	public function isValid($user) {
 	if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
-	$this-&gt;addError('The given Object is not a User.', 1262341470);
+	$this->addError('The given Object is not a User.', 1262341470);
 	return FALSE;
 	}
 	return TRUE;
@@ -268,6 +272,7 @@ validator does not validate the object any further but returns
 ``false``.
 
 .. tip::
+
 	The method ``addError()`` gets two parameters - the
 	first is an error message string while the second is an error number.
 	The Extbase developers always uses the current UNIX timestamp when
@@ -281,11 +286,11 @@ passwords. This is made quickly::
 	class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
 	public function isValid($user) {
 	if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
-	$this-&gt;addError('The given Object is not a User.', 1262341470);
+	$this->addError('The given Object is not a User.', 1262341470);
 	return FALSE;
 	}
-	if ($user-&gt;getPassword() !== $user-&gt;getPasswordConfirmation()) {
-	$this-&gt;addError('The passwords do not match.', 1262341707);
+	if ($user->getPassword() !== $user->getPasswordConfirmation()) {
+	$this->addError('The passwords do not match.', 1262341707);
 	return FALSE;
 	}
 	return TRUE;
@@ -319,7 +324,7 @@ annotation can be used which is set in the comment block of the
 controller action. It has the format ``@validate
 *[variablename] [validators]*``, in the example
 below it is ``$pageName
-``<classname>Tx_MyExtension_Domain_Validator_PagenameValidator</classname>::
+``:class:`Tx_MyExtension_Domain_Validator_PagenameValidator`::
 
 	/**
 	* Creates a new page with a given name.
@@ -398,6 +403,7 @@ validation error. Two actions are involved at editing the blog: The
 ``updateAction`` saves the changes.
 
 .. tip::
+
 	If you want to implement edit forms for the domain objects of your
 	extension you should implement it according to the schema displayed
 	here.
@@ -405,18 +411,18 @@ validation error. Two actions are involved at editing the blog: The
 The ``editAction`` for the blog looks like this::
 
 	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this-&gt;view-&gt;assign('blog', $blog);
+	$this->view->assign('blog', $blog);
 	}
 
 The blog object that we want to edit is passed and given to the
 view. The Fluid template than looks like this (slightly shortened and
 reduced to the important)::
 
-	&lt;f:form name="blog" object="{blog}" action="update"&gt;
-	&lt;f:form.textbox property="title" /&gt;
-	&lt;f:form.textbox property="description" /&gt;
-	&lt;f:form.submit /&gt;
-	&lt;/f:form&gt;
+	<f:form name="blog" object="{blog}" action="update">
+	<f:form.textbox property="title" />
+	<f:form.textbox property="description" />
+	<f:form.submit />
+	</f:form>
 
 Note that the ``blog`` object to be edited is bound to the
 form with ``object="{blog}"``. With this you can reference a
@@ -431,7 +437,7 @@ as parameter.
 ::
 
 	public function updateAction((Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this-&gt;blogRepository-&gt;update($blog);
+	$this->blogRepository->update($blog);
 	}
 
 <constraintdef>
@@ -442,12 +448,12 @@ be persisted with its changes.
 Now have a look what happens when the user inserts erroneous data
 in the form. In this case an error occurs when validating the
 ``$blog`` arguments. Therefore instead of the
-<methodname>updateAction</methodname>, the
-<methodname>errorAction</methodname> is called. These action routes the
+:methodname:`updateAction`, the
+:methodname:`errorAction` is called. These action routes the
 request with ``forward()`` to the last used action because in
 case of an error the form should be displayed again. Additional an error
 message is generated and given to the controller. Ergo: In case of a
-validation error the <methodname>editAction</methodname> is displayed
+validation error the :methodname:`editAction` is displayed
 again.
 
 As we want to display the erroneous object again it is important
@@ -467,7 +473,7 @@ annotation ``@dontvalidate ``- the comment block of the
 	* *@dontvalidate $blog*
 	*/
 	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this-&gt;view-&gt;assign('blog', $blog);
+	$this->view->assign('blog', $blog);
 	}
 
 Now the ``blog`` object is not validated in the
@@ -475,6 +481,7 @@ Now the ``blog`` object is not validated in the
 displayed correct.
 
 .. tip::
+
 	If Extbase thows the exception
 	Tx_Extbase_MVC_Exception_InfiniteLoop it signs that the
 	``@dontvalidate`` annotation is missing.
@@ -493,12 +500,12 @@ Case study: Create an object
 In the last section you have seen how to edit a blog object with a
 form. Now we will show you how to create a new blog object with a form.
 Also for creating a blog object two actions are involved. The
-<methodname>newAction</methodname> shows a form for creating an object and
-the <methodname>createAction</methodname> finally stores the
+:methodname:`newAction` shows a form for creating an object and
+the :methodname:`createAction` finally stores the
 object.
 
 The only difference to the editing of an object is that the
-<methodname>newAction</methodname> is not always given an argument: when
+:methodname:`newAction` is not always given an argument: when
 first displaying the form it is logical that there is no object available
 to be displayed. Therefore the argument must be marked as optional.
 
@@ -512,7 +519,7 @@ code::
 	* @dontvalidate $newBlog
 	*/
 	public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
-	$this-&gt;view-&gt;assign('newBlog', $newBlog);
+	$this->view->assign('newBlog', $newBlog);
 	}
 
 	/**
@@ -521,25 +528,25 @@ code::
 	* @param Tx_BlogExample_Domain_Model_Blog $newBlog
 	*/
 	public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
-	$this-&gt;blogRepository-&gt;add($newBlog);
+	$this->blogRepository->add($newBlog);
 	}
 
-The Fluid template for the <methodname>newAction</methodname> looks
+The Fluid template for the :methodname:`newAction` looks
 like this (in short form)::
 
-	&lt;f:flashMessages /&gt;
-	&lt;f:form name="newBlog" object="{newBlog}" action="create"&gt;
-	&lt;f:form.textbox property="title" /&gt;
-	&lt;f:form.textbox property="description" /&gt;
-	&lt;f:form.submit /&gt;
-	&lt;/f:form&gt;
+	<f:flashMessages />
+	<f:form name="newBlog" object="{newBlog}" action="create">
+	<f:form.textbox property="title" />
+	<f:form.textbox property="description" />
+	<f:form.submit />
+	</f:form>
 
 What is the summary of what we have we done? Again it is important
-that the <methodname>newAction</methodname> and the
-<methodname>createAction</methodname> have the same argument name. This
+that the :methodname:`newAction` and the
+:methodname:`createAction` have the same argument name. This
 has also to conform with the name of the Fluid template
 (``newBlog`` in the example). Also the parameter for the
-<methodname>newAction</methodname> must be marked as optional and the
+:methodname:`newAction` must be marked as optional and the
 validation of the parameter must be suppressed with
 ``@dontvalidate``. Finally you can output validation errors in
 the template using the ``flashMessages`` ViewHelper when saving
@@ -578,10 +585,10 @@ our case ``title`` and ``description``.
 
 The Fluid form looks like this (shortened to the essential)::
 
-	&lt;f:form method="post" action="update" name="blog" object="{blog}"&gt;
-	&lt;f:form.textbox property="title" /&gt;
-	&lt;f:form.textbox property="description" /&gt;
-	&lt;/f:form&gt;
+	<f:form method="post" action="update" name="blog" object="{blog}">
+	<f:form.textbox property="title" />
+	<f:form.textbox property="description" />
+	</f:form>
 
 If the form is submitted the data will be sent in the following
 manner to the server::
@@ -611,6 +618,7 @@ not in the input data a new object is created. Otherwise the framework
 knows the object identity and can go on work with it.
 
 .. tip::
+
 	When you take a look at what is transferred to the server by the
 	new action of the blog example, you will find that no identity
 	properties are transferred - in this case a new object is created as
@@ -645,7 +653,7 @@ replace the existing persistent ``blog`` object with our changed
 ``blog ``object. For this the repository offers a method
 update()::
 
-	$this-&gt;blogRepository-&gt;update($blog);
+	$this->blogRepository->update($blog);
 
 With this the changed object will be made into the persistent
 object: The changes are stored permanent now.
@@ -675,7 +683,7 @@ identity of the object is transferred automatically. In the following
 example the UID is transferred instead of the ``blog``
 object::
 
-	&lt;f:link.action action='show' arguments='{blog: blog}'&gt;Show Blog&lt;/f:link.action&gt;
+	<f:link.action action='show' arguments='{blog: blog}'>Show Blog</f:link.action>
 
 The generated URL contains the identity of the blog object:
 ``tx_blogexample_pi1[blog]=47``. That is a short form of

@@ -31,21 +31,21 @@ amount of comments".
 The complete source code can be found in a folder, which has the same
 name like the extension key. In our case the folder is called
 *blog_example*. Usually the folder is located in the path
-<filename>typo3conf/ext/</filename> in your TYPO3 installation.
+:file:`typo3conf/ext/` in your TYPO3 installation.
 
 In the top level of this folder there are the subfolders
-<filename>Classes</filename>, <filename>Resources</filename> and
-<filename>Configuration</filename> (see figure 3-2). There also are some
+:file:`Classes`, :file:`Resources` and
+:file:`Configuration` (see figure 3-2). There also are some
 files which TYPO3 requires in order to include the extension. Those files
-have the prefix <filename>ext_</filename>. All other configuration files
+have the prefix :file:`ext_`. All other configuration files
 needed by TYPO3 are located in the subfolder
-<filename>Configuration</filename> or in one of its subfolders.
+:file:`Configuration` or in one of its subfolders.
 
 <remark>TODO: Insert figure 3-2: folder structure of the example
 extension</remark>
 
 The core of the extension is located in the folder
-<filename>Classes</filename>. There you will all files in which classes or
+:file:`Classes`. There you will all files in which classes or
 interfaces are defined.
 
 .. note::
@@ -54,14 +54,14 @@ interfaces are defined.
 	should look into the section "Object oriented programming with PHP" in
 	chapter 2, *Basic principles*.
 
-In the folder <filename>Resources</filename> you will find all files
+In the folder :file:`Resources` you will find all files
 which are included at runtime, but no classes or interfaces. Those are in
 particular icons, language packages, HTML templates, but also external
 libraries or scripts. These resources are structured into a public
-(<filename>Public</filename>) and a private (<filename>Private</filename>)
-block. In the folder <filename>Public</filename> files are located which are
+(:file:`Public`) and a private (:file:`Private`)
+block. In the folder :file:`Public` files are located which are
 allowed to be called *directly* by the client - in normal
 cases the web browser. Files which are processed by a PHP class before they
 get delivered to the browser, are located in the folder
-<filename>Private</filename>.
+:file:`Private`.
 

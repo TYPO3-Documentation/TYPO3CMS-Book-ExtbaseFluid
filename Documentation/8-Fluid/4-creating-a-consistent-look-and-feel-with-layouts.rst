@@ -14,50 +14,51 @@ template, whereas recurring elements can be implemented in a template with
 partials."</remark>
 
 Now we look at how to create and use a layout. A layout is a Fluid
-file in the folder <filename>Resources/Private/Layouts/</filename>. It
+file in the folder :file:`Resources/Private/Layouts/`. It
 contains placeholders which should be replaced by content of the
 corresponding template within the layout. In the following example you see a
-use case of the ViewHelper ``&lt;f:render section="..." /&gt;`` as
+use case of the ViewHelper ``<f:render section="..." />`` as
 placeholder.
 
 ::
 
-	&lt;html&gt;
+	<html>
 	...
-	&lt;body&gt;
-	&lt;h1&gt;Blogging with Extbase:&lt;/h1&gt;
-	&lt;f.render section="main" /&gt;
-	&lt;h6&gt;This is the footer section&lt;/h6&gt;
-	&lt;/body&gt;
-	&lt;/html&gt;
+	<body>
+	<h1>Blogging with Extbase:</h1>
+	<f.render section="main" />
+	<h6>This is the footer section</h6>
+	</body>
+	</html>
 
 .. tip::
+
   Layouts in Extbase usually don't contain the basic structure of a
-  HTML document (``&lt;html&gt;``, ``&lt;head&gt;``
+  HTML document (``<html>``, ``<head>``
   etc.), since this is usually generated with TYPO3. For the purpose of
   illustration though, we show a complete HTML page.
 
 A template looks like this::
 
-	&lt;f:layout name="default" /&gt;
+	<f:layout name="default" />
 
-	&lt;f:section name="main"&gt;
-	&lt;h2&gt;Blog List&lt;/h2&gt;
+	<f:section name="main">
+	<h2>Blog List</h2>
 	...
-	&lt;/f:section&gt;
+	</f:section>
 
 The first line in the template defines
 which layout should be wrapped around the template. With specifying
 name="default", Fluid will use the file
-<filename>Resources/Private/Layouts/default.html</filename> as
+:file:`Resources/Private/Layouts/default.html` as
 layout.
 
-The template must also contain ``&lt;f:section
-name="..."&gt;...&lt;/f:section&gt;`` for every placeholder in the
+The template must also contain ``<f:section
+name="...">...</f:section>`` for every placeholder in the
 layout whose content will be inserted. So by defining the placeholder
-``&lt;f:section name="main"&gt;``, like in the example above, a
+``<f:section name="main">``, like in the example above, a
 template, which uses this layout, must define the section
-``&lt;f:section name="main"&gt;...&lt;/f:section&gt;``, whose
+``<f:section name="main">...</f:section>``, whose
 content then is being inserted in the layout. (<remark>TODO: does anybody
 understand this sentence?</remark>) Layouts can reference any number of
 sections. Different sections are often used for multi-column layouts.
@@ -66,6 +67,7 @@ know in the course of this chapter, for building templates. So layouts offer
 various possibilities for efficiently templating a web application.
 
 .. tip::
+
   You'll find a practical example for building layouts in the
   section "<xref linkend="Fluid_template_by_example" />" later on in this
   chapter.

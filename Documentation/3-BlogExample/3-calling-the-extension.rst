@@ -43,18 +43,19 @@ sentences.</remark>
 When these preparations are full-filled by the Extbase dispatcher, we
 are able to travel to the first stop of our destination: the controller. In
 our example the further processing is assigned to the
-<classname>BlogController</classname>. A reference to the request and the
+:class:`BlogController`. A reference to the request and the
 response is handed over.
 
-The class <classname>BlogController</classname> can be found in the
+The class :class:`BlogController` can be found in the
 file
-<filename>EXT:blog_example/Classes/Controller/BlogController.php</filename>.
+:file:`EXT:blog_example/Classes/Controller/BlogController.php`.
 The complete name of the controller is
-<classname>Tx_BlogExample_Controller_BlogController</classname>. At first
+:class:`Tx_BlogExample_Controller_BlogController`. At first
 this might seem long-winded but the syntax follows a very strict convention
 (please see box "Be careful, conventions!").
 
 .. tip::
+
 	Be careful, conventions!
 
 	The name of a class is separated into individual parts, which
@@ -63,12 +64,12 @@ this might seem long-winded but the syntax follows a very strict convention
 	This style for notation is commonly known as
 	*UpperCamelCase* because each capital letter suggests
 	the hump of a camel. For extensions the first part always is
-	"<classname>Tx</classname>". The second part is the name of the extension
-	- in the underlying case "<classname>BlogExample</classname>". The last
+	":class:`Tx`". The second part is the name of the extension
+	- in the underlying case ":class:`BlogExample`". The last
 	art is the name of the domain object. The center between those parts
 	builds the path to the class file below the folder
-	<filename>Classes</filename>. In our case the file is stored directly
-	within the folder <filename>Controller</filename>. The name of the class
+	:file:`Classes`. In our case the file is stored directly
+	within the folder :file:`Controller`. The name of the class
 	file is taken from the last part of the class name appended with the
-	suffix <filename>.php</filename>.
+	suffix :file:`.php`.
 

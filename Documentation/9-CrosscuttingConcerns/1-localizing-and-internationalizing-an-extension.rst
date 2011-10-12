@@ -44,6 +44,7 @@ blog post with its comments there are some constant terms:
 <remark>TODO: insert code here</remark>
 
 .. tip::
+
 	The template is a little bit simplified and reduced to the
 	basic.
 
@@ -91,30 +92,31 @@ them*
 </table>
 
 In TYPO3 (and also in Extbase) the language file, in which the
-translated terms are stored, is named <filename>locallang.xml</filename>.
+translated terms are stored, is named :file:`locallang.xml`.
 It should contain all terms that have to be translated, in our example
 "By:" and "Comments", and their translations. Using Extbase the the file
-<filename>locallang.xml</filename> must reside in the folder
-<filename>Resources/Private/Language/</filename>. To localize the above
-terms we create the <filename>locallang.xml </filename>file the following
+:file:`locallang.xml` must reside in the folder
+:file:`Resources/Private/Language/`. To localize the above
+terms we create the :file:`locallang.xml `file the following
 way:
 
 <remark>TODO: insert code here</remark>
 
 The framework of the file includes the XML header, the root element
-of the XML file (``&lt;T3locallang&gt;``) and the description
-(``&lt;description&gt;``). The translations of the strings are in
-the ``&lt;data type="array"&gt;`` section. For every language
-there is a section ``&lt;languageKey
-index="*[language]*" type="array"&gt;``. For every
+of the XML file (``<T3locallang>``) and the description
+(``<description>``). The translations of the strings are in
+the ``<data type="array">`` section. For every language
+there is a section ``<languageKey
+index="*[language]*" type="array">``. For every
 identifier is defined how it should be given out in a particular language
 in this section. In the above file the texts are stored in two languages:
 *default*, which equals to English and
 *de* for German.
 
 .. tip::
+
 	The TYPO3 Core API describes in detail the construction of the
-	<filename>locallang.xml</filename> file
+	:file:`locallang.xml` file
 	(*http://typo3.org/documentation/document-library/core-documentation/doc_core_api/4.2.0/view/7/2/*).
 
 Now the placeholder for the translated terms must be inserted into
@@ -124,11 +126,12 @@ the term to be inserted as argument ``key`` and the ViewHelper
 inserts either the german or the english translation according to the
 current language selection ::
 
-	&lt;f:translate key="comment_header" /&gt;
-	&lt;!-- or --&gt;
+	<f:translate key="comment_header" />
+	<!-- or -->
 	{f:translate(key: 'comment_header')}
 
 .. tip::
+
 	The used language is defined in the TypoScript template of the
 	website. By default the english texts are used; but when with setting of
 	the TypoScript setting ``config.language = de`` you can set the
@@ -161,11 +164,12 @@ english terms:
 <remark>TODO: insert code here</remark>
 
 .. tip::
+
 	Sometimes you have to localize a string in the PHP code, for
 	example in the controller or inside of a ViewHelper. In that case you
 	can use the static method
-	<methodname>Tx_Extbase_Utility_Localization::translate($key,
-	$extensionName)</methodname>. In addition to the key inside the
+	:methodname:`Tx_Extbase_Utility_Localization::translate($key,
+	$extensionName)`. In addition to the key inside the
 	locallang file also the name of the extension must be given as
 	parameter, in order to load the correct locallang file.
 
@@ -191,16 +195,16 @@ If we want to implement the above example, we must assign the
 first name and the last name of the blog author separate to the
 ``translate`` ViewHelper:
 
-``&lt;f:translate key="name" arguments="{1:
-post.author.firstName, 2: post.author.lastName}" /&gt;``
+``<f:translate key="name" arguments="{1:
+post.author.firstName, 2: post.author.lastName}" />``
 
 How should the corresponding string in the
-<filename>locallang.xml</filename> file looks like? It describes on
+:file:`locallang.xml` file looks like? It describes on
 which position the placeholder are to be inserted. For English and
 German it looks like this:
 
-``&lt;label index="name"&gt;%1$s
-%2$s&lt;/label&gt;``
+``<label index="name">%1$s
+%2$s</label>``
 
 Important are the placeholder strings ``%1$s`` and
 ``%2$s``. These will be replaced with the assigned parameters.
@@ -211,15 +215,17 @@ example it is the data type ``string (s)``. Now we can define
 for Thai, that "Khan" followed by the first name should be
 output:
 
-``&lt;label index="name"&gt;Khan
-%1$s&lt;/label&gt;``
+``<label index="name">Khan
+%1$s</label>``
 
 .. tip::
+
 	The keys in the arguments array of the ViewHelper have no
 	relevance. We recommend to give them numbers like the positions
 	(starting with 1), because it is easy understandable.
 
 .. tip::
+
 	For a full reference of the formatting options for
 	``sprintf`` you should have a look at the PHP documantation:
 	*http://php.net/manual/de/function.sprintf.php*.
@@ -243,7 +249,7 @@ Remarks``
 With this you will overwrite the localization of the term
 ``comment_header`` for the default language in the blog
 example. So you can adjust the translation of the texts like you wish,
-without changing the <filename>locallang.xml</filename> file.
+without changing the :file:`locallang.xml` file.
 
 Until now we have shown how to translate static text of templates.
 Of course it is important that also the data of an extension is
@@ -263,7 +269,7 @@ to create additional fields in the database and tell TYPO3 about them. The
 class definitions must not be changed. Lets have a look at the required
 steps based on the ``blog`` class of the blog example. TYPO3
 needs 3 additional database fields which you should insert in the
-<filename>ext_tables.sql</filename> file::
+:file:`ext_tables.sql` file::
 
 	CREATE TABLE tx_blogexample_domain_model_blog {
 	...
@@ -276,17 +282,17 @@ needs 3 additional database fields which you should insert in the
 You are free to choose the names of the database fields, but the
 names we use here are common in the world of TYPO3. In any case you have
 to tell TYPO3 which name you have chosen. This is done in the file
-<filename>ext_tables.php</filename> in the section ``ctrl`` of
+:file:`ext_tables.php` in the section ``ctrl`` of
 the corresponding database table.
 
 ::
 
 	$TCA['tx_blogexample_domain_model_blog'] = array (
-	'ctrl' =&gt; array (
+	'ctrl' => array (
 	...
-	'languageField' =&gt; 'sys_language_uid',
-	'transOrigPointerField' =&gt; 'l18n_parent',
-	'transOrigDiffSourceField' =&gt; 'l18n_diffsource',
+	'languageField' => 'sys_language_uid',
+	'transOrigPointerField' => 'l18n_parent',
+	'transOrigDiffSourceField' => 'l18n_diffsource',
 	...
 	)
 	);
@@ -316,6 +322,7 @@ translation of a blog, it will be shown. Otherwise the blog is output in
 the default language.
 
 .. tip::
+
 	You can control this behavior. If you set the option
 	``config.sys_language_mode`` to ``strict`` in the
 	TypoScript configuration, then only these objects are shown which really
@@ -335,6 +342,7 @@ for a language that has no data record in the default language, you have
 to create the latter before. But with what content?
 
 .. tip::
+
 	In FLOW3 this is solved better. There only a "structure node"
 	exists to which the content element is added with its different language
 	parts. A default language in this spirit does not exist.
@@ -373,7 +381,7 @@ selection is enough. Concurrently it has the disadvantage of a higher
 administration effort during persistance. Extbase will do this for you by
 carrying the UID of the language of the domain model and the UID of the
 data record in which the domain data is effectively stored as "hidden"
-properties of the <classname>AbstractDomainObject</classname> internally.
+properties of the :class:`AbstractDomainObject` internally.
 In Table 9-2 you find for different actions in the frontend the behavior
 of Extbase for localized domain objects.
 
@@ -387,7 +395,7 @@ objects in the frontend.*
 
 <th>no parameter L given, or L=0</th>
 
-<th>L=x (x&gt;0)</th>
+<th>L=x (x>0)</th>
 </tr>
 </thead>
 
@@ -452,9 +460,9 @@ must be formatted different.
 Generally the date or time is formatted by the
 ``format.date`` ViewHelper::
 
-	&lt;f:format.date date="{dateObject}" format="d.m.Y" /&gt;
-	&lt;!-- or --&gt;
-	{dateObject -&gt; f:format.date(format: 'd.m.Y')}
+	<f:format.date date="{dateObject}" format="d.m.Y" />
+	<!-- or -->
+	{dateObject -> f:format.date(format: 'd.m.Y')}
 
 The date object ``{dateObject}`` is displayed with the date
 format given in the parameter ``format``. This format string must
@@ -533,14 +541,15 @@ format string should be used. Here we combine the ``format.date``
 ViewHelper with the ``translate`` ViewHelper which you got to
 know in the section "Multilanguage templates"::
 
-	&lt;f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" /&gt;
+	<f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
 
 Than you can store an other format string for every language in the
-<filename>locallang.xml</filename> file and you can change the format
+:file:`locallang.xml` file and you can change the format
 string via TypoScript if needed. This method to translate content you got
 to know in the section "Multilanguage templates".
 
 .. tip::
+
 	There are other formatting ViewHelpers for adjusting the output of
 	currencies or big numbers. These ViewHelpers all starts with
 	``format``. You can find an overview of these ViewHelpers in

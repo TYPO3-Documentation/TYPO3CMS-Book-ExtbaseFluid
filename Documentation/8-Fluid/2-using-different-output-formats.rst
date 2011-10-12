@@ -12,15 +12,15 @@ you, how you can extend your Extension with a print view.
 
 Lets assume you have programed a HTML view for a list of blog posts.
 The Fluid template of this view is
-<filename>Resources/Private/Templates/Post/list.html</filename>. Now you
+:file:`Resources/Private/Templates/Post/list.html`. Now you
 want to add a print view, which is formatted differently. Create a new
-template <filename>Resources/Private/Templates/Post/list.print</filename>
+template :file:`Resources/Private/Templates/Post/list.print`
 and write the appropriate Fluid markup to generate the print view. You can
 use the ``format`` attribute of the link ViewHelper to generate a
 link to the print view:
 
-``&lt;f:link.action action="list" format="print"&gt;Print
-View&lt;/f:link.action&gt;``
+``<f:link.action action="list" format="print">Print
+View</f:link.action>``
 
 The same ``list`` action is being called that was used for
 the HTML view. However, Fluid doesn't choose the file
@@ -30,6 +30,7 @@ changed the format to ``print``, our print view. You notice: The
 format is being reflected in the file ending of the template.
 
 .. tip::
+
 	In the example above we have given the print view the name
 	``print``. All format names are treated equally. There are no
 	technical limitations for format names. Therefore you should choose a
@@ -40,15 +41,15 @@ format is being reflected in the file ending of the template.
 	If you want to output JSON, RSS or similar data with Fluid, you
 	have to write the appropriate TypoScript which passes the page rendering
 	to Extbase and Fluid respectivly. Otherwise, TYPO3 will always generate
-	the ``&lt;head&gt;``- and
-	``&lt;body&gt;``-section.
+	the ``<head>``- and
+	``<body>``-section.
 
 	You can use the following TypoScript::
 
 		  rss = PAGE
 		rss (
 		typeNum = 100
-		10 =&lt; tt_content.lost.20.*[ExtensionKey]*_*[PluginName]*
+		10 =< tt_content.lost.20.*[ExtensionKey]*_*[PluginName]*
 
 		config {
 		disableAllHeaderCode = 1

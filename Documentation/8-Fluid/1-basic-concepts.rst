@@ -22,6 +22,7 @@ these placeholders are called *Object
 Accessors*.
 
 .. tip::
+ 
 	The markers used in the classic marker based templates of TYPO3 v4
 	are also placeholders which are replaced later on by the desired data.
 	You will notice though, that the placeholders used in Fluid are clearly
@@ -68,6 +69,7 @@ like this::
 
 
 .. tip::
+
 	If you want to output an object instead of a String, the object
 	needs to have a ``__toString()``-method which returns the
 	textual representation of the object.
@@ -84,7 +86,7 @@ in the following order:
 
 * If ``post`` is an array or an object which implements the interface ArrayAccess, 
   the corresponding property will be returned as long as it exists.
-* If it is an object, and a method <methodname>getTitle()</methodname> exists, 
+* If it is an object, and a method :methodname:`getTitle()` exists, 
   the method will be called. This is the most common use case of an Object Accessor, 
   since by convention all public properties have a corresponding ``get``-method.
 * The property will be returned if it exists in the object and it
@@ -167,7 +169,7 @@ Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
 ``<f:for>`` will be interpreted as a ViewHelper since it
 starts with the prefix ``f:``. This is implemented in the class
-<classname>Tx_Fluid_ViewHelpers_ForViewHelper</classname>.
+:class:`Tx_Fluid_ViewHelpers_ForViewHelper`.
 
 The first part of the class name is the complete Namespace like it
 was defined earlier with ``{namespace f=Tx_Fluid_ViewHelpers}``.
@@ -180,10 +182,11 @@ receives the array of all blog posts with the argument
 *each*. 
 
 .. tip::
+
 	If the name of the ViewHelper contains a single or multiple
 	periods, it will be resolved as a sub package. For example, the
 	ViewHelper ``f:form.textbox`` is implemented in the class
-	<classname>Tx_Fluid_ViewHelpers_Form_TextboxViewHelper</classname>.
+	:class:`Tx_Fluid_ViewHelpers_Form_TextboxViewHelper`.
 	Therefore ViewHelpers can be divided further and structured even
 	more.
 
@@ -192,6 +195,7 @@ possible to have a clear separation of template and embedded
 functionality.
 
 .. tip::
+
 	All control structures like ``if/else`` or
 	``for`` are individual ViewHelpers in Fluid and not a core
 	language feature. This is one of the main reasons for the flexibility
@@ -242,7 +246,7 @@ property *date* which contains the date of the creation
 of the post in a *DateTime* object.
 
 *DateTime* objects, that can be used in PHP to
-represent dates, have no <methodname>__toString()</methodname>-method and
+represent dates, have no :methodname:`__toString()`-method and
 can therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message, if you simple write
 ``{post.date}`` in your template.
@@ -260,10 +264,11 @@ that there are no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
 and the string representation of ``{post.date}`` together as
 string. Because the DateTime object has no method
-<methodname>__toString()</methodname>, a PHP error message will be thrown
+:methodname:`__toString()`, a PHP error message will be thrown
 again.
 
 .. tip::
+
 	To avoid this problem, all ``f:format``-ViewHelpers
 	have a property to specify the object to be formatted.
 
@@ -286,6 +291,7 @@ value. The above example is easily readable, intuitive and less error
 prone as the tag based variation.
 
 .. tip::
+
 	This might look familiar, if you happen to know the UNIX shell:
 	There is a pipe operator (|) which has the same functionality as our
 	chaining operator. The arrow shows the direction of the data flow

@@ -47,6 +47,7 @@ in the whole business. And there the term of member organization (or short
 <remark>TODO: check if vendor is the right term</remark>
 
 .. tip::
+
 	This development of a common language of developers (also ourselves)
 	and domain experts (also the employees of the SJR) maybe is the most
 	important part of the Domain Driven Design. In the literature you find the
@@ -83,6 +84,7 @@ those parent child relations. An additional rhomb symbolized an
 *Figure 5-2: First draft of the domain.*
 
 .. tip::
+
 	This figure was created by a drawing program. In the communication
 	with the customer we are aware of using drawing programs or UML tools,
 	which would be constrict the workflow in this phase. Simple hand drafts
@@ -90,6 +92,7 @@ those parent child relations. An additional rhomb symbolized an
 	diagrams.
 
 .. tip::
+
 	You should have noticed that we make a big point of using a common
 	language between developer and domain experts at the begin of the section
 	and now we use permanent english descriptions for classes, methods and

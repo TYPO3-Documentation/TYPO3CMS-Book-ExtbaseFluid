@@ -3,12 +3,12 @@ Typographic conventions
 
 This book uses the following typographic conventions:
 
-<filename>File names and directories</filename>
+:file:`File names and directories`
 
 *emphasiszed content*
 
-<classname>class names</classname>, <methodname>method
-names</methodname>, ``inline code``
+:class:`class names`, :methodname:`method
+names`, ``inline code``
 
 ``<replaceable>cursive non-proportional fonts</replaceable>``
 are used if the user should replace certain code parts.
@@ -18,6 +18,7 @@ are used if the user should replace certain code parts.
 	This stands for a general advice or hint.
 
 .. tip::
+
 
 	This stands for a tip or a suggestion.
 

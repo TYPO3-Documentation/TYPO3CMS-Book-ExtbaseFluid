@@ -46,6 +46,7 @@ data to the desired format, for example to a number with the use of
 ``intval()``.
 
 .. tip::
+
 	More hints for safety programming with PHP you find also in the PHP handbook at 
 	*http://php.net/security*
 	.
@@ -73,20 +74,20 @@ changed in our system).
 
 The form looks (shortened) like this::
 
-	&lt;f:form name="user" object="{user}" action="update"&gt;
-	&lt;f:form.textbox property="email" /&gt;
-	&lt;f:form.textbox property="password" /&gt;
-	&lt;f:form.textbox property="description" /&gt;
-	&lt;/f:form&gt;
+	<f:form name="user" object="{user}" action="update">
+	<f:form.textbox property="email" />
+	<f:form.textbox property="password" />
+	<f:form.textbox property="description" />
+	</f:form>
 
 If the form is sent, the argument mapping for the user object gets
 this array::
 
 	array(
-	__idetity =&gt; ...
-	email =&gt;  ...
-	password =&gt; ...
-	description =&gt; ...
+	__idetity => ...
+	email =>  ...
+	password => ...
+	description => ...
 	)
 
 Because the ``__identity`` property and further properties
@@ -117,6 +118,7 @@ detected via the request hash and the request is stopped with an
 exception.
 
 .. tip::
+
   If you write an API with extbase to change data with other
   webservices you have to disable the request hash, bacause without the
   knowledge of the private key of the other server you can not generate a
@@ -145,7 +147,7 @@ Assume you have programmed a forum. An "evil" user will get access
 to the admin account. For this he posted following harmful looking message
 in the forum to try to embed JavaScript code::
 
-	&lt;script type="text/javascript"&gt;alert("XSS");&lt;/script&gt;
+	<script type="text/javascript">alert("XSS");</script>
 
 When he let display the forum post he gets, if the programmer of the
 forum has made no additional prevetions, a JavaScript popup "XSS". The
@@ -163,7 +165,7 @@ adminitrator priviledges.
 How can we prevent this now? The forum post don't have to put out
 unchanged - before we have to mask out all special charaters with a call
 of ``htmlspecialchars()``. With this instead of
-``&lt;script&gt;..&lt;/script&gt;`` the safe result is delivered
+``<script>..</script>`` the safe result is delivered
 to the browser:
 ``&amp;lt;script&amp;gt;...&amp;lt;/script&amp;gt;``. So the
 content of the script tag is no longer executed as JavaScript, but only
@@ -183,7 +185,7 @@ object accessors that are used in arguments of a ViewHelper. A short
 example for this::
 
 	{variable1}
-	&lt;f:format.crop append="{variable2}"&gt;a very long text&lt;/f:format.crop&gt;
+	<f:format.crop append="{variable2}">a very long text</f:format.crop>
 
 The content of ``{variable1}`` is send thru
 htmlspecialchars(), instead the content of ``{variable2}`` is not

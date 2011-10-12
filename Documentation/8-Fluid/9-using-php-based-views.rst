@@ -56,17 +56,18 @@ this::
 
 	class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
 	public function render() {
-	$postList = $this-&gt;viewData['posts'];
+	$postList = $this->viewData['posts'];
 	return json_encode($postList);
 	}
 	}
 
 Here we can see that the data that is passed to the
-view is available in the array ``$this-&gt;viewData``. These are
+view is available in the array ``$this->viewData``. These are
 converted to JSON data using the function ``json_encode ``and then
 returned.
 
 .. tip::
+
 	PHP based views are also helpful for specially complex kind of
 	output like the rendering of PDF files.
 
@@ -94,6 +95,7 @@ overwrite the method ``resolveViewObjectName()``. This method
 returns the name of the PHP class which should be used as view.
 
 .. tip::
+
   If you have a look at the source code of Extbase at these points,
   in the comment blocks of the above mentioned methods you see an
   ``@api`` annotation. These methods are part of the

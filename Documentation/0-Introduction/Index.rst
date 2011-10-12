@@ -58,7 +58,7 @@ switch to FLOW3 and TYPO3 v5.
 	begin a new development branch parallel to TYPO3 v4: TYPO3 v5 should be
 	developed from scratch. While doing that, special attention has been on
 	clean code and an easy and powerful infrastructure.<remark>The last
-	sentence is strange -&gt; REWORK.</remark> It quickly emerged that we
+	sentence is strange -> REWORK.</remark> It quickly emerged that we
 	first needed to write a web application framework, before the CMS itself
 	should be developed. This web application framework is FLOW3, and on that
 	basis, TYPO3 v5 is now developed.

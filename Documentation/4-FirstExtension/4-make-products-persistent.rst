@@ -2,7 +2,7 @@ Make Products Persistent
 ================================================
 
 From the class
-<classname>Tx_Inventory_Domain_Model_Product</classname>, now we already can
+:class:`Tx_Inventory_Domain_Model_Product`, now we already can
 generate instances – therefore concrete products with individual properties
 – at script run time. These are available however only in volatile form in
 the memory and are deleted after the side was produced completely by TYPO3,
@@ -12,12 +12,13 @@ database. Therefore we design first of all the database table necessary for
 that.
 
 .. tip::
+
 	The designing of the database tables can be done by the Kickstarter.
 	In the TYPO3 V5, these steps completely are omitted.
 
 TYPO3 will do this for us if we register the corresponding SQL
 proclamation in the file
-<filename>EXT:inventory/ext_tables.sql</filename>::
+:file:`EXT:inventory/ext_tables.sql`::
 
     CREATE TABLE tx_inventory_domain_model_product ( 
 		uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
@@ -58,6 +59,7 @@ which sequence the table columns are indicated, and like this where
 appropriate. Arranged become. 
 
 .. tip::
+
 	The possibilities to influence with the TCA the edition in that
 	baking, are immense. In the frame these beeches we only can tear this. You
 	find a fully permanent listing of all option Online under
@@ -68,44 +70,44 @@ appropriate. Arranged become.
 
 ::
 
-	&lt;?php
+	<?php
 	if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 	$TCA['tx_inventory_domain_model_product'] = array (
-	'ctrl' =&gt; array (
-		'title' =&gt; 'Inventory',
-		'label' =&gt; 'name',
+	'ctrl' => array (
+		'title' => 'Inventory',
+		'label' => 'name',
 	),
-	'columns' =&gt; array(
-		'name' =&gt; array(
-		'label' =&gt; 'Item Label',
-			'config' =&gt; array(
-				'type' =&gt; 'input',
-				'size' =&gt; '20',
-				'eval' =&gt; 'trim,required'
+	'columns' => array(
+		'name' => array(
+		'label' => 'Item Label',
+			'config' => array(
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim,required'
 			)
 		),
-		'description' =&gt; array(
-			'label' =&gt; 'Item Description',
-			'config' =&gt; array(
-				'type' =&gt; 'text',
-				'eval' =&gt; 'trim'
+		'description' => array(
+			'label' => 'Item Description',
+			'config' => array(
+				'type' => 'text',
+				'eval' => 'trim'
 			)
 		),
-		'quantity' =&gt; array(
-			'label' =&gt; 'Stock Quantity',
-			'config' =&gt; array(
-				'type' =&gt; 'input',
-				'size' =&gt; '4',
-				'eval'=&gt; 'int'
+		'quantity' => array(
+			'label' => 'Stock Quantity',
+			'config' => array(
+				'type' => 'input',
+				'size' => '4',
+				'eval'=> 'int'
 			)
 		),
 	),
-	'types' =&gt; array(
-		'0' =&gt; array('showitem' =&gt; 'name, description, quantity')
+	'types' => array(
+		'0' => array('showitem' => 'name, description, quantity')
 	)
 	);
-	?&gt;
+	?>
 
 After we installed the Extension, we can design our first in that
 baking per dukte. How in image 4-2 shown, let's produce receive becomes in
@@ -131,10 +133,10 @@ object, in that the products. We can request a Repository to find all (or
 certain) products and to deliver at us. The Repository class is very short
 in our case::
 
-	&lt;?php
+	<?php
 	class Tx_Inventory_Domain_Repository_ProductRepository
 	extends Tx_Extbase_Persistence_Repository {}
-	?&gt;
+	?>
 
 Our ProductRepository must be diverted by
 Tx_Extbase_Persistence_Repository and inherits by this all methods. It can

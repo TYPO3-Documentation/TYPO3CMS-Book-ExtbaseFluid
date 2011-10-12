@@ -55,10 +55,10 @@ Nevertheless we like to warmly recommend this technique of
 developing.
 
 .. toctree::
-:maxdepth: 2
+	:maxdepth: 2
 
-1-Object-oriented Programming-in-PHP
-2-Domain-Driven-Design
-3-Model-View-Controller-in-Extbase
-4-Test-Driven-Development
-5-Conclusion
+	1-Object-oriented Programming-in-PHP
+	2-Domain-Driven-Design
+	3-Model-View-Controller-in-Extbase
+	4-Test-Driven-Development
+	5-Conclusion

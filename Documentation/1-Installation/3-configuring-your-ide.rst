@@ -38,6 +38,7 @@ with TYPO3, you'll find it at
 (or *.../fluid/*).
 
 .. tip::
+
 	By default NetBeans uses space chars for code indentation. But as
 	the TYPO3 Coding Guidelines demand Tabs for indentation, you should
 	configure NetBeans accordingly. Open the preferences dialogue of NetBeans

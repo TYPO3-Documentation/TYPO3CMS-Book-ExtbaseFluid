@@ -56,7 +56,7 @@ Our ViewHelper should get the name gravatar and only get an email
 address as parameter. We will call the ViewHelper in the template as
 follows::
 
-	&lt;blog:gravatar emailAddress="sebastian@typo3.org" /&gt;
+	<blog:gravatar emailAddress="sebastian@typo3.org" />
 
 After this preliminary considerations we will start with the
 implementation.
@@ -92,6 +92,7 @@ Every ViewHelper must inherit from the class
 ``Tx_Fluid_Core_ViewHelper_AbstractViewHelper``.
 
 .. tip::
+
 	A ViewHelper can also inherit from subclasses of
 	``AbstractViewHelper``, e.g. from
 	``Tx_Fluid_Core_ViewHelper_TagBasedViewHelper``. Several
@@ -113,7 +114,7 @@ enhanced our ViewHelper from above as follows:
 and we insert it in the template like this:
 
 	``{namespace blog=Tx_BlogExample_ViewHelpers}
-	Hello &lt;blog:gravatar /&gt;``
+	Hello <blog:gravatar />``
 
 ``Hello World`` should be displayed.
 
@@ -153,6 +154,7 @@ because the type of the parameter is based on this by Fluid.
 	identified.
 
 .. tip::
+
 	Sometimes arguments should get *different*
 	types. In this case you should use the type mixed in the PHPDoc. With
 	the line ``@param mixed $emailAddress`` any type of object can
@@ -164,10 +166,10 @@ At the end we implement the output as img tag::
 	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 	/**
 	* @param string $emailAddress The email address to resolve the gravatar for
-	* @return string the HTML &lt;img&gt;-Tag of the gravatar
+	* @return string the HTML <img>-Tag of the gravatar
 	*/
 	public function render() {
-	return '&lt;img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" /&gt;';
+	return '<img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" />';
 	}
 	}
 
@@ -191,9 +193,9 @@ Because method parameter and annotations are not inheritable, there
 must be an additional way to register the arguments of a ViewHelper. Fluid
 provides the method ``initializeArguments`` for this. In this
 method you can register additional arguments by calling
-``$this-&gt;registerArgument($name, $type, $description, $required,
+``$this->registerArgument($name, $type, $description, $required,
 $defaultValue)``. You can access these arguments through the array
-``$this-&gt;arguments``.
+``$this->arguments``.
 
 The above example could be changed in the following way and would
 function identical::
@@ -203,16 +205,16 @@ function identical::
 	* Arguments Initialization
 	*/
 	protected function initializeArguments() {
-	$this-&gt;registerArgument('emailAddress', 'string',
+	$this->registerArgument('emailAddress', 'string',
 	'The email address to resolve the gravatar for', TRUE);
 	}
 
 	/**
-	* @return string the HTML &lt;img&gt;-Tag of the gravatar
+	* @return string the HTML <img>-Tag of the gravatar
 	*/
 	public function render() {
-	return '&lt;img src="http://www.gravatar.com/avatar/' .
-	md5($this-&gt;arguments['emailAddress']) . '" /&gt;';
+	return '<img src="http://www.gravatar.com/avatar/' .
+	md5($this->arguments['emailAddress']) . '" />';
 	}
 	}
 
@@ -236,6 +238,7 @@ creation of the tag and escapes for example single and double quote in
 attributes.
 
 .. tip::
+
 	With the correct escaping of the attributes the system security is
 	enhanced, because it prevents *cross site scripting*
 	attacks that would break out of the attributes of XML tags.
@@ -255,7 +258,7 @@ from ``AbstractViewHelper`` but from
 ``TagBasedViewHelper``, which provides and initializes the
 Tag-Builder. Beyond that there is a class variable ``$tagName``
 which stores the name of the tag to be created. Furthermore the
-Tag-Builder is available at ``$this-&gt;tag``. It offers the
+Tag-Builder is available at ``$this->tag``. It offers the
 method ``addAttribute`` *(Attribute, Value)*
 to add new tag attributes. In our example we add the attribute
 ``src`` to the tag, with the value assigned one line above it.
@@ -264,6 +267,7 @@ generates and returns the tag which than is given back, because we want to
 insert it in the template.
 
 .. tip::
+
 	You may ask why this code is better even though it is much longer.
 	It communicates the meaning much better and therefore it is preferred to
 	the first example, where the gravatar URL and the creating of the
@@ -276,13 +280,13 @@ to concentrate at the essential.
 Furthermore the TagBasedViewHelper offers assistance for ViewHelper
 arguments that should recur direct and unchanged as tag attributes. These
 could be registerd in ``initializeArguments()`` with the method
-``$this-&gt;registerTagAttribute($name, $type, $description, $required
-= FALSE)``. If we want to support the ``&lt;img&gt;``
+``$this->registerTagAttribute($name, $type, $description, $required
+= FALSE)``. If we want to support the ``<img>``
 attribure ``alt`` in our ViewHelper, we can initialize this in
 ``initializeArguments()`` in the following way::
 
 	public function initializeArguments() {
-	$this-&gt;registerTagAttribute('alt', 'string', 'Alternative Text for the image');
+	$this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
 	}
 
 For registering the universal attributes ``id, class,
@@ -296,8 +300,8 @@ the following ``initializeArguments()`` method::
 
 	public function initializeArguments() {
 	parent::initializeArguments();
-	$this-&gt;registerUniversalTagAttributes();
-	$this-&gt;registerTagAttribute('alt', 'string', 'Alternative Text for the image');
+	$this->registerUniversalTagAttributes();
+	$this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
 	}
 
 
@@ -320,12 +324,12 @@ We can enhance the ``render()`` method like this::
 	/**
 	* @param string $emailAddress The email address to resolve the gravatar for
 	* @param string $size The size of the gravatar, ranging from 1 to 512
-	* @return string the HTML &lt;img&gt;-Tag of the gravatar
+	* @return string the HTML <img>-Tag of the gravatar
 	*/
 	public function render($emailAddress, $size = '80') {
 	$gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
-	$this-&gt;tag-&gt;addAttribute('src', $gravatarUri);
-	return $this-&gt;tag-&gt;render();
+	$this->tag->addAttribute('src', $gravatarUri);
+	return $this->tag->render();
 	}
 	}
 
@@ -341,8 +345,8 @@ So far with our gravatar ViewHelper we have focussed on the tag
 structure of the ViewHelper. We have used the ViewHelper only with the tag
 syntax (because it returns a tag as well):
 
-``&lt;blog:gravatar emailAddress="{post.author.emailAddress}"
-/&gt;``
+``<blog:gravatar emailAddress="{post.author.emailAddress}"
+/>``
 
 Alternatively we can rewrite this sample in the inline
 notation:
@@ -354,15 +358,15 @@ With this, the tag concept of the ViewHelper is mostly gone. One
 should see the gravatar ViewHelper as a kind of post processor for an
 email address and would allow the following syntax:
 
-``{post.author.emailAddress -&gt; blog:gravatar()}``
+``{post.author.emailAddress -> blog:gravatar()}``
 
 Here the email address has the focus and we see the gravatar
 ViewHelper as a converting step based on the email address.
 
 We want to show you now what a ViewHelper has to do, to support this
-syntax. The syntax ``{post.author.emailAddress -&gt;
+syntax. The syntax ``{post.author.emailAddress ->
 blog:gravatar()}`` is an alternative writing for
-``&lt;blog:gravatar&gt;{post.author.emailAddress}&lt;/blog:gravatar&gt;``.
+``<blog:gravatar>{post.author.emailAddress}</blog:gravatar>``.
 To support this we have to use the email address either from the argument
 ``emailAddress`` or, if it is empty, we should interpret the
 content of the tag as email address.
@@ -378,16 +382,16 @@ method::
 	/**
 	* @param string $emailAddress The email address to resolve the gravatar for
 	* @param string $size The size of the gravatar, ranging from 1 to 512
-	* @return string the HTML &lt;img&gt;-Tag of the gravatar
+	* @return string the HTML <img>-Tag of the gravatar
 	*/
 	public function render($emailAddress = NULL, $size = '80') {
 	if ($emailAddress === NULL) {
-	$emailAddress = $this-&gt;renderChildren();
+	$emailAddress = $this->renderChildren();
 	}
 
 	$gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
-	$this-&gt;tag-&gt;addAttribute('src', $gravatarUri);
-	return $this-&gt;tag-&gt;render();
+	$this->tag->addAttribute('src', $gravatarUri);
+	return $this->tag->render();
 	}
 	}
 
@@ -397,6 +401,7 @@ made the ViewHelper attribute ``emailAddress`` optional. If no
 the tag as email address. The rest of the code in unchanged.
 
 .. tip::
+
 	This trick was specially used at the format ViewHelpers. Every
 	ViewHelper supports both writings there.
 

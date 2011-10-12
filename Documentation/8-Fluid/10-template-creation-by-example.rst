@@ -38,10 +38,10 @@ repeating code in partials (see the section "<xref
 linkend="Fluid_using_partials" />" earlier in this chapter). The basic
 framework of our templates looks as follows::
 
-	&lt;f:layout name="default" /&gt;
-	&lt;f:section name="content"&gt;
+	<f:layout name="default" />
+	<f:section name="content">
 	...
-	&lt;/f:section&gt;
+	</f:section>
 
 In most templates we are referencing the layout
 ``default``, that should build the "frame" of our plugin output.
@@ -49,10 +49,10 @@ The actual template resides in a section with the name
 ``content``. The layout definition is stored in the HTML file
 *EXT:sjr_offers/Resources/Private/Layouts/default.html*::
 
-	&lt;div class="tx-sjroffers"&gt;
-	&lt;f:render section="content" /&gt;
-	&lt;f:flashMessages id="dialog" title="Notice!"/&gt;
-	&lt;/div&gt;
+	<div class="tx-sjroffers">
+	<f:render section="content" />
+	<f:flashMessages id="dialog" title="Notice!"/>
+	</div>
 
 A section ``content`` of the respective template is
 rendered and after this a message to the frontend user is shown if
@@ -63,11 +63,11 @@ controller, e.g. at unauthorized access (see also the section
 "<remark>TODO:insert section name</remark>" in chapter 7)::
 
 	public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
-	$administrator = $offer-&gt;getOrganization()-&gt;getAdministrator();
-	if ($this-&gt;accessControlService-&gt;isLoggedIn($administrator)) {
+	$administrator = $offer->getOrganization()->getAdministrator();
+	if ($this->accessControlService->isLoggedIn($administrator)) {
 	...
 	} else {
-	$this-&gt;flashMessages-&gt;add('Please log in.');
+	$this->flashMessages->add('Please log in.');
 	}
 	...
 	}
@@ -107,13 +107,13 @@ is given the value should be prefixed with from respectively to. We store
 these jobs in a ``NumericalRangeViewHelper`` and call it in our
 template like this:
 
-``&lt;sjr:format.numericRange&gt;{offer.ageRange}&lt;/sjr:format.numericRange&gt;``
+``<sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>``
 
 Alternatively you can use the inline notation of Fluid (therefore
 see the box "<xref linkend="Fluid_inline_vs_tag" />" earlier in this
 chapter):
 
-``{offer.ageRange-&gt;sjr:format.numericRange()}``
+``{offer.ageRange->sjr:format.numericRange()}``
 
 The NumericRangeViewHelper is implemented as follows:
 
@@ -147,10 +147,10 @@ form is displayed, otherwise the content of the partial
 
 ::
 
-	&lt;div id="dialog" title="Notice!"&gt;
+	<div id="dialog" title="Notice!">
 	You are not authorized to execute this action. 
 	Please first log in with your username and password.
-	&lt;/div&gt;
+	</div>
 
 With the declaration of ``object="{organization}"`` the
 proper form is bound to the assigned ``Organization`` object in
@@ -172,15 +172,15 @@ displayed. We have stored the HTML code for the error message in a partial
 In this partial, the name of the form that relates to the error message is
 given as ``formName``::
 
-	&lt;f:form.errors for="formName"&gt;
-	&lt;div id="dialog" title="{error.propertyName}"&gt;
-	&lt;p&gt;
-	&lt;f:for each="{error.errors}" as="errorDetail"&gt;
+	<f:form.errors for="formName">
+	<div id="dialog" title="{error.propertyName}">
+	<p>
+	<f:for each="{error.errors}" as="errorDetail">
 	{errorDetail.message}
-	&lt;/f:for&gt;
-	&lt;/p&gt;
-	&lt;/div&gt;
-	&lt;/f:form.errors&gt;
+	</f:for>
+	</p>
+	</div>
+	</f:form.errors>
 
 .. sidebar:: Localize error messages
 
@@ -195,8 +195,8 @@ given as ``formName``::
 	*EXT:sjr_offers/Resources/Private/Language/locallang.xml*
 	you have to write for example::
 
-		&lt;label index="newOffer.title"&gt;Title of the offer&lt;/label&gt;
-		&lt;label index="newOffer.title.1238108067"&gt;The length of the title must between 3 an 50 character.&lt;/label&gt;
+		<label index="newOffer.title">Title of the offer</label>
+		<label index="newOffer.title.1238108067">The length of the title must between 3 an 50 character.</label>
 
 	This solution is only an agreement. The default localization of
 	the error messages is planned for a future version of

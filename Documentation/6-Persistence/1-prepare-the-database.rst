@@ -4,7 +4,7 @@ Preparing the database
 The preparation of the database primarily covers the creation of the
 database tables. The commands for the creation are done in
 *SQL*. The code is put into the file
-<filename>ext_tables.sql</filename> which itself is located on the top level
+:file:`ext_tables.sql` which itself is located on the top level
 of the extension directory.
 
 .. note::
@@ -21,7 +21,7 @@ Preparing the tables of the Domain Objects
 
 Let's have a look at the definition of the database table which will
 aggregate the objects of the class
-<classname>Tx_SjrOffers_Domain_Model_Organization</classname>:
+:class:`Tx_SjrOffers_Domain_Model_Organization`:
 
 	CREATE TABLE tx_sjroffers_domain_model_organization (
 	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
@@ -78,7 +78,7 @@ value of the property ``address`` is saved in the field
 into the fieldname ``telephone_number`` etc.
 
 However, the table definition contains additional fields that have
-no correlating property in the class <classname>Organisation</classname>.
+no correlating property in the class :class:`Organisation`.
 They are needed by TYPO3 for providing functionalities like Localization,
 Workspaces and Versioning. The according TYPO3-specific fields are:
 
@@ -261,9 +261,9 @@ types.
 <tr>
 <th>What should be saved?</th>
 
-<th>Field type&gt;</th>
+<th>Field type></th>
 
-<th>Field range&gt;</th>
+<th>Field range></th>
 </tr>
 </thead>
 
