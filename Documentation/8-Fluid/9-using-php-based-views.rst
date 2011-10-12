@@ -16,9 +16,9 @@ combination, a PHP based view will be used. This PHP class is resolved
 against a naming convention which is defined in the
 ``ActionController`` in the class variable
 ``$viewObjectNamePattern``. The default naming convention is
-following:
+following::
 
-``Tx_@extension_View_@controller_@action_@format``
+	Tx_@extension_View_@controller_@action_@format
 
 All parts beginning with ``@`` will be replaced accordingly.
 When no class with this name can be found, the ``@format`` will be
@@ -45,9 +45,9 @@ initializing methods and you only have to implement the
 ``render()`` method. A minimal view would like this::
 
 	class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
-	public function render() {
-	return 'Hello World';
-	}
+		public function render() {
+			return 'Hello World';
+		}
 	}
 
 Now we have the full expression power of PHP available and we can
@@ -55,15 +55,15 @@ implement our own output logic. For example our JSON view could look like
 this::
 
 	class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
-	public function render() {
-	$postList = $this->viewData['posts'];
-	return json_encode($postList);
-	}
+		public function render() {
+			$postList = $this->viewData['posts'];
+			return json_encode($postList);
+		}
 	}
 
 Here we can see that the data that is passed to the
 view is available in the array ``$this->viewData``. These are
-converted to JSON data using the function ``json_encode ``and then
+converted to JSON data using the function ``json_encode`` and then
 returned.
 
 .. tip::

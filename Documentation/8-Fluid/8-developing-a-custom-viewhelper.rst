@@ -103,18 +103,18 @@ Every ViewHelper must inherit from the class
 In addition every ViewHelper needs a method render(), which is
 called once the ViewHelper is to be displayed in the template. The return
 value of the method is copied directly into the complete output. If we
-enhanced our ViewHelper from above as follows:
+enhanced our ViewHelper from above as follows::
 
 	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
-	public function render() {
-	return 'World';
-	}
+		public function render() {
+			return 'World';
+		}
 	}
 
-and we insert it in the template like this:
+and we insert it in the template like this::
 
-	``{namespace blog=Tx_BlogExample_ViewHelpers}
-	Hello <blog:gravatar />``
+	{namespace blog=Tx_BlogExample_ViewHelpers} 
+	Hello <blog:gravatar />
 
 ``Hello World`` should be displayed.
 
