@@ -39,5 +39,11 @@ Fluid.
 	2-the-stations-of-the-journey
 	3-calling-the-extension
 	4-and-action
+	5-Get-Blog-from-the-Repository
+	6-An-excursion-to-the-database
+	7-Paths-on-the-Data-Map
+	8-Back-in-the-controller
+	9-Rendering-the-output-with-fluid
+	10-Returning-the-result-to-TYPO3
 	12-automatic-persistence-of-the-domain-logic
 	13-notes-for-migrating-users	

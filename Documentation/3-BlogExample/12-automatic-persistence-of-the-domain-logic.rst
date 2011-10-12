@@ -1,4 +1,4 @@
-automatic persistence of the domain logic
+Automatic persistence of the domain logic
 =========================================================
 
 Remarkable at this point is, that up to this time no method to save
