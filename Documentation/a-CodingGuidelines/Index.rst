@@ -1,8 +1,6 @@
 Coding Guidelines
 ==================================
 
-h1. Coding Guidelines
-
 Extbase and Fluid follow the principle of *Convention over Configuration* (as 
 does FLOW3). That means that lots of task will work automatically if you respect 
 the given (naming) conventions for classes, files and method names. Furtermore, 
