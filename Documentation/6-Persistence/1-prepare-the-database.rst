@@ -256,6 +256,65 @@ types.
 
 *Table 6-1: Comparison of different field types*
 
++------------------------------+--------------------+-------------------------------------------------+
+|What should be saved?         |Field type          |Field range                                      |
+|                              |                    |                                                 |
+|                              |                    |                                                 |
+|                              |                    |                                                 |
++------------------------------+--------------------+-------------------------------------------------+
+|Character strings, texts      |``char(n)``         |max. 255 Bytes **                                |
++------------------------------+--------------------+-------------------------------------------------+
+|(names, addresses, product    |``varchar(n)``      |max. n Bytes (up to max. n = 65.553)             |
+|descriptions etc.; images that|                    |                                                 |
+|are managed by TYPO3)         |``text``            |max. 65.553 Bytes                                |
+|                              |                    |                                                 |
+|                              |``mediumtext*``     |max. 16.777.215 Bytes                            |
+|                              |                    |                                                 |
+|                              |``longtext*``       |max. 4.294.967.295 Bytes                         |
++------------------------------+--------------------+-------------------------------------------------+
+|Integer types                 |``tinyint[(n)]`` *  |8 Bit                                            |
+|                              |                    | -128 to +128 (signed; n=4)                      |
+|(item counts, ages etc.; in   |                    | 0 to 255(unsigned; n=3)                         |
+|TYPO3 as well as dates and    |                    |                                                 |
+|boolean properties)           |``smallint[(n)]``   |16 Bit                                           |
+|                              |                    | -32.768 to +32.767 (signed; n=6)                |
+|                              |                    | 0 to 65535 (unsigned; n=5)                      |
+|                              |                    |                                                 |
+|                              |``mediumint[(n)]`` *|24 Bit                                           |
+|                              |                    | -8.388.608 to +8.388.607 (signed; n=9)          |
+|                              |                    | 0 to 16.777.215 (unsigned; n=8)                 |
+|                              |                    |                                                 |
+|                              |``int[(n)]``        |32 Bit                                           |
+|                              |                    | -2.147.483.648 to +2.147.483.647 (signed; n=11) |
+|                              |                    | 0 to 4.294.967.295 (unsigned; n=10)             |
+|                              |                    |                                                 |
+|                              |``bigint[(n)]``     |64 Bit                                           |
+|                              |                    | -9.223.372.036.854.775.808 to                   |
+|                              |                    |+9.223.372.036.854.775.807 (signed; n=20)        |
+|                              |                    | 0 to 18.446.744.073.709.551.615 (unsigned; n=19)|
++------------------------------+--------------------+-------------------------------------------------+
+|Floating-point                |``decimal(p[,s])``  |(saved as string of characters)                  |
++------------------------------+--------------------+-------------------------------------------------+
+|(amounts of money, measurement|``float(p[,s])``    |-1.79E+308 to +1.79E+308 (eventually limited     |
+|values etc.)                  |                    |through the precision)                           |
+|                              |                    |                                                 |
++------------------------------+--------------------+-------------------------------------------------+
+
+
+
+	p = precision
+
+	s = scale
+
+	n = Number of Bytes resp. Number of spaces in a column (int)
+
+	\* MySQL only
+
+	** The number of signs depends on the text-encoding and may
+	differ from the number of Bytes. E.g. Using text-encoding ISO-8859-1
+	one Byte contains exactly one character whereas in UTF-8 one
+	character is saved in up to 3 Bytes (Multibyte Encoding).
+
 
 
 Configure Relationships between Objects
@@ -362,54 +421,54 @@ supported.
 <caption>Combination of reference type and technical storage</caption>
 
 <thead>
-<tr>
+
 <td />
 
-<td>1:1</td>
+1:1
 
-<td>1:n</td>
+1:n
 
-<td>n:1</td>
+n:1
 
-<td>m:n</td>
-</tr>
+m:n
+
 </thead>
 
-<tr>
-<td>Comma-separated list</td>
 
-<td>2)</td>
+Comma-separated list
 
-<td>2)</td>
+2)
 
-<td>3)</td>
+2)
 
-<td>2)</td>
-</tr>
+3)
 
-<tr>
-<td>Foreign Keys</td>
+2)
 
-<td>1)</td>
 
-<td>1)</td>
 
-<td>1)</td>
+Foreign Keys
 
-<td>3)</td>
-</tr>
+1)
 
-<tr>
-<td>Intermediate Table</td>
+1)
 
-<td>3)</td>
+1)
 
-<td>3)</td>
+3)
 
-<td>1)</td>
 
-<td>1)</td>
-</tr>
+
+Intermediate Table
+
+3)
+
+3)
+
+1)
+
+1)
+
 </table>
 
 Thus, every type of relationship has its own recommended form of
