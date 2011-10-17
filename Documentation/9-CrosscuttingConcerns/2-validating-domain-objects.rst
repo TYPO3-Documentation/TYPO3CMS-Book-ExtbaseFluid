@@ -85,10 +85,10 @@ Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. With the help of figure
 9-1 we can show at what happens before the action is called.
 
-<remark>TODO: insert figure here</remark>
+.. figure:: /Images/9-CrosscuttingConcerns/figure-9-1.png
+	:align: center
 
-*Figure 9-1: Data flow of a request before the action is
-called*
+	Figure 9-1: Data flow of a request before the action is called
 
 When a user sends a request, Extbase first determines which action
 respectively controller is responsible for this request. As Extbase knows
@@ -219,7 +219,6 @@ the domain model. The next section shows to you, how complex domain
 objects are to be validated.
 
 
-
 Validating in the domain model with an own validator class
 --------------------------------------------------------------------------------------------------
 
@@ -323,8 +322,7 @@ Therefore a slightly modified form of the ``@validate``
 annotation can be used which is set in the comment block of the
 controller action. It has the format ``@validate
 *[variablename] [validators]*``, in the example
-below it is ``$pageName
-``:class:`Tx_MyExtension_Domain_Validator_PagenameValidator`::
+below it is ``$pageName`` :class:`Tx_MyExtension_Domain_Validator_PagenameValidator`::
 
 	/**
 	* Creates a new page with a given name.
@@ -556,12 +554,11 @@ In figure 9-2 you find an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
 frontend.
 
-<remark>TODO: insert figure 9-2 here</remark>
+.. figure:: /Images/9-CrosscuttingConcerns/figure-9-2.png
+	:align: center
 
-*Figure 9-2: Data flow of the form display and saving. When
-a validating error occurs it is displayed again.*
-
-
+	Figure 9-2: Data flow of the form display and saving. When a validating 
+	error occurs it is displayed again.
 
 Mapping arguments
 -------------------------------------------------
@@ -633,10 +630,10 @@ to the action. So that is always persistent, that is changes to this
 object are saved automatically. <remark>!!!Sentence not
 clear</remark>
 
-<remark>TODO: insert figure 9-3</remark>
+.. figure:: /Images/9-CrosscuttingConcerns/figure-9-3.png
+	:align: center
 
-*Figure 9-3: The internal control flow of the property
-mapper.*
+	Figure 9-3: The internal control flow of the property mapper.
 
 In our case not only the ``__identity`` property is sent,
 but also a new ``title`` and ``description`` for our
@@ -650,7 +647,7 @@ given to the action as argument.
 
 Now we have to code in our controller explicit that we want to
 replace the existing persistent ``blog`` object with our changed
-``blog ``object. For this the repository offers a method
+``blog`` object. For this the repository offers a method
 update()::
 
 	$this->blogRepository->update($blog);

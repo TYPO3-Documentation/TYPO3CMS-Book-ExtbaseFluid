@@ -14,9 +14,11 @@ following this way you are implementing failures into some routines by accident.
 Furthermore by a test is not only a little code fragment tested, but often a 
 more complex routine.
 
+.. figure:: /Images/2-BasicPrinciples/figure-2-7.png
+	:align: center
 
-Figure 2 - 7: in the classic software development exist a strict isolation 
-between the Development- and the Testphase.
+	Figure 2-7: in the classic software development exist a strict isolation 
+	between the Development- and the Testphase.
 
 By using Test-Driven Development (TDD) these problems should be solved. Tests 
 could be fast completed and reproducible. These increases the developers 
@@ -73,7 +75,11 @@ you want to implement you will write a new Unit test, with which you can test
 this new functionality. In this way the process of testing an implementing 
 starts over.
 
-Figure 2-8 with Test-Driven Development testing and development are alternating
+.. figure:: /Images/2-BasicPrinciples/figure-2-8.png
+	:align: center
+
+	Figure 2-8: with Test-Driven Development testing and development are 
+	alternating
 
 The fortune of this method is obviously. 
 
@@ -137,8 +143,12 @@ be accessed again.
 
 // Code
 
-Figure 2-9: With the testrunner you are able to run easily the Unit tests in the TYPO3-Backend.
 
+.. figure:: /Images/2-BasicPrinciples/figure-2-9.png
+	:align: center
+
+	Figure 2-9: With the testrunner you are able to run easily the Unit tests 
+	in the TYPO3-Backend.
 
 When we run the testcase, we will be displayed a fatal error from PHP, because 
 the class we want to test does not exist already. Now we are changing roles: We 
@@ -185,8 +195,10 @@ class which is called EmailService. EmailService uses, depending on the used
 configuration uses a SMTP-Server or the mail() function of PHP. This is shown in 
 the figure 2-10: The email logger class has a reference on the email service.
 
-Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
+.. figure:: /Images/2-BasicPrinciples/figure-2-10.png
+	:align: center
 
+	Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
 
 We now want to test the class EmailLogger without using the EmailService. We do 
 not want to send real emails with every test run. To reach that goal we need two 

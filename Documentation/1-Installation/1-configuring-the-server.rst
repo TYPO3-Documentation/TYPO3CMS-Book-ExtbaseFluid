@@ -36,4 +36,9 @@ Report* submodule and have a look at the
 *extbase* section, which will tell you whether the PHP
 comments are preserved or not.
 
-<remark>TODO: Add picture 1-1</remark>
+.. figure:: /Images/1-Installation/figure-1-1.png
+	:height: 400px
+	:align: center
+
+	Figure 1-1: Im Reports-Module können Sie überprüfen, dass Extbase Zugriff 
+	auf die Quelletextkommentare der PHP-Dateien hat.

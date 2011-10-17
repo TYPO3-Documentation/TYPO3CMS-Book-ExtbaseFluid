@@ -375,9 +375,11 @@ the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again and the previously saved error message is
 displayed if the template is intenting so.
 
-<remark>TODO: Insert OImage with caption: Fig. 7-1: Wrong input in
-the form of an offer leads to an error mesage (in this case a modal
-JavaScript window) </remark>
+.. figure:: /Images/7-Controllers/figure-7-1.png
+	:align: center
+
+	Figure 7-1: Wrong input in the form of an offer leads to an error mesage 
+	(in this case a modal JavaScript window) 
 
 .. tip::
 
@@ -574,8 +576,10 @@ range of offers. We already implemented an appropriate Method
 correct section name</remark>). To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
-<remark>TODO: Insert Image with caption: Fig. 7-2: The buildup of
-the "demand" in a form above the offer list. </remark>
+.. figure:: /Images/7-Controllers/figure-7-2.png
+	:align: center
+
+	Figure 7-2: The buildup of the "demand" in a form above the offer list. 
 
 .. warning::
 	Watch out, that you do not implement logic, which actually

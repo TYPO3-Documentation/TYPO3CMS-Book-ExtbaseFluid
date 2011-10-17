@@ -114,12 +114,10 @@ baking per dukte. How in image 4-2 shown, let's produce receive becomes in
 addition a system file, that the products 1: In this, we put some few new
 Bestandsdaten at 2. 
 
-<remark></remark>
+.. figure:: /Images/4-FirstExtension/figure-4-2.png
+	:align: center
 
-<remark></remark>
-
-<remark>ToDo: insert image 4-2 with replaced english version screenshot
-</remark>
+	Figure 4-2: @todo translate legend
 
 We created a copy (or a model) in this section reality in that we
 translated only a cut at characteristics of the real products in software,

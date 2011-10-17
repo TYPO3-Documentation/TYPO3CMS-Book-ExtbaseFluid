@@ -9,9 +9,11 @@ current template. Note that the template has the focus and controls the
 output. You also have to determine which layout is being used in the
 template.
 
-<remark>TODO: insert Figure 8-1 "Layouts build the outer frame for a
-template, whereas recurring elements can be implemented in a template with
-partials."</remark>
+.. figure:: /Images/8-Fluid/figure-8-1.png
+	:align: center
+
+	Figure 8-1: Layouts build the outer frame for a template, whereas recurring 
+	elements can be implemented in a template with partials.
 
 Now we look at how to create and use a layout. A layout is a Fluid
 file in the folder :file:`Resources/Private/Layouts/`. It

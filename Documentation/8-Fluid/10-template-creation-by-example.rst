@@ -9,8 +9,11 @@ Figure 8-2. We are using both layouts and partials, to avoid double code.
 Inside *Scripts* we put JavaScript code that we use for
 animations and for a Date picker in the frontend.
 
-<remark>TODO: insert Figure 8-2: Folder structure of layouts,
-templates and partials inside the extension sjr_offers</remark>
+.. figure:: /Images/8-Fluid/figure-8-2.png
+	:align: center
+
+	Figure 8-2: Folder structure of layouts, templates and partials inside the 
+	extension sjr_offers
 
 The extension *sjr_offers* has an
 ``OfferController`` and an ``OrganizationController``.
@@ -39,8 +42,8 @@ linkend="Fluid_using_partials" />" earlier in this chapter). The basic
 framework of our templates looks as follows::
 
 	<f:layout name="default" />
-	<f:section name="content">
-	...
+		<f:section name="content">
+		...
 	</f:section>
 
 In most templates we are referencing the layout
@@ -63,13 +66,13 @@ controller, e.g. at unauthorized access (see also the section
 "<remark>TODO:insert section name</remark>" in chapter 7)::
 
 	public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
-	$administrator = $offer->getOrganization()->getAdministrator();
-	if ($this->accessControlService->isLoggedIn($administrator)) {
-	...
-	} else {
-	$this->flashMessages->add('Please log in.');
-	}
-	...
+		$administrator = $offer->getOrganization()->getAdministrator();
+		if ($this->accessControlService->isLoggedIn($administrator)) {
+			...
+		} else {
+			$this->flashMessages->add('Please log in.');
+		}
+		...
 	}
 
 
@@ -93,9 +96,12 @@ authorized administrator of the organization is logged in as frontend user
 ``AccessControlService``, that we had implemeted for this
 purpose.
 
-<remark>TODO: insert Figure 8-3: Single view of an organization with
-its offers (left) and the same view with shown editing symbols
-(right)</remark>
+
+.. figure:: /Images/8-Fluid/figure-8-3.png
+	:align: center
+
+	Figure 8-3: Single view of an organization with its offers (left) and the 
+	same view with shown editing symbols (right)
 
 Another repeating job is the formatting of numbers and date
 intervals, For example how the date is displayed for the

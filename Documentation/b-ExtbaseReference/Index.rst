@@ -97,7 +97,11 @@ All actions which change data must not be cacheable. Above, this is for example
 the delete action in the blog controller. In the backend now you can see A Blog 
 Example in the list of plugins (see Figure B-1).
 
-TODO: insert image
+
+.. figure:: /Images/b-ExtbaseReference/figure-b-1.png
+	:align: center
+
+	Figure B-1: @todo add legend
 
 .. sidebar:: Why two files?
 
@@ -118,11 +122,13 @@ page.
 
 Figure B-2 is an example that is explained below:
 
-TODO: insert image
+.. figure:: /Images/b-ExtbaseReference/figure-b-2.png
+	:align: center
 
-Figure B-2: For the sysfolder in which the data was stored, the setting 
-"TCEMAIN.clearCacheCmd" defines that the cache of the page "Blog" should be 
-emptied.
+	Figure B-2: For the sysfolder in which the data was stored, the setting
+	"TCEMAIN.clearCacheCmd" defines that the cache of the page "Blog" should be 
+	emptied.
+
 
 The frontend plugin is on the page "Blog" with the ID 11. As a storage folder 
 for all the blogs and posts the SysFolder BLOGS is configured. Now, if an entry 
@@ -277,8 +283,7 @@ The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
 
 $actionMethodName
-
-Name of the executed action.
+	Name of the executed action.
 
 $argumentMappingResults
 

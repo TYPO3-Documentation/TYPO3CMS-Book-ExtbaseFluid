@@ -9,9 +9,13 @@ configure the project you're currently developing, making it depend on
 Extbase and Fluid. After that the IDE will activate autocompletion for
 Extbase and Fluid classes.
 
-<remark>TODO: Insert figure 1-2 with caption: The autocompletion
-feature will show you possible class names and their code
-documentation.</remark>
+
+.. figure:: /Images/1-Installation/figure-1-2.png
+	:align: center
+
+	Figure 1-2: The autocompletion feature will show you possible class names 
+	and their code documentation.
+
 
 In NetBeans right-click your Extension project and choose
 *Properties* in the opened context menu to edit the

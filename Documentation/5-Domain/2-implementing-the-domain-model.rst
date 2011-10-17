@@ -78,7 +78,7 @@ we create first a minimum trunk of the class and its methods.
 
 The test is now able to run, but failed as expected (see Figure 5-5).
 
-.. figure:: /Images/5-Domain/figure5-5.JPG
+.. figure:: /Images/5-Domain/figure-5-5.jpg
 
 	Figure 5-5: message of the failed first test run
 
@@ -234,7 +234,7 @@ compliant as expected. In English, one can use the expression »green bar
 feeling« (siehe Abbildung 5-6). In the course we will not explicitly deal with 
 the testing. But we use it always in the background.
 
-.. figure:: /Images/5-Domain/figure5-6.JPG
+.. figure:: /Images/5-Domain/figure-5-6.jpg
 
 	Figure 5-6: By the test-driven development there is a residual »Green-Bar-Feeling«.
 

@@ -287,7 +287,7 @@ be visible in the model as well. We call such a relationship between closely
 related parts and the whole "aggregates". You see this domain model in Figure 
 2-1.
 
-.. figure:: /Images/2-BasicPrinciples/figure_2_1_page_32.png
+.. figure:: /Images/2-BasicPrinciples/figure-2-1.png
 	:align: center
 
 	Figure 2-1: The domain model of an auto repair shop. Objects outside an 
@@ -341,7 +341,7 @@ and can be changed, and eventually they will be deleted. This is shown in Figure
 2-2.
 
 
-.. figure:: /Images/2-BasicPrinciples/figure_2_2_page_33.png
+.. figure:: /Images/2-BasicPrinciples/figure-2-2.png
 	:height: 300px
 	:align: center
 
@@ -356,7 +356,7 @@ Chapter 2.2 / page 34
 So we need a way to maintain only neededd objects in the memory. The active 
 state actually consists of several sub-states, which are shown in Figure 2-3.
 
-.. figure:: /Images/2-BasicPrinciples/figure_2_4_page_34.png
+.. figure:: /Images/2-BasicPrinciples/figure-2-3.png
 	:height: 450px
 	:align: center
 

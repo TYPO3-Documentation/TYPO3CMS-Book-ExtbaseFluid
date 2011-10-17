@@ -49,7 +49,10 @@ the entire process of listing creation later. The folder
 this, the folder structure within the extension folder
 *inventory/* should look as in image 4-1.
 
-<remark>TODO: Image 4-1</remark>
+.. figure:: /Images/4-FirstExtension/figure-4-1.png
+	:align: center
+
+	Figure 4-1: Die einfachste Ordnerstruktur mit den grundlegenden Dateien
 
 So that the extension can be loaded by TYPO3, we require two
 configuration files. These are discarded into the extension folder

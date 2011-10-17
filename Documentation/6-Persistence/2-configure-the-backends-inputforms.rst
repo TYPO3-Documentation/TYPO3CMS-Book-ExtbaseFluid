@@ -209,10 +209,10 @@ The given string will be truncated to 256 signs (``'max' => 256``), ending
 spaces will be dropped (``trim``) and the persistence of an empty field will be 
 prevented (``required``).
 
-<!-- TODO: INSERT FIGURE 6-1 IN HERE -->
-<!-- Subtext of Fig. 6-1:
-Fig. 6-1: An example for the field type "input" used as a name field.
--->
+.. figure:: /Images/6-Persistence/figure-6-1.png
+	:align: center
+
+	Figure 6-1: An example for the field type "input" used as a name field.
 
 The field type ``input`` may be used for date and time inputs::
 
@@ -230,12 +230,10 @@ The value then will be tested for being given in a sane date format.
 Simultaneously, this leads to the rendering of a collapsable calendar page in 
 shape of an icon right to the input field which is shown in Fig. 6-2:
 
-<!-- TODO: INSERT FIGURE 6-2 IN HERE -->
-<!-- Subtext of Fig. 6-2:
-Fig. 6-2: An example for the field type "input" used as a date field.
--->
+.. figure:: /Images/6-Persistence/figure-6-2.png
+	:align: center
 
-
+	Figure 6-2: An example for the field type "input" used as a date field.
 
 Field type "text"
 -------------------------------------------------
@@ -255,11 +253,10 @@ e.g. product descriptions, addresses or news items. The indication of the lines
 		)
 	),
 
-<!-- TODO: INSERT FIGURE 6-3 IN HERE -->
-<!-- Subtext of Fig. 6-3:
-Fig. 6-2: An example for the field type "text".
--->
+.. figure:: /Images/6-Persistence/figure-6-3.png
+	:align: center
 
+	Figure 6-3: An example for the field type "text".
 
 
 Field type "check"
@@ -277,10 +274,10 @@ The field type ``check`` allows the definition of a single option (see Fig. 6-4)
 		)
 	),
 
-<!-- TODO: INSERT FIGURE 6-4 IN HERE -->
-<!-- Subtext of Fig. 6-4:
-Fig. 6-4: An example for the field type "check" for a single option.
--->
+.. figure:: /Images/6-Persistence/figure-6-4.png
+	:align: center
+
+	Figure 6-4: An example for the field type "check" for a single option.
 
 Several related options which can be individually selected can be grouped to a 
 field (see Fig. 6-5). This may be helpful e.g. for a selection of valid weekdays 
@@ -316,12 +313,10 @@ element is one level above (= 2^1 = 2), the third element will then be (= 2^2 =
 following Bit-Pattern (= binary-written number): 00101. This binary number is 
 equivalent to the Integer value 5.
 
-<!-- TODO: INSERT FIGURE 6-5 IN HERE -->
-<!-- Subtext of Fig. 6-5:
-Fig. 6-5: An example for the field type "check" for several options that are grouped together.
--->
+.. figure:: /Images/6-Persistence/figure-6-5.png
+	:align: center
 
-
+	Figure 6-5: An example for the field type "check" for several options that are grouped together.
 
 Field type "radio"
 -------------------------------------------------
@@ -346,12 +341,10 @@ The options (*items*) are given in an Array and each option is an Array itself
 containing the label and the key used for persist the selected option in the 
 database.
 
-<!-- TODO: INSERT FIGURE 6-6 IN HERE -->
-<!-- Subtext of Fig. 6-6:
-Fig. 6-6: An example for the field type "radio".
--->
+.. figure:: /Images/6-Persistence/figure-6-6.png
+	:align: center
 
-
+	Figure 6-6: An example for the field type "radio".
 
 Field type "select"
 -------------------------------------------------
@@ -375,10 +368,10 @@ The options are taken from another database table (*foreign_table*) and by
 setting *maxitems* to 1 (which is standard) the selection box will be limited to 
 exactly one showed item.
 
-<!-- TODO: INSERT FIGURE 6-7 IN HERE -->
-<!-- Subtext of Fig. 6-7:
-Fig. 6-7: An example for the field type "select" showing a selection box.
--->
+.. figure:: /Images/6-Persistence/figure-6-7.png
+	:align: center
+
+	Figure 6-7: An example for the field type "select" showing a selection box.
 
 The type ``select`` may also be used to select a whole subset of values. This is 
 used for categories, tags or contact persons (see Fig. 6-8).
@@ -403,12 +396,10 @@ used for categories, tags or contact persons (see Fig. 6-8).
 Again, this takes the options of another table but it holds the references in a 
 temporary table *tx_sjroffers_offer_category_mm*.
 
-<!-- TODO: INSERT FIGURE 6-8 IN HERE -->
-<!-- Subtext of Fig. 6-8:
-Fig. 6-8: An example for the field type "select".
--->
+.. figure:: /Images/6-Persistence/figure-6-8.png
+	:align: center
 
-
+	Figure 6-8: An example for the field type "select".
 
 Field type "group"
 -------------------------------------------------
@@ -448,12 +439,10 @@ to the original file. ``db`` leads to a direct reference to a database rowset.
 	*ViewHelper* in Fluid when the data shows up (see the entry *f:image* in 
 	Appendix C)
 
-<!-- TODO: INSERT FIGURE 6-9 IN HERE -->
-<!-- Subtext of Fig. 6-9:
-Fig. 6-9: An example for the field type "group".
--->
+.. figure:: /Images/6-Persistence/figure-6-9.png
+	:align: center
 
-
+	Figure 6-9: An example for the field type "group".
 
 Field type "none"
 -------------------------------------------------
@@ -473,12 +462,10 @@ In contrast to the date field with the type ``input`` there is no evaluation as
 with ``'eval' => 'date'``. The timestamp which is set in the database will be 
 shown as a raw number.
 
-<!-- TODO: INSERT FIGURE 6-10 IN HERE -->
-<!-- Subtext of Fig. 6-10:
-Fig. 6-10: An example for the field type "none" for a date field.
--->
+.. figure:: /Images/6-Persistence/figure-6-10.png
+	:align: center
 
-
+	Figure 6-10: An example for the field type "none" for a date field.
 
 Field type "passthrough"
 -------------------------------------------------
@@ -549,12 +536,10 @@ The configuration is almost identical to the field type "select". However, there
 are several more possibilities for the configuration of the management and the 
 representation of the connected objects.
 
-<!-- TODO: INSERT FIGURE 6-11 IN HERE -->
-<!-- Subtext of Fig. 6-11:
-Fig. 6-11: An example for the field type "irre".
--->
+.. figure:: /Images/6-Persistence/figure-6-11.png
+	:align: center
 
-
+	Figure 6-11: An example for the field type "irre".
 
 Extbase supports the most important aspects of *IRRE* with only one exception: 
 *IRRE* allows a temporary table of an ``m:n-relationship`` to be enhanced by 
@@ -671,32 +656,32 @@ follows::
 
 
 	$TCA['tx_sjroffers_domain_model_organization'] = array(
-	'ctrl' => $TCA['tx_sjroffers_domain_model_organization']['ctrl'],
-	'interface' => array(
-	'showRecordFieldList' => 'status,name,address,telephone_number,telefax_number,url,email_address,description,contacts,offers,administrator'),
-	'types' => array(
-	'1' => array('showitem' => 'hidden,status,name,address;;1;;,description, contacts,offers,administrator')
-	),
-	'palettes' => array(
-	'1' => array('showitem' => 'telephone_number,telefax_number,url,email_address')
-	),
-	'columns' => array(
-	'sys_language_uid' => array(...),
-	'l18n_parent' => array(...),
-	'l18n_diffsource' => array(...),
-	'hidden' => array(...),
-	'status' => array(...),
-	'name' => array(...),
-	'address' => array(...),
-	'telephone_number' => array(...),
-	'telefax_number' => array(...),
-	'url' => array(...),
-	'email_address' => array(...),
-	'description' => array(...),
-	'contacts' => array(...),
-	'offers' => array(...),
-	'administrator' => array(...),
-	)
+		'ctrl' => $TCA['tx_sjroffers_domain_model_organization']['ctrl'],
+		'interface' => array(
+		'showRecordFieldList' => 'status,name,address,telephone_number,telefax_number,url,email_address,description,contacts,offers,administrator'),
+		'types' => array(
+		'1' => array('showitem' => 'hidden,status,name,address;;1;;,description, contacts,offers,administrator')
+		),
+		'palettes' => array(
+		'1' => array('showitem' => 'telephone_number,telefax_number,url,email_address')
+		),
+		'columns' => array(
+		'sys_language_uid' => array(...),
+		'l18n_parent' => array(...),
+		'l18n_diffsource' => array(...),
+		'hidden' => array(...),
+		'status' => array(...),
+		'name' => array(...),
+		'address' => array(...),
+		'telephone_number' => array(...),
+		'telefax_number' => array(...),
+		'url' => array(...),
+		'email_address' => array(...),
+		'description' => array(...),
+		'contacts' => array(...),
+		'offers' => array(...),
+		'administrator' => array(...),
+		)
 	);
 
 On the top we can see the backreference to the TCA's first part *ctrl* and below 
@@ -706,10 +691,10 @@ objects are defined like this.
 Now we can create a directory (*SysDirectory*) which will contain all the data 
 sets. Let's create our first organization (see Fig. 6-12).
 
-<!-- TODO: INSERT FIGURE 6-12 IN HERE -->
-<!-- Subtext of Fig. 6-12:
-Fig. 6-12: The input form for creating an organization with all its offers.
--->
+.. figure:: /Images/6-Persistence/figure-6-12.png
+	:align: center
+
+	Figure 6-12: The input form for creating an organization with all its offers.
 
 Now you can set up the whole data structure. In our project this allows the 
 offer-provider to set up some example data and thus we could do some early 

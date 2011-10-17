@@ -6,8 +6,10 @@ don't feel disoriented when we stop at the several steps, you are now able
 to start. Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know more detailed in the upcoming sections.
 
-<remark>TODO: Insert figure 3-3: The several stations of the
-journey</remark>
+.. figure:: /Images/3-BlogExample/figure-3-3.png
+	:align: center
+
+	Figure 3-3: The several stations of the journey
 
 When an extension like the blog example is called, the following
 happens behind the scenes:

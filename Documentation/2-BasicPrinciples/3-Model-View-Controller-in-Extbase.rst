@@ -33,10 +33,14 @@ Important: The Controller only *coordinates*, the actual functionality
 is usually implemented in the *Model*. Because the Controller is 
 difficult to test, it should stay as slim as possible.
 
+.. figure:: /Images/2-BasicPrinciples/figure-2-4.png
+	:align: center
+
+	Figure 2-4: Das MVC-Pattern unterteilt die Andwendung in drei globale Schichten
+
+
 The top layer, the *View* encapsulates the whole 
 Presentation Logic and everything related with the presentation of data.
-
-<remark>is this the right markup for that box?</remark>
 
 .. sidebar:: Firsthand Report
 
@@ -105,9 +109,11 @@ presentation (4) - the array with Blog-Posts in our case.
 
 The View displays the data and returns the Response to the user.(5)
 
-<remark>TODO: insert figure 2-5
-Figure 2-5: In this request a list of Blog-Post is displayed.
-</remark>
+.. figure:: /Images/2-BasicPrinciples/figure-2-5.png
+	:align: center
+
+	Figure 2-5: In this request a list of Blog-Post is displayed.
+
 Now as the first request is completely dispatched the user has a list of all 
 Blog-Posts displayed in the browser. Now the user clicks on a single Blog-Post and gets 
 the complete blog post. In addition the user can add a comment to this post. 
@@ -132,9 +138,10 @@ over the Blog-Post that should be displayed. (4)
 
 The view now displays the data and returns the result to the user. (5)
 
-<remark>TODO: insert Figure 2-6
-Figure: 2-6: In this request a comment is stored.
-</remark>
+.. figure:: /Images/2-BasicPrinciples/figure-2-6.png
+	:align: center
+
+	Figure 2-6: In this request a comment is stored.
 
 You will often see that actions can be sorted into two categories:
 Some actions control the display of a Model, while other actions modify the 
