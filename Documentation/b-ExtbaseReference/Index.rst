@@ -1,5 +1,5 @@
 Extbase Reference
-==================================
+=================
 
 In this appendix, you can look up how Extbase interacts with the TYPO3 
 installation. This includes the registration of plugins and the configuration of 
@@ -10,7 +10,7 @@ Extbase-Extensions.
 	Under http://typo3.org/go/extbasereferencesheet/ you find a useful Cheat Sheet for Extbase and Fluid.
 
 Configuration of frontend plugins
-----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In classical TYPO3 extensions the front-end functionality is divided into 
 several front-end Plugins. Normally each has a separate code base.
@@ -147,7 +147,7 @@ The automatic cache clearing is enabled by default, you can use TypoScript
 configuration to disable it (see next section).
 
 TypoScript Configuration
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each Extbase-based extension has some settings which can be modified using 
 TypoScript. Many of these settings affect aspects of the internal Configuration 
@@ -155,7 +155,7 @@ of Extbase and Fluid. There is also a block "settings" in which you can set
 Extension-specific settings, which can be accessed in the Controllers and 
 Templates of your extensions.
 
-plugin.tx_[lowercasedextensionname]
+**plugin.tx_[lowercasedextensionname]**
 
 The TypoScript configuration of the extension is always located below this 
 TypoScript path. The "lowercased extension name" is the extension key with no 
@@ -163,228 +163,188 @@ underscore (_), as for example in blogexample. The configuration is divided into
 the following sections:
 
 
-persistence
+``persistence``
+	Here are settings relevant to the persistence layer of Extbase.
 
-Here are settings relevant to the persistence layer of Extbase.
+``persistence.classes``
+	This settings are used with individual classes. That includes in particular the 
+	mapping of classes and property names to tables and field names.
 
-persistence.classes
+``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.columns``
+	Here you can configure fields which differ from the regular naming conventions. 
+	You use the form field_name.mapOnProperty = propertyName. This is especially 
+	necessary for Single Table Inheritance (see section "Using external data 
+	sources" and "map class hierarchies" in Chapter 6).
 
-This settings are used with individual classes. That includes in particular the 
-mapping of classes and property names to tables and field names.
+``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.recordType``
+	Here you can specify a string literal, which - if set - should be stored in the 
+	type field of the table. This is especially necessary for Single Table 
+	Inheritance (see section "Using external data sources" and "map class 
+	hierarchies" in Chapter 6).
 
-persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.columns
+``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.tableName``
+	Here you can set a table name which differs from the regular naming conventions. 
+	This is especially necessary for Single Table Inheritance (see section "Using 
+	external data sources" and "map class hierarchies" in Chapter 6).
 
-Here you can configure fields which differ from the regular naming conventions. 
-You use the form field_name.mapOnProperty = propertyName. This is especially 
-necessary for Single Table Inheritance (see section "Using external data 
-sources" and "map class hierarchies" in Chapter 6).
+``persistence.classes.Tx_MyExt_Domain_Model_Foo.newRecordStoragePid``
+	Page-ID in which new records of the given class should be saved.
 
-persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.recordType
+``persistence.classes.Tx_MyExt_Domain_Model_Foo.subclasses``
+	List all subclasses of the class given in the form ClassName = Class Name here 
+	(see "map class hierarchies" in Chapter 6).
 
-Here you can specify a string literal, which - if set - should be stored in the 
-type field of the table. This is especially necessary for Single Table 
-Inheritance (see section "Using external data sources" and "map class 
-hierarchies" in Chapter 6).
+``persistence.enableAutomaticCacheClearing``
+	Enables the automatic cache clearing when changing data sets (see also the 
+	section "Configuration of frontend plugins" above in this chapter). 
+	Enabled by default.
 
-persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.tableName
+``persistence.storagePid``
+	List of Page-IDs, from which all records are read (see the section "Creating the repositories" in Chapter 6).
 
-Here you can set a table name which differs from the regular naming conventions. 
-This is especially necessary for Single Table Inheritance (see section "Using 
-external data sources" and "map class hierarchies" in Chapter 6).
+``settings``
+	Here reside are all the domain-specific extension settings. This setting are 
+	available as an array in the controllers in $this->settings and in any Fluid 
+	template with {settings}.
 
-persistence.classes.Tx_MyExt_Domain_Model_Foo.newRecordStoragePid
+``view``
+	View and template settings.
 
-Page-ID in which new records of the given class should be saved.
+``view.layoutRootPath``
+	This can be used to specify the root path for all fluid layouts in this 
+	extension. If nothing is specified, the path 
+	extensionName/Resources/Private/Layouts is used. All layouts that are necessary 
+	for this extension should reside in this folder.
 
-persistence.classes.Tx_MyExt_Domain_Model_Foo.subclasses
+``view.partialRootPath``
+	This can be used to specify the root path for all fluid partials in this 
+	extension. If nothing is specified, the path 
+	extensionName/Resources/Private/Partials is used. All partials that are 
+	necessary for this extension should reside in this folder.
 
-List all subclasses of the class given in the form ClassName = Class Name here 
-(see "map class hierarchies" in Chapter 6).
+``view.templateRootPath``
+	This can be used to specify the root path for all fluid templates in this 
+	extension. If nothing is specified, the path 
+	extensionName/Resources/Private/Templates is used. All layouts that are necessary for this extension should reside in this folder.
+	There is no fallback to the files that are delivered with an extension! 
+	Therefore you need to copy all original templates to this folder before you set 
+	this TypoScript setting.
 
-persistence.enableAutomaticCacheClearing
-
-Enables the automatic cache clearing when changing data sets (see also the 
-section "Configuration of frontend plugins" above in this chapter). 
-Enabled by default.
-
-persistence.storagePid
-List of Page-IDs, from which all records are read (see the section "Creating the repositories" in Chapter 6).
-
-settings
-
-Here reside are all the domain-specific extension settings. This setting are 
-available as an array in the controllers in $this->settings and in any Fluid 
-template with {settings}.
-
-view
-
-View and template settings.
-
-view.layoutRootPath
-
-This can be used to specify the root path for all fluid layouts in this 
-extension. If nothing is specified, the path 
-extensionName/Resources/Private/Layouts is used. All layouts that are necessary 
-for this extension should reside in this folder.
-
-view.partialRootPath
-
-This can be used to specify the root path for all fluid partials in this 
-extension. If nothing is specified, the path 
-extensionName/Resources/Private/Partials is used. All partials that are 
-necessary for this extension should reside in this folder.
-
-view.templateRootPath
-This can be used to specify the root path for all fluid templates in this 
-extension. If nothing is specified, the path 
-extensionName/Resources/Private/Templates is used. All layouts that are necessary for this extension should reside in this folder.
-
-There is no fallback to the files that are delivered with an extension! 
-Therefore you need to copy all original templates to this folder before you set 
-this TypoScript setting.
-
-_LOCAL_LANG
-
-Under this key you can modify localized strings for this extension.
-If you specify for example plugin.tx_blogexample._LOCAL_LANG.default.read_more = 
-More>> then the standard translation for the key read_more is overwritten by the 
-string "More>>".
+``_LOCAL_LANG``
+	Under this key you can modify localized strings for this extension.
+	If you specify for example plugin.tx_blogexample._LOCAL_LANG.default.read_more = 
+	More>> then the standard translation for the key read_more is overwritten by the 
+	string "More>>".
 
 Using Model View Controller
-===========================
+---------------------------
 
 The MVC Framework is the heart of Extbase. Below we will give you an overview of 
 the class hierarchy for the controllers and the API of the ActionControllers.
 
 Class Hierarchy
----------------
+^^^^^^^^^^^^^^^
 
 Normally you will let your controllers inherit from ActionController. If you 
 have special requirements that can not be realized with the ActionController, 
 you should have a look at the controllers below.
 
-Tx_Extbase_MVC_Controller_ControllerInterface
+``Tx_Extbase_MVC_Controller_ControllerInterface``
+	The basic interface that must be implemented by all controllers.
 
-The basic interface that must be implemented by all controllers.
+``Tx_Extbase_MVC_Controller_AbstractController``
+	Abstract controller with basic functionality.
 
-Tx_Extbase_MVC_Controller_AbstractController
-
-Abstract controller with basic functionality.
-
-Tx_Extbase_MVC_Controller_ActionController
-
-The most widely used controller in Extbase. An overview of its API is givben in 
-the following section.
+``Tx_Extbase_MVC_Controller_ActionController``
+	The most widely used controller in Extbase. An overview of its API is givben in 
+	the following section.
 
 ActionController API
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 The action controller is usually the base class for your own controller. Below 
 you see the most important properties of the action controller:
 
-$actionMethodName
+``$actionMethodName``
 	Name of the executed action.
 
-$argumentMappingResults
+``$argumentMappingResults``
+	Results of the argument mapping. Is used especially in the errorAction.
 
-Results of the argument mapping. Is used especially in the errorAction.
+``$defaultViewObjectName``
+	Name of the default view, if no fluid-view or an action-specific view was found.
 
-$defaultViewObjectName
+``$errorMethodName``
+	Name of the action that is performed when generating the arguments of actions 
+	fail. Default is errorAction. In general, it is not sensible to change this.
 
-Name of the default view, if no fluid-view or an action-specific view was found.
+``$request``
+	Request object of type Tx_Extbase_MVC_RequestInterface.
 
-$errorMethodName
+``$response``
+	Response object of type Tx_Extbase_MVC_ResponseInterface.
 
-Name of the action that is performed when generating the arguments of actions 
-fail. Default is errorAction. In general, it is not sensible to change this.
+``$settings``
+	Domain-specific extension settings from TypoScript (as array).
 
-$request
+``$view``
+	The view used (of type Tx_Extbase_MVC_View_ViewInterface).
 
-Request object of type Tx_Extbase_MVC_RequestInterface.
-
-$response
-
-Response object of type Tx_Extbase_MVC_ResponseInterface.
-
-$settings
-
-Domain-specific extension settings from TypoScript (as array).
-
-$view
-
-The view used (of type Tx_Extbase_MVC_View_ViewInterface).
-
-$viewObjectNamePattern
-
-If no fluid template is found for the current action, extbase attempts to find a 
-PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be 
-changed here. By default names are used according to the scheme 
-Tx@extension_View_@controller_@action_@format_. All string-parts marked with @ 
-are replaced by the corresponding values​​. If no view class with this name is 
-found, @format is removed from the pattern and again tried to find a view class 
-with that name.
+``$viewObjectNamePattern``
+	If no fluid template is found for the current action, extbase attempts to find a 
+	PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be 
+	changed here. By default names are used according to the scheme 
+	Tx@extension_View_@controller_@action_@format_. All string-parts marked with @ 
+	are replaced by the corresponding values​​. If no view class with this name is 
+	found, @format is removed from the pattern and again tried to find a view class 
+	with that name.
 
 Now follow the most important API methods of the action controller:
 
-Action()
+``Action()``
+	Defines an action.
 
-Defines an action.
+``errorAction()``
+	Standard error action. Needs to be adjusted only in very rare cases. The name of 
+	this method is defined by the property $errorMethodName.
 
-errorAction()
+``forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)``
+	Issues an immediate internal forwarding of the request to another controller.
 
-Standard error action. Needs to be adjusted only in very rare cases. The name of 
-this method is defined by the property $errorMethodName.
+``initializeAction()``
+	Initialization method for all actions. Can be used to e.g. register arguments.
 
-forward($actionName, $controllerName = NULL, $extensionName = NULL, array 
-$arguments = NULL)
+``initialize[actionName]Action()``
+	Action-specific initialization, which is called only before the specific action. 
+	Can be used to e.g. register arguments.
 
-Issues an immediate internal forwarding of the request to another controller.
+``initializeView(Tx_Extbase_MVC_ViewInterface $ view)``
+	Initialization method to configure and initialize the passed view.
 
-initializeAction()
+``redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)``
+	External HTTP redirect to another controller (immediately)
 
-Initialization method for all actions. Can be used to e.g. register arguments.
+``redirectToURI($uri, $delay = 0, $statusCode = 303)``
+	Redirect to full URI (immediately)
 
-initialize[actionName]Action()
+``resolveView()``
+	By overriding this method you can build and configure a completely individual 
+	view object. This method should return a complete view object. In general, 
+	however, it is sufficient to overwrite resolveViewObjectName().
 
-Action-specific initialization, which is called only before the specific action. 
-Can be used to e.g. register arguments.
+``resolveViewObjectName()``
+	Resolves the name of the view object, if no suitable fluid template could be 
+	found.
 
-initializeView(Tx_Extbase_MVC_ViewInterface $ view)
-
-Initialization method to configure and initialize the passed view.
-
-redirect($actionName, $controllerName = NULL, $extensionName = NULL, array 
-$arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)
-
-External HTTP redirect to another controller (immediately)
-
-redirectToURI($uri, $delay = 0, $statusCode = 303)
-
-Redirect to full URI (immediately)
-
-resolveView()
-
-By overriding this method you can build and configure a completely individual 
-view object. This method should return a complete view object. In general, 
-however, it is sufficient to overwrite resolveViewObjectName().
-
-resolveViewObjectName()
-
-Resolves the name of the view object, if no suitable fluid template could be 
-found.
-
-throwStatus($statusCode, $statusMessage = NULL, $content = NULL)
-
-The specified HTTP status code is sent immediately.
-
+``throwStatus($statusCode, $statusMessage = NULL, $content = NULL)``
+	The specified HTTP status code is sent immediately.
 
 
 TODO: text missing page 267 + 268 + 269 + 270
 
 
-
 Validators
-----------
+^^^^^^^^^^
 
 You can write your own validators for domain models. These must be located in 
 the folder Domain/Validator/, they must be named exactly as the corresponding 
@@ -393,7 +353,7 @@ Tx_Extbase_Validation_Validator_ValidatorInterface. For more details, see the
 following Section.
 
 Validation
-==========
+----------
 
 Extbase provides a generic validation system which is used in many places in 
 Extbase and Fluid. Extbase provides validators for common data types, but you 
@@ -422,7 +382,7 @@ necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
 Validating properties of the domain model
-------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can define simple validation rules in the domain model by annotation. For 
 this, you use the annotation @validate with properties of the object. A brief 
@@ -454,7 +414,7 @@ If complex validation rules are necessary (for example, multiple fields to be
 checked for equality), you must implement your own validator.
 
 Validation of controller arguments
---------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each controller argument is validated by the following rules: If the argument 
 has a simple type (string, integer, etc.), this type is checked. If the argument 
@@ -475,7 +435,7 @@ object' in Chapter 9
 
 
 Localization
-=============
+------------
 
 Multilingual websites are widespread nowadays, which means that the 
 web-available texts have to be localized. Extbase provides the helper class 
@@ -486,23 +446,20 @@ functionality in templates.
 The localization class has only one public static method called translate, which 
 does all the translation. The method can be called like this:
 
-Tx_Extbase_Utility_Localization::translate($key, $extensionName, 
-$arguments=NULL)
+``Tx_Extbase_Utility_Localization::translate($key, $extensionName, 
+$arguments=NULL)``
 
-$key
+``$key``
+	The identifier to be translated. If then format LLL:path:key is given, then this 
+	identifier is used and the parameter $extensionName is ignored. Otherwise, the 
+	file Resources/Private/Language/locallang.xml from the given extension is loaded 
+	and the resulting text for the given key in the current language returned.
 
-The identifier to be translated. If then format LLL:path:key is given, then this 
-identifier is used and the parameter $extensionName is ignored. Otherwise, the 
-file Resources/Private/Language/locallang.xml from the given extension is loaded 
-and the resulting text for the given key in the current language returned.
+``$extensionName``
+	The extension name. It can be fetched from the request.
 
-$extensionName
-
-The extension name. It can be fetched from the request.
-
-$arguments
-
-Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill wildcards in localized strings with values.
+``$arguments``
+	Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill wildcards in localized strings with values.
 
 In Fluid there is the translate-ViewHelper, which works by the same rules. For a 
 Case study for localization, see Chapter 9.
