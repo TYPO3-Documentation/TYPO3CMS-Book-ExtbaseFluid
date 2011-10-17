@@ -413,63 +413,22 @@ themself.
 
 <!-- TODO: insert table and references -->Not all combinations of
 relationship type and its technical persistence are sane. Table 6-2 lists
-all combinations that are 1) possible and useful, 2) technically possible
-but rarely sensible, 3) either technically impossible or not
+all combinations that are **y** possible and useful, **(y)** technically possible
+but rarely sensible, **no** either technically impossible or not
 supported.
 
-<table>
-<caption>Combination of reference type and technical storage</caption>
++-----------------------+-----+-----+-----+-----+
+|                       |1:1  |1:n  |n:1  |m:n  |
++-----------------------+-----+-----+-----+-----+
+|Comma-separated list   |\(y\)|\(y\)|n    |\(y\)|
+|                       |     |     |     |     |
++-----------------------+-----+-----+-----+-----+
+|Foreign Keys           |y    |y    |y    |n    |
++-----------------------+-----+-----+-----+-----+
+|Intermediate Table     |n    |n    |y    |y    |
++-----------------------+-----+-----+-----+-----+
 
-<thead>
-
-<td />
-
-1:1
-
-1:n
-
-n:1
-
-m:n
-
-</thead>
-
-
-Comma-separated list
-
-2)
-
-2)
-
-3)
-
-2)
-
-
-
-Foreign Keys
-
-1)
-
-1)
-
-1)
-
-3)
-
-
-
-Intermediate Table
-
-3)
-
-3)
-
-1)
-
-1)
-
-</table>
+	Combination of reference type and technical storage
 
 Thus, every type of relationship has its own recommended form of
 persistence that will be explained subsequently. In case of a

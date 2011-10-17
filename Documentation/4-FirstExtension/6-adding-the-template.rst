@@ -30,13 +30,13 @@ following::
 			<td>Productdescription</td>
 			<td>Quantity</td>
 		</tr>
-	<f:for each="{products}" as "product">
-	<tr>
-			<td align="top">{product.name}</td>    
-			<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>    
-			<td align="top">{product.quantity}</td>    
-		</tr>
-	<f:for>
+		<f:for each="{products}" as "product">
+			<tr>
+				<td align="top">{product.name}</td>    
+				<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>    
+				<td align="top">{product.quantity}</td>    
+			</tr>
+		<f:for>
 	</table>
 
 The quantity of products in the stock is rendered as a table. We can access the 

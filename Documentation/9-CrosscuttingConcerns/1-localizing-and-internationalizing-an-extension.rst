@@ -365,57 +365,23 @@ of Extbase for localized domain objects.
 *Table 9-2: Behavior of Extbase for localized domain
 objects in the frontend.*
 
-<table>
-<thead>
-<tr>
-<th />
-
-<th>no parameter L given, or L=0</th>
-
-<th>L=x (x>0)</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Display (index, list, show)</td>
-
-<td>Objects in the default language
-(``sys_language_uid=0``) respectively object for all
-languages (``sys_language_uid=-1``) are shown</td>
-
-<td>The objects are shown in the selected language x. If an object
-doesn't exist in the selected language the object of the default
-language is shown (except by
-``sys_language_mode=strict``)</td>
-</tr>
-
-<tr>
-<td>Editing (edit, update)</td>
-
-<td>Like displaying an object. The domain data is stored in the
-"translated" data record, in the above example in the record with
-the UID 42.</td>
-
-<td>
-<remark>TODO: combine the columns 2 and 3</remark>
-</td>
-</tr>
-
-<tr>
-<td>Creation (new, create)</td>
-
-<td>Independent of the selected frontend language the domain
-object is first marked valid for all languages. The data is stored
-in a new record in whose field ``sys_language_uid`` the
-number -1 is inserted.</td>
-
-<td>
-<remark>TODO: combine the columns 2 and 3</remark>
-</td>
-</tr>
-</tbody>
-</table>
++-----------------+-----------------------------------+------------------------------------+
+|                 |No parameter L given, or L=0       |L=x (x>0)                           |
++-----------------+-----------------------------------+------------------------------------+
+|Display (index,  |Objects in the default language    |The objects are shown in the        |
+|list, show)      |(``sys_language_uid=0``)           |selected language x. If an object   |
+|                 |respectively object for all        |doesn't exist in the selected       |
+|                 |languages (``sys_language_uid=-1``)|language the object of the default  |
+|                 |are shown                          |language is shown (except by        |
+|                 |                                   |``sys_language_mode=strict``)       |
++-----------------+-----------------------------------+------------------------------------+
+|Editing (edit,   |Like displaying an object. The domain data is stored in the "translated"|
+|update)          |data record, in the above example in the record with the UID 42.        |
++-----------------+------------------------------------------------------------------------+
+|Creation (new,   |Independent of the selected frontend language the domain object is first|
+|create)          |marked valid for all languages. The data is stored in a new record in   |
+|                 |whose field ``sys_language_uid`` the number -1 is inserted.             |
++-----------------+-----------------------------------+------------------------------------+
 
 Extbase also supports all default functions of the localization of
 domain objects. It has its limits when a domain object should be created
