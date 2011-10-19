@@ -411,10 +411,9 @@ themself.
 	track should be stored as a separate Domain Object and the connection be
 	realized as ``CD -- 1:n -- Track -- n:1 -- Song``.
 
-<!-- TODO: insert table and references -->Not all combinations of
-relationship type and its technical persistence are sane. Table 6-2 lists
-all combinations that are **y** possible and useful, **(y)** technically possible
-but rarely sensible, **no** either technically impossible or not
+Not all combinations of relationship type and its technical persistence are sane.
+Table 6-2 lists all combinations that are **y** possible and useful, **(y)** technically 
+possible but rarely sensible, **no** either technically impossible or not
 supported.
 
 +-----------------------+-----+-----+-----+-----+
