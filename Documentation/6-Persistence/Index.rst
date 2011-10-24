@@ -17,7 +17,7 @@ other data. Thereby the saved data will be lost together with the Domain Object.
 	You can read more about the lifecycle of objects in Chapter 2 "Lifecycle of Objects".
 
 If Domain Objects should be available within several page loads they have to be
- transferred into a persistent state. This is being done in Extbase by putting 
+transferred into a persistent state. This is being done in Extbase by putting 
 the Domain objects into a Repository. When the script is finished doing its work, 
 the Repository takes care about saving the volatile data in a durable saving state. 
 Normally this the database which is used by TYPO3 but may, for example, 
@@ -40,7 +40,7 @@ request through the website, which should contain an input form. This form then
 sends the request to the extension. There, the Repository will compile the 
 appropriate offers and send them back to the website. Thus, we will implement 
 the method ``findDemanded($demand)`` in a final step to find those offers.
- Let's start with the database.
+Let's start with the database.
 
 .. toctree::
 	:maxdepth: 2

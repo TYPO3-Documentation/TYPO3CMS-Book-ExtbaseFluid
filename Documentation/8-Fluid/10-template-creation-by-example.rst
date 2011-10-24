@@ -105,7 +105,7 @@ purpose.
 
 Another repeating job is the formatting of numbers and date
 intervals, For example how the date is displayed for the
-*Offerperiod*<remark> TODO Change this to the correct
+*Offerperiod* <remark> TODO Change this to the correct
 term as also used in the screenshot</remark> in Figure 8-3. An offer can
 have a minimum and/or a maximum amount of attendees for example. If none
 of this is given, nothing should be displayed. If only one of these values

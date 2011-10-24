@@ -216,7 +216,7 @@ Repository. We're going to implement these two steps in the Methods
 	this Flow using our example extension and focus on some further
 	aspects.
 
-First the Method :class:`newAction() `is called by a
+First the Method :class:`newAction()` is called by a
 Link in frontend with the following URL:
 
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer``
@@ -325,7 +325,7 @@ request Object is only updated with the details concerning Action,
 Controller and Extension, and then passed back to the dispatcher for
 processing. The dispatcher then passes on the actual
 :class:`Request-` and
-:class:`Response-`Objects to the appropriate Controller.
+:class:`Response-` Objects to the appropriate Controller.
 Here, too, applies: If no Controller or Extension is set, the actual
 context is kept.
 

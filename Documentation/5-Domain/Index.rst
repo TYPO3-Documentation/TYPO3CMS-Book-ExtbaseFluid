@@ -2,7 +2,7 @@ Modeling the Domain
 ===============================================
 
 In this chapter you are going to learn how to subject an area of the
-real world - a so called *Domain *- to a process of
+real world - a so called *Domain* - to a process of
 abstraction, in order to present it within an extension - the so called
 Domain model. This first step of extension development is the most important
 as well. It provides the foundation for all following stages of development.
