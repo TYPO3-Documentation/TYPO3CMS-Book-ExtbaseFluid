@@ -37,11 +37,11 @@ In the controller, we assign some data to the template with the following
 code::
 
 	class Tx_BlogExample_Controller_PostController extends Tx_Extbase_MVC_Controller_ActionController {
-	...
-	public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this->view->assign('blogTitle', 'Webdesign-Blog');
-	$this->view->assign('blogPosts', $blog->getPosts());
-	}
+		...
+		public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+			$this->view->assign('blogTitle', 'Webdesign-Blog');
+			$this->view->assign('blogPosts', $blog->getPosts());
+		}
 	}
 
 Now we can insert the string »Webdesign-Blog« into the
@@ -51,7 +51,7 @@ look at the associated template::
 	<h1>{blog.Title}</h1>
 
 	<f:for each="{blogPost}" as="post">
-	<b>{post.title}</b><br />
+		<b>{post.title}</b><br />
 	</f:for>
 
 Upon generation of the output, the Object
@@ -86,7 +86,7 @@ in the following order:
 
 * If ``post`` is an array or an object which implements the interface ArrayAccess, 
   the corresponding property will be returned as long as it exists.
-* If it is an object, and a method :methodname:`getTitle()` exists, 
+* If it is an object, and a method :methodname:`getTitle()` exists,
   the method will be called. This is the most common use case of an Object Accessor, 
   since by convention all public properties have a corresponding ``get``-method.
 * The property will be returned if it exists in the object and it
@@ -394,12 +394,13 @@ Fluid only supports named arrays, which means, that you always have
 to specify the key of the array element. Lets look at what options you
 have when creating an array::
 
-	{ key1: 'Hello',
-	key2: "World",
-	key3: 20,
-	key4: blog,
-	key5: blog.title,
-	key6: '{firstname} {lastname}'
+	{ 
+		key1: 'Hello',
+		key2: "World",
+		key3: 20,
+		key4: blog,
+		key5: blog.title,
+		key6: '{firstname} {lastname}'
 	}
 
 The array can contain strings as values as in key1 and key2.
