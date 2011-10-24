@@ -36,7 +36,6 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 	b-ExtbaseReference/Index
 
 
-
 Indices and tables
 ==================
 
