@@ -7,11 +7,15 @@ This book uses the following typographic conventions:
 
 *emphasiszed content*
 
-:class:`class names`, :method:`method
-names`, ``inline code``
+:class:`class names`, 
 
-``<replaceable>cursive non-proportional fonts</replaceable>``
-are used if the user should replace certain code parts.
+:method:`method names`, 
+
+``inline code``
+
+.. |example_substitution_text| replace:: Substituted text here...
+
+|example_substitution_text| is used to have certain code part automatically replaced.
 
 .. note::
 
