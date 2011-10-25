@@ -86,7 +86,7 @@ in the following order:
 
 * If ``post`` is an array or an object which implements the interface ArrayAccess, 
   the corresponding property will be returned as long as it exists.
-* If it is an object, and a method :methodname:`getTitle()` exists,
+* If it is an object, and a method :method:`getTitle()` exists,
   the method will be called. This is the most common use case of an Object Accessor, 
   since by convention all public properties have a corresponding ``get``-method.
 * The property will be returned if it exists in the object and it
@@ -246,7 +246,7 @@ property *date* which contains the date of the creation
 of the post in a *DateTime* object.
 
 *DateTime* objects, that can be used in PHP to
-represent dates, have no :methodname:`__toString()`-method and
+represent dates, have no :method:`__toString()`-method and
 can therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message, if you simple write
 ``{post.date}`` in your template.
@@ -264,7 +264,7 @@ that there are no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
 and the string representation of ``{post.date}`` together as
 string. Because the DateTime object has no method
-:methodname:`__toString()`, a PHP error message will be thrown
+:method:`__toString()`, a PHP error message will be thrown
 again.
 
 .. tip::

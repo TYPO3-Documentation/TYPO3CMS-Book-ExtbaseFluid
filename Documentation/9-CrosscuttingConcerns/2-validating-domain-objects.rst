@@ -46,7 +46,7 @@ settings and poll error messages. We recommend to inherit all validators
 from the
 :class:`Tx_Extbase_Validation_Validator_ValidatorInterface`,
 because you get a default implemetation of the helper methods and you only
-have to implement the :methodname:`IsValid()` method.
+have to implement the :method:`IsValid()` method.
 
 .. tip::
 
@@ -111,20 +111,20 @@ the given objects for example give it to the view for displaying.
 	Extbase in the medium term.
 
 When an error occurs during validation, the method
-:methodname:`errorAction()` of the current controller is
+:method:`errorAction()` of the current controller is
 called. The provided default ``errorAction()`` redirects the user
 to the last used form when possible, in order to give him a chance to
 correct the errors.
 
 .. tip::
 
-	You may ask how the :methodname:`errorAction()` knows
+	You may ask how the :method:`errorAction()` knows
 	which form was the last displayed one. This information is created by
 	the ``form`` ViewHelper. He adds automaticly the property
 	``__referrer`` to every generated form, which contains
 	information about the current extension, controller and action
 	combination. This data can be used by the
-	:methodname:`errorAction()` to display the erroneous form
+	:method:`errorAction()` to display the erroneous form
 	again.
 
 Registering validators
@@ -446,12 +446,12 @@ be persisted with its changes.
 Now have a look what happens when the user inserts erroneous data
 in the form. In this case an error occurs when validating the
 ``$blog`` arguments. Therefore instead of the
-:methodname:`updateAction`, the
-:methodname:`errorAction` is called. These action routes the
+:method:`updateAction`, the
+:method:`errorAction` is called. These action routes the
 request with ``forward()`` to the last used action because in
 case of an error the form should be displayed again. Additional an error
 message is generated and given to the controller. Ergo: In case of a
-validation error the :methodname:`editAction` is displayed
+validation error the :method:`editAction` is displayed
 again.
 
 As we want to display the erroneous object again it is important
@@ -498,12 +498,12 @@ Case study: Create an object
 In the last section you have seen how to edit a blog object with a
 form. Now we will show you how to create a new blog object with a form.
 Also for creating a blog object two actions are involved. The
-:methodname:`newAction` shows a form for creating an object and
-the :methodname:`createAction` finally stores the
+:method:`newAction` shows a form for creating an object and
+the :method:`createAction` finally stores the
 object.
 
 The only difference to the editing of an object is that the
-:methodname:`newAction` is not always given an argument: when
+:method:`newAction` is not always given an argument: when
 first displaying the form it is logical that there is no object available
 to be displayed. Therefore the argument must be marked as optional.
 
@@ -529,7 +529,7 @@ code::
 	$this->blogRepository->add($newBlog);
 	}
 
-The Fluid template for the :methodname:`newAction` looks
+The Fluid template for the :method:`newAction` looks
 like this (in short form)::
 
 	<f:flashMessages />
@@ -540,11 +540,11 @@ like this (in short form)::
 	</f:form>
 
 What is the summary of what we have we done? Again it is important
-that the :methodname:`newAction` and the
-:methodname:`createAction` have the same argument name. This
+that the :method:`newAction` and the
+:method:`createAction` have the same argument name. This
 has also to conform with the name of the Fluid template
 (``newBlog`` in the example). Also the parameter for the
-:methodname:`newAction` must be marked as optional and the
+:method:`newAction` must be marked as optional and the
 validation of the parameter must be suppressed with
 ``@dontvalidate``. Finally you can output validation errors in
 the template using the ``flashMessages`` ViewHelper when saving

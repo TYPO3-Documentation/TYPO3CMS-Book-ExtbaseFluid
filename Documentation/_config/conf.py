@@ -19,7 +19,7 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('.'))
 
 sys.path.append(os.path.abspath('ext/plantuml/sphinxcontrib/'))
-sys.path.append(os.path.abspath('ext/methodname/'))
+sys.path.append(os.path.abspath('ext/method/'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -34,7 +34,7 @@ extensions =[   'sphinx.ext.autodoc',
 				'sphinx.ext.ifconfig', 
 				'sphinx.ext.graphviz', 
 				'plantuml',
-				'methodname',
+				'method',
 			]
 
 # PlantUML variables

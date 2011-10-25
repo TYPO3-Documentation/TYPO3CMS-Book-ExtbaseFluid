@@ -10,23 +10,23 @@ In software development, there are different variants of controllers.
 In Extbase the controllers mostly exist as
 :class:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
-so called :methodname:`Actions`. Let's have a deeper look at a
+so called :method:`Actions`. Let's have a deeper look at a
 shortened version of the :class:`BlogController`:
 
 <remark>TODO: Insert code</remark>
 
-The method :methodname:`indexAction()` within the
+The method :method:`indexAction()` within the
 :class:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
-:methodname:`showMeTheListAction()`. The only important point is,
-that it ends with :methodname:`Action` in order to help Extbase
-to recognize it as an action. :methodname:`newAction()` shows a
-form to create a new blog. The :methodname:`createAction()` then
+:method:`showMeTheListAction()`. The only important point is,
+that it ends with :method:`Action` in order to help Extbase
+to recognize it as an action. :method:`newAction()` shows a
+form to create a new blog. The :method:`createAction()` then
 creates a new blog with the data of the form. The pair
-:methodname:`editAction()` and
-:methodname:`updateAction()` have a similar functionality for the
+:method:`editAction()` and
+:method:`updateAction()` have a similar functionality for the
 change of an existing blog. The job of the
-:methodname:`deleteAction()` should be self explaining.
+:method:`deleteAction()` should be self explaining.
 
 .. tip::
 
@@ -40,10 +40,10 @@ change of an existing blog. The job of the
 .. tip::
 
 	The name of the action is strictly spoken only the part without the
-	suffix :methodname:`Action`, e.g.
-	:methodname:`list`, :methodname:`show` or
-	:methodname:`edit`. With the suffix
-	:methodname:`Action` the name of the action-method is marked.
+	suffix :method:`Action`, e.g.
+	:method:`list`, :method:`show` or
+	:method:`edit`. With the suffix
+	:method:`Action` the name of the action-method is marked.
 	But we use the action itself and its method mostly synonymous.
 
 From the request the controller can extract which action has to be
@@ -58,8 +58,8 @@ Tx_Extbase_MVC_Controller_ActionController {...}``
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
-:methodname:`indexAction()`. The
-:methodname:`indexAction()` contains only one line in our example
+:method:`indexAction()`. The
+:method:`indexAction()` contains only one line in our example
 (as shown above), which looks more detailled like this:
 
 <remark>TODO: Insert code</remark>
@@ -76,5 +76,5 @@ class file. The name :class:`BlogRepository` results from the
 name of the class, whose instances are managed by the repository, namely by
 adding :class:`Repository`. A repository can only manage one
 single class at a time. The second line retrieves all available blogs by
-:methodname:`findAll()`.
+:method:`findAll()`.
 

@@ -7,7 +7,7 @@ This book uses the following typographic conventions:
 
 *emphasiszed content*
 
-:class:`class names`, :methodname:`method
+:class:`class names`, :method:`method
 names`, ``inline code``
 
 ``<replaceable>cursive non-proportional fonts</replaceable>``

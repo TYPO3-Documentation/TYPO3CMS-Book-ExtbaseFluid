@@ -48,7 +48,7 @@ Flow Pattern "display a list of Domain Objects"
 
 The first pattern in our example fits the Action "*display
 a list of all offers*". One Action Method usually will be enough
-for implementing This. we choose :methodname:`indexAction` as
+for implementing This. we choose :method:`indexAction` as
 name of the Method::
 
 	public function indexAction() { 
@@ -66,7 +66,7 @@ name of the Method::
 This can be simplified even more. As described in chapter 4 in
 section "controlling the flow", it is not necessary to return the rendered
 content. Furthermore we avoid initializing the variable
-:methodname:`$offers`, which we only use once. So we
+:method:`$offers`, which we only use once. So we
 get::
 
 	public function indexAction() {
