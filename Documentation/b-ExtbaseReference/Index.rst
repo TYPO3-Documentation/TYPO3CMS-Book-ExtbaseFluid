@@ -399,7 +399,7 @@ All classes of the domain model must inherit from one of the following two class
 	Is used if the object is an entity, i.e. possesses an identity.
 
 :class:`Tx_Extbase_DomainModel_AbstractValueObject`
-Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties. ValueObjects are immutable.
+	Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties. ValueObjects are immutable.
 
 Repositories
 -------------
