@@ -216,8 +216,8 @@ two methods addContact() and implement getContacts ():
 The comment about the definition of property is $contacts of crucial importance. 
 Extbase "reads" the comment and concludes of it, that an ObjectStorage should be 
 created and from which class the objects should which are in it included (also 
-see chapter 3). Das Weglassen dieser Information würde zu einer PHP-Exception 
-führen: »Could not determine the type of the contained objects«.
+see chapter 3). Omission of this information would lead to a PHP exception: 
+»Could not determine the type of the contained objects«.
 
 Another special feature is the key word clone. With clone the method 
 getContacts()  clones the ObjectStorage before returning to the caller. Cloning 
@@ -493,5 +493,54 @@ objects. This may be abstracted and then stores them in a new, higher-level
 class out. In Figure 5-7 and Figure 5-8, we have shown again the procedure 
 separately.
 
+.. figure:: /Images/5-Domain/figure-5-7.png
 
-TODO: page 110 and following
+	Figure 5-7: Creating the Range Constraints
+
+.. figure:: /Images/5-Domain/figure-5-8.png
+
+	Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
+	
+	
+In the class Range Constraint all common properties and methods are gathered. The properties minimumValue and maximumValue are of the type integer by default. But the inherited class DateRange expected as property values not Numbers, but objects of type DateTime. So we »override« the type definition in the class DateRange and set the type DateTime. The class RangeConstraint looks like as follows (Comments were partly removed): 
+	
+::
+
+	abstract class Tx_SjrOffers_Domain_Model_RangeConstraint extends Tx_Extbase_DomainObject_AbstractValueObject {
+		/**		* @var int The minimum value		**/		protected $minimumValue;		/**		* @var int The maximum value		**/
+		protected $maximumValue;		/**		* @param int $minimumValue		* @param int $maximumValue		*/		public function __construct($minimumValue = NULL, $maximumValue = NULL) {			$this->setMinimumValue($minimumValue);			$this->setMaximumValue($maximumValue);		}		/**		* @param mixed The minimum value		* @return void		*/		public function setMinimumValue($minimumValue = NULL) {			$this->minimumValue = $this->normalizeValue($minimumValue);		}		public function getMinimumValue() {			return $this->minimumValue;		}		/**		* @param mixed The maximum value		* @return void		*/		public function setMaximumValue($maximumValue = NULL) {			$this->maximumValue = $this->normalizeValue($maximumValue);		}		public function getMaximumValue() {			return $this->maximumValue;		}		public function normalizeValue($value = NULL) {			if ($value !== NULL && $value !== '') {			$value = abs(intval($value));		} else {			$value = NULL;		}		return $value;		}	}
+
+All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values ​​12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends Tx_Extbase_DomainObject_Abstract-ValueObject.
+ 
+The class rank by the keyword abstract constraint was marked as abstract. Thus we prevent the Range object itself is instantiated.
+
+We have furthermore implement a method normalizeValue(). These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
+
+:: 
+ 
+ class Tx_SjrOffers_Domain_Model_DateRange extends Tx_SjrOffers_Domain_Model_RangeConstraint 
+ implements Tx_SjrOffers_Domain_Model_DateRangeInterface {	/**	* @var Tx_SjrOffers_Domain_Model_DateTime The minimum value	**/	protected $minimumValue;	/**	* @var Tx_SjrOffers_Domain_Model_DateTime The maximum value	**/	protected $maximumValue;	public function normalizeValue($value = NULL) {		if (!($value instanceof DateTime)) {			$value = NULL;		}	return $value;	}
+ }
+ 
+
+The class DateRange implements furthermore the interface DateRangeInterface. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implent the NumericRangeInterface. The classes AgeRange and AttendanceRange Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
+
+::
+ 
+ class Tx_SjrOffers_Domain_Model_AgeRange extends Tx_SjrOffers_Domain_Model_RangeConstraint implements Tx_SjrOffers_Domain_Model_NumericRangeInterface {	
+ } class Tx_SjrOffers_Domain_Model_AttendanceRange extends Tx_SjrOffers_Domain_Model_RangeConstraint  implements Tx_SjrOffers_Domain_Model_NumericRangeInterface { }
+ interface Tx_SjrOffers_Domain_Model_NumericRangeInterface {}
+ 
+ interface Tx_SjrOffers_Domain_Model_DateRangeInterface {}
+
+
+
+We have implemented the terms age range, number of participants and offer an adequate period in domain models.Let us now turn to the object administrator. Also here we use another, less obvious class hierarchy. Extbase provides two domain models available: FrontendUser and FrontendUserGroup. They are the equivalents of the website user or user group's website, created in the backend of TYPO3 can be assigned and managed. The two Extbase classes are filled with this data, which are stored in two database tables or fe_users fe_groups. The database fields in these tables each have a corresponding property in the domain model. The names of the properties were indeed subjected to the convention that the field names lower_underscore spelling in the name of the property is converted into lowerCamelCase notation. But they are otherwise taken 1:1 and therefore - in contrast to our previous practice - not so meaningful. Behind the property isOnline we would suspect a value of the type Boolean. But it contains the date on which the website has started the last page user demand. The class hierarchy is shown in Figure 5-9.
+ 
+.. figure:: /Images/5-Domain/figure-5-9.png
+
+	Figure 5-8: The Administrator class inherits all the properties and methods of the class Extbase Frontend user.
+
+TODO: page 114 and following
+
+
