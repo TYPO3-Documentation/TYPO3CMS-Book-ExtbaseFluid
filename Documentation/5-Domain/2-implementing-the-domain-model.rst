@@ -507,8 +507,51 @@ In the class Range Constraint all common properties and methods are gathered. Th
 ::
 
 	abstract class Tx_SjrOffers_Domain_Model_RangeConstraint extends Tx_Extbase_DomainObject_AbstractValueObject {
-		/**		* @var int The minimum value		**/		protected $minimumValue;		/**		* @var int The maximum value		**/
-		protected $maximumValue;		/**		* @param int $minimumValue		* @param int $maximumValue		*/		public function __construct($minimumValue = NULL, $maximumValue = NULL) {			$this->setMinimumValue($minimumValue);			$this->setMaximumValue($maximumValue);		}		/**		* @param mixed The minimum value		* @return void		*/		public function setMinimumValue($minimumValue = NULL) {			$this->minimumValue = $this->normalizeValue($minimumValue);		}		public function getMinimumValue() {			return $this->minimumValue;		}		/**		* @param mixed The maximum value		* @return void		*/		public function setMaximumValue($maximumValue = NULL) {			$this->maximumValue = $this->normalizeValue($maximumValue);		}		public function getMaximumValue() {			return $this->maximumValue;		}		public function normalizeValue($value = NULL) {			if ($value !== NULL && $value !== '') {			$value = abs(intval($value));		} else {			$value = NULL;		}		return $value;		}	}
+		/**
+		* @var int The minimum value
+		**/
+		protected $minimumValue;
+		/**
+		* @var int The maximum value
+		**/
+		protected $maximumValue;
+		/**
+		* @param int $minimumValue
+		* @param int $maximumValue
+		*/
+		public function __construct($minimumValue = NULL, $maximumValue = NULL) {
+			$this->setMinimumValue($minimumValue);
+			$this->setMaximumValue($maximumValue);
+		}
+		/**
+		* @param mixed The minimum value
+		* @return void
+		*/
+		public function setMinimumValue($minimumValue = NULL) {
+			$this->minimumValue = $this->normalizeValue($minimumValue);
+		}
+		public function getMinimumValue() {
+			return $this->minimumValue;
+		}
+		/**
+		* @param mixed The maximum value
+		* @return void
+		*/
+		public function setMaximumValue($maximumValue = NULL) {
+			$this->maximumValue = $this->normalizeValue($maximumValue);
+		}
+		public function getMaximumValue() {
+			return $this->maximumValue;
+		}
+		public function normalizeValue($value = NULL) {
+			if ($value !== NULL && $value !== '') {
+			$value = abs(intval($value));
+		} else {
+			$value = NULL;
+		}
+		return $value;
+		}
+	}
 
 All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values ​​12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends Tx_Extbase_DomainObject_Abstract-ValueObject.
  
@@ -519,7 +562,21 @@ We have furthermore implement a method normalizeValue(). These »adjusted« the 
 :: 
  
  class Tx_SjrOffers_Domain_Model_DateRange extends Tx_SjrOffers_Domain_Model_RangeConstraint 
- implements Tx_SjrOffers_Domain_Model_DateRangeInterface {	/**	* @var Tx_SjrOffers_Domain_Model_DateTime The minimum value	**/	protected $minimumValue;	/**	* @var Tx_SjrOffers_Domain_Model_DateTime The maximum value	**/	protected $maximumValue;	public function normalizeValue($value = NULL) {		if (!($value instanceof DateTime)) {			$value = NULL;		}	return $value;	}
+ implements Tx_SjrOffers_Domain_Model_DateRangeInterface {
+	/**
+	* @var Tx_SjrOffers_Domain_Model_DateTime The minimum value
+	**/
+	protected $minimumValue;
+	/**
+	* @var Tx_SjrOffers_Domain_Model_DateTime The maximum value
+	**/
+	protected $maximumValue;
+	public function normalizeValue($value = NULL) {
+		if (!($value instanceof DateTime)) {
+			$value = NULL;
+		}
+	return $value;
+	}
  }
  
 
@@ -527,8 +584,12 @@ The class DateRange implements furthermore the interface DateRangeInterface. The
 
 ::
  
- class Tx_SjrOffers_Domain_Model_AgeRange extends Tx_SjrOffers_Domain_Model_RangeConstraint implements Tx_SjrOffers_Domain_Model_NumericRangeInterface {	
- } class Tx_SjrOffers_Domain_Model_AttendanceRange extends Tx_SjrOffers_Domain_Model_RangeConstraint  implements Tx_SjrOffers_Domain_Model_NumericRangeInterface { }
+ class Tx_SjrOffers_Domain_Model_AgeRange extends Tx_SjrOffers_Domain_Model_RangeConstraint
+ implements Tx_SjrOffers_Domain_Model_NumericRangeInterface {	
+ }
+ class Tx_SjrOffers_Domain_Model_AttendanceRange extends Tx_SjrOffers_Domain_Model_RangeConstraint 
+ implements Tx_SjrOffers_Domain_Model_NumericRangeInterface {
+ }
  interface Tx_SjrOffers_Domain_Model_NumericRangeInterface {}
  
  interface Tx_SjrOffers_Domain_Model_DateRangeInterface {}
@@ -539,8 +600,125 @@ We have implemented the terms age range, number of participants and offer an ade
  
 .. figure:: /Images/5-Domain/figure-5-9.png
 
-	Figure 5-8: The Administrator class inherits all the properties and methods of the class Extbase Frontend user.
+	Figure 5-8: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 
-TODO: page 114 and following
+Validate the domain objects 
+----------------------------
+The business logic often looks for rules as to the properties of the data domain objects
+needs to be. Here are some examples of such so-called invariants in our
+Extension:
+
+* The length of the title of an offer must not be under 3 characters and not over 50 characters.
+* The start date of an offer may not be later than the end date.
+* If one partner identifies an e-mail address, it must be valid.
+ 
+You can implement the check of the details of these invariants directly the domain model. In the setter of the title of an offer would stand the following code:
+
+:: 
+ 
+ public function setTitle($title) {
+	if (strlen($title) > 3 && strlen($title) < 50) {
+		$this->title = $title;
+	}
+ }
+
+This has several disadvantages:
+ 
+* This examination, had to be done at any point, which manipulates the title (risk of failure to examination, and risk of duplicated code by cut-and-paste).
+* The definition of the rule is more or less far away from the definition of the property (poor readability of the code).
+* A change in an option of a rule ("80 rather than 50 characters") requires an intervention possibly at a difficult to-find places.
+ 
+Therefore Extbase offers an alternative about Annotations. Let us have a look at the definitions of the properties of the class Offer definition - this time with all the comments:
+
+:: 
+ 
+ 	/**
+	* @var string The title of the offer
+	* @validate StringLength(minimum = 3, maximum = 50)
+	**/
+	protected $title;
+	
+	/**
+	* @var string A single image of the offer
+	**/
+	protected $image;
+	
+	/**
+	* @var string The teaser of the offer. A line of text.
+	* @validate StringLength(maximum = 150)
+	**/
+	protected $teaser;
+	
+	/**
+	* @var string The description of the offer. A longer text.
+	* @validate StringLength(maximum = 2000)
+	**/
+	protected $description;
+	
+	/**
+	* @var string The services of the offer.
+	* @validate StringLength(maximum = 1000)
+	**/
+	protected $services;
+	
+	/**
+	* @var string The textual description of the dates. E.g. "Monday to Friday, 8-12"
+	* @validate StringLength(maximum = 1000)
+	**/
+	protected $dates;
+	
+	/**
+	* @var string The venue of the offer.
+	* @validate StringLength(maximum = 1000)
+	**/
+	protected $venue;
+	
+	/**
+	* @var Tx_SjrOffers_Domain_Model_AgeRange The age range of the offer.
+	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	**/
+	protected $ageRange;
+	
+	/**
+	* @var Tx_SjrOffers_Domain_Model_DateRange The date range of the offer is valid.
+	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	**/
+	protected $dateRange;
+	
+	/**
+	* @var Tx_SjrOffers_Domain_Model_AttendanceRange The attendance range of the offer.
+	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	**/
+	protected $attendanceRange;
+	
+	/**
+	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_AttendanceFee>
+	The attendance fees of the offer.
+	**/
+	protected $attendanceFees;
+	
+	/**
+	* @var Tx_SjrOffers_Domain_Model_Person The contact of the offer
+	**/
+	protected $contact;
+	
+	/**
+	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Category>
+	The categories the offer is assigned to
+	**/
+	protected $categories;
+	
+	/**
+	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Region>
+	The regions the offer is available
+	**/
+	protected $regions;
+
+The values ​​of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @ validate [...] is set. The annotation @validate StringLength (minimum = 3, maximum = 50) on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
+The validator StringLength is provided by Extbase of charge. The name of the associated class is Tx_Extbase_Validation_Validator_StringLengthValidator. The options minimum and maximum are passed to the Validator and are evaluated there.
+ 
+With the validation, we conclude the modeling and implementation of the domain at first. With that achieved, it is possible to store domain objects, which where generated during a page view in memory. All data will be lost at the end
+of the page view. In order for the domain objects are permanently on the grouting, the persistence layer is to be set up accordingly.
+
 
 
