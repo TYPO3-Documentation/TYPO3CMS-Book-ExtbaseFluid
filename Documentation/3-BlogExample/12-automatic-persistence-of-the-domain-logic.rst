@@ -1,5 +1,5 @@
 Automatic persistence of the domain logic
-=========================================================
+=========================================
 
 Remarkable at this point is, that up to this time no method to save
 the blogs or posts was called. Only the fact that the post is added to the

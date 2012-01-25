@@ -1,5 +1,5 @@
 Notes for migrating users
-========================================
+=========================
 
 This section is for developer which have already get some experience
 with the traditional extension development. Should this apply to you, you
