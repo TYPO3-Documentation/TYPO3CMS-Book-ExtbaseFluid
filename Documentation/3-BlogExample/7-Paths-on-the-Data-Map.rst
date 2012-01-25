@@ -1,25 +1,27 @@
 Paths on the Data-Map
 =====================
 
-The DataMapper-Object has the task to create an instance of the Blog-Class 
-(whose name is stored in $this->className) for each tuple and "fill" this fresh 
-instance with the data of the tuple. It is called in the Query-Object by the 
+The ``DataMapper`` object has the task to create an instance of the Blog-Class 
+(whose name is stored in ``$this->className``) for each tuple and "fill" this fresh 
+instance with the data of the tuple. It is called in the ``Query```object by the 
 following Lines:
 
 ::
 
 	$this->dataMapper->map($this->getType(), $rows);
 
-The DataMapper-Object also resolves all relations. This means that it starts 
+The ``DataMapper`` object also resolves all relations. This means that it starts 
 requests for the posts and builds the objects with all included sub objects 
-before they are written into the attribute of the corresponding Blog-Object.
-When resolving the relations, the DataMapper-Object gets its information from 
+before they are written into the attribute *posts* of the corresponding ``Blog`` 
+object.
+
+When resolving the relations, the ``DataMapper`` object gets its information from 
 different sources. First of all it knows the configuration of the database 
-tables (stored in the Table Configuration Array, short: TCA), furthermore it 
+tables (stored in the *Table Configuration Array*, short: TCA), furthermore it 
 "reads" the PHP comments inside the class definition standing above the 
-definitions and properties. Let's for example look at the definition of the 
-property posts within the Blog-Class. You can find this in the file 
-EXT:blog_example/Classes/Domain/Model/blog.php
+definitions (or *properties*). Let's for example look at the definition of the 
+property *posts* within the ``Blog`` class. You can find this in the file 
+:file:`EXT:blog_example/Classes/Domain/Model/blog.php`
 
 ::
 
@@ -38,28 +40,30 @@ EXT:blog_example/Classes/Domain/Model/blog.php
 	}
 
 
-The property $posts contains within the PHP comment above some so called 
-annotations which start with the @-sign. The annotation:
+The property ``$posts`` contains within the PHP comment above some so called 
+annotations which start with the @ character. The annotation:
 
 ::
 	@var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
   
 
-tells the DataMapper to create an object storage there and fill it with the 
-Post-Objects of the class Tx_BlogExample_Domain_Model_Post.
+tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the 
+``Post`` objects of the class :class:`Tx_BlogExample_Domain_Model_Post`.
 
-[FOOTPRINT]
-The Tx_Extbase_Persistence_ObjectStorage is a class of Extbase. This class takes 
-objects and ensures that an instance is unique within the ObjectStorage. Objects 
-within the ObjectStorage can be accessed by the methods attach(), detach() and 
-contains() amongst others. The ObjectStorage also implements the interfaces 
-Iterator, Countable, ArrayAccess. So it is usable in foreach constructs. 
-Furthermore the ObjectStorage behaves like an array. The ObjectStorage of 
-Extbase is based upon the native SplObjectStorage of PHP, which is error free 
-since PHP-Version 5.3.1.
-[/FOOTPRINT]
+.. note::
 
-The notation at first seems unusual. It is based on the so called Generics of 
+	The :class:`Tx_Extbase_Persistence_ObjectStorage` is a class of Extbase. This 
+	class takes objects and ensures that an instance is unique within the 
+	``ObjectStorage``. Objects within the ``ObjectStorage`` can be accessed by the 
+	methods ``attach()``, ``detach()`` and ``contains()`` amongst others. The 
+	``ObjectStorage`` also implements the interfaces ``Iterator``, ``Countable``, 
+	``ArrayAccess``. So it is usable in ``foreach`` constructs. 
+	Furthermore the ``ObjectStorage`` behaves like an array. The ``ObjectStorage`` 
+	of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error 
+	free since PHP-Version 5.3.1.
+
+
+The notation at first seems unusual. It is based on the so called *Generics* of 
 the programming language Java. In the definition of your property you have to 
 enter the type in the annotation above the method definition. Properties of a 
 PHP-type will look like this:
@@ -82,7 +86,7 @@ It is also possible to enter a class as type:
 	protected $author;
 
 
-Properties which should be bound to multiple child-objects require the class name of the child elements in angle brackets:
+Properties which should be bound to multiple child objects require the class name of the child elements in angle brackets:
 
 ::
 
@@ -94,7 +98,7 @@ Properties which should be bound to multiple child-objects require the class nam
 
 Extbase gathers the type of the relation from the configuration of the database 
 table column. Lets take a look at the definition of the column posts. It can be 
-found in the file tca.php within the path Configuration/TCA/.
+found in the file :file:`tca.php` within the path *Configuration/TCA/*.
 
 ::
 
@@ -121,9 +125,9 @@ found in the file tca.php within the path Configuration/TCA/.
 			...
 	);
 
-Extbase "reads" from the configuration the table of the child-objects 
-(foreign_table) and the key field where the unique identifier (UID) of the 
-parent object (foreign_field) is stored. With the help of these information and 
+Extbase "reads" from the configuration the table of the child objects 
+(``foreign_table``) and the key field where the unique identifier (UID) of the 
+parent object (``foreign_field``) is stored. With the help of these information and 
 the data given in the PHP-documentation above the property definition extbase 
 can read the database records and map them onto the Post-class. This process 
 will be continued recursively over the complete object graph - the blog with all 
