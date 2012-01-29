@@ -2,28 +2,30 @@ Alternative route: creating a new posting
 =========================================
 
 After out first journey through the blog example, in this chapter we will follow a 
-more complex example. As an example we have choosen the creation of a new post. The 
-user should be offered a form in the frontend, in which he could put in the title 
+more complex example. As an example we have choose the creation of a new post. The 
+user should be offered a form in the front end, in which he could put in the title 
 and the content of a new post entry and select an existing author for this post. 
 After clicking the *submit* button, the list of the last posts of the current blog 
 should be displayed - now with the just created post at the first place. There are 
 multiple steps, each based on the previous step, to be implemented that are 
-mirrored in the actions :class:`new` and :class:`create`. The method 
-:class:`newAction()` displays the form, while the method :class:`createAction()` 
+mirrored in the actions ``new`` and ``create``. The method 
+``newAction()`` displays the form, while the method ``createAction()`` 
 really creates the post, put it in the repository and routes the process to the 
-method :class:`indexAction()`.
+method ``indexAction()``.
 
-Calling the method :class:`newAction()` is done in our case with a link in the 
-frontend, that looks - a bit purged - like this:
+Calling the method ``newAction()`` is done in our case with a link in the 
+front end, that looks - a bit purged - like this:
 
-::
+:: 
+
 	<a href="index.php?id=99&tx_blogexample_pi1[blog]=6&tx_blogexample_pi1[action]=new&tx_blogexample_pi1[controller]=post">Create a new Post</a>
 	
 This was created with the following Fluid code in the template 
 *EXT:blog_example/Resources/Private/Templates/Post/index.html*:
 
-::
-	<f:link.action action="new" controller="Post" argumenta="{blog : blog}">Create a new Post</f:link.action>
+:: 
+
+	<f:link.action action="new" controller="Post" argument="{blog : blog}">Create a new Post</f:link.action>
 	
 The tag ``<f:link.action>`` creates a link to a special controller action 
 combination: ``tx_blogexample_pi1[controller]=Post`` and 
@@ -34,24 +36,25 @@ the UID 6. Extbase creates out of these three informations the request and route
 it to the according ``PostController``. The translation of the UID back to the 
 corresponding ``blog`` object is done automaticly by Extbase.
 
-Lets take a look at the to called method :class:`newAction()`:
+Lets take a look at the to called method ``newAction()``:
 
-::
+:: 
+
 	/**
 	 * Displays a form for creating a new post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post blongs to
+	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
 	 * @param Tx_BlogExample_Domain_Model_Post $newPost An invalid new post object passed by a rejected createAction()
 	 * @return string An HTML form for creating a new post
 	 * @dontvalidate $newPost
 	 */
 	public function newAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $newPost = NULL) {
-		$this->view->assign('authors', $this->personRepoitory->findAll();
+		$this->view->assign('authors', $this->personRepository->findAll();
 		$this->view->assign('blog', $blog);
 		$this->view->assign('newPost', $newPost);
 	}
 
-The method :class:`newAction()` expected a ``blog`` object and an optional ``post`` 
+The method `newAction()`` expected a ``blog`` object and an optional ``post`` 
 object as parameter. It should be weird at first, because we have no blog and no 
 post object, that has to be created with the form. Actually the parameter 
 ``$newPost`` is empty (``NULL``) at the first call.
@@ -69,33 +72,35 @@ information from the information above the argument. If there is nothing declare
 it takes the destination type from the PHP documentation above the method, from 
 the line:
 
-::
+:: 
+
 	* @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
 
-The link is created with the name of the argument ``$blog``. In this way the link between the request parameter and the :class:`newAction()` is resolved. The link parameter
+The link is created with the name of the argument ``$blog``. In this way the link between the request parameter and the ``newAction()`` is resolved. The link parameter
 ::
 	tx_blogexample_pi1[blog]=6
 is assigned to the parameter
 ::
 	Tx_BlogExample_Domain_Model_Blog $blog
-of the :class:`newAction()` with the name "blog". Wth the help of the UID 6 the 
-corresponding blog object can be identified, recontructed and given to the 
-:class:`newAction()`.
+of the ``newAction()`` with the name "blog". With the help of the UID 6 the 
+corresponding blog object can be identified, reconstructed and given to the 
+``newAction()``.
 
-In the first line of the :class:`newAction()` the view gets an array of persons in 
-the parameter authors which is taken from the :class:`PersonRepository` with the 
-:class:`findAll()` method. In the second and third line the view gets the parameter 
-``blog`` and ``newPost``. The following actions are called automaically by the 
-controller after calling :class:`newAction()`.
+In the first line of the ``newAction()`` the view gets an array of persons in 
+the parameter authors which is taken from the ``PersonRepository`` with the 
+``findAll()`` method. In the second and third line the view gets the parameter 
+``blog`` and ``newPost``. The following actions are called automatically by the 
+controller after calling ``newAction()``.
 
-::
+:: 
 
 	$form = $this->view()->render();
 	return $form;
 
 Here you will see the shortened template *new.html*:
 
-::
+:: 
+
 	<f:form method="post" controller="Post" action="create" name="newPost" object="{newPost}" arguments="{blog: blog}">
 		<label for="author">Author</label><br />
 		<f:form.select property="author" options="{authors}" optionLabelField="fullName">
@@ -122,7 +127,7 @@ submit button is given here.
 The form is bind with ``object="{newPost}"`` to the object that we have assigned to 
 the variable ``newPost`` in the controller. The specific form fields have a property 
 ``property="..."```. With this a form field can be filled with the content of the 
-property of the given object. Because ``{newPost}`` is empty (=``NULL``) here, the 
+property of the given object. Because ``{newPost}`` is empty (= ``NULL``) here, the 
 form fields are empty at first.
 
 The ``select`` tag is created by the Fluid tag ``<f:form.select>``. Thereby it is 
@@ -134,7 +139,8 @@ persons of the ``PersonRepository``. The visible text of the options are created
 Fluid from the parameter ``optionLabelField="fullName"``. The created HTML code of 
 the form looks like this:
 
-::
+:: 
+
 	<form method="post" name="newPost" action="index.php?id=99&tx_blogexample_pi1[blog]=2&tx_blogexample_pi1[action]=create&tx_blogexample_pi1[controller]=Post">
 		<label for="author">Author</label><br />
 		<select name="tx_blogexample_pi1[newPost][author]">
@@ -151,14 +157,15 @@ the form looks like this:
 TYPO3 takes the rendered form and includes it at the appropriate place in the HTML page 
 (see figure 3-5).
 
-.. figure:: /Images/3-BlogExample/figure-3-5.jpg
+.. figure:: /Images/3-BlogExample/figure-3-5.png
 
-	Figure 3-5: The redered form
+	Figure 3-5: The rendered form
 
 Clicking the *submit* button calls the ``createAction`` of the ``PostController``. 
 Here you will see the stripped-down method:
 
-::
+:: 
+
 	/**
 	 * Creates a new post
 	 *
@@ -173,7 +180,7 @@ Here you will see the stripped-down method:
 	}
 
 The arguments ``$blog`` and ``$post`` are filled and validated equivalent to the 
-method :class:`newAction()`.
+method ``newAction()``.
 
 .. note::
 
@@ -185,18 +192,18 @@ in the section "Validating domain objects" in chapter 9.
 
 The post is added to the blog with ``$blog->addPost($newPost)``. After that the 
 following processing is forwarded by ``$this->redirect([...])`` to the method 
-:class:`indexAction()`. Thereby the blog - now with the new post - is passed as 
+``indexAction()``. Thereby the blog - now with the new post - is passed as 
 argument. In order that the new post is available in the blog when next called, it 
 must be persisted. This is done automatically after the flow through the extension 
-in the dispatcher of extbase.
+in the dispatcher of Extbase.
 
 .. note::
 
-Beneath the method :class:`redirect()` extbase knows the method :class:`forward()`. 
+Beneath the method ``redirect()`` Extbase knows the method ``forward()``. 
 This also forwards the further processing. But the difference is that 
-:class:`redirect()`starts a complete new page call (new request response cycle), 
-while :class:`forward()` resides in the processing of the current page call. The 
-outcome of this is an important consequence: At :class:`redirect()` the changes are 
-persisted before the call of the target action, whereas at :class:`forward()` these 
+``redirect()`` starts a complete new page call (new request response cycle), 
+while ``forward()`` resides in the processing of the current page call. The 
+outcome of this is an important consequence: At ``redirect()`` the changes are 
+persisted before the call of the target action, whereas at ``forward()` these 
 must be done by hand with the call of 
 ``Tx_Extbase_Dispatcher::getPersistenceManager()->persistAll()``.
