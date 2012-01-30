@@ -44,6 +44,7 @@ The property ``$posts`` contains within the PHP comment above some so called
 annotations which start with the @ character. The annotation:
 
 ::
+
 	@var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
   
 

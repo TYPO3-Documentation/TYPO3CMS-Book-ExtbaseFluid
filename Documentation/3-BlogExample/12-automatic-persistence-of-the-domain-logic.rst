@@ -44,7 +44,7 @@ the following order:
 In our case the persistence backend (in the following called backend)
 checks for every ``Blog`` object whose properties (``title,
 description, posts`` and so on) if the property values have to be
-stored. This is the case ifthe corresponding objects is new or the property
+stored. This is the case if the corresponding objects is new or the property
 value was changed in the runtime. If the property refer to an object, the
 backend checks in the next step also these objects for changes of the
 property values.
@@ -66,7 +66,7 @@ property values.
 .. note::
 
 	All methods that starts with an underline (_) are internal methods.
-	These methods can be called from "outside" (public) in a technical view,
+	These methods can be called from "outside" *(public)* in a technical view,
 	but they should not called inside an extension - even though it is
 	attractive to do that. In FLOW3 the "observation" of the objects is solced
 	in an other way and it is not applicable to enhance a parent class of the

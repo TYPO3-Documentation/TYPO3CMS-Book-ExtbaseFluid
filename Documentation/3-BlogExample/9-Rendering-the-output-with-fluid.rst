@@ -6,9 +6,9 @@ Since there is none specified by ``this->view->setTemplatePathAndFilename($templ
 Fluid searches at an place defined by conventions.
 
 All front end templates can be found in :file:`EXT:blog_example/Resources/Private/Templates`
-by default. There for example are the two subfolders ``Blog`` and ``Post``. 
-Since the call was made by the indexAction() of the BlogController fluid 
-searches in the folder Blog for a file named *index* and - if not setup up 
+by default. There for example are the two subfolders *Blog* and *Post*.
+Since the call was made by the ``indexAction()`` of the ``BlogController`` fluid
+searches in the folder *Blog* for a file named *index* and - if not setup up
 differently - the suffix *.html*. So every action method has its own template. 
 Possible other formats are e.g. *.pdf*, *.json* or *.xml*. In table 3.1 you 
 can find some examples for these convention.
@@ -17,9 +17,13 @@ can find some examples for these convention.
 
 +----------+----------+----------+--------------------------------------------+
 |Controller|Action    |Format    |Path and filename                           |
++----------+----------+----------+--------------------------------------------+
 |Blog      |index     |k.A.      |Resources/Private/Templates/Blog/index.html |
++----------+----------+----------+--------------------------------------------+
 |Blog      |index     |txt       |Resources/Private/Templates/Blog/index.txt  |
++----------+----------+----------+--------------------------------------------+
 |Blog      |new       |k.A.      |Resources/Private/Templates/Blog/new.html   |
++----------+----------+----------+--------------------------------------------+
 |Post      |k.A.      |k.A.      |Resources/Private/Templates/Post/index.html |
 +----------+----------+----------+--------------------------------------------+
 
@@ -83,12 +87,11 @@ available inside of ``<f:for>[...]</f:for>``. Here it can be called with ``{blog
 
 .. note::
 
-	The string "blog" is not surrounded by brackets when assigned to the ``as`` 
-	attribute since the string is passed as a name for the variable and should not be 
+	The string ``"blog"`` is *not* surrounded by brackets when assigned to the ``as``
+	attribute since the string is passed as a *name* for the variable and should not be
 	parsed by Fluid. An ``as="{blog}"`` would be parsed as if you would have liked 
 	to make the name of the variable configurable. Rule of thumb: Curly brackets in 
-	each, none in as.
-
+	each, none in ``as``.
 
 Objects can not be rendered by Fluid directly. An exception make objects that 
 have a ``__toString()`` method. The single properties of such an object can be 
@@ -105,7 +108,7 @@ Parsing the point goes recursively. That means Fluid can parse a string
 
 .. note::
 
-	The return value is "tidied up" by htmlspecialchars(). That protects from 
+	The return value is "tidied up" by ``htmlspecialchars()``. That protects from
 	Cross Site Scripting-Attacks (XSS).
 
 As soon as Fluid is done with the whole template the result is appended to the 
