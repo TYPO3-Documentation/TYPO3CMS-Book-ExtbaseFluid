@@ -13,7 +13,41 @@ short methods, which are responsible for the control of a single action, the
 so called :method:`Actions`. Let's have a deeper look at a
 shortened version of the :class:`BlogController`:
 
-<remark>TODO: Insert code</remark>
+::
+
+    class Tx_BlogExample_Controller_BlogController
+          extends Tx_Extbase_MVC_Controller_ActionController {
+
+        public function indexAction() {
+            $this->view->assign('blogs', $this->blogRepository->findAll());
+        }
+
+        public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+            $this->view->assign('newBlog', $newBlog);
+            $this->view->assign('administrators', $this->administratorRepository->findAll());
+        }
+
+        public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
+            $this->blogRepository->add($newBlog);
+            $this->redirect('index');
+        }
+
+        public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+            $this->view->assign('blog', $blog);
+            $this->view->assign('administrators', $this->administratorRepository->findAll());
+        }
+
+        public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+            $this->blogRepository->update($blog);
+            $this->redirect('index');
+        }
+
+        public function deleteAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+            $this->blogRepository->remove($blog);
+            $this->redirect('index');
+        }
+
+    }
 
 The method :method:`indexAction()` within the
 :class:`BlogController` is responsible for showing a list of
@@ -53,8 +87,10 @@ in the BlogController. This does
 BlogController "inherits" all methods from it, by deriving it form this
 class:
 
-``class Tx_BlogExample_Controller_BlogController extends
-Tx_Extbase_MVC_Controller_ActionController {...}``
+::
+
+    class Tx_BlogExample_Controller_BlogController extends
+        Tx_Extbase_MVC_Controller_ActionController {...}
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
@@ -62,7 +98,15 @@ will get a standard action; in our case the
 :method:`indexAction()` contains only one line in our example
 (as shown above), which looks more detailled like this:
 
-<remark>TODO: Insert code</remark>
+::
+
+    public function indexAction() {
+        $blogRepository = t3lib_div::makeInstance('Tx_BlogExample_Domain_Repository_BlogRepository');
+        $allAvailableBlogs = $blogRepository->findAll();
+        $this->view->assign('blogs', $allAvailableBlogs);
+        $content = $this->view->render();
+        return $content;
+    }
 
 In the first line a repository is instantiated, which "contains" all
 blogs. How they are saved and managed, is not of interest at this point of

@@ -6,28 +6,27 @@ this request (Request) will be forwarded to the remote TYPO3 Server. Then
 TYPO3 starts the processing of this request straight away.
 
 A request generally contains the identification number of the page
-(the so called Page-ID or PID) that should be generated (e. g. id=99). Using
+(the so called Page-ID or *PID*) that should be generated (e. g. ``id=99``). Using
 this PID TYPO3 searches all relevant content elements on the specific page
 and converts these to the outputted HTML code one after another. While
 processing this page request TYPO3 comes by the content element for our
-example extension, the so called plugin. This plugin should display a list
+example extension, the so called *plugin*. This plugin should display a list
 of all blogs. Each with the individual title, a short description and the
 amount of all inclosed posts. In figure 3-4 you can see the output of the
 plugin in the frontend. This output is embedded within the greater overview
 of the page.
 
-<remark>TODO: Insert figure 3-3: "Output of the plugin of our example
-extension</remark>
+.. figure:: /Images/3-BlogExample/figure-3-4.png
+	:align: center
+Figure 3-4: Output of the plugin of our example extension
 
-The process of processing is within of TYPO3 forwarded to the
-dispatcher of Extbase at first. The dispatcher completes several preliminary
-tasks before it hands the further processing on to the according position
-within the code of our blog example:<remark>TODO: Rewrite
-sentences.</remark>
+The process of eradication is first forwarded to the *dispatcher* of Extbase by TYPO3.
+The dispatcher completes several preliminary tasks before it hands the further processing on
+to the according position within the code of our blog example:
 
 * It interprets the incoming request and bundles all relevant
-  information into a *Request* object.
-* It prepares the *Response* object as a
+  information into a ``Request`` object.
+* It prepares the ``Response`` object as a
   container for the result of the request.
 * It loads the configuration of our extension from the different
   sources and makes it available.
@@ -43,8 +42,8 @@ sentences.</remark>
 When these preparations are full-filled by the Extbase dispatcher, we
 are able to travel to the first stop of our destination: the controller. In
 our example the further processing is assigned to the
-:class:`BlogController`. A reference to the request and the
-response is handed over.
+:class:`BlogController`. A reference to the ``request`` and the
+``response`` is handed over.
 
 The class :class:`BlogController` can be found in the
 file

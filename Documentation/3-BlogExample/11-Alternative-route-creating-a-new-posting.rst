@@ -158,6 +158,7 @@ TYPO3 takes the rendered form and includes it at the appropriate place in the HT
 (see figure 3-5).
 
 .. figure:: /Images/3-BlogExample/figure-3-5.png
+	:align: center
 
 	Figure 3-5: The rendered form
 
