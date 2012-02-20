@@ -3,11 +3,12 @@ Extbase Reference
 
 In this appendix, you can look up how Extbase interacts with the TYPO3 
 installation. This includes the registration of plugins and the configuration of 
-Extbase-Extensions.
+Extbase extensions.
 
 .. note::
 
-	Under http://typo3.org/go/extbasereferencesheet/ you find a useful Cheat Sheet for Extbase and Fluid.
+	Under http://typo3.org/go/extbasereferencesheet/ you find a useful
+	Cheat Sheet for Extbase and Fluid.
 
 Configuration of frontend plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -49,7 +50,7 @@ same format as above, containing all the non-cached-actions.
 :file:`ext_tables.php`::
 
 	Tx_Extbase_Utility_Extension::registerPlugin(
-		$ _EXTKEY,
+		$_EXTKEY,
 		$pluginName,
 		$backendTitle
 	);
@@ -60,7 +61,9 @@ the Backend.
 Below there is a complete configuration example for the registration of a 
 frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables.php`.
 
-Example B-1: Configuration of an extension in the file ext_localconf.php::
+*Example B-1: Configuration of an extension in the file ext_localconf.php*
+
+::
 
 	Tx_Extbase_Utility_Extension::configurePlugin(
 		$_EXTKEY,
@@ -77,7 +80,9 @@ Example B-1: Configuration of an extension in the file ext_localconf.php::
 		)
 	);
 
-Example B-2: Configuration of an extension in the file ext_tables.php::
+*Example B-2: Configuration of an extension in the file ext_tables.php*
+
+::
 
 	Tx_Extbase_Utility_Extension::registerPlugin(
 		$_EXTKEY,
@@ -98,7 +103,8 @@ Example in the list of plugins (see Figure B-1).
 .. figure:: /Images/b-ExtbaseReference/figure-b-1.png
 	:align: center
 
-	Figure B-1: In the selection field for frontend plugins, the name which was defined in the file :file:`ext_tables.php` will be displayed 
+	Figure B-1: In the selection field for frontend plugins, the name which was defined in the
+	file :file:`ext_tables.php` will be displayed
 
 .. sidebar:: Why two files?
 
@@ -197,7 +203,8 @@ the following sections:
 	Enabled by default.
 
 ``persistence.storagePid``
-	List of Page-IDs, from which all records are read (see the section "Creating the repositories" in Chapter 6).
+	List of Page-IDs, from which all records are read (see the section "Creating the
+	repositories" in Chapter 6).
 
 ``settings``
 	Here reside are all the domain-specific extension settings. This setting are 
@@ -222,7 +229,9 @@ the following sections:
 ``view.templateRootPath``
 	This can be used to specify the root path for all fluid templates in this 
 	extension. If nothing is specified, the path 
-	:file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary for this extension should reside in this folder.
+	:file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
+	for this extension should reside in this folder.
+
 	There is no fallback to the files that are delivered with an extension! 
 	Therefore you need to copy all original templates to this folder before you set 
 	this TypoScript setting.
@@ -340,15 +349,21 @@ Now follow the most important API methods of the action controller:
 Actions
 ^^^^^^^^
 
-All public methods that end in action (for example, indexAction or showAction), are automatically registered as actions of the controller.
-Many of these actions have parameters. These appear as annotations in the Doc-Comment-Block of the specified method, as shown in Example B-3:
+All public methods that end in action (for example ``indexAction`` or ``showAction``),
+are automatically registered as actions of the controller.
 
-Example B-3: Actions with parameters::
+Many of these actions have parameters. These appear as annotations in the Doc-Comment-Block
+of the specified method, as shown in Example B-3:
+
+*Example B-3: Actions with parameters*
+
+::
 
 	/**
 	  * Displays a form for creating a new blog
 	  *
-	  * @param Tx_BlogExample_Domain_Model_Blog $newBlog A fresh blog object which should be taken as a basis for the form if it is set.
+	  * @param Tx_BlogExample_Domain_Model_Blog $newBlog A fresh blog object which should be taken
+	           as a basis for the form if it is set.
 	  * @return string An HTML form for creating a new blog
 	  * @dontvalidate $newBlog
 	  */
@@ -360,29 +375,45 @@ Example B-3: Actions with parameters::
 	  $this->view->assign('newBlog', $newBlog);
 	);
 
-It is important to specify the full type in the *@param* annotation as this is used for the validation of the object. Note that not only simple data types such as
-String, Integer or Float can be validated, but also complex object types (see also the section "validating domain objects" in Chapter 9). In addition, on actions showing the forms used to create or edit domain View objects, the validation of domain objects must be explicitly disabled - therefore the annotation *@dontvalidate* is necessary.
+It is important to specify the full type in the *@param* annotation as this is used for the validation
+of the object. Note that not only simple data types such as String, Integer or Float can be validated,
+but also complex object types (see also the section "validating domain objects" in Chapter 9).
 
-Default values ​​can, as usual in PHP, just be indicated in the method signature. In the above case, the default value of the parameter $newBlog is set to NULL. If an action returns NULL or nothing, then automatically ``$this->view->render()`` is called, and thus the view is rendered.
+In addition, on actions showing the forms used to create or edit domain View objects, the validation of
+domain objects must be explicitly disabled - therefore the annotation *@dontvalidate* is necessary.
+
+Default values ​​can, as usual in PHP, just be indicated in the method signature. In the above case,
+the default value of the parameter ``$newBlog`` is set to NULL. If an action returns NULL or nothing,
+then automatically ``$this->view->render()`` is called, and thus the view is rendered.
 
 Define initialization code
 ---------------------------
 
-Sometimes it is necessary to execute code before calling an action. This is the case, for example, if complex arguments must be registered or required classes must be instantiated.
-There is a generic initialization method called :method:`initializeAction()`, which is called after the registration of arguments, but before calling the appropriate action method itself. After that generic :method:`initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called. Here you can perform action-specific initializations (e.g. :method:`initializeShowAction()`). Only then the action itself is called.
+Sometimes it is necessary to execute code before calling an action. This is the case, for example,
+if complex arguments must be registered or required classes must be instantiated.
+
+There is a generic initialization method called :method:`initializeAction()`, which is called after
+the registration of arguments, but before calling the appropriate action method itself. After that
+generic :method:`initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called.
+Here you can perform action specific initializations (e.g. :method:`initializeShowAction()`).
+Only then the action itself is called.
 
 Catching validation errors with errorAction
 --------------------------------------------
 
-If an argument validation error has occurred, the method :method:`errorAction()` is called. There, in ``$this->argumentsMappingResults`` you have a list of occurred warnings and errors of the argument mappings available. This standard errorAction refers back to the last sent form, if the referrer was sent with it.
+If an argument validation error has occurred, the method :method:`errorAction()` is called. There,
+in ``$this->argumentsMappingResults`` you have a list of occurred warnings and errors of the argument
+mappings available. This default ``errorAction`` refers back to the last sent form, if the referrer
+was sent with it.
 
 Application domain of the extension
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The domain of the extension is always located below :file:`Classes/Domain`. This folder is structured as follows:
+The domain of the extension is always located below :file:`Classes/Domain`. This folder is structured
+as follows:
 
 :file:`Model/`
-	Contains the domain model itself
+	Contains the domain model itself.
 
 :file:`Repository/`
 	Contains the repositories to access the domain model.
@@ -399,12 +430,17 @@ All classes of the domain model must inherit from one of the following two class
 	Is used if the object is an entity, i.e. possesses an identity.
 
 :class:`Tx_Extbase_DomainModel_AbstractValueObject`
-	Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties. ValueObjects are immutable.
+	Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
+	ValueObjects are immutable.
 
 Repositories
 -------------
 
-All repositories inherit from :class:`Tx_Extbase_Persistence_Repository`. A repository is always resposible for precisely one type of domain object. The naming of the repositories is important: If the domain object is for example Blog (with full name :class:`Tx_BlogExample_Domain_Model_Blog`), then the corresponding repository is named *BlogRepository* (with full name :class:`Tx_BlogExample_Domain_Repository_BlogRepository`).
+All repositories inherit from :class:`Tx_Extbase_Persistence_Repository`. A repository is always
+resposible for precisely one type of domain object. The naming of the repositories is important:
+If the domain object is for example Blog (with full name :class:`Tx_BlogExample_Domain_Model_Blog`),
+then the corresponding repository is named *BlogRepository* (with full name
+:class:`Tx_BlogExample_Domain_Repository_BlogRepository`).
 
 Each repository provides the following public methods:
 
@@ -418,11 +454,12 @@ Each repository provides the following public methods:
 	Returns the domain object with this UID.
 
 :method:`findByProperty($propertyValue)` and :method:`countByProperty($propertyValue)`
-	Magic finder method. Finding all objects (or the number of them) for the property *property* having a value of ``$propertyValue`` and returns them in an array, or the
-Number as an integer value.
+	Magic finder method. Finding all objects (or the number of them) for the property *property* having
+	a value of ``$propertyValue`` and returns them in an array, or the number as an integer value.
 
 :method:`findOneByProperty($propertyValue)`
-	Magic finder method. Finds the first object, for which the given property *property* has the value $propertyValue.
+	Magic finder method. Finds the first object, for which the given property *property* has the value
+	$propertyValue.
 
 :method:`remove($object)` and :method:`removeAll()`
 	Deletes an object (or all objects) in the repository.
@@ -433,7 +470,10 @@ Number as an integer value.
 :method:`update($object)`
 	Updates the persisted object.
 
-A repository can be extended by own finder methods. Within this methods you can use the *Query*-Object, to formulate a request:
+A repository can be extended by own finder methods. Within this methods you can use the ``Query`` object,
+to formulate a request:
+
+::
 
 	public function findWithCategory(Tx_MyExt_Domain_Model_Category $region) {
 	  $query = $this->createQuery();
@@ -441,20 +481,25 @@ A repository can be extended by own finder methods. Within this methods you can 
 	  return $query->execute();
 	}
 
-Create a *Query*-Object within the repository through ``$this->createQuery()``. You can give the query object a constraint using ``$query->matching($constraint)``. The following comparison operations for generating a single condition are available:
+Create a ``Query`` object within the repository through ``$this->createQuery()``. You can give the query
+object a constraint using ``$query->matching($constraint)``. The following comparison operations for
+generating a single condition are available:
 
 :method:`$query->equals($propertyName, $operand, $caseSensitive);`
-	Simple comparison between the value of the property provided by $propertyName and the operand. In the case of strings you can specified additionally, whether the comparison is case-sensitive.
+	Simple comparison between the value of the property provided by $propertyName and the operand.
+	In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
 :method:`$query->in($propertyName, $operand);`
 	Checks if the value of the property _$propertyName_ is present within the series of values ​​in ``$operand``.
 
 :method:`$query->contains($propertyName, $operand);`
-	Checks whether the specified property ``$propertyName`` containing a collection has an ele-
-ment ``$operand`` within that collection.
+	Checks whether the specified property ``$propertyName`` containing a collection has an element
+	``$operand`` within that collection.
 
 :method:`$query->like($propertyName, $operand);`
-	Comparison between the value of the property specified by $propertyName and a string $operand. In this string, the %-character is interpreted as placeholder (similar to *-characters in search engines, in reference to the SQL syntax).
+	Comparison between the value of the property specified by $propertyName and a string $operand.
+	In this string, the %-character is interpreted as placeholder (similar to * characters in search
+	engines, in reference to the SQL syntax).
 
 :method:`$query->lessThan($propertyName, $operand);`
 	Checks if the value of the property $propertyName is less than the operand.
@@ -468,13 +513,17 @@ ment ``$operand`` within that collection.
 :method:`$query->greaterThanOrEqual($propertyName, $operand);`
 	Checks if the value of the property $propertyName is greater than or equal to the operand.
 
-Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but also can be a "property path". Example: ``$query->equals('categories.title', 'tools')`` searches for objects having a category titled "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
+Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but also can be a "property path".
+    Example: ``$query->equals('categories.title', 'tools')`` searches for objects having a category titled
+    "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 :method:`$query->logicalAnd($constraint1, $constraint2);`
-	Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase 1.1 also an array of conditions is allowed.
+	Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
+	1.1 also an array of conditions is allowed.
 
 :method:`$query->logicalOr($constraint1, $constraint2);`
-	Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase 1.1 also an array of conditions is allowed.
+	Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
+	1.1 also an array of conditions is allowed.
 
 :method:`$query->logicalNot($constraint);`
 	Returns a condition that inverts the result of the given condition (logical *not*).
@@ -504,11 +553,11 @@ methods:
 
 :method:`isValid($value)`
 	Checks whether the object that was passed to the validator is valid. If yes, 
-returns true, otherwise false.
+	returns true, otherwise false.
 
 :method:`setOptions(array $validationOptions)`
 	Sets specific options for the validator. These options apply to any further call 
-of the method isValid().
+	of the method isValid().
 
 You can call Validators in your own code with the method 
 :method:`createValidator($validatorName, $validatorOptions)` in 
@@ -523,7 +572,9 @@ You can define simple validation rules in the domain model by annotation. For
 this, you use the annotation *@validate* with properties of the object. A brief 
 example:
 
-Example B-4: validation in the domain object::
+*Example B-4: validation in the domain object*
+
+::
 
 	class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractEntity {
 		/**
@@ -578,8 +629,7 @@ functionality in templates.
 The localization class has only one public static method called translate, which 
 does all the translation. The method can be called like this:
 
-``Tx_Extbase_Utility_Localization::translate($key, $extensionName, 
-$arguments=NULL)``
+``Tx_Extbase_Utility_Localization::translate($key, $extensionName, $arguments=NULL)``
 
 ``$key``
 	The identifier to be translated. If then format *LLL:path:key* is given, then this 
@@ -591,7 +641,8 @@ $arguments=NULL)``
 	The extension name. It can be fetched from the request.
 
 ``$arguments``
-	Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill wildcards in localized strings with values.
+	Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill
+	wildcards in localized strings with values.
 
-In Fluid there is the translate-ViewHelper, which works by the same rules. For a 
-Case study for localization, see Chapter 9.
+In Fluid there is the translate ViewHelper, which works by the same rules. For a
+case study for localization, see Chapter 9.
