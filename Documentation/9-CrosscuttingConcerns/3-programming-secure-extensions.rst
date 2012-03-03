@@ -31,7 +31,7 @@ Next we addict to the Cross Site Scripting and illustrate how to secure your
 own extensions.
 
 
-create own databaase queries
+create own database queries
 -------------------------------------------------
 
 Even though you will mostly use the query language of extbase (see
