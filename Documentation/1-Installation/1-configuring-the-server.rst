@@ -40,5 +40,5 @@ comments are preserved or not.
 	:height: 400px
 	:align: center
 
-	Figure 1-1: Im Reports-Module können Sie überprüfen, dass Extbase Zugriff 
-	auf die Quelletextkommentare der PHP-Dateien hat.
+	Figure 1-1: In the Reports-Module you can check if Extbase has access
+	to the source code comments of the PHP files.

@@ -20,8 +20,8 @@ depends on your personal preferences which one you should use.
 	PHP IDE is called Eclipse PDT, which you can download from
 	*http://eclipse.org/pdt*.
 
-In general you should create projects in NetBeans repectively (????)
-Eclipse for Extbase and Fluid. You will be able to have a look at the
+In general you should create projects for Extbase and Fluid in NetBeans, 
+Eclipse or PhpStorm. You will be able to have a look at the
 Extbase and Fluid source code and the documentation whenever you need
 it.
 
@@ -55,5 +55,9 @@ choose the according folder for Extbase or Fluid and provide a name for the
 project. Click on *Finish* to create the project with
 your settings.
 
+In PhpStorm creating projects for Extbase and Fluid will also work like
+this: Click on *File* → *New Project from Existing Files...* and
+follow the create project wizard.
+
 When developing an Extension by yourself you should also create a
-dedicated project for it in NetBeans or Eclipse.
+dedicated project for it in NetBeans, Eclipse or PhpStorm.

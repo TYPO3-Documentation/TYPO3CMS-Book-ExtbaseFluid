@@ -11,9 +11,11 @@ hand. A list of some more TYPO3 Extensions that might be helpful to you,
 will round up this chapter - including information from which sources to get
 them.
 
-We assume that you already have some knowledge how to set up a TYPO3
-environment and therefore we will concentrate on the installation of Extbase
-and Fluid and their related components.
+.. tip::
+
+	We assume that you already have some knowledge how to set up a TYPO3
+	environment and therefore we will concentrate on the installation of Extbase
+	and Fluid and their related components.
 
 .. toctree::
 	:maxdepth: 2

@@ -39,16 +39,12 @@ your TYPO3 instance on the command line and get the development versions
 (called trunk) of Extbase and Fluid with the command line tool
 Subversion:
 
-``svn checkout
-https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/extbase/trunk
-extbase``
+::
 
-``svn checkout
-https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/fluid/trunk
-fluid``
+	svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/extbase/trunk extbase
 
-``<remark>TODO: Please check the markup of the code
-example.</remark>``
+	svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/fluid/trunk fluid
+
 
 .. sidebar:: Report issues or help at development
 
