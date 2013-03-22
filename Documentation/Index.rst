@@ -4,6 +4,8 @@
    contain the root `toctree` directive.
 
 
+.. _start:
+
 Developing TYPO3 Extensions with Extbase and Fluid
 ===================================================
 
