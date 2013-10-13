@@ -20,13 +20,13 @@ Object Orientation assumes that a concrete problem is to be solved by
 a program, and a concrete problem is caused by real Objects. Therefore focus
 is on the Object. This can be abstract of course: it will not be something
 as concrete as a car or a ship all the time, but can also be a reservation,
-an accout or a graphical symbol.
+an account or a graphical symbol.
 
 Objects are "containers" for data and corresponding functionality. The
 data of an object is stored in its *Properties*. The
 functionality is provided by *Methods*, which can for
 example alter the Properties of the Object. In regard to the cruise liner we
-can say, that it has a certain ammount of coaches, a length and width and a
+can say, that it has a certain amount of coaches, a length and width and a
 maximum speed. Further it has Methods to start the motor (and hopefully to
 stop it again also), change the direction as well as to increase thrust, for
 you can reach your holiday destination a bit faster.
@@ -58,15 +58,15 @@ is now represented in programming.
 
 In the following we'll talk about the object ship. We'll invoke this
 object, stock it with coaches, a motor and other useful stuff.
-Furthermore, there will be funtions, moving the ship, thus turning the
+Furthermore, there will be functions, moving the ship, thus turning the
 motor on and off. Later we'll even create a luxury liner based on the
-general ship and equip it with a golf simulator and sattelite TV.
+general ship and equip it with a golf simulator and satellite TV.
 
 On the following pages, we'll try to be as graphic as possible (but
 still semantically correct) to familiarize you with object orientation.
 There is a specific reason: The more you can identify with the Object and
 its Methods, the more open you'll be for the Theory behind Object
-Orientated Programming. Both is necessary for successfull programming –
+Orientated Programming. Both is necessary for successful programming –
 even though you'll often not be able to imagine the objects you'll later
 work with as clearly as in our examples.
 
@@ -97,7 +97,7 @@ called *Class*, in this case is is the Class
 	make the listings a bit shorter.
 
 The key word :class:`class` opens the Class and
-inside the curly brackets Properties and Methods are wirtten. we'll now
+inside the curly brackets Properties and Methods are written. we'll now
 add these Properties and Methods::
 
 	class ship {
@@ -134,14 +134,14 @@ Property is marked with the key word :class:`public` further down.
 	and all other parts are added without blank or underscore in upper
 	case. This is a convention used in extbase (as well as FLOW3).
 
-We can also swith on the engine
+We can also switch on the engine
 (:class:`startEngine()`), travel with the ship to the
 desired destination (:class:`moveTo($location)`) and switch
 off the engine again (:class:`stopEnginge()`). Note that all
 Methods are empty, i.e. we have no content at all. We'll change this in
-the following examples, of course. The line containint Method name ad (if
-avallabe) parameters is called Method signature or method head. Everything
-contained by the Method ist called method body accordingly.
+the following examples, of course. The line containing Method name ad (if
+available) parameters is called Method signature or method head. Everything
+contained by the Method is called method body accordingly.
 
 Now we will finally create an Object from our Class. The Class
 :class:`ship` will be the blueprint and :class:`$fidelio` the concrete Object.
@@ -154,7 +154,7 @@ Now we will finally create an Object from our Class. The Class
 
 	var_dump($fidelio);
 
-The key word new is used to create a concrete Objext from the Class.
+The key word new is used to create a concrete Object from the Class.
 This Object is also called *Instance *and the creation
 process consequentially *Instantiation*. We can use the
 command ``var_dump()`` to closely examine the object. We'll see
@@ -190,7 +190,7 @@ same values.
 		echo 'Objects are not identical!'
 	}
 
-In this examle the output ist ``Objects are not identical!``
+In this example the output is ``Objects are not identical!``
 
 
 The arrow operator
@@ -225,7 +225,7 @@ and Methods of an Object. But what to do, if we want to do this from
 inside a Method, e.g. to set :class:`$speed `inside of the
 Method :class:`startEngine()`? We don't know at this
 point, how an object to be instantiated later will be called. So we need
-a mechanism to do this indepentent from the name. This is done with the
+a mechanism to do this independent from the name. This is done with the
 special variable :class:`$this`.
 
 :: 
@@ -246,8 +246,8 @@ special variable :class:`$this`.
 
 	}
 
-With ``$this->speed`` you can acces the Property
-"speed" in the acual Object, independently of it's name.
+With ``$this->speed`` you can access the Property
+"speed" in the actual Object, independently of it's name.
 
 
 
@@ -282,7 +282,7 @@ Increasingly big and beautiful ships are built. Also new offers for the
 passengers are added. FIDELIO2, for example, even has a little golf course
 based on deck.
 
-If we look behid the curtain of this new luxury liner though, we
+If we look behind the curtain of this new luxury liner though, we
 find that the shipping company only took a ship type FIDELIO and altered
 it a bit. The basis is the same. Therefore it makes no sense to completely
 redefine the new ship – instead we use the old definition and just add the
@@ -323,8 +323,8 @@ Extension (in our example :class:`LuxuryLiner`) is called
 
 The class :class:`LuxuryLiner` now contains the
 complete configuration of the base class :class:`Ship`
-(including all Properties and Methods) and defines additional Porperties
-(like the ammount of luxury coaches in
+(including all Properties and Methods) and defines additional Properties
+(like the amount of luxury coaches in
 :class:`$luxuryCoaches`) and additional Methods (like
 :class:`golfSimulatorStart()` and
 :class:`golfSimulatorStop()`). Inside these Methods you can
@@ -360,7 +360,7 @@ Overriding a Method comes in handy, but has a serious
 disadvantage. When changing the Method
 :class:`startEngine()` in the parent class, we'd also have
 to change the Method in the child class. This is not only a source for
-errors but also kind of unconvenient. It would be better to just call
+errors but also kind of inconvenient. It would be better to just call
 the Method of the parent class and then add additional code before or
 after the call. That's exactly what can be done by using the key word
 :class:`parent`. With
@@ -374,7 +374,7 @@ way:
 
 
 
-Abstact classes
+Abstract classes
 -------------------------------------------------
 
 Sometimes it is useful to define "placeholder Methods" in the
@@ -384,7 +384,7 @@ abstract Methods is called *abstract Class*. For our
 ship there could be a Method :class:`setupCoaches()`. Each
 type of ship is to be handled differently for each has a proper
 configuration. So each ship must have such a Method but the concrete
-implementation is to be done seperately for each ship type.
+implementation is to be done separately for each ship type.
 
 <remark>TODO: Enter Code</remark>
 
@@ -403,7 +403,7 @@ Interfaces
 Interfaces are a special case of abstract classes in which
 *all Methods* are abstract. Using Interfaces,
 specification and implementation of functionality can be kept apart. In
-our cruise example we have some ships supporting sattelite TV and some
+our cruise example we have some ships supporting satellite TV and some
 who don't. The ships who do, have the Methods
 :class:`enableTV()` and
 :class:`disableTV()`. It is useful to define an interface
@@ -416,8 +416,8 @@ sure, that the class implements the given interface. All Methods in the
 interface definition then have to be realized. The object
 :class:`LuxuryLiner` now is of the type
 :class:`Ship` but also of the type
-:class:`SatteliteTV`. It is also possible to implement not
-only one interface class but multiple, seperated by comma. Of course
+:class:`SatelliteTV`. It is also possible to implement not
+only one interface class but multiple, separated by comma. Of course
 interfaces can also be inherited by other interfaces.
 
 
@@ -459,9 +459,9 @@ would be possible. Access from outside of the hierarchy of inheritance
 (like in the last line of the example) is not possible. It would only be
 possible if the Property was :class:`public`.
 
-We recommend to denfine all Properties as
+We recommend to define all Properties as
 :class:`protected`. Like that, they can not be altered any
-more from outside and you should use special Methods (called getter ans
+more from outside and you should use special Methods (called getter and
 setter) to alter or read them. We'll explain the use of these Methods in
 the following section.
 
@@ -529,7 +529,7 @@ have a problem and do contact the shipyard. Inside the method
 :class:`reportTechnicalProblem()` you see that if you want
 to use static properties, you have to trigger them with the key word
 :class:`self::`. If the emergency phone number now changes,
-the shipyard has to tell all the ships about the new number. For this ist
+the shipyard has to tell all the ships about the new number. For this is
 uses the *static method*
 :class:`setShipyardSupportTelephoneNumber($newNumber)`. For
 the Method is static, it is called through the scheme
@@ -538,7 +538,7 @@ the Method is static, it is called through the scheme
 sorry!</remark><remark></remark>`, in our case
 :class:`LuxuryLiner::setShipyardSupportTelephoneNumber(...)`.
 If you check the latter two problem reports, you see that all instances of
-the class use the new phone number. So both ship objects have acess to the
+the class use the new phone number. So both ship objects have access to the
 same static variable
 :class:`$shipyardSupportTelephoneNumber`.
 
@@ -576,7 +576,7 @@ on two that are essential when programming with extbase:
 Singleton
 -------------------------------------------------
 
-This design pattern makes sure, that only one insatance of a class
+This design pattern makes sure, that only one instance of a class
 can exist *at a time*. In TYPO3 you can mark a class
 as singleton by letting it implement the interface
 :class:`t3lib_Singleton`. An example: our luxury liners
@@ -613,7 +613,7 @@ class not implementing the Interface
 	does not make any difference: We invariably get back a new instance
 	of a class.
 
-Now that we refresehd your knowledge of object oriented
+Now that we refreshed your knowledge of object oriented
 programming, we can take a look at the deeper concepts of extbase:
 Domain Driven Design, Model View Controller and Test Driven Development.
 You'll spot the basics we just talked about in the following
