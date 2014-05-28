@@ -1,3 +1,10 @@
+# Settings.yml
+---
+conf.py:
+  copyright: 2009-2014
+  project: Developing TYPO3 Extensions with Extbase and Fluid
+  version: 1.0
+  release: 1.0
   html_theme_options:
     github_repository: TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid
     github_branch: latest
