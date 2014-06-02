@@ -24,7 +24,7 @@ After a restart of Apache you can find a xdebug section in *phpinfo()*. For a co
 	xdebug.remote_enable=on
 	xdebug.remote_handler=dbgp
 	xdebug.remote_host=localhost
-	xdebug.remote_port=900
+	xdebug.remote_port=9000
 
 Again after a restart of Apache this options can be found in *phpinfo()*. Now you also have to configure the development environment for a correct start of Xdebug. In NetBeans you have to open the properties of a project by clicking with the right mouse button on the project and choose *properties*. Now you must change the *run configuration*: Declared the base URL as *project URL* in which your TYPO3 frontend of your test system is available, eq. *http://localhost/typo3v4*. Click to *Advanced...* to set the *Debug URL* into the settings to *Ask Every Time*. NetBeans is now ready for debugging.
 
