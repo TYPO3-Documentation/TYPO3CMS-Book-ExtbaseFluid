@@ -14,10 +14,10 @@ viewhelpertest
 
 This extension all Fluid-ViewHelper and its usage is demonstrated. It will be used for testing for fluid distribution by the fluid developer team. It's also helpful to understand the usage of ViewHelpers in practical examples. It's found in the subversion repository under *https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/viewhelpertest/*.
 
-extbase_kickstarter
+extension_builder
 ----------------------------------
 
-The extbase kickstarter allows a quick entrance in the programming of extbase extensions by automating many repetitive tasks. By the deadline of this book it runs instable but the developer works hardly on an improved version. So we recommend it to take a look. The extbase kickstarter can be found in the subversion *https://svn.typo3.org/TYPO3v4/Extensions/extbase_kickstarter/trunk/* or the latest stable version in TER with the extension key *extbase_kickstarter*.
+The Extension Builder helps you build and manage your Extbase based TYPO3 extensions. Its the improved version of extbase kickstarter. TER with the extension key *extension_builder*.
 
 doc_extbase
 -----------------
