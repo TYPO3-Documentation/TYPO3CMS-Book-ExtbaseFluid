@@ -32,7 +32,7 @@ callback, if a failure is implemented into the existing functions.
 
 	When Robert Lemke and other Coredevelopers suggested to make the development for 
 	FLOW3 test driven, I was sceptic. Test-Driven Development sounded like a nice 
-	concept, but I did not knew, how to test a framework this size reasonable. Also 
+	concept, but I did not know how to test a framework this size reasonable. Also 
 	in the internet there were often only very simple academic examples to find. 
 	Until this time I had only a theoretical overview over TDD.
 	Even when I started to test, when the Fluid development started. The first test 
