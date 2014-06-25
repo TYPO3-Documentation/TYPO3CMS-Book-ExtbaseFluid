@@ -4,7 +4,7 @@ Test-Driven Development
 Every Developer has to test his software - for developers a not much liked 
 theme, but one you cannot walk by. How work tests in the classic software 
 development? Programmers in the first way construct a testcase by putting 
-certain data into the database, write little programms to test or manipulate the 
+certain data into the database, write little programs to test or manipulate the 
 url parameter in the browser. A big number of little functions are often 
 implemented at one time, before they are tested (look at figure  2-7). After 
 that, these steps are repeated in periodic steps, as often until the function 
@@ -45,10 +45,10 @@ callback, if a failure is implemented into the existing functions.
 	development cycles extremly fast. Because of Test-Driven Development I was able 
 	during a train ride to totally reconstruct the core of Fluid. Without tests, it 
 	seriously would have took me days until all would have worked at the end. 
-	Espciallly the feedback I got at once, I really appreciate. You click on a 
+	Especially the feedback I got at once, I really appreciate. You click on a 
 	button and after a few seconds you got your feedback.
 	After this I am infected, learned about Mock- and Stubobjects, and today I do 
-	not want to miss it.(In this chapter you will get an introduction into these concepts.)
+	not want to miss it. (In this chapter you will get an introduction into these concepts.)
 	If you want to learn TDD, you will jump in at the deep end, and to 
 	try it at the next project. Until the first Unit test is finished, it will take 
 	a while and after this it will go really faster.
@@ -129,7 +129,7 @@ fullfill. Now we can run the test for the first time. Therefore go to the
 TYPO3-Backend to the modul PHPUnit which is to find under the Admin Tools. Then 
 you can choose your extension and click on Run all tests. Now you should, like 
 it is shown in the figure 2-9, see a (yellow) bar and the Error message Not yet 
-implemented. Becaus you will work much with the PHPUnit Environment, you should 
+implemented. Because you will work much with the PHPUnit Environment, you should 
 familiarize yourself with this. Try to run the test for extbase and fluid and 
 also try the different Display options. For example you can let show you all 
 tests or only the failed tests. 
