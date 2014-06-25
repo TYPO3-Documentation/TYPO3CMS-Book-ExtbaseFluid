@@ -6,7 +6,7 @@ theme, but one you cannot walk by. How work tests in the classic software
 development? Programmers in the first way construct a testcase by putting 
 certain data into the database, write little programms to test or manipulate the 
 url parameter in the browser. A big number of little functions are often 
-implemented at one time, bfeore they are tested (look at figure  2-7). After 
+implemented at one time, before they are tested (look at figure  2-7). After 
 that, these steps are repeated in periodic steps, as often until the function 
 you want to have is implemented. After this the next function is in line. But 
 this way leads to problem: the tests are not made systematic, but selective. By 
@@ -34,7 +34,7 @@ callback, if a failure is implemented into the existing functions.
 	FLOW3 test driven, I was sceptic. Test-Driven Development sounded like a nice 
 	concept, but I did not knew, how to test a framework this size reasonable. Also 
 	in the internet there were often only very simple academic examples to find. 
-	UNtil this time I had only a theoretical overview over TDD.
+	Until this time I had only a theoretical overview over TDD.
 	Even when I started to test, when the Fluid development started. The first test 
 	were not Unit- but Integrationtests. This means they tested Fluid in the view of 
 	a user:
@@ -46,8 +46,8 @@ callback, if a failure is implemented into the existing functions.
 	during a train ride to totally reconstruct the core of Fluid. Without tests, it 
 	seriously would have took me days until all would have worked at the end. 
 	Espciallly the feedback I got at once, I really appreciate. You click on a 
-	button and after a few secounds you got your feedback.
-	After this I am infected, learned about Mock- and Stubobjects, and today I don 
+	button and after a few seconds you got your feedback.
+	After this I am infected, learned about Mock- and Stubobjects, and today I do 
 	not want to miss it.(In this chapter you will get an introduction into these concepts.)
 	If you want to learn TDD, you will jump in at the deep end, and to 
 	try it at the next project. Until the first Unit test is finished, it will take 
@@ -62,7 +62,7 @@ repeatable. The workflow is different of the classic programming, seperated into
 very small iterations.
 
 Using Test-Driven Development you write your Unit tests for your features before 
-you write your features theirselfs. Unit tests are automatically repeateable 
+you write your features theirselves. Unit tests are automatically repeatable 
 tests of methods, classes und little program parts. Even during the writing of 
 the tests, you should seriously think about the desired functionality. When you 
 are running your tests, they naturally will fail, because the tested 
@@ -93,7 +93,7 @@ perspective into the one of the user of the api and so you are able to identify
 inconsistences and missing functionality much faster.  
 In addition Unit tests are a kind of safety net against unrequested behaviour. 
 In the case of destroying a functionality when you are programming, you are getting through the Unit tests feedback directly and are able to correct the bug 
-at once. This is the reason why the chance of regressions( producing bugs same 
+at once. This is the reason why the chance of regressions (producing bugs same 
 time you are correcting another) is furthermore decreasing. According to some 
 studies Developers who are using TDD are fast at the same rate or even faster 
 than developers who are coding the conventional style, although the first 
@@ -128,7 +128,7 @@ the name of the testmethod should make clear which expectations the test should
 fullfill. Now we can run the test for the first time. Therefore go to the 
 TYPO3-Backend to the modul PHPUnit which is to find under the Admin Tools. Then 
 you can choose your extension and click on Run all tests. Now you should, like 
-it is shown in the figure 2-9, see a (yellow) bar und the Error message Not yet 
+it is shown in the figure 2-9, see a (yellow) bar and the Error message Not yet 
 implemented. Becaus you will work much with the PHPUnit Environment, you should 
 familiarize yourself with this. Try to run the test for extbase and fluid and 
 also try the different Display options. For example you can let show you all 
@@ -161,7 +161,7 @@ rid of the fatal error:
 
 
 When we now let run the testsuite again there should not be a fatal error 
-anymore but instead our Unit-Tests will fail bcause the getName() method returns 
+anymore but instead our Unit-Tests will fail because the getName() method returns 
 the false value.
 Now we are able, motivated by getting the red bar fast as possible into green, 
 to start with implementing:
@@ -192,7 +192,7 @@ which is writting log messages and they should be send per mail. For those there
 is a class EmailLogger that send the log data via e-mail. These class implements 
 the potencial complex goal of the e-mail sending on is own, but is using another 
 class which is called EmailService. EmailService uses, depending on the used 
-configuration uses a SMTP-Server or the mail() function of PHP. This is shown in 
+configuration a SMTP-Server or the mail() function of PHP. This is shown in 
 the figure 2-10: The email logger class has a reference on the email service.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-10.png
@@ -208,7 +208,6 @@ will introduce below.
 Dependency Injection
 --------------------
 
-You often see classes, which
 You often see classes that are constructed according to the following structure:
 
 //code
