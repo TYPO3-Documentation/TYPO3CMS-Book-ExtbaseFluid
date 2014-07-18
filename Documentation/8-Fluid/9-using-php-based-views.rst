@@ -29,10 +29,7 @@ Our PHP based view for the list view of the post controller should
 have the class name ``Tx_BlogExample_view_Post_ListJSON``, because
 it applies only for the format JSON. So that the class according to the
 naming convention must be implemented in the file
-*EXT:blog_example/Classes/View/Post/ListJSON.php*.<remark>???
-Check for correctness.. This does not match with the format mentioned above.
-One would expect the class to be
-Tx_BlogExample_view_Post_ListJSON</remark>
+*EXT:blog_example/Classes/View/Post/ListJSON.php*.
 
 Each view must implement the interface
 ``Tx_Extbase_MVC_View_ViewInterface``. This consists off some
