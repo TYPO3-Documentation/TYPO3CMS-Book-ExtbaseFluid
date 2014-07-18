@@ -18,7 +18,7 @@ against a naming convention which is defined in the
 ``$viewObjectNamePattern``. The default naming convention is
 following::
 
-	Tx_@extension_View_@controller_@action_@format
+	Tx_@extension_View_@controller_@action@format
 
 All parts beginning with ``@`` will be replaced accordingly.
 When no class with this name can be found, the ``@format`` will be
@@ -32,7 +32,7 @@ naming convention must be implemented in the file
 *EXT:blog_example/Classes/View/Post/ListJSON.php*.<remark>???
 Check for correctness.. This does not match with the format mentioned above.
 One would expect the class to be
-Tx_BlogExample_view_Post_List_JSON</remark>
+Tx_BlogExample_view_Post_ListJSON</remark>
 
 Each view must implement the interface
 ``Tx_Extbase_MVC_View_ViewInterface``. This consists off some
