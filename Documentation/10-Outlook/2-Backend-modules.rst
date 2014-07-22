@@ -69,7 +69,7 @@ changed like this::
         }
     }
 
-Here are all the settings of ``settings`` and ``ersistence`` are copied from the configuration
+Here are all the settings of ``settings`` and ``persistence`` are copied from the configuration
 of the frontend plugins, only the new pathes for the ``view`` are set.
 
 Now you have a good oversight how you can use Extbase also for development of backend modules.
