@@ -36,7 +36,7 @@ following::
 				<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>    
 				<td align="top">{product.quantity}</td>    
 			</tr>
-		<f:for>
+		</f:for>
 	</table>
 
 The inventory is rendered as a table. We can access the
