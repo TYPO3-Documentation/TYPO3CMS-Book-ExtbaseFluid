@@ -30,7 +30,7 @@ following::
 			<td>Productdescription</td>
 			<td>Quantity</td>
 		</tr>
-		<f:for each="{products}" as "product">
+		<f:for each="{products}" as="product">
 			<tr>
 				<td align="top">{product.name}</td>    
 				<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>    
