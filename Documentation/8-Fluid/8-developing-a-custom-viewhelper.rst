@@ -204,7 +204,7 @@ function identical::
 	/**
 	* Arguments Initialization
 	*/
-	protected function initializeArguments() {
+	public function initializeArguments() {
 	$this->registerArgument('emailAddress', 'string',
 	'The email address to resolve the gravatar for', TRUE);
 	}
