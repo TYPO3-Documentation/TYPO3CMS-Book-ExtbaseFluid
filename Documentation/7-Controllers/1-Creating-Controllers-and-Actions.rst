@@ -147,7 +147,7 @@ like the following URL:
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer``
 
 Due to the 2 Arguments
-``tx_sjroffers_pi1[controller=Offer]`` and
+``tx_sjroffers_pi1[controller]=Offer`` and
 ``tx_sjroffers_pi1[action]=show``, the dispatcher of Extbase
 passes the request to the :class:`OfferController`. In the
 request we find the information that the Action *show
