@@ -1,4 +1,4 @@
-.. _basic-concepts
+.. _basic-concepts:
 
 Basic Concepts
 ================================================
