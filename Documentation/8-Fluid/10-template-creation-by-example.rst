@@ -1,4 +1,4 @@
-.. _template-creation-by-example
+.. _template-creation-by-example:
 
 Template Creation by example
 ================================================
