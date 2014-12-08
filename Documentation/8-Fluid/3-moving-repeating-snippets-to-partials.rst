@@ -1,4 +1,4 @@
-.. _moving-repeating-snippets-to-partials
+.. _moving-repeating-snippets-to-partials:
 
 Moving Repeating Snippets To Partials
 ================================================================================================
