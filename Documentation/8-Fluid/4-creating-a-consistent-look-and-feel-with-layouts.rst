@@ -1,3 +1,5 @@
+.. _creating-a-consistent-look-and-feel-with-layouts
+
 Creating A Consistent Look And Feel With Layouts
 ================================================================================================
 
@@ -28,7 +30,7 @@ placeholder.
 	...
 	<body>
 	<h1>Blogging with Extbase:</h1>
-	<f.render section="main" />
+	<f:render section="main" />
 	<h6>This is the footer section</h6>
 	</body>
 	</html>
@@ -57,12 +59,11 @@ layout.
 
 The template must also contain ``<f:section
 name="...">...</f:section>`` for every placeholder in the
-layout whose content will be inserted. So by defining the placeholder
-``<f:section name="main">``, like in the example above, a
+layout. So by defining the placeholder
+``<f:render section="main">``, like in the example layout above, a
 template, which uses this layout, must define the section
 ``<f:section name="main">...</f:section>``, whose
-content then is being inserted in the layout. (<remark>TODO: does anybody
-understand this sentence?</remark>) Layouts can reference any number of
+content then is being inserted in the layout. Layouts can reference any number of
 sections. Different sections are often used for multi-column layouts.
 Besides, you can use all features of Fluid in layouts, which you'll get to
 know in the course of this chapter, for building templates. So layouts offer
@@ -71,7 +72,7 @@ various possibilities for efficiently templating a web application.
 .. tip::
 
   You'll find a practical example for building layouts in the
-  section "<xref linkend="Fluid_template_by_example" />" later on in this
+  section ":ref:`template-creation-by-example`" later on in this
   chapter.
 
 Now that you got to know how you can structure templates with
