@@ -1,4 +1,4 @@
-.. _controlling-the-flow-with-controllers
+.. _controlling-the-flow-with-controllers:
 
 Controlling the flow with controllers
 =====================================================
