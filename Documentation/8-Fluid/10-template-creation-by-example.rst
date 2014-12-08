@@ -1,3 +1,5 @@
+.. _template-creation-by-example
+
 Template Creation by example
 ================================================
 
@@ -35,10 +37,8 @@ Setting up the HTML basic framework
 ----------------------------------------------------
 
 The various templates have many common elements. First we define the
-basic framework by a common layout (see the section "<xref
-linkend="Fluid_using_layouts" />" earlier in this chapter) and store
-repeating code in partials (see the section "<xref
-linkend="Fluid_using_partials" />" earlier in this chapter). The basic
+basic framework by a common layout (see the section :ref:`fluid-using-layouts` earlier in this chapter) and store
+repeating code in partials (see the section ":ref:`moving-repeating-snippets-to-partials`" earlier in this chapter). The basic
 framework of our templates looks as follows::
 
 	<f:layout name="default" />
@@ -62,8 +62,7 @@ rendered and after this a message to the frontend user is shown if
 necessary. The complete conent of the plugin is then "packed" in a
 ``div`` container. The message - a so called *flash
 message* - will be created inside our sample extension in the
-controller, e.g. at unauthorized access (see also the section
-"<remark>TODO:insert section name</remark>" in chapter 7)::
+controller, e.g. at unauthorized access (see also the sections for edit and delete controller actions in :ref:`chapter 7 <controlling-the-flow-with-controllers>`)::
 
 	public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
 		$administrator = $offer->getOrganization()->getAdministrator();
@@ -105,8 +104,7 @@ purpose.
 
 Another repeating job is the formatting of numbers and date
 intervals, For example how the date is displayed for the
-*Offerperiod* <remark> TODO Change this to the correct
-term as also used in the screenshot</remark> in Figure 8-3. An offer can
+*Offerperiod* (*Angebotszeitraum*) in Figure 8-3. An offer can
 have a minimum and/or a maximum amount of attendees for example. If none
 of this is given, nothing should be displayed. If only one of these values
 is given the value should be prefixed with from respectively to. We store
@@ -116,7 +114,7 @@ template like this:
 ``<sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>``
 
 Alternatively you can use the inline notation of Fluid (therefore
-see the box "<xref linkend="Fluid_inline_vs_tag" />" earlier in this
+see the box :ref:`inline-notation-vs-tag-based-notation` earlier in this
 chapter):
 
 ``{offer.ageRange->sjr:format.numericRange()}``
