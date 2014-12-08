@@ -1,3 +1,5 @@
+.. _modeling-the-domain:
+
 Modeling the Domain
 ===============================================
 
@@ -49,7 +51,7 @@ at the TER.
 Development with Extbase starts with, as stated before, the domain's
 characterization and their implementation as a model. If you are not
 familiar with the terms of Domain Driven Design, we suggest to scan through
-:ref:`chapter 2 <basic\_principles>`.
+:ref:`chapter 2 <basic-principles>`.
 
 .. toctree::
 	:maxdepth: 2
