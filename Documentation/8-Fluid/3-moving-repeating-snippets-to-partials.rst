@@ -1,3 +1,5 @@
+.. _moving-repeating-snippets-to-partials
+
 Moving Repeating Snippets To Partials
 ================================================================================================
 
@@ -19,7 +21,7 @@ contain the following code to display the list of the tags::
 
 	<b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-We use the ViewHelper ``f:render partial="..." to call a Partial in a template:``
+We use the ViewHelper ``f:render partial="..."`` to call a Partial in a template:
 
 ::
 
