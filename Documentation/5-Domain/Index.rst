@@ -23,7 +23,7 @@ the youth organizations via the Internet. At the same time parents, children
 and teenager should be able to find suitable offers and display them easily.
 You can download the originated extension with the extension-key
 *sjr_offers* at the extension repository
-(*http://typo3.org/extensions/repository/view/sjr_offers/current/*).
+(`http://typo3.org/extensions/repository/view/sjr_offers/current/ <http://typo3.org/extensions/repository/view/sjr_offers/current/>`_).
 
 The example is also being used to demonstrate the approach of
 Test-Driven Development close to reality. We manage those Unit-Tests with
@@ -49,7 +49,7 @@ at the TER.
 Development with Extbase starts with, as stated before, the domain's
 characterization and their implementation as a model. If you are not
 familiar with the terms of Domain Driven Design, we suggest to scan through
-chapter 2.
+:ref:`chapter 2 <basic_principles>`.
 
 .. toctree::
 	:maxdepth: 2
