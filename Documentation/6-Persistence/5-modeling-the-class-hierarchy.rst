@@ -192,7 +192,7 @@ for *Concrete Table Inheritance*.
 
     A prominent example for the *Single Table Inheritance* is the table ``tt_content``, in which all
     types of content elements are stored. Every extension can enhance the table with own fields.
-    Accordant big is the amount of columns of this table. The type of the content elements is
+    Accordingly big is the amount of columns of this table. The type of the content elements is
     stored in the field ``CType``.
 
 With this chapter we close the work on the domain model and whose storage firstly. During the process
