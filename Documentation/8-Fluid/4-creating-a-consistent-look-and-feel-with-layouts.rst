@@ -1,4 +1,4 @@
-.. _creating-a-consistent-look-and-feel-with-layouts
+.. _creating-a-consistent-look-and-feel-with-layouts:
 
 Creating A Consistent Look And Feel With Layouts
 ================================================================================================
