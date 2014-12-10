@@ -7,9 +7,9 @@ This book uses the following typographic conventions:
 
 *emphasiszed content*
 
-:class:`class names`, 
+:class:`class names`,
 
-:method:`method names`, 
+:code:`method names`,
 
 ``inline code``
 
@@ -19,13 +19,13 @@ This book uses the following typographic conventions:
 
 .. note::
 
-	This stands for a general advice or hint.
+   This stands for a general advice or hint.
 
 .. tip::
 
-
-	This stands for a tip or a suggestion.
+   This stands for a tip or a suggestion.
 
 .. warning::
-	With this symbol, certain special behavior is explained, which could
-	lead to problems or impose a risk.
+
+   With this symbol, certain special behavior is explained, which could
+   lead to problems or impose a risk.

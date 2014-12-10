@@ -1,5 +1,5 @@
 Calling the extension
-========================================
+=====================
 
 When a user opens the web page containing our blog in their browser,
 this request (Request) will be forwarded to the remote TYPO3 Server. Then
@@ -17,8 +17,9 @@ plugin in the frontend. This output is embedded within the greater overview
 of the page.
 
 .. figure:: /Images/3-BlogExample/figure-3-4.png
-	:align: center
-Figure 3-4: Output of the plugin of our example extension
+   :align: center
+
+   Figure 3-4: Output of the plugin of our example extension
 
 The process of eradication is first forwarded to the *dispatcher* of Extbase by TYPO3.
 The dispatcher completes several preliminary tasks before it hands the further processing on

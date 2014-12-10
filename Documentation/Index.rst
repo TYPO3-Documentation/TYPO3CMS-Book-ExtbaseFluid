@@ -6,8 +6,9 @@
 
 .. _start:
 
+==================================================
 Developing TYPO3 Extensions with Extbase and Fluid
-===================================================
+==================================================
 
 TYPO3 is a free enterprise web content management system licensed under the GPL.
 
@@ -36,12 +37,4 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 	10-Outlook/Index
 	a-CodingGuidelines/Index
 	b-ExtbaseReference/Index
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+	Targets
