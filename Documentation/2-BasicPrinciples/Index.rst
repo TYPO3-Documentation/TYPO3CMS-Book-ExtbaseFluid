@@ -1,3 +1,5 @@
+.. _basic-principles:
+
 Basic Principles
 ===============================
 
