@@ -1,3 +1,5 @@
+.. _basic-concepts:
+
 Basic Concepts
 ================================================
 
@@ -313,6 +315,7 @@ on. We can thus confirm that you can process the value of every Object
 Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->) . This can also be done multiple times.
 
+.. _inline-notation-vs-tag-based-notation:
 
 .. sidebar:: Inline Notation vs. Tag Based Notation
 
