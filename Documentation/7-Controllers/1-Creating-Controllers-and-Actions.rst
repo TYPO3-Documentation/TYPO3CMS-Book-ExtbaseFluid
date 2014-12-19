@@ -48,25 +48,25 @@ Flow Pattern "display a list of Domain Objects"
 
 The first pattern in our example fits the Action "*display
 a list of all offers*". One Action Method usually will be enough
-for implementing This. we choose :method:`indexAction` as
+for implementing This. we choose :code:`indexAction` as
 name of the Method::
 
-	public function indexAction() { 
+	public function indexAction() {
 
 		$offerRepository = t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
 
-		$offers = $offerRepository->findAll(); 
+		$offers = $offerRepository->findAll();
 
-		$this->view->assign('offers', $offers); 
+		$this->view->assign('offers', $offers);
 
-		return $this->view->render(); 
+		return $this->view->render();
 
 	}
 
 This can be simplified even more. As described in chapter 4 in
 section "controlling the flow", it is not necessary to return the rendered
 content. Furthermore we avoid initializing the variable
-:method:`$offers`, which we only use once. So we
+:code:`$offers`, which we only use once. So we
 get::
 
 	public function indexAction() {
@@ -74,7 +74,7 @@ get::
 		$offerRepository =
 		t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
 
-		$this->view->assign('offers', $offerRepository->findAll()); 
+		$this->view->assign('offers', $offerRepository->findAll());
 
 	}
 
@@ -101,7 +101,7 @@ this::
 	}
 
 	public function indexAction() {
-		$this->view->assign('offers', $offerRepository->findAll()); 
+		$this->view->assign('offers', $offerRepository->findAll());
 	}
 
 :class:`ActionController` not only calls hte Method
@@ -231,7 +231,7 @@ Method :class:`showAction()`. In the URL are no information
 these Arguments, the controller passes the further processing to the
 Method :class:`newAction()`.
 
-:: 
+::
 
 	/**
 	 * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization
@@ -378,8 +378,8 @@ displayed if the template is intenting so.
 .. figure:: /Images/7-Controllers/figure-7-1.png
 	:align: center
 
-	Figure 7-1: Wrong input in the form of an offer leads to an error mesage 
-	(in this case a modal JavaScript window) 
+	Figure 7-1: Wrong input in the form of an offer leads to an error mesage
+	(in this case a modal JavaScript window)
 
 .. tip::
 
@@ -579,7 +579,7 @@ the accordant options in a form (see pic. 7-2).
 .. figure:: /Images/7-Controllers/figure-7-2.png
 	:align: center
 
-	Figure 7-2: The buildup of the "demand" in a form above the offer list. 
+	Figure 7-2: The buildup of the "demand" in a form above the offer list.
 
 .. warning::
 	Watch out, that you do not implement logic, which actually
