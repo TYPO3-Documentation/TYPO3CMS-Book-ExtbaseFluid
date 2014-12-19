@@ -1,3 +1,5 @@
+.. _basic-concepts:
+
 Basic Concepts
 ================================================
 
@@ -22,7 +24,7 @@ these placeholders are called *Object
 Accessors*.
 
 .. tip::
- 
+
 	The markers used in the classic marker based templates of TYPO3 v4
 	are also placeholders which are replaced later on by the desired data.
 	You will notice though, that the placeholders used in Fluid are clearly
@@ -84,10 +86,10 @@ but only parts of it will be displayed. In the example above, we used
 the object. Generally, Fluid tries to handle such hierarchical properties
 in the following order:
 
-* If ``post`` is an array or an object which implements the interface ArrayAccess, 
+* If ``post`` is an array or an object which implements the interface ArrayAccess,
   the corresponding property will be returned as long as it exists.
-* If it is an object, and a method :method:`getTitle()` exists,
-  the method will be called. This is the most common use case of an Object Accessor, 
+* If it is an object, and a method :code:`getTitle()` exists,
+  the method will be called. This is the most common use case of an Object Accessor,
   since by convention all public properties have a corresponding ``get``-method.
 * The property will be returned if it exists in the object and it
   is public. We discourage the ability to utilize this though, since it
@@ -179,7 +181,7 @@ Followed by the name of the ViewHelper and the ending
 Every argument of a ViewHelper will be interpreted by Fluid. The
 ViewHelper ``<f:for>`` from the previous example therefore
 receives the array of all blog posts with the argument
-*each*. 
+*each*.
 
 .. tip::
 
@@ -246,7 +248,7 @@ property *date* which contains the date of the creation
 of the post in a *DateTime* object.
 
 *DateTime* objects, that can be used in PHP to
-represent dates, have no :method:`__toString()`-method and
+represent dates, have no :code:`__toString()`-method and
 can therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message, if you simple write
 ``{post.date}`` in your template.
@@ -264,7 +266,7 @@ that there are no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
 and the string representation of ``{post.date}`` together as
 string. Because the DateTime object has no method
-:method:`__toString()`, a PHP error message will be thrown
+:code:`__toString()`, a PHP error message will be thrown
 again.
 
 .. tip::
@@ -313,6 +315,7 @@ on. We can thus confirm that you can process the value of every Object
 Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->) . This can also be done multiple times.
 
+.. _inline-notation-vs-tag-based-notation:
 
 .. sidebar:: Inline Notation vs. Tag Based Notation
 
@@ -394,7 +397,7 @@ Fluid only supports named arrays, which means, that you always have
 to specify the key of the array element. Lets look at what options you
 have when creating an array::
 
-	{ 
+	{
 		key1: 'Hello',
 		key2: "World",
 		key3: 20,
