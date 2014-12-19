@@ -108,12 +108,17 @@ appropriate arranged.
 
 After we installed the Extension, we can create our first products in the
 backend. Like shown in image 4-2, we create a sys folder that takes the products (see 1 in figure 4-2).
-In this, we put some few new inventory data (see 2 in figure 4-2).
+In this, we put some few new inventory data (see 2 in figure 4-2 for older and in figure 4-3 for newer Typo3 versions).
 
 .. figure:: /Images/4-FirstExtension/figure-4-2.png
 	:align: center
 
 	Figure 4-2: Create a new product
+    
+.. figure:: /Images/4-FirstExtension/create_independent_records_in_system_folder.jpg
+	:align: center
+
+	Figure 4-3: How to create a new product record in newer typo3 versions.
 
 In this section we create a copy (or a model) of the reality, as we
 transferred only a part of the properties of the real products in software,
