@@ -1,5 +1,15 @@
+.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. include:: ../Includes.txt
+
+
+.. _persisting_products:
+
 Make Products Persistent
-================================================
+========================
 
 From the class
 :class:`Tx_Inventory_Domain_Model_Product`, now we already can
@@ -7,19 +17,20 @@ generate instances – therefore concrete products with individual properties
 – at script run time. These are available however only in volatile form in
 the memory and are deleted by PHP after the page was produced completely by TYPO3.
 So that the products are available over a longer time, we must
-make it "durable". Usually this happens in that they are stored into a
+make it "permanent". Usually this happens in that they are stored into a
 database. Therefore first of all we create the database table necessary for
 that.
 
 .. tip::
 
-	The creating of the database tables can be done by the Kickstarter.
-	In TYPO3 V5, these steps are completely omitted.
+	The creating of the database tables can be done by the Extension Builder.
 
-TYPO3 will do this for us if we register the corresponding SQL
-command in the file :file:`EXT:inventory/ext_tables.sql`::
+TYPO3 CMS will do this for us if we register the corresponding SQL
+command in the file :file:`EXT:inventory/ext_tables.sql`:
 
-    CREATE TABLE tx_inventory_domain_model_product (
+.. code-block:: sql
+
+	CREATE TABLE tx_inventory_domain_model_product (
 		uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
 		pid int(11) DEFAULT '0' NOT NULL,
 
