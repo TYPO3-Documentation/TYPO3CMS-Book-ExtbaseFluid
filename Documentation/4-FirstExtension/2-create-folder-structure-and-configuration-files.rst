@@ -75,7 +75,7 @@ appropriate, also a certain version).
 |	 ``'author' => 'Jochen Rau',``
 |	 ``'author_company' => '',``
 |	 ``'author_email' => '',``
-|	 **'dependencies' => 'extbase,fluid'**
+|	 **'dependencies' => 'extbase,fluid',**
 |	 ``'state' => 'alpha',``
 |	 ``'clearCacheOnLoad' => '1',``
 |	 ``'version' => '0.0.0',``
