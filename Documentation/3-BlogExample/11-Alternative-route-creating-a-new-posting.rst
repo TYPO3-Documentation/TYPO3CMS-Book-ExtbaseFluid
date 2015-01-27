@@ -54,7 +54,7 @@ Lets take a look at the called method ``newAction()``:
 		$this->view->assign('newPost', $newPost);
 	}
 
-The method `newAction()`` expected a ``blog`` object and an optional ``post``
+The method ``newAction()`` expected a ``blog`` object and an optional ``post``
 object as parameter. It should be weird at first, because we have no blog and no
 post object, that has to be created with the form. Actually the parameter
 ``$newPost`` is empty (``NULL``) at the first call.
