@@ -10,7 +10,7 @@ should be displayed - now with the just created post at the first place. There a
 multiple steps, each based on the previous step, to be implemented that are
 mirrored in the actions ``new`` and ``create``. The method
 ``newAction()`` displays the form, while the method ``createAction()``
-really creates the post, put it in the repository and routes the process to the
+really creates the post, puts it in the repository and routes the process to the
 method ``indexAction()``.
 
 Calling the method ``newAction()`` is done in our case with a link in the
