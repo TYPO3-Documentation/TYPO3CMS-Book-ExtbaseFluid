@@ -36,7 +36,7 @@ the UID 6. Extbase creates out of these three informations the request and route
 it to the according ``PostController``. The translation of the UID back to the
 corresponding ``blog`` object is done automaticly by Extbase.
 
-Lets take a look at the to called method ``newAction()``:
+Lets take a look at the called method ``newAction()``:
 
 ::
 
