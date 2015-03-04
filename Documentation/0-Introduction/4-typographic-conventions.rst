@@ -5,7 +5,7 @@ This book uses the following typographic conventions:
 
 :file:`File names and directories`
 
-*emphasiszed content*
+*emphasized content*
 
 :class:`class names`,
 
