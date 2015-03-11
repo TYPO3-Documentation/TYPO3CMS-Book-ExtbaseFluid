@@ -77,7 +77,6 @@ many validators for default requirements like the validation of emails,
 numbers or strings.
 
 
-
 When does validation take place?
 -------------------------------------------------
 
@@ -325,7 +324,7 @@ below it is ``$pageName`` :class:`Tx_MyExtension_Domain_Validator_PagenameValida
 	 * Creates a new page with a given name.
 	 *
 	 * @param string $pageName THe name of the page which should be created.
-	 * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator*
+	 * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator
 	 */
 	public function createPageAction($pageName) {
 		...
@@ -648,24 +647,26 @@ update()::
 With this the changed object will be made into the persistent
 object: The changes are stored permanent now.
 
-.. sidebar:: Copies of objects
 
-	Why a copy of an object is created when it is to be changed? Lets
-	have assume that the persistent object would be directly changed. In
-	this case an empty controller would be updating persistent
-	objects::
+Copies of objects
+-------------------------------------------------
 
-		public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-			// object will be automaticly persisted
-		}
+Why a copy of an object is created when it is to be changed? Lets
+have assume that the persistent object would be directly changed. In
+this case an empty controller would be updating persistent
+objects::
 
-	At first this is very in transparent and difficult to understand.
-	Besides of that, this procedure implies a big safety issue: When the
-	original object is changed it would be impossible to cancel the
-	persisting of the changes. For this reason a copy of the object is
-	returned for changed objects, so the developer of the extension has to
-	decide explicit whether or not the changes are to be made
-	persistent.
+	public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+		// object will be automaticly persisted
+	}
+
+At first this is very in transparent and difficult to understand.
+Besides of that, this procedure implies a big safety issue: When the
+original object is changed it would be impossible to cancel the
+persisting of the changes. For this reason a copy of the object is
+returned for changed objects, so the developer of the extension has to
+decide explicit whether or not the changes are to be made
+persistent.
 
 We want to assume a refinement of the argument mapping: When a link
 to an action is generated and the link contains an object as parameter the
