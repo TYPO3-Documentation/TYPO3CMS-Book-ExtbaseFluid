@@ -159,25 +159,23 @@ checking the annotated property. Let us take a look at this using a part
 of the domain model ``Post`` of the blog example::
 
 	class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEntity {
-	/**
-	* @var string
-	* *@validate StringLength(minimum=3, maximum=50)*
-	*/
-	protected $title;
+		/**
+		 * @var string
+		 * @validate StringLength(minimum=3, maximum=50)
+		 */
+		protected $title;
 
-	/**
-	* @var string
-	*/
-	protected $content;
-	...
+		/**
+		 * @var string
+		 */
+		protected $content;
 	}
 
-With the line ``@validate StringLength(minimum=3,
+With the line ``@validate StringLength(minimum=3, 
 maximum=50)`` the validator for the property ``$title`` is
 specified. In paranthesis the parameter for the validator are specified.
 In our case we make shure that a title of a blog post is never shorter
-than three characters and will never be longer than 50
-characters.
+than three characters and will never be longer than 50 characters.
 
 Which validator class is to be used? Extbase looks for a validator
 class using
@@ -192,17 +190,16 @@ you can use it in the ``@validate`` annotation using the full
 class name, like shown in the following example::
 
 	class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEntity {
-	/**
-	* @var string
-	* *@validate Tx_BlogExample_Domain_Validator_TitleValidator*
-	*/
-	protected $title;
+		/**
+		 * @var string
+		 * @validate Tx_BlogExample_Domain_Validator_TitleValidator
+		 */
+		protected $title;
 
-	/**
-	* @var string
-	*/
-	protected $content;
-	...
+		/**
+		 * @var string
+		 */
+		protected $content;
 	}
 
 Here we validate the property ``$title`` with the
@@ -256,13 +253,13 @@ called with any object and has to return ``false`` in such
 case::
 
 	class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
-	public function isValid($user) {
-	if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
-	$this->addError('The given Object is not a User.', 1262341470);
-	return FALSE;
-	}
-	return TRUE;
-	}
+		public function isValid($user) {
+			if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
+				$this->addError('The given Object is not a User.', 1262341470);
+				return FALSE;
+			}
+			return TRUE;
+		}
 	}
 
 So, if ``$user`` is not an instance of the user object an
@@ -283,17 +280,17 @@ with the proper implementation - the check for equality of the
 passwords. This is made quickly::
 
 	class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
-	public function isValid($user) {
-	if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
-	$this->addError('The given Object is not a User.', 1262341470);
-	return FALSE;
-	}
-	if ($user->getPassword() !== $user->getPasswordConfirmation()) {
-	$this->addError('The passwords do not match.', 1262341707);
-	return FALSE;
-	}
-	return TRUE;
-	}
+		public function isValid($user) {
+			if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
+				$this->addError('The given Object is not a User.', 1262341470);
+				return FALSE;
+			}
+			if ($user->getPassword() !== $user->getPasswordConfirmation()) {
+				$this->addError('The passwords do not match.', 1262341707);
+				return FALSE;
+			}
+			return TRUE;
+		}
 	}
 
 Because we have access to the complete object the checking
@@ -325,18 +322,17 @@ controller action. It has the format ``@validate
 below it is ``$pageName`` :class:`Tx_MyExtension_Domain_Validator_PagenameValidator`::
 
 	/**
-	* Creates a new page with a given name.
-	*
-	* @param string $pageName THe name of the page which should be created.
-	* *@validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator*
-	*/
+	 * Creates a new page with a given name.
+	 *
+	 * @param string $pageName THe name of the page which should be created.
+	 * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator*
+	 */
 	public function createPageAction($pageName) {
-	...
+		...
 	}
 
 Here the parameter ``$pageName`` is checked with an own
 validator.
-
 
 
 Interaction of validators
@@ -360,14 +356,14 @@ Lets have a look at the interaction once more with an
 example::
 
 	/**
-	* Creates a website user for the given page name.
-	*
-	* @param string $pageName The name of the page where the user should be created.
-	* @param Tx_ExtbaseExample_Domain_Model_User $user The user which should be created.
-	* *@validate $user Tx_BlogExample_Domain_Validator_CustomUserValidator*
-	*/
+	 * Creates a website user for the given page name.
+	 *
+	 * @param string $pageName The name of the page where the user should be created.
+	 * @param Tx_ExtbaseExample_Domain_Model_User $user The user which should be created.
+	 * @validate $user Tx_BlogExample_Domain_Validator_CustomUserValidator
+	 */
 	public function createUserAction($pageName, Tx_ExtbaseExample_Domain_Model_User $user) {
-	...
+		...
 	}
 
 Here the following things are validated: ``$pageName``
@@ -389,8 +385,6 @@ domain model and calling the validator class of the domain
 object.
 
 
-
-
 Case study: Edit an existing object
 -------------------------------------------------
 
@@ -409,7 +403,7 @@ validation error. Two actions are involved at editing the blog: The
 The ``editAction`` for the blog looks like this::
 
 	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this->view->assign('blog', $blog);
+		$this->view->assign('blog', $blog);
 	}
 
 The blog object that we want to edit is passed and given to the
@@ -417,9 +411,9 @@ view. The Fluid template than looks like this (slightly shortened and
 reduced to the important)::
 
 	<f:form name="blog" object="{blog}" action="update">
-	<f:form.textbox property="title" />
-	<f:form.textbox property="description" />
-	<f:form.submit />
+		<f:form.textbox property="title" />
+		<f:form.textbox property="description" />
+		<f:form.submit />
 	</f:form>
 
 Note that the ``blog`` object to be edited is bound to the
@@ -435,7 +429,7 @@ as parameter.
 ::
 
 	public function updateAction((Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this->blogRepository->update($blog);
+		$this->blogRepository->update($blog);
 	}
 
 <constraintdef>
@@ -467,11 +461,11 @@ annotation ``@dontvalidate ``- the comment block of the
 ``editAction`` must be changed like this::
 
 	/**
-	* @param Tx_BlogExample_Domain_Model_Blog $blog The blog object
-	* *@dontvalidate $blog*
-	*/
+	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog object
+	 * @dontvalidate $blog
+	 */
 	public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-	$this->view->assign('blog', $blog);
+		$this->view->assign('blog', $blog);
 	}
 
 Now the ``blog`` object is not validated in the
@@ -489,7 +483,6 @@ to all erroneous fields - so you can frame them in red for example using
 CSS. There is also a ``flashMessages`` ViewHelper which outputs
 the error messages of the validation.
 </constraintdef>
-
 
 
 Case study: Create an object
@@ -511,22 +504,22 @@ Here you will see all that we need. At first the controller
 code::
 
 	/**
-	* This action shows the 'new' form for the blog.
-	*
-	* @param Tx_BlogExample_Domain_Model_Blog $newBlog The optional default values
-	* @dontvalidate $newBlog
-	*/
+	 * This action shows the 'new' form for the blog.
+	 *
+	 * @param Tx_BlogExample_Domain_Model_Blog $newBlog The optional default values
+	 * @dontvalidate $newBlog
+	 */
 	public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
-	$this->view->assign('newBlog', $newBlog);
+		$this->view->assign('newBlog', $newBlog);
 	}
 
 	/**
-	* This action creates the blog and stores it.
-	*
-	* @param Tx_BlogExample_Domain_Model_Blog $newBlog
-	*/
+	 * This action creates the blog and stores it.
+	 *
+	 * @param Tx_BlogExample_Domain_Model_Blog $newBlog
+	 */
 	public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
-	$this->blogRepository->add($newBlog);
+		$this->blogRepository->add($newBlog);
 	}
 
 The Fluid template for the :code:`newAction` looks
@@ -534,9 +527,9 @@ like this (in short form)::
 
 	<f:flashMessages />
 	<f:form name="newBlog" object="{newBlog}" action="create">
-	<f:form.textbox property="title" />
-	<f:form.textbox property="description" />
-	<f:form.submit />
+		<f:form.textbox property="title" />
+		<f:form.textbox property="description" />
+		<f:form.submit />
 	</f:form>
 
 What is the summary of what we have we done? Again it is important
@@ -583,8 +576,8 @@ our case ``title`` and ``description``.
 The Fluid form looks like this (shortened to the essential)::
 
 	<f:form method="post" action="update" name="blog" object="{blog}">
-	<f:form.textbox property="title" />
-	<f:form.textbox property="description" />
+		<f:form.textbox property="title" />
+		<f:form.textbox property="description" />
 	</f:form>
 
 If the form is submitted the data will be sent in the following
@@ -663,7 +656,7 @@ object: The changes are stored permanent now.
 	objects::
 
 		public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-		// object will be automaticly persisted
+			// object will be automaticly persisted
 		}
 
 	At first this is very in transparent and difficult to understand.
@@ -694,5 +687,3 @@ specific in your own projects.
 After you have learned how you can make sure any invariants of
 domain objects, the focus will be directed to the secure programming of
 the complete extension.
-
-
