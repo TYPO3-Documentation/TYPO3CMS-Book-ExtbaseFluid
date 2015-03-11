@@ -325,7 +325,7 @@ below it is ``$pageName`` :class:`Tx_MyExtension_Domain_Validator_PagenameValida
 	 * Creates a new page with a given name.
 	 *
 	 * @param string $pageName THe name of the page which should be created.
-	 * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator*
+	 * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator
 	 */
 	public function createPageAction($pageName) {
 		...
