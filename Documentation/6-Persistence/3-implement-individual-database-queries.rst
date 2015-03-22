@@ -55,7 +55,6 @@ generic method ``findAll()`` looks as follows::
 		return $this->createQuery()->execute();
 	}
 
-
 In this simple first use-case we don't any constraining parameter to the Query 
 object. However, we have to define such a parameter to implement the first 
 specified request "Find all the offers for a certain region". Thus, the 
@@ -86,14 +85,9 @@ respectively. Following Comparing operations are acceptable::
 	lessThanOrEqual($propertyName, $operand)
 	greaterThan($propertyName, $operand)
 	greaterThanOrEqual($propertyName, $operand)
-	
-
-
 
 The method ``equals()`` executes a simple comparison between the property's 
 value and the operand which may be a simple PHP data type or a Domain object. 
-
-
 
 Contrary, the methods ``in()`` and ``contains()`` accept multi-value data types 
 as arguments (e.g. Array, ObjectStorage). As ``in()`` checks if a single-valued 
@@ -105,9 +99,9 @@ a multi-valued operand (``$organizations``).
 ::
 
 	public function findOfferedBy(array $organizations) {
-	$query = $this->createQuery();
-	$query->matching($query->in('organization', $organizations));
-	return $query->execute();
+		$query = $this->createQuery();
+		$query->matching($query->in('organization', $organizations));
+		return $query->execute();
 	}
 	
 
@@ -129,7 +123,6 @@ they have offers for youngsters older than 16. You may define the request in the
 ``OrganizationRepository`` as follows::
 
 	$query->lessThanOrEqual('offers.ageRange.minimalValue', 16)
-
 
 Extbase	solves the path ``offers.ageRange.minimalValue`` by seeking every 
 organization which has offers whose age values have a minimum which is less or 
@@ -165,14 +158,14 @@ gets *false* and *false* gets *true*. Given this information, you can create
 complex queries like::
 
 	public function findMatchingOrganizationAndRegion(Tx_SjrOffers_Domain_Model_Organization $organization, Tx_SjrOffers_Domain_Model_Region $region) {
-	$query = $this->createQuery();
-	$query->matching(
-		$query->logicalAnd(
-			$query->equals('organization', $organization), 
-			$query->contains('regions', $region) 
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->equals('organization', $organization), 
+				$query->contains('regions', $region) 
 			)
-		); 
-	return $query->execute();
+		)
+		return $query->execute();
 	}
 
 The method ``findMatchingOrganizationAndRegion()`` returns those offers that 
@@ -188,41 +181,41 @@ In addition to the restrictions for the needs of the user there comes the reques
 to show the current offers. That denotes that their end date at most are one week ago.
 In the method ``findDemanded()`` of the ``offerRepository`` the request is implemented::
 
-    public function findDemanded(Tx_SjrOffers_Domain_Model_Demand $demand) {
-        $query = $this->createQuery();
-        $constraints = array();
-        if ($demand->getRegion() !== NULL) {
-            $constraints[] = $query->contains('regions', '$demand->getRegion());
-        }
-        if ($demand->getCategory() !== NULL) {
-            $constraints[] = $query->contains('categories', $demand->getCategory());
-        }
-        if ($demand->getOrganization() !== NULL) {
-            $constraints[] = $query->contains('organization', $demand->getOrganization());
-        }
-        if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
-            $constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
-        }
-        if ($demand->getAge() !== NULL) {
-            $constraints[] = $query->logicalAnd(
-                $query->logicalOr(
-                    $query->equals('ageRange.minimumValue', NULL),
-                    $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-                    ),
-                $query->logicalOr(
-                    $query->equals('ageRange.maximumValue', NULL),
-                    $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-                    ),
-                );
-        }
-        $constraints[] = $query->logicalOr(
-            $query->equals('dateRange.minimumValue', NULL),
-            $query->equals('dateRange.minimumValue', 0),
-            $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
-            );
-        $query->matching($query->logicalAnd($constraints));
-        return $query->execute();
-    }
+	public function findDemanded(Tx_SjrOffers_Domain_Model_Demand $demand) {
+		$query = $this->createQuery();
+		$constraints = array();
+		if ($demand->getRegion() !== NULL) {
+			$constraints[] = $query->contains('regions', '$demand->getRegion());
+		}
+		if ($demand->getCategory() !== NULL) {
+			$constraints[] = $query->contains('categories', $demand->getCategory());
+		}
+		if ($demand->getOrganization() !== NULL) {
+			$constraints[] = $query->contains('organization', $demand->getOrganization());
+		}
+		if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
+			$constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
+		}
+		if ($demand->getAge() !== NULL) {
+			$constraints[] = $query->logicalAnd(
+				$query->logicalOr(
+					$query->equals('ageRange.minimumValue', NULL),
+					$query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+				),
+				$query->logicalOr(
+					$query->equals('ageRange.maximumValue', NULL),
+					$query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+				),
+			);
+		}
+		$constraints[] = $query->logicalOr(
+			$query->equals('dateRange.minimumValue', NULL),
+			$query->equals('dateRange.minimumValue', 0),
+			$query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
+		);
+		$query->matching($query->logicalAnd($constraints));
+		return $query->execute();
+	}
 
 The ``Demand`` object is passed as argument. In the first lien the ``Query`` object is created.
 All single constraint terms are collected in the array ``$constraints`` and finally brought
@@ -234,16 +227,16 @@ the offers without given minimum or maximum age.
 
 ::
 
-    $constraints[] = $query->logicalAnd(
-        $query->logicalOr(
-            $query->equals('ageRange.minimumValue', NULL),
-            $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-        ),
-        $query->logicalOr(
-            $query->equals('ageRange.maximumValue', NULL),
-            $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-            ),
-        );
+	$constraints[] = $query->logicalAnd(
+		$query->logicalOr(
+			$query->equals('ageRange.minimumValue', NULL),
+			$query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+		),
+		$query->logicalOr(
+			$query->equals('ageRange.maximumValue', NULL),
+			$query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+		),
+	);
 
 This requirement is fulfilled by allowing a not set age (``NULL``) and concatenate this condition
 with ``logicalOr()`` with the condition ``lessThanOrEqual()`` and accordingly ``greaterThenOrEqual()``.
@@ -255,12 +248,12 @@ There are two constants fo the search order: ``Tx_Extbase_Persistence_QueryInter
 for an ascending order and ``Tx_Extbase_Persistence_QueryInterface:ORDER_DESCENDING`` for a descending
 order. A complete sample for specifying a sort order looks like this::
 
-    $query->setOrderings(
-        array(
-            'organization.name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
-            'title' => Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING
-            )
-        );
+	$query->setOrderings(
+		array(
+			'organization.name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
+			'title' => Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING
+		)
+	);
 
 Multiple orderings are processed in the specified order. In our sample the offers are ordered first
 by the name of the organization and inside the organization by the title of the offers in ascending
@@ -271,8 +264,8 @@ If you need only an extract of the result set, you can lower this with the two p
 and ``Offset``. Assumed you want to get the 10. up to 30. offer from the complete result from the
 repository you can achieve it with the following lines::
 
-    $query->setOffset(10);
-    $query->setLimit(20);
+	$query->setOffset(10);
+	$query->setLimit(20);
 
 Both methods expects an integer value. With the method ``setOffset()`` you set the pointer to the
 object you will start with. With the method ``setLimit()`` you set the count of objects you will get
@@ -330,17 +323,17 @@ look at an object with a single value property.
 
  ::
 
-    array(
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
-                'type' => '<type>',
-                'multivalue' => FALSE,
-                'value' => <value>
-            ), ...
-        )
-    )
+	array(
+		'identifier' => '<identifier>',
+		'classname' => '<classname>',
+		'properties' => array(
+			'<name>' => array(
+				'type' => '<type>',
+				'multivalue' => FALSE,
+				'value' => <value>
+			), ...
+		)
+	)
 
 The value for ``<identifier>`` in Extbase is always the UID of the data record. Together with the class name
 ``<classname>`` it is due to the uniqueness inside the database. The properties are stored in an own
@@ -358,37 +351,37 @@ value (``'multivalue' => TRUE``).
 
 ::
 
-    array(
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
-                'type' => '<type>',  // always 'Tx_Extbase_Persistence_ObjectStorage'
-                'multivalue' => TRUE,
-                'value' => array(
-                    array(
-                        'type' => '<type>',
-                        'index' => <index>,
-                        'value' => <value>
-                    ), ...
-                )
-            )
-        )
-    )
+	array(
+		'identifier' => '<identifier>',
+		'classname' => '<classname>',
+		'properties' => array(
+			'<name>' => array(
+				'type' => '<type>',  // always 'Tx_Extbase_Persistence_ObjectStorage'
+				'multivalue' => TRUE,
+				'value' => array(
+					array(
+						'type' => '<type>',
+						'index' => <index>,
+						'value' => <value>
+					), ...
+				)
+			)
+		)
+	)
 
 Has a property a NULL value, so it is stored in the object array like this::
 
-    array(
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
-                'type' => '<type>',
-                'multivalue' => <boolean>,
-                'value' => NULL
-            ), ...
-        )
-    )
+	array(
+		'identifier' => '<identifier>',
+		'classname' => '<classname>',
+		'properties' => array(
+			'<name>' => array(
+				'type' => '<type>',
+				'multivalue' => <boolean>,
+				'value' => NULL
+			), ...
+		)
+	)
 
 The debug output of the return value look like figure 6-13.
 
@@ -448,6 +441,6 @@ The call
 
 ::
 
-    $offersInRegion = $query->matching($query->contains('regions', $region))->count();
+	$offersInRegion = $query->matching($query->contains('regions', $region))->count();
 
 thus returns the count of offers of a given region.
