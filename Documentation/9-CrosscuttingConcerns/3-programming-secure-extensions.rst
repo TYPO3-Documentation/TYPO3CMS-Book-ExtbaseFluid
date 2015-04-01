@@ -160,7 +160,7 @@ of the forum and send them to a certain URL.
 If an administrator retrieve this prepared forum post, his session
 ID (that is stored in a cookie) is transferred to the attacker. By setting
 the cookie at the attacker himself, in the worsest case he can get
-adminitrator priviledges.
+administrator privileges.
 
 How can we prevent this now? The forum post don't have to put out
 unchanged - before we have to mask out all special charaters with a call
