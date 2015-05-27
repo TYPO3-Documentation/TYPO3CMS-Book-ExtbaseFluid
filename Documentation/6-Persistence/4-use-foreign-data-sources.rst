@@ -21,9 +21,10 @@ enables the storage of the object data of a class ``Tx_MyExtension_Domain_Model_
                     mapping {
                         tableName = tt_address
                         recordType = Tx_MyExtension_Domain_Model_Person
-                        columns
+                        columns {
                             birthday.mapOnProperty = dateOfBirth
                             street.mapOnProperty = thoroughfare
+                        }
                     }
                 }
             }
