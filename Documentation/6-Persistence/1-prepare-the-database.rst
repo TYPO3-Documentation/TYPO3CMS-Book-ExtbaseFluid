@@ -23,6 +23,8 @@ Let's have a look at the definition of the database table which will
 aggregate the objects of the class
 :class:`Tx_SjrOffers_Domain_Model_Organization`:
 
+::
+
 	CREATE TABLE tx_sjroffers_domain_model_organization (
 	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
