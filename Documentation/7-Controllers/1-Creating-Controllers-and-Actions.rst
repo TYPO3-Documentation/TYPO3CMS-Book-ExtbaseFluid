@@ -101,7 +101,7 @@ this::
 	}
 
 	public function indexAction() {
-		$this->view->assign('offers', $offerRepository->findAll());
+		$this->view->assign('offers', $this->offerRepository->findAll());
 	}
 
 :class:`ActionController` not only calls hte Method
