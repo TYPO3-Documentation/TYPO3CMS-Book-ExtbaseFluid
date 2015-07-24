@@ -226,6 +226,11 @@ the following sections:
 	:file:`extensionName/Resources/Private/Partials` is used. All partials that are
 	necessary for this extension should reside in this folder.
 
+``view.pluginNamespace``
+	This can be used to specify an alternative namespace for the plugin.
+	Use this to shorten the extbase default plugin namespace or to access
+	arguments from other extensions by setting this option to their namespace.
+
 ``view.templateRootPath``
 	This can be used to specify the root path for all fluid templates in this
 	extension. If nothing is specified, the path
@@ -235,11 +240,6 @@ the following sections:
 	There is no fallback to the files that are delivered with an extension!
 	Therefore you need to copy all original templates to this folder before you set
 	this TypoScript setting.
-
-``view.pluginNamespace``
-	This can be used to specify an alternative namespace for the plugin.
-	Use this to shorten the extbase default plugin namespace or to access
-	arguments from other extensions by setting this option to their namespace.
 
 ``_LOCAL_LANG``
 	Under this key you can modify localized strings for this extension.
