@@ -238,8 +238,8 @@ the following sections:
 
 ``view.pluginNamespace``
 	This can be used to specify an alternative namespace for the plugin.
-	Use this to shorten extabse daults plugin namespace,
-	or to access arguments from other extensions by settings this option to there namespace.
+	Use this to shorten the extbase default plugin namespace or to access
+	arguments from other extensions by setting this option to their namespace.
 
 ``_LOCAL_LANG``
 	Under this key you can modify localized strings for this extension.
