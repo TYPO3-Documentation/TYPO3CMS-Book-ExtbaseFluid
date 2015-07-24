@@ -236,6 +236,11 @@ the following sections:
 	Therefore you need to copy all original templates to this folder before you set
 	this TypoScript setting.
 
+``view.pluginNamespace``
+	This can be used to specify an alternative namespace for the plugin.
+	Use this to shorten extabse daults plugin namespace,
+	or to access arguments from other extensions by settings this option to there namespace.
+
 ``_LOCAL_LANG``
 	Under this key you can modify localized strings for this extension.
 	If you specify for example ``plugin.tx_blogexample._LOCAL_LANG.default.read_more =
