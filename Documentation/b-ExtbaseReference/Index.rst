@@ -166,6 +166,15 @@ underscore (_), as for example in blogexample. The configuration is divided into
 the following sections:
 
 
+
+``features``
+	Activate features for extbase or a specific plugin.
+
+``features.skipDefaultArguments``
+	Skip default arguments in URLs. If a link to the default controller or action
+	is created, the parameters are ommitted.
+	Default is ``false``.
+
 ``persistence``
 	Here are settings relevant to the persistence layer of Extbase.
 
