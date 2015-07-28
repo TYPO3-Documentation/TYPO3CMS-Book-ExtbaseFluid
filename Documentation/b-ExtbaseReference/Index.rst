@@ -172,7 +172,7 @@ the following sections:
 
 ``features.skipDefaultArguments``
 	Skip default arguments in URLs. If a link to the default controller or action
-	is created, the parameters are ommitted.
+	is created, the parameters are omitted.
 	Default is ``false``.
 
 ``persistence``
