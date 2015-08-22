@@ -8,7 +8,7 @@ context, that every ``Blog`` object already has all it's ``Post`` objects and th
 These blogs are delivered to the object, which is responsible for the output for 
 further processing: the so called *View*. If we make no own choice, like in our
 example, the TemplateView of Fluid is automatically available under the class 
-variable ``$his->view``.
+variable ``$this->view``.
 
 With the method ``assign()`` we "bind" the array with our blogs to the variable
 name "blogs" of the TemplateView. It can be addressed with this name in the 
