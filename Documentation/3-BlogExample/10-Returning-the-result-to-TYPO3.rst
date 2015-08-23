@@ -4,7 +4,7 @@ Returning the result to TYPO3
 In conclusion, all changes to objects that were previously only in the main 
 memory are made permanently preserved (persists). Thus the persistence manager 
 will now be appointed by ``$persistenceManager->persistAll()``. The persistence
-manager will walk through the used repositories und collects at first the new 
+manager will walk through the used repositories and collects at first the new 
 and the deleted objects. In our case the persistence manager asks the blog 
 repository about such objects. Since we set at run time either newly created 
 objects in the repository nor objects which have been included from there again, 
