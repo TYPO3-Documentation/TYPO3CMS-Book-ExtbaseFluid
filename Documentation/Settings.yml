@@ -1,7 +1,7 @@
 # Settings.yml
 ---
 conf.py:
-  copyright: 2009-2014
+  copyright: 2009-2015
   project: Developing TYPO3 Extensions with Extbase and Fluid
   version: 1.0
   release: 1.0
