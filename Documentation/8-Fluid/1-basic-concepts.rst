@@ -204,8 +204,53 @@ functionality.
 	of Fluid. You'll find a detailed reference of the ViewHelpers in
 	Appendix C.
 
+
 Inline Notification for View Helpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _inline-notation-vs-tag-based-notation:
+
+.. sidebar:: Inline Notation vs. Tag Based Notation
+
+	Once again a comparison between inline notation and tag based syntax:
+
+	Tags have an advantage, if:
+
+	* Control structures are being displayed::
+
+		<f:for each="{posts}" as="post">...</f:for>
+
+	* The ViewHelper returns a tag::
+
+		<f:form.textbox />
+
+	* The hierarchical structure of ViewHelpers is
+	  important::
+
+		<f:form>
+			<f:form.textbox />
+		</f:form>
+
+	* The ViewHelper contains a lot of content::
+
+		<f:section name="main">
+			....
+	   </f:section>
+
+	Inline notation should be used, if:
+
+	* The focus is on the data flow::
+
+		{post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
+
+	* The ViewHelper is being used inside of XML tags::
+
+		<link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
+
+	* The nature of the ViewHelper is rather a helper function::
+
+		{f:translate(key: '...')}
+
 
 It is intuitive and natural for most of the ViewHelpers to be called
 with the tag based syntax. Especially with control structures or form
@@ -314,49 +359,6 @@ this, and it is easier to see on which values the ViewHelper is working
 on. We can thus confirm that you can process the value of every Object
 Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->) . This can also be done multiple times.
-
-.. _inline-notation-vs-tag-based-notation:
-
-.. sidebar:: Inline Notation vs. Tag Based Notation
-
-	Once again a comparison between inline notation and tag based syntax:
-
-	Tags have an advantage, if:
-
-	* Control structures are being displayed::
-
-		<f:for each="{posts}" as="post">...</f:for>
-
-	* The ViewHelper returns a tag::
-
-		<f:form.textbox />
-
-	* The hierarchical structure of ViewHelpers is
-	  important::
-
-		<f:form>
-			<f:form.textbox />
-		</f:form>
-
-	* The ViewHelper contains a lot of content::
-
-		<f:section name="main">
-			....
-	   </f:section>
-
-	Inline notation should be used, if:
-
-	* The focus is on the data flow::
-
-		{post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
-
-	* The ViewHelper is being used inside of XML tags::
-
-		<link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
-
-	* The nature of the ViewHelper is rather a helper function::
-
-		{f:translate(key: '...')}
 
 
 Flexible Arrays Data Structures

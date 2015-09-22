@@ -14,7 +14,7 @@ animations and for a Date picker in the frontend.
 .. figure:: /Images/8-Fluid/figure-8-2.png
 	:align: center
 
-	Figure 8-2: Folder structure of layouts, templates and partials inside the 
+	Figure 8-2: Folder structure of layouts, templates and partials inside the
 	extension sjr_offers
 
 The extension *sjr_offers* has an
@@ -99,7 +99,7 @@ purpose.
 .. figure:: /Images/8-Fluid/figure-8-3.png
 	:align: center
 
-	Figure 8-3: Single view of an organization with its offers (left) and the 
+	Figure 8-3: Single view of an organization with its offers (left) and the
 	same view with shown editing symbols (right)
 
 Another repeating job is the formatting of numbers and date
@@ -114,8 +114,9 @@ template like this:
 ``<sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>``
 
 Alternatively you can use the inline notation of Fluid (therefore
-see the box :ref:`inline-notation-vs-tag-based-notation` earlier in this
-chapter):
+see the box
+:ref:`Inline Notation Versus Tag Based Notation <inline-notation-vs-tag-based-notation>`
+earlier in this chapter):
 
 ``{offer.ageRange->sjr:format.numericRange()}``
 
@@ -152,7 +153,7 @@ form is displayed, otherwise the content of the partial
 ::
 
 	<div id="dialog" title="Notice!">
-	You are not authorized to execute this action. 
+	You are not authorized to execute this action.
 	Please first log in with your username and password.
 	</div>
 
