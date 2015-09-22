@@ -37,14 +37,14 @@ the invariant is fulfilled than the validator returns ``true``
 otherwise ``false``. In Extbase all validators have to implement
 the interface
 :class:`Tx_Extbase_Validation_Validator_ValidatorInterface`.
-In this interface some are methods defined. The most important is called
+In this interface some methods are defined. The most important is called
 ``isValid($object)``. An object or value is passed over to it and
 it must return ``true`` when the object or value is valid,
 otherwise it returns ``false``. There are some more methods in
 the :class:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
-:class:`Tx_Extbase_Validation_Validator_ValidatorInterface`,
+:class:`Tx_Extbase_Validation_Validator_AbstractValidator`,
 because you get a default implemetation of the helper methods and you only
 have to implement the :code:`IsValid()` method.
 
