@@ -54,7 +54,7 @@ have to implement the :code:`isValid()` method.
 	:class:`ValidatorInterface` in Appendix B.
 
 For example, a validator which checks whether the passed string is
-an email address looks like this:
+an email address looks like this::
 
 	public function isValid($value) {
 		if (!is_string($value) || !$this->validEmail($value)) {
