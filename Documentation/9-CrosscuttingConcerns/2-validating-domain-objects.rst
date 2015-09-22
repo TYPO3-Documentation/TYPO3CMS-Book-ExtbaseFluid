@@ -46,7 +46,7 @@ settings and poll error messages. We recommend to inherit all validators
 from the
 :class:`Tx_Extbase_Validation_Validator_AbstractValidator`,
 because you get a default implemetation of the helper methods and you only
-have to implement the :code:`IsValid()` method.
+have to implement the :code:`isValid()` method.
 
 .. tip::
 
@@ -56,7 +56,32 @@ have to implement the :code:`IsValid()` method.
 For example, a validator which checks whether the passed string is
 an email address looks like this:
 
-<remark>TODO: insert code here</remark>
+	/**
+	 * Checks if the given value is a valid email address.
+	 *
+	 * @param mixed $value The value that should be validated
+	 * @return void
+	 * @api
+	 */
+	public function isValid($value) {
+		if (!is_string($value) || !$this->validEmail($value)) {
+			$this->addError(
+				$this->translateErrorMessage(
+					'validator.emailaddress.notvalid',
+					'extbase'
+				), 1221559976);
+		}
+	}
+
+	/**
+	 * Checking syntax of input email address
+	 *
+	 * @param string $emailAddress Input string to evaluate
+	 * @return bool Returns TRUE if the $email address (input string) is valid
+	 */
+	protected function validEmail($emailAddress) {
+		return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
+	}
 
 When ``$value`` is a string that compares to a (complex)
 regular expression, the validator returns ``true``. Otherwise an
@@ -83,7 +108,7 @@ When does validation take place?
 
 Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. With the help of figure
-9-1 we can show at what happens before the action is called.
+9-1 we can show what happens before the action is called.
 
 .. figure:: /Images/9-CrosscuttingConcerns/figure-9-1.png
 	:align: center
@@ -93,7 +118,7 @@ When they get inserted into a controller action. With the help of figure
 When a user sends a request, Extbase first determines which action
 respectively controller is responsible for this request. As Extbase knows
 the names and types of the arguments of the action it can create objects
-from the incoming data. This operation will be descibed in detail in the
+from the incoming data. This operation will be described in detail in the
 section "Argument mapping" later on. Now the main step for us is as
 follows: The created objects are to be validated, that is the invariants
 are to be checked. If all arguments are successfully validated, the
