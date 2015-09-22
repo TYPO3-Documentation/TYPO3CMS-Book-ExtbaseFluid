@@ -56,13 +56,6 @@ have to implement the :code:`isValid()` method.
 For example, a validator which checks whether the passed string is
 an email address looks like this:
 
-	/**
-	 * Checks if the given value is a valid email address.
-	 *
-	 * @param mixed $value The value that should be validated
-	 * @return void
-	 * @api
-	 */
 	public function isValid($value) {
 		if (!is_string($value) || !$this->validEmail($value)) {
 			$this->addError(
@@ -72,13 +65,7 @@ an email address looks like this:
 				), 1221559976);
 		}
 	}
-
-	/**
-	 * Checking syntax of input email address
-	 *
-	 * @param string $emailAddress Input string to evaluate
-	 * @return bool Returns TRUE if the $email address (input string) is valid
-	 */
+	
 	protected function validEmail($emailAddress) {
 		return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
 	}
