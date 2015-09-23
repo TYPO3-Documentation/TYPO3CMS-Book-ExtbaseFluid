@@ -2,24 +2,24 @@ Debugging with Xdebug
 =====================
 
 
-The usage of debuggers in other programming languages is default while it is special in PHP: The most PHP developer maintain bug fixing with e.g., *echo* and *var_damp* in the source code for understanding the routine. Though it's helpful to use a real debugger to comprehend errors because you can go through the source code step-by-step and look inside variables.
+The usage of debuggers in other programming languages is default while it is special in PHP: The most PHP developer maintain bug fixing with e.g., *echo* and *var_dump* in the source code for understanding the routine. Though it's helpful to use a real debugger to comprehend errors because you can go through the source code step-by-step and look inside variables.
 
 For debugging you need the PHP extension *Xdebug* *(http://xdebug.org)*. It changes the PHP configuration that you can run it step-by-step and you can inspect every variable. The development tools NetBeans and Eclipse can connect to Xdebug and enable graphical output.
 
-But back to Xdebug: You can install this PHP extension on different ways. We advise to install it over the packet management (like APT for Debian/Ubuntu or MacPorts for Mac OS X) or you install it in PECL (PHP Extension Community Library). The last method can run with the following command as user *root*::
+But back to Xdebug: You can install this PHP extension in different ways. We advise to install it over the packet management (like APT for Debian/Ubuntu or MacPorts for Mac OS X) or you install it in PECL (PHP Extension Community Library). The last method can be run with the following command as user *root*::
 
 	pecl install xdebug
 
-After a successfully installation you have to introduce Xdebug in PHP. For that add the following line into the php.ini::
+After a successful installation you have to introduce Xdebug to PHP. For that add the following line to the :file: `php.ini`::
 
 	zend_extension="/usr/local/php/modules/xdebug.so"
 
-In this process you have to declare the correct path to the file *xdebug.so*.
+In this process you have to declare the correct path to the file :file: `xdebug.so`.
 
 .. tip::
-	For Windows you can download a ready compiled version of Xdebug from the Xdebug website.
+	For Windows you can download an already compiled version of Xdebug from the Xdebug website.
 
-After a restart of Apache you can find a xdebug section in *phpinfo()*. For a cooperation of *Xdebug* with Eclipse or NetBeans you have to configure it. For that you have to set the following lines into :file:`php.ini`::
+After a restart of Apache you can find an xdebug section in *phpinfo()*. For the cooperation of *Xdebug* with Eclipse or NetBeans you have to configure it. For that you have to set the following lines in :file:`php.ini`::
 
 	xdebug.remote_enable=on
 	xdebug.remote_handler=dbgp
