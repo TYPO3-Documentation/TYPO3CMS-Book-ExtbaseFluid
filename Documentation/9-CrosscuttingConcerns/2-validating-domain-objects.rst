@@ -83,6 +83,10 @@ returns ``false``.
 	help of the error code the error can be definitely identified, for
 	example in bug reports.
 
+As default, extbase will not call your validator if the value to validate is
+empty. This is configued through the property ``$acceptsEmptyValues`` which is
+set to ``true`` as default.
+
 In the package
 :class:`Tx_Extbase_Validation_Validator_*` Extbase offers
 many validators for default requirements like the validation of emails,
