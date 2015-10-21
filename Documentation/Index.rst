@@ -1,8 +1,3 @@
-.. Media Management documentation master file, created by
-   sphinx-quickstart on Tue Sep 20 21:13:54 2011.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 
 .. _start:
 
@@ -12,14 +7,17 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
 TYPO3 is a free enterprise web content management system licensed under the GPL.
 
-.. ============================================
-.. Meta-Information
-.. ---------------------------------
-.. Author: Sebastian Kurfürst <sebastian@typo3.org>
-.. Jochen Rau <jochen.rau@typoplanet.de>
+:author:
+   Sebastian Kurfürst <sebastian@typo3.org>
 
-.. copyright 2010, Sebastian Kurfürst, Jochen Rau
-.. ============================================
+   Jochen Rau <jochen.rau@typoplanet.de>
+
+:copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
+:translation: Translated to English by the TYPO3 community
+
+.. note::
+
+   This version 4.7 of the documentation does not use PHP namespaces yet.
 
 .. toctree::
 	:maxdepth: 2
