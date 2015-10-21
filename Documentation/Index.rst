@@ -7,13 +7,14 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
 TYPO3 is a free enterprise web content management system licensed under the GPL.
 
-:author:
+:Authors:
    Sebastian Kurfürst <sebastian@typo3.org>
 
    Jochen Rau <jochen.rau@typoplanet.de>
 
-:copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
-:translation: Translated to English by the TYPO3 community
+:Copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
+:Translation: Translated to English by the TYPO3 community
+:Rendered:    |today|
 
 .. note::
 
