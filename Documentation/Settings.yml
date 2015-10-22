@@ -8,5 +8,4 @@ conf.py:
   html_theme_options:
     github_repository: TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid
     github_branch: latest
-  html_theme: t3SphinxThemeRtd
 ...
