@@ -289,7 +289,7 @@ the database.
 ::
 
     $result = $query->statement('SELECT * FROM tx_sjroffers_domain_model_offer
-        WHERE title LIKE ?', array('%climbing%', array(33,47)));
+        WHERE title LIKE ? AND organization IN ?', array('%climbing%', array(33,47)));
 
 is translated by Extbase to the following query::
 
