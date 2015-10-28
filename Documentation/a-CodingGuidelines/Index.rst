@@ -106,26 +106,27 @@ File and class names
 
 Class names in Extbase are composed with the following parts:
 
-#. the prefix ``Tx_`` 
+#. the vendor prefix. For example, if your name is ``Example``, then this part could
+   be `Ex`.
 #. the name of the extension in ``UpperCamelCase``. For example, if the extension-key
    is ``blog_example``, then this part of the classname is ``BlogExample``.
 #. the path within the :file:`Classes/` folder down to the folder, where the file
-   containing the class resides, where / is replaced with _.
+   containing the class resides.
 
 In table A-1 you see some naming examples for file and class names.
 
 *Table A-1: Examples for class names*
 
-+--------------------------------------------+---------------+-----------------------------------------------------+
-| classname                                  | extension key | folder                                              |
-+============================================+===============+=====================================================+
-| Tx_Extbase_Dispatcher                      | extbase       | extbase/Classes/Dispatcher.php                      |
-+--------------------------------------------+---------------+-----------------------------------------------------+
-| Tx_Extbase_MVC_Controller_ActionController | extbase       | Extbase/Classes/MVC/Controller/ActionController.php |
-+--------------------------------------------+---------------+-----------------------------------------------------+
-| Tx_BlogExample_Domain_Model_Post           | blog_example  | blog_example/Classes/Domain/Model/Post.php          |
-+--------------------------------------------+---------------+-----------------------------------------------------+
++--------------------------------------------------------+---------------+-----------------------------------------------------+
+| classname                                              | extension key | folder                                              |
++========================================================+===============+=====================================================+
+| TYPO3\\CMS\\Extbase\\Exception                         | extbase       | extbase/Classes/Exception.php                       |
++--------------------------------------------------------+---------------+-----------------------------------------------------+
+| TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ActionController | extbase       | extbase/Classes/Mvc/Controller/ActionController.php |
++--------------------------------------------------------+---------------+-----------------------------------------------------+
+| Ex\\BlogExample\\Domain\\Model\\Post                   | blog_example  | blog_example/Classes/Domain/Model/Post.php          |
++--------------------------------------------------------+---------------+-----------------------------------------------------+
 
-Interfaces end with ``Interface``, for example ``Tx_Extbase_MVC_RequestInterface``.
+Interfaces end with ``Interface``, for example ``TYPO3\CMS\Extbase\Mvc\RequestInterface``.
 With abstract classes the last part of the name always begins with ``Abstract``,
-for example ``Tx_Extbase_MVC_Controller_AbstractController``.
+for example ``TYPO3\CMSExtbase\Mvc\Controller\AbstractController``.
