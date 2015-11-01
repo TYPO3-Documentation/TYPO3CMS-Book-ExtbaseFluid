@@ -457,11 +457,11 @@ All classes of the domain model must inherit from one of the following two class
 Repositories
 ------------
 
-All repositories inherit from :class:`Tx_Extbase_Persistence_Repository`. A repository is always
+All repositories inherit from :class:`\\TYPO3\\CMS\\Extbase\\Persistence\\Repository`. A repository is always
 resposible for precisely one type of domain object. The naming of the repositories is important:
-If the domain object is for example Blog (with full name :class:`Tx_BlogExample_Domain_Model_Blog`),
+If the domain object is for example Blog (with full name :class:`\\Ex\\BlogExample\\Domain\\Model\\Blog`),
 then the corresponding repository is named *BlogRepository* (with full name
-:class:`Tx_BlogExample_Domain_Repository_BlogRepository`).
+:class:`\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
 
 Public Repository API
 ~~~~~~~~~~~~~~~~~~~~~
