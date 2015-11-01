@@ -37,7 +37,7 @@ Setting up the HTML basic framework
 ----------------------------------------------------
 
 The various templates have many common elements. First we define the
-basic framework by a common layout (see the section :ref:`fluid-using-layouts` earlier in this chapter) and store
+basic framework by a common layout (see the section :ref:`creating-a-consistent-look-and-feel-with-layouts` earlier in this chapter) and store
 repeating code in partials (see the section ":ref:`moving-repeating-snippets-to-partials`" earlier in this chapter). The basic
 framework of our templates looks as follows::
 
