@@ -9,7 +9,7 @@ This book uses the following typographic conventions:
 
 :class:`class names`,
 
-:code:`method names`,
+``method names``,
 
 ``inline code``
 

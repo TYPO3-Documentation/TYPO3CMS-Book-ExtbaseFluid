@@ -321,42 +321,42 @@ you see the most important properties of the action controller:
 
 Now follow the most important API methods of the action controller:
 
-:code:`Action()`
+``Action()``
 	Defines an action.
 
-:code:`errorAction()`
+``errorAction()``
 	Standard error action. Needs to be adjusted only in very rare cases. The name of
 	this method is defined by the property $errorMethodName.
 
-:code:`forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)`
+``forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)``
 	Issues an immediate internal forwarding of the request to another controller.
 
-:code:`initializeAction()`
+``initializeAction()``
 	Initialization method for all actions. Can be used to e.g. register arguments.
 
-:code:`initialize[actionName]Action()`
+``initialize[actionName]Action()``
 	Action-specific initialization, which is called only before the specific action.
 	Can be used to e.g. register arguments.
 
-:code:`initializeView(Tx_Extbase_MVC_ViewInterface $ view)`
+``initializeView(Tx_Extbase_MVC_ViewInterface $ view)``
 	Initialization method to configure and initialize the passed view.
 
-:code:`redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
+``redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)``
 	External HTTP redirect to another controller (immediately)
 
-:code:`redirectToURI($uri, $delay = 0, $statusCode = 303)`
+``redirectToURI($uri, $delay = 0, $statusCode = 303)``
 	Redirect to full URI (immediately)
 
-:code:`resolveView()`
+``resolveView()``
 	By overriding this method you can build and configure a completely individual
 	view object. This method should return a complete view object. In general,
 	however, it is sufficient to overwrite resolveViewObjectName().
 
-:code:`resolveViewObjectName()`
+``resolveViewObjectName()``
 	Resolves the name of the view object, if no suitable fluid template could be
 	found.
 
-:code:`throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
+``throwStatus($statusCode, $statusMessage = NULL, $content = NULL)``
 	The specified HTTP status code is sent immediately.
 
 
@@ -406,16 +406,16 @@ Define initialization code
 Sometimes it is necessary to execute code before calling an action. This is the case, for example,
 if complex arguments must be registered or required classes must be instantiated.
 
-There is a generic initialization method called :code:`initializeAction()`, which is called after
+There is a generic initialization method called ``initializeAction()``, which is called after
 the registration of arguments, but before calling the appropriate action method itself. After that
-generic :code:`initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called.
-Here you can perform action specific initializations (e.g. :code:`initializeShowAction()`).
+generic ``initializeAction()``, if it exists, a method named *initialize[ActionName]()* is called.
+Here you can perform action specific initializations (e.g. ``initializeShowAction()``).
 Only then the action itself is called.
 
 Catching validation errors with errorAction
 --------------------------------------------
 
-If an argument validation error has occurred, the method :code:`errorAction()` is called. There,
+If an argument validation error has occurred, the method ``errorAction()`` is called. There,
 in ``$this->argumentsMappingResults`` you have a list of occurred warnings and errors of the argument
 mappings available. This default ``errorAction`` refers back to the last sent form, if the referrer
 was sent with it.
@@ -458,30 +458,30 @@ then the corresponding repository is named *BlogRepository* (with full name
 
 Each repository provides the following public methods:
 
-:code:`add($object)`
+``add($object)``
 	Adds a new object.
 
-:code:`findAll()` and :code:`countAll()`
+``findAll()`` and ``countAll()``
 	returns all domain objects (or the number of them) it is responsible for.
 
-:code:`findByUid($uid)`
+``findByUid($uid)``
 	Returns the domain object with this UID.
 
-:code:`findByProperty($propertyValue)` and :code:`countByProperty($propertyValue)`
+``findByProperty($propertyValue)`` and ``countByProperty($propertyValue)``
 	Magic finder method. Finding all objects (or the number of them) for the property *property* having
 	a value of ``$propertyValue`` and returns them in an array, or the number as an integer value.
 
-:code:`findOneByProperty($propertyValue)`
+``findOneByProperty($propertyValue)``
 	Magic finder method. Finds the first object, for which the given property *property* has the value
 	$propertyValue.
 
-:code:`remove($object)` and :code:`removeAll()`
+``remove($object)`` and ``removeAll()``
 	Deletes an object (or all objects) in the repository.
 
-:code:`replace($existingObject, $newObject)`
+``replace($existingObject, $newObject)``
 	Replaces an object of the repositories with another.
 
-:code:`update($object)`
+``update($object)``
 	Updates the persisted object.
 
 A repository can be extended by own finder methods. Within this methods you can use the ``Query`` object,
@@ -499,47 +499,47 @@ Create a ``Query`` object within the repository through ``$this->createQuery()``
 object a constraint using ``$query->matching($constraint)``. The following comparison operations for
 generating a single condition are available:
 
-:code:`$query->equals($propertyName, $operand, $caseSensitive);`
+``$query->equals($propertyName, $operand, $caseSensitive);``
 	Simple comparison between the value of the property provided by $propertyName and the operand.
 	In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
-:code:`$query->in($propertyName, $operand);`
+``$query->in($propertyName, $operand);``
 	Checks if the value of the property _$propertyName_ is present within the series of values ​​in ``$operand``.
 
-:code:`$query->contains($propertyName, $operand);`
+``$query->contains($propertyName, $operand);``
 	Checks whether the specified property ``$propertyName`` containing a collection has an element
 	``$operand`` within that collection.
 
-:code:`$query->like($propertyName, $operand);`
+``$query->like($propertyName, $operand);``
 	Comparison between the value of the property specified by $propertyName and a string $operand.
 	In this string, the %-character is interpreted as placeholder (similar to * characters in search
 	engines, in reference to the SQL syntax).
 
-:code:`$query->lessThan($propertyName, $operand);`
+``$query->lessThan($propertyName, $operand);``
 	Checks if the value of the property $propertyName is less than the operand.
 
-:code:`$query->lessThanOrEqual($propertyName, $operand);`
+``$query->lessThanOrEqual($propertyName, $operand);``
 	Checks if the value of the property $propertyName is less than or equal to the operand.
 
-:code:`$query->greaterThan($propertyName, $operand);`
+``$query->greaterThan($propertyName, $operand);``
 	Checks if the value of the property $propertyName is greater than the operand.
 
-:code:`$query->greaterThanOrEqual($propertyName, $operand);`
+``$query->greaterThanOrEqual($propertyName, $operand);``
 	Checks if the value of the property $propertyName is greater than or equal to the operand.
 
 Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but also can be a "property path".
     Example: ``$query->equals('categories.title', 'tools')`` searches for objects having a category titled
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
-:code:`$query->logicalAnd($constraint1, $constraint2);`
+``$query->logicalAnd($constraint1, $constraint2);``
 	Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
 	1.1 also an array of conditions is allowed.
 
-:code:`$query->logicalOr($constraint1, $constraint2);`
+``$query->logicalOr($constraint1, $constraint2);``
 	Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
 	1.1 also an array of conditions is allowed.
 
-:code:`$query->logicalNot($constraint);`
+``$query->logicalNot($constraint);``
 	Returns a condition that inverts the result of the given condition (logical *not*).
 
 In the section "Individual queries," in Chapter 6  you can find a comprehensive example for building queries.
@@ -562,19 +562,19 @@ can also write your own validators. Each Validator implements the
 :class:`Tx_Extbase_Validation_Validator_ValidatorInterface` that defines the following
 methods:
 
-:code:`getErrors()`
+``getErrors()``
 	Returns any error messages of the last validation.
 
-:code:`isValid($value)`
+``isValid($value)``
 	Checks whether the object that was passed to the validator is valid. If yes,
 	returns true, otherwise false.
 
-:code:`setOptions(array $validationOptions)`
+``setOptions(array $validationOptions)``
 	Sets specific options for the validator. These options apply to any further call
 	of the method isValid().
 
 You can call Validators in your own code with the method
-:code:`createValidator($validatorName, $validatorOptions)` in
+``createValidator($validatorName, $validatorOptions)`` in
 :class:`Tx_Extbase_Validation_ValidatorResolver`. Though in general, this is not
 necessary. Validators are often used in conjunction with domain objects and
 controller actions.
