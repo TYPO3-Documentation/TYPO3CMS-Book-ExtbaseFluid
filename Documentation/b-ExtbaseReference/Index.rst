@@ -10,6 +10,8 @@ Extbase extensions.
 	Under http://typo3.org/go/extbasereferencesheet/ you find a useful
 	Cheat Sheet for Extbase and Fluid.
 
+.. _configuration_of_frontend_plugins:
+
 Configuration of frontend plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

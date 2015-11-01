@@ -1,4 +1,5 @@
 .. include:: ../Includes.txt
+.. _validating-domain-objects:
 
 Validating domain objects
 =========================
