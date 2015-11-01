@@ -31,12 +31,12 @@ backend. Let's have a look at the following two files:
 
 :file:`ext_localconf.php`::
 
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-		$_EXTKEY,
-		$pluginName
-		$controllerActionCombinations,
-		$uncachedActions
-	}
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        $_EXTKEY,
+        $pluginName
+        $controllerActionCombinations,
+        $uncachedActions
+    }
 
 In addition to the extension key and a unique name of the plugin (line 2 and 3)
 the allowed combinations of the controller and actions are determined.
@@ -51,11 +51,11 @@ same format as above, containing all the non-cached-actions.
 
 :file:`ext_tables.php`::
 
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-		$_EXTKEY,
-		$pluginName,
-		$backendTitle
-	);
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        $_EXTKEY,
+        $pluginName,
+        $backendTitle
+    );
 
 The extension key and $pluginName must be completely identical to the definition
 in :file:`ext_localconf.php`. $backendTitle defines the displayed name of the plugin in
@@ -67,32 +67,32 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 
 ::
 
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-		$_EXTKEY,
-		'Pi1',
-		array(
-			'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
-			'Post' => 'index,show,new,create,delete,edit,update',
-			'Comment' => 'create',
-		),
-		array(
-			'Blog' => 'delete,deleteAll,edit,update,populate',
-			'Post' => 'show,delete,edit,update',
-			'Comment' => 'create',
-		)
-	);
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        $_EXTKEY,
+        'Blog',
+        array(
+            'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
+            'Post' => 'index,show,new,create,delete,edit,update',
+            'Comment' => 'create',
+        ),
+        array(
+            'Blog' => 'delete,deleteAll,edit,update,populate',
+            'Post' => 'show,delete,edit,update',
+            'Comment' => 'create',
+        )
+    );
 
 *Example B-2: Configuration of an extension in the file ext_tables.php*
 
 ::
 
-	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-		$_EXTKEY,
-		'Pi1',
-		'A Blog Example'
-	);
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        $_EXTKEY,
+        'Blog',
+        'A Blog Example'
+    );
 
-The plugin name is pi1. It is important that in :file:`ext_localconf.php` and
+The plugin name is ``Blog``. It is important that in :file:`ext_localconf.php` and
 :file:`ext_tables.php` the name is exactly the same. The default action is the action
 index of the Controller *Blog* since this is the first element defined in the
 array and the first action in the list.
@@ -381,21 +381,20 @@ of the specified method, as shown in Example B-3:
 
 ::
 
-	/**
-	  * Displays a form for creating a new blog
-	  *
-	  * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
-	           as a basis for the form if it is set.
-	  * @return string An HTML form for creating a new blog
-	  * @dontvalidate $newBlog
-	  */
-	public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL) {
-	  $this->view->assign('newBlog', $newBlog);
-	);
-
-	public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL) {
-	  $this->view->assign('newBlog', $newBlog);
-	);
+    /**
+      * Displays a form for creating a new blog.
+      *
+      * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
+      *        as a basis for the form if it is set.
+      *
+      * @return string An HTML form for creating a new blog
+      *
+      * @dontvalidate $newBlog
+      */
+    public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
+    {
+        $this->view->assign('newBlog', $newBlog);
+    );
 
 It is important to specify the full type in the *@param* annotation as this is used for the validation
 of the object. Note that not only simple data types such as String, Integer or Float can be validated,
@@ -503,11 +502,19 @@ to formulate a request:
 
 ::
 
-	public function findWithCategory(\Ex\BlogExample\Domain\Model\Category $region) {
-	  $query = $this->createQuery();
-	  $query->matching($query->contains('categories', $category));
-	  return $query->execute();
-	}
+    /**
+     * Find blogs, which have the given category.
+     *
+     * @param \Ex\BlogExample\Domain\Model\Category $category
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     */
+    public function findWithCategory(\Ex\BlogExample\Domain\Model\Category $category)
+    {
+        $query = $this->createQuery();
+        $query->matching($query->contains('categories', $category));
+        return $query->execute();
+    }
 
 Create a ``Query`` object within the repository through ``$this->createQuery()``. You can give the query
 object a constraint using ``$query->matching($constraint)``. The following comparison operations for
@@ -604,18 +611,23 @@ example:
 
 ::
 
-	namespace Ex\BlogExample\Domain\Model;
+    namespace Ex\BlogExample\Domain\Model;
 
-	class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
-		/**
-		 * The blog's title.
-		 *
-		 * @var string
-		 * @validate Text, StringLength(minimum = 1, maximum = 80)
-		 */
-		protected $title;
-		// the class continues here
-	};
+    /**
+     * A single blog which has multiple posts and can be read by users.
+     */
+    class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    {
+        /**
+         * The blog's title.
+         *
+         * @var string
+         * @validate Text, StringLength(minimum = 1, maximum = 80)
+         */
+        protected $title;
+
+        // the class continues here
+    };
 
 In this code section, the validators for the $title attribute of the Blog object
 is defined. $title must be a text (ie, no HTML is allowed), and also the length
