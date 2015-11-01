@@ -31,7 +31,7 @@ backend. Let's have a look at the following two files:
 
 :file:`ext_localconf.php`::
 
-	Tx_Extbase_Utility_Extension::configurePlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 		$_EXTKEY,
 		$pluginName
 		$controllerActionCombinations,
@@ -51,7 +51,7 @@ same format as above, containing all the non-cached-actions.
 
 :file:`ext_tables.php`::
 
-	Tx_Extbase_Utility_Extension::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 		$_EXTKEY,
 		$pluginName,
 		$backendTitle
@@ -67,7 +67,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 
 ::
 
-	Tx_Extbase_Utility_Extension::configurePlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 		$_EXTKEY,
 		'Pi1',
 		array(
@@ -86,7 +86,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 
 ::
 
-	Tx_Extbase_Utility_Extension::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 		$_EXTKEY,
 		'Pi1',
 		'A Blog Example'
@@ -190,29 +190,22 @@ Here are settings relevant to the persistence layer of Extbase.
 	This settings are used with individual classes. That includes in particular the
 	mapping of classes and property names to tables and field names.
 
-``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.columns``
+``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.columns``
 	Here you can configure fields which differ from the regular naming conventions.
-	You use the form ``field_name.mapOnProperty = propertyName``. This is especially
-	necessary for Single Table Inheritance (see section "Using external data
-	sources" and "map class hierarchies" in Chapter 6).
+	You use the form ``field_name.mapOnProperty = propertyName``.
 
-``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.recordType``
+``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.recordType``
 	Here you can specify a string literal, which - if set - should be stored in the
-	type field of the table. This is especially necessary for Single Table
-	Inheritance (see section "Using external data sources" and "map class
-	hierarchies" in Chapter 6).
+	type field of the table.
 
-``persistence.classes.Tx_MyExt_Domain_Model_Foo.mapping.tableName``
+``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.tableName``
 	Here you can set a table name which differs from the regular naming conventions.
-	This is especially necessary for Single Table Inheritance (see section "Using
-	external data sources" and "map class hierarchies" in Chapter 6).
 
-``persistence.classes.Tx_MyExt_Domain_Model_Foo.newRecordStoragePid``
+``persistence.classes.Vendor\MyExt\Domain\Model\Foo.newRecordStoragePid``
 	Page-ID in which new records of the given class should be saved.
 
-``persistence.classes.Tx_MyExt_Domain_Model_Foo.subclasses``
-	List all subclasses of the class given in the form *ClassName = ClassName* here
-	(see "map class hierarchies" in Chapter 6).
+``persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses``
+	List all subclasses of the class given in the form *ClassName = ClassName*.
 
 ``persistence.enableAutomaticCacheClearing``
 	Enables the automatic cache clearing when changing data sets (see also the
@@ -280,15 +273,19 @@ Normally you will let your controllers inherit from ActionController. If you
 have special requirements that can not be realized with the ActionController,
 you should have a look at the controllers below.
 
-:class:`Tx_Extbase_MVC_Controller_ControllerInterface`
+:class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerInterface`
 	The basic interface that must be implemented by all controllers.
 
-:class:`Tx_Extbase_MVC_Controller_AbstractController`
+:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\AbstractController`
 	Abstract controller with basic functionality.
 
-:class:`Tx_Extbase_MVC_Controller_ActionController`
-	The most widely used controller in Extbase. An overview of its API is givben in
+:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ActionController`
+	The most widely used controller in Extbase. An overview of its API is given in
 	the following section.
+
+:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`
+	Extend this controller if you want to provide commands to the scheduler or command line
+	interface.
 
 ActionController API
 --------------------
@@ -310,23 +307,23 @@ you see the most important properties of the action controller:
 	fail. Default is errorAction. In general, it is not sensible to change this.
 
 ``$request``
-	Request object of type :class:`Tx_Extbase_MVC_RequestInterface`.
+	Request object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\RequestInterface`.
 
 ``$response``
-	Response object of type :class:`Tx_Extbase_MVC_ResponseInterface`.
+	Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
 
 ``$settings``
 	Domain-specific extension settings from TypoScript (as array).
 
 ``$view``
-	The view used (of type :class:`Tx_Extbase_MVC_View_ViewInterface`).
+	The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
 
 ``$viewObjectNamePattern``
 	If no fluid template is found for the current action, extbase attempts to find a
 	PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
 	changed here. By default names are used according to the scheme
-	*Tx@extension_View_@controller_@action_@format*. All string-parts marked with @
-	are replaced by the corresponding values​​. If no view class with this name is
+	*@vendor\@extension\View\@controller\@action@format*. All string-parts marked with @
+	are replaced by the corresponding values. If no view class with this name is
 	found, @format is removed from the pattern and again tried to find a view class
 	with that name.
 
@@ -350,7 +347,7 @@ Most important API methods of the action controller
 	Action-specific initialization, which is called only before the specific action.
 	Can be used to e.g. register arguments.
 
-:code:`initializeView(Tx_Extbase_MVC_ViewInterface $ view)`
+:code:`initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $ view)`
 	Initialization method to configure and initialize the passed view.
 
 :code:`redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
@@ -387,16 +384,16 @@ of the specified method, as shown in Example B-3:
 	/**
 	  * Displays a form for creating a new blog
 	  *
-	  * @param Tx_BlogExample_Domain_Model_Blog $newBlog A fresh blog object which should be taken
+	  * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
 	           as a basis for the form if it is set.
 	  * @return string An HTML form for creating a new blog
 	  * @dontvalidate $newBlog
 	  */
-	public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+	public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL) {
 	  $this->view->assign('newBlog', $newBlog);
 	);
 
-	public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+	public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL) {
 	  $this->view->assign('newBlog', $newBlog);
 	);
 
@@ -451,10 +448,10 @@ Domain model
 
 All classes of the domain model must inherit from one of the following two classes:
 
-:class:`Tx_Extbase_DomainModel_AbstractEntity`
+:class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity`
 	Is used if the object is an entity, i.e. possesses an identity.
 
-:class:`Tx_Extbase_DomainModel_AbstractValueObject`
+:class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractValueObject`
 	Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
 	ValueObjects are immutable.
 
@@ -506,7 +503,7 @@ to formulate a request:
 
 ::
 
-	public function findWithCategory(Tx_MyExt_Domain_Model_Category $region) {
+	public function findWithCategory(\Ex\BlogExample\Domain\Model\Category $region) {
 	  $query = $this->createQuery();
 	  $query->matching($query->contains('categories', $category));
 	  return $query->execute();
@@ -567,7 +564,7 @@ Validation
 You can write your own validators for domain models. These must be located in
 the folder :file:`Domain/Validator/`, they must be named exactly as the corresponding
 Domain model, but with the suffix Validator and implement the interface
-:class:`Tx_Extbase_Validation_Validator_ValidatorInterface`. For more details, see the
+:class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface`. For more details, see the
 following Section.
 
 Validation API
@@ -576,7 +573,7 @@ Validation API
 Extbase provides a generic validation system which is used in many places in
 Extbase and Fluid. Extbase provides validators for common data types, but you
 can also write your own validators. Each Validator implements the
-:class:`Tx_Extbase_Validation_Validator_ValidatorInterface` that defines the following
+:class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface` that defines the following
 methods:
 
 :code:`getErrors()`
@@ -592,7 +589,7 @@ methods:
 
 You can call Validators in your own code with the method
 :code:`createValidator($validatorName, $validatorOptions)` in
-:class:`Tx_Extbase_Validation_ValidatorResolver`. Though in general, this is not
+:class:`\\TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver`. Though in general, this is not
 necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
@@ -607,7 +604,9 @@ example:
 
 ::
 
-	class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractEntity {
+	namespace Ex\BlogExample\Domain\Model;
+
+	class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		/**
 		 * The blog's title.
 		 *
@@ -653,14 +652,14 @@ Localization
 
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
-:class:`Tx_Extbase_Utility_Localization` for the translation of the labels. In addition,
-there is the fluid ViewHelper translate, with the help of whom you can use that
+:class:`\\TYPO3\\CMS\\Extbase\\Utility\\LocalizationUtility` for the translation of the labels. In addition,
+there is the Fluid ViewHelper translate, with the help of whom you can use that
 functionality in templates.
 
 The localization class has only one public static method called translate, which
 does all the translation. The method can be called like this:
 
-``Tx_Extbase_Utility_Localization::translate($key, $extensionName, $arguments=NULL)``
+``\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)``
 
 ``$key``
 	The identifier to be translated. If then format *LLL:path:key* is given, then this
