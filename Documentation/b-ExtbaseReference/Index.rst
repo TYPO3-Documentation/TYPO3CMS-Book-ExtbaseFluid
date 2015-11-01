@@ -41,7 +41,7 @@ backend. Let's have a look at the following two files:
 In addition to the extension key and a unique name of the plugin (line 2 and 3)
 the allowed combinations of the controller and actions are determined.
 ``$controllerActionCombinations`` is an associative array. The Keys of this array
-are the allowed Controllers, and the values ​​are a comma-separated list of
+are the allowed Controllers, and the values are a comma-separated list of
 allowed actions per Controller. The first action of the first controller is the
 default action.
 
@@ -403,7 +403,7 @@ but also complex object types (see also the section "validating domain objects" 
 In addition, on actions showing the forms used to create or edit domain View objects, the validation of
 domain objects must be explicitly disabled - therefore the annotation *@dontvalidate* is necessary.
 
-Default values ​​can, as usual in PHP, just be indicated in the method signature. In the above case,
+Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
 the default value of the parameter ``$newBlog`` is set to NULL. If an action returns NULL or nothing,
 then automatically ``$this->view->render()`` is called, and thus the view is rendered.
 
@@ -525,7 +525,7 @@ generating a single condition are available:
 	In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
 :code:`$query->in($propertyName, $operand);`
-	Checks if the value of the property _$propertyName_ is present within the series of values ​​in ``$operand``.
+	Checks if the value of the property _$propertyName_ is present within the series of values in ``$operand``.
 
 :code:`$query->contains($propertyName, $operand);`
 	Checks whether the specified property ``$propertyName`` containing a collection has an element
