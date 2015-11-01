@@ -174,7 +174,7 @@ the following sections:
 features
 --------
 
-Activate features for extbase or a specific plugin.
+Activate features for Extbase or a specific plugin.
 
 ``features.skipDefaultArguments``
 	Skip default arguments in URLs. If a link to the default controller or action
@@ -242,7 +242,7 @@ View and template settings.
 
 ``view.pluginNamespace``
 	This can be used to specify an alternative namespace for the plugin.
-	Use this to shorten the extbase default plugin namespace or to access
+	Use this to shorten the Extbase default plugin namespace or to access
 	arguments from other extensions by setting this option to their namespace.
 
 ``view.templateRootPath``
@@ -319,7 +319,7 @@ you see the most important properties of the action controller:
 	The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
 
 ``$viewObjectNamePattern``
-	If no fluid template is found for the current action, extbase attempts to find a
+	If no fluid template is found for the current action, Extbase attempts to find a
 	PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
 	changed here. By default names are used according to the scheme
 	*@vendor\@extension\View\@controller\@action@format*. All string-parts marked with @
