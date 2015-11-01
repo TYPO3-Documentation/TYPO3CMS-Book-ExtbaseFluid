@@ -81,8 +81,8 @@ The product properties are designed as class variable
 ``$name``, ``$description`` and ``$quantity`` and
 protected (*encapsulated*) against direct access from
 outside by the keyword ``protected`` . The property values can be
-set and/or read only by the methods :code:`setProperty()`
-and :code:`getProperty()` declared as ``public``.
+set and/or read only by the methods ``setProperty()``
+and ``getProperty()`` declared as ``public``.
 Methods in this form are used very frequently and therefore they are
 generically named Getter and Setter for short.
 
@@ -99,7 +99,7 @@ generically named Getter and Setter for short.
 	internally tries to fill a property ``$name`` over a method
 	``setName()``.
 
-The method :code:`__construct()` serves to guarantee
+The method ``__construct()`` serves to guarantee
 a well defined state at the beginning of the life cycle of the object. Here
 the properties of the product are set with their respectively preset
 values.
