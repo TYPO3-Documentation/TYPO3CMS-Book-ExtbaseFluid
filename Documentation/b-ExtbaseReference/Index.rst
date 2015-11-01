@@ -13,7 +13,7 @@ Extbase extensions.
 .. _configuration_of_frontend_plugins:
 
 Configuration of frontend plugins
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In classical TYPO3 extensions the front-end functionality is divided into
 several front-end Plugins. Normally each has a separate code base.
@@ -282,7 +282,7 @@ you should have a look at the controllers below.
 	the following section.
 
 ActionController API
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
@@ -363,7 +363,7 @@ Now follow the most important API methods of the action controller:
 
 
 Actions
-^^^^^^^^
+^^^^^^^
 
 All public methods that end in action (for example ``indexAction`` or ``showAction``),
 are automatically registered as actions of the controller.
@@ -403,7 +403,7 @@ the default value of the parameter ``$newBlog`` is set to NULL. If an action ret
 then automatically ``$this->view->render()`` is called, and thus the view is rendered.
 
 Define initialization code
----------------------------
+--------------------------
 
 Sometimes it is necessary to execute code before calling an action. This is the case, for example,
 if complex arguments must be registered or required classes must be instantiated.
@@ -415,7 +415,7 @@ Here you can perform action specific initializations (e.g. :code:`initializeShow
 Only then the action itself is called.
 
 Catching validation errors with errorAction
---------------------------------------------
+-------------------------------------------
 
 If an argument validation error has occurred, the method :code:`errorAction()` is called. There,
 in ``$this->argumentsMappingResults`` you have a list of occurred warnings and errors of the argument
@@ -423,7 +423,7 @@ mappings available. This default ``errorAction`` refers back to the last sent fo
 was sent with it.
 
 Application domain of the extension
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The domain of the extension is always located below :file:`Classes/Domain`. This folder is structured
 as follows:
@@ -438,7 +438,7 @@ as follows:
 	Contains specific validators for the domain model.
 
 Domain model
--------------
+------------
 
 All classes of the domain model must inherit from one of the following two classes:
 
@@ -450,7 +450,7 @@ All classes of the domain model must inherit from one of the following two class
 	ValueObjects are immutable.
 
 Repositories
--------------
+------------
 
 All repositories inherit from :class:`Tx_Extbase_Persistence_Repository`. A repository is always
 resposible for precisely one type of domain object. The naming of the repositories is important:
@@ -582,7 +582,7 @@ necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
 Validating properties of the domain model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can define simple validation rules in the domain model by annotation. For
 this, you use the annotation *@validate* with properties of the object. A brief
@@ -613,7 +613,7 @@ If complex validation rules are necessary (for example, multiple fields to be
 checked for equality), you must implement your own validator.
 
 Validation of controller arguments
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each controller argument is validated by the following rules: If the argument
 has a simple type (string, integer, etc.), this type is checked. If the argument
