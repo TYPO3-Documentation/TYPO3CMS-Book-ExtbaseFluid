@@ -12,8 +12,8 @@ Extbase extensions.
 
 .. _configuration_of_frontend_plugins:
 
-Configuration of frontend plugins
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Registration of frontend plugins
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In classical TYPO3 extensions the front-end functionality is divided into
 several front-end Plugins. Normally each has a separate code base.
@@ -97,10 +97,14 @@ The plugin name is pi1. It is important that in :file:`ext_localconf.php` and
 index of the Controller *Blog* since this is the first element defined in the
 array and the first action in the list.
 
+Caching of actions and records
+------------------------------
+
 All actions which change data must not be cacheable. Above, this is for example
 the delete action in the blog controller. In the backend now you can see A Blog
 Example in the list of plugins (see Figure B-1).
 
+.. Todo: Add section about backend modules.
 
 .. figure:: /Images/b-ExtbaseReference/figure-b-1.png
 	:align: center
@@ -167,18 +171,20 @@ TypoScript path. The "lowercased extension name" is the extension key with no
 underscore (_), as for example in blogexample. The configuration is divided into
 the following sections:
 
+features
+--------
 
-
-``features``
-	Activate features for extbase or a specific plugin.
+Activate features for extbase or a specific plugin.
 
 ``features.skipDefaultArguments``
 	Skip default arguments in URLs. If a link to the default controller or action
 	is created, the parameters are omitted.
 	Default is ``false``.
 
-``persistence``
-	Here are settings relevant to the persistence layer of Extbase.
+persistence
+-----------
+
+Here are settings relevant to the persistence layer of Extbase.
 
 ``persistence.classes``
 	This settings are used with individual classes. That includes in particular the
@@ -217,13 +223,17 @@ the following sections:
 	List of Page-IDs, from which all records are read (see the section "Creating the
 	repositories" in Chapter 6).
 
-``settings``
-	Here reside are all the domain-specific extension settings. This setting are
-	available as an array in the controllers in ``$this->settings`` and in any Fluid
-	template with ``{settings}``.
+settings
+--------
 
-``view``
-	View and template settings.
+Here reside are all the domain-specific extension settings. This setting are
+available as an array in the controllers in ``$this->settings`` and in any Fluid
+template with ``{settings}``.
+
+view
+----
+
+View and template settings.
 
 ``view.layoutRootPath``
 	This can be used to specify the root path for all fluid layouts in this
@@ -252,20 +262,19 @@ the following sections:
 	Therefore you need to copy all original templates to this folder before you set
 	this TypoScript setting.
 
-``_LOCAL_LANG``
-	Under this key you can modify localized strings for this extension.
-	If you specify for example ``plugin.tx_blogexample._LOCAL_LANG.default.read_more =
-	More>>`` then the standard translation for the key read_more is overwritten by the
-	string *More>>*.
+_LOCAL_LANG
+-----------
 
-Using Model View Controller
----------------------------
-
-The MVC Framework is the heart of Extbase. Below we will give you an overview of
-the class hierarchy for the controllers and the API of the ActionControllers.
+Under this key you can modify localized strings for this extension.
+If you specify for example ``plugin.tx_blogexample._LOCAL_LANG.default.read_more =
+More>>`` then the standard translation for the key read_more is overwritten by the
+string *More>>*.
 
 Class Hierarchy
 ^^^^^^^^^^^^^^^
+
+The MVC Framework is the heart of Extbase. Below we will give you an overview of
+the class hierarchy for the controllers and the API of the ActionControllers.
 
 Normally you will let your controllers inherit from ActionController. If you
 have special requirements that can not be realized with the ActionController,
@@ -282,7 +291,7 @@ you should have a look at the controllers below.
 	the following section.
 
 ActionController API
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
@@ -321,7 +330,8 @@ you see the most important properties of the action controller:
 	found, @format is removed from the pattern and again tried to find a view class
 	with that name.
 
-Now follow the most important API methods of the action controller:
+Most important API methods of the action controller
+---------------------------------------------------
 
 :code:`Action()`
 	Defines an action.
@@ -361,9 +371,8 @@ Now follow the most important API methods of the action controller:
 :code:`throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
 	The specified HTTP status code is sent immediately.
 
-
 Actions
-^^^^^^^
+-------
 
 All public methods that end in action (for example ``indexAction`` or ``showAction``),
 are automatically registered as actions of the controller.
@@ -458,6 +467,9 @@ If the domain object is for example Blog (with full name :class:`Tx_BlogExample_
 then the corresponding repository is named *BlogRepository* (with full name
 :class:`Tx_BlogExample_Domain_Repository_BlogRepository`).
 
+Public Repository API
+~~~~~~~~~~~~~~~~~~~~~
+
 Each repository provides the following public methods:
 
 :code:`add($object)`
@@ -485,6 +497,9 @@ Each repository provides the following public methods:
 
 :code:`update($object)`
 	Updates the persisted object.
+
+Custom find methods in repositories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A repository can be extended by own finder methods. Within this methods you can use the ``Query`` object,
 to formulate a request:
@@ -546,7 +561,7 @@ Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but a
 
 In the section "Individual queries," in Chapter 6  you can find a comprehensive example for building queries.
 
-Validators
+Validation
 ^^^^^^^^^^
 
 You can write your own validators for domain models. These must be located in
@@ -555,8 +570,8 @@ Domain model, but with the suffix Validator and implement the interface
 :class:`Tx_Extbase_Validation_Validator_ValidatorInterface`. For more details, see the
 following Section.
 
-Validation
-----------
+Validation API
+--------------
 
 Extbase provides a generic validation system which is used in many places in
 Extbase and Fluid. Extbase provides validators for common data types, but you
@@ -581,8 +596,8 @@ You can call Validators in your own code with the method
 necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
-Validating properties of the domain model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Validation of model properties
+------------------------------
 
 You can define simple validation rules in the domain model by annotation. For
 this, you use the annotation *@validate* with properties of the object. A brief
@@ -613,7 +628,7 @@ If complex validation rules are necessary (for example, multiple fields to be
 checked for equality), you must implement your own validator.
 
 Validation of controller arguments
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 Each controller argument is validated by the following rules: If the argument
 has a simple type (string, integer, etc.), this type is checked. If the argument
@@ -634,7 +649,7 @@ object' in Chapter 9
 
 
 Localization
-------------
+^^^^^^^^^^^^
 
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
