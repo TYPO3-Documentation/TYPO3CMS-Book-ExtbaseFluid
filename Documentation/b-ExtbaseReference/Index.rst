@@ -1,6 +1,7 @@
 .. Todo: Interfaces are currently not in the inventory of t3api.
     We should reference them, as soon as they are inside. Xavier already rendered them, but I didn't
     get the url running for latest.
+    We also should ref all code to the API.
 
 .. include:: ../Includes.txt
 .. _extbase_reference:
@@ -24,6 +25,12 @@ Registration of frontend plugins
 
 .. Todo: Add section about backend modules.
 
+In classical TYPO3 extensions the frontend functionality is divided into
+several frontend plugins. Normally each has a separate code base.
+In contrast, there is only one code base in Extbase (a series of controllers and
+actions). Nevertheless, it is possible to group controllers and actions
+to make it possible to have multiple frontend plugins.
+
 .. sidebar:: Why two files?
 
     You may wonder why you need to edit both, file :file:`ext_localconf.php` and file
@@ -36,12 +43,6 @@ Registration of frontend plugins
     For further information, check out :ref:`Extenion configuration files
     <t3coreapi:extension-configuration-files>`.
 
-In classical TYPO3 extensions the frontend functionality is divided into
-several frontend plugins. Normally each has a separate code base.
-In contrast, there is only one code base in Extbase (a series of controllers and
-actions). Nevertheless, it is possible to group controllers and actions
-to make it possible to have multiple frontend plugins.
-
 For the definition of a plugin, the files :file:`ext_localconf.php` and :file:`ext_tables.php`
 have to be adjusted.
 
@@ -53,7 +54,7 @@ backend. Let's have a look at the following two files:
 :file:`ext_localconf.php`::
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $_EXTKEY,
+        'Vendor' . $_EXTKEY,
         $pluginName
         $controllerActionCombinations,
         $uncachedActions
@@ -73,7 +74,7 @@ same format as above, containing all the non-cached-actions.
 :file:`ext_tables.php`::
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY,
+        'Vendor' . $_EXTKEY,
         $pluginName,
         $backendTitle
     );
@@ -89,7 +90,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 ::
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $_EXTKEY,
+        'Ex' . $_EXTKEY,
         'Blog',
         array(
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
@@ -108,15 +109,14 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 ::
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY,
+        'Ex' . $_EXTKEY,
         'Blog',
         'A Blog Example'
     );
 
-The plugin name is ``Blog``. It is important that in :file:`ext_localconf.php` and
-:file:`ext_tables.php` the name is exactly the same. The default action is the action
-``index`` of the controller ``blog`` since this is the first element defined in the
-array and the first action in the list.
+The plugin name is ``Blog``. It is important that the name is exactly the same in
+:file:`ext_localconf.php` and :file:`ext_tables.php`. The default action is ``index`` of controller
+``blog`` since it's the first element defined in the array and the first action in the list.
 
 All actions which change data must not be cacheable. Above, this is for example
 the ``delete`` action in the ``blog`` controller. In the backend you can see "*A Blog
@@ -154,24 +154,30 @@ Posts the SysFolder *BLOGS* is configured. If an entry is changed, the cache of 
 :ref:`TCEMAIN.clearCacheCmd <t3tsconfig:pagetcemain-clearcachecmd>` for the SysFolder is evaluated.
 This contains a comma-separated list of Page IDs, for which the cache should be emptied. In this
 case, when updating a record in the SysFolder *BLOGS* (e.g.  Blogs, Posts, Comments), the cache of
-the page *Blog* (with ID 11) is cleared automatically, so the changes are immediately visible.
+the page *Blog*, with ID 11, is cleared automatically, so the changes are immediately visible.
 
 Even if the user enters incorrect data in a form (and this form will be
 displayed again), the cache of the current page is deleted to force a new
 representation of the form.
 
-The automatic cache clearing is enabled by default, you can use TypoScript
-configuration to disable it (see :ref:`features.skipDefaultArguments <features-skipDefaultArguments>`).
+The automatic cache clearing is enabled by default, you can use the TypoScript configuration
+:ref:`persistence.enableAutomaticCacheClearing <persistence-enableAutomaticCacheClearing>` to disable
+it.
 
 .. _typoscript_configuration:
 
 TypoScript Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each Extbase based extension has some settings which can be modified using TypoScript. Many of these
+Each Extbase extension has some settings which can be modified using TypoScript. Many of these
 settings affect aspects of the internal Configuration of Extbase and Fluid. There is also a block
 ``settings`` in which you can set Extension specific settings, which can be accessed in the
 controllers and Templates of your extensions.
+
+.. tip::
+
+    These options are allways available. Integrators can use them to configure the behaviour, even
+    if not inteded or provided by the author of the extension.
 
 **plugin.tx_[lowercasedextensionname]**
 
@@ -226,7 +232,9 @@ Settings relevant to the persistence layer of Extbase.
     Page-ID in which new records of the given class should be saved.
 
 `persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses`
-    List all subclasses of the class given in the form *ClassName = ClassName*.
+    List all subclasses of the class given in the form `Identifier = ClassName`.
+
+.. _persistence-enableAutomaticCacheClearing:
 
 `persistence.enableAutomaticCacheClearing`
     Enables the automatic cache clearing when changing data sets (see also the
@@ -282,9 +290,9 @@ View and template settings.
     :file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
     for this extension should reside in this folder.
 
-    There is no fallback to the files that are delivered with an extension!
-    Therefore you need to copy all original templates to this folder before you set
-    this TypoScript setting.
+There is no fallback to the files that are delivered with an extension!
+Therefore you need to copy all original templates to this folder before you set
+this TypoScript setting.
 
 .. Todo: Add feature #66111, multiple paths for fluid.
 
@@ -303,7 +311,7 @@ _LOCAL_LANG
 
 Under this key you can modify localized strings for this extension.
 If you specify for example `plugin.tx_blogexample._LOCAL_LANG.default.read_more =
-More>>` then the standard translation for the key read_more is overwritten by the
+More>>` then the standard translation for the key `read_more` is overwritten by the
 string *More>>*.
 
 .. _class_hierarchy:
@@ -312,10 +320,10 @@ Class Hierarchy
 ^^^^^^^^^^^^^^^
 
 The MVC Framework is the heart of Extbase. Below we will give you an overview of
-the class hierarchy for the controllers and the API of the ActionControllers.
+the class hierarchy for the controllers and the API of the `ActionControllers`.
 
-Normally you will let your controllers inherit from ActionController. If you
-have special requirements that can not be realized with the ActionController,
+Normally you will let your controllers inherit from `ActionController`. If you
+have special requirements that can not be realized with the `ActionController`,
 you should have a look at the controllers below.
 
 :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerInterface`
@@ -360,7 +368,7 @@ you see the most important properties of the action controller:
     Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
 
 `$settings`
-    Domain-specific extension settings from TypoScript (as array).
+    Domain-specific extension settings from TypoScript (as array), see :ref:`typoscript_configuration-settings`.
 
 `$view`
     The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
@@ -380,42 +388,42 @@ you see the most important properties of the action controller:
 Most important API methods of action controller
 ---------------------------------------------------
 
-:code:`Action()`
+`Action()`
     Defines an action.
 
-:code:`errorAction()`
+`errorAction()`
     Standard error action. Needs to be adjusted only in very rare cases. The name of
     this method is defined by the property $errorMethodName.
 
-:code:`forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)`
+`forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)`
     Issues an immediate internal forwarding of the request to another controller.
 
-:code:`initializeAction()`
+`initializeAction()`
     Initialization method for all actions. Can be used to e.g. register arguments.
 
-:code:`initialize[actionName]Action()`
+`initialize[actionName]Action()`
     Action-specific initialization, which is called only before the specific action.
     Can be used to e.g. register arguments.
 
-:code:`initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $ view)`
+`initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $ view)`
     Initialization method to configure and initialize the passed view.
 
-:code:`redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
+`redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
     External HTTP redirect to another controller (immediately)
 
-:code:`redirectToURI($uri, $delay = 0, $statusCode = 303)`
+`redirectToURI($uri, $delay = 0, $statusCode = 303)`
     Redirect to full URI (immediately)
 
-:code:`resolveView()`
+`resolveView()`
     By overriding this method you can build and configure a completely individual
     view object. This method should return a complete view object. In general,
     however, it is sufficient to overwrite resolveViewObjectName().
 
-:code:`resolveViewObjectName()`
+`resolveViewObjectName()`
     Resolves the name of the view object, if no suitable fluid template could be
     found.
 
-:code:`throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
+`throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
     The specified HTTP status code is sent immediately.
 
 .. _class_hierarchy-actions:
@@ -423,7 +431,7 @@ Most important API methods of action controller
 Actions
 -------
 
-All public methods that end in action (for example `indexAction` or `showAction`),
+All public and protected methods that end in *action* (for example `indexAction` or `showAction`),
 are automatically registered as actions of the controller.
 
 Many of these actions have parameters. These appear as annotations in the Doc-Comment-Block
@@ -434,29 +442,29 @@ of the specified method, as shown in Example B-3:
 ::
 
     /**
-      * Displays a form for creating a new blog.
+      * Displays a form for creating a new blog, optionally prefilled with partial information.
       *
       * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
       *        as a basis for the form if it is set.
       *
-      * @return string An HTML form for creating a new blog
+      * @return void
       *
-      * @dontvalidate $newBlog
+      * @ignorevalidation $newBlog
       */
     public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
     {
         $this->view->assign('newBlog', $newBlog);
     )
 
-It is important to specify the full type in the *@param* annotation as this is used for the validation
+It is important to specify the full type in the `@param` annotation as this is used for the validation
 of the object. Note that not only simple data types such as String, Integer or Float can be validated,
-but also complex object types (see also the section "validating domain objects" in Chapter 9).
+but also complex object types (see also the section ":ref:`validating-domain-objects`" in Chapter 9).
 
-In addition, on actions showing the forms used to create or edit domain View objects, the validation of
-domain objects must be explicitly disabled - therefore the annotation *@dontvalidate* is necessary.
+In addition, on actions showing the forms used to create domain objects, the validation of domain
+objects must be explicitly disabled - therefore the annotation `@ignorevalidation` is necessary.
 
 Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
-the default value of the parameter `$newBlog` is set to NULL. If an action returns NULL or nothing,
+the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
 then automatically `$this->view->render()` is called, and thus the view is rendered.
 
 .. _class_hierarchy-define_initialization_code:
@@ -464,23 +472,22 @@ then automatically `$this->view->render()` is called, and thus the view is rende
 Define initialization code
 --------------------------
 
-Sometimes it is necessary to execute code before calling an action. This is the case, for example,
-if complex arguments must be registered or required classes must be instantiated.
+Sometimes it is necessary to execute code before calling an action. For example, if complex
+arguments must be registered or required classes must be instantiated.
 
-There is a generic initialization method called :code:`initializeAction()`, which is called after
-the registration of arguments, but before calling the appropriate action method itself. After that
-generic :code:`initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called.
-Here you can perform action specific initializations (e.g. :code:`initializeShowAction()`).
-Only then the action itself is called.
+There is a generic initialization method called `initializeAction()`, which is called after
+the registration of arguments, but before calling the appropriate action method itself. After the
+generic `initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called.
+Here you can perform action specific initializations (e.g. `initializeShowAction()`).
 
 .. _class_hierarchy-catching_validation_errors_with_error_action:
 
 Catching validation errors with errorAction
 -------------------------------------------
 
-If an argument validation error has occurred, the method :code:`errorAction()` is called. There,
+If an argument validation error has occurred, the method `errorAction()` is called. There,
 in `$this->argumentsMappingResults` you have a list of occurred warnings and errors of the argument
-mappings available. This default `errorAction` refers back to the last sent form, if the referrer
+mappings available. This default `errorAction` refers back to the referrer, if the referrer
 was sent with it.
 
 Application domain of the extension
@@ -490,13 +497,13 @@ The domain of the extension is always located below :file:`Classes/Domain`. This
 as follows:
 
 :file:`Model/`
-    Contains the domain model itself.
+    Contains the domain models itself.
 
 :file:`Repository/`
-    Contains the repositories to access the domain model.
+    Contains the repositories to access the domain models.
 
 :file:`Validator/`
-    Contains specific validators for the domain model.
+    Contains specific validators for the domain models.
 
 Domain model
 ------------
@@ -514,40 +521,40 @@ Repositories
 ------------
 
 All repositories inherit from :class:`\\TYPO3\\CMS\\Extbase\\Persistence\\Repository`. A repository is always
-resposible for precisely one type of domain object. The naming of the repositories is important:
-If the domain object is for example Blog (with full name :class:`\\Ex\\BlogExample\\Domain\\Model\\Blog`),
+responsible for precisely one type of domain object. The naming of the repositories is important:
+If the domain object is, for example, *Blog* (with full name `\\Ex\\BlogExample\\Domain\\Model\\Blog`),
 then the corresponding repository is named *BlogRepository* (with full name
-:class:`\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
+`\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
 
 Public Repository API
 ~~~~~~~~~~~~~~~~~~~~~
 
 Each repository provides the following public methods:
 
-:code:`add($object)`
+`add($object)`
     Adds a new object.
 
-:code:`findAll()` and :code:`countAll()`
+`findAll()` and `countAll()`
     returns all domain objects (or the number of them) it is responsible for.
 
-:code:`findByUid($uid)`
+`findByUid($uid)`
     Returns the domain object with this UID.
 
-:code:`findByProperty($propertyValue)` and :code:`countByProperty($propertyValue)`
+`findByProperty($propertyValue)` and `countByProperty($propertyValue)`
     Magic finder method. Finding all objects (or the number of them) for the property *property* having
     a value of `$propertyValue` and returns them in an array, or the number as an integer value.
 
-:code:`findOneByProperty($propertyValue)`
+`findOneByProperty($propertyValue)`
     Magic finder method. Finds the first object, for which the given property *property* has the value
-    $propertyValue.
+    `$propertyValue`.
 
-:code:`remove($object)` and :code:`removeAll()`
+`remove($object)` and `removeAll()`
     Deletes an object (or all objects) in the repository.
 
-:code:`replace($existingObject, $newObject)`
+`replace($existingObject, $newObject)`
     Replaces an object of the repositories with another.
 
-:code:`update($object)`
+`update($object)`
     Updates the persisted object.
 
 Custom find methods in repositories
@@ -576,50 +583,50 @@ Create a ``Query`` object within the repository through `$this->createQuery()`. 
 object a constraint using `$query->matching($constraint)`. The following comparison operations for
 generating a single condition are available:
 
-:code:`$query->equals($propertyName, $operand, $caseSensitive);`
-    Simple comparison between the value of the property provided by $propertyName and the operand.
+`$query->equals($propertyName, $operand, $caseSensitive);`
+    Simple comparison between the value of the property provided by `$propertyName` and the operand.
     In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
-:code:`$query->in($propertyName, $operand);`
-    Checks if the value of the property _$propertyName_ is present within the series of values in `$operand`.
+`$query->in($propertyName, $operand);`
+    Checks if the value of the property `$propertyName` is present within the series of values in `$operand`.
 
-:code:`$query->contains($propertyName, $operand);`
+`$query->contains($propertyName, $operand);`
     Checks whether the specified property `$propertyName` containing a collection has an element
     `$operand` within that collection.
 
-:code:`$query->like($propertyName, $operand);`
-    Comparison between the value of the property specified by $propertyName and a string $operand.
+`$query->like($propertyName, $operand);`
+    Comparison between the value of the property specified by `$propertyName` and a string $operand.
     In this string, the %-character is interpreted as placeholder (similar to * characters in search
     engines, in reference to the SQL syntax).
 
-:code:`$query->lessThan($propertyName, $operand);`
-    Checks if the value of the property $propertyName is less than the operand.
+`$query->lessThan($propertyName, $operand);`
+    Checks if the value of the property `$propertyName` is less than the operand.
 
-:code:`$query->lessThanOrEqual($propertyName, $operand);`
-    Checks if the value of the property $propertyName is less than or equal to the operand.
+`$query->lessThanOrEqual($propertyName, $operand);`
+    Checks if the value of the property `$propertyName` is less than or equal to the operand.
 
-:code:`$query->greaterThan($propertyName, $operand);`
-    Checks if the value of the property $propertyName is greater than the operand.
+`$query->greaterThan($propertyName, $operand);`
+    Checks if the value of the property `$propertyName` is greater than the operand.
 
-:code:`$query->greaterThanOrEqual($propertyName, $operand);`
-    Checks if the value of the property $propertyName is greater than or equal to the operand.
+`$query->greaterThanOrEqual($propertyName, $operand);`
+    Checks if the value of the property `$propertyName` is greater than or equal to the operand.
 
 Since 1.1 `$propertyName` is not necessarily only a simple property-name but also can be a "property path".
     Example: `$query->equals('categories.title', 'tools')` searches for objects having a category titled
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
-:code:`$query->logicalAnd($constraint1, $constraint2);`
+`$query->logicalAnd($constraint1, $constraint2);`
     Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
     1.1 also an array of conditions is allowed.
 
-:code:`$query->logicalOr($constraint1, $constraint2);`
+`$query->logicalOr($constraint1, $constraint2);`
     Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
     1.1 also an array of conditions is allowed.
 
-:code:`$query->logicalNot($constraint);`
+`$query->logicalNot($constraint);`
     Returns a condition that inverts the result of the given condition (logical *not*).
 
-In the section "Individual queries," in Chapter 6  you can find a comprehensive example for building queries.
+In the section ":ref:`individual_database_queries`" in Chapter 6 you can find a comprehensive example for building queries.
 
 Validation
 ^^^^^^^^^^
@@ -633,34 +640,38 @@ following Section.
 Validation API
 --------------
 
-Extbase provides a generic validation system which is used in many places in
-Extbase and Fluid. Extbase provides validators for common data types, but you
-can also write your own validators. Each Validator implements the
-:class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface` that defines the following
-methods:
+.. todo: Add new API must haves, empty values and configure options, etc.
 
-:code:`getErrors()`
+Extbase provides a generic validation system which is used in many places in Extbase. Extbase
+provides validators for common data types, but you can also write your own validators. Each
+Validator implements the :class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface`
+that defines the following methods:
+
+.. note::
+
+    The API for Validation has changed slightly, we will update the reference accordingly.
+
+`getErrors()`
     Returns any error messages of the last validation.
 
-:code:`isValid($value)`
+`isValid($value)`
     Checks whether the object that was passed to the validator is valid. If yes,
     returns true, otherwise false.
 
-:code:`setOptions(array $validationOptions)`
+`setOptions(array $validationOptions)`
     Sets specific options for the validator. These options apply to any further call
     of the method isValid().
 
-You can call Validators in your own code with the method
-:code:`createValidator($validatorName, $validatorOptions)` in
-:class:`\\TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver`. Though in general, this is not
-necessary. Validators are often used in conjunction with domain objects and
+You can call Validators in your own code with the method `createValidator($validatorName,
+$validatorOptions)` in :class:`\\TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver`. Though in
+general, this is not necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
 Validation of model properties
 ------------------------------
 
 You can define simple validation rules in the domain model by annotation. For
-this, you use the annotation *@validate* with properties of the object. A brief
+this, you use the annotation `@validate` with properties of the object. A brief
 example:
 
 *Example B-4: validation in the domain object*
@@ -685,43 +696,43 @@ example:
         // the class continues here
     }
 
-In this code section, the validators for the $title attribute of the Blog object
-is defined. $title must be a text (ie, no HTML is allowed), and also the length
-of the string is checked with the StringLength-Validator (it must be between 1
-and 80 characters). Several validators for a property can be separated by
-commas. Parameter of the validators are set in parentheses. You can omit the
-quotes for validator options if they are superfluous as in the example above.
-If complex validation rules are necessary (for example, multiple fields to be
-checked for equality), you must implement your own validator.
+In this code section, the validators for the `$title` attribute of the Blog object is defined. `$title`
+must be a text (ie, no HTML is allowed), and also the length of the string is checked with the
+`StringLength`-Validator (it must be between 1 and 80 characters). Several validators for a property
+can be separated by commas. Parameter of the validators are set in parentheses. You can omit the
+quotes for validator options if they are superfluous as in the example above. If complex validation
+rules are necessary (for example, multiple fields to be checked for equality), you must implement
+your own validator.
 
 Validation of controller arguments
 ----------------------------------
 
-Each controller argument is validated by the following rules: If the argument
-has a simple type (string, integer, etc.), this type is checked. If the argument
-is a domain object, the annotation *@validate* in the domain object is taken into
-account and - if set - the appropriate validator in the folder :file:`Domain/Validator`
-for the existing domain object is run. If there is set an annotation
-*@dontvalidate* for the argument, no validation is done. Additional validation
-rules can be specified via further *@validate* annotations in the methods PHPDoc
-block. The syntax is *@validate $variableName Validator1, Validator2, ...* The
-syntax is almost the same as with validators in the domain model, you only needs
-to set explicitly the variable name.
+Each controller argument is validated by the following rules:
 
-If the arguments of an action can not be validated, then the errorAction is
-executed, which will usually jump back to the last screen. It is important that
-validation is not performed in certain cases. Further information for the usage
-of the annotation *@dontvalidate* see 'case studies Example: Editing an existing
-object' in Chapter 9
+* If the argument has a simple type (string, integer, etc.), this type is checked.
+* If the argument is a domain object, the annotations `@validate` in the domain object is taken into
+  account and - if set - the appropriate validator in the folder :file:`Domain/Validator` for the
+  existing domain object is run.
+* If there is set an annotation `@ignorevalidation` for the argument, no validation is done.
+* Additional validation rules can be specified via further `@validate` annotations in the methods
+  PHPDoc block. The syntax is *@validate $variableName Validator1, Validator2, ...* The syntax is
+  almost the same as with validators in the domain model, you only needs to set explicitly the
+  variable name.
 
+If the arguments of an action can not be validated, then the `errorAction` is executed, which will
+usually jump back to the last screen. It is important that validation is not performed in certain
+cases. Further information for the usage of the annotation `@dontvalidate` see
+":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
 Localization
 ^^^^^^^^^^^^
 
+.. todo: Link to core documentation of language files.
+
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
 :class:`\\TYPO3\\CMS\\Extbase\\Utility\\LocalizationUtility` for the translation of the labels. In addition,
-there is the Fluid ViewHelper translate, with the help of whom you can use that
+there is the Fluid ViewHelper `<f:translate>`, with the help of whom you can use that
 functionality in templates.
 
 The localization class has only one public static method called translate, which
@@ -731,16 +742,13 @@ does all the translation. The method can be called like this:
 
 `$key`
     The identifier to be translated. If then format *LLL:path:key* is given, then this
-    identifier is used and the parameter $extensionName is ignored. Otherwise, the
-    file :file:`Resources/Private/Language/locallang.xml` from the given extension is loaded
+    identifier is used and the parameter `$extensionName` is ignored. Otherwise, the
+    file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded
     and the resulting text for the given key in the current language returned.
 
 `$extensionName`
     The extension name. It can be fetched from the request.
 
 `$arguments`
-    Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill
-    wildcards in localized strings with values.
-
-In Fluid there is the translate ViewHelper, which works by the same rules. For a
-case study for localization, see Chapter 9.
+    Allows you to specify an array of arguments passed to the function `vsprintf`. Allows you to
+    fill wildcards in localized strings with values.
