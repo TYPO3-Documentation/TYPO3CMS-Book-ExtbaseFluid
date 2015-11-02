@@ -16,9 +16,9 @@ part of Extbase. The individual Actions are combined in seperate methods.
 The method names have to end in :class:`Action`. The body of
 :class:`OfferController` thus looks like this::
 
-	class Tx_SjrOffers_Controller_OfferController extends Tx_Extbase_MVC_Controller_ActionController {
-		// Action methods will be following here
-	}
+    class Tx_SjrOffers_Controller_OfferController extends Tx_Extbase_MVC_Controller_ActionController {
+        // Action methods will be following here
+    }
 
 When realizing the desired tasks through *Action*
 methods you will often stumble upon very similar flows and patterns. Each
@@ -37,10 +37,10 @@ generate your own Flows.
 
 .. tip::
 
-	Note that you are free to choose the method names for your
-	*Actions* as you like. Nevertheless we recommend to
-	stick to the names presented here, to help other Developers to find
-	their way through your Code.
+    Note that you are free to choose the method names for your
+    *Actions* as you like. Nevertheless we recommend to
+    stick to the names presented here, to help other Developers to find
+    their way through your Code.
 
 
 Flow Pattern "display a list of Domain Objects"
@@ -48,35 +48,35 @@ Flow Pattern "display a list of Domain Objects"
 
 The first pattern in our example fits the Action "*display
 a list of all offers*". One Action Method usually will be enough
-for implementing This. we choose :code:`indexAction` as
+for implementing This. we choose `indexAction` as
 name of the Method::
 
-	public function indexAction() {
+    public function indexAction() {
 
-		$offerRepository = t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
+        $offerRepository = t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
 
-		$offers = $offerRepository->findAll();
+        $offers = $offerRepository->findAll();
 
-		$this->view->assign('offers', $offers);
+        $this->view->assign('offers', $offers);
 
-		return $this->view->render();
+        return $this->view->render();
 
-	}
+    }
 
 This can be simplified even more. As described in chapter 4 in
 section "controlling the flow", it is not necessary to return the rendered
 content. Furthermore we avoid initializing the variable
-:code:`$offers`, which we only use once. So we
+`$offers`, which we only use once. So we
 get::
 
-	public function indexAction() {
+    public function indexAction() {
 
-		$offerRepository =
-		t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
+        $offerRepository =
+        t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
 
-		$this->view->assign('offers', $offerRepository->findAll());
+        $this->view->assign('offers', $offerRepository->findAll());
 
-	}
+    }
 
 This Flow is prototypic for a task which merely has to give out
 data. Domain Objects are fetched from a Repository previously instatiated
@@ -93,16 +93,16 @@ our case we assign the instance of our Repository to the Class Variable
 :class:`$offerRepository`. Our Controller thus looks like
 this::
 
-	protected $offerRepository;
+    protected $offerRepository;
 
-	public function initializeAction() {
-		$this->offerRepository =
-		t3lib_div::makeInstance('Tx_JjrOffers_Domain_Repository_OfferRepository');
-	}
+    public function initializeAction() {
+        $this->offerRepository =
+        t3lib_div::makeInstance('Tx_JjrOffers_Domain_Repository_OfferRepository');
+    }
 
-	public function indexAction() {
-		$this->view->assign('offers', $this->offerRepository->findAll());
-	}
+    public function indexAction() {
+        $this->view->assign('offers', $this->offerRepository->findAll());
+    }
 
 :class:`ActionController` not only calls hte Method
 :class:`initializeAction()`, which is executed before any
@@ -116,9 +116,9 @@ or to check if a specific FE user is logged in.
 
 .. tip::
 
-	The trick of implementing an empty Method body in the super
-	class, which is the "filled" in the subclass is called
-	*Template Pattern*.
+    The trick of implementing an empty Method body in the super
+    class, which is the "filled" in the subclass is called
+    *Template Pattern*.
 
 
 
@@ -131,14 +131,14 @@ well. We call it :class:`showAction()`. In contrast to
 outside which Domain Object is to be displayed. In our case, the offer to
 be shown is passed to the Method as Argument::
 
-	/**
-	 * @param Tx_SjrOffers_Domain_Model_Offer $offer The offer to be shown
-	 * @return string The rendered HTML string
-	 */
+    /**
+     * @param Tx_SjrOffers_Domain_Model_Offer $offer The offer to be shown
+     * @return string The rendered HTML string
+     */
 
-	public function showAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
-		$this->view->assign('offer', $offer);
-	}
+    public function showAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+        $this->view->assign('offer', $offer);
+    }
 
 Ususally the display of a single Object is called by a link in
 Forntend. In our example extension it connects the list view by something
@@ -183,10 +183,10 @@ to the view, which is taking care of the HTML output as usual.
 
 .. tip::
 
-	Inside of the Template you can access all Properties of the
-	Domain Object, including all existing child objects. Thus this Flow
-	Pattern does not only cover single Domain Objects but, in the event,
-	also a complex Aggregate.
+    Inside of the Template you can access all Properties of the
+    Domain Object, including all existing child objects. Thus this Flow
+    Pattern does not only cover single Domain Objects but, in the event,
+    also a complex Aggregate.
 
 If an Argument is identified as invalid, the already implemented
 Method :class:`errorAction()` of
@@ -211,10 +211,10 @@ Repository. We're going to implement these two steps in the Methods
 
 .. tip::
 
-	We already described these steps in chapter 3 in section
-	"Alternative route: creating a new posting". We now shortly revise
-	this Flow using our example extension and focus on some further
-	aspects.
+    We already described these steps in chapter 3 in section
+    "Alternative route: creating a new posting". We now shortly revise
+    this Flow using our example extension and focus on some further
+    aspects.
 
 First the Method :class:`newAction()` is called by a
 Link in frontend with the following URL:
@@ -233,22 +233,22 @@ Method :class:`newAction()`.
 
 ::
 
-	/**
-	 * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization
-	 * @param Tx_SjrOffers_Domain_Model_Offer $offer The new offer object
-	 * @return string An HTML form for creating a new offer
-	 * @dontvalidate $newOffer
-	 */
+    /**
+     * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization
+     * @param Tx_SjrOffers_Domain_Model_Offer $offer The new offer object
+     * @return string An HTML form for creating a new offer
+     * @dontvalidate $newOffer
+     */
 
-	public function	newAction(Tx_SjrOffers_Domain_Model_Organization $organization,
-	Tx_SjrOffers_Domain_Model_Offer $newOffer = NULL) {
+    public function newAction(Tx_SjrOffers_Domain_Model_Organization $organization,
+    Tx_SjrOffers_Domain_Model_Offer $newOffer = NULL) {
 
-		$this->view->assign('organization',$organization);
+        $this->view->assign('organization',$organization);
 
-		$this->view->assign('newOffer',$newOffer);
+        $this->view->assign('newOffer',$newOffer);
 
-		$this->view->assign('regions',$this->regionRepository->findAll());
-	}
+        $this->view->assign('regions',$this->regionRepository->findAll());
+    }
 
 This Action passes to the view: in
 :class:`organization` the :class:`Organization
@@ -350,8 +350,8 @@ deliberately attack the website?
 
 .. tip::
 
-	You find detailed information about validation and security in
-	chapter 9
+    You find detailed information about validation and security in
+    chapter 9
 
 Fluid adds multiple hidden fields to the form generated by the
 Method :class:`newAction()`. These contain information about
@@ -376,16 +376,16 @@ data is put in the fields again and the previously saved error message is
 displayed if the template is intenting so.
 
 .. figure:: /Images/7-Controllers/figure-7-1.png
-	:align: center
+    :align: center
 
-	Figure 7-1: Wrong input in the form of an offer leads to an error mesage
-	(in this case a modal JavaScript window)
+    Figure 7-1: Wrong input in the form of an offer leads to an error mesage
+    (in this case a modal JavaScript window)
 
 .. tip::
 
-	Standard error messages of Extbase are not yet localized in
-	Version 1.2. In section "Localize error messages" in chapter 8, we
-	describe a possibility to translate them too, though.
+    Standard error messages of Extbase are not yet localized in
+    Version 1.2. In section "Localize error messages" in chapter 8, we
+    describe a possibility to translate them too, though.
 
 Using the hidden field :class:`__hmac`, Extbase
 compares in an early stage the structure of a form inbetween delivery to
@@ -435,11 +435,11 @@ new request is started and the organization is shown with its updated
 offers.
 
 .. warning::
-	Do not forget to expicitly update the changed Domain Object
-	using :class:`update()`. Extbase will not do this
-	automatically for you, for doing so could lead to unexpected results.
-	For example if you have to manipulate the incoming Domain Object
-	inside your Action Method.
+    Do not forget to expicitly update the changed Domain Object
+    using :class:`update()`. Extbase will not do this
+    automatically for you, for doing so could lead to unexpected results.
+    For example if you have to manipulate the incoming Domain Object
+    inside your Action Method.
 
 At this point we have to ask ourselves how to prevent
 unauthorized changes of our Domain data. The organization and offer data
@@ -491,30 +491,30 @@ this snippet from a template:
 
 .. tip::
 
-	A *Service* is often used to implement
-	functionalitites that are needed on mulitple places in your extensions
-	and are not related to one Domain Object.
+    A *Service* is often used to implement
+    functionalitites that are needed on mulitple places in your extensions
+    and are not related to one Domain Object.
 
-	Services are often stateless. In this context that means that
-	their function does not dependend on previous access. This does not
-	rule out dependency to the "environment". In our example you can be
-	sure, that a verification by :class:`isLoggendIn()`
-	always leads to the same result, regardless of any earlier
-	verification - given that the "environment" has not changed
-	(considerably), e.g. by the Administrator logging out or even losing
-	his acces rights.
+    Services are often stateless. In this context that means that
+    their function does not dependend on previous access. This does not
+    rule out dependency to the "environment". In our example you can be
+    sure, that a verification by :class:`isLoggendIn()`
+    always leads to the same result, regardless of any earlier
+    verification - given that the "environment" has not changed
+    (considerably), e.g. by the Administrator logging out or even losing
+    his acces rights.
 
-	Services usually can be built as *Singleton*
-	(:class:`implements t3lib_Singleton`). You can find
-	detailed information to *Singleton* in chapter 2 in
-	section "Singleton".
+    Services usually can be built as *Singleton*
+    (:class:`implements t3lib_Singleton`). You can find
+    detailed information to *Singleton* in chapter 2 in
+    section "Singleton".
 
-	The :class:`AccessControlService` is not Part of
-	the Domain of our extension. It "belongs" to the Domain of the Content
-	Management System. There are Domain Services also of course, like a
-	Service creating a continuous invoice number. They are usually located
-	in <link
-	linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
+    The :class:`AccessControlService` is not Part of
+    the Domain of our extension. It "belongs" to the Domain of the Content
+    Management System. There are Domain Services also of course, like a
+    Service creating a continuous invoice number. They are usually located
+    in <link
+    linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
 
 We make use of an :class:`IfAuthenticatedViewHelper`
 to acces the :class:`AccessControlService`. The class file
@@ -550,11 +550,11 @@ the Database respectively mark it as deleted.
 
 .. tip::
 
-	In principle it doesn't matter how you generate the result
-	(usually HTML code) inside the Action. You can even decide to use the
-	traditional way of building extensions in your Action - with SQL
-	Queries and maker-based Templating. We invite you to pursue the path
-	we chose up till now, though.
+    In principle it doesn't matter how you generate the result
+    (usually HTML code) inside the Action. You can even decide to use the
+    traditional way of building extensions in your Action - with SQL
+    Queries and maker-based Templating. We invite you to pursue the path
+    we chose up till now, though.
 
 The flow patterns we present here are meant to be blueprints for
 your own flows. In real life projects they may get way more complex. The
@@ -577,25 +577,25 @@ correct section name</remark>). To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
 .. figure:: /Images/7-Controllers/figure-7-2.png
-	:align: center
+    :align: center
 
-	Figure 7-2: The buildup of the "demand" in a form above the offer list.
+    Figure 7-2: The buildup of the "demand" in a form above the offer list.
 
 .. warning::
-	Watch out, that you do not implement logic, which actually
-	belongs in the domain, inside of the Controller. Concentrate on the
-	mere Flow.
+    Watch out, that you do not implement logic, which actually
+    belongs in the domain, inside of the Controller. Concentrate on the
+    mere Flow.
 
 .. tip::
 
-	In real life you will often need similar functionality in some
-	or even all Controllers, the previously mentioned access control is a
-	good example. In our example extension we sourced it out to a
-	*service* object. Another possibility is to create
-	a basis Controller which extends the
-	:class:`ActionController` of Extbase. Inside you
-	implement the shared functionality. Then the concrete controllers with
-	you Actions extend this Basis Controller again.
+    In real life you will often need similar functionality in some
+    or even all Controllers, the previously mentioned access control is a
+    good example. In our example extension we sourced it out to a
+    *service* object. Another possibility is to create
+    a basis Controller which extends the
+    :class:`ActionController` of Extbase. Inside you
+    implement the shared functionality. Then the concrete controllers with
+    you Actions extend this Basis Controller again.
 
 The Flow inside of a Controller is triggered from outside by
 TYPO3. For extensions which generate content for the frontend, this is

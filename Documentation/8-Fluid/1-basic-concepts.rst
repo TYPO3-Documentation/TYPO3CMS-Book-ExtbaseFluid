@@ -25,10 +25,10 @@ Accessors*.
 
 .. tip::
 
-	The markers used in the classic marker based templates of TYPO3 v4
-	are also placeholders which are replaced later on by the desired data.
-	You will notice though, that the placeholders used in Fluid are clearly
-	more flexible and versatile.
+    The markers used in the classic marker based templates of TYPO3 v4
+    are also placeholders which are replaced later on by the desired data.
+    You will notice though, that the placeholders used in Fluid are clearly
+    more flexible and versatile.
 
 Object Accessors are written in curly brackets. For example,
 ``{blogTitle}`` will output the content of the variable
@@ -38,23 +38,23 @@ object)``. Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
 code::
 
-	class Tx_BlogExample_Controller_PostController extends Tx_Extbase_MVC_Controller_ActionController {
-		...
-		public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog) {
-			$this->view->assign('blogTitle', 'Webdesign-Blog');
-			$this->view->assign('blogPosts', $blog->getPosts());
-		}
-	}
+    class Tx_BlogExample_Controller_PostController extends Tx_Extbase_MVC_Controller_ActionController {
+        ...
+        public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+            $this->view->assign('blogTitle', 'Webdesign-Blog');
+            $this->view->assign('blogPosts', $blog->getPosts());
+        }
+    }
 
 Now we can insert the string »Webdesign-Blog« into the
 template with the Object Accessor ``{blogTitle}``. Let us take a
 look at the associated template::
 
-	<h1>{blog.Title}</h1>
+    <h1>{blog.Title}</h1>
 
-	<f:for each="{blogPost}" as="post">
-		<b>{post.title}</b><br />
-	</f:for>
+    <f:for each="{blogPost}" as="post">
+        <b>{post.title}</b><br />
+    </f:for>
 
 Upon generation of the output, the Object
 Accessor ``{blogTitle}`` will be replaced by the title of the
@@ -63,18 +63,18 @@ blog »Webdesign-Blog«. To output the individual blog posts, the tag
 above. Depending on the title of each blog post, the complete output looks
 like this::
 
-	<h1>Webdesign-Blog</h1>
+    <h1>Webdesign-Blog</h1>
 
-	<b>Fluid as template-engine</b><br />
-	<b>TypoScript to configure TYPO3</b><br />
+    <b>Fluid as template-engine</b><br />
+    <b>TypoScript to configure TYPO3</b><br />
 
 
 
 .. tip::
 
-	If you want to output an object instead of a String, the object
-	needs to have a ``__toString()``-method which returns the
-	textual representation of the object.
+    If you want to output an object instead of a String, the object
+    needs to have a ``__toString()``-method which returns the
+    textual representation of the object.
 
 In the example above, you will also find the Object Accessor
 ``{post.title}`` which is used to output the title of a blog
@@ -88,7 +88,7 @@ in the following order:
 
 * If ``post`` is an array or an object which implements the interface ArrayAccess,
   the corresponding property will be returned as long as it exists.
-* If it is an object, and a method :code:`getTitle()` exists,
+* If it is an object, and a method `getTitle()` exists,
   the method will be called. This is the most common use case of an Object Accessor,
   since by convention all public properties have a corresponding ``get``-method.
 * The property will be returned if it exists in the object and it
@@ -97,18 +97,18 @@ in the following order:
 
 .. sidebar:: The Uniform Access Principle
 
-	The Uniform Access Principle says, all services offered by a
-	module should be available through an uniform notation which does not
-	betray whether they are implemented through storage or through
-	computation. <remark>Explanation on Wiki</remark>
+    The Uniform Access Principle says, all services offered by a
+    module should be available through an uniform notation which does not
+    betray whether they are implemented through storage or through
+    computation. <remark>Explanation on Wiki</remark>
 
-	Stored objects are being accessed directly using public class
-	variables in PHP - and it is visible on the outside that the object
-	isn't being computed. For this reason, we often use get and
-	set-methods in our models. Therefore, all options of the class are
-	accessible through method calls and are uniformly addressed - it is
-	not visible on the outside whether the class computed or stored the
-	value directly.
+    Stored objects are being accessed directly using public class
+    variables in PHP - and it is visible on the outside that the object
+    isn't being computed. For this reason, we often use get and
+    set-methods in our models. Therefore, all options of the class are
+    accessible through method calls and are uniformly addressed - it is
+    not visible on the outside whether the class computed or stored the
+    value directly.
 
 You can navigate through more complex objects, because Object
 Accessors can be nested multiple times. For example, to output the email
@@ -144,7 +144,7 @@ who work on the same templates.
 The standard ViewHelper of Fluid will be imported and assigned to
 the shortcut ``f`` with the following declaration::
 
-	{namespace f=Tx_Fluid_ViewHelpers}
+    {namespace f=Tx_Fluid_ViewHelpers}
 
 
 This Namespace will be imported automatically by Fluid. All
@@ -159,11 +159,11 @@ Here's a small example:
 
 .. code-block:: none
 
-	<ul>
-		<f:for each="{blogPosts}" as="post">
-			<li>{post.title}</li>
-		</f:for>
-	</ul>
+    <ul>
+        <f:for each="{blogPosts}" as="post">
+            <li>{post.title}</li>
+        </f:for>
+    </ul>
 
 
 
@@ -185,12 +185,12 @@ receives the array of all blog posts with the argument
 
 .. tip::
 
-	If the name of the ViewHelper contains a single or multiple
-	periods, it will be resolved as a sub package. For example, the
-	ViewHelper ``f:form.textbox`` is implemented in the class
-	:class:`Tx_Fluid_ViewHelpers_Form_TextboxViewHelper`.
-	Therefore ViewHelpers can be divided further and structured even
-	more.
+    If the name of the ViewHelper contains a single or multiple
+    periods, it will be resolved as a sub package. For example, the
+    ViewHelper ``f:form.textbox`` is implemented in the class
+    :class:`Tx_Fluid_ViewHelpers_Form_TextboxViewHelper`.
+    Therefore ViewHelpers can be divided further and structured even
+    more.
 
 ViewHelpers are the main tools of template editors. They make it
 possible to have a clear separation of template and embedded
@@ -198,11 +198,11 @@ functionality.
 
 .. tip::
 
-	All control structures like ``if/else`` or
-	``for`` are individual ViewHelpers in Fluid and not a core
-	language feature. This is one of the main reasons for the flexibility
-	of Fluid. You'll find a detailed reference of the ViewHelpers in
-	Appendix C.
+    All control structures like ``if/else`` or
+    ``for`` are individual ViewHelpers in Fluid and not a core
+    language feature. This is one of the main reasons for the flexibility
+    of Fluid. You'll find a detailed reference of the ViewHelpers in
+    Appendix C.
 
 
 Inline Notification for View Helpers
@@ -212,44 +212,44 @@ Inline Notification for View Helpers
 
 .. sidebar:: Inline Notation vs. Tag Based Notation
 
-	Once again a comparison between inline notation and tag based syntax:
+    Once again a comparison between inline notation and tag based syntax:
 
-	Tags have an advantage, if:
+    Tags have an advantage, if:
 
-	* Control structures are being displayed::
+    * Control structures are being displayed::
 
-		<f:for each="{posts}" as="post">...</f:for>
+        <f:for each="{posts}" as="post">...</f:for>
 
-	* The ViewHelper returns a tag::
+    * The ViewHelper returns a tag::
 
-		<f:form.textbox />
+        <f:form.textbox />
 
-	* The hierarchical structure of ViewHelpers is
-	  important::
+    * The hierarchical structure of ViewHelpers is
+      important::
 
-		<f:form>
-			<f:form.textbox />
-		</f:form>
+        <f:form>
+            <f:form.textbox />
+        </f:form>
 
-	* The ViewHelper contains a lot of content::
+    * The ViewHelper contains a lot of content::
 
-		<f:section name="main">
-			....
-	   </f:section>
+        <f:section name="main">
+            ....
+       </f:section>
 
-	Inline notation should be used, if:
+    Inline notation should be used, if:
 
-	* The focus is on the data flow::
+    * The focus is on the data flow::
 
-		{post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
+        {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
 
-	* The ViewHelper is being used inside of XML tags::
+    * The ViewHelper is being used inside of XML tags::
 
-		<link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
+        <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
 
-	* The nature of the ViewHelper is rather a helper function::
+    * The nature of the ViewHelper is rather a helper function::
 
-		{f:translate(key: '...')}
+        {f:translate(key: '...')}
 
 
 It is intuitive and natural for most of the ViewHelpers to be called
@@ -262,7 +262,7 @@ ViewHelper, which returns the path to a resource in the
 inside of ``<link rel="stylesheet" href="..." />`` for
 example. Using the normal, tag based syntax it looks like this::
 
-	<link rel="stylesheet" href="<f:uri.resource path='myCss.css' />" />
+    <link rel="stylesheet" href="<f:uri.resource path='myCss.css' />" />
 
 That is very difficult to read and doesn't communicate adequately
 the meaning of the ViewHelper. Also, the above code is not valid XHTML and
@@ -277,7 +277,7 @@ write ``{f:uri.resource()}``.
 
 So the example above can be changed to::
 
-	<link rel="stylesheet" href="{f:uri.resource(path: 'myCss.css')}" />
+    <link rel="stylesheet" href="{f:uri.resource(path: 'myCss.css')}" />
 
 The purpose of the ViewHelper is easily understandable and visible -
 it is a helper function that returns a resource. It is well formed XHTML
@@ -293,7 +293,7 @@ property *date* which contains the date of the creation
 of the post in a *DateTime* object.
 
 *DateTime* objects, that can be used in PHP to
-represent dates, have no :code:`__toString()`-method and
+represent dates, have no `__toString()`-method and
 can therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message, if you simple write
 ``{post.date}`` in your template.
@@ -311,13 +311,13 @@ that there are no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
 and the string representation of ``{post.date}`` together as
 string. Because the DateTime object has no method
-:code:`__toString()`, a PHP error message will be thrown
+`__toString()`, a PHP error message will be thrown
 again.
 
 .. tip::
 
-	To avoid this problem, all ``f:format``-ViewHelpers
-	have a property to specify the object to be formatted.
+    To avoid this problem, all ``f:format``-ViewHelpers
+    have a property to specify the object to be formatted.
 
 Instead of writing
 ``<f:format.date>{post.date}</f:format.date>``
@@ -331,7 +331,7 @@ object so we don't add whitespaces inside of
 
 An alternative would be to use the following syntax::
 
-	{post.date -> f:format.date(format: 'Y-m-d')}
+    {post.date -> f:format.date(format: 'Y-m-d')}
 
 Inside the Object Accessor we can use a ViewHelper to process the
 value. The above example is easily readable, intuitive and less error
@@ -339,20 +339,20 @@ prone as the tag based variation.
 
 .. tip::
 
-	This might look familiar, if you happen to know the UNIX shell:
-	There is a pipe operator (|) which has the same functionality as our
-	chaining operator. The arrow shows the direction of the data flow
-	better though.
+    This might look familiar, if you happen to know the UNIX shell:
+    There is a pipe operator (|) which has the same functionality as our
+    chaining operator. The arrow shows the direction of the data flow
+    better though.
 
 You can also chain multiple ViewHelpers together. Lets assume we
 want to pad the processed string to the length of 40 characters (e.g.
 because we output code). This can be simply written as::
 
-	{post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
+    {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
 
 Which is functionally equal to::
 
-	<f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
+    <f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
 
 The data flow is also easier to read with an inline syntax like
 this, and it is easier to see on which values the ViewHelper is working
@@ -399,14 +399,14 @@ Fluid only supports named arrays, which means, that you always have
 to specify the key of the array element. Lets look at what options you
 have when creating an array::
 
-	{
-		key1: 'Hello',
-		key2: "World",
-		key3: 20,
-		key4: blog,
-		key5: blog.title,
-		key6: '{firstname} {lastname}'
-	}
+    {
+        key1: 'Hello',
+        key2: "World",
+        key3: 20,
+        key4: blog,
+        key5: blog.title,
+        key6: '{firstname} {lastname}'
+    }
 
 The array can contain strings as values as in key1 and key2.
 It can also have numbers as values as in key3. More interesting are key4

@@ -10,7 +10,7 @@ In software development, there are different variants of controllers.
 In Extbase the controllers mostly exist as
 :class:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
-so called :code:`Actions`. Let's have a deeper look at a
+so called `Actions`. Let's have a deeper look at a
 shortened version of the :class:`BlogController`:
 
 ::
@@ -49,36 +49,36 @@ shortened version of the :class:`BlogController`:
 
     }
 
-The method :code:`indexAction()` within the
+The method `indexAction()` within the
 :class:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
-:code:`showMeTheListAction()`. The only important point is,
-that it ends with :code:`Action` in order to help Extbase
-to recognize it as an action. :code:`newAction()` shows a
-form to create a new blog. The :code:`createAction()` then
+`showMeTheListAction()`. The only important point is,
+that it ends with `Action` in order to help Extbase
+to recognize it as an action. `newAction()` shows a
+form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
-:code:`editAction()` and
-:code:`updateAction()` have a similar functionality for the
+`editAction()` and
+`updateAction()` have a similar functionality for the
 change of an existing blog. The job of the
-:code:`deleteAction()` should be self explaining.
+`deleteAction()` should be self explaining.
 
 .. tip::
 
-	Who already dealed with the model-view-controller-pattern will
-	notice, that the controller has only a little amount of code. Extbase (and
-	FLOW3) aim to the approach to have a slim controller. The controller is
-	exclusively responsible for the control of the process flow. Additional
-	logic (especially business or domain logic) needs to be seperated into
-	classes in the subfolder :file:`Domain`.
+    Who already dealed with the model-view-controller-pattern will
+    notice, that the controller has only a little amount of code. Extbase (and
+    FLOW3) aim to the approach to have a slim controller. The controller is
+    exclusively responsible for the control of the process flow. Additional
+    logic (especially business or domain logic) needs to be seperated into
+    classes in the subfolder :file:`Domain`.
 
 .. tip::
 
-	The name of the action is strictly spoken only the part without the
-	suffix :code:`Action`, e.g.
-	:code:`list`, :code:`show` or
-	:code:`edit`. With the suffix
-	:code:`Action` the name of the action-method is marked.
-	But we use the action itself and its method mostly synonymous.
+    The name of the action is strictly spoken only the part without the
+    suffix `Action`, e.g.
+    `list`, `show` or
+    `edit`. With the suffix
+    `Action` the name of the action-method is marked.
+    But we use the action itself and its method mostly synonymous.
 
 From the request the controller can extract which action has to be
 called. The call is happening without the need to write another line of code
@@ -94,8 +94,8 @@ class:
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
-:code:`indexAction()`. The
-:code:`indexAction()` contains only one line in our example
+`indexAction()`. The
+`indexAction()` contains only one line in our example
 (as shown above), which looks more detailled like this:
 
 ::
@@ -120,5 +120,5 @@ class file. The name :class:`BlogRepository` results from the
 name of the class, whose instances are managed by the repository, namely by
 adding :class:`Repository`. A repository can only manage one
 single class at a time. The second line retrieves all available blogs by
-:code:`findAll()`.
+`findAll()`.
 

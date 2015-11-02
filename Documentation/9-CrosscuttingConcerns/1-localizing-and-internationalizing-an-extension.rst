@@ -45,8 +45,8 @@ blog post with its comments there are some constant terms:
 
 .. tip::
 
-	The template is a little bit simplified and reduced to the
-	basic.
+    The template is a little bit simplified and reduced to the
+    basic.
 
 First of all the text "By:" in front of the author of the post is
 hard coded in the template, as well as the caption "Comments". For the use
@@ -92,9 +92,9 @@ in this section. In the above file the texts are stored in two languages:
 
 .. tip::
 
-	The TYPO3 Core API describes in detail the construction of the
-	:file:`locallang.xml` file
-	(*http://typo3.org/documentation/document-library/core-documentation/doc_core_api/4.2.0/view/7/2/*).
+    The TYPO3 Core API describes in detail the construction of the
+    :file:`locallang.xml` file
+    (*http://typo3.org/documentation/document-library/core-documentation/doc_core_api/4.2.0/view/7/2/*).
 
 Now the placeholder for the translated terms must be inserted into
 the template. To do this, Fluid offers the ViewHelper
@@ -103,34 +103,34 @@ the term to be inserted as argument ``key`` and the ViewHelper
 inserts either the german or the english translation according to the
 current language selection ::
 
-	<f:translate key="comment_header" />
-	<!-- or -->
-	{f:translate(key: 'comment_header')}
+    <f:translate key="comment_header" />
+    <!-- or -->
+    {f:translate(key: 'comment_header')}
 
 .. tip::
 
-	The used language is defined in the TypoScript template of the
-	website. By default the english texts are used; but when with setting of
-	the TypoScript setting ``config.language = de`` you can set the
-	used language to german for example.
+    The used language is defined in the TypoScript template of the
+    website. By default the english texts are used; but when with setting of
+    the TypoScript setting ``config.language = de`` you can set the
+    used language to german for example.
 
-	To implement a language selection normally TypoScript conditions
-	are used. These are comparable with an ``if/else``
-	block::
+    To implement a language selection normally TypoScript conditions
+    are used. These are comparable with an ``if/else``
+    block::
 
-		[globalVar = GP:L = 1]
-		config.language = de
-		[else]
-		config.language = default
-		[end]
+        [globalVar = GP:L = 1]
+        config.language = de
+        [else]
+        config.language = default
+        [end]
 
-	When the URL of the website contains a parameter L=1, then the
-	output is in German; if the parameter is not set the output is in the
-	default language English.
+    When the URL of the website contains a parameter L=1, then the
+    output is in German; if the parameter is not set the output is in the
+    default language English.
 
-	With the use of complex TypoScript conditions the language
-	selection could be set to depend on the forwarded language of the
-	browser.
+    With the use of complex TypoScript conditions the language
+    selection could be set to depend on the forwarded language of the
+    browser.
 
 By replacing all terms of the template with the
 ``translate`` ViewHelper we could fit the output of the extension
@@ -142,13 +142,13 @@ english terms:
 
 .. tip::
 
-	Sometimes you have to localize a string in the PHP code, for
-	example in the controller or inside of a ViewHelper. In that case you
-	can use the static method
-	:code:`Tx_Extbase_Utility_Localization::translate($key,
-	$extensionName)`. In addition to the key inside the
-	locallang file also the name of the extension must be given as
-	parameter, in order to load the correct locallang file.
+    Sometimes you have to localize a string in the PHP code, for
+    example in the controller or inside of a ViewHelper. In that case you
+    can use the static method
+    `Tx_Extbase_Utility_Localization::translate($key,
+    $extensionName)`. In addition to the key inside the
+    locallang file also the name of the extension must be given as
+    parameter, in order to load the correct locallang file.
 
 
 Output localized strings using ``sprintf``
@@ -197,15 +197,15 @@ output:
 
 .. tip::
 
-	The keys in the arguments array of the ViewHelper have no
-	relevance. We recommend to give them numbers like the positions
-	(starting with 1), because it is easy understandable.
+    The keys in the arguments array of the ViewHelper have no
+    relevance. We recommend to give them numbers like the positions
+    (starting with 1), because it is easy understandable.
 
 .. tip::
 
-	For a full reference of the formatting options for
-	``sprintf`` you should have a look at the PHP documantation:
-	*http://php.net/manual/de/function.sprintf.php*.
+    For a full reference of the formatting options for
+    ``sprintf`` you should have a look at the PHP documantation:
+    *http://php.net/manual/de/function.sprintf.php*.
 
 Changing localized terms using TypoScript
 --------------------------------------------------------------------------------------------------
@@ -248,13 +248,13 @@ steps based on the ``blog`` class of the blog example. TYPO3
 needs 3 additional database fields which you should insert in the
 :file:`ext_tables.sql` file::
 
-	CREATE TABLE tx_blogexample_domain_model_blog {
-	...
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l18n_parent int(11) DEFAULT '0' NOT NULL,
-	l18n_diffsource mediumblob NOT NULL,
-	...
-	};
+    CREATE TABLE tx_blogexample_domain_model_blog {
+    ...
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l18n_parent int(11) DEFAULT '0' NOT NULL,
+    l18n_diffsource mediumblob NOT NULL,
+    ...
+    };
 
 You are free to choose the names of the database fields, but the
 names we use here are common in the world of TYPO3. In any case you have
@@ -264,15 +264,15 @@ the corresponding database table.
 
 ::
 
-	$TCA['tx_blogexample_domain_model_blog'] = array (
-	'ctrl' => array (
-	...
-	'languageField' => 'sys_language_uid',
-	'transOrigPointerField' => 'l18n_parent',
-	'transOrigDiffSourceField' => 'l18n_diffsource',
-	...
-	)
-	);
+    $TCA['tx_blogexample_domain_model_blog'] = array (
+    'ctrl' => array (
+    ...
+    'languageField' => 'sys_language_uid',
+    'transOrigPointerField' => 'l18n_parent',
+    'transOrigDiffSourceField' => 'l18n_diffsource',
+    ...
+    )
+    );
 
 The field ``sys_language_uid`` is used for storing
 the UID of the language in which the blog is written. Based on this UID
@@ -300,12 +300,12 @@ the default language.
 
 .. tip::
 
-	You can control this behavior. If you set the option
-	``config.sys_language_mode`` to ``strict`` in the
-	TypoScript configuration, then only these objects are shown which really
-	have content in the frontend language. More information for this you
-	will find in the *Frontend Localization Guide* of the
-	*Core Documentation*.
+    You can control this behavior. If you set the option
+    ``config.sys_language_mode`` to ``strict`` in the
+    TypoScript configuration, then only these objects are shown which really
+    have content in the frontend language. More information for this you
+    will find in the *Frontend Localization Guide* of the
+    *Core Documentation*.
 
 How TYPO3 v4 handles the localization of content offers two
 important specific features: The first is that all translations of a data
@@ -320,26 +320,26 @@ to create the latter before. But with what content?
 
 .. tip::
 
-	In FLOW3 this is solved better. There only a "structure node"
-	exists to which the content element is added with its different language
-	parts. A default language in this spirit does not exist.
+    In FLOW3 this is solved better. There only a "structure node"
+    exists to which the content element is added with its different language
+    parts. A default language in this spirit does not exist.
 
 Lets have an example for illustration: You create a blog in the
 default language English (=default). It is stored in the database like
 this::
 
-	uid:              7 (given by the database)
-	title:            "My first Blog"
-	sys_language_uid: 0 (selected in backend)
-	l18n_parent:      0 (no tranlation original exists)
+    uid:              7 (given by the database)
+    title:            "My first Blog"
+    sys_language_uid: 0 (selected in backend)
+    l18n_parent:      0 (no tranlation original exists)
 
 After a while you create a German translation in the backend. In the
 database the following record is stored::
 
-	uid:              42 (given by the database)
-	title:            "Mein erster Blog"
-	sys_language_uid: 1 (selected in backend)
-	l18n_parent:      7 (selected in backend respectively given automaticly)
+    uid:              42 (given by the database)
+    title:            "Mein erster Blog"
+    sys_language_uid: 1 (selected in backend)
+    l18n_parent:      7 (selected in backend respectively given automaticly)
 
 A link that references the single view of a blog looks like
 this:
@@ -403,9 +403,9 @@ must be formatted different.
 Generally the date or time is formatted by the
 ``format.date`` ViewHelper::
 
-	<f:format.date date="{dateObject}" format="d.m.Y" />
-	<!-- or -->
-	{dateObject -> f:format.date(format: 'd.m.Y')}
+    <f:format.date date="{dateObject}" format="d.m.Y" />
+    <!-- or -->
+    {dateObject -> f:format.date(format: 'd.m.Y')}
 
 The date object ``{dateObject}`` is displayed with the date
 format given in the parameter ``format``. This format string must
@@ -484,7 +484,7 @@ format string should be used. Here we combine the ``format.date``
 ViewHelper with the ``translate`` ViewHelper which you got to
 know in the section "Multilanguage templates"::
 
-	<f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
+    <f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
 
 Than you can store an other format string for every language in the
 :file:`locallang.xml` file and you can change the format
@@ -493,11 +493,11 @@ to know in the section "Multilanguage templates".
 
 .. tip::
 
-	There are other formatting ViewHelpers for adjusting the output of
-	currencies or big numbers. These ViewHelpers all starts with
-	``format``. You can find an overview of these ViewHelpers in
-	Appendix C. These ViewHelpers can be used like the
-	``f:format.date`` ViewHelper you have just learned.
+    There are other formatting ViewHelpers for adjusting the output of
+    currencies or big numbers. These ViewHelpers all starts with
+    ``format``. You can find an overview of these ViewHelpers in
+    Appendix C. These ViewHelpers can be used like the
+    ``f:format.date`` ViewHelper you have just learned.
 
 In this section you have learned how you can translate and localize
 an extension. First we have worked on the localization of single terms in
