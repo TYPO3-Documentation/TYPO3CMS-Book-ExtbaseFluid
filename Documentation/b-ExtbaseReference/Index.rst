@@ -1,3 +1,9 @@
+.. Todo: Interfaces are currently not in the inventory of t3api.
+    We should reference them, as soon as they are inside. Xavier already rendered them, but I didn't
+    get the url running for latest.
+
+.. _extbase_reference:
+
 Extbase Reference
 =================
 
@@ -7,24 +13,38 @@ Extbase extensions.
 
 .. note::
 
-	Under http://typo3.org/go/extbasereferencesheet/ you find a useful
-	Cheat Sheet for Extbase and Fluid.
+    Under https://docs.typo3.org/typo3cms/CheatSheets.html you find a useful Cheat Sheet for Extbase
+    and Fluid.
 
-.. _configuration_of_frontend_plugins:
+.. _registration_of_frontend_plugins:
 
 Registration of frontend plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In classical TYPO3 extensions the front-end functionality is divided into
-several front-end Plugins. Normally each has a separate code base.
+.. Todo: Add section about backend modules.
+
+.. sidebar:: Why two files?
+
+    You may wonder why you need to edit both, file :file:`ext_localconf.php` and file
+    :file:`ext_tables.php`, to configure a plugin. The reason lays in the architecture of TYPO3:
+    file :file:`ext_localconf.php` is evaluated in the frontend and file :file:`ext_tables.php` in
+    the backend. Therefore, in file :file:`ext_tables.php` we add the entry to the plugin list (for
+    the backend). In addition, the list of controller / action combinations is required at runtime
+    in the frontend - and therefore this must be defined in the file file :file:`ext_localconf.php`.
+
+    For further information, check out :ref:`Extenion configuration files
+    <t3coreapi:extension-configuration-files>`.
+
+In classical TYPO3 extensions the frontend functionality is divided into
+several frontend plugins. Normally each has a separate code base.
 In contrast, there is only one code base in Extbase (a series of controllers and
-Actions). Nevertheless, it should be possible to group controllers and Actions
-to make it possible to have multiple front-end plugins.
+actions). Nevertheless, it is possible to group controllers and actions
+to make it possible to have multiple frontend plugins.
 
 For the definition of a plugin, the files :file:`ext_localconf.php` and :file:`ext_tables.php`
 have to be adjusted.
 
-In :file:`ext_localconf.php` resides the definition of permitted Controller Action
+In :file:`ext_localconf.php` resides the definition of permitted controller action
 Combinations. Also here you have to define which actions should not be cached.
 In :file:`ext_tables.php` there is only the configuration of the plugin selector for the
 backend. Let's have a look at the following two files:
@@ -36,17 +56,17 @@ backend. Let's have a look at the following two files:
         $pluginName
         $controllerActionCombinations,
         $uncachedActions
-    }
+    );
 
-In addition to the extension key and a unique name of the plugin (line 2 and 3)
+In addition to the extension key and a unique name of the plugin (line 2 and 3),
 the allowed combinations of the controller and actions are determined.
 ``$controllerActionCombinations`` is an associative array. The Keys of this array
-are the allowed Controllers, and the values are a comma-separated list of
-allowed actions per Controller. The first action of the first controller is the
+are the allowed controllers, and the values are a comma-separated list of
+allowed actions per controller. The first action of the first controller is the
 default action.
 
 Additionally you need to specify which actions should not be cached. To do this,
-the fourth parameter also is a list of Controller / Action - Combinations in the
+the fourth parameter also is a list of controller action Combinations in the
 same format as above, containing all the non-cached-actions.
 
 :file:`ext_tables.php`::
@@ -57,8 +77,8 @@ same format as above, containing all the non-cached-actions.
         $backendTitle
     );
 
-The extension key and $pluginName must be completely identical to the definition
-in :file:`ext_localconf.php`. $backendTitle defines the displayed name of the plugin in
+The extension key and ``$pluginName`` must be completely identical to the definition
+in :file:`ext_localconf.php`. ``$backendTitle`` defines the displayed name of the plugin in
 the Backend.
 Below there is a complete configuration example for the registration of a
 frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables.php`.
@@ -94,127 +114,129 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 
 The plugin name is ``Blog``. It is important that in :file:`ext_localconf.php` and
 :file:`ext_tables.php` the name is exactly the same. The default action is the action
-index of the Controller *Blog* since this is the first element defined in the
+``index`` of the controller ``blog`` since this is the first element defined in the
 array and the first action in the list.
+
+All actions which change data must not be cacheable. Above, this is for example
+the ``delete`` action in the ``blog`` controller. In the backend you can see "*A Blog
+Example*" in the list of plugins (see Figure B-1).
+
+.. figure:: /Images/b-ExtbaseReference/figure-b-1.png
+    :align: center
+
+    Figure B-1: In the selection field for frontend plugins, the name which was defined in the
+    file :file:`ext_tables.php` will be displayed
+
+.. _caching_of_actions_and_records:
 
 Caching of actions and records
 ------------------------------
 
-All actions which change data must not be cacheable. Above, this is for example
-the delete action in the blog controller. In the backend now you can see A Blog
-Example in the list of plugins (see Figure B-1).
-
-.. Todo: Add section about backend modules.
-
-.. figure:: /Images/b-ExtbaseReference/figure-b-1.png
-	:align: center
-
-	Figure B-1: In the selection field for frontend plugins, the name which was defined in the
-	file :file:`ext_tables.php` will be displayed
-
-.. sidebar:: Why two files?
-
-	You may wonder why you need to edit both file :file:`ext_localconf.php` and file :file:`ext_tables.php` to
-	configure a plugin. The reason lays in the architecture of TYPO3:
-	file :file:`ext_localconf.php` is evaluated in the frontend and file :file:`ext_tables.php` in the
-	backend. Therefore, in file :file:`ext_tables.php` we add the entry to the plugin list (for
-	the back end). In addition, the list of controller / action combinations is
-	required at runtime in the frontend - and therefore this must be defined in the
-	file file :file:`ext_localconf.php`.
-
-Furthermore, Extbase is clearing the TYPO3 cache automatically for update
-processes. This is called *Automatic cache clearing*. This functionality is
-activated by default. If a domain object is inserted, changed or deleted, then
-the cache of the corresponding page in which the object is located is cleared.
-Additionally the setting of TSConfig ``TCEMAIN.clearCacheCmd`` is evaluated for this
-page.
+Furthermore, Extbase is clearing the TYPO3 cache automatically for update processes. This is called
+*Automatic cache clearing*. This functionality is activated by default. If a domain object is
+inserted, changed or deleted, then the cache of the corresponding page in which the object is
+located is cleared.  Additionally the setting
+of TSConfig :ref:`TCEMAIN.clearCacheCmd <t3tsconfig:pagetcemain-clearcachecmd>` is evaluated for this page.
 
 Figure B-2 is an example that is explained below:
 
 .. figure:: /Images/b-ExtbaseReference/figure-b-2.png
-	:align: center
+    :align: center
 
-	Figure B-2: For the sysfolder in which the data was stored, the setting
-	``TCEMAIN.clearCacheCmd`` defines that the cache of the page *Blog* should be
-	emptied.
+    Figure B-2: For the sysfolder in which the data was stored, the setting
+    :ref:`TCEMAIN.clearCacheCmd <t3tsconfig:pagetcemain-clearcachecmd>` defines that the cache of
+    the page *Blog* should be emptied.
 
-
-The frontend plugin is on the page *Blog* with the ID 11. As a storage folder
-for all the blogs and posts the SysFolder *BLOGS* is configured. Now, if an entry
-is changed, then the cache of the sysFolder *BLOGS* is emptied and also the
-TSConfig configuration ``TCEMAIN.clearCacheCmd`` for the sysFolder is evaluated.
-This contains a comma-separated list of Page IDs, for which the cache should be
-emptied. In this case, when updating a record in the SysFolder *BLOGS* (e.g.
-Blogs, Posts, Comments) automatically the cache of the page *Blog* (with ID 11)
-is cleared, so the changes are immediately visible.
+The frontend plugin is on the page *Blog* with the *11*. As a storage folder for all the Blogs and
+Posts the SysFolder *BLOGS* is configured. If an entry is changed, the cache of the SysFolder
+*BLOGS* is emptied and also the TSConfig configuration
+:ref:`TCEMAIN.clearCacheCmd <t3tsconfig:pagetcemain-clearcachecmd>` for the SysFolder is evaluated.
+This contains a comma-separated list of Page IDs, for which the cache should be emptied. In this
+case, when updating a record in the SysFolder *BLOGS* (e.g.  Blogs, Posts, Comments), the cache of
+the page *Blog* (with ID 11) is cleared automatically, so the changes are immediately visible.
 
 Even if the user enters incorrect data in a form (and this form will be
 displayed again), the cache of the current page is deleted to force a new
 representation of the form.
 
 The automatic cache clearing is enabled by default, you can use TypoScript
-configuration to disable it (see next section).
+configuration to disable it (see :ref:`features.skipDefaultArguments <features-skipDefaultArguments>`).
+
+.. _typoscript_configuration:
 
 TypoScript Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each Extbase-based extension has some settings which can be modified using
-TypoScript. Many of these settings affect aspects of the internal Configuration
-of Extbase and Fluid. There is also a block ``settings`` in which you can set
-Extension-specific settings, which can be accessed in the Controllers and
-Templates of your extensions.
+Each Extbase based extension has some settings which can be modified using TypoScript. Many of these
+settings affect aspects of the internal Configuration of Extbase and Fluid. There is also a block
+``settings`` in which you can set Extension specific settings, which can be accessed in the
+controllers and Templates of your extensions.
 
 **plugin.tx_[lowercasedextensionname]**
 
 The TypoScript configuration of the extension is always located below this
 TypoScript path. The "lowercased extension name" is the extension key with no
-underscore (_), as for example in blogexample. The configuration is divided into
+underscore (_), as for example in ``blogexample``. The configuration is divided into
 the following sections:
+
+.. _typoscript_configuration-features:
 
 features
 --------
 
 Activate features for Extbase or a specific plugin.
 
+.. _features-skipDefaultArguments:
+
 ``features.skipDefaultArguments``
-	Skip default arguments in URLs. If a link to the default controller or action
-	is created, the parameters are omitted.
-	Default is ``false``.
+    Skip default arguments in URLs. If a link to the default controller or action is created, the
+    parameters are omitted.
+    Default is ``false``.
+
+.. _features-ignoreAllEnableFieldsInBe:
+
+``features.ignoreAllEnableFieldsInBe``
+    Ignore the enable fields in backend.
+    Default is ``false``.
+
+.. _typoscript_configuration-persistence:
 
 persistence
 -----------
 
-Here are settings relevant to the persistence layer of Extbase.
+Settings relevant to the persistence layer of Extbase.
 
 ``persistence.classes``
-	This settings are used with individual classes. That includes in particular the
-	mapping of classes and property names to tables and field names.
+    This settings are used with individual classes. That includes in particular the
+    mapping of classes and property names to tables and field names.
 
 ``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.columns``
-	Here you can configure fields which differ from the regular naming conventions.
-	You use the form ``field_name.mapOnProperty = propertyName``.
+    Configure fields which differ from the regular naming conventions.
+    Use the form ``field_name.mapOnProperty = propertyName``.
 
 ``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.recordType``
-	Here you can specify a string literal, which - if set - should be stored in the
-	type field of the table.
+    Specify a string literal, which - if set - should be stored in the
+    type field of the table.
 
 ``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.tableName``
-	Here you can set a table name which differs from the regular naming conventions.
+    Set a table name which differs from the regular naming conventions.
 
 ``persistence.classes.Vendor\MyExt\Domain\Model\Foo.newRecordStoragePid``
-	Page-ID in which new records of the given class should be saved.
+    Page-ID in which new records of the given class should be saved.
 
 ``persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses``
-	List all subclasses of the class given in the form *ClassName = ClassName*.
+    List all subclasses of the class given in the form *ClassName = ClassName*.
 
 ``persistence.enableAutomaticCacheClearing``
-	Enables the automatic cache clearing when changing data sets (see also the
-	section "Configuration of frontend plugins" above in this chapter).
-	Enabled by default.
+    Enables the automatic cache clearing when changing data sets (see also the
+    section ":ref:`caching_of_actions_and_records`" above in this chapter).
+    Default is ``true``.
 
 ``persistence.storagePid``
-	List of Page-IDs, from which all records are read (see the section "Creating the
-	repositories" in Chapter 6).
+    List of Page-IDs, from which all records are read (see the section
+    ":ref:`Procedure to fetch objects <procedure_to_fetch_objects>`" in Chapter 6).
+
+.. _typoscript_configuration-settings:
 
 settings
 --------
@@ -223,37 +245,57 @@ Here reside are all the domain-specific extension settings. This setting are
 available as an array in the controllers in ``$this->settings`` and in any Fluid
 template with ``{settings}``.
 
+.. tip::
+
+    The settings allow you to pass orbitary information to template, even for 3rd party extensions.
+    Just make sure you prefix them with a unique vendor to prevent collisions with further updates
+    of the extensions.
+
+.. _typoscript_configuration-view:
+
 view
 ----
 
 View and template settings.
 
 ``view.layoutRootPath``
-	This can be used to specify the root path for all fluid layouts in this
-	extension. If nothing is specified, the path
-	:file:`extensionName/Resources/Private/Layouts` is used. All layouts that are necessary
-	for this extension should reside in this folder.
+    This can be used to specify the root path for all fluid layouts in this
+    extension. If nothing is specified, the path
+    :file:`extensionName/Resources/Private/Layouts` is used. All layouts that are necessary
+    for this extension should reside in this folder.
 
 ``view.partialRootPath``
-	This can be used to specify the root path for all fluid partials in this
-	extension. If nothing is specified, the path
-	:file:`extensionName/Resources/Private/Partials` is used. All partials that are
-	necessary for this extension should reside in this folder.
+    This can be used to specify the root path for all fluid partials in this
+    extension. If nothing is specified, the path
+    :file:`extensionName/Resources/Private/Partials` is used. All partials that are
+    necessary for this extension should reside in this folder.
 
 ``view.pluginNamespace``
-	This can be used to specify an alternative namespace for the plugin.
-	Use this to shorten the Extbase default plugin namespace or to access
-	arguments from other extensions by setting this option to their namespace.
+    This can be used to specify an alternative namespace for the plugin.
+    Use this to shorten the Extbase default plugin namespace or to access
+    arguments from other extensions by setting this option to their namespace.
 
 ``view.templateRootPath``
-	This can be used to specify the root path for all fluid templates in this
-	extension. If nothing is specified, the path
-	:file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
-	for this extension should reside in this folder.
+    This can be used to specify the root path for all fluid templates in this
+    extension. If nothing is specified, the path
+    :file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
+    for this extension should reside in this folder.
 
-	There is no fallback to the files that are delivered with an extension!
-	Therefore you need to copy all original templates to this folder before you set
-	this TypoScript setting.
+    There is no fallback to the files that are delivered with an extension!
+    Therefore you need to copy all original templates to this folder before you set
+    this TypoScript setting.
+
+.. Todo: Add feature #66111, multiple paths for fluid.
+
+.. tip::
+
+    Since TYPO3 CMS 7.3, it's possible to use multiple paths. The feature was introduced by
+    `Feature: #66111 - Add TemplateRootPaths support to cObject FLUIDTEMPLATE
+    <https://docs.typo3.org/typo3cms/extensions/core/latest/Changelog/7.3/Feature-66111-AddTemplaterootpathsSupportToCobjectFluidtemplate.html#feature-66111-add-templaterootpaths-support-to-cobject-fluidtemplate>`_.
+    We will update the documentation in the near future to reflect this new possibilities.
+    In the meantime, just check out the documentation for the feature.
+
+.. _typoscript_configuration-local_lang:
 
 _LOCAL_LANG
 -----------
@@ -262,6 +304,8 @@ Under this key you can modify localized strings for this extension.
 If you specify for example ``plugin.tx_blogexample._LOCAL_LANG.default.read_more =
 More>>`` then the standard translation for the key read_more is overwritten by the
 string *More>>*.
+
+.. _class_hierarchy:
 
 Class Hierarchy
 ^^^^^^^^^^^^^^^
@@ -274,18 +318,20 @@ have special requirements that can not be realized with the ActionController,
 you should have a look at the controllers below.
 
 :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerInterface`
-	The basic interface that must be implemented by all controllers.
+    The basic interface that must be implemented by all controllers.
 
 :ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\AbstractController`
-	Abstract controller with basic functionality.
+    Abstract controller with basic functionality.
 
 :ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ActionController`
-	The most widely used controller in Extbase. An overview of its API is given in
-	the following section.
+    The most widely used controller in Extbase. An overview of its API is given in
+    the following section.
 
 :ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`
-	Extend this controller if you want to provide commands to the scheduler or command line
-	interface.
+    Extend this controller if you want to provide commands to the scheduler or command line
+    interface.
+
+.. _class_hierarchy-action_controller_api:
 
 ActionController API
 --------------------
@@ -294,79 +340,84 @@ The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
 
 ``$actionMethodName``
-	Name of the executed action.
+    Name of the executed action.
 
 ``$argumentMappingResults``
-	Results of the argument mapping. Is used especially in the errorAction.
+    Results of the argument mapping. Is used especially in the errorAction.
 
 ``$defaultViewObjectName``
-	Name of the default view, if no fluid-view or an action-specific view was found.
+    Name of the default view, if no fluid-view or an action-specific view was found.
 
 ``$errorMethodName``
-	Name of the action that is performed when generating the arguments of actions
-	fail. Default is errorAction. In general, it is not sensible to change this.
+    Name of the action that is performed when generating the arguments of actions
+    fail. Default is errorAction. In general, it is not sensible to change this.
 
 ``$request``
-	Request object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\RequestInterface`.
+    Request object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\RequestInterface`.
 
 ``$response``
-	Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
+    Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
 
 ``$settings``
-	Domain-specific extension settings from TypoScript (as array).
+    Domain-specific extension settings from TypoScript (as array).
 
 ``$view``
-	The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
+    The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
 
 ``$viewObjectNamePattern``
-	If no fluid template is found for the current action, Extbase attempts to find a
-	PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
-	changed here. By default names are used according to the scheme
-	*@vendor\@extension\View\@controller\@action@format*. All string-parts marked with @
-	are replaced by the corresponding values. If no view class with this name is
-	found, @format is removed from the pattern and again tried to find a view class
-	with that name.
+    If no fluid template is found for the current action, Extbase attempts to find a
+    PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
+    changed here. By default names are used according to the scheme
+    *@vendor\@extension\View\@controller\@action@format*. All string-parts marked with @
+    are replaced by the corresponding values. If no view class with this name is
+    found, @format is removed from the pattern and again tried to find a view class
+    with that name.
 
-Most important API methods of the action controller
+
+.. _class_hierarchy-most_important_api_methods_of_action_controller:
+
+Most important API methods of action controller
 ---------------------------------------------------
 
 :code:`Action()`
-	Defines an action.
+    Defines an action.
 
 :code:`errorAction()`
-	Standard error action. Needs to be adjusted only in very rare cases. The name of
-	this method is defined by the property $errorMethodName.
+    Standard error action. Needs to be adjusted only in very rare cases. The name of
+    this method is defined by the property $errorMethodName.
 
 :code:`forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)`
-	Issues an immediate internal forwarding of the request to another controller.
+    Issues an immediate internal forwarding of the request to another controller.
 
 :code:`initializeAction()`
-	Initialization method for all actions. Can be used to e.g. register arguments.
+    Initialization method for all actions. Can be used to e.g. register arguments.
 
 :code:`initialize[actionName]Action()`
-	Action-specific initialization, which is called only before the specific action.
-	Can be used to e.g. register arguments.
+    Action-specific initialization, which is called only before the specific action.
+    Can be used to e.g. register arguments.
 
 :code:`initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $ view)`
-	Initialization method to configure and initialize the passed view.
+    Initialization method to configure and initialize the passed view.
 
 :code:`redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
-	External HTTP redirect to another controller (immediately)
+    External HTTP redirect to another controller (immediately)
 
 :code:`redirectToURI($uri, $delay = 0, $statusCode = 303)`
-	Redirect to full URI (immediately)
+    Redirect to full URI (immediately)
 
 :code:`resolveView()`
-	By overriding this method you can build and configure a completely individual
-	view object. This method should return a complete view object. In general,
-	however, it is sufficient to overwrite resolveViewObjectName().
+    By overriding this method you can build and configure a completely individual
+    view object. This method should return a complete view object. In general,
+    however, it is sufficient to overwrite resolveViewObjectName().
 
 :code:`resolveViewObjectName()`
-	Resolves the name of the view object, if no suitable fluid template could be
-	found.
+    Resolves the name of the view object, if no suitable fluid template could be
+    found.
 
 :code:`throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
-	The specified HTTP status code is sent immediately.
+    The specified HTTP status code is sent immediately.
+
+.. _class_hierarchy-actions:
 
 Actions
 -------
@@ -407,6 +458,8 @@ Default values can, as usual in PHP, just be indicated in the method signature. 
 the default value of the parameter ``$newBlog`` is set to NULL. If an action returns NULL or nothing,
 then automatically ``$this->view->render()`` is called, and thus the view is rendered.
 
+.. _class_hierarchy-define_initialization_code:
+
 Define initialization code
 --------------------------
 
@@ -418,6 +471,8 @@ the registration of arguments, but before calling the appropriate action method 
 generic :code:`initializeAction()`, if it exists, a method named *initialize[ActionName]()* is called.
 Here you can perform action specific initializations (e.g. :code:`initializeShowAction()`).
 Only then the action itself is called.
+
+.. _class_hierarchy-catching_validation_errors_with_error_action:
 
 Catching validation errors with errorAction
 -------------------------------------------
@@ -434,13 +489,13 @@ The domain of the extension is always located below :file:`Classes/Domain`. This
 as follows:
 
 :file:`Model/`
-	Contains the domain model itself.
+    Contains the domain model itself.
 
 :file:`Repository/`
-	Contains the repositories to access the domain model.
+    Contains the repositories to access the domain model.
 
 :file:`Validator/`
-	Contains specific validators for the domain model.
+    Contains specific validators for the domain model.
 
 Domain model
 ------------
@@ -448,11 +503,11 @@ Domain model
 All classes of the domain model must inherit from one of the following two classes:
 
 :class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity`
-	Is used if the object is an entity, i.e. possesses an identity.
+    Is used if the object is an entity, i.e. possesses an identity.
 
 :class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractValueObject`
-	Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
-	ValueObjects are immutable.
+    Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
+    ValueObjects are immutable.
 
 Repositories
 ------------
@@ -469,30 +524,30 @@ Public Repository API
 Each repository provides the following public methods:
 
 :code:`add($object)`
-	Adds a new object.
+    Adds a new object.
 
 :code:`findAll()` and :code:`countAll()`
-	returns all domain objects (or the number of them) it is responsible for.
+    returns all domain objects (or the number of them) it is responsible for.
 
 :code:`findByUid($uid)`
-	Returns the domain object with this UID.
+    Returns the domain object with this UID.
 
 :code:`findByProperty($propertyValue)` and :code:`countByProperty($propertyValue)`
-	Magic finder method. Finding all objects (or the number of them) for the property *property* having
-	a value of ``$propertyValue`` and returns them in an array, or the number as an integer value.
+    Magic finder method. Finding all objects (or the number of them) for the property *property* having
+    a value of ``$propertyValue`` and returns them in an array, or the number as an integer value.
 
 :code:`findOneByProperty($propertyValue)`
-	Magic finder method. Finds the first object, for which the given property *property* has the value
-	$propertyValue.
+    Magic finder method. Finds the first object, for which the given property *property* has the value
+    $propertyValue.
 
 :code:`remove($object)` and :code:`removeAll()`
-	Deletes an object (or all objects) in the repository.
+    Deletes an object (or all objects) in the repository.
 
 :code:`replace($existingObject, $newObject)`
-	Replaces an object of the repositories with another.
+    Replaces an object of the repositories with another.
 
 :code:`update($object)`
-	Updates the persisted object.
+    Updates the persisted object.
 
 Custom find methods in repositories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -521,47 +576,47 @@ object a constraint using ``$query->matching($constraint)``. The following compa
 generating a single condition are available:
 
 :code:`$query->equals($propertyName, $operand, $caseSensitive);`
-	Simple comparison between the value of the property provided by $propertyName and the operand.
-	In the case of strings you can specified additionally, whether the comparison is case-sensitive.
+    Simple comparison between the value of the property provided by $propertyName and the operand.
+    In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
 :code:`$query->in($propertyName, $operand);`
-	Checks if the value of the property _$propertyName_ is present within the series of values in ``$operand``.
+    Checks if the value of the property _$propertyName_ is present within the series of values in ``$operand``.
 
 :code:`$query->contains($propertyName, $operand);`
-	Checks whether the specified property ``$propertyName`` containing a collection has an element
-	``$operand`` within that collection.
+    Checks whether the specified property ``$propertyName`` containing a collection has an element
+    ``$operand`` within that collection.
 
 :code:`$query->like($propertyName, $operand);`
-	Comparison between the value of the property specified by $propertyName and a string $operand.
-	In this string, the %-character is interpreted as placeholder (similar to * characters in search
-	engines, in reference to the SQL syntax).
+    Comparison between the value of the property specified by $propertyName and a string $operand.
+    In this string, the %-character is interpreted as placeholder (similar to * characters in search
+    engines, in reference to the SQL syntax).
 
 :code:`$query->lessThan($propertyName, $operand);`
-	Checks if the value of the property $propertyName is less than the operand.
+    Checks if the value of the property $propertyName is less than the operand.
 
 :code:`$query->lessThanOrEqual($propertyName, $operand);`
-	Checks if the value of the property $propertyName is less than or equal to the operand.
+    Checks if the value of the property $propertyName is less than or equal to the operand.
 
 :code:`$query->greaterThan($propertyName, $operand);`
-	Checks if the value of the property $propertyName is greater than the operand.
+    Checks if the value of the property $propertyName is greater than the operand.
 
 :code:`$query->greaterThanOrEqual($propertyName, $operand);`
-	Checks if the value of the property $propertyName is greater than or equal to the operand.
+    Checks if the value of the property $propertyName is greater than or equal to the operand.
 
 Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but also can be a "property path".
     Example: ``$query->equals('categories.title', 'tools')`` searches for objects having a category titled
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 :code:`$query->logicalAnd($constraint1, $constraint2);`
-	Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
-	1.1 also an array of conditions is allowed.
+    Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
+    1.1 also an array of conditions is allowed.
 
 :code:`$query->logicalOr($constraint1, $constraint2);`
-	Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
-	1.1 also an array of conditions is allowed.
+    Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
+    1.1 also an array of conditions is allowed.
 
 :code:`$query->logicalNot($constraint);`
-	Returns a condition that inverts the result of the given condition (logical *not*).
+    Returns a condition that inverts the result of the given condition (logical *not*).
 
 In the section "Individual queries," in Chapter 6  you can find a comprehensive example for building queries.
 
@@ -584,15 +639,15 @@ can also write your own validators. Each Validator implements the
 methods:
 
 :code:`getErrors()`
-	Returns any error messages of the last validation.
+    Returns any error messages of the last validation.
 
 :code:`isValid($value)`
-	Checks whether the object that was passed to the validator is valid. If yes,
-	returns true, otherwise false.
+    Checks whether the object that was passed to the validator is valid. If yes,
+    returns true, otherwise false.
 
 :code:`setOptions(array $validationOptions)`
-	Sets specific options for the validator. These options apply to any further call
-	of the method isValid().
+    Sets specific options for the validator. These options apply to any further call
+    of the method isValid().
 
 You can call Validators in your own code with the method
 :code:`createValidator($validatorName, $validatorOptions)` in
@@ -674,17 +729,17 @@ does all the translation. The method can be called like this:
 ``\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)``
 
 ``$key``
-	The identifier to be translated. If then format *LLL:path:key* is given, then this
-	identifier is used and the parameter $extensionName is ignored. Otherwise, the
-	file :file:`Resources/Private/Language/locallang.xml` from the given extension is loaded
-	and the resulting text for the given key in the current language returned.
+    The identifier to be translated. If then format *LLL:path:key* is given, then this
+    identifier is used and the parameter $extensionName is ignored. Otherwise, the
+    file :file:`Resources/Private/Language/locallang.xml` from the given extension is loaded
+    and the resulting text for the given key in the current language returned.
 
 ``$extensionName``
-	The extension name. It can be fetched from the request.
+    The extension name. It can be fetched from the request.
 
 ``$arguments``
-	Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill
-	wildcards in localized strings with values.
+    Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill
+    wildcards in localized strings with values.
 
 In Fluid there is the translate ViewHelper, which works by the same rules. For a
 case study for localization, see Chapter 9.
