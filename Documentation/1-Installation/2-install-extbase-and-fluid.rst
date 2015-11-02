@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Install Extbase and Fluid
 =========================
 

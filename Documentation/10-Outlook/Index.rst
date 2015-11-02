@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Outlook
-=========================
+=======
 
 Even if Extbase and Fluid are very powerful tools, there is an advance
 in development. In this chapter we would like to show an outlook of the

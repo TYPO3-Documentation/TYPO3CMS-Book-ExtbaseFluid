@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Paths on the Data-Map
 =====================
 
@@ -19,9 +21,7 @@ tables (stored in the *Table Configuration Array*, short: TCA), furthermore it
 "reads" the PHP comments inside the class definition standing above the
 definitions (or *properties*). Let's for example look at the definition of the
 property *posts* within the ``Blog`` class. You can find this in the file
-:file:`EXT:blog_example/Classes/Domain/Model/blog.php`
-
-::
+:file:`EXT:blog_example/Classes/Domain/Model/blog.php`. ::
 
     class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractEntity {
         ...
@@ -39,9 +39,7 @@ property *posts* within the ``Blog`` class. You can find this in the file
 
 
 The property ``$posts`` contains within the PHP comment above some so called
-annotations which start with the @ character. The annotation:
-
-::
+annotations which start with the @ character. The annotation::
 
     @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
 
@@ -65,9 +63,7 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
 The notation at first seems unusual. It is based on the so called *Generics* of
 the programming language Java. In the definition of your property you have to
 enter the type in the annotation above the method definition. Properties of a
-PHP-type will look like this:
-
-::
+PHP-type will look like this::
 
     /**
      * @var int
@@ -75,9 +71,7 @@ PHP-type will look like this:
     protected $amount;
 
 
-It is also possible to enter a class as type:
-
-::
+It is also possible to enter a class as type::
 
     /**
      * @var Tx_BlogExample_Domain_Model_Author
@@ -85,9 +79,8 @@ It is also possible to enter a class as type:
     protected $author;
 
 
-Properties which should be bound to multiple child objects require the class name of the child elements in angle brackets:
-
-::
+Properties which should be bound to multiple child objects require the class
+name of the child elements in angle brackets::
 
     /**
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_model_Tags>
@@ -97,9 +90,7 @@ Properties which should be bound to multiple child objects require the class nam
 
 Extbase gathers the type of the relation from the configuration of the database
 table column. Lets take a look at the definition of the column posts. It can be
-found in the file :file:`tca.php` within the path *Configuration/TCA/*.
-
-::
+found in the file :file:`tca.php` within the path *Configuration/TCA/*. ::
 
     $TCA['tx_blogexample_domain_model_blog'] = array(
         ...

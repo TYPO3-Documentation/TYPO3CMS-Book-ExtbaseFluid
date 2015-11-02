@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Developing a custom ViewHelper
 ================================================
 
@@ -113,7 +115,7 @@ enhanced our ViewHelper from above as follows::
 
 and we insert it in the template like this::
 
-	{namespace blog=Tx_BlogExample_ViewHelpers} 
+	{namespace blog=Tx_BlogExample_ViewHelpers}
 	Hello <blog:gravatar />
 
 ``Hello World`` should be displayed.

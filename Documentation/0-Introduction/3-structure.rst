@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Structure of this book
-======================================
+======================
 
 This chapter is structured into ten subchapters and three appendices. The
 chapters discuss the following topics:
@@ -12,7 +14,7 @@ tricks for debugging.
 Chapter 2, *Basic principles*, begins with an
 overview of the concepts of object oriented programming, which
 are essential for working with Extbase. After that, we dive into
-Domain-Driven Design, a programming paradigm which is a core principle of 
+Domain-Driven Design, a programming paradigm which is a core principle of
 Extbase. After that, you'll learn the design pattern Model-View-Controller,
 which is the technical basis of every Extbase Extension. Finally, the
 chapter explains Test-Driven Development to the reader.
@@ -42,8 +44,8 @@ focus on the application flow of the extension in chapter 7,
 implemented in the controller layer.
 
 Next, the book explains the output layer of the extension: the so-called
-*view*. In chapter 8, *Styling the output with Fluid*, Fluid is explained in 
-detail and its function is shown through several examples. At the end of the 
+*view*. In chapter 8, *Styling the output with Fluid*, Fluid is explained in
+detail and its function is shown through several examples. At the end of the
 chapter, the sample functions are combined and demonstrated within the example
 extension.
 
@@ -52,9 +54,9 @@ security*, deals with advanced topics and tasks. This includes the
 multilingual capabilities of extensions, the validation of data, and the
 handling of security aspects.
 
-Chapter 10, *Outlook*, gives a glimpse into code which is currently being developed. 
-The focus lies on the kickstarter and the use of Extbase in the TYPO3 Backend. 
-Additionally, this chapter shows you parts of FLOW3 and explains how Extbase 
+Chapter 10, *Outlook*, gives a glimpse into code which is currently being developed.
+The focus lies on the kickstarter and the use of Extbase in the TYPO3 Backend.
+Additionally, this chapter shows you parts of FLOW3 and explains how Extbase
 Extensions can be ported to TYPO3 v6.
 
 Extbase mostly uses the conventions of FLOW3. In *Appendix A, Coding Guidelines*, they are summarized.

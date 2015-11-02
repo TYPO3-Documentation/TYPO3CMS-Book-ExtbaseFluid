@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Create The Domain Model
 ================================================
 
@@ -23,9 +25,7 @@ This class file is stored in the folder
 Below we have a view into this file, note that the class
 :class:`Tx_Inventory_Domain_Model_Product` must be derivated
 from the extbase class
-:class:`Tx_Extbase_DomainObject_AbstractEntity`.
-
-::
+:class:`Tx_Extbase_DomainObject_AbstractEntity`. ::
 
     <?php
     class Tx_Inventory_Domain_Model_Product extends Tx_Extbase_DomainObject_AbstractEntity {

@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Configuring the Server
-============================
+======================
 
 Since TYPO3 is written in the PHP scrpting language, you will need a
 webserver like Apache with PHP (version 5.2 or 5.3) support, for your TYPO3

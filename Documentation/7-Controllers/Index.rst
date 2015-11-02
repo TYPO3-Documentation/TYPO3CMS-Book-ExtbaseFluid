@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 .. _controlling-the-flow-with-controllers:
 
 Controlling the flow with controllers
@@ -66,11 +68,11 @@ Classes. A very "natural" way of grouping would be: Every Aggregate Root
 Class, containing objects on which an Action shall be applied, is
 administered by a proper Controller. In our case the two classes
 :class:`Organization` and :class:`Offer` are
-indicated. Now let's start with our first Controller. 
+indicated. Now let's start with our first Controller.
 
 .. toctree::
 	:maxdepth: 2
-	
+
 	1-Creating-Controllers-and-Actions
 	2-Configuring-and-embedding-Frontend-Plugins
 	3-Configuring-the-behavior-of-the-extension

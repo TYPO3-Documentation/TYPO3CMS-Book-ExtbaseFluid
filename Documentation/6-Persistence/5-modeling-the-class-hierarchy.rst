@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Modelling the Class Hierarchy
 ================================================
 

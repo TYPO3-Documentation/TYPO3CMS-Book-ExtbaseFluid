@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Conclusion
-================================================
+==========
 
 In this chapter you first learned the basic concepts of Fluid,
 followed by the use partials and layouts which help a lot with structuring

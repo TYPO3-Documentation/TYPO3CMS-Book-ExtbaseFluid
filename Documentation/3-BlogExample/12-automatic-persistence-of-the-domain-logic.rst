@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Automatic persistence of the domain logic
 =========================================
 

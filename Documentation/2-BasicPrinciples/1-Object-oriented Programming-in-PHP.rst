@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Object-oriented programming in PHP
 =================================================
 
@@ -119,11 +121,11 @@ add these Properties and Methods::
 
 	}
 
-Our ship now has a name (:class:`$name`), a number of coaches 
-(:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a 
-variable, containing the status of the engine (:class:`$engineStatus`). A real 
-ship, of course, has much more properties, all important somehow – for our our 
-abstraction these few will be sufficient though. We'll focus on why every 
+Our ship now has a name (:class:`$name`), a number of coaches
+(:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a
+variable, containing the status of the engine (:class:`$engineStatus`). A real
+ship, of course, has much more properties, all important somehow – for our our
+abstraction these few will be sufficient though. We'll focus on why every
 Property is marked with the key word :class:`public` further down.
 
 
@@ -162,7 +164,7 @@ the following::
 
 	object(Ship)#1 (3) {
 
-		["name"] => NUL 
+		["name"] => NUL
 
 		["coaches"] => NULL
 
@@ -178,7 +180,7 @@ can instantiate as many Objects from a class as we like, and every single
 one will differ from the others – even if all of the Properties have the
 same values.
 
-:: 
+::
 
 	$fidelio1 = new Ship();
 	$fidelio2 = new Ship();
@@ -228,7 +230,7 @@ point, how an object to be instantiated later will be called. So we need
 a mechanism to do this independent from the name. This is done with the
 special variable :class:`$this`.
 
-:: 
+::
 
 	class Ship {
 

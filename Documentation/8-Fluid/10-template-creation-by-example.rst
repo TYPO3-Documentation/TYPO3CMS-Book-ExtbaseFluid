@@ -1,7 +1,9 @@
+.. include:: ../Includes.txt
+
 .. _template-creation-by-example:
 
 Template Creation by example
-================================================
+============================
 
 In this section we will show you some of the techniques you got to
 know in the course so far, in the interaction with our sample extension

@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 programming secure extensions
-================================================
+=============================
 
 While mostly the functionality of an extension is set of great value,
 the safety aspect of the programmed code is clearly less respected. In this
@@ -47,7 +49,7 @@ data to the desired format, for example to a number with the use of
 
 .. tip::
 
-	More hints for safety programming with PHP you find also in the PHP handbook at 
+	More hints for safety programming with PHP you find also in the PHP handbook at
 	*http://php.net/security*
 	.
 

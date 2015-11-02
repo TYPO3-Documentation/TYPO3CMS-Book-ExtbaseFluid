@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 More helpful Extensions
 =======================
 

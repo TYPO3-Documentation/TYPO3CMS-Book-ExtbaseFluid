@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 A short history of Extbase and Fluid
-=====================================================
+====================================
 
 .. ============================================
 .. Meta-Information for this chapter

@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Using Different Output Formats
 ================================================
 
@@ -59,7 +61,7 @@ format is being reflected in the file ending of the template.
 		}
 		}
 
-	You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin. 
+	You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
 	We recommend to search for the path of your Plugin in the
 	TypoScript Object Browser to avoid misspelling. Futher on you have to
 	implicitley set ``plugin.``*[ExtensionKey]*.``persistence.storagePid``

@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 A journey through the Blog Example
 ======================================================
 
@@ -47,4 +49,4 @@ Fluid.
 	10-Returning-the-result-to-TYPO3
 	11-Alternative-route-creating-a-new-posting
 	12-automatic-persistence-of-the-domain-logic
-	13-notes-for-migrating-users	
+	13-notes-for-migrating-users

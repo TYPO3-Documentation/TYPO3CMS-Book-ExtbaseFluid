@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 And... action!
-========================================
+==============
 
 Our journey through the blog example is not only an educational, but
 also an activity holiday. We now turn to the activities. We are already in
@@ -11,9 +13,7 @@ In Extbase the controllers mostly exist as
 :class:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
-shortened version of the :class:`BlogController`:
-
-::
+shortened version of the :class:`BlogController`::
 
     class Tx_BlogExample_Controller_BlogController
           extends Tx_Extbase_MVC_Controller_ActionController {
@@ -85,9 +85,7 @@ called. The call is happening without the need to write another line of code
 in the BlogController. This does
 :class:`Tx_Extbase_MVC_Controller_ActionController`. The
 BlogController "inherits" all methods from it, by deriving it form this
-class:
-
-::
+class::
 
     class Tx_BlogExample_Controller_BlogController extends
         Tx_Extbase_MVC_Controller_ActionController {...}
@@ -96,9 +94,7 @@ At first call of the plugin without additional information the request
 will get a standard action; in our case the
 `indexAction()`. The
 `indexAction()` contains only one line in our example
-(as shown above), which looks more detailled like this:
-
-::
+(as shown above), which looks more detailled like this::
 
     public function indexAction() {
         $blogRepository = t3lib_div::makeInstance('Tx_BlogExample_Domain_Repository_BlogRepository');

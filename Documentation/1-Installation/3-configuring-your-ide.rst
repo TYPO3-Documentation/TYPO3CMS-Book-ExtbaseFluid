@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Configuring your IDE
 ====================
 
@@ -20,7 +22,7 @@ depends on your personal preferences which one you should use.
 	PHP IDE is called Eclipse PDT, which you can download from
 	*http://eclipse.org/pdt*.
 
-In general you should create projects for Extbase and Fluid in NetBeans, 
+In general you should create projects for Extbase and Fluid in NetBeans,
 Eclipse or PhpStorm. You will be able to have a look at the
 Extbase and Fluid source code and the documentation whenever you need
 it.

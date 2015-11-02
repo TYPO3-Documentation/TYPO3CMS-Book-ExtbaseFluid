@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Adding a template
 ======================
 
@@ -9,7 +11,7 @@ So the class name :class:`Tx_Inventory_Controller_InventoryController` results i
 directory name *inventory*.
 
 Below the directory *Inventory* we create the file with the HTML template. The name
-of the file results of the name of the action that is called with an added 
+of the file results of the name of the action that is called with an added
 suffix *.html*. So the filename in our case is *list.html*.
 
 .. note::
@@ -26,21 +28,21 @@ following::
 
 	<table border="1" cellspacing="1" cellpadding="5">
 		<tr>
-			<td>Productname</td>    
+			<td>Productname</td>
 			<td>Productdescription</td>
 			<td>Quantity</td>
 		</tr>
 		<f:for each="{products}" as="product">
 			<tr>
-				<td align="top">{product.name}</td>    
-				<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>    
-				<td align="top">{product.quantity}</td>    
+				<td align="top">{product.name}</td>
+				<td align="top"><f:format.crop maxCharacters="100">{product.description}</f:format.crop></td>
+				<td align="top">{product.quantity}</td>
 			</tr>
 		</f:for>
 	</table>
 
 The inventory is rendered as a table. We can access the
-the array with the product objects that we assigned to the view in the 
+the array with the product objects that we assigned to the view in the
 controller via ``$this->view->assign('products', $products)`` with ``{products}``.
 Tags starting with ``<f:`` are Fluid tags. The code inside the ``for`` tag is repeated for
 each product object in ``products``. The ``crop`` tag shortens the containing text to
@@ -48,5 +50,5 @@ the desired length.
 A more detailed introduction about how to use Fluid tags can be found in chapter
 8, *Styling the output with Fluid* and also in the reference in appendix c.
 
-We still do not have a result in the frontend until we created a frontend 
+We still do not have a result in the frontend until we created a frontend
 plugin.

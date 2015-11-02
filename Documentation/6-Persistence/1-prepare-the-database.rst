@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Preparing the database
 ================================================
 
@@ -356,7 +358,7 @@ attached to several offers.
 	the participation fee is not defined and NOT that the fee is 0 Euro.
 	However, in this concrete example this may due in the same
 	Frontend-output ("free of charge") but that has to be reasoned depending
-	on the use-case. 
+	on the use-case.
 
 	* One cannot make calculations with ``NULL`` values.
 	  The functions ``AVG``, ``SUM``, etc. ignore the
@@ -413,7 +415,7 @@ themself.
 	realized as ``CD -- 1:n -- Track -- n:1 -- Song``.
 
 Not all combinations of relationship type and its technical persistence are sane.
-Table 6-2 lists all combinations that are **y** possible and useful, **(y)** technically 
+Table 6-2 lists all combinations that are **y** possible and useful, **(y)** technically
 possible but rarely sensible, **no** either technically impossible or not
 supported.
 

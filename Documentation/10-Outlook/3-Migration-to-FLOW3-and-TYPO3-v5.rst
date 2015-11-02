@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Migration to FLOW3 and TYPO3 v5
-================================
+===============================
 
 Extbase and FLOW3 have many similarities, because at last Extbase is a port of some FLOW3 concept
 for TYPO3 v4. The structure of an extension is already extensive based on the package structure

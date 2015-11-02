@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Create Folder Structure And Configuration Files
 ================================================================================================
 

@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Creating Controllers and Actions
-================================================
+================================
 
 The Controller classes are stored in the folder <link
 linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the

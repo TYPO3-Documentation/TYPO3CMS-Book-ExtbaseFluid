@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Using boolean conditions
 ================================================
 

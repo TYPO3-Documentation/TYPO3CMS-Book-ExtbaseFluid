@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 .. _modeling-the-domain:
 
 Modeling the Domain
@@ -34,19 +36,19 @@ at the TER.
 
 .. tip::
 
-	Please note that we, the authors are also in a proceeding learning process. With our todays knowledge, the printed code can be described as 
+	Please note that we, the authors are also in a proceeding learning process. With our todays knowledge, the printed code can be described as
 
 	*good*
 
-	in terms of the right use of Extbase and Fluid. Good software does not sprout as a one-off product even of a meticulous approach but as something which has to be optimized and readjusted steadily. Therefore we are advocates of an 
+	in terms of the right use of Extbase and Fluid. Good software does not sprout as a one-off product even of a meticulous approach but as something which has to be optimized and readjusted steadily. Therefore we are advocates of an
 
 	*agile*
 
-	approach and a continuous 
+	approach and a continuous
 
 	*Refactoring*
 
-	of software architecture and code. 
+	of software architecture and code.
 
 Development with Extbase starts with, as stated before, the domain's
 characterization and their implementation as a model. If you are not
@@ -57,4 +59,4 @@ familiar with the terms of Domain Driven Design, we suggest to scan through
 	:maxdepth: 2
 
 	1-the-application-domain
-	2-implementing-the-domain-model	
+	2-implementing-the-domain-model

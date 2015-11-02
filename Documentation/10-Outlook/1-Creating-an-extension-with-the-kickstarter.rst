@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Creating an extension with the kickstarter
-=============================================
+==========================================
 
 How you have seen in chapter 5 and chapter 6, when creating an extension you have to write a lot
 of recurrent code. For every property of the domain model there are normally getter and setter

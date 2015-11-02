@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Extbase and Fluid Autocompletion
-=================================================
+================================
 
 When developing your own Extensions you'll often work with classes of
 Extbase and Fluid. That's why it helps to set up the autocompletion feature.
@@ -13,7 +15,7 @@ Extbase and Fluid classes.
 .. figure:: /Images/1-Installation/figure-1-2.png
 	:align: center
 
-	Figure 1-2: The autocompletion feature will show you possible class names 
+	Figure 1-2: The autocompletion feature will show you possible class names
 	and their code documentation.
 
 

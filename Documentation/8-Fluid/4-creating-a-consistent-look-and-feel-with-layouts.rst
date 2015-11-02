@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 .. _creating-a-consistent-look-and-feel-with-layouts:
 
 Creating A Consistent Look And Feel With Layouts
@@ -14,7 +16,7 @@ template.
 .. figure:: /Images/8-Fluid/figure-8-1.png
 	:align: center
 
-	Figure 8-1: Layouts build the outer frame for a template, whereas recurring 
+	Figure 8-1: Layouts build the outer frame for a template, whereas recurring
 	elements can be implemented in a template with partials.
 
 Now we look at how to create and use a layout. A layout is a Fluid

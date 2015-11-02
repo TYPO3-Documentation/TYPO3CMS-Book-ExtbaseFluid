@@ -1,7 +1,9 @@
-Introduction
-==============================
+.. include:: ../Includes.txt
 
-TYPO3 is a powerful and mature content management system containing many 
+Introduction
+============
+
+TYPO3 is a powerful and mature content management system containing many
 features and a large degree of flexibility. However, the architecture
 of version 4 and the programming techniques which form
 the basis of it were the state of the art around the year 2000. That's why
@@ -15,26 +17,26 @@ The birth of Extbase and Fluid also took place in this phase of re-orientation.
 
 .. sidebar:: TYPO3 v4 and TYPO3 v6
 
-	Because the internal structures of TYPO3 v4 grew organically, they 
-	could be quite confusing. When developing the new version 6 of the CMS, the 
+	Because the internal structures of TYPO3 v4 grew organically, they
+	could be quite confusing. When developing the new version 6 of the CMS, the
 	TYPO3 team decided to start from scratch. Special attention was placed on
-	clean code and an easy and powerful infrastructure. It quickly emerged that the first 
+	clean code and an easy and powerful infrastructure. It quickly emerged that the first
 	priority would be a web application framework, before the CMS itself
 	was be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
 
-Extbase is a PHP-based framework which supports developers in creating clean and easily 
-maintainable TYPO3 extensions. The template engine Fluid makes sure that the user interface 
+Extbase is a PHP-based framework which supports developers in creating clean and easily
+maintainable TYPO3 extensions. The template engine Fluid makes sure that the user interface
 of the extension can easily be created individually.
 
-Extbase ensures a clear separation between different concerns, which makes maintenance a lot 
+Extbase ensures a clear separation between different concerns, which makes maintenance a lot
 more simple thanks to modular code. Because of this modular design, the development time
-and associated costs are reduced for initial development and as for adjustments. Extbase 
-also lessens the burden ofon the developer when it comes to security-relevant and repetetive tasks: 
-for example the validation of arguments, the persistence of data, and access to TypoScript and 
+and associated costs are reduced for initial development and as for adjustments. Extbase
+also lessens the burden ofon the developer when it comes to security-relevant and repetetive tasks:
+for example the validation of arguments, the persistence of data, and access to TypoScript and
 FlexForm settings. Developers can therefore focus on solving the problems of their clients much more efficiently.
 
 Because of the modern architecture and the usage of up-to-date software
-development paradigms, using Extbase needs different knowledge than before. 
+development paradigms, using Extbase needs different knowledge than before.
 Instead of "hacking together" an extension, programmers now must understand
 some concepts like Domain-Driven Design, whilst planning and modelling the extension
 more thoroughly before implementation. In return, the source code
@@ -52,8 +54,8 @@ to FLOW3 and TYPO3 v6.
 
 We hope that Extbase and Fluid are the introduction to a completely
 new world of programming for you, so that you can start learning the
-concepts of FLOW3. You will learn a lot of new concepts when starting work with FLOW3, 
-but over time, you will notice that Extbase and Fluid makes you a lot more productive. 
+concepts of FLOW3. You will learn a lot of new concepts when starting work with FLOW3,
+but over time, you will notice that Extbase and Fluid makes you a lot more productive.
 With a bit of luck, you'll hopefully get into the "flow" which drove us while we developed Extbase and Fluid.
 
 Not only developers can profit from Extbase: the FLOW3 development team can also test many abstract concepts

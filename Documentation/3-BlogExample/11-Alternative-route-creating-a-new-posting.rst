@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Alternative route: creating a new posting
 =========================================
 

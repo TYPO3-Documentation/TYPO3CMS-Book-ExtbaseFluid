@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Creating a first extension
 ===============================================
 
@@ -17,4 +19,4 @@ and fluid.
 	4-make-products-persistent
 	5-controlling-the-flow
 	6-adding-the-template
-	7-configuring-the-plugin	
+	7-configuring-the-plugin

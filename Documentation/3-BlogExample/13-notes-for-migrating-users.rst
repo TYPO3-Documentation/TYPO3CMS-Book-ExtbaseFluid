@@ -1,3 +1,5 @@
+.. include:: ../Includes.txt
+
 Notes for migrating users
 =========================
 

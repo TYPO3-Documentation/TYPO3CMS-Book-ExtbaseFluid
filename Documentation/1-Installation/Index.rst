@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Installation
-=====================================
+============
 
 In this chapter we want to help you to set up an effecient working
 environment. There are some notes how to set up the development server to
@@ -19,7 +21,7 @@ them.
 
 .. toctree::
 	:maxdepth: 2
-	
+
 	1-configuring-the-server
 	2-install-extbase-and-fluid
 	3-configuring-your-ide

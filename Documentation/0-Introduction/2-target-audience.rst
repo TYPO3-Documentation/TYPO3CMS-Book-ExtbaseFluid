@@ -1,7 +1,9 @@
-Target Audience
-==============================
+.. include:: ../Includes.txt
 
-This book is for TYPO3 extension developers who have a basic understanding of PHP programming and experience of working with and administering TYPO3. The book gives a compact introduction to the Extbase framework and to the Fluid template engine. 
+Target Audience
+===============
+
+This book is for TYPO3 extension developers who have a basic understanding of PHP programming and experience of working with and administering TYPO3. The book gives a compact introduction to the Extbase framework and to the Fluid template engine.
 
 We are aiming at the following target audiences.
 

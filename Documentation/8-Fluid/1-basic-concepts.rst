@@ -1,7 +1,9 @@
+.. include:: ../Includes.txt
+
 .. _basic-concepts:
 
 Basic Concepts
-================================================
+==============
 
 Fluid is a template engine which lets you display content on a website
 very easily. A specific file (the template) will be processed and the
@@ -16,7 +18,7 @@ the template engine and provide for scalability and flexibility:
 * *Arrays* make it possible to assign hierarchical values to ViewHelpers.
 
 Outputting Data with Object Accessors
------------------------------------------------------
+-------------------------------------
 
 A template engine uses a placeholder to fill content in specified
 areas in a template and the result is then returned to the user. In Fluid,
@@ -125,7 +127,7 @@ needed. The following describes how to do this.
 
 
 Implementing more complex functionalities with ViewHelpers
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------
 
 Functionalities that exceed the simple output of values have to be
 implemented with ViewHelpers. Every ViewHelper has its own PHP class. Now,
@@ -157,7 +159,7 @@ Here's a small example:
 
 
 
-.. code-block:: none
+.. code-block:: xml
 
     <ul>
         <f:for each="{blogPosts}" as="post">
@@ -362,7 +364,7 @@ operator (->) . This can also be done multiple times.
 
 
 Flexible Arrays Data Structures
--------------------------------------------------
+-------------------------------
 
 Arrays round off the concept of Fluid and build another core concept
 of the template engine. Arrays in Fluid can be somewhat compared to
@@ -420,5 +422,3 @@ These are the basic concepts of Fluid. Now we move on to more
 advanced concepts, which increase the effectiveness of template creation.
 The following chapter will explain how to use different output formats to
 achieve different views of data.
-
-

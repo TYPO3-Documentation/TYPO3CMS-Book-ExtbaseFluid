@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Conclusion
-================================================
+==========
 
 In this chapter we have considered tasks that touch several layer of
 the MVC achitecture. First we have seen how to cover extensions for multi

@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Localizing and internationalizing an extension
-================================================================================================
+==============================================
 
 Particularly in business relationships there often is the need to
 provide a website in one or multiple languages. Therefore not only the
@@ -34,7 +36,7 @@ the particular country.
 
 
 Multi language Templates
--------------------------------------------------
+------------------------
 
 When you style the output of your extension using Fluid, you often
 have to localize particular terms or maybe short text in the templates. In
@@ -152,7 +154,7 @@ english terms:
 
 
 Output localized strings using ``sprintf``
---------------------------------------------------------------------------------------------------
+------------------------------------------
 
 In the above example we have outputted the name of the blog post
 author simply by using ``{blog.author.fullName}``. Many
@@ -237,7 +239,7 @@ next section.
 
 
 Multi language domain objects
--------------------------------------------------
+-----------------------------
 
 With TYPO3 you can localize the data sets in the backend. This also
 applies to domain data, because they are treated like "normal" data sets
@@ -391,7 +393,7 @@ the default language.
 
 
 Localization of date output
--------------------------------------------------
+---------------------------
 
 It often occurs that a date or time must be displayed in a template.
 Every language area has its own convention on how the date is to be
@@ -505,5 +507,3 @@ the template, after this we had a look at the content of the extension.
 Finally the customization of date information for country-specific formats
 where explained. In the next section you will see how constraints of the
 domain objects can be preserved.
-
-

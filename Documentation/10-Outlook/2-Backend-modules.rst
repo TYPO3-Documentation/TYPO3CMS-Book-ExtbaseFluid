@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Backend modules
-=================
+===============
 
 So far we have elucidated how frontend plugins can be implemented as Extbase extensions.
 It is basically possible to create backend modules with Extbase. Because of not so much

@@ -1,11 +1,13 @@
+.. include:: ../Includes.txt
+
 Thanks
-==============================
+======
 
 from Jochen and Sebastian
--------------------------------------------------
+-------------------------
 Above all, we want to thank our families and partners for their
 understanding and their support when we spent our afternoons and evenings
-with the book instead of with them. Also, our customers had to be patient 
+with the book instead of with them. Also, our customers had to be patient
 from time to time, when we developed Extbase or wrote the book instead
 of working on their project.
 

@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Styling the output with Fluid
-===============================================
+=============================
 
 Up to now you have learned how to represent the business logic of an
 application with a model and how to manipulate the model with the use of
@@ -19,7 +21,7 @@ sample.
 
 .. toctree::
 	:maxdepth: 2
-	
+
 	1-basic-concepts
 	2-using-different-output-formats
 	3-moving-repeating-snippets-to-partials

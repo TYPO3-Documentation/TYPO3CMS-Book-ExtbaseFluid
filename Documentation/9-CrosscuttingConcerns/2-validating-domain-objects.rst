@@ -1,5 +1,7 @@
+.. include:: ../Includes.txt
+
 Validating domain objects
-================================================
+=========================
 
 We have learned about Extbase and Fluid in detail, but considered
 terms of consistence of the domain only marginally. Often we estimate that
@@ -30,7 +32,7 @@ correct an error when an error occurs.
 
 
 Validators for checking of Invariants
--------------------------------------------------
+-------------------------------------
 
 A validator is a PHP class that has to check a certain invariant. If
 the invariant is fulfilled than the validator returns ``true``
@@ -65,7 +67,7 @@ an email address looks like this::
                 ), 1221559976);
         }
     }
-    
+
     protected function validEmail($emailAddress) {
         return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
     }
@@ -95,7 +97,7 @@ numbers or strings.
 
 
 When does validation take place?
--------------------------------------------------
+--------------------------------
 
 Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. With the help of figure
@@ -144,7 +146,7 @@ correct the errors.
     again.
 
 Registering validators
--------------------------------------------------
+----------------------
 
 Now we know how validators are working and when they are called.
 However we have to connect our domain model with the validators to define
@@ -156,7 +158,7 @@ there are three possibilities which we define in the following:
 * validating of controller arguments
 
 Validating in the domain model with annotations
--------------------------------------------------
+-----------------------------------------------
 In most cases it is sufficient to validate the properties of a
 domain object separately. When all properties are validated with success
 the complete domain object is also successful validated; when a property
@@ -187,7 +189,7 @@ of the domain model ``Post`` of the blog example::
         protected $content;
     }
 
-With the line ``@validate StringLength(minimum=3, 
+With the line ``@validate StringLength(minimum=3,
 maximum=50)`` the validator for the property ``$title`` is
 specified. In paranthesis the parameter for the validator are specified.
 In our case we make shure that a title of a blog post is never shorter
@@ -233,7 +235,7 @@ objects are to be validated.
 
 
 Validating in the domain model with an own validator class
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------
 
 The just introduced possibilities to register validators in the
 model is sepecially practical when individual properties of the model
@@ -327,7 +329,7 @@ next section.
 
 
 Validating of controller arguments
--------------------------------------------------
+----------------------------------
 
 If you want to validate a domain object only when calling a
 special action you have to define validators for individual arguments.
@@ -352,7 +354,7 @@ validator.
 
 
 Interaction of validators
--------------------------------------------------
+-------------------------
 
 Now you know three possibilities how validators are to be
 registered. For an argument of an action the following validators are
@@ -402,7 +404,7 @@ object.
 
 
 Case study: Edit an existing object
--------------------------------------------------
+-----------------------------------
 
 Now you know all building blocks you need to edit a blog object with
 a form. Hereby the edit form should be displayed again in case of a
@@ -502,7 +504,7 @@ the error messages of the validation.
 
 
 Case study: Create an object
--------------------------------------------------
+----------------------------
 
 In the last section you have seen how to edit a blog object with a
 form. Now we will show you how to create a new blog object with a form.
@@ -570,7 +572,7 @@ frontend.
     error occurs it is displayed again.
 
 Mapping arguments
--------------------------------------------------
+-----------------
 
 In this section we would describe in detail what happens during a
 request before the accordingly action is called. Particular interesting is
