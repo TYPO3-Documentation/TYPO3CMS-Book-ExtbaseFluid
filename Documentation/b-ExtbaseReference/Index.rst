@@ -2,6 +2,7 @@
     We should reference them, as soon as they are inside. Xavier already rendered them, but I didn't
     get the url running for latest.
 
+.. include:: ../Includes.txt
 .. _extbase_reference:
 
 Extbase Reference
@@ -60,7 +61,7 @@ backend. Let's have a look at the following two files:
 
 In addition to the extension key and a unique name of the plugin (line 2 and 3),
 the allowed combinations of the controller and actions are determined.
-``$controllerActionCombinations`` is an associative array. The Keys of this array
+`$controllerActionCombinations` is an associative array. The Keys of this array
 are the allowed controllers, and the values are a comma-separated list of
 allowed actions per controller. The first action of the first controller is the
 default action.
@@ -77,8 +78,8 @@ same format as above, containing all the non-cached-actions.
         $backendTitle
     );
 
-The extension key and ``$pluginName`` must be completely identical to the definition
-in :file:`ext_localconf.php`. ``$backendTitle`` defines the displayed name of the plugin in
+The extension key and `$pluginName` must be completely identical to the definition
+in :file:`ext_localconf.php`. `$backendTitle` defines the displayed name of the plugin in
 the Backend.
 Below there is a complete configuration example for the registration of a
 frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables.php`.
@@ -188,16 +189,16 @@ Activate features for Extbase or a specific plugin.
 
 .. _features-skipDefaultArguments:
 
-``features.skipDefaultArguments``
+`features.skipDefaultArguments`
     Skip default arguments in URLs. If a link to the default controller or action is created, the
     parameters are omitted.
-    Default is ``false``.
+    Default is `false`.
 
 .. _features-ignoreAllEnableFieldsInBe:
 
-``features.ignoreAllEnableFieldsInBe``
+`features.ignoreAllEnableFieldsInBe`
     Ignore the enable fields in backend.
-    Default is ``false``.
+    Default is `false`.
 
 .. _typoscript_configuration-persistence:
 
@@ -206,33 +207,33 @@ persistence
 
 Settings relevant to the persistence layer of Extbase.
 
-``persistence.classes``
+`persistence.classes`
     This settings are used with individual classes. That includes in particular the
     mapping of classes and property names to tables and field names.
 
-``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.columns``
+`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.columns`
     Configure fields which differ from the regular naming conventions.
-    Use the form ``field_name.mapOnProperty = propertyName``.
+    Use the form `field_name.mapOnProperty = propertyName`.
 
-``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.recordType``
+`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.recordType`
     Specify a string literal, which - if set - should be stored in the
     type field of the table.
 
-``persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.tableName``
+`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.tableName`
     Set a table name which differs from the regular naming conventions.
 
-``persistence.classes.Vendor\MyExt\Domain\Model\Foo.newRecordStoragePid``
+`persistence.classes.Vendor\MyExt\Domain\Model\Foo.newRecordStoragePid`
     Page-ID in which new records of the given class should be saved.
 
-``persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses``
+`persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses`
     List all subclasses of the class given in the form *ClassName = ClassName*.
 
-``persistence.enableAutomaticCacheClearing``
+`persistence.enableAutomaticCacheClearing`
     Enables the automatic cache clearing when changing data sets (see also the
     section ":ref:`caching_of_actions_and_records`" above in this chapter).
-    Default is ``true``.
+    Default is `true`.
 
-``persistence.storagePid``
+`persistence.storagePid`
     List of Page-IDs, from which all records are read (see the section
     ":ref:`Procedure to fetch objects <procedure_to_fetch_objects>`" in Chapter 6).
 
@@ -242,8 +243,8 @@ settings
 --------
 
 Here reside are all the domain-specific extension settings. This setting are
-available as an array in the controllers in ``$this->settings`` and in any Fluid
-template with ``{settings}``.
+available as an array in the controllers in `$this->settings` and in any Fluid
+template with `{settings}`.
 
 .. tip::
 
@@ -258,24 +259,24 @@ view
 
 View and template settings.
 
-``view.layoutRootPath``
+`view.layoutRootPath`
     This can be used to specify the root path for all fluid layouts in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Layouts` is used. All layouts that are necessary
     for this extension should reside in this folder.
 
-``view.partialRootPath``
+`view.partialRootPath`
     This can be used to specify the root path for all fluid partials in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Partials` is used. All partials that are
     necessary for this extension should reside in this folder.
 
-``view.pluginNamespace``
+`view.pluginNamespace`
     This can be used to specify an alternative namespace for the plugin.
     Use this to shorten the Extbase default plugin namespace or to access
     arguments from other extensions by setting this option to their namespace.
 
-``view.templateRootPath``
+`view.templateRootPath`
     This can be used to specify the root path for all fluid templates in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
@@ -301,8 +302,8 @@ _LOCAL_LANG
 -----------
 
 Under this key you can modify localized strings for this extension.
-If you specify for example ``plugin.tx_blogexample._LOCAL_LANG.default.read_more =
-More>>`` then the standard translation for the key read_more is overwritten by the
+If you specify for example `plugin.tx_blogexample._LOCAL_LANG.default.read_more =
+More>>` then the standard translation for the key read_more is overwritten by the
 string *More>>*.
 
 .. _class_hierarchy:
@@ -339,32 +340,32 @@ ActionController API
 The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
 
-``$actionMethodName``
+`$actionMethodName`
     Name of the executed action.
 
-``$argumentMappingResults``
+`$argumentMappingResults`
     Results of the argument mapping. Is used especially in the errorAction.
 
-``$defaultViewObjectName``
+`$defaultViewObjectName`
     Name of the default view, if no fluid-view or an action-specific view was found.
 
-``$errorMethodName``
+`$errorMethodName`
     Name of the action that is performed when generating the arguments of actions
     fail. Default is errorAction. In general, it is not sensible to change this.
 
-``$request``
+`$request`
     Request object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\RequestInterface`.
 
-``$response``
+`$response`
     Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
 
-``$settings``
+`$settings`
     Domain-specific extension settings from TypoScript (as array).
 
-``$view``
+`$view`
     The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
 
-``$viewObjectNamePattern``
+`$viewObjectNamePattern`
     If no fluid template is found for the current action, Extbase attempts to find a
     PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
     changed here. By default names are used according to the scheme
@@ -422,7 +423,7 @@ Most important API methods of action controller
 Actions
 -------
 
-All public methods that end in action (for example ``indexAction`` or ``showAction``),
+All public methods that end in action (for example `indexAction` or `showAction`),
 are automatically registered as actions of the controller.
 
 Many of these actions have parameters. These appear as annotations in the Doc-Comment-Block
@@ -445,7 +446,7 @@ of the specified method, as shown in Example B-3:
     public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
     {
         $this->view->assign('newBlog', $newBlog);
-    );
+    )
 
 It is important to specify the full type in the *@param* annotation as this is used for the validation
 of the object. Note that not only simple data types such as String, Integer or Float can be validated,
@@ -455,8 +456,8 @@ In addition, on actions showing the forms used to create or edit domain View obj
 domain objects must be explicitly disabled - therefore the annotation *@dontvalidate* is necessary.
 
 Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
-the default value of the parameter ``$newBlog`` is set to NULL. If an action returns NULL or nothing,
-then automatically ``$this->view->render()`` is called, and thus the view is rendered.
+the default value of the parameter `$newBlog` is set to NULL. If an action returns NULL or nothing,
+then automatically `$this->view->render()` is called, and thus the view is rendered.
 
 .. _class_hierarchy-define_initialization_code:
 
@@ -478,8 +479,8 @@ Catching validation errors with errorAction
 -------------------------------------------
 
 If an argument validation error has occurred, the method :code:`errorAction()` is called. There,
-in ``$this->argumentsMappingResults`` you have a list of occurred warnings and errors of the argument
-mappings available. This default ``errorAction`` refers back to the last sent form, if the referrer
+in `$this->argumentsMappingResults` you have a list of occurred warnings and errors of the argument
+mappings available. This default `errorAction` refers back to the last sent form, if the referrer
 was sent with it.
 
 Application domain of the extension
@@ -534,7 +535,7 @@ Each repository provides the following public methods:
 
 :code:`findByProperty($propertyValue)` and :code:`countByProperty($propertyValue)`
     Magic finder method. Finding all objects (or the number of them) for the property *property* having
-    a value of ``$propertyValue`` and returns them in an array, or the number as an integer value.
+    a value of `$propertyValue` and returns them in an array, or the number as an integer value.
 
 :code:`findOneByProperty($propertyValue)`
     Magic finder method. Finds the first object, for which the given property *property* has the value
@@ -571,8 +572,8 @@ to formulate a request:
         return $query->execute();
     }
 
-Create a ``Query`` object within the repository through ``$this->createQuery()``. You can give the query
-object a constraint using ``$query->matching($constraint)``. The following comparison operations for
+Create a ``Query`` object within the repository through `$this->createQuery()`. You can give the query
+object a constraint using `$query->matching($constraint)`. The following comparison operations for
 generating a single condition are available:
 
 :code:`$query->equals($propertyName, $operand, $caseSensitive);`
@@ -580,11 +581,11 @@ generating a single condition are available:
     In the case of strings you can specified additionally, whether the comparison is case-sensitive.
 
 :code:`$query->in($propertyName, $operand);`
-    Checks if the value of the property _$propertyName_ is present within the series of values in ``$operand``.
+    Checks if the value of the property _$propertyName_ is present within the series of values in `$operand`.
 
 :code:`$query->contains($propertyName, $operand);`
-    Checks whether the specified property ``$propertyName`` containing a collection has an element
-    ``$operand`` within that collection.
+    Checks whether the specified property `$propertyName` containing a collection has an element
+    `$operand` within that collection.
 
 :code:`$query->like($propertyName, $operand);`
     Comparison between the value of the property specified by $propertyName and a string $operand.
@@ -603,8 +604,8 @@ generating a single condition are available:
 :code:`$query->greaterThanOrEqual($propertyName, $operand);`
     Checks if the value of the property $propertyName is greater than or equal to the operand.
 
-Since 1.1 ``$propertyName`` is not necessarily only a simple property-name but also can be a "property path".
-    Example: ``$query->equals('categories.title', 'tools')`` searches for objects having a category titled
+Since 1.1 `$propertyName` is not necessarily only a simple property-name but also can be a "property path".
+    Example: `$query->equals('categories.title', 'tools')` searches for objects having a category titled
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 :code:`$query->logicalAnd($constraint1, $constraint2);`
@@ -682,7 +683,7 @@ example:
         protected $title;
 
         // the class continues here
-    };
+    }
 
 In this code section, the validators for the $title attribute of the Blog object
 is defined. $title must be a text (ie, no HTML is allowed), and also the length
@@ -726,18 +727,18 @@ functionality in templates.
 The localization class has only one public static method called translate, which
 does all the translation. The method can be called like this:
 
-``\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)``
+`\TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)`
 
-``$key``
+`$key`
     The identifier to be translated. If then format *LLL:path:key* is given, then this
     identifier is used and the parameter $extensionName is ignored. Otherwise, the
     file :file:`Resources/Private/Language/locallang.xml` from the given extension is loaded
     and the resulting text for the given key in the current language returned.
 
-``$extensionName``
+`$extensionName`
     The extension name. It can be fetched from the request.
 
-``$arguments``
+`$arguments`
     Allows you to specify an array of arguments passed to the function vsprintf. Allows you to fill
     wildcards in localized strings with values.
 
