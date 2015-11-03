@@ -827,6 +827,8 @@ newly created object, reaccessing an existing object and updating the properties
 of an existing object. When creating a new object Extbase determines the
 destination pages in the following rule hierarchy:
 
+.. _procedure_to_fetch_objects:
+
 <procedure>
 
 

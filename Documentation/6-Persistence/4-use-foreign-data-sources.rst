@@ -1,4 +1,5 @@
 .. include:: ../Includes.txt
+.. _using-foreign-data-sources:
 
 Using Foreign Data Sources
 ================================================

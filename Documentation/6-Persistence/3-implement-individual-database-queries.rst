@@ -1,8 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _individual_database_queries:
+
 Individual Database Queries
 ================================================
-
 
 The previous descriptions about generic methods of queries to a Repository are
 sufficient for simple use-cases. However, there are many cases where they are
@@ -26,10 +27,10 @@ implement.
 
 .. note::
 
-	You may start developing your application using the first method and then,
-	seeing your application growing, veering to the second method. Luckily, all
-	the changes are encapsulated in the Repository and you therefore don't have
-	to change any code out of the Persistence Backend.
+    You may start developing your application using the first method and then,
+    seeing your application growing, veering to the second method. Luckily, all
+    the changes are encapsulated in the Repository and you therefore don't have
+    to change any code out of the Persistence Backend.
 
 
 You can use Extbase's *Query*-object for implementing individual queries by
@@ -41,8 +42,6 @@ database backend. Those information contain:
 * (Optional) Parameters which configure a section of the result set by a *limit* or an *offset*.
 * (Optional) Parameters concerning the *Orderings* of the result set.
 
-
-
 Within a Repository you can create a Query object by using the command
 ``$this->createQuery()``. The Query object is already customized to the class
 which is managed by the Repository. Thus, the result set only consists of
@@ -53,20 +52,20 @@ objects of that class, i.e. it consists of Offer objects within the
 objects (or a via limit and offset customized section of it). For example, the
 generic method ``findAll()`` looks as follows::
 
-	public function findAll() {
-		return $this->createQuery()->execute();
-	}
+    public function findAll() {
+        return $this->createQuery()->execute();
+    }
 
 In this simple first use-case we don't any constraining parameter to the Query
 object. However, we have to define such a parameter to implement the first
 specified request "Find all the offers for a certain region". Thus, the
 corresponding method looks as follows::
 
-	public function findInRegion(Tx_SjrOffers_Domain_Model_Region $region) {
-		$query = $this->createQuery();
-		$query->matching($query->contains('regions', $region));
-		return $query->execute();
-	}
+    public function findInRegion(Tx_SjrOffers_Domain_Model_Region $region) {
+        $query = $this->createQuery();
+        $query->matching($query->contains('regions', $region));
+        return $query->execute();
+    }
 
 Using the method ``matching()`` we give the Query the following condition: The
 property *regions* of the object *Offer* (which is managed by the Repository)
@@ -79,14 +78,14 @@ and another operand. The latter mentioned operations connect two conditions to
 one condition by the rules of Boolean Algebra and may negate a result
 respectively. Following Comparing operations are acceptable::
 
-	equals($propertyName, $operand, $caseSensitive = TRUE)
-	in($propertyName, $operand)
-	contains($propertyName, $operand)
-	like($propertyName, $operand)
-	lessThan($propertyName, $operand)
-	lessThanOrEqual($propertyName, $operand)
-	greaterThan($propertyName, $operand)
-	greaterThanOrEqual($propertyName, $operand)
+    equals($propertyName, $operand, $caseSensitive = TRUE)
+    in($propertyName, $operand)
+    contains($propertyName, $operand)
+    like($propertyName, $operand)
+    lessThan($propertyName, $operand)
+    lessThanOrEqual($propertyName, $operand)
+    greaterThan($propertyName, $operand)
+    greaterThanOrEqual($propertyName, $operand)
 
 The method ``equals()`` executes a simple comparison between the property's
 value and the operand which may be a simple PHP data type or a Domain object.
@@ -100,23 +99,22 @@ a multi-valued operand (``$organizations``).
 
 ::
 
-	public function findOfferedBy(array $organizations) {
-		$query = $this->createQuery();
-		$query->matching($query->in('organization', $organizations));
-		return $query->execute();
-	}
-
+    public function findOfferedBy(array $organizations) {
+        $query = $this->createQuery();
+        $query->matching($query->in('organization', $organizations));
+        return $query->execute();
+    }
 
 .. note::
 
-	The methods ``in()`` and ``contains()`` were introduced in Extbase version
-	1.1. If you pass an empty multi-valued property value or an empty
-	multi-valued operand (e.g. an empty Array) to them you always get a *false*
-	as return value for the test. Thus you have to prove if the operand
-	``$organizations`` of the method call ``$query->in('organization',
-	$organizations)`` contains sane values or if it is just an empty Array. This
-	is dependent on your domain logic. In the last example the method
-	``findOfferedBy()`` would return an empty set of values.
+    The methods ``in()`` and ``contains()`` were introduced in Extbase version
+    1.1. If you pass an empty multi-valued property value or an empty
+    multi-valued operand (e.g. an empty Array) to them you always get a *false*
+    as return value for the test. Thus you have to prove if the operand
+    ``$organizations`` of the method call ``$query->in('organization',
+    $organizations)`` contains sane values or if it is just an empty Array. This
+    is dependent on your domain logic. In the last example the method
+    ``findOfferedBy()`` would return an empty set of values.
 
 
 It's possible to use comparison operators that are reaching deep into the tree
@@ -124,9 +122,9 @@ of object hierarchy. Let's assume you want to filter the organizations whether
 they have offers for youngsters older than 16. You may define the request in the
 ``OrganizationRepository`` as follows::
 
-	$query->lessThanOrEqual('offers.ageRange.minimalValue', 16)
+    $query->lessThanOrEqual('offers.ageRange.minimalValue', 16)
 
-Extbase	solves the path ``offers.ageRange.minimalValue`` by seeking every
+Extbase solves the path ``offers.ageRange.minimalValue`` by seeking every
 organization which has offers whose age values have a minimum which is less or
 equal 16. Assuming that a Relational Database System is used in the Persistence
 Backend, this is internally solved by a so-called *INNER JOIN*. All relational
@@ -134,21 +132,21 @@ types (1:1, 1:n, m:n) and all comparison operators are covered by this feature.
 
 .. note::
 
-	The path notation was introduced in Extbase 1.1 and is derived from the
-	*Object-Accessor* notation of Fluid (see Ch. 8). In Fluid you may access
-	object properties with the notation ``{organization.administrator.name}``.
-	However, Fluid does not support the notation
-	``{organization.offers.categories.title}`` whereas
-	``$query->equals('offers.categories.title', 'foo')`` is possible die to the
-	limitation in Fluid that the access of properties is not possible in a
-	"concatenated way".
+    The path notation was introduced in Extbase 1.1 and is derived from the
+    *Object-Accessor* notation of Fluid (see Ch. 8). In Fluid you may access
+    object properties with the notation ``{organization.administrator.name}``.
+    However, Fluid does not support the notation
+    ``{organization.offers.categories.title}`` whereas
+    ``$query->equals('offers.categories.title', 'foo')`` is possible die to the
+    limitation in Fluid that the access of properties is not possible in a
+    "concatenated way".
 
 Besides of the comparison operators the ``Query`` object supports Boolean
 Operators like::
 
-	logicalAnd($constraint1, $constraint2)
-	logicalOr($constraint1, $constraint2)
-	logicalNot($constraint)
+    logicalAnd($constraint1, $constraint2)
+    logicalOr($constraint1, $constraint2)
+    logicalNot($constraint)
 
 The methods above return a ``Constraint`` object. The resulting ``Constraint``
 object of ``logicalAnd()`` is true if both given params ``$constraint1`` and
@@ -159,16 +157,16 @@ accept an Array of constraints. Last but not least, the function
 gets *false* and *false* gets *true*. Given this information, you can create
 complex queries like::
 
-	public function findMatchingOrganizationAndRegion(Tx_SjrOffers_Domain_Model_Organization $organization, Tx_SjrOffers_Domain_Model_Region $region) {
-		$query = $this->createQuery();
-		$query->matching(
-			$query->logicalAnd(
-				$query->equals('organization', $organization),
-				$query->contains('regions', $region)
-			)
-		)
-		return $query->execute();
-	}
+    public function findMatchingOrganizationAndRegion(Tx_SjrOffers_Domain_Model_Organization $organization, Tx_SjrOffers_Domain_Model_Region $region) {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('organization', $organization),
+                $query->contains('regions', $region)
+            )
+        )
+        return $query->execute();
+    }
 
 The method ``findMatchingOrganizationAndRegion()`` returns those offers that
 match both the given organization and the given region.
@@ -183,41 +181,41 @@ In addition to the restrictions for the needs of the user there comes the reques
 to show the current offers. That denotes that their end date at most are one week ago.
 In the method ``findDemanded()`` of the ``offerRepository`` the request is implemented::
 
-	public function findDemanded(Tx_SjrOffers_Domain_Model_Demand $demand) {
-		$query = $this->createQuery();
-		$constraints = array();
-		if ($demand->getRegion() !== NULL) {
-			$constraints[] = $query->contains('regions', '$demand->getRegion());
-		}
-		if ($demand->getCategory() !== NULL) {
-			$constraints[] = $query->contains('categories', $demand->getCategory());
-		}
-		if ($demand->getOrganization() !== NULL) {
-			$constraints[] = $query->contains('organization', $demand->getOrganization());
-		}
-		if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
-			$constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
-		}
-		if ($demand->getAge() !== NULL) {
-			$constraints[] = $query->logicalAnd(
-				$query->logicalOr(
-					$query->equals('ageRange.minimumValue', NULL),
-					$query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-				),
-				$query->logicalOr(
-					$query->equals('ageRange.maximumValue', NULL),
-					$query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-				),
-			);
-		}
-		$constraints[] = $query->logicalOr(
-			$query->equals('dateRange.minimumValue', NULL),
-			$query->equals('dateRange.minimumValue', 0),
-			$query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
-		);
-		$query->matching($query->logicalAnd($constraints));
-		return $query->execute();
-	}
+    public function findDemanded(Tx_SjrOffers_Domain_Model_Demand $demand) {
+        $query = $this->createQuery();
+        $constraints = array();
+        if ($demand->getRegion() !== NULL) {
+            $constraints[] = $query->contains('regions', '$demand->getRegion());
+        }
+        if ($demand->getCategory() !== NULL) {
+            $constraints[] = $query->contains('categories', $demand->getCategory());
+        }
+        if ($demand->getOrganization() !== NULL) {
+            $constraints[] = $query->contains('organization', $demand->getOrganization());
+        }
+        if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
+            $constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
+        }
+        if ($demand->getAge() !== NULL) {
+            $constraints[] = $query->logicalAnd(
+                $query->logicalOr(
+                    $query->equals('ageRange.minimumValue', NULL),
+                    $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+                ),
+                $query->logicalOr(
+                    $query->equals('ageRange.maximumValue', NULL),
+                    $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+                ),
+            );
+        }
+        $constraints[] = $query->logicalOr(
+            $query->equals('dateRange.minimumValue', NULL),
+            $query->equals('dateRange.minimumValue', 0),
+            $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
+        );
+        $query->matching($query->logicalAnd($constraints));
+        return $query->execute();
+    }
 
 The ``Demand`` object is passed as argument. In the first lien the ``Query`` object is created.
 All single constraint terms are collected in the array ``$constraints`` and finally brought
@@ -229,16 +227,16 @@ the offers without given minimum or maximum age.
 
 ::
 
-	$constraints[] = $query->logicalAnd(
-		$query->logicalOr(
-			$query->equals('ageRange.minimumValue', NULL),
-			$query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-		),
-		$query->logicalOr(
-			$query->equals('ageRange.maximumValue', NULL),
-			$query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-		),
-	);
+    $constraints[] = $query->logicalAnd(
+        $query->logicalOr(
+            $query->equals('ageRange.minimumValue', NULL),
+            $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+        ),
+        $query->logicalOr(
+            $query->equals('ageRange.maximumValue', NULL),
+            $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+        ),
+    );
 
 This requirement is fulfilled by allowing a not set age (``NULL``) and concatenate this condition
 with ``logicalOr()`` with the condition ``lessThanOrEqual()`` and accordingly ``greaterThenOrEqual()``.
@@ -250,12 +248,12 @@ There are two constants fo the search order: ``Tx_Extbase_Persistence_QueryInter
 for an ascending order and ``Tx_Extbase_Persistence_QueryInterface:ORDER_DESCENDING`` for a descending
 order. A complete sample for specifying a sort order looks like this::
 
-	$query->setOrderings(
-		array(
-			'organization.name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
-			'title' => Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING
-		)
-	);
+    $query->setOrderings(
+        array(
+            'organization.name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING,
+            'title' => Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING
+        )
+    );
 
 Multiple orderings are processed in the specified order. In our sample the offers are ordered first
 by the name of the organization and inside the organization by the title of the offers in ascending
@@ -266,8 +264,8 @@ If you need only an extract of the result set, you can lower this with the two p
 and ``Offset``. Assumed you want to get the 10. up to 30. offer from the complete result from the
 repository you can achieve it with the following lines::
 
-	$query->setOffset(10);
-	$query->setLimit(20);
+    $query->setOffset(10);
+    $query->setLimit(20);
 
 Both methods expects an integer value. With the method ``setOffset()`` you set the pointer to the
 object you will start with. With the method ``setLimit()`` you set the count of objects you will get
@@ -325,17 +323,17 @@ look at an object with a single value property.
 
  ::
 
-	array(
-		'identifier' => '<identifier>',
-		'classname' => '<classname>',
-		'properties' => array(
-			'<name>' => array(
-				'type' => '<type>',
-				'multivalue' => FALSE,
-				'value' => <value>
-			), ...
-		)
-	)
+    array(
+        'identifier' => '<identifier>',
+        'classname' => '<classname>',
+        'properties' => array(
+            '<name>' => array(
+                'type' => '<type>',
+                'multivalue' => FALSE,
+                'value' => <value>
+            ), ...
+        )
+    )
 
 The value for ``<identifier>`` in Extbase is always the UID of the data record. Together with the class name
 ``<classname>`` it is due to the uniqueness inside the database. The properties are stored in an own
@@ -353,44 +351,44 @@ value (``'multivalue' => TRUE``).
 
 ::
 
-	array(
-		'identifier' => '<identifier>',
-		'classname' => '<classname>',
-		'properties' => array(
-			'<name>' => array(
-				'type' => '<type>',  // always 'Tx_Extbase_Persistence_ObjectStorage'
-				'multivalue' => TRUE,
-				'value' => array(
-					array(
-						'type' => '<type>',
-						'index' => <index>,
-						'value' => <value>
-					), ...
-				)
-			)
-		)
-	)
+    array(
+        'identifier' => '<identifier>',
+        'classname' => '<classname>',
+        'properties' => array(
+            '<name>' => array(
+                'type' => '<type>',  // always 'Tx_Extbase_Persistence_ObjectStorage'
+                'multivalue' => TRUE,
+                'value' => array(
+                    array(
+                        'type' => '<type>',
+                        'index' => <index>,
+                        'value' => <value>
+                    ), ...
+                )
+            )
+        )
+    )
 
 Has a property a NULL value, so it is stored in the object array like this::
 
-	array(
-		'identifier' => '<identifier>',
-		'classname' => '<classname>',
-		'properties' => array(
-			'<name>' => array(
-				'type' => '<type>',
-				'multivalue' => <boolean>,
-				'value' => NULL
-			), ...
-		)
-	)
+    array(
+        'identifier' => '<identifier>',
+        'classname' => '<classname>',
+        'properties' => array(
+            '<name>' => array(
+                'type' => '<type>',
+                'multivalue' => <boolean>,
+                'value' => NULL
+            ), ...
+        )
+    )
 
 The debug output of the return value look like figure 6-13.
 
 .. figure:: /Images/6-Persistence/figure-6-13.png
-	:align: center
+    :align: center
 
-	Figure 6-13: Debug output of "raw" object data
+    Figure 6-13: Debug output of "raw" object data
 
 Maybe in figure 6-13 you have noticed the empty array (``EMPTY!``) of the properties of the organization.
 In the domain model the property ``organization`` of the offer is annotated with ``@lazy``.
@@ -443,6 +441,6 @@ The call
 
 ::
 
-	$offersInRegion = $query->matching($query->contains('regions', $region))->count();
+    $offersInRegion = $query->matching($query->contains('regions', $region))->count();
 
 thus returns the count of offers of a given region.

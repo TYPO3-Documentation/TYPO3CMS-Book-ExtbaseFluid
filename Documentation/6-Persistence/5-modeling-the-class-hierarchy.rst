@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
+.. _modeling-the-class-hierarchy:
 
-Modelling the Class Hierarchy
+Modeling the Class Hierarchy
 ================================================
 
 In chapter 5 in "Use inheritance in class hierarchies" we have already used class hierarchies.

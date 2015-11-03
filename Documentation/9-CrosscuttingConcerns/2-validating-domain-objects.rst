@@ -1,4 +1,5 @@
 .. include:: ../Includes.txt
+.. _validating-domain-objects:
 
 Validating domain objects
 =========================
@@ -402,6 +403,7 @@ prevents the processing of the ``@validate`` annotations in the
 domain model and calling the validator class of the domain
 object.
 
+.. _case_study-edit_an_existing_object:
 
 Case study: Edit an existing object
 -----------------------------------
