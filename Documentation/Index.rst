@@ -24,6 +24,12 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    Please help in rewriting the code examples so that namespaces
    are used.
 
+.. only:: html
+
+   .. tip::
+
+      :ref:`Sitemap`
+
 
 .. toctree::
 	:maxdepth: 2
