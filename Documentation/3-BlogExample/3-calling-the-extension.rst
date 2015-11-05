@@ -1,3 +1,7 @@
+.. include:: ../Includes.txt
+
+.. _calling-the-extension:
+
 Calling the extension
 =====================
 
@@ -56,20 +60,19 @@ this might seem long-winded but the syntax follows a very strict convention
 
 .. tip::
 
-	Be careful, conventions!
+    Be careful, conventions!
 
-	The name of a class is separated into individual parts, which
-	themselves are divided by an underscore. All parts of a class name are
-	spelled with capital camel case, where each initial letter is capitalized.
-	This style for notation is commonly known as
-	*UpperCamelCase* because each capital letter suggests
-	the hump of a camel. For extensions the first part always is
-	":class:`Tx`". The second part is the name of the extension
-	- in the underlying case ":class:`BlogExample`". The last
-	art is the name of the domain object. The center between those parts
-	builds the path to the class file below the folder
-	:file:`Classes`. In our case the file is stored directly
-	within the folder :file:`Controller`. The name of the class
-	file is taken from the last part of the class name appended with the
-	suffix :file:`.php`.
-
+    The name of a class is separated into individual parts, which
+    themselves are divided by an underscore. All parts of a class name are
+    spelled with capital camel case, where each initial letter is capitalized.
+    This style for notation is commonly known as
+    *UpperCamelCase* because each capital letter suggests
+    the hump of a camel. For extensions the first part always is
+    ":class:`Tx`". The second part is the name of the extension
+    - in the underlying case ":class:`BlogExample`". The last
+    art is the name of the domain object. The center between those parts
+    builds the path to the class file below the folder
+    :file:`Classes`. In our case the file is stored directly
+    within the folder :file:`Controller`. The name of the class
+    file is taken from the last part of the class name appended with the
+    suffix :file:`.php`.

@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. todo I think we can remove this chapter
+
 Migration to FLOW3 and TYPO3 v5
 ===============================
 

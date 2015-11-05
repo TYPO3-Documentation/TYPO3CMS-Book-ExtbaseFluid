@@ -2,8 +2,8 @@
 
 .. _creating-a-consistent-look-and-feel-with-layouts:
 
-Creating A Consistent Look And Feel With Layouts
-================================================================================================
+Creating a consistent look and feel with layouts
+================================================
 
 While partials are suitable for small recurring elements, layouts
 build the frame of the templates (see Figure 8-1). They should create a
@@ -14,10 +14,10 @@ output. You also have to determine which layout is being used in the
 template.
 
 .. figure:: /Images/8-Fluid/figure-8-1.png
-	:align: center
+    :align: center
 
-	Figure 8-1: Layouts build the outer frame for a template, whereas recurring
-	elements can be implemented in a template with partials.
+    Figure 8-1: Layouts build the outer frame for a template, whereas recurring
+    elements can be implemented in a template with partials.
 
 Now we look at how to create and use a layout. A layout is a Fluid
 file in the folder :file:`Resources/Private/Layouts/`. It
@@ -28,14 +28,14 @@ placeholder.
 
 ::
 
-	<html>
-	...
-	<body>
-	<h1>Blogging with Extbase:</h1>
-	<f:render section="main" />
-	<h6>This is the footer section</h6>
-	</body>
-	</html>
+    <html>
+    ...
+    <body>
+    <h1>Blogging with Extbase:</h1>
+    <f:render section="main" />
+    <h6>This is the footer section</h6>
+    </body>
+    </html>
 
 .. tip::
 
@@ -46,12 +46,12 @@ placeholder.
 
 A template looks like this::
 
-	<f:layout name="default" />
+    <f:layout name="default" />
 
-	<f:section name="main">
-	<h2>Blog List</h2>
-	...
-	</f:section>
+    <f:section name="main">
+    <h2>Blog List</h2>
+    ...
+    </f:section>
 
 The first line in the template defines
 which layout should be wrapped around the template. With specifying
@@ -82,4 +82,3 @@ layouts and partials, we want to explore some options ViewHelpers offer. In
 the following segment we'll introduce a powerful tool for template building.
 A ViewHelper which combines the possibilities of Fluid and the classic
 TYPO3-templating.
-

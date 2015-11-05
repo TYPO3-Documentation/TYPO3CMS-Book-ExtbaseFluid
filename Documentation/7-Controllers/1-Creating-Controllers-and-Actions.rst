@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _creating-controllers-and-actions:
+
 Creating Controllers and Actions
 ================================
 
@@ -44,9 +46,10 @@ generate your own Flows.
     stick to the names presented here, to help other Developers to find
     their way through your Code.
 
+.. _flow-pattern-display-a-list-of-domain-objects:
 
 Flow Pattern "display a list of Domain Objects"
---------------------------------------------------------------------------------------------------
+-----------------------------------------------
 
 The first pattern in our example fits the Action "*display
 a list of all offers*". One Action Method usually will be enough
@@ -122,10 +125,10 @@ or to check if a specific FE user is logged in.
     class, which is the "filled" in the subclass is called
     *Template Pattern*.
 
-
+.. _flow-pattern-display-a-single-domain-object:
 
 Flow Pattern "display a single Domain Object"
---------------------------------------------------------------------------------------------------
+---------------------------------------------
 
 The second pattern is best put into action by a single Mehod as
 well. We call it :class:`showAction()`. In contrast to
@@ -142,8 +145,8 @@ be shown is passed to the Method as Argument::
         $this->view->assign('offer', $offer);
     }
 
-Ususally the display of a single Object is called by a link in
-Forntend. In our example extension it connects the list view by something
+Usually the display of a single Object is called by a link in
+Frontend. In our example extension it connects the list view by something
 like the following URL:
 
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer``
@@ -198,10 +201,10 @@ for the frontend user and passes the processing to the previous Action, in
 case it is given. The latter is especially useful with invalid form field
 input as you'll see in the following.
 
-
+.. _flow-pattern-creating-a-new-domain-object:
 
 Flow Pattern "creating a new Domain Object"
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 For the third Flow Pattern, the one for creating a new Domain
 Object, two steps are required: First, a form for inputting the Domain
@@ -268,68 +271,51 @@ instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
 :class:`createAction()` is called.
 
-<remark>TODO: Insert Code</remark>
+.. todo insert code
 
 The new offer is allocated to the organization and inversly the
 organization is allocated to the offer. Thanks to this allocation Extbase
 will cause the persistence of the new offer in the dispatcher before
 returning to TYPO3.
 
-After creating the new offer, the appropriate organization is to be
-displayed with all of its offers. We therefore start a new request
-(*request-response-cycle*) by redirecting to
-:class:`showAction()` of the
-:class:`OrganizationController` using the Method
-:class:`redirect()`. The actual organization is hereby
-passed on as an argument. Inside the
-:class:`ActionCotroller` you have the following Methods for
-redirecting to other Actions at your disposal:
+After creating the new offer, the appropriate organization is to be displayed with all of its
+offers. We therefore start a new request (*request-response-cycle*) by redirecting to
+:class:`showAction()` of the :class:`OrganizationController` using the Method :class:`redirect()`.
+The actual organization is hereby passed on as an argument. Inside the :class:`ActionCotroller` you
+have the following Methods for redirecting to other Actions at your disposal:
 
 <remark>TODO: Insert Code</remark>
 
-Using the :class:`redirect(`) Method, you can start a
-new request-response-cycle on the spot, similar to clicking on a link: The
-given Action (specified in :class:`$actionName`) of the
-appropriate controller (specified in
-:class:`$controllerName`) in the given extension (specified
-in :class:`$extensionName`) is called. If you did not
-specify a controller or extension, Extbase assumes, that you stay in the
-same context. In the fourth parameter :class:`$arguments`
-you can pass an Array of arguments. In our example:class:`
-array('organization' => $organization)` <remark>TODO:
-"organization" should be "emphasis" in addition to "classname". I did not
-get it, sorry!</remark> would look like this in the URL:
-:class:`tx_sjroffers_pi1[organization]=5`. The Array key is
-transcribed to the parameter name, while the organization object in
-:class:`$organization` is transformed into the number 5,
-which is the appropriate UID. If you want to link to another page inside
-the TYPO3 installation, you can pass its uid in the 5th parameter
-(:class:`$pageUid`). A delay before redirecting can be
-achieved by using the 6th parameter (:class:`$delay`). By
-default the reason for redirecting is set to status code 303 (which means
-*See Other*).You can use the 7th parameter
-(:class:`$statusCode`) to override this (for example with
-301, which means *Moved Permanentely*).
+Using the :class:`redirect(`) Method, you can start a new request-response-cycle on the spot,
+similar to clicking on a link: The given Action (specified in :class:`$actionName`) of the
+appropriate controller (specified in :class:`$controllerName`) in the given extension (specified in
+:class:`$extensionName`) is called. If you did not specify a controller or extension, Extbase
+assumes, that you stay in the same context. In the fourth parameter :class:`$arguments` you can pass
+an Array of arguments. In our example:class:` array('organization' => $organization)` <remark>TODO:
+"organization" should be "emphasis" in addition to "classname". I did not get it, sorry!</remark>
+would look like this in the URL: :class:`tx_sjroffers_pi1[organization]=5`. The Array key is
+transcribed to the parameter name, while the organization object in :class:`$organization` is
+transformed into the number 5, which is the appropriate UID. If you want to link to another page
+inside the TYPO3 installation, you can pass its uid in the 5th parameter (:class:`$pageUid`). A
+delay before redirecting can be achieved by using the 6th parameter (:class:`$delay`). By default
+the reason for redirecting is set to status code 303 (which means *See Other*).You can use the 7th
+parameter (:class:`$statusCode`) to override this (for example with 301, which means *Moved
+Permanentely*).
 
 In our example, the following code is sent to the Browser. It
-provokes the immedeate reload of the page with the given URL:
+provokes the immediate reload of the page with the given URL:
 
-<remark>TODO: insert Code</remark>
+.. todo insert code
 
-The Method :class:`redirectToURI()` corresponds to the
-Method :class:`redirect()`, but you can directly set a URL
-respectively URI as string, e.g. <remark>TODO: insert Code</remark>. With
-this, you have all the freedom to do what you need. The Method
-:class:`forward()`, at last, does a redirect of the request
-to another Action on the spot, just as the two redirect Methods. In
-contrast to them, no request-response-cycle ist started, though. The
-request Object is only updated with the details concerning Action,
-Controller and Extension, and then passed back to the dispatcher for
-processing. The dispatcher then passes on the actual
-:class:`Request-` and
-:class:`Response-` Objects to the appropriate Controller.
-Here, too, applies: If no Controller or Extension is set, the actual
-context is kept.
+The Method :class:`redirectToURI()` corresponds to the Method :class:`redirect()`, but you can
+directly set a URL respectively URI as string, e.g. <remark>TODO: insert Code</remark>. With this,
+you have all the freedom to do what you need. The Method :class:`forward()`, at last, does a
+redirect of the request to another Action on the spot, just as the two redirect Methods. In contrast
+to them, no request-response-cycle ist started, though. The request Object is only updated with the
+details concerning Action, Controller and Extension, and then passed back to the dispatcher for
+processing. The dispatcher then passes on the actual :class:`Request-` and :class:`Response-`
+Objects to the appropriate Controller.  Here, too, applies: If no Controller or Extension is set,
+the actual context is kept.
 
 This procedure can be done multiple times when calling a page. There
 is the risk, though, that the process runs into an infinite loop (A
@@ -361,7 +347,7 @@ the origin of the form (:class:`__referrer`) as well as, in
 encrypted form (:class:`__hmac`), the structure of the form
 (shorted in the example below).
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 If now a validation error occurs when calling the Method
 :class:`createAction()`, an error message ist saved and the
@@ -412,13 +398,13 @@ more, if the frontend user has e.g. added a
 example, if you have to work with data of a form which you did not create
 yourself.
 
-
+.. _flow-pattern-editing-an-existing-domain-object:
 
 Flow Pattern "Editing an existing Domain Object"
---------------------------------------------------------------------------------------------------
+------------------------------------------------
 
 The flow pattern we will now present is quite similar to the
-previuos one. We again need two action Methods, which this time we call
+previous one. We again need two action Methods, which this time we call
 :class:`editAction()` and
 :class:`updateAction()`. The Method
 :class:`editAction()` provides the form for editing, while
@@ -428,7 +414,7 @@ necessary to pass an organization to the Method
 :class:`editAction()`. It is sufficient to pass the offer to
 be edited as an Argument.
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 Note once again the annotation :class:`@donvalidate
 $offer`. The Method :class:`updateAction()`
@@ -450,7 +436,7 @@ are not to be changed by all visitors after all. So an
 authorized to change the data of that organization. The administrator can
 change the contact data of the organization, create and delete offers and
 contact persons as well as edit existing offers. Securing against
-unauthorized acces can be done on different levels:
+unauthorized access can be done on different levels:
 
 * On the level of TYPO3, access to the page and/or plugin is prohibited.
 * Inside the Action, it is checked, if access is authorized. In
@@ -469,7 +455,7 @@ The second level, we are going to implement in all "critcal" Actions.
 Let's look at an example with the Method
 :class:`updateAction()`.
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 We ask a previously instantiated
 :class:`AccessControlService` if the administrator of the
@@ -482,14 +468,14 @@ implemented an :class:`AccessControlService` on ourselves.
 The description of the class is to be found in the file <link
 linkend="???">EXT:sjr_offers/Classes/Service/AccessControlService.php</link>.
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 The third level can easily be bypassed by manually typing the link
 or the form data. It therefore only reduces the confusion for honest
 visitors and the stimulus for the bad ones. Let's take a short look on
 this snippet from a template:
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 .. tip::
 
@@ -524,7 +510,7 @@ to acces the :class:`AccessControlService`. The class file
 located in <link
 linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 The :class:`IfAuthenticatedViewHelper` extends the
 :class:`If`-ViewHelper of fluid and therefore provides the
@@ -534,16 +520,16 @@ result, in our case a link with an edit icon is generated, which leads to
 the Method :class:`editAction()` of the
 :class:`OfferController`.
 
-
+.. _flow-pattern-deleting-a-domain-object:
 
 Flow Pattern "Deleting a Domain Object"
---------------------------------------------------------------------------------------------------
+---------------------------------------
 
 The last Flow pattern realizes the deletion of an existing Domain
 Object in one single Action. The appropriates Method
 :class:`deleteAction()` is kind of straightforward:
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 The importat thing here is that you delete the given Offer from the
 Repository using the method :class:`remove()`. After running
@@ -564,7 +550,7 @@ Method :class:`indexAction()` of the
 :class:`OfferController` looks like this in it's "final
 stage":
 
-<remark>TODO: Insert Code</remark>
+.. todo add code
 
 In the first few lines of the script, configuration options, set in
 the TypoScript template as comma seperated list, are transcribed to
@@ -603,5 +589,3 @@ The Flow inside of a Controller is triggered from outside by
 TYPO3. For extensions which generate content for the frontend, this is
 usually done by a plugin, placed on the appropriate page. How to configure
 such a plugin you'll see in the following section:
-
-

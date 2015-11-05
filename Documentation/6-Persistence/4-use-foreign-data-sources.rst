@@ -1,8 +1,9 @@
 .. include:: ../Includes.txt
+
 .. _using-foreign-data-sources:
 
 Using Foreign Data Sources
-================================================
+==========================
 
 In real projects many times data from different sources has to be ordered. One target of Extbase is
 to normalize the access to this data sources and to abstract it from the concrete technical solution.

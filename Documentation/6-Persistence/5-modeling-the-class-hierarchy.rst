@@ -1,8 +1,9 @@
 .. include:: ../Includes.txt
+
 .. _modeling-the-class-hierarchy:
 
 Modeling the Class Hierarchy
-================================================
+============================
 
 In chapter 5 in "Use inheritance in class hierarchies" we have already used class hierarchies.
 A relational database doesn't know about some concepts of object oriented programming - also not
@@ -13,7 +14,7 @@ these with a simplified class hierarchie detached from our sample extension (see
 
 .. figure:: /Images/6-Persistence/figure-6-14.png
 
-	Figure 6-14: A simple class hierarchy
+    Figure 6-14: A simple class hierarchy
 
 The classes ``Organization`` and ``Person`` are specializations of the class ``Party`` (not a
 jollification, but a party in not political manner). The class ``Organization`` is again a

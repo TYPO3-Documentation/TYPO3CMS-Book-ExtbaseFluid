@@ -3,7 +3,7 @@
 .. _moving-repeating-snippets-to-partials:
 
 Moving Repeating Snippets To Partials
-================================================================================================
+=====================================
 
 During developing of templates, you often reach a point, where you
 need a template snippet that you wrote already before somewhere else. To
@@ -21,18 +21,18 @@ our tag-view-partial in
 :file:`Resources/Private/Partials/tags.html` and it could
 contain the following code to display the list of the tags::
 
-	<b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
+    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
 We use the ViewHelper ``f:render partial="..."`` to call a Partial in a template:
 
 ::
 
-	<f:for each="{blogPosts}" as="post">
-	<li><b>{post.title}</b><br />
-	  <f:render partial="tags" arguments="{tags: post.tags}" />
-	</li>
-	</f:for>
-	</ul>
+    <f:for each="{blogPosts}" as="post">
+    <li><b>{post.title}</b><br />
+      <f:render partial="tags" arguments="{tags: post.tags}" />
+    </li>
+    </f:for>
+    </ul>
 
 With ``partial="tags"``, the ViewHelper
 is being told to render the Partial called ``tags``. Further on,
@@ -49,6 +49,3 @@ variables needed in the Partial, have to be passed to it explicitely with
   matter in which format the data is being outputted. More information
   about formats can be found in »Using Different Output Formats« in the
   previous chapter.
-
-
-

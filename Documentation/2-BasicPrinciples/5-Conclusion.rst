@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _basic-principles-conclusion:
+
 Conclusion
 ==========
 

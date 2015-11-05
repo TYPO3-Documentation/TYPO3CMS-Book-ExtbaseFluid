@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
-Using Different Output Formats
-================================================
+.. _using-different-output-formats:
+
+Using different output formats
+==============================
 
 The Model-View-Controller-Paradigm (MVC), as described in chapter 2,
 has many decisive advantages: It separates the model from the user
@@ -33,37 +35,37 @@ format is being reflected in the file ending of the template.
 
 .. tip::
 
-	In the example above we have given the print view the name
-	``print``. All format names are treated equally. There are no
-	technical limitations for format names. Therefore you should choose a
-	semantically, meaningful name.
+    In the example above we have given the print view the name
+    ``print``. All format names are treated equally. There are no
+    technical limitations for format names. Therefore you should choose a
+    semantically, meaningful name.
 
 .. sidebar:: Output other formats with Fluid
 
-	If you want to output JSON, RSS or similar data with Fluid, you
-	have to write the appropriate TypoScript which passes the page rendering
-	to Extbase and Fluid respectivly. Otherwise, TYPO3 will always generate
-	the ``<head>``- and
-	``<body>``-section.
+    If you want to output JSON, RSS or similar data with Fluid, you
+    have to write the appropriate TypoScript which passes the page rendering
+    to Extbase and Fluid respectivly. Otherwise, TYPO3 will always generate
+    the ``<head>``- and
+    ``<body>``-section.
 
-	You can use the following TypoScript::
+    You can use the following TypoScript::
 
-		  rss = PAGE
-		rss (
-		typeNum = 100
-		10 =< tt_content.lost.20.*[ExtensionKey]*_*[PluginName]*
+          rss = PAGE
+        rss (
+        typeNum = 100
+        10 =< tt_content.lost.20.*[ExtensionKey]*_*[PluginName]*
 
-		config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:application/xml
-		xhtml_cleaning = 0
-		admPanel = 0
-		}
-		}
+        config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/xml
+        xhtml_cleaning = 0
+        admPanel = 0
+        }
+        }
 
-	You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
-	We recommend to search for the path of your Plugin in the
-	TypoScript Object Browser to avoid misspelling. Futher on you have to
-	implicitley set ``plugin.``*[ExtensionKey]*.``persistence.storagePid``
-	to the ID of the page containg the data, to tell Extbase from which page
-	the data should be read.
+    You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
+    We recommend to search for the path of your Plugin in the
+    TypoScript Object Browser to avoid misspelling. Futher on you have to
+    implicitley set ``plugin.``*[ExtensionKey]*.``persistence.storagePid``
+    to the ID of the page containg the data, to tell Extbase from which page
+    the data should be read.

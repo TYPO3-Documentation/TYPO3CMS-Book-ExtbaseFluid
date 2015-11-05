@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _returning-the-result-to-typo3:
+
 Returning the result to TYPO3
 =============================
 
@@ -17,7 +19,7 @@ return the rendered Content to the TYPO3 framework.
 
 ::
 
-	return $response->getContent();
+    return $response->getContent();
 
 In this section you had learned how the extension is a list of blogs is issued.
 Below we take an alternative route by creating a new post. You will learn about

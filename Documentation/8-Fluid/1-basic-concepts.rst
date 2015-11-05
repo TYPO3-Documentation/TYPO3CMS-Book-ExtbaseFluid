@@ -17,7 +17,9 @@ the template engine and provide for scalability and flexibility:
 * *ViewHelpers* are special tags in the template which provide more complex functionality such as loops or generating links.
 * *Arrays* make it possible to assign hierarchical values to ViewHelpers.
 
-Outputting Data with Object Accessors
+.. _outputting-data-with-object-accessors:
+
+Outputting data with object accessors
 -------------------------------------
 
 A template engine uses a placeholder to fill content in specified
@@ -69,8 +71,6 @@ like this::
 
     <b>Fluid as template-engine</b><br />
     <b>TypoScript to configure TYPO3</b><br />
-
-
 
 .. tip::
 
@@ -124,7 +124,7 @@ called with Object Accessors. This ensures that there is no PHP code in
 the template. It is better to place PHP code in your own ViewHelper if
 needed. The following describes how to do this.
 
-
+.. _implementing-more-complex-functionalities-with-viewhelpers:
 
 Implementing more complex functionalities with ViewHelpers
 ----------------------------------------------------------
@@ -148,7 +148,6 @@ the shortcut ``f`` with the following declaration::
 
     {namespace f=Tx_Fluid_ViewHelpers}
 
-
 This Namespace will be imported automatically by Fluid. All
 ViewHelpers that come with Fluid are prefixed with ``f``. Your
 own Namespaces have to be imported into the template like previously
@@ -157,8 +156,6 @@ mentioned.
 All tags, which begin with a registered prefix, will be evaluated.
 Here's a small example:
 
-
-
 .. code-block:: xml
 
     <ul>
@@ -166,8 +163,6 @@ Here's a small example:
             <li>{post.title}</li>
         </f:for>
     </ul>
-
-
 
 Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
@@ -206,8 +201,9 @@ functionality.
     of Fluid. You'll find a detailed reference of the ViewHelpers in
     Appendix C.
 
+.. _inline-notification-for-viewhelpers:
 
-Inline Notification for View Helpers
+Inline notification for ViewHelpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _inline-notation-vs-tag-based-notation:
@@ -252,7 +248,6 @@ Inline Notification for View Helpers
     * The nature of the ViewHelper is rather a helper function::
 
         {f:translate(key: '...')}
-
 
 It is intuitive and natural for most of the ViewHelpers to be called
 with the tag based syntax. Especially with control structures or form
@@ -362,8 +357,9 @@ on. We can thus confirm that you can process the value of every Object
 Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->) . This can also be done multiple times.
 
+.. _flexible-arrays-data-structures:
 
-Flexible Arrays Data Structures
+Flexible arrays data structures
 -------------------------------
 
 Arrays round off the concept of Fluid and build another core concept

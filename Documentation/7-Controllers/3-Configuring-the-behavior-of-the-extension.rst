@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _configuring-the-behavior-of-the-extension:
+
 Configuring the behavior of the extension
-================================================================================================
+=========================================
 
 Not all organizations are to be displayed in our example extensions,
 but just the ones belonging to a certain status (like e.g. internal,
@@ -44,15 +46,15 @@ do.
 
 .. tip::
 
-	Of course we could also have passed the comma seperated list
-	directly to the Method :class:`findByStates()`. We do
-	recommend, though, to prepare all parameter coming from outside
-	(settings, form input) before passing them on to the two other
-	components Model and View.
-	</tip>In this chapter you've learned how to set the Objects of your domain
-	in motion and how to control the flow of a page visit. You now are able to
-	realize the two components *Model* and
-	*Controller* of the MVC paradigm inside your extension.
-	In the following chapter, we will address the third component, the
-	*View*. We'll present the substantial scope of the
-	template engine Fluid.
+    Of course we could also have passed the comma seperated list
+    directly to the Method :class:`findByStates()`. We do
+    recommend, though, to prepare all parameter coming from outside
+    (settings, form input) before passing them on to the two other
+    components Model and View.
+    </tip>In this chapter you've learned how to set the Objects of your domain
+    in motion and how to control the flow of a page visit. You now are able to
+    realize the two components *Model* and
+    *Controller* of the MVC paradigm inside your extension.
+    In the following chapter, we will address the third component, the
+    *View*. We'll present the substantial scope of the
+    template engine Fluid.

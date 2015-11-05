@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _install-extbase-and-fluid:
+
 Install Extbase and Fluid
 =========================
 
@@ -43,29 +45,29 @@ Subversion:
 
 ::
 
-	svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/extbase/trunk extbase
+    svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/extbase/trunk extbase
 
-	svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/fluid/trunk fluid
+    svn checkout https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/fluid/trunk fluid
 
 
 .. sidebar:: Report issues or help at development
 
-	If you find an issue in Extbase or Fluid, you should have a look
-	at the development platform forge.typo3.org. These projects are
-	developed there by the community and you will find a bug tracker and a
-	wiki for the projects:
+    If you find an issue in Extbase or Fluid, you should have a look
+    at the development platform forge.typo3.org. These projects are
+    developed there by the community and you will find a bug tracker and a
+    wiki for the projects:
 
-	* Development of Extbase:
-	  http://forge.typo3.org/projects/show/typo3v4-mvc
-	* Development of Fluid:
-	  http://forge.typo3.org/projects/show/package-fluid
+    * Development of Extbase:
+      http://forge.typo3.org/projects/show/typo3v4-mvc
+    * Development of Fluid:
+      http://forge.typo3.org/projects/show/package-fluid
 
-	Additionally there is a special newsgroup and mailing list, which
-	you can use for your Extbase and Fluid related questions. You'll find
-	the mailing list called *TYPO3-project-typo3v4mvc* on
-	*http://lists.typo3.org*. The according newsgroup is
-	also found on *lists.typo3.org* by searching for
-	*typo3.projects.typo3v4mvc*. Questions posted to the
-	mailing list and newsgroup normally are answered by committed members of
-	the community.
+    Additionally there is a special newsgroup and mailing list, which
+    you can use for your Extbase and Fluid related questions. You'll find
+    the mailing list called *TYPO3-project-typo3v4mvc* on
+    *http://lists.typo3.org*. The according newsgroup is
+    also found on *lists.typo3.org* by searching for
+    *typo3.projects.typo3v4mvc*. Questions posted to the
+    mailing list and newsgroup normally are answered by committed members of
+    the community.
 

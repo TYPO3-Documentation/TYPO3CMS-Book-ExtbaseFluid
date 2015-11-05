@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _target-audience:
+
 Target Audience
 ===============
 
@@ -9,5 +11,4 @@ We are aiming at the following target audiences.
 
 * Beginners, who want to use Extbase and Fluid right from scratch as a basis for their own extensions.
 * Experienced developers, who want to learn Extbase and Fluid before beginning a new project.
-* Developers, who want to port their existing extensions to FLOW3.
 * Deciders, who want to gain a technical overview of the new framework.

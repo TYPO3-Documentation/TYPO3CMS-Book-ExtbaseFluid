@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _paths-on-the-data-map:
+
 Paths on the Data-Map
 =====================
 
@@ -37,12 +39,10 @@ property *posts* within the ``Blog`` class. You can find this in the file
         ...
     }
 
-
 The property ``$posts`` contains within the PHP comment above some so called
 annotations which start with the @ character. The annotation::
 
     @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
-
 
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
 ``Post`` objects of the class :class:`Tx_BlogExample_Domain_Model_Post`.
@@ -59,7 +59,6 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
     of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error
     free since PHP-Version 5.3.1.
 
-
 The notation at first seems unusual. It is based on the so called *Generics* of
 the programming language Java. In the definition of your property you have to
 enter the type in the annotation above the method definition. Properties of a
@@ -70,14 +69,12 @@ PHP-type will look like this::
      */
     protected $amount;
 
-
 It is also possible to enter a class as type::
 
     /**
      * @var Tx_BlogExample_Domain_Model_Author
      */
     protected $author;
-
 
 Properties which should be bound to multiple child objects require the class
 name of the child elements in angle brackets::
@@ -86,7 +83,6 @@ name of the child elements in angle brackets::
      * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_model_Tags>
      */
     protected $tags;
-
 
 Extbase gathers the type of the relation from the configuration of the database
 table column. Lets take a look at the definition of the column posts. It can be

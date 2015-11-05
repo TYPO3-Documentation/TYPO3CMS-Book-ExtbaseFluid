@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _notes-for-migrating-users:
+
 Notes for migrating users
 =========================
 

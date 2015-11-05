@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _setting-up-the-persistence-layer:
+
 Setting up the persistence layer
-================================================
+================================
 
 As already insinuated in previous chapters it is the Persistence Layer which
 takes care about conserving Domain Objects durably. Thus, in this chapter we
@@ -16,7 +18,7 @@ other data. Thereby the saved data will be lost together with the Domain Object.
 
 .. note::
 
-	You can read more about the lifecycle of objects in Chapter 2 "Lifecycle of Objects".
+    You can read more about the lifecycle of objects in Chapter 2 "Lifecycle of Objects".
 
 If Domain Objects should be available within several page loads they have to be
 transferred into a persistent state. This is being done in Extbase by putting
@@ -45,10 +47,10 @@ the method ``findDemanded($demand)`` in a final step to find those offers.
 Let's start with the database.
 
 .. toctree::
-	:maxdepth: 2
+    :maxdepth: 2
 
-	1-prepare-the-database
-	2-configure-the-backends-inputforms
-	3-implement-individual-database-queries
-	4-use-foreign-data-sources
-	5-modeling-the-class-hierarchy
+    1-prepare-the-database
+    2-configure-the-backends-inputforms
+    3-implement-individual-database-queries
+    4-use-foreign-data-sources
+    5-modeling-the-class-hierarchy
