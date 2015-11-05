@@ -69,8 +69,7 @@ that time.
 The first public presentation of Extbase happened in March 2009 at the
 *T3BOARD09* in Laax (CH). With stormy weather, 2228 m
 over sea level, core developers and interested people could see the current
-state of Extbase. In a stimulated discussion<remark>TODO: sounds
-strange</remark>, the last open topics like naming conventions or the name
+state of Extbase. In a stimulating discussion, the last open topics like naming conventions and the name
 of the framework, were decided upon. Additionally, the decision was made to
 include Fluid in version 4.3, instead in version 4.4 as planned
 before.
@@ -78,7 +77,7 @@ before.
 In the following days, the Fluid team developed a small program (named
 *Backporter*) which could take the code of Fluid for
 FLOW3, and transform it to code for TYPO3 v4. That's how the first working
-version of Fluid vor TYPO3 v4 came into being at the end of the T3BOARD09.
+version of Fluid for TYPO3 v4 came into being at the end of the T3BOARD09.
 Additionally, it was now pretty easy to keep Fluid for FLOW3 in sync with
 Fluid for TYPO3 v4.
 
@@ -101,7 +100,7 @@ corrected, but no new functionalities were implemented. With the release of
 TYPO3 4.3.0 in November 2009, Extbase and Fluid were included in the TYPO3
 core and are thus available in every TYPO3 installation.
 
-After a well-deserved break of the development team after the release,
+After a well-deserved break for the development team after the release,
 work started again with smaller bugfixes and a roadmap for upcoming
 functionalities. That's how many details of the framework were improved, and
 the persistence layer was once again streamlined and cleaned up.
