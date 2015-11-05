@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _rendering-the-output-with-fluid:
+
 Rendering the output with fluid
 ===============================
 
@@ -34,42 +36,42 @@ by step, line by line. Here you see an extract of the template file:
 
 ::
 
-	<p>Welcome to the Blog Example!</p>
-	<f:if condition="{blogs}">
-		<f:then>
-			<p>Here is a list of blogs:</p>
-			<dl>
-				<f:for each="{blogs}" as="blog">
-					<dt>
-						<f:link.action action="index" controller="Post"
-						arguments="{blog : blog}">
-							{blog.title} (<f:count subject="{blog.posts}" />)
-						</f:link.action>
-					</dt>
-					<dd>
-						<f:format.nl2br>{blog.description}</f:format.nl2br>
-						<f:link.action action="edit"
-							arguments="{blog : blog}">Edit</f:link.action>
-						<f:link.action action="delete"
-							arguments="{blog : blog}">Delete</f:link.action>
-					<dd>
-				</f:for>
-			</dl>
-			<p>
-				<f:link.action action="new">Create another blog</f:link.action>
-					<br /><f:link.action action="populate">Create example data</f:link.action>
-					<br /><f:link.action action="deleteAll">Delete all Blogs [!!!]
-				</f:link.action>
-			</p>
-		</f:then>
-		<f:else>
-			<p>
-				<strong><f:link.action action="new">Create your first blog
-				</f:link.action></strong>
-				<br /><f:link.action action="populate">Create example data</f:link.action>
-			</p>
-		</f:else>
-	</f:if>
+    <p>Welcome to the Blog Example!</p>
+    <f:if condition="{blogs}">
+        <f:then>
+            <p>Here is a list of blogs:</p>
+            <dl>
+                <f:for each="{blogs}" as="blog">
+                    <dt>
+                        <f:link.action action="index" controller="Post"
+                        arguments="{blog : blog}">
+                            {blog.title} (<f:count subject="{blog.posts}" />)
+                        </f:link.action>
+                    </dt>
+                    <dd>
+                        <f:format.nl2br>{blog.description}</f:format.nl2br>
+                        <f:link.action action="edit"
+                            arguments="{blog : blog}">Edit</f:link.action>
+                        <f:link.action action="delete"
+                            arguments="{blog : blog}">Delete</f:link.action>
+                    <dd>
+                </f:for>
+            </dl>
+            <p>
+                <f:link.action action="new">Create another blog</f:link.action>
+                    <br /><f:link.action action="populate">Create example data</f:link.action>
+                    <br /><f:link.action action="deleteAll">Delete all Blogs [!!!]
+                </f:link.action>
+            </p>
+        </f:then>
+        <f:else>
+            <p>
+                <strong><f:link.action action="new">Create your first blog
+                </f:link.action></strong>
+                <br /><f:link.action action="populate">Create example data</f:link.action>
+            </p>
+        </f:else>
+    </f:if>
 
 At first all the unknown XML tags with namespace »f« stand out, like ``<f:if>``,
 ``<f:for>`` or ``<f:link.action>``. These Tags are provided by Fluid and
@@ -89,11 +91,11 @@ available inside of ``<f:for>[...]</f:for>``. Here it can be called with ``{blog
 
 .. note::
 
-	The string ``"blog"`` is *not* surrounded by brackets when assigned to the ``as``
-	attribute since the string is passed as a *name* for the variable and should not be
-	parsed by Fluid. An ``as="{blog}"`` would be parsed as if you would have liked
-	to make the name of the variable configurable. Rule of thumb: Curly brackets in
-	each, none in ``as``.
+    The string ``"blog"`` is *not* surrounded by brackets when assigned to the ``as``
+    attribute since the string is passed as a *name* for the variable and should not be
+    parsed by Fluid. An ``as="{blog}"`` would be parsed as if you would have liked
+    to make the name of the variable configurable. Rule of thumb: Curly brackets in
+    each, none in ``as``.
 
 Objects can not be rendered by Fluid directly. An exception make objects that
 have a ``__toString()`` method. The single properties of such an object can be
@@ -110,8 +112,8 @@ Parsing the point goes recursively. That means Fluid can parse a string
 
 .. note::
 
-	The return value is "tidied up" by ``htmlspecialchars()``. That protects from
-	Cross Site Scripting-Attacks (XSS).
+    The return value is "tidied up" by ``htmlspecialchars()``. That protects from
+    Cross Site Scripting-Attacks (XSS).
 
 As soon as Fluid is done with the whole template the result is appended to the
 ``Response`` object. This is done in the :class:`Tx_Extbase_MVC_Controller_ActionController`

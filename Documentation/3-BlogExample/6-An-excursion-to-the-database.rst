@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _an-excursion-to-the-database:
+
 An excursion to the database
 =============================
 
@@ -7,7 +9,7 @@ At our trip to the database bear in mind that we are in the brush of the
 Extbase-Framework - an area you wouldn't enter without travelling experience or
 a travel guide. Later you will use the Query-Object to create your own requests.
 If you are not interested in the background of the data storage, but have trust
-that extbase will take care about this you can skip this trip (chapter), or come
+that Extbase will take care about this you can skip this trip (chapter), or come
 back later. You will receive a free travel coupon then.
 
 The ``BlogRepository`` creates a ``Query`` object with the class

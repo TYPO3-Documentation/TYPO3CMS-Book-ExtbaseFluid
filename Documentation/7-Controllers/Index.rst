@@ -3,8 +3,7 @@
 .. _controlling-the-flow-with-controllers:
 
 Controlling the flow with controllers
-=====================================================
-
+=====================================
 
 In the previous chapters we already transcribed the Domain of our
 example extension *SJROffers* to a software based Domain
@@ -71,8 +70,8 @@ administered by a proper Controller. In our case the two classes
 indicated. Now let's start with our first Controller.
 
 .. toctree::
-	:maxdepth: 2
+    :maxdepth: 2
 
-	1-Creating-Controllers-and-Actions
-	2-Configuring-and-embedding-Frontend-Plugins
-	3-Configuring-the-behavior-of-the-extension
+    1-Creating-Controllers-and-Actions
+    2-Configuring-and-embedding-Frontend-Plugins
+    3-Configuring-the-behavior-of-the-extension

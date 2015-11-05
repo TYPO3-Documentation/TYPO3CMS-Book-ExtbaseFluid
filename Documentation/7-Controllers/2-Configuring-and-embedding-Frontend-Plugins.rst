@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _configuring-and-embedding-frontend-plugins:
+
 Configuring and embedding Frontend Plugins
-================================================================================================
+==========================================
 
 The action should be called on by a frontend-plugin. We've already addressed the
 configuration of a simple frontend-plugin in chapter 4 in the section
@@ -14,7 +16,7 @@ are located in two different files.
 In the file _EXT:sjr_offers/ext_tables.php you have to register every plugin as
 a content element with Typo3 using the static method registerPlugin().
 
-<remark>TODO:code</remark>
+.. todo add code
 
 The method registerPlugin() expects three argumets. The first argument is the
 extension key (sjr_offers in our example). This key is available in TYPO3's
@@ -32,7 +34,7 @@ EXT:sjr_offers/ext_localconf.php  with the static method configurePlugin().
 Beside the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in cache.
 
-<remark>TODO:code</remark>
+.. todo add code
 
 The method expects 4 arguments. The first argument is, just like the one used in
 the registration process, the extension key. With the second argument, the
@@ -50,4 +52,3 @@ one. This one however contains the Controller-Action combinations which are
 _not_ stored in cache. These are especially those actions that issue a form. The
 methods createAction() or the updateAction() shouldn't be explicitly used here,
 because they don't produce any result code that must be stored in cache.
-

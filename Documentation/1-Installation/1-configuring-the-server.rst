@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _configuring-the-server:
+
 Configuring the Server
 ======================
 
@@ -39,8 +41,8 @@ Report* submodule and have a look at the
 comments are preserved or not.
 
 .. figure:: /Images/1-Installation/figure-1-1.png
-	:height: 400px
-	:align: center
+    :height: 400px
+    :align: center
 
-	Figure 1-1: In the Reports-Module you can check if Extbase has access
-	to the source code comments of the PHP files.
+    Figure 1-1: In the Reports-Module you can check if Extbase has access
+    to the source code comments of the PHP files.

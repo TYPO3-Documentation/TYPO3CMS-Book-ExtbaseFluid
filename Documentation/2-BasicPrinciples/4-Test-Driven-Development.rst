@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _test-driven-development:
+
 Test-Driven Development
 =======================
 
@@ -17,44 +19,45 @@ Furthermore by a test is not only a little code fragment tested, but often a
 more complex routine.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-7.png
-	:align: center
+    :align: center
 
-	Figure 2-7: in the classic software development exist a strict isolation
-	between the Development- and the Testphase.
+    Figure 2-7: in the classic software development exist a strict isolation
+    between the Development- and the Testphase.
 
 By using Test-Driven Development (TDD) these problems should be solved. Tests
 could be fast completed and reproducible. These increases the developers
 motivation to start the tests constantly and by this way to get faster a
 callback, if a failure is implemented into the existing functions.
 
-
 .. note::
 
-	Field report
+    Field report
 
-	When Robert Lemke and other Coredevelopers suggested to make the development for
-	FLOW3 test driven, I was sceptic. Test-Driven Development sounded like a nice
-	concept, but I did not know how to test a framework this size reasonable. Also
-	in the internet there were often only very simple academic examples to find.
-	Until this time I had only a theoretical overview over TDD.
-	Even when I started to test, when the Fluid development started. The first test
-	were not Unit- but Integrationtests. This means they tested Fluid in the view of
-	a user:
-	There were not parsed little Template-Snippets and compared with the
-	expectations. The first tests took there time - it felt strange to test things,
-	which were not implemented at this time. But after the first test was written
-	and this test run through succesfully, I was able to make the following
-	development cycles extremly fast. Because of Test-Driven Development I was able
-	during a train ride to totally reconstruct the core of Fluid. Without tests, it
-	seriously would have took me days until all would have worked at the end.
-	Especially the feedback I got at once, I really appreciate. You click on a
-	button and after a few seconds you got your feedback.
-	After this I am infected, learned about Mock- and Stubobjects, and today I do
-	not want to miss it. (In this chapter you will get an introduction into these concepts.)
-	If you want to learn TDD, you will jump in at the deep end, and to
-	try it at the next project. Until the first Unit test is finished, it will take
-	a while and after this it will go really faster.
-	– Sebastian Kurfürst
+    When Robert Lemke and other Coredevelopers suggested to make the development for
+    FLOW3 test driven, I was sceptic. Test-Driven Development sounded like a nice
+    concept, but I did not know how to test a framework this size reasonable. Also
+    in the internet there were often only very simple academic examples to find.
+    Until this time I had only a theoretical overview over TDD.
+    Even when I started to test, when the Fluid development started. The first test
+    were not Unit- but Integrationtests. This means they tested Fluid in the view of
+    a user:
+    There were not parsed little Template-Snippets and compared with the
+    expectations. The first tests took there time - it felt strange to test things,
+    which were not implemented at this time. But after the first test was written
+    and this test run through succesfully, I was able to make the following
+    development cycles extremly fast. Because of Test-Driven Development I was able
+    during a train ride to totally reconstruct the core of Fluid. Without tests, it
+    seriously would have took me days until all would have worked at the end.
+    Especially the feedback I got at once, I really appreciate. You click on a
+    button and after a few seconds you got your feedback.
+    After this I am infected, learned about Mock- and Stubobjects, and today I do
+    not want to miss it. (In this chapter you will get an introduction into these concepts.)
+    If you want to learn TDD, you will jump in at the deep end, and to
+    try it at the next project. Until the first Unit test is finished, it will take
+    a while and after this it will go really faster.
+    – Sebastian Kurfürst
+
+.. _first-test-then-implementing:
 
 First test, then implementing
 ------------------------------
@@ -78,10 +81,10 @@ this new functionality. In this way the process of testing an implementing
 starts over.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-8.png
-	:align: center
+    :align: center
 
-	Figure 2-8: with Test-Driven Development testing and development are
-	alternating
+    Figure 2-8: with Test-Driven Development testing and development are
+    alternating
 
 The fortune of this method is obviously.
 
@@ -103,7 +106,6 @@ mentioned have not only to write the Implementation but also the according
 tests. Furthermore is the quality of the code in the Test-Driven Development
 clearly higher than in the conventional Programming.
 
-
 Example
 -------
 
@@ -120,7 +122,7 @@ of our Domainmodel in our extension.
 Similarly we create the testclass in the file
 Tests/Unit/Domain/Model/CustomerTest.php. Now we create a minimal testcase with which we get used with PHPUnit.
 
-//code
+.. todo add code
 
 All our testcasses are named after the same namescheme like normal classes and
 they must be extended with Tx_Extbase_BaseTestCase. One testclass can contain
@@ -136,21 +138,17 @@ familiarize yourself with this. Try to run the test for extbase and fluid and
 also try the different Display options. For example you can let show you all
 tests or only the failed tests.
 
-
 Now we know that our testcase is running, we can write our first usefull
 testcase. This should test, if a name which is specified in the constructor, can
 be accessed again.
 
-//Code
-
-// Code
-
+.. todo add code
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-9.png
-	:align: center
+    :align: center
 
-	Figure 2-9: With the testrunner you are able to run easily the Unit tests
-	in the TYPO3-Backend.
+    Figure 2-9: With the testrunner you are able to run easily the Unit tests
+    in the TYPO3-Backend.
 
 When we run the testcase, we will be displayed a fatal error from PHP, because
 the class we want to test does not exist already. Now we are changing roles: We
@@ -159,8 +157,7 @@ implement the class. At first we create in the file
 Classes/Domain/Model/Customer.php an empty class with the needed methods to get
 rid of the fatal error:
 
-//code
-
+.. todo add code
 
 When we now let run the testsuite again there should not be a fatal error
 anymore but instead our Unit-Tests will fail because the getName() method returns
@@ -168,7 +165,7 @@ the false value.
 Now we are able, motivated by getting the red bar fast as possible into green,
 to start with implementing:
 
-//code
+.. todo add code
 
 Now the Unit-Tests are running without failure, the expected value is given out.
 At this time we are not satisfied at all - finally, now is always 'Sebastian
@@ -176,14 +173,14 @@ Elector', as name returned. The next step is a refactoring phase: We clean up
 the code and always make sure that the unit tests continue successfully passed.
 After several iterations we arrive at the following code:
 
-//code
-
+.. todo add code
 
 h1. Page 48
 
 The unit tests always run through yet, and we have the desired functionality
 reached. Now we can once again slip into the role of the developer from the role of the user of the class and specify with other test cases additional functionality.
 
+.. _test-individual-objects:
 
 Test individual objects
 -----------------------
@@ -198,21 +195,23 @@ configuration a SMTP-Server or the mail() function of PHP. This is shown in
 the figure 2-10: The email logger class has a reference on the email service.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-10.png
-	:align: center
+    :align: center
 
-	Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
+    Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
 
 We now want to test the class EmailLogger without using the EmailService. We do
 not want to send real emails with every test run. To reach that goal we need two
 subelements. Dependency Injection and the use of Mock objects. Both concepts we
 will introduce below.
 
+.. _dependency-injection:
+
 Dependency Injection
 --------------------
 
 You often see classes that are constructed according to the following structure:
 
-//code
+.. todo add code
 
 The EmailLogger requires the EmailService to function correctly, and
 instantiated this in the constructor. However, this strongly coupled to these
@@ -225,26 +224,26 @@ This instantiates a class does not itself have dependencies but she gets from
 the outside passed. The EmailLogger gets a new method injectsEmailService, the
 EmailService in the class sets. This looks e.g. like this:
 
-//code
+.. todo add code
 
 Extbase offers currently not a framework support for Dependency Injection.
 Therefore, we recommend that the instantiation of classes and their Dependency
 Injection in respective factories to outsource. A possible Factory looks as
 follows from:
 
-//code
-
+.. todo add code
 
 .. note::
 
-	FLOW3 offers first class Dependency Injection support. If you migrate your
-	extensions on FLOW3 later, this part is much simpler.
+    FLOW3 offers first class Dependency Injection support. If you migrate your
+    extensions on FLOW3 later, this part is much simpler.
 
 We can now operate in a test case from the outside, which the EmailService the
 EmailLogger gets. We could write a TestEmailService, for example, which simple
 does nothing (to avoid a fatal error), or we use the Mock objects that are shown
 below.
 
+.. _mock-objects:
 
 Mock-Objects
 ------------
@@ -253,14 +252,13 @@ Through the usage of Dependency Injection we are able to instantiate EmailLogger
 without its dependencies. Because the EmailLogger needs the EmailService to
 work, we must provide these in the tests.
 
-
 But more than that: We also want to ensure that the EmailLogger really calls the
 method for sending the e-mail! Therefore we can use Mocks. Mocks are more or
 less "dummies" for real objects that emulate the behavior of objects. They are
 also help to ensure specific calls or parameters. A test that tests the
 EmailLogger that could be as follows:
 
-//code
+.. todo add code
 
 The procedure in detail: In line 6, the variable $message with our dummy message
 filled, we want to log. This message we need several more times, so it makes
@@ -280,8 +278,7 @@ that the Email-Service is called with the correct parameters.
 Also, we had no separate "placeholder" class to write for Email-Service, because
 we used the mock-functionality from PHPUnit.
 
+.. note::
 
-.. note
-
-	You have to get used to the writing style for Mock objects; But it will go on
-	with the time in flesh and blood.
+    You have to get used to the writing style for Mock objects; But it will go on
+    with the time in flesh and blood.

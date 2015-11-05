@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _debugging-with-xdebug:
+
 Debugging with Xdebug
 =====================
 

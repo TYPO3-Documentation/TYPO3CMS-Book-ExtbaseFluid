@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
-Controlling The Flow
-================================================
+.. _controlling-the-flow:
+
+Controlling the flow
+====================
 
 The inventory created in the backend should be shown as a list in the frontend now.
 The creation of the HTML code out of the product objects to be shown is done by the *view*.

@@ -1,5 +1,9 @@
+.. include:: ../Includes.txt
+
+.. _first-orientation:
+
 First orientation
-========================================
+=================
 
 The so called *blog example* is an example
 extension, which mainly focuses on showing the process of the extension
@@ -16,18 +20,18 @@ blogs. The diamond can be translated with "has", so: "One post has any
 amount of comments".
 
 .. figure:: /Images/3-BlogExample/figure-3-1.png
-	:align: center
+    :align: center
 
-	Figure 3-1: Domain of the blog example
+    Figure 3-1: Domain of the blog example
 
 .. note::
 
-	The blog example has been created originally by the FLOW3 team and
-	has been backported to TYPO3 version 4.x. When you will work more with
-	FLOW3 and TYPO3 5.x in the future, you will find this example there in a
-	near identical form. You will find some notes about the relationship
-	between Extbase and FLOW3 in the section "Migration to FLOW3 and TYPO3 v5"
-	in chapter 10.
+    The blog example has been created originally by the FLOW3 team and
+    has been backported to TYPO3 version 4.x. When you will work more with
+    FLOW3 and TYPO3 5.x in the future, you will find this example there in a
+    near identical form. You will find some notes about the relationship
+    between Extbase and FLOW3 in the section "Migration to FLOW3 and TYPO3 v5"
+    in chapter 10.
 
 The complete source code can be found in a folder, which has the same
 name like the extension key. In our case the folder is called
@@ -43,9 +47,9 @@ needed by TYPO3 are located in the subfolder
 :file:`Configuration` or in one of its subfolders.
 
 .. figure:: /Images/3-BlogExample/figure-3-2.png
-	:align: center
+    :align: center
 
-	Figure 3-2: folder structure of the example extension
+    Figure 3-2: folder structure of the example extension
 
 The core of the extension is located in the folder
 :file:`Classes`. There you will all files in which classes or
@@ -53,9 +57,9 @@ interfaces are defined.
 
 .. note::
 
-	If you are not familiar with the terms classes and interfaces, you
-	should look into the section "Object oriented programming with PHP" in
-	chapter 2, *Basic principles*.
+    If you are not familiar with the terms classes and interfaces, you
+    should look into the section "Object oriented programming with PHP" in
+    chapter 2, *Basic principles*.
 
 In the folder :file:`Resources` you will find all files
 which are included at runtime, but no classes or interfaces. Those are in
@@ -67,4 +71,3 @@ allowed to be called *directly* by the client - in normal
 cases the web browser. Files which are processed by a PHP class before they
 get delivered to the browser, are located in the folder
 :file:`Private`.
-

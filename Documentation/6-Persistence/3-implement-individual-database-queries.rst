@@ -3,7 +3,7 @@
 .. _individual_database_queries:
 
 Individual Database Queries
-================================================
+===========================
 
 The previous descriptions about generic methods of queries to a Repository are
 sufficient for simple use-cases. However, there are many cases where they are
@@ -24,14 +24,12 @@ the objects that are really needed which positively affects the performance of
 your application. Therefore, the first method is more flexible and easier to
 implement.
 
-
 .. note::
 
     You may start developing your application using the first method and then,
     seeing your application growing, veering to the second method. Luckily, all
     the changes are encapsulated in the Repository and you therefore don't have
     to change any code out of the Persistence Backend.
-
 
 You can use Extbase's *Query*-object for implementing individual queries by
 giving it all the essential information needed for a qualified request to the
@@ -241,12 +239,13 @@ the offers without given minimum or maximum age.
 This requirement is fulfilled by allowing a not set age (``NULL``) and concatenate this condition
 with ``logicalOr()`` with the condition ``lessThanOrEqual()`` and accordingly ``greaterThenOrEqual()``.
 
-You can sort the result of a query by assigning one or more rules ``$query->setOrderings($orderings);``
-to the ``Query`` object. These rules are collected in an associative array. The name of the property
-depending the sort is used as key and the search order is the value of the array element.
-There are two constants fo the search order: ``Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING``
-for an ascending order and ``Tx_Extbase_Persistence_QueryInterface:ORDER_DESCENDING`` for a descending
-order. A complete sample for specifying a sort order looks like this::
+You can sort the result of a query by assigning one or more rules
+``$query->setOrderings($orderings);`` to the ``Query`` object. These rules are collected in an
+associative array. The name of the property depending the sort is used as key and the search order
+is the value of the array element.  There are two constants fo the search order:
+``Tx_Extbase_Persistence_QueryInterface:ORDER_ASCENDING`` for an ascending order and
+``Tx_Extbase_Persistence_QueryInterface:ORDER_DESCENDING`` for a descending order. A complete sample
+for specifying a sort order looks like this::
 
     $query->setOrderings(
         array(

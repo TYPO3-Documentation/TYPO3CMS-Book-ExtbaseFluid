@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _and-action:
+
 And... action!
 ==============
 
@@ -117,4 +119,3 @@ name of the class, whose instances are managed by the repository, namely by
 adding :class:`Repository`. A repository can only manage one
 single class at a time. The second line retrieves all available blogs by
 `findAll()`.
-

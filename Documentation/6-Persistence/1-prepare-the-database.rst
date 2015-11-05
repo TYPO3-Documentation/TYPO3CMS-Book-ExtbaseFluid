@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _preparing-the-database:
+
 Preparing the database
-================================================
+======================
 
 The preparation of the database primarily covers the creation of the
 database tables. The commands for the creation are done in
@@ -11,15 +13,17 @@ of the extension directory.
 
 .. note::
 
-	One of the main purposes of Extbase and FLOW3 is to abstract the
-	access of the underlying persistence solution. Thus, you normally won't
-	get in touch with native SQL-Queries in day-to-day development, especially
-	when you let the kickstarter auto-generate your database tables (have a
-	look at Chapter 10). However, you should fully understand all the
-	peculiarities of your database.
+    One of the main purposes of Extbase and FLOW3 is to abstract the
+    access of the underlying persistence solution. Thus, you normally won't
+    get in touch with native SQL-Queries in day-to-day development, especially
+    when you let the kickstarter auto-generate your database tables (have a
+    look at Chapter 10). However, you should fully understand all the
+    peculiarities of your database.
+
+.. _preparing-the-tables-of-the-domain-objects:
 
 Preparing the tables of the Domain Objects
---------------------------------------------------------------------------------------------------
+------------------------------------------
 
 Let's have a look at the definition of the database table which will
 aggregate the objects of the class
@@ -27,34 +31,34 @@ aggregate the objects of the class
 
 ::
 
-	CREATE TABLE tx_sjroffers_domain_model_organization (
-	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
-	pid int(11) DEFAULT '0' NOT NULL,
+    CREATE TABLE tx_sjroffers_domain_model_organization (
+    uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
+    pid int(11) DEFAULT '0' NOT NULL,
 
-	name varchar(255) NOT NULL,
-	address text NOT NULL,
-	telephone_number varchar(80) NOT NULL,
-	telefax_number varchar(80) NOT NULL,
-	url varchar(80) NOT NULL,
-	email_address varchar(80) NOT NULL,
-	description text NOT NULL,
-	image varchar(255) NOT NULL,
-	contacts int(11) NOT NULL,
-	offers int(11) NOT NULL,
-	administrator int(11) NOT NULL,
+    name varchar(255) NOT NULL,
+    address text NOT NULL,
+    telephone_number varchar(80) NOT NULL,
+    telefax_number varchar(80) NOT NULL,
+    url varchar(80) NOT NULL,
+    email_address varchar(80) NOT NULL,
+    description text NOT NULL,
+    image varchar(255) NOT NULL,
+    contacts int(11) NOT NULL,
+    offers int(11) NOT NULL,
+    administrator int(11) NOT NULL,
 
-	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-	crdate int(11) unsigned DEFAULT '0' NOT NULL,
-	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l18n_parent int(11) DEFAULT '0' NOT NULL,
-	l18n_diffsource mediumblob NOT NULL,
-	access_group int(11) DEFAULT '0' NOT NULL,
+    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+    crdate int(11) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l18n_parent int(11) DEFAULT '0' NOT NULL,
+    l18n_diffsource mediumblob NOT NULL,
+    access_group int(11) DEFAULT '0' NOT NULL,
 
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	);
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    );
 
 ``CREATE TABLE`` instructs the database to create a new
 table named ``tx_sjroffers_domain_model_organization``. The
@@ -63,11 +67,11 @@ class names are written in lowercase retaining the underlines.
 
 .. note::
 
-	The file ``ext_tables.sql`` is executed whenever the
-	extension is installed. Nevertheless, TYPO3 is smart enough not to
-	overwrite an existing database table. On the contrary it deduces the
-	differences between the new and the existing table and just adds those
-	additional informations.
+    The file ``ext_tables.sql`` is executed whenever the
+    extension is installed. Nevertheless, TYPO3 is smart enough not to
+    overwrite an existing database table. On the contrary it deduces the
+    differences between the new and the existing table and just adds those
+    additional informations.
 
 The definition of the database table fields ``name``,
 ``address`` etc. follow in round brackets. Some of them should
@@ -159,19 +163,18 @@ Domain Objects are multi-lingual the fields ``sys_language_uid``,
 ``l18n_parent``, ``l18n_diffsource`` are
 essential.
 
+.. note::
+
+    More information about Localization and Multilingualism can be
+    found in Chapter 9.
 
 .. note::
 
-	More information about Localization and Multilingualism can be
-	found in Chapter 9.
-
-.. note::
-
-	The order of the field definitions is arbitrary. Nevertheless, it
-	is recommended to set the fields which are frequently inspected in a
-	SQL-tool like phpMyAdmin at the beginning since they are consequential
-	arranged at the left in the table view and show up without any annoying
-	scrolling.
+    The order of the field definitions is arbitrary. Nevertheless, it
+    is recommended to set the fields which are frequently inspected in a
+    SQL-tool like phpMyAdmin at the beginning since they are consequential
+    arranged at the left in the table view and show up without any annoying
+    scrolling.
 
 Every line in a table definition holds various statements. The
 *field type* follows the field's name. In the following
@@ -184,12 +187,12 @@ definitions are separated by a comma.``tstamp int(11) unsigned DEFAULT
 
 .. note::
 
-	Note that in case of the field ``tstamp`` the field
-	definition is chosen somewhat awkwardly by TYPO3 since the value 0
-	corresponds to the UNIX timestamp of the date 1.1.1970 00:00. It would
-	be better to use the value NULL for the meaning of 'undefined' instead
-	of 0. However, this inconsistency draws through the whole TYPO3 core
-	thus it is very difficult to correct this weakness.
+    Note that in case of the field ``tstamp`` the field
+    definition is chosen somewhat awkwardly by TYPO3 since the value 0
+    corresponds to the UNIX timestamp of the date 1.1.1970 00:00. It would
+    be better to use the value NULL for the meaning of 'undefined' instead
+    of 0. However, this inconsistency draws through the whole TYPO3 core
+    thus it is very difficult to correct this weakness.
 
 SQL databases provide various field types. Which one of them is
 chosen for persisting a Domain Property depends on the kind and length of
@@ -207,10 +210,10 @@ provides the developer with the field types ``mediumtext`` and
 ``longtext``.
 
 .. warning::
-	Always spare memory but, on the other side, don't be too penurious
-	with Strings since their values are simply cut-off when exceeding the
-	datatype range. This concludes with bugs and errors that are hard to
-	find.
+    Always spare memory but, on the other side, don't be too penurious
+    with Strings since their values are simply cut-off when exceeding the
+    datatype range. This concludes with bugs and errors that are hard to
+    find.
 
 Integers are meant to have the field types ``smallint``,
 ``int`` and ``bigint``. If working with a MySQL database
@@ -238,21 +241,21 @@ Examples for those uncommon types are ``date`` and
 
 .. note::
 
-	As with fieldnames of ``char`` and ``varchar``
-	the ``integer`` types may take ranges as numbers in round
-	brackets upon their definition, e.g. ``int(11)``. But in
-	contrast they do NOT describe the count of digits or Bytes that can be
-	stored in that field. Instead, the number serves as a hint for SQL
-	management tools for correctly filling up the field type's column with
-	whitespaces. Thus, the fields defined with ``int(11)`` as well
-	as with ``int(3)``can store the same value ranges from
-	``-21.474.838.648`` to ``+21.474.838.647``. It's still
-	useful to define ``integer`` data fields with their maximum
-	count of digits because this befriends the database computing complex
-	``JOIN``s. Thus the rule of thumb is: Always use the maximum
-	possible value in round brackets when defining ``integer``
-	fields (see table 6-1) plus one additional space for the sign value when
-	using signed numbers.
+    As with fieldnames of ``char`` and ``varchar``
+    the ``integer`` types may take ranges as numbers in round
+    brackets upon their definition, e.g. ``int(11)``. But in
+    contrast they do NOT describe the count of digits or Bytes that can be
+    stored in that field. Instead, the number serves as a hint for SQL
+    management tools for correctly filling up the field type's column with
+    whitespaces. Thus, the fields defined with ``int(11)`` as well
+    as with ``int(3)``can store the same value ranges from
+    ``-21.474.838.648`` to ``+21.474.838.647``. It's still
+    useful to define ``integer`` data fields with their maximum
+    count of digits because this befriends the database computing complex
+    ``JOIN``s. Thus the rule of thumb is: Always use the maximum
+    possible value in round brackets when defining ``integer``
+    fields (see table 6-1) plus one additional space for the sign value when
+    using signed numbers.
 
 Table 6-1 sums up all possible use-cases with their recommended data
 types.
@@ -303,25 +306,23 @@ types.
 |                              |                    |                                                 |
 +------------------------------+--------------------+-------------------------------------------------+
 
+    p = precision
 
+    s = scale
 
-	p = precision
+    n = Number of Bytes resp. Number of spaces in a column (int)
 
-	s = scale
+    \* MySQL only
 
-	n = Number of Bytes resp. Number of spaces in a column (int)
+    ** The number of signs depends on the text-encoding and may
+    differ from the number of Bytes. E.g. Using text-encoding ISO-8859-1
+    one Byte contains exactly one character whereas in UTF-8 one
+    character is saved in up to 3 Bytes (Multibyte Encoding).
 
-	\* MySQL only
+.. _configure-relationships-between-objects:
 
-	** The number of signs depends on the text-encoding and may
-	differ from the number of Bytes. E.g. Using text-encoding ISO-8859-1
-	one Byte contains exactly one character whereas in UTF-8 one
-	character is saved in up to 3 Bytes (Multibyte Encoding).
-
-
-
-Configure Relationships between Objects
---------------------------------------------------------------------------------------------------
+Configure relationships between objects
+---------------------------------------
 
 There are many relations between the objects in our Domain that have
 to be persisted in the database for being able to resolve them at a later
@@ -347,40 +348,40 @@ attached to several offers.
 
 .. sidebar:: NULL or NOT NULL?
 
-	All common Relational Database Management Systems (RDBMS) allow
-	NULL as a special value for a field. This usually means that this value
-	is kind of "not defined". However, be clear about the semantical
-	differences of the values ``NULL``, ``0`` and
-	``""`` (i.e. the NULL value, the number 0 and the empty
-	string). The difference gets clear with the value of the participation
-	fees of the ``SjrOffers`` example. If the field
-	``attendance_fee`` contains the value ``NULL`` then
-	the participation fee is not defined and NOT that the fee is 0 Euro.
-	However, in this concrete example this may due in the same
-	Frontend-output ("free of charge") but that has to be reasoned depending
-	on the use-case.
+    All common Relational Database Management Systems (RDBMS) allow
+    NULL as a special value for a field. This usually means that this value
+    is kind of "not defined". However, be clear about the semantical
+    differences of the values ``NULL``, ``0`` and
+    ``""`` (i.e. the NULL value, the number 0 and the empty
+    string). The difference gets clear with the value of the participation
+    fees of the ``SjrOffers`` example. If the field
+    ``attendance_fee`` contains the value ``NULL`` then
+    the participation fee is not defined and NOT that the fee is 0 Euro.
+    However, in this concrete example this may due in the same
+    Frontend-output ("free of charge") but that has to be reasoned depending
+    on the use-case.
 
-	* One cannot make calculations with ``NULL`` values.
-	  The functions ``AVG``, ``SUM``, etc. ignore the
-	  ``NULL`` value.
-	* One cannot do comparing instructions on ``NULL``
-	  values. For example, the comparison of ``NULL = NULL``
-	  always leads to ``false`` due to the vagueness of
-	  ``NULL``. Thus, it does not make sense to write a
-	  statement like ``uid = NULL`` and there is an own
-	  operator introduced for that ``IS`` which leads to
-	  expressions like ``uid IS NULL``. However, Extbase
-	  automagically figures out the right way for you.
-	* ``NULL`` values in queries like
-	  ``DISTINCT``, ``ORDER BY`` and ``GROUP
-	  BY`` are seen the same way and are thus grouped
-	  together.
-	* Fields permitting ``NULL`` values take more memory,
-	  because it is harder to improve the database engine for those SQL
-	  queries.
+    * One cannot make calculations with ``NULL`` values.
+      The functions ``AVG``, ``SUM``, etc. ignore the
+      ``NULL`` value.
+    * One cannot do comparing instructions on ``NULL``
+      values. For example, the comparison of ``NULL = NULL``
+      always leads to ``false`` due to the vagueness of
+      ``NULL``. Thus, it does not make sense to write a
+      statement like ``uid = NULL`` and there is an own
+      operator introduced for that ``IS`` which leads to
+      expressions like ``uid IS NULL``. However, Extbase
+      automagically figures out the right way for you.
+    * ``NULL`` values in queries like
+      ``DISTINCT``, ``ORDER BY`` and ``GROUP
+      BY`` are seen the same way and are thus grouped
+      together.
+    * Fields permitting ``NULL`` values take more memory,
+      because it is harder to improve the database engine for those SQL
+      queries.
 
-	A general rule of thumb is to avoid ``NULL``
-	values as far as your Domain Semantic allows that.
+    A general rule of thumb is to avoid ``NULL``
+    values as far as your Domain Semantic allows that.
 
 There are several techniques for persisting those relationships in a Relational Database:
 
@@ -401,18 +402,18 @@ concern the relationship of the related objects and not the objects
 themself.
 
 .. warning::
-	Do not store data in the Intermediate Table that concern the
-	Domain. Though TYPO3v4 supports this (especially in combination with
-	*Inline Relational Record Editing (IRRE)* but this is
-	always a sign that further improvements can be made to your Domain
-	Model. Intermediate Tables are and should always be tools for storing
-	relationships and nothing else.
+    Do not store data in the Intermediate Table that concern the
+    Domain. Though TYPO3v4 supports this (especially in combination with
+    *Inline Relational Record Editing (IRRE)* but this is
+    always a sign that further improvements can be made to your Domain
+    Model. Intermediate Tables are and should always be tools for storing
+    relationships and nothing else.
 
-	Let's say you want to store a CD with its containing music tracks:
-	``CD -- m:n (Intermediate Table) -- Song``. The track number
-	number may be stored in a field of the Intermediate Table. However, the
-	track should be stored as a separate Domain Object and the connection be
-	realized as ``CD -- 1:n -- Track -- n:1 -- Song``.
+    Let's say you want to store a CD with its containing music tracks:
+    ``CD -- m:n (Intermediate Table) -- Song``. The track number
+    number may be stored in a field of the Intermediate Table. However, the
+    track should be stored as a separate Domain Object and the connection be
+    realized as ``CD -- 1:n -- Track -- n:1 -- Song``.
 
 Not all combinations of relationship type and its technical persistence are sane.
 Table 6-2 lists all combinations that are **y** possible and useful, **(y)** technically
@@ -430,18 +431,18 @@ supported.
 |Intermediate Table     |n    |n    |y    |y    |
 +-----------------------+-----+-----+-----+-----+
 
-	Combination of reference type and technical storage
+    Combination of reference type and technical storage
 
 Thus, every type of relationship has its own recommended form of
 persistence that will be explained subsequently. In case of a
 1:1-relationship the UID of the child object will be saved in the Foreign
 Key field of the parent object::
 
-	CREATE TABLE tx_sjroffers_domain_model_offer(
-	...
-	contact int(11) NOT NULL,
-	...
-	);
+    CREATE TABLE tx_sjroffers_domain_model_offer(
+        ...
+        contact int(11) NOT NULL,
+        ...
+    );
 
 ``NULL`` values are explicitly allowed and stands for
 *"The contact partner has not yet been assigned."*
@@ -469,11 +470,11 @@ filled with instances of the class
 
 ::
 
-	CREATE TABLE tx_sjroffers_domain_model_organization (
-	...
-	offers int(11) NOT NULL,
-	...
-	);
+    CREATE TABLE tx_sjroffers_domain_model_organization (
+        ...
+        offers int(11) NOT NULL,
+        ...
+    );
 
 The definition of the table
 ``tx_sjroffers_domain_model_offer`` holds the field
@@ -481,22 +482,22 @@ The definition of the table
 
 ::
 
-	CREATE TABLE tx_sjroffers_domain_model_offer (
-	...
-	organization int(11) NOT NULL,
-	...
-	);
+    CREATE TABLE tx_sjroffers_domain_model_offer (
+        ...
+        organization int(11) NOT NULL,
+        ...
+    );
 
 .. note::
 
-	Extbase stores the relationship between ``organization``
-	and the offer as a ``1:1-relationship``. This can be taken as
-	advantage by adding the property ``organization`` to the class
-	``Tx_Sjr_Offers_Domain_Model_Offer``. Consequently, it will be
-	filled with an instance of the class
-	``Tx_Sjr_Offers_Domain_Model_Organization`` and can therefore
-	be used as a backreference from the offer to its corresponding
-	organization.
+    Extbase stores the relationship between ``organization``
+    and the offer as a ``1:1-relationship``. This can be taken as
+    advantage by adding the property ``organization`` to the class
+    ``Tx_Sjr_Offers_Domain_Model_Offer``. Consequently, it will be
+    filled with an instance of the class
+    ``Tx_Sjr_Offers_Domain_Model_Organization`` and can therefore
+    be used as a backreference from the offer to its corresponding
+    organization.
 
 The ``n:1`` and the ``1:n`` are pretty similar to
 each other, it is just a matter of perspective. Concerning the persistence
@@ -511,11 +512,11 @@ persistence and stores the uid of the parent object as well as the uid of
 the child object. The table definitions for a relationship between offer
 and category are as follows::
 
-	CREATE TABLE tx_sjroffers_domain_model_offer(
-	...
-	contact int(11) NOT NULL,
-	...
-	);
+    CREATE TABLE tx_sjroffers_domain_model_offer(
+        ...
+        contact int(11) NOT NULL,
+        ...
+    );
 
 The table ``tx_sjroffers_domain_model_offer`` holds a field
 ``categories`` as a counter (and as a counter-part to the
@@ -531,14 +532,11 @@ category.
 
 .. note::
 
-	The name of the Intermediate Table can be chosen freely. However,
-	the following convention is recommended:
-	``tx_myext_linkesobjekt_rechtesobjekt_mm``.
+    The name of the Intermediate Table can be chosen freely. However,
+    the following convention is recommended:
+    ``tx_myext_linkesobjekt_rechtesobjekt_mm``.
 
 For now, we have proper SQL definitions of the Domain's tables for
 each kind of relationship. In the next step we configure the
 representation of the database tables and their interaction with the
 Backend.
-
-
-

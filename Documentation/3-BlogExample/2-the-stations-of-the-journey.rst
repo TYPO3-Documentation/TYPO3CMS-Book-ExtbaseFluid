@@ -1,3 +1,7 @@
+.. include:: ../Includes.txt
+
+.. _the-stations-of-the-journey:
+
 The stations of the journey
 ===========================================
 
@@ -7,12 +11,14 @@ to start. Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know more detailed in the upcoming sections.
 
 .. figure:: /Images/3-BlogExample/figure-3-3.png
-	:align: center
+    :align: center
 
-	Figure 3-3: The several stations of the journey
+    Figure 3-3: The several stations of the journey
 
 When an extension like the blog example is called, the following
 happens behind the scenes:
+
+.. todo add refs to directly go to the sections
 
 TYPO3 digs into the page content and discovers the content element of
 the extension (plugin) on the page. It does not call the extension directly,
@@ -42,4 +48,3 @@ The *View* returns the rendered content
 encapsulated in a *Response* back to the
 *Dispatcher*, which on its turn returns the HTML code to
 the calling TYPO3 process (6).
-

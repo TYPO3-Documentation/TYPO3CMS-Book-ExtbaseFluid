@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _installation:
+
 Installation
 ============
 
@@ -15,16 +17,16 @@ them.
 
 .. tip::
 
-	We assume that you already have some knowledge how to set up a TYPO3
-	environment and therefore we will concentrate on the installation of Extbase
-	and Fluid and their related components.
+    We assume that you already have some knowledge how to set up a TYPO3
+    environment and therefore we will concentrate on the installation of Extbase
+    and Fluid and their related components.
 
 .. toctree::
-	:maxdepth: 2
+    :maxdepth: 2
 
-	1-configuring-the-server
-	2-install-extbase-and-fluid
-	3-configuring-your-ide
-	4-extbase-and-fluid-autocompletion
-	5-debugging-with-xdebug
-	6-more-helpful-extensions
+    1-configuring-the-server
+    2-install-extbase-and-fluid
+    3-configuring-your-ide
+    4-extbase-and-fluid-autocompletion
+    5-debugging-with-xdebug
+    6-more-helpful-extensions

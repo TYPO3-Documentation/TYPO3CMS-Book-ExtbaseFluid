@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _creating-an-extension-with-the-kickstarter:
+
 Creating an extension with the kickstarter
 ==========================================
 
@@ -21,6 +23,8 @@ You can find the kickstarter in the TYPO3 Extension Repository with the extensio
 to get the version out of the subversion repository at *https://svn.typo3.org/TYPO3v4/Extensions/extbase_kickstarter*.
 If you have enhancement issues or find bugs you can post them to the development team at
 *forge.typo3.org*.
+
+.. _concept:
 
 Concept
 -------
@@ -44,6 +48,8 @@ controller and view layer of the extension. Because now the templates are to be 
 *dynamic Scaffolding* should be changed into a *static Scaffolding*. This results in writing
 the templates to disk and can be used as a base for manual customizing.
 
+.. _sample-modelling:
+
 Sample modelling
 ----------------
 
@@ -58,8 +64,8 @@ is shown, with it you can model the domain objects.
 
 .. figure:: /Images/10-Outlook/figure-10-1.png
 
-	Figure 10-1: The domain modeller consists of a large workspace and retractable tabs at the
-	left and right side, in wich the meta data can be entered.
+    Figure 10-1: The domain modeller consists of a large workspace and retractable tabs at the
+    left and right side, in wich the meta data can be entered.
 
 To create a new domain object click at the box with the title *New Model Object* and pull it to
 the desired place on the workspace. Now you can enter the name of the model object, in our case
@@ -69,8 +75,8 @@ entry *Properties* can now be made the desired properties for the domain object 
 
 .. figure:: /Images/10-Outlook/figure-10-2.png
 
-	Figure 10-2: The domain object News has the properties title, author and text, and is defined
-	as Aggregate Root.
+    Figure 10-2: The domain object News has the properties title, author and text, and is defined
+    as Aggregate Root.
 
 Now we have doe modelling the domain object ``Comment`` and connect it to the just created
 ``News`` object. For this we create like just described a second object with the name ``Comment``
@@ -82,7 +88,7 @@ the ``Comment`` object. The screen now looks like figure 10-3.
 
 .. figure:: /Images/10-Outlook/figure-10-3.png
 
-	Figure 10-3: Now the relation between the News and the Comment object is mold.
+    Figure 10-3: Now the relation between the News and the Comment object is mold.
 
 Now some meta data for the extension must be set, like title and extension key. For this we
 open the tab on the left side of the workspace and fill in the needed information. With a
@@ -100,4 +106,3 @@ The extbase kickstarter resides - like said at the beginning - heavy in the deve
 At the moment there are plans of the development team to use a standarized desciption language
 for the emerging models. Also the team around the kickstarter will try to implement functions
 to edit existing extensions.
-

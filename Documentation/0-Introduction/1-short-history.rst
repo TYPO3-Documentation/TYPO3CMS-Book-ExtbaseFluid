@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _a-short-history-of-extbase-and-fluid:
+
 A short history of Extbase and Fluid
 ====================================
 
@@ -7,10 +9,7 @@ A short history of Extbase and Fluid
 .. Meta-Information for this chapter
 .. ---------------------------------
 .. Author: Sebastian Kurfürst
-.. Updated for 1.0 beta1: YES, by Sebastian Kurfürst
 .. ============================================
-
-
 
 After the implementation of TYPO3 v5 and FLOW3 as the basis framework
 started, the development of TYPO3 v4 and TYPO3 v5 was happening almost
@@ -21,28 +20,30 @@ for the transition from the current TYPO3 version 4 to the coming version 5.
 The core points of this strategy were communicated as a manifesto (see the
 box "The Berlin Manifesto").
 
+.. _berlin-manifesto:
+
 .. sidebar:: The Berlin Manifesto
 
-	We, the participants of the TYPO3 Transition Days 2008 state that
-	…
+    We, the participants of the TYPO3 Transition Days 2008 state that
+    …
 
-	* TYPO3 v4 continues to be actively developed
-	* v4 development will continue after the release of v5
-	* Future releases of v4 will see its features converge with those in TYPO3 v5
-	* TYPO3 v5 will be the successor of TYPO3 v4
-	* Migration of content from TYPO3 v4 to TYPO3 v5 will be easily possible
-	* TYPO3 v5 will introduce many new concepts and ideas. Learning
-	  never stops and we'll help with adequate resources to ensure a smooth
-	  transition.
+    * TYPO3 v4 continues to be actively developed
+    * v4 development will continue after the release of v5
+    * Future releases of v4 will see its features converge with those in TYPO3 v5
+    * TYPO3 v5 will be the successor of TYPO3 v4
+    * Migration of content from TYPO3 v4 to TYPO3 v5 will be easily possible
+    * TYPO3 v5 will introduce many new concepts and ideas. Learning
+      never stops and we'll help with adequate resources to ensure a smooth
+      transition.
 
-	Signed by:
+    Signed by:
 
-	*Patrick Broens, Karsten Dambekalns, Dmitry Dulepov,
-	Andreas Förthner, Oliver Hader, Martin Herr, Christian Jul Jensen,
-	Thorsten Kahler, Steffen Kamper, Christian Kuhn, Sebastian Kurfürst,
-	Martin Kutschker, Robert Lemke, Tobias Liebig, Benjamin Mack, Peter
-	Niederlag, Jochen Rau, Ingo Renner, Ingmar Schlecht, Jeff Segars, Michael
-	Stucki, Bastian Waidelich*
+    *Patrick Broens, Karsten Dambekalns, Dmitry Dulepov,
+    Andreas Förthner, Oliver Hader, Martin Herr, Christian Jul Jensen,
+    Thorsten Kahler, Steffen Kamper, Christian Kuhn, Sebastian Kurfürst,
+    Martin Kutschker, Robert Lemke, Tobias Liebig, Benjamin Mack, Peter
+    Niederlag, Jochen Rau, Ingo Renner, Ingmar Schlecht, Jeff Segars, Michael
+    Stucki, Bastian Waidelich*
 
 With the background of this manifesto, the decision was made to
 re-implement two parts of TYPO3 v4:
@@ -66,14 +67,11 @@ developed the biggest part of Extbase, while Sebastian Kurfürst did code
 reviews and gave feedback. Additionally, Fluid has reached the beta stage in
 that time.
 
-The first public presentation of Extbase happened in March 2009 at the
-*T3BOARD09* in Laax (CH). With stormy weather, 2228 m
-over sea level, core developers and interested people could see the current
-state of Extbase. In a stimulated discussion<remark>TODO: sounds
-strange</remark>, the last open topics like naming conventions or the name
-of the framework, were decided upon. Additionally, the decision was made to
-include Fluid in version 4.3, instead in version 4.4 as planned
-before.
+The first public presentation of Extbase happened in March 2009 at the *T3BOARD09* in Laax (CH).
+With stormy weather, 2228 m over sea level, core developers and interested people could see the
+current state of Extbase. In a discussion, the last open topics like naming conventions or the name
+of the framework, were decided upon. Additionally, the decision was made to include Fluid in version
+4.3, instead in version 4.4 as planned before.
 
 In the following days, the Fluid team developed a small program (named
 *Backporter*) which could take the code of Fluid for
@@ -105,3 +103,12 @@ After a well-deserved break of the development team after the release,
 work started again with smaller bugfixes and a roadmap for upcoming
 functionalities. That's how many details of the framework were improved, and
 the persistence layer was once again streamlined and cleaned up.
+
+In 2015 both teams decided to go different ways. The emerged CMS Neos with FLOW3 as a base was
+splitted from TYPO3 CMS, which was developed further to the new LTS 7. TYPO3 v5 was never released,
+but skipped to TYPO3 CMS 6, 6.1 and 6.2 LTS where a huge rework was done.
+Extbase is still part of the TYPO3 CMS core as a system extension and developed independently of
+FLOW3. It becomes the "state of the art" to develop extensions, and even extensions of the core are
+migrated to Extbase extensions.
+
+For more information about the history, check out `The History of TYPO3 <https://typo3.org/about/the-history-of-typo3/>`_.

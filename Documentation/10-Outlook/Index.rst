@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _outlook:
+
 Outlook
 =======
 
@@ -14,8 +16,8 @@ Fluid immediately. The chapter will be closed with an outlook on FLOW3,
 since Extbase is a bridging technology to FLOW3.
 
 .. toctree::
-	:maxdepth: 2
+    :maxdepth: 2
 
-	1-Creating-an-extension-with-the-kickstarter
-	2-Backend-modules
-	3-Migration-to-FLOW3-and-TYPO3-v5
+    1-Creating-an-extension-with-the-kickstarter
+    2-Backend-modules
+    3-Migration-to-FLOW3-and-TYPO3-v5

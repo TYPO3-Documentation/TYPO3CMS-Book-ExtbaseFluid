@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
-Create The Domain Model
-================================================
+.. _create-the-domain-model:
+
+Create the domain model
+=======================
 
 The domain of our first extension is very simple. The essential
 concept of our domain is the "product". All the important properties for us

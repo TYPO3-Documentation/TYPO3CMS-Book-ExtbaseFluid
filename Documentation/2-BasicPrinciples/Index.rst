@@ -3,7 +3,7 @@
 .. _basic-principles:
 
 Basic Principles
-===============================
+================
 
 TYPO3 comes with an impressive variety of available extensions. As
 usual with Open Source Projects, these extensions have been written by
@@ -59,10 +59,10 @@ Nevertheless we like to warmly recommend this technique of
 developing.
 
 .. toctree::
-	:maxdepth: 2
+    :maxdepth: 2
 
-	1-Object-oriented Programming-in-PHP
-	2-Domain-Driven-Design
-	3-Model-View-Controller-in-Extbase
-	4-Test-Driven-Development
-	5-Conclusion
+    1-Object-oriented Programming-in-PHP
+    2-Domain-Driven-Design
+    3-Model-View-Controller-in-Extbase
+    4-Test-Driven-Development
+    5-Conclusion

@@ -1,20 +1,28 @@
 .. include:: ../Includes.txt
 
+.. _more-helpful-extensions:
+
 More helpful Extensions
 =======================
 
 
 In the following we short want to present some helpful extensions which are helpful by the development of extensions. Some extensions of these (like the first four presented) are maintained by the extbase team and others are developed by own teams.
 
+.. _blog-example:
+
 blog_example
 ------------
 
 This blog example is described in this book in detail. It's an introductory example which has many Facets and Features of Extbase and Fluid. It's found in TER with the extension key *blog_example* or in the subversion *https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/blog_example/trunk/*.
 
+.. _viewhelpertest:
+
 viewhelpertest
 --------------
 
 This extension all Fluid-ViewHelper and its usage is demonstrated. It will be used for testing for fluid distribution by the fluid developer team. It's also helpful to understand the usage of ViewHelpers in practical examples. It's found in the subversion repository under *https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/viewhelpertest/*.
+
+.. _extension-builder:
 
 extension_builder
 -----------------
@@ -22,10 +30,14 @@ extension_builder
 The Extension Builder helps you build and manage your Extbase-based TYPO3 CMS extensions.
 It's available from the TER with the extension key *extension_builder*.
 
+.. _doc-extbase:
+
 doc_extbase
 -----------
 
 The extension *doc_extbase* consists of a documentation of extbase and a API reference. Also this extension can be found in TER or in subversion *https://svn.typo3.org/TYPO3v4/CoreProjects/MVC/doc_extbase/*.
+
+.. _devlog:
 
 devlog
 ------
@@ -35,6 +47,8 @@ The extension *devlog* (in TER available) can used for logging the program seque
 To log data you can use the method *t3lib_div::devlog($message, $extensionKey, $severity, $data)*. At this *$message* is the message which sould logged, *$extensionKey* is the extension key of the running extension, *$severity* is a number between -1 and 3 which specify the severity of an error and *$data* is an optional array which can also be logged.
 
 More information can be found in the online documentation of the extension *devlog* in TER.
+
+.. _phpunit:
 
 PHPUnit
 -------

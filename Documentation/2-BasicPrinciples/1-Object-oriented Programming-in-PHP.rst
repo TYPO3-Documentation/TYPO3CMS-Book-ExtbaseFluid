@@ -1,10 +1,12 @@
 .. include:: ../Includes.txt
 
+.. _object-oriented-programming-in-php:
+
 Object-oriented programming in PHP
-=================================================
+==================================
 
 Object-oriented programming is a Programming Paradigm, versatilely
-applied in extbase and the extensions built on it. In this section we will
+applied in Extbase and the extensions built on it. In this section we will
 give an overview of the basic concepts of Object Orientation.
 
 Programs have a certain purpose, which is - generally speaking - to
@@ -33,6 +35,7 @@ maximum speed. Further it has Methods to start the motor (and hopefully to
 stop it again also), change the direction as well as to increase thrust, for
 you can reach your holiday destination a bit faster.
 
+.. _why-object-orientation-after-all:
 
 Why Object Orientation after all?
 -------------------------------------------------
@@ -72,54 +75,54 @@ Orientated Programming. Both is necessary for successful programming –
 even though you'll often not be able to imagine the objects you'll later
 work with as clearly as in our examples.
 
-
+.. _classes-and-object:
 
 Classes and Objects
--------------------------------------------------
+-------------------
 
 Let's now take a step back and imagine there'd be a blueprint for
 ships in general. We now focus not the ship but this blueprint. It is
 called *Class*, in this case is is the Class
 :class:`ship`. In PHP this is written as follows::
 
-	<?php
+    <?php
 
-	class ship {
+    class ship {
 
-		...
+        ...
 
-	}
+    }
 
-	?>
+    ?>
 
 .. tip::
 
-	In this piece of code we kept noting the necessary PHP tags at
-	the beginning and end. We will spare them in the following examples to
-	make the listings a bit shorter.
+    In this piece of code we kept noting the necessary PHP tags at
+    the beginning and end. We will spare them in the following examples to
+    make the listings a bit shorter.
 
 The key word :class:`class` opens the Class and
 inside the curly brackets Properties and Methods are written. we'll now
 add these Properties and Methods::
 
-	class ship {
+    class ship {
 
-		public $name;
+        public $name;
 
-		public $coaches;
+        public $coaches;
 
-		public $engineStatus;
+        public $engineStatus;
 
-		public $speed;
+        public $speed;
 
 
-		function startEngine() {}
+        function startEngine() {}
 
-		function stopEngine() {}
+        function stopEngine() {}
 
-		function moveTo($location) {}
+        function moveTo($location) {}
 
-	}
+    }
 
 Our ship now has a name (:class:`$name`), a number of coaches
 (:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a
@@ -128,13 +131,12 @@ ship, of course, has much more properties, all important somehow – for our ou
 abstraction these few will be sufficient though. We'll focus on why every
 Property is marked with the key word :class:`public` further down.
 
-
 .. tip::
 
-	For Methods and Properties we use a notation called
-	*lowerCamelCase*: The first letter is lower case
-	and all other parts are added without blank or underscore in upper
-	case. This is a convention used in extbase (as well as FLOW3).
+    For Methods and Properties we use a notation called
+    *lowerCamelCase*: The first letter is lower case
+    and all other parts are added without blank or underscore in upper
+    case. This is a convention used in extbase (as well as FLOW3).
 
 We can also switch on the engine
 (:class:`startEngine()`), travel with the ship to the
@@ -150,11 +152,11 @@ Now we will finally create an Object from our Class. The Class
 
 ::
 
-	$fidelio = new Ship();
+    $fidelio = new Ship();
 
-	// Display the Object
+    // Display the Object
 
-	var_dump($fidelio);
+    var_dump($fidelio);
 
 The key word new is used to create a concrete Object from the Class.
 This Object is also called *Instance *and the creation
@@ -162,17 +164,17 @@ process consequentially *Instantiation*. We can use the
 command ``var_dump()`` to closely examine the object. We'll see
 the following::
 
-	object(Ship)#1 (3) {
+    object(Ship)#1 (3) {
 
-		["name"] => NUL
+        ["name"] => NUL
 
-		["coaches"] => NULL
+        ["coaches"] => NULL
 
-		["engineStatus"] => NULL
+        ["engineStatus"] => NULL
 
-		["speed"] => NULL
+        ["speed"] => NULL
 
-	}
+    }
 
 We can clearly see that our Object has 4 Properties with a concrete
 value, at the moment still NULL, for we did not yet assign anything. We
@@ -182,21 +184,22 @@ same values.
 
 ::
 
-	$fidelio1 = new Ship();
-	$fidelio2 = new Ship();
+    $fidelio1 = new Ship();
+    $fidelio2 = new Ship();
 
-	if ($fidelio1 === $fidelio2) {
-		echo 'Objects are identical!'
+    if ($fidelio1 === $fidelio2) {
+        echo 'Objects are identical!'
 
-	} else {
-		echo 'Objects are not identical!'
-	}
+    } else {
+        echo 'Objects are not identical!'
+    }
 
 In this example the output is ``Objects are not identical!``
 
+.. _the-arrow-operator:
 
 The arrow operator
--------------------------------------------------
+------------------
 
 We are able to create an Object now, but of course it's Properties
 are still empty.We'll hurry to change this by assigning values to the
@@ -205,22 +208,22 @@ operator (->). We can use it for getting access to the properties of
 an Object or calling Methods. In the following example, we set the name
 of the ship and call some Methods::
 
-	$ship = new Ship();
+    $ship = new Ship();
 
-	$ship->name = "FIDELIO";
+    $ship->name = "FIDELIO";
 
-	echo "The ship's Name is ". $ship->name;
+    echo "The ship's Name is ". $ship->name;
 
-	$ship->startEngine();
+    $ship->startEngine();
 
-	$ship->moveTo('Bahamas');
+    $ship->moveTo('Bahamas');
 
-	$ship->stopEngine();
+    $ship->stopEngine();
 
-
+.. _this:
 
 $this
--------------------------------------------------
+-----
 
 Using the arrow operator we can now comfortably access Properties
 and Methods of an Object. But what to do, if we want to do this from
@@ -232,29 +235,29 @@ special variable :class:`$this`.
 
 ::
 
-	class Ship {
+    class Ship {
 
-		...
+        ...
 
-		public $speed;
+        public $speed;
 
-		...
+        ...
 
-		function startEngine() {
+        function startEngine() {
 
-			$this->speed = 200;
+            $this->speed = 200;
 
-		}
+        }
 
-	}
+    }
 
 With ``$this->speed`` you can access the Property
 "speed" in the actual Object, independently of it's name.
 
-
+.. _contstructor:
 
 Constructor
--------------------------------------------------
+-----------
 
 It can be very useful to initialize an Object at the Moment of instantiating it.
 Surely there will be a certain number of coaches built
@@ -271,11 +274,10 @@ constructor as Argument and then assigned to the Properties
 :class:`§coaches `respectively
 :class:`$name`.
 
-
-
+.. _inheritance-of-classes:
 
 Inheritance of Classes
--------------------------------------------------
+----------------------
 
 With the class we created we can already do a lot. We can create
 many ships and send them to the oceans of the world. But of course the
@@ -294,26 +296,26 @@ extend an "old" Class definition by using the key word
 
 ::
 
-	class LuxuryLiner extends Ship {
+    class LuxuryLiner extends Ship {
 
-		public $luxuryCoaches;
+        public $luxuryCoaches;
 
-		function golfSimulatorStart() {
+        function golfSimulatorStart() {
 
-			echo 'Golf simulator on ship ' . $this->name . '
-			started.';
+            echo 'Golf simulator on ship ' . $this->name . '
+            started.';
 
-		}
+        }
 
-		function golfSimulatorStop() {
+        function golfSimulatorStop() {
 
-			echo 'Golf simulator on ship ' . $this->name . '
-			stopped.';
+            echo 'Golf simulator on ship ' . $this->name . '
+            stopped.';
 
-		}
-	}
+        }
+    }
 
-	$luxuryShip = new LuxuryLiner('FIDELIO2','600')
+    $luxuryShip = new LuxuryLiner('FIDELIO2','600')
 
 Our new luxury liner comes into existence as easy as that. We
 define, that the luxury liner just extends the Definition of the class
@@ -333,9 +335,10 @@ complete configuration of the base class :class:`Ship`
 again access the Properties and Methods of the parent class by using
 :class:`$this`.
 
+.. _overriding-properties-and-methods:
 
 Overriding Properties and Methods
--------------------------------------------------
+---------------------------------
 
 Inside an inherited class you can not only access Properties and
 Methods of the parent class or define new ones. It's even possible to
@@ -344,7 +347,7 @@ e.g. for giving a Method of a child class a new functionality. Let's
 have a look at the Method :class:`startEngine()` for
 example:
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 Our luxury liner (of course) has an additional motor, so this has
 to be switched on also, if the Method
@@ -353,10 +356,10 @@ overrides the Method of the parent class and so only the Method
 :class:`startEngine()` of the child class is
 called.
 
-
+.. _access-to-the-parent-class-through-parent:
 
 Access to the parent class through "parent"
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 Overriding a Method comes in handy, but has a serious
 disadvantage. When changing the Method
@@ -372,12 +375,12 @@ sorry!</remark> the Method of the parent class can be accessed
 comfortably - so our former example can be re-written in a smarter
 way:
 
-<remark>TODO: Enter Code</remark>
+.. todo Enter code
 
-
+.. _abstract-classes:
 
 Abstract classes
--------------------------------------------------
+----------------
 
 Sometimes it is useful to define "placeholder Methods" in the
 parent class which are filled in the child class. These "placeholders"
@@ -388,7 +391,7 @@ type of ship is to be handled differently for each has a proper
 configuration. So each ship must have such a Method but the concrete
 implementation is to be done separately for each ship type.
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 In the parent class we have defined only the body of the Method
 :class:`setupCoaches()`. The key word
@@ -397,10 +400,10 @@ implemented in the child class. So using abstract classes, we can define
 which Methods have to be present later without having to implement them
 right away.
 
-
+.. _interfaces:
 
 Interfaces
--------------------------------------------------
+----------
 
 Interfaces are a special case of abstract classes in which
 *all Methods* are abstract. Using Interfaces,
@@ -411,7 +414,7 @@ who don't. The ships who do, have the Methods
 :class:`disableTV()`. It is useful to define an interface
 for that:
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 Using the key word :class:`implements` it is made
 sure, that the class implements the given interface. All Methods in the
@@ -422,11 +425,10 @@ interface definition then have to be realized. The object
 only one interface class but multiple, separated by comma. Of course
 interfaces can also be inherited by other interfaces.
 
-
-
+.. _visibilities-public-private-and-protected:
 
 Visibilities: public, private and protected
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 Access to Properties and Methods can be restricted by different
 visibilities to hide implementation details of a class. The meaning of a
@@ -445,13 +447,15 @@ visibilities exist:
   :class:`private` can only be accessed from inside the
   class itself, not from child classes.
 
+.. _access-to-properties:
+
 Access to Properties
--------------------------------------------------
+--------------------
 
 This small example demonstrates how to work with protected
 properties:
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 The :class:`LuxuryLiner` may alter the property
 :class:`coaches`, for this is
@@ -467,10 +471,10 @@ more from outside and you should use special Methods (called getter and
 setter) to alter or read them. We'll explain the use of these Methods in
 the following section.
 
-
+.. _access-to-methods:
 
 Access to Methods
--------------------------------------------------
+-----------------
 
 All Methods the Object makes available to the outside have to be
 defined as :class:`public`. All Methods containing
@@ -485,7 +489,7 @@ outside. So you'll need special Methods that are able to set or get a
 property. These Methods are called *setter*
 respectively *getter*. See the example.
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 We now have a Method :class:`setCoaches()` which
 sets the number of coaches. Furthermore it changes - depending on the
@@ -501,12 +505,13 @@ inconsistent.
 
 .. tip::
 
-	In extbase you'll find getter and setter Methods all over. No
-	Property in extbase is set to :class:`public`.
+    In extbase you'll find getter and setter Methods all over. No
+    Property in extbase is set to :class:`public`.
 
+.. _static-methods-and-properties:
 
 Static Methods and Properties
--------------------------------------------------
+-----------------------------
 
 Until now we worked with Objects, instantiated from classes.
 Sometimes though, it does not make sense to generate a complete object,
@@ -524,7 +529,7 @@ ships need to know the actual emergency phone number of this shipyard. So
 we save this number in a static Property
 :class:`$shipyardSupportTelephoneNumber`:
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 What happens here? We instantiate two different ships, which both
 have a problem and do contact the shipyard. Inside the method
@@ -544,10 +549,10 @@ the class use the new phone number. So both ship objects have access to the
 same static variable
 :class:`$shipyardSupportTelephoneNumber`.
 
-
+.. _important-design-and-architectural-patterns:
 
 Important design- and architectural patterns
---------------------------------------------------------------------------------------------------
+--------------------------------------------
 
 In software engineering you'll sooner or later stumble upon design
 problems that are connatural and solved in a similar way. Clever people
@@ -564,19 +569,20 @@ them
 
 .. tip::
 
-	Further information about design patterns can e.g. be found on
-	<link linkend="???">http://sourcemaking.com/</link> or in the book
-	*PHP Design Patterns* by Stephan Schmidt, published
-	by O'Reilly.
+    Further information about design patterns can e.g. be found on
+    <link linkend="???">http://sourcemaking.com/</link> or in the book
+    *PHP Design Patterns* by Stephan Schmidt, published
+    by O'Reilly.
 
 From the big number of design patterns, we will have a closer look
 on two that are essential when programming with extbase:
 *Singleton* &amp;
 *Prototype*.
 
+.. _singleton:
 
 Singleton
--------------------------------------------------
+---------
 
 This design pattern makes sure, that only one instance of a class
 can exist *at a time*. In TYPO3 you can mark a class
@@ -585,7 +591,7 @@ as singleton by letting it implement the interface
 are all constructed in the same shipyard. So there is no sense in having
 more than one instance of the shipyard object:
 
-<remark>TODO: Enter Code</remark>
+.. todo enter code
 
 In order to have the singletons correctly created you have to use
 the static TYPO3 Method
@@ -593,10 +599,10 @@ the static TYPO3 Method
 - as seen in the example above - always the same object, if you request
 a singleton.
 
-
+.. _prototype:
 
 Prototype
--------------------------------------------------
+---------
 
 Prototype is sort of the antagonist to Singleton. While for each
 class only one object is instantiated when using Singleton, it is
@@ -607,19 +613,16 @@ class not implementing the Interface
 
 .. tip::
 
-	Originally for the design pattern
-	*Prototype* is specified, that a new Object is to
-	be created by cloning an Object prototype. We use Prototype as
-	counterpart to Singleton, without a concrete pattern implementation
-	in the background, though. For the functionality we experience, this
-	does not make any difference: We invariably get back a new instance
-	of a class.
+    Originally for the design pattern
+    *Prototype* is specified, that a new Object is to
+    be created by cloning an Object prototype. We use Prototype as
+    counterpart to Singleton, without a concrete pattern implementation
+    in the background, though. For the functionality we experience, this
+    does not make any difference: We invariably get back a new instance
+    of a class.
 
 Now that we refreshed your knowledge of object oriented
-programming, we can take a look at the deeper concepts of extbase:
+programming, we can take a look at the deeper concepts of Extbase:
 Domain Driven Design, Model View Controller and Test Driven Development.
 You'll spot the basics we just talked about in the following
 frequently.
-
-
-

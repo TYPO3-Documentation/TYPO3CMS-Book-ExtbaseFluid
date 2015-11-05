@@ -1,10 +1,12 @@
 .. include:: ../Includes.txt
 
+.. _domain-driven-design:
+
 Domain-Driven Design
-===============================================
+====================
 
 Software development is a creative process. You do not stand on an assembly
-line, but are increasingly exposed to new challenges. Each softwarre differs
+line, but are increasingly exposed to new challenges. Each software differs
 from each other, and every time you start with a new program you start from
 scratch. You have to find out, what your client wants to achieve and after that
 you want to implement this. Through this creativity you have many freedoms but
@@ -13,7 +15,6 @@ can grow. Who has never seen a project in which the requirements were documented
 and the specifications were written and still the client was not satisfied at
 the end or at worst the software hasn't solved his problems at all.
 
-
 If you develop software for a customer, you must first understand his problems,
 so you can offer your customer a tailored solution. This problem area is called
 the application domain within the terms of domain-driven design. By knowing the
@@ -21,7 +22,6 @@ application domain of the customer, understand his problem and have clearly in
 mind, you are in a position to adequately implement these domain in software.
 Extbase supports you in supplying you with the required technical
 infrastructure.
-
 
 Domain-Driven Design is a development paradigm, which includes not only
 technical concepts. Instead, with using different techniques, Extbase tries to
@@ -40,29 +40,27 @@ domain.
 
 .. note::
 
-	The involvement of customers in the working phase is absolutely essential
-	because only he knows the problem well enough.
+    The involvement of customers in the working phase is absolutely essential
+    because only he knows the problem well enough.
 
 Domain-Driven Design is a very pragmatic approach. Even at the beginning of a
 software project is trying to write code while getting to know the problem to be
 solved. Often you will need a few prototypes and iterations, until you reach the
 final model. Take this time!
 
-
-
 .. sidebar:: The history of the Domain-Driven Design
 
-	The ideas behind Domain-driven design are not new: many good software developers
-	have discovered long ago that the problem needs to be keenly modeled from the
-	real world in software. Often, this process was guided intuitive - it lacked a
-	conceptual skeleton which would have simplified the mapping from the problem to
-	software. Eric Evans has described an approach in his book "Domain-Driven Design
-	- Tackling Complexity in the Heart of Software (Addison-Wesley)", how to create
-	a meaningful model of the reality in software, so this is helpful for solving a
-	particular problem. For this he has founded the term "Domain-driven design". He
-	wrote downa the combined knowledge of many good software developers, which now
-	makes it possible to address the systematic creation of models and make them
-	learnable.
+    The ideas behind Domain-driven design are not new: many good software developers
+    have discovered long ago that the problem needs to be keenly modeled from the
+    real world in software. Often, this process was guided intuitive - it lacked a
+    conceptual skeleton which would have simplified the mapping from the problem to
+    software. Eric Evans has described an approach in his book "Domain-Driven Design
+    - Tackling Complexity in the Heart of Software (Addison-Wesley)", how to create
+    a meaningful model of the reality in software, so this is helpful for solving a
+    particular problem. For this he has founded the term "Domain-driven design". He
+    wrote downa the combined knowledge of many good software developers, which now
+    makes it possible to address the systematic creation of models and make them
+    learnable.
 
 Extbase offers you a variety support of Domain-Driven Design. You do not have to
 care for e.g. storing data in the database. If the domain contains complex
@@ -78,6 +76,7 @@ the elaboration of a language used by all (the so-called Ubiquitous Language) or
 dealing with associations. Besides these we also show you the technical elements
 such as entities, value objects and repositories.
 
+.. _develop-a-common-language:
 
 Develop a common language
 --------------------------
@@ -103,6 +102,8 @@ makes it possible to consult experts with problems withion the domain and make
 decisions with the domain expert on the basis of the source code, whether the
 business logic has been implemented correctly.
 
+.. _to-model-the-domain:
+
 To model the domain
 -------------------
 
@@ -124,8 +125,10 @@ There are also concepts that could'nt assigned directly to be entities or value
 objects - this happens every time you speak of activities during the modeling
 phase. For this purpose the concept of services is introduced.
 
+.. _entities:
 
-**Entities**
+Entities
+~~~~~~~~
 
 Entities are objects that possess a unique identity. For example, a user has an
 username as an identity, a product has a product number, and a student has a
@@ -142,11 +145,11 @@ identity-determining.
 
 .. note::
 
-	Extbase uses as an automatically generated identity property as
-	identifier, which is generated by the underlying database (the so-called
-	Unique identifier, UID). The word unique clearly means in this context
-	really "unique within a database table". This will, however, possibly change
-	in a future	version of Extbase to ensure a global uniqueness.
+    Extbase uses as an automatically generated identity property as
+    identifier, which is generated by the underlying database (the so-called
+    Unique identifier, UID). The word unique clearly means in this context
+    really "unique within a database table". This will, however, possibly change
+    in a future version of Extbase to ensure a global uniqueness.
 
 Depending on the application, it may be useful to establish their own
 identity-determining properties that are important within your domain. How can I
@@ -172,7 +175,10 @@ indexes and primary keys (in TYPO3, for example, the UID will always added as an
 identifier). Therefore, you may wonder why we now need a different type of
 object at all. In the next section we answer this question.
 
-**Value Objects**
+.. _value-objects:
+
+Value Objects
+~~~~~~~~~~~~~
 
 PHP offers several build-in value-types, such as integer, float or string. Often
 you will notice that you need domain specific values-types​​, such as colors or
@@ -200,11 +206,11 @@ value. You can only create a new value object and eliminate the old.
 
 .. note::
 
-	Although you could provice methods for changing the internal state of a
-	value object, it is not allowed to change the state at any time. Take the
-	example of the color object, which could contain a new method "makeBrighter()".
-	This method must change the color value and give back a new color object with
-	these changed values. It must not change the existing object.
+    Although you could provice methods for changing the internal state of a
+    value object, it is not allowed to change the state at any time. Take the
+    example of the color object, which could contain a new method "makeBrighter()".
+    This method must change the color value and give back a new color object with
+    these changed values. It must not change the existing object.
 
 By this simple semantics value objects can easily generated, cloned, transmitted
 to other computers or transfered to other objects. This not only the
@@ -213,12 +219,12 @@ are just simple values​​.
 
 .. sidebar:: Entity or Value Object?
 
-	It is not always possible to determine instantly whether an object is an entity
-	or a value object. Let's look at an example: In many applications, you have to
-	deal with addresses. Just imagine an online store where the customer can specify
-	one or more delivery addresses. The address is a typical value object in this
-	case, because it is only used as a container for name, street address, city and
-	ZIP code.
+    It is not always possible to determine instantly whether an object is an entity
+    or a value object. Let's look at an example: In many applications, you have to
+    deal with addresses. Just imagine an online store where the customer can specify
+    one or more delivery addresses. The address is a typical value object in this
+    case, because it is only used as a container for name, street address, city and
+    ZIP code.
 
 In an application that optimizes the delivery of letters for the post office,
 addresses can be associated with other characteristics such as the name of the
@@ -231,15 +237,17 @@ objects - it depends entirely on the application and the application domain.
 
 .. note::
 
-	The distinction between entities and value objects will be perhaps
-	difficult for you at the beginning and appear as an unnecessary expense. Extbase
-	treats the two object types very different in the background. The administration
-	of value-objects is more efficient than those of entities. The
-	additional expenses for the administration and monitoring of the uniqueness
-	omitted here, for example, completely.
+    The distinction between entities and value objects will be perhaps
+    difficult for you at the beginning and appear as an unnecessary expense. Extbase
+    treats the two object types very different in the background. The administration
+    of value-objects is more efficient than those of entities. The
+    additional expenses for the administration and monitoring of the uniqueness
+    omitted here, for example, completely.
 
+.. _associations:
 
-**Associations**
+Associations
+~~~~~~~~~~~~
 
 You should never leave the implementation out of sight during the modeling. So
 let us talk briefly about a very complex field of implementation: associations
@@ -277,7 +285,10 @@ refinement of associations you can find help with the following questions:
 So remember to use very simple associations, as it is easier to implement them
 and they are better understandable.
 
-**Aggregates**
+.. _aggregates:
+
+Aggregates
+~~~~~~~~~~
 
 If you build a complex domain model, you have to deal with many classes offered
 at the same hierarchical level. Often it is given that certain objects are part
@@ -290,10 +301,10 @@ related parts and the whole "aggregates". You see this domain model in Figure
 2-1.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-1.png
-	:align: center
+    :align: center
 
-	Figure 2-1: The domain model of an auto repair shop. Objects outside an
-	aggregate may only reference on the aggregate root.
+    Figure 2-1: The domain model of an auto repair shop. Objects outside an
+    aggregate may only reference on the aggregate root.
 
 An aggregate possesses a root object, the so-called "aggregate root". This is
 responsible for the integrity of their sub-objects. Objects outside of the
@@ -315,8 +326,10 @@ So far we have shown how real world objects can be mapped into entities and
 value objects objects. However, there are concepts in the world that do not fit
 into this scheme. To reflect this, we introduce services.
 
+.. _services:
 
-**Services**
+Services
+~~~~~~~~
 
 In practice there are actions while modeling an application, which could not
 directly assigned to certain domain objects. In object-oriented programming, you
@@ -330,7 +343,10 @@ A service should be used, without knowing its internal state to be known be
 taken into account. A service often receives entities or value objects as input
 and performs complex operations on them.
 
+.. _lifecycle-of-objects:
+
 Lifecycle of objects
+--------------------
 
 In the real world objects have a certain life cycle. A car is built, then it
 changes during its lifetime (the mileage increases, brakes are replaced, wear,
@@ -342,12 +358,11 @@ objects in the real world. Objects are created at a time, then they are active
 and can be changed, and eventually they will be deleted. This is shown in Figure
 2-2.
 
-
 .. figure:: /Images/2-BasicPrinciples/figure-2-2.png
-	:height: 300px
-	:align: center
+    :height: 300px
+    :align: center
 
-	Figure 2-2: The life cycle of an object in the real world
+    Figure 2-2: The life cycle of an object in the real world
 
 We can not always keep all existing objects instantiated in memory of our
 program of course - our program would be unusable slow and memory-hungry (not to
@@ -359,11 +374,11 @@ So we need a way to maintain only neededd objects in the memory. The active
 state actually consists of several sub-states, which are shown in Figure 2-3.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-3.png
-	:height: 450px
-	:align: center
+    :height: 450px
+    :align: center
 
-	Figure 2-3: The life cycle of an object in extbase is more complex, because the
-	object can be stored in the data storage (like a database).
+    Figure 2-3: The life cycle of an object in extbase is more complex, because the
+    object can be stored in the data storage (like a database).
 
 When an object is newly created, it is transient, i.e. at the end of the current
 request PHP will remove the object from the memory: It will be deleted. To
@@ -388,9 +403,9 @@ representation.
 
 .. note::
 
-	The constructor of an object is only called when creating the object. If
-	the object is reconstituted from the database, the constructor is not called
-	because the object still exists logical.
+    The constructor of an object is only called when creating the object. If
+    the object is reconstituted from the database, the constructor is not called
+    because the object still exists logical.
 
 You can retransform a persistent object in a transient object by explicitly
 removing it from the repository. This means that the repository for this object
@@ -422,21 +437,20 @@ finished.
 The following is an example of the initialization of the cars in the constructor
 of the aggregate root::
 
-	<?php
-	class Car {
-	   protected $engine;
-	   protected $wheels;
+    <?php
+    class Car {
+       protected $engine;
+       protected $wheels;
 
-	   public function __construct() {
-		  $this->engine = new Engine();
-		  $this->wheels[0] = new Wheel();
-		  $this->wheels[1] = new Wheel();
-		  $this->wheels[2] = new Wheel();
-		  $this->wheels[3] = new Wheel();
-	   }
-	}
-	?>
-
+       public function __construct() {
+          $this->engine = new Engine();
+          $this->wheels[0] = new Wheel();
+          $this->wheels[1] = new Wheel();
+          $this->wheels[2] = new Wheel();
+          $this->wheels[3] = new Wheel();
+       }
+    }
+    ?>
 
 For simplicity we have omitted the base classes and the full class names to show
 you the essence: As the constructor is executed at creating an object, it is
@@ -444,9 +458,11 @@ always built a consistent object.
 
 .. note::
 
-	In TYPO3 you can not generate classes with the new operator, but with
-	t3lib_div::makeInstance (className). In the example above, we wanted to
-	concentrate on the essentials, so we have used new there.
+    In TYPO3 you can not generate classes with the new operator, but with
+    t3lib_div::makeInstance (className). In the example above, we wanted to
+    concentrate on the essentials, so we have used new there.
+
+.. _reconstitute-objects-with-repositories:
 
 Reconstitute objects with repositories
 --------------------------------------
@@ -474,7 +490,7 @@ title is "Domain-driven Design". If you now change a book-object (for example,
 by correcting a typo in the table of contents), these changes are saved
 automatically, and the next search operation, will return the revised object.
 
-So how can you make a repository reponsible for an object? For this the
+So how can you make a repository responsible for an object? For this the
 repository has the method add($object). If you want to commit a new object to
 the BookRepository for example, you can create it using $book = new
 Book('Extbase and Fluid'). A new book titled "Extbase and Fluid" can added to
@@ -485,13 +501,13 @@ database.
 
 For each aggregate root exactly one repository has to exists, which is
 responsible for that object type and his sub objects. By using this repository,
-you can then locate the desired aggregate root object by different criterias.
-Conversely, this means: In extbase you define an object type as aggregate root
+you can then locate the desired aggregate root object by different criteria.
+Conversely, this means: In Extbase you define an object type as aggregate root
 object by creating a repository for this type.
 
 We have now explained how the domain of the application can be efficiently
 packed into a software model. Therefore, we have explained "Domain-Driven
-Design" as a "toolbox" of techniques, which are supported by extbase. But an
+Design" as a "toolbox" of techniques, which are supported by Extbase. But an
 growing application consists not only of the model: presentation logic is
 important too. With an effective separation of model and presentation logic we
 will continue in the following section.

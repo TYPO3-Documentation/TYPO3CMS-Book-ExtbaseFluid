@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _fluid-conclusion:
+
 Conclusion
 ==========
 
@@ -18,4 +20,3 @@ By now you should have a good overview about the different levels of
 the MVC design pattern. The following chapter will focus on functions that
 touch all 3 levels. We will suggest the localization of an extension, the
 validating of data as well as the security of an extension.
-
