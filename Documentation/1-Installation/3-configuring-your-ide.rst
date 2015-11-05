@@ -4,8 +4,8 @@ Configuring your IDE
 ====================
 
 An Extension based on Extbase consists of many files, so it is helpful
-to use a PHP development environment (IDE) instead of a simple editor. Among
-syntax highlighting an IDE offers code completion in first place and a
+to use a PHP development environment (IDE) instead of a simple editor. Along with
+syntax highlighting, an IDE offers code completion and a
 direct view of the code documentation. Some development environments also
 have an integrated debugger, which makes detecting errors easier and faster.
 To give you an example we'll show you how to set up NetBeans and Eclipse for
