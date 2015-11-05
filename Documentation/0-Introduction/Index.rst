@@ -22,7 +22,7 @@ The birth of Extbase and Fluid also took place in this phase of re-orientation.
 	TYPO3 team decided to start from scratch. Special attention was placed on
 	clean code and an easy and powerful infrastructure. It quickly emerged that the first
 	priority would be a web application framework, before the CMS itself
-	was be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
+	was to be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
 
 Extbase is a PHP-based framework which supports developers in creating clean and easily
 maintainable TYPO3 extensions. The template engine Fluid makes sure that the user interface
@@ -30,8 +30,8 @@ of the extension can easily be created individually.
 
 Extbase ensures a clear separation between different concerns, which makes maintenance a lot
 more simple thanks to modular code. Because of this modular design, the development time
-and associated costs are reduced for initial development and as for adjustments. Extbase
-also lessens the burden ofon the developer when it comes to security-relevant and repetetive tasks:
+and associated costs are reduced for initial development and for adjustments. Extbase
+also lessens the burden on the developer when it comes to security-relevant and repetetive tasks:
 for example the validation of arguments, the persistence of data, and access to TypoScript and
 FlexForm settings. Developers can therefore focus on solving the problems of their clients much more efficiently.
 
