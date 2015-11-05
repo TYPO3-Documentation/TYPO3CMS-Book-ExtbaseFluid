@@ -14,7 +14,7 @@ real life.
 
 A Program could for example take care of the task of booking a cruise
 in the Indian Ocean. If so we obviously have a problem (a programmer that
-has been working to much and finally decided to go on vacation) and a
+has been working too much and finally decided to go on vacation) and a
 program, promising recuperation by booking a coach on one of the luxury
 liners for him and his wife.
 
@@ -30,7 +30,7 @@ functionality is provided by *Methods*, which can for
 example alter the Properties of the Object. In regard to the cruise liner we
 can say, that it has a certain amount of coaches, a length and width and a
 maximum speed. Further it has Methods to start the motor (and hopefully to
-stop it again also), change the direction as well as to increase thrust, for
+stop it again also), change the direction as well as to increase thrust, so
 you can reach your holiday destination a bit faster.
 
 
@@ -46,9 +46,9 @@ the extension developer in a procedural way in about 95% of all cases.
 Procedural programming has some severe disadvantages though:
 
 * Properties and Methods belonging together with regard to content
-  ca not be united. This methodology, called
+  can't be united. This methodology, called
   *Encapsulation* in Object Orientation, is
-  necessary, if only because of clear arrangement.
+  necessary, if only for clear arrangement.
 * It is rather difficult to re-use code
 * All Properties can be altered everywhere throughout the code.
   This leads to hard-to-find errors.
@@ -58,7 +58,7 @@ Furthermore Object Orientation mirrors the real world: Real Objects
 exist, and they all have properties and (most of them) methods. This fact
 is now represented in programming.
 
-In the following we'll talk about the object ship. We'll invoke this
+In the following we'll talk about the object *Ship*. We'll invoke this
 object, stock it with coaches, a motor and other useful stuff.
 Furthermore, there will be functions, moving the ship, thus turning the
 motor on and off. Later we'll even create a luxury liner based on the
@@ -68,7 +68,7 @@ On the following pages, we'll try to be as graphic as possible (but
 still semantically correct) to familiarize you with object orientation.
 There is a specific reason: The more you can identify with the Object and
 its Methods, the more open you'll be for the Theory behind Object
-Orientated Programming. Both is necessary for successful programming –
+Orientated Programming. Both are necessary for successful programming –
 even though you'll often not be able to imagine the objects you'll later
 work with as clearly as in our examples.
 
@@ -77,9 +77,9 @@ work with as clearly as in our examples.
 Classes and Objects
 -------------------------------------------------
 
-Let's now take a step back and imagine there'd be a blueprint for
-ships in general. We now focus not the ship but this blueprint. It is
-called *Class*, in this case is is the Class
+Let's now take a step back and imagine there's a blueprint for
+ships in general. We now focus not on the ship, but this blueprint. It is
+called a *Class*, in this case it is the Class
 :class:`ship`. In PHP this is written as follows::
 
 	<?php
@@ -94,7 +94,7 @@ called *Class*, in this case is is the Class
 
 .. tip::
 
-	In this piece of code we kept noting the necessary PHP tags at
+	In this piece of code, note that we kept the necessary PHP tags at
 	the beginning and end. We will spare them in the following examples to
 	make the listings a bit shorter.
 
@@ -124,7 +124,7 @@ add these Properties and Methods::
 Our ship now has a name (:class:`$name`), a number of coaches
 (:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a
 variable, containing the status of the engine (:class:`$engineStatus`). A real
-ship, of course, has much more properties, all important somehow – for our our
+ship, of course, has much more properties, all important somehow – for our
 abstraction these few will be sufficient though. We'll focus on why every
 Property is marked with the key word :class:`public` further down.
 
@@ -141,9 +141,9 @@ We can also switch on the engine
 desired destination (:class:`moveTo($location)`) and switch
 off the engine again (:class:`stopEnginge()`). Note that all
 Methods are empty, i.e. we have no content at all. We'll change this in
-the following examples, of course. The line containing Method name ad (if
-available) parameters is called Method signature or method head. Everything
-contained by the Method is called method body accordingly.
+the following examples, of course. The line containing the Method name and (if
+available) parameters is called the Method signature or method head. Everything
+contained by the Method is called the Method body accordingly.
 
 Now we will finally create an Object from our Class. The Class
 :class:`ship` will be the blueprint and :class:`$fidelio` the concrete Object.
@@ -156,8 +156,8 @@ Now we will finally create an Object from our Class. The Class
 
 	var_dump($fidelio);
 
-The key word new is used to create a concrete Object from the Class.
-This Object is also called *Instance *and the creation
+The key word *new* is used to create a concrete Object from the Class.
+This Object is also called an *Instance* and the creation
 process consequentially *Instantiation*. We can use the
 command ``var_dump()`` to closely examine the object. We'll see
 the following::
@@ -199,7 +199,7 @@ The arrow operator
 -------------------------------------------------
 
 We are able to create an Object now, but of course it's Properties
-are still empty.We'll hurry to change this by assigning values to the
+are still empty. We'll hurry to change this by assigning values to the
 Properties. For this, we use a special operator, the so called arrow
 operator (->). We can use it for getting access to the properties of
 an Object or calling Methods. In the following example, we set the name
@@ -223,10 +223,10 @@ $this
 -------------------------------------------------
 
 Using the arrow operator we can now comfortably access Properties
-and Methods of an Object. But what to do, if we want to do this from
-inside a Method, e.g. to set :class:`$speed `inside of the
+and Methods of an Object. But what if we want to do this from
+inside a Method, e.g. to set :class:`$speed` inside of the
 Method :class:`startEngine()`? We don't know at this
-point, how an object to be instantiated later will be called. So we need
+point, what an object to be instantiated later will be called. So we need
 a mechanism to do this independent from the name. This is done with the
 special variable :class:`$this`.
 
@@ -268,8 +268,8 @@ first two characters are underscores).
 
 The values received from instantiating are now passed on to the
 constructor as Argument and then assigned to the Properties
-:class:`§coaches `respectively
-:class:`$name`.
+:class:`$coaches` and
+:class:`$name` respectively.
 
 
 
@@ -317,11 +317,11 @@ extend an "old" Class definition by using the key word
 
 Our new luxury liner comes into existence as easy as that. We
 define, that the luxury liner just extends the Definition of the class
-:class:`Ship`. The extended class (in or example
-:class:`Ship`) is called *parent class
-*or *superclass*. The class formed by
-Extension (in our example :class:`LuxuryLiner`) is called
-*child class *or *sub class*.
+:class:`Ship`. The extended class (in our example
+:class:`Ship`) is called the *parent class*
+or *superclass*. The class formed by
+Extension (in our example :class:`LuxuryLiner`) is called the
+*child class* or *sub class*.
 
 The class :class:`LuxuryLiner` now contains the
 complete configuration of the base class :class:`Ship`
