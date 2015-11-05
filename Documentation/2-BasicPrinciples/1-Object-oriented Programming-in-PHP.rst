@@ -223,7 +223,7 @@ $this
 -------------------------------------------------
 
 Using the arrow operator we can now comfortably access Properties
-and Methods of an Object. But what do we do if we want to do this from
+and Methods of an Object. But what if we want to do this from
 inside a Method, e.g. to set :class:`$speed` inside of the
 Method :class:`startEngine()`? We don't know at this
 point, what an object to be instantiated later will be called. So we need
