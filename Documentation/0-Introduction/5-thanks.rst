@@ -12,7 +12,7 @@ from time to time, when we developed Extbase or wrote the book instead
 of working on their project.
 
 TYPO3 would not exist without the dedication and vision of Kasper
-Skårhøy and without the tireless work of all community members, especially
+Skårhøj and without the tireless work of all community members, especially
 the TYPO3 core team. Here, we specifically want to thank the members who
 discovered and implemented many future-proof technologies for TYPO3 v6.
 Extbase would not be possible without this inspiration and
