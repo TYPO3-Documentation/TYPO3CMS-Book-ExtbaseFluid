@@ -20,7 +20,7 @@ authors.
 
 It's one of the aims of Extbase to reduce this inconsistency in
 extensions. Approved paradigms of programming lead to fast success for
-newbies and prevents protect Developers from having to deal with complex database
+newbies and protects Developers from having to deal with complex database
 queries or potential security holes like SQL-Injections or XSS-Attacks.
 Based on Extbase, small Extensions as well as big projects can be realized in
 a well-structured way.
