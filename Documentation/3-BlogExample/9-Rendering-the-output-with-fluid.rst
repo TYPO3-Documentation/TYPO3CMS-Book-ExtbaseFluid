@@ -20,13 +20,13 @@ can find some examples for these convention.
 +----------+----------+----------+--------------------------------------------+
 |Controller|Action    |Format    |Path and filename                           |
 +----------+----------+----------+--------------------------------------------+
-|Blog      |index     |k.A.      |Resources/Private/Templates/Blog/index.html |
+|Blog      |index     |unspecified      |Resources/Private/Templates/Blog/index.html |
 +----------+----------+----------+--------------------------------------------+
 |Blog      |index     |txt       |Resources/Private/Templates/Blog/index.txt  |
 +----------+----------+----------+--------------------------------------------+
-|Blog      |new       |k.A.      |Resources/Private/Templates/Blog/new.html   |
+|Blog      |new       |unspecified      |Resources/Private/Templates/Blog/new.html   |
 +----------+----------+----------+--------------------------------------------+
-|Post      |k.A.      |k.A.      |Resources/Private/Templates/Post/index.html |
+|Post      |unspecified      |unspecified      |Resources/Private/Templates/Post/index.html |
 +----------+----------+----------+--------------------------------------------+
 
 In our case the file *index.html* will be loaded. The content will be parsed step
