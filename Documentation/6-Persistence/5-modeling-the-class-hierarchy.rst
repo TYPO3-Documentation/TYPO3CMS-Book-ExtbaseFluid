@@ -37,7 +37,7 @@ the whole purpose of a class hierarchie). For saving the data there a some optio
 * For every class of the class hierarchy an own table is created in which only the properties
   are stored which are defined in the class (*Class Table Inheritance*).
   The table ``party`` in this case containds the field ``name``, the table ``organization``
-  only the field ``number_of_employees`` and the table 'company`` accordingly the field
+  only the field ``number_of_employees`` and the table ``company`` accordingly the field
   ``type_of_business``:
 
 This time Extbase and the backend of TYPO3 are supporting the first two options. For the first
