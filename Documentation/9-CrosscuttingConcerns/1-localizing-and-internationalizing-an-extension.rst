@@ -147,7 +147,7 @@ english terms:
     Sometimes you have to localize a string in the PHP code, for
     example in the controller or inside of a ViewHelper. In that case you
     can use the static method
-    `Tx_Extbase_Utility_Localization::translate($key,
+    `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key,
     $extensionName)`. In addition to the key inside the
     locallang file also the name of the extension must be given as
     parameter, in order to load the correct locallang file.
