@@ -342,7 +342,7 @@ are the value. The property is signed with the property type ``<type>`` (e.g. ``
 ``DateTime`` or a class name like ``Tx_SjrOffers_Domain_Model_Organization``) and the property value ``<value>``
 it self. The property is declared as single value per default (``'multivalue' => FALSE``).
 
-THe array of an object with a multi value property is basically composed alike. The actual value of the
+The array of an object with a multi value property is basically composed alike. The actual value of the
 property is not a simple data type (like a string or a single object) but an array of data types.
 This array could also be empty and instead of the array als the value NULL is possible. The property type
 for multi value properties is always ``Tx_Extbase_Persistence_ObjectStorage``. In the future other container
