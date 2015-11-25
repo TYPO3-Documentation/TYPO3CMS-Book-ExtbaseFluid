@@ -11,7 +11,7 @@ Basically all works same as in the frontend (see chapter 4, section "Configure t
 The functionality is implemented normal in the controller and actions, now it must be defined
 which group of actions are realizing the representation in the backend - that is, the
 backend module must be *registered*. This is done in the file :file:`ext_tables.php` in the
-root dierctory of our extension. Lets look at our blog example how it defines a backend module::
+root directory of our extension. Lets look at our blog example how it defines a backend module::
 
     if (TYPO3_MODE === 'BE') {
         Tx_Extbase_Utility_Extension::registerModule(
