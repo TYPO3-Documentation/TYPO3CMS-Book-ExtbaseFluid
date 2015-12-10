@@ -48,17 +48,17 @@ format is being reflected in the file ending of the template.
 
 	You can use the following TypoScript::
 
-		  rss = PAGE
+		rss = PAGE
 		rss (
-		typeNum = 100
-		10 =< tt_content.lost.20.*[ExtensionKey]*_*[PluginName]*
+			typeNum = 100
+			10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
 
-		config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:application/xml
-		xhtml_cleaning = 0
-		admPanel = 0
-		}
+			config {
+			disableAllHeaderCode = 1
+			additionalHeaders = Content-type:application/xml
+			xhtml_cleaning = 0
+			admPanel = 0
+			}
 		}
 
 	You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
