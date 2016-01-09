@@ -90,12 +90,14 @@ Only now we add just enough code that the test is successful:
 
 	class Tx_SjrOffers_Domain_Model_Organization extends Tx_Extbase_DomainObject_AbstractEntity{
 		/**
-		* @var string The name of the organization
-		**/
+		 * @var string The name of the organization
+		 */
 		protected $name;
+
 		public function __construct($name) {
 			$this->name = $name;
 		}
+
 		public function getName() {
 			return $this->name;
 		}
@@ -126,16 +128,20 @@ String. Thereby our class looks like as follows:
 ::
 
 	class Tx_SjrOffers_Domain_Model_Organization {
+
 		/**
-		* @var string The name of the organization
-		**/
+		 * @var string The name of the organization
+		 */
 		protected $name;
+
 		public function __construct($name) {
 			$this->setName($name);
 		}
+
 		public function setName($name) {
 			$this->name = $name;
 		}
+
 		public function getName() {
 			return $this->name;
 		}
@@ -148,14 +154,13 @@ we set there a Tx_Extbase_Persistence_ObjectStorage, which later takes the
 instances of the class Tx_SjrOffers_Domain_Model_Person (or more precisely, the
 references to instances).
 
-
 But the test at first:
 
 ::
 
 	/**
-	* @test
-	*/
+	 * @test
+	 */
 	public function theContactsAreInitializedAsEmptyObjectStorage() {
 		$organization = new Tx_SjrOffers_Domain_Model_Organization('Youth Organization');
 		$this->assertEquals('Tx_Extbase_Persistence_ObjectStorage',
@@ -176,8 +181,8 @@ example:
 ::
 
 	/**
-	* @test
-	*/
+	 * @test
+	 */
 	public function aContactCanBeAdded() {
 		$organization = new Tx_SjrOffers_Domain_Model_Organization('Youth Organization');
 		$mockContact = $this->getMock('Tx_SjrOffers_Domain_Model_Person');
@@ -192,25 +197,25 @@ two methods addContact() and implement getContacts ():
 ::
 
 	/**
-	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Person>
-	The contacts of the organization
-	**/
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Person> The contacts of the organization
+	 */
 	protected $contacts;
+
 	/**
-	* Adds a contact to the organization
-	*
-	* @param Tx_SjrOffers_Domain_Model_Person The contact to be added
-	* @return void
-	*/
+	 * Adds a contact to the organization
+	 *
+	 * @param Tx_SjrOffers_Domain_Model_Person The contact to be added
+	 * @return void
+	 */
 	public function addContact(Tx_SjrOffers_Domain_Model_Person $contact) {
 		$this->contacts->attach($contact);
 	}
+
 	/**
-	* Returns the contacts of the organization
-	*
-	* @return Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Person>
-	The contacts of the organization
-	*/
+	 * Returns the contacts of the organization
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Person> The contacts of the organization
+	 */
 	public function getContacts() {
 		return clone $this->contacts;
 	}
@@ -293,11 +298,10 @@ annotations:
 ::
 
 	/**
-	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Offer>
-    *      The offers the organization has to offer
-	* @lazy
-	* @cascade remove
-	**/
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Offer> The offers the organization has to offer
+	 * @lazy
+	 * @cascade remove
+	 */
 	protected $offers;
 
 By default Extbase invites all child objects with the parent object (so for
@@ -394,9 +398,10 @@ emphasizes some peculiarities.
 ::
 
 	class Tx_SjrOffers_Domain_Model_Offer extends Tx_Extbase_DomainObject_AbstractEntity {
+
 		/**
-		* @var Tx_SjrOffers_Domain_Model_Organization The organization of the offer
-		**/
+		 * @var Tx_SjrOffers_Domain_Model_Organization The organization of the offer
+		 */
 		protected $organization;
 		protected $title;
 		protected $image;
@@ -406,39 +411,37 @@ emphasizes some peculiarities.
 		protected $dates;
 		protected $venue;
 		/**
-		* @var Tx_SjrOffers_Domain_Model_AgeRange The age range of the offer.
-		**/
+		 * @var Tx_SjrOffers_Domain_Model_AgeRange The age range of the offer.
+		 */
 		protected $ageRange;
 		/**
-		* @var Tx_SjrOffers_Domain_Model_DateRange The date range of the offer.
-		**/
+		 * @var Tx_SjrOffers_Domain_Model_DateRange The date range of the offer.
+		 */
 		protected $dateRange;
 		/**
-		* @var Tx_SjrOffers_Domain_Model_AttendanceRange The attendance range.
-		**/
+		 * @var Tx_SjrOffers_Domain_Model_AttendanceRange The attendance range.
+		 */
 		protected $attendanceRange;
 		/**
-		* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_
-		AttendanceFee>
-		**/
+		 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_AttendanceFee>
+		 */
 		protected $attendanceFees;
 		/**
-		* @var Tx_SjrOffers_Domain_Model_Person The contact of the offer
-		**/
+		 * @var Tx_SjrOffers_Domain_Model_Person The contact of the offer
+		 */
 		protected $contact;
 		/**
-		* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Category>
-		The categories the offer is assigned to
-		**/
+		 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Category> The categories the offer is assigned to
+		 */
 		protected $categories;
 		/**
-		* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Region>
-		The regions the offer is available
-		**/
+		 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Region> The regions the offer is available
+		 */
 		protected $regions;
+
 		/**
-		* @param string $title The title of the offer
-		*/
+		 * @param string $title The title of the offer
+		 */
 		public function __construct($title) {
 			$this->setTitle($title);
 			$this->setAttendanceFees(new Tx_Extbase_Persistence_ObjectStorage);
@@ -509,49 +512,57 @@ In the class Range Constraint all common properties and methods are gathered. Th
 ::
 
 	abstract class Tx_SjrOffers_Domain_Model_RangeConstraint extends Tx_Extbase_DomainObject_AbstractValueObject {
+
 		/**
-		* @var int The minimum value
-		**/
+		 * @var int The minimum value
+		 */
 		protected $minimumValue;
+
 		/**
-		* @var int The maximum value
-		**/
+		 * @var int The maximum value
+		 */
 		protected $maximumValue;
+
 		/**
-		* @param int $minimumValue
-		* @param int $maximumValue
-		*/
+		 * @param int $minimumValue
+		 * @param int $maximumValue
+		 */
 		public function __construct($minimumValue = NULL, $maximumValue = NULL) {
 			$this->setMinimumValue($minimumValue);
 			$this->setMaximumValue($maximumValue);
 		}
+
 		/**
-		* @param mixed The minimum value
-		* @return void
-		*/
+		 * @param mixed The minimum value
+		 * @return void
+		 */
 		public function setMinimumValue($minimumValue = NULL) {
 			$this->minimumValue = $this->normalizeValue($minimumValue);
 		}
+
 		public function getMinimumValue() {
 			return $this->minimumValue;
 		}
+
 		/**
-		* @param mixed The maximum value
-		* @return void
-		*/
+		 * @param mixed The maximum value
+		 * @return void
+		 */
 		public function setMaximumValue($maximumValue = NULL) {
 			$this->maximumValue = $this->normalizeValue($maximumValue);
 		}
+
 		public function getMaximumValue() {
 			return $this->maximumValue;
 		}
+
 		public function normalizeValue($value = NULL) {
 			if ($value !== NULL && $value !== '') {
-			$value = abs(intval($value));
-		} else {
-			$value = NULL;
-		}
-		return $value;
+				$value = abs(intval($value));
+			} else {
+				$value = NULL;
+			}
+			return $value;
 		}
 	}
 
@@ -565,19 +576,22 @@ We have furthermore implement a method normalizeValue(). These »adjusted« the 
 
  class Tx_SjrOffers_Domain_Model_DateRange extends Tx_SjrOffers_Domain_Model_RangeConstraint
  implements Tx_SjrOffers_Domain_Model_DateRangeInterface {
+
 	/**
-	* @var Tx_SjrOffers_Domain_Model_DateTime The minimum value
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_DateTime The minimum value
+	 */
 	protected $minimumValue;
+
 	/**
-	* @var Tx_SjrOffers_Domain_Model_DateTime The maximum value
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_DateTime The maximum value
+	 */
 	protected $maximumValue;
+
 	public function normalizeValue($value = NULL) {
 		if (!($value instanceof DateTime)) {
 			$value = NULL;
 		}
-	return $value;
+		return $value;
 	}
  }
 
@@ -635,92 +649,86 @@ Therefore Extbase offers an alternative about Annotations. Let us have a look at
 ::
 
  	/**
-	* @var string The title of the offer
-	* @validate StringLength(minimum = 3, maximum = 50)
-	**/
+	 * @var string The title of the offer
+	 * @validate StringLength(minimum = 3, maximum = 50)
+	 */
 	protected $title;
 
 	/**
-	* @var string A single image of the offer
-	**/
+	 * @var string A single image of the offer
+	 */
 	protected $image;
 
 	/**
-	* @var string The teaser of the offer. A line of text.
-	* @validate StringLength(maximum = 150)
-	**/
+	 * @var string The teaser of the offer. A line of text.
+	 * @validate StringLength(maximum = 150)
+	 */
 	protected $teaser;
 
 	/**
-	* @var string The description of the offer. A longer text.
-	* @validate StringLength(maximum = 2000)
-	**/
+	 * @var string The description of the offer. A longer text.
+	 * @validate StringLength(maximum = 2000)
+	 */
 	protected $description;
 
 	/**
-	* @var string The services of the offer.
-	* @validate StringLength(maximum = 1000)
-	**/
+	 * @var string The services of the offer.
+	 * @validate StringLength(maximum = 1000)
+	 */
 	protected $services;
 
 	/**
-	* @var string The textual description of the dates. E.g. "Monday to Friday, 8-12"
-	* @validate StringLength(maximum = 1000)
-	**/
+	 * @var string The textual description of the dates. E.g. "Monday to Friday, 8-12"
+	 * @validate StringLength(maximum = 1000)
+	 */
 	protected $dates;
 
 	/**
-	* @var string The venue of the offer.
-	* @validate StringLength(maximum = 1000)
-	**/
+	 * @var string The venue of the offer.
+	 * @validate StringLength(maximum = 1000)
+	 */
 	protected $venue;
 
 	/**
-	* @var Tx_SjrOffers_Domain_Model_AgeRange The age range of the offer.
-	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_AgeRange The age range of the offer.
+	 * @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	 */
 	protected $ageRange;
 
 	/**
-	* @var Tx_SjrOffers_Domain_Model_DateRange The date range of the offer is valid.
-	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_DateRange The date range of the offer is valid.
+	 * @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	 */
 	protected $dateRange;
 
 	/**
-	* @var Tx_SjrOffers_Domain_Model_AttendanceRange The attendance range of the offer.
-	* @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_AttendanceRange The attendance range of the offer.
+	 * @validate Tx_SjrOffers_Domain_Validator_RangeConstraintValidator
+	 */
 	protected $attendanceRange;
 
 	/**
-	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_AttendanceFee>
-	The attendance fees of the offer.
-	**/
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_AttendanceFee> The attendance fees of the offer
+	 */
 	protected $attendanceFees;
 
 	/**
-	* @var Tx_SjrOffers_Domain_Model_Person The contact of the offer
-	**/
+	 * @var Tx_SjrOffers_Domain_Model_Person The contact of the offer
+	 */
 	protected $contact;
 
 	/**
-	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Category>
-	The categories the offer is assigned to
-	**/
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Category> The categories the offer is assigned to
+	*/
 	protected $categories;
 
 	/**
-	* @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Region>
-	The regions the offer is available
-	**/
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SjrOffers_Domain_Model_Region> The regions the offer is available
+	 */
 	protected $regions;
 
-The values ​​of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @ validate [...] is set. The annotation @validate StringLength (minimum = 3, maximum = 50) on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
+The values of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @validate [...] is set. The annotation @validate StringLength (minimum = 3, maximum = 50) on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
 The validator StringLength is provided by Extbase of charge. The name of the associated class is Tx_Extbase_Validation_Validator_StringLengthValidator. The options minimum and maximum are passed to the Validator and are evaluated there.
 
 With the validation, we conclude the modeling and implementation of the domain at first. With that achieved, it is possible to store domain objects, which where generated during a page view in memory. All data will be lost at the end
 of the page view. In order for the domain objects are permanently on the grouting, the persistence layer is to be set up accordingly.
-
-
-
