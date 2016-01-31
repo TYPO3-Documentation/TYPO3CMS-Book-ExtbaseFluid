@@ -9,7 +9,7 @@ our little action island.
 ::
 
 	class Tx_BlogExample_Domain_Repository_BlogRepository
-		extents Tx_Extbase_Persistence_Repository {
+		extends Tx_Extbase_Persistence_Repository {
 	}
 
 The code is not shortened. The ``BlogRepository`` simply does not have any own
