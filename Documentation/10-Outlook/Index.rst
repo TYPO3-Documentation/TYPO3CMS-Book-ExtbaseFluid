@@ -13,4 +13,4 @@ your accumulated knowledge on Extbase and Fluid immediately.
 
     1-Creating-an-extension-with-the-kickstarter
     2-Backend-modules
-    3-Command-Controllers
+    3-Command-controllers

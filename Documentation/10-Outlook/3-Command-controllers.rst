@@ -1,17 +1,17 @@
 .. include:: ../Includes.txt
 .. _extbase_command_controller_about:
 
-Command Controllers
+Command controllers
 ===================
 
-Command Controllers will make logic available to the command line and the scheduler backend module.
+Command controllers will make logic available to the command line and the scheduler backend module.
 
 This way, you can provide functionality for recurring tasks like mail queues, clean ups, imports and
 others, to administrators and backend users.
 
 .. _extbase_command_controller_creating:
 
-Creating Command Controllers
+Creating command controllers
 ----------------------------
 
 `CommandController` are located at :file:`/Classes/Command/`.
@@ -78,7 +78,7 @@ To call your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
 
 .. _extbase_command_controller_arguments:
 
-Command Arguments
+Command arguments
 -----------------
 
 Some commands will be flexible and therefore need some arguments, some are optional and some are
