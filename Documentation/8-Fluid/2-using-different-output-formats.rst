@@ -49,7 +49,7 @@ format is being reflected in the file ending of the template.
 	You can use the following TypoScript::
 
 		rss = PAGE
-		rss (
+		rss {
 			typeNum = 100
 			10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
 
