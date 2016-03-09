@@ -411,7 +411,7 @@ from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all
 | ``setReturnRawQueryResult()`` | ... instead of the ready built object graphs, the database  | false   |
 |                               | tuples are returned as an array                             |         |
 +-------------------------------+-------------------------------------------------------------+---------+
-| ``setRespectStoragePath()``   | ... the result set is limited to these tuples/objects that  | true    |
+| ``setRespectStoragePage()``   | ... the result set is limited to these tuples/objects that  | true    |
 |                               | are assigned to a given page or directory in the backend    |         |
 |                               | (e.g. ``pid IN (42,99)``)                                   |         |
 +-------------------------------+-------------------------------------------------------------+---------+
