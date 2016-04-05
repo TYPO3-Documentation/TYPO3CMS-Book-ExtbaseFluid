@@ -4,7 +4,7 @@ Domain-Driven Design
 ===============================================
 
 Software development is a creative process. You do not stand on an assembly
-line, but are increasingly exposed to new challenges. Each softwarre differs
+line, but are increasingly exposed to new challenges. Each software differs
 from each other, and every time you start with a new program you start from
 scratch. You have to find out, what your client wants to achieve and after that
 you want to implement this. Through this creativity you have many freedoms but
