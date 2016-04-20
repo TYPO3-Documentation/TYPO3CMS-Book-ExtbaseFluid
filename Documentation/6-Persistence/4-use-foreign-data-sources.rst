@@ -47,7 +47,7 @@ assignments of the field names (left) to the corresponding properties (right) is
     you will find in "Preparing the tables of the Domain Objects" above in this chapter.
 
 This configuration causes Extbase to use the table ``tt_address`` when reconstructing or persisting of
-objects of the class ``Tx_MyExtension_Domian_Model_Person``. Thereby the values of the properties
+objects of the class ``Tx_MyExtension_Domain_Model_Person``. Thereby the values of the properties
 ``dateOfBirth`` and ``thoroughfare`` are stored in the fields ``birthday`` and ``street``. If the
 configuration option ``tableName`` is not set, Extbase searches for a table that corresponds to the lower
 cased cased class name, in our case: ``tx_myextension_domain_model_person``. If for a property
