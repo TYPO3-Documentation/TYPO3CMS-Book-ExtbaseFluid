@@ -33,7 +33,7 @@ command in the file :file:`EXT:inventory/ext_tables.sql`:
 		quantity int(11) DEFAULT '0' NOT NULL,
 
 		PRIMARY KEY (uid),
-		KEY parent (pid),
+		KEY parent (pid)
 	);
 
 This SQL command designs a new table with the corresponding columns.
@@ -141,7 +141,7 @@ in our case::
 	<?php
 	class Tx_Inventory_Domain_Repository_ProductRepository
 	extends Tx_Extbase_Persistence_Repository {}
-	?>
+	
 
 Our ``ProductRepository`` must be derived by
 ``Tx_Extbase_Persistence_Repository`` and inherits by this all methods. It can
