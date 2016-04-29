@@ -109,7 +109,7 @@ appropriate arranged.
 		'0' => array('showitem' => 'name, description, quantity')
 	)
 	);
-	?>
+	
 
 After we installed the Extension, we can create our first products in the
 backend. Like shown in image 4-2, we create a sys folder that takes the products (see 1 in figure 4-2).
