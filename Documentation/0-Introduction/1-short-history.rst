@@ -9,7 +9,7 @@ A short history of Extbase and Fluid
 .. Author: Sebastian Kurfürst
 .. Updated for 1.0 beta1: YES, by Sebastian Kurfürst
 .. ============================================
-
+.. ============================================
 
 
 After the implementation of TYPO3 v5 and FLOW3 as the basis framework
