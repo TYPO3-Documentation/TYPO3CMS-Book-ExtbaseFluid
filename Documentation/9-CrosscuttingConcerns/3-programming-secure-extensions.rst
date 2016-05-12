@@ -14,7 +14,7 @@ A basic principle that you don't have to disregard when programming
 extensions is, that you should never trust the user input. All input data
 your extension gets from the user can be potentially malicious. That applies
 for all data that are transferred via GET and POST over from a form. But
-also coocies should be classified as malicious, because they can be
+also cookies should be classified as malicious, because they can be
 manipuated by the user.
 
 In the daily programming, all the data that comes from the user should
