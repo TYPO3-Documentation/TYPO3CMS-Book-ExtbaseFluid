@@ -32,7 +32,7 @@ root directory of our extension. Lets look at our blog example how it defines a 
         );
     }
 
-In line 2 the backend module is registered using the API function ``Tx_Extbase_Utility_Extension::registerModule``.
+In line 2 the backend module is registered using the API function ``\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule``.
 This function needs the name of the main area where the module can be found later, in our case this
 is the ``web`` module (line 4). Also the module must have a name, so that different modules of the same
 extension can be distinct (line 5). In line 6 the position of the module can be described in detail,
