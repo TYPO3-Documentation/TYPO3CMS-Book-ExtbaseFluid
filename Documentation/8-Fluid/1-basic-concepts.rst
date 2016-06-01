@@ -39,8 +39,9 @@ controller with ``$this->view->assign(variableName,
 object)``. Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
 code::
-
-    class \ExtbaseTeam\BlogExample\Controller\PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+    namespace ExtbaseTeam\BlogExample\Controller;
+    
+    class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         ...
         public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
             $this->view->assign('blogTitle', 'Webdesign-Blog');
