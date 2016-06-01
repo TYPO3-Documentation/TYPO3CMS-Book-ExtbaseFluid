@@ -14,8 +14,8 @@ backend module must be *registered*. This is done in the file :file:`ext_tables.
 root directory of our extension. Lets look at our blog example how it defines a backend module::
 
     if (TYPO3_MODE === 'BE') {
-        Tx_Extbase_Utility_Extension::registerModule(
-            $_EXTKEY,
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+            'Vendor' . $_EXTKEY,
             'web',          // Main area
             'mod1',         // Name of the module
             '',             // Position of the module
