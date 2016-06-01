@@ -177,12 +177,12 @@ are displayed after a confirmation by TYPO3.
 You can access the objects via repositories as normal. In your controller the corresponding lines
 can look like this::
 
-    $companyRepository = t3lib_div::makeInstance('Tx_MyExtension_Domain_Repository_CompanyRepository');
+    $companyRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_MyExtension_Domain_Repository_CompanyRepository');
     $companies = $companyRepository->findAll();
 
 You can also find straightforward all concret classas of a super class::
 
-    $organizationRepository = t3lib_div::makeInstance('Tx_MyExtension_Domain_Repository_OrganizationRepository');
+    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_MyExtension_Domain_Repository_OrganizationRepository');
     $organizations = $organizationRepository->findAll();
 
 In the result set ``$organizationRepository`` there are domain objects of the class
