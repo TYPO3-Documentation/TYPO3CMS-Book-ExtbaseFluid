@@ -584,12 +584,12 @@ simple 1:n-relationship with ``cd`` as a foreign key.
 ::
 
 	'tracks' => array(
-	'label' => 'Track',
-	'config' => array(
-	'type' => 'inline',
-	'foreign_table' => 'tx_myext_domain_model_track',
-	'foreign_field' => 'cd'
-	)
+		'label' => 'Track',
+		'config' => array(
+			'type' => 'inline',
+			'foreign_table' => 'tx_myext_domain_model_track',
+			'foreign_field' => 'cd'
+		)
 	),
 
 However, Extbase does not support the persistence of additional Domain data in
@@ -640,7 +640,7 @@ contains the following stuff::
 		'useColumnsForDefaultValues' => 'sys_language_uid',
 		'delete'	=> 'deleted',
 		'enablecolumns' => array(
-		'disabled'	=> 'hidden'
+			'disabled'	=> 'hidden'
 		),
 		'dynamicConfigFile'		=> t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
 		'iconfile'	=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_sjroffers_domain_model_organization.gif'
@@ -660,30 +660,31 @@ follows::
 	$TCA['tx_sjroffers_domain_model_organization'] = array(
 		'ctrl' => $TCA['tx_sjroffers_domain_model_organization']['ctrl'],
 		'interface' => array(
-		'showRecordFieldList' => 'status,name,address,telephone_number,telefax_number,url,email_address,description,contacts,offers,administrator'),
+			'showRecordFieldList' => 'status,name,address,telephone_number,telefax_number,url,email_address,description,contacts,offers,administrator'
+		),
 		'types' => array(
-		'1' => array('showitem' => 'hidden,status,name,address;;1;;,description, contacts,offers,administrator')
+			'1' => array('showitem' => 'hidden,status,name,address;;1;;,description, contacts,offers,administrator')
 		),
 		'palettes' => array(
-		'1' => array('showitem' => 'telephone_number,telefax_number,url,email_address')
+			'1' => array('showitem' => 'telephone_number,telefax_number,url,email_address')
 		),
 		'columns' => array(
-		'sys_language_uid' => array(...),
-		'l18n_parent' => array(...),
-		'l18n_diffsource' => array(...),
-		'hidden' => array(...),
-		'status' => array(...),
-		'name' => array(...),
-		'address' => array(...),
-		'telephone_number' => array(...),
-		'telefax_number' => array(...),
-		'url' => array(...),
-		'email_address' => array(...),
-		'description' => array(...),
-		'contacts' => array(...),
-		'offers' => array(...),
-		'administrator' => array(...),
-		)
+			'sys_language_uid' => array(...),
+			'l18n_parent' => array(...),
+			'l18n_diffsource' => array(...),
+			'hidden' => array(...),
+			'status' => array(...),
+			'name' => array(...),
+			'address' => array(...),
+			'telephone_number' => array(...),
+			'telefax_number' => array(...),
+			'url' => array(...),
+			'email_address' => array(...),
+			'description' => array(...),
+			'contacts' => array(...),
+			'offers' => array(...),
+			'administrator' => array(...),
+		),
 	);
 
 On the top we can see the backreference to the TCA's first part *ctrl* and below
