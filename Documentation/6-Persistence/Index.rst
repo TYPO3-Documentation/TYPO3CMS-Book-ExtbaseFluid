@@ -22,7 +22,7 @@ If Domain Objects should be available within several page loads they have to be
 transferred into a persistent state. This is being done in Extbase by putting
 the Domain objects into a Repository. When the script is finished doing its work,
 the Repository takes care about saving the volatile data in a durable saving state.
-Normally this the database which is used by TYPO3 but may, for example,
+Normally this is the database which is used by TYPO3 but may, for example,
 also be a text file.
 
 This chapter deals with the steps that have to be taken to make the data
