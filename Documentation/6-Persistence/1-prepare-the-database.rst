@@ -71,7 +71,7 @@ class names are written in lowercase retaining the underlines.
 
 The definition of the database table fields ``name``,
 ``address`` etc. follow in round brackets. Some of them should
-sould familiar since they meet the properties' names of the class
+sound familiar since they meet the properties' names of the class
 ``Organization``. However, the Extbase convention is still
 present: Field names are written in ``lowercase_underscore`` and are derived
 from the property's name by prefixing every uppercase letter with an
