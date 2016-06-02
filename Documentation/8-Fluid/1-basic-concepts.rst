@@ -39,10 +39,11 @@ controller with ``$this->view->assign(variableName,
 object)``. Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
 code::
-
-    class Tx_BlogExample_Controller_PostController extends Tx_Extbase_MVC_Controller_ActionController {
+    namespace ExtbaseTeam\BlogExample\Controller;
+    
+    class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         ...
-        public function indexAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+        public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
             $this->view->assign('blogTitle', 'Webdesign-Blog');
             $this->view->assign('blogPosts', $blog->getPosts());
         }
@@ -146,7 +147,7 @@ who work on the same templates.
 The standard ViewHelper of Fluid will be imported and assigned to
 the shortcut ``f`` with the following declaration::
 
-    {namespace f=Tx_Fluid_ViewHelpers}
+    {namespace f=TYPO3\CMS\Fluid\ViewHelpers}
 
 
 This Namespace will be imported automatically by Fluid. All
@@ -173,10 +174,10 @@ Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
 ``<f:for>`` will be interpreted as a ViewHelper since it
 starts with the prefix ``f:``. This is implemented in the class
-:class:`Tx_Fluid_ViewHelpers_ForViewHelper`.
+:class:`\TYPO3\CMS\Fluid\ViewHelpers\ForViewHelper`.
 
 The first part of the class name is the complete Namespace like it
-was defined earlier with ``{namespace f=Tx_Fluid_ViewHelpers}``.
+was defined earlier with ``{namespace f=TYPO3\CMS\Fluid\ViewHelpers}``.
 Followed by the name of the ViewHelper and the ending
 *ViewHelper*.
 
@@ -189,8 +190,8 @@ receives the array of all blog posts with the argument
 
     If the name of the ViewHelper contains a single or multiple
     periods, it will be resolved as a sub package. For example, the
-    ViewHelper ``f:form.textbox`` is implemented in the class
-    :class:`Tx_Fluid_ViewHelpers_Form_TextboxViewHelper`.
+    ViewHelper ``f:form.textfield`` is implemented in the class
+    :class:`\TYPO3\CMS\Fluid\ViewHelpers\Form\TextfieldViewHelper`.
     Therefore ViewHelpers can be divided further and structured even
     more.
 
@@ -224,13 +225,13 @@ Inline Notification for View Helpers
 
     * The ViewHelper returns a tag::
 
-        <f:form.textbox />
+        <f:form.textfield />
 
     * The hierarchical structure of ViewHelpers is
       important::
 
         <f:form>
-            <f:form.textbox />
+            <f:form.textfield />
         </f:form>
 
     * The ViewHelper contains a lot of content::
