@@ -616,7 +616,7 @@ We have implemented the terms age range, number of participants and offer an ade
 
 .. figure:: /Images/5-Domain/figure-5-9.png
 
-	Figure 5-8: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
+	Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 
 Validate the domain objects
 ----------------------------
