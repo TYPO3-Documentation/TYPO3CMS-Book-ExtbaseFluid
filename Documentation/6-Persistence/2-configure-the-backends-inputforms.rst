@@ -26,8 +26,7 @@ demand. That improves the performance.
 	a broad description of them would cause the book being bursting at its
 	seams. However, each and every option is well documented in the
 	Online-documentation of the TYPO3-API which you can find at
-	*http://typo3.org/documenta-
-	tion/document-library/core-documentation/doc_core_api/current/*.
+	*https://docs.typo3.org/typo3cms/CoreApiReference/*.
 
 
 Firstly, you should dip into the top layer of the TCA hierarchy. The file
