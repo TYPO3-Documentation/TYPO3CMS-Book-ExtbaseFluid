@@ -53,9 +53,9 @@ Now we can insert the string »Webdesign-Blog« into the
 template with the Object Accessor ``{blogTitle}``. Let us take a
 look at the associated template::
 
-    <h1>{blog.Title}</h1>
+    <h1>{blogTitle}</h1>
 
-    <f:for each="{blogPost}" as="post">
+    <f:for each="{blogPosts}" as="post">
         <b>{post.title}</b><br />
     </f:for>
 
