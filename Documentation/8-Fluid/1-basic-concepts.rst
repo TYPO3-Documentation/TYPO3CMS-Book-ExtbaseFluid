@@ -208,10 +208,10 @@ functionality.
     Appendix C.
 
 
+.. _inline-notation-vs-tag-based-notation:
+
 Inline Notification for View Helpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. _inline-notation-vs-tag-based-notation:
 
 .. sidebar:: Inline Notation vs. Tag Based Notation
 

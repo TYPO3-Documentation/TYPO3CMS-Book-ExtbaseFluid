@@ -187,26 +187,25 @@ underscore (_), as for example in ``blogexample``. The configuration is divided 
 the following sections:
 
 .. _typoscript_configuration-features:
+.. _features-skipDefaultArguments:
+.. _features-ignoreAllEnableFieldsInBe:
 
 features
 --------
 
 Activate features for Extbase or a specific plugin.
 
-.. _features-skipDefaultArguments:
-
 `features.skipDefaultArguments`
     Skip default arguments in URLs. If a link to the default controller or action is created, the
     parameters are omitted.
     Default is `false`.
-
-.. _features-ignoreAllEnableFieldsInBe:
 
 `features.ignoreAllEnableFieldsInBe`
     Ignore the enable fields in backend.
     Default is `false`.
 
 .. _typoscript_configuration-persistence:
+.. _persistence-enableAutomaticCacheClearing:
 
 persistence
 -----------
@@ -233,8 +232,6 @@ Settings relevant to the persistence layer of Extbase.
 
 `persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses`
     List all subclasses of the class given in the form `Identifier = ClassName`.
-
-.. _persistence-enableAutomaticCacheClearing:
 
 `persistence.enableAutomaticCacheClearing`
     Enables the automatic cache clearing when changing data sets (see also the
