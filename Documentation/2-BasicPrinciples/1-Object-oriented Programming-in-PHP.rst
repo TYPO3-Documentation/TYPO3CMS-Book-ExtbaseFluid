@@ -3,11 +3,11 @@
 Object-oriented programming in PHP
 =================================================
 
-Object-oriented programming is a Programming Paradigm, versatilely
+Object-oriented programming is a Programming Paradigm versatilely
 applied in extbase and the extensions built on it. In this section we will
 give an overview of the basic concepts of Object Orientation.
 
-Programs have a certain purpose, which is - generally speaking - to
+Programs have a certain purpose which is, generally speaking, to
 solve a problem. "Problem" does not necessarily mean error or defect but
 rather an actual task. This Problem usually has a concrete counterpart in
 real life.
@@ -15,22 +15,22 @@ real life.
 A Program could for example take care of the task of booking a cruise
 in the Indian Ocean. If so we obviously have a problem (a programmer that
 has been working too much and finally decided to go on vacation) and a
-program, promising recuperation by booking a coach on one of the luxury
+program promising recuperation by booking a coach on one of the luxury
 liners for him and his wife.
 
 Object Orientation assumes that a concrete problem is to be solved by
-a program, and a concrete problem is caused by real Objects. Therefore focus
+a program and a concrete problem is caused by real Objects. Therefore focus
 is on the Object. This can be abstract of course: it will not be something
-as concrete as a car or a ship all the time, but can also be a reservation,
+as concrete as a car or a ship all the time but can also be a reservation,
 an account or a graphical symbol.
 
 Objects are "containers" for data and corresponding functionality. The
 data of an object is stored in its *Properties*. The
-functionality is provided by *Methods*, which can for
+functionality is provided by *Methods* which can for
 example alter the Properties of the Object. In regard to the cruise liner we
-can say, that it has a certain amount of coaches, a length and width and a
+can say that it has a certain amount of coaches, a length and width and a
 maximum speed. Further it has Methods to start the motor (and hopefully to
-stop it again also), change the direction as well as to increase thrust, so
+stop it again also), change the direction as well as to increase thrust so
 you can reach your holiday destination a bit faster.
 
 
@@ -39,7 +39,7 @@ Why Object Orientation after all?
 
 Surely some users will ask themselves why they should develop object
 orientated in the first place. Why not (just like until now) keep on
-developing procedural, thus stringing together functions. If we look at
+developing procedural thus stringing together functions. If we look at
 the roughly 4.300 extensions available for TYPO3 at the moment, we'll see
 that they are built with a class by default - but have been completed by
 the extension developer in a procedural way in about 95% of all cases.
@@ -48,23 +48,23 @@ Procedural programming has some severe disadvantages though:
 * Properties and Methods belonging together with regard to content
   can't be united. This methodology, called
   *Encapsulation* in Object Orientation, is
-  necessary, if only for clear arrangement.
+  necessary if only for clear arrangement.
 * It is rather difficult to re-use code
 * All Properties can be altered everywhere throughout the code.
   This leads to hard-to-find errors.
 * Procedural code gets confusing easily. This is called Spaghetti code.
 
 Furthermore Object Orientation mirrors the real world: Real Objects
-exist, and they all have properties and (most of them) methods. This fact
+exist and they all have properties and (most of them) methods. This fact
 is now represented in programming.
 
 In the following we'll talk about the object *Ship*. We'll invoke this
 object, stock it with coaches, a motor and other useful stuff.
-Furthermore, there will be functions, moving the ship, thus turning the
+Furthermore there will be functions moving the ship thus turning the
 motor on and off. Later we'll even create a luxury liner based on the
 general ship and equip it with a golf simulator and satellite TV.
 
-On the following pages, we'll try to be as graphic as possible (but
+On the following pages we'll try to be as graphic as possible (but
 still semantically correct) to familiarize you with object orientation.
 There is a specific reason: The more you can identify with the Object and
 its Methods, the more open you'll be for the Theory behind Object
@@ -78,7 +78,7 @@ Classes and Objects
 -------------------------------------------------
 
 Let's now take a step back and imagine there's a blueprint for
-ships in general. We now focus not on the ship, but this blueprint. It is
+ships in general. We now focus not on the ship but this blueprint. It is
 called a *Class*, in this case it is the Class
 :class:`ship`. In PHP this is written as follows::
 
@@ -94,7 +94,7 @@ called a *Class*, in this case it is the Class
 
 .. tip::
 
-	In this piece of code, note that we kept the necessary PHP tags at
+	In this piece of code note that we kept the necessary PHP tags at
 	the beginning and end. We will spare them in the following examples to
 	make the listings a bit shorter.
 
@@ -123,8 +123,8 @@ add these Properties and Methods::
 
 Our ship now has a name (:class:`$name`), a number of coaches
 (:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a
-variable, containing the status of the engine (:class:`$engineStatus`). A real
-ship, of course, has much more properties, all important somehow – for our
+variable containing the status of the engine (:class:`$engineStatus`). A real
+ship, of course, has much more properties all important somehow – for our
 abstraction these few will be sufficient though. We'll focus on why every
 Property is marked with the key word :class:`public` further down.
 
@@ -176,7 +176,7 @@ the following::
 
 We can clearly see that our Object has 4 Properties with a concrete
 value, at the moment still NULL, for we did not yet assign anything. We
-can instantiate as many Objects from a class as we like, and every single
+can instantiate as many Objects from a class as we like and every single
 one will differ from the others – even if all of the Properties have the
 same values.
 
@@ -198,11 +198,11 @@ In this example the output is ``Objects are not identical!``
 The arrow operator
 -------------------------------------------------
 
-We are able to create an Object now, but of course it's Properties
+We are able to create an Object now but of course it's Properties
 are still empty. We'll hurry to change this by assigning values to the
-Properties. For this, we use a special operator, the so called arrow
+Properties. For this we use a special operator, the so called arrow
 operator (->). We can use it for getting access to the properties of
-an Object or calling Methods. In the following example, we set the name
+an Object or calling Methods. In the following example we set the name
 of the ship and call some Methods::
 
 	$ship = new Ship();
@@ -226,7 +226,7 @@ Using the arrow operator we can now comfortably access Properties
 and Methods of an Object. But what if we want to do this from
 inside a Method, e.g. to set :class:`$speed` inside of the
 Method :class:`startEngine()`? We don't know at this
-point, what an object to be instantiated later will be called. So we need
+point what an object to be instantiated later will be called. So we need
 a mechanism to do this independent from the name. This is done with the
 special variable :class:`$this`.
 
@@ -249,7 +249,7 @@ special variable :class:`$this`.
 	}
 
 With ``$this->speed`` you can access the Property
-"speed" in the actual Object, independently of it's name.
+"speed" in the actual Object independently of it's name.
 
 
 
@@ -258,7 +258,7 @@ Constructor
 
 It can be very useful to initialize an Object at the Moment of instantiating it.
 Surely there will be a certain number of coaches built
-in right away, when a new cruise liner is created - so that the future
+in right away when a new cruise liner is created - so that the future
 guest will not be forced to sleep in emergency accommodation. So we can
 define the number of coaches right when instantiating. The processing of
 the given value is done in a Method automatically called on creation of
@@ -316,7 +316,7 @@ extend an "old" Class definition by using the key word
 	$luxuryShip = new LuxuryLiner('FIDELIO2','600')
 
 Our new luxury liner comes into existence as easy as that. We
-define, that the luxury liner just extends the Definition of the class
+define that the luxury liner just extends the Definition of the class
 :class:`Ship`. The extended class (in our example
 :class:`Ship`) is called the *parent class*
 or *superclass*. The class formed by
@@ -346,8 +346,8 @@ example:
 
 <remark>TODO: Enter Code</remark>
 
-Our luxury liner (of course) has an additional motor, so this has
-to be switched on also, if the Method
+Our luxury liner (of course) has an additional motor so this has
+to be switched on also if the Method
 :class:`startEngine()` is called. The child class now
 overrides the Method of the parent class and so only the Method
 :class:`startEngine()` of the child class is
@@ -358,7 +358,7 @@ called.
 Access to the parent class through "parent"
 --------------------------------------------------------------------------------------------------
 
-Overriding a Method comes in handy, but has a serious
+Overriding a Method comes in handy but has a serious
 disadvantage. When changing the Method
 :class:`startEngine()` in the parent class, we'd also have
 to change the Method in the child class. This is not only a source for
@@ -393,7 +393,7 @@ implementation is to be done separately for each ship type.
 In the parent class we have defined only the body of the Method
 :class:`setupCoaches()`. The key word
 :class:`abstract` makes sure that the Method must be
-implemented in the child class. So using abstract classes, we can define
+implemented in the child class. So using abstract classes we can define
 which Methods have to be present later without having to implement them
 right away.
 
@@ -406,7 +406,7 @@ Interfaces are a special case of abstract classes in which
 *all Methods* are abstract. Using Interfaces,
 specification and implementation of functionality can be kept apart. In
 our cruise example we have some ships supporting satellite TV and some
-who don't. The ships who do, have the Methods
+who don't. The ships who do have the Methods
 :class:`enableTV()` and
 :class:`disableTV()`. It is useful to define an interface
 for that:
@@ -414,12 +414,12 @@ for that:
 <remark>TODO: Enter Code</remark>
 
 Using the key word :class:`implements` it is made
-sure, that the class implements the given interface. All Methods in the
+sure that the class implements the given interface. All Methods in the
 interface definition then have to be realized. The object
 :class:`LuxuryLiner` now is of the type
 :class:`Ship` but also of the type
 :class:`SatelliteTV`. It is also possible to implement not
-only one interface class but multiple, separated by comma. Of course
+only one interface class but multiple separated by comma. Of course
 interfaces can also be inherited by other interfaces.
 
 
@@ -462,7 +462,7 @@ would be possible. Access from outside of the hierarchy of inheritance
 possible if the Property was :class:`public`.
 
 We recommend to define all Properties as
-:class:`protected`. Like that, they can not be altered any
+:class:`protected`. Like that they can not be altered any
 more from outside and you should use special Methods (called getter and
 setter) to alter or read them. We'll explain the use of these Methods in
 the following section.
@@ -508,28 +508,28 @@ inconsistent.
 Static Methods and Properties
 -------------------------------------------------
 
-Until now we worked with Objects, instantiated from classes.
-Sometimes though, it does not make sense to generate a complete object,
+Until now we worked with Objects instantiated from classes.
+Sometimes though it does not make sense to generate a complete object
 just to be able to use a function of a class. For this php offers the
 possibility to directly access Properties and Methods. These are then
 referred to as :class:`static Properties` respectively
 :class:`static Methods`. Take as a rule of thumb: static
-Properties are necessary, every time two instances of a class are to have
+Properties are necessary every time two instances of a class are to have
 a common Property. Static Methods are often used for function
 libraries.
 
-Transferred to our example this means, that all ships are
-constructed by the same shipyard. in case of technical emergency, all
+Transferred to our example this means that all ships are
+constructed by the same shipyard. In case of technical emergency all
 ships need to know the actual emergency phone number of this shipyard. So
 we save this number in a static Property
 :class:`$shipyardSupportTelephoneNumber`:
 
 <remark>TODO: Enter Code</remark>
 
-What happens here? We instantiate two different ships, which both
+What happens here? We instantiate two different ships which both
 have a problem and do contact the shipyard. Inside the method
 :class:`reportTechnicalProblem()` you see that if you want
-to use static properties, you have to trigger them with the key word
+to use static properties you have to trigger them with the key word
 :class:`self::`. If the emergency phone number now changes,
 the shipyard has to tell all the ships about the new number. For this is
 uses the *static method*
@@ -539,7 +539,7 @@ the Method is static, it is called through the scheme
 "emphasis" in addition to "classname". I did not get it,
 sorry!</remark><remark></remark>`, in our case
 :class:`LuxuryLiner::setShipyardSupportTelephoneNumber(...)`.
-If you check the latter two problem reports, you see that all instances of
+If you check the latter two problem reports you see that all instances of
 the class use the new phone number. So both ship objects have access to the
 same static variable
 :class:`$shipyardSupportTelephoneNumber`.
@@ -578,7 +578,7 @@ on two that are essential when programming with extbase:
 Singleton
 -------------------------------------------------
 
-This design pattern makes sure, that only one instance of a class
+This design pattern makes sure that only one instance of a class
 can exist *at a time*. In TYPO3 you can mark a class
 as singleton by letting it implement the interface
 :class:`t3lib_Singleton`. An example: our luxury liners
@@ -608,15 +608,15 @@ class not implementing the Interface
 .. tip::
 
 	Originally for the design pattern
-	*Prototype* is specified, that a new Object is to
+	*Prototype* is specified that a new Object is to
 	be created by cloning an Object prototype. We use Prototype as
-	counterpart to Singleton, without a concrete pattern implementation
-	in the background, though. For the functionality we experience, this
+	counterpart to Singleton without a concrete pattern implementation
+	in the background though. For the functionality we experience, this
 	does not make any difference: We invariably get back a new instance
 	of a class.
 
 Now that we refreshed your knowledge of object oriented
-programming, we can take a look at the deeper concepts of extbase:
+programming we can take a look at the deeper concepts of extbase:
 Domain Driven Design, Model View Controller and Test Driven Development.
 You'll spot the basics we just talked about in the following
 frequently.
