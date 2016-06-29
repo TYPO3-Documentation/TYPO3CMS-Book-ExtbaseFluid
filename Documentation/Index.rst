@@ -19,7 +19,7 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 .. note::
 
    This is the 'latest' version of this documentation.
-   Everybody es encouraged to send in pull requests to make
+   Everybody is encouraged to send in pull requests to make
    this version reflect the actual state of latest developments.
    Please help in rewriting the code examples so that namespaces
    are used.
