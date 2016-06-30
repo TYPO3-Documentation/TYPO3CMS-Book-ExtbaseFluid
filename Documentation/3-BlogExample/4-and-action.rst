@@ -40,6 +40,7 @@ shortened version of the :class:`BlogController`::
         public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
             $this->blogRepository->update($blog);
             // this does currently not work, use $this->blogRepository->add($blog); instead
+            // see issue: https://forge.typo3.org/issues/76876
             $this->redirect('index');
         }
 
