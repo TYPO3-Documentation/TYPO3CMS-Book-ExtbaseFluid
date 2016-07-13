@@ -61,7 +61,7 @@ of the content element *Plugin*. For this we insert the following line into the 
         );
 
 The first argument is like the method ``configurePlugin()`` again the extension key
-and the second is the name of the plugin. THe third argument is an arbitrary, not to long,
+and the second is the name of the plugin. The third argument is an arbitrary, not to long,
 title of the plugin for the selection box of the content element. After installation of the
 extension we can insert the plugin on a page. Don't forget to set the sys folder, in which the
 products are stored, as the starting point (in our case "Inventory") in the plugin.
