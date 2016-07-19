@@ -40,7 +40,7 @@ to make it possible to have multiple frontend plugins.
     the backend). In addition, the list of controller / action combinations is required at runtime
     in the frontend - and therefore this must be defined in the file file :file:`ext_localconf.php`.
 
-    For further information, check out :ref:`Extenion configuration files
+    For further information, check out :ref:`Extension configuration files
     <t3coreapi:extension-configuration-files>`.
 
 For the definition of a plugin, the files :file:`ext_localconf.php` and :file:`ext_tables.php`
