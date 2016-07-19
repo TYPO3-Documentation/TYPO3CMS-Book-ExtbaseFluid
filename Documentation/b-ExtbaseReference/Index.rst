@@ -83,7 +83,14 @@ The extension key and `$pluginName` must be completely identical to the definiti
 in :file:`ext_localconf.php`. `$backendTitle` defines the displayed name of the plugin in
 the Backend.
 
-**Note**: in order to benefit from caching, put the `\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin` call in `Configuration/TCA/Overrides/tt_content.php` instead. Be aware that the variable `$_EXTKEY` is not available, so you need to replace it with your extension key.
+.. note::
+
+   In order to benefit from caching, put the
+   :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin()`
+   call in :file:`Configuration/TCA/Overrides/tt_content.php` instead.
+
+   **Attention:** The variable :php:`$_EXTKEY` is not available here,
+   so you have to fill in your extension key directly.
 
 Below there is a complete configuration example for the registration of a
 frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables.php`.
