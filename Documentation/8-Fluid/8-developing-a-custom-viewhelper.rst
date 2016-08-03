@@ -170,7 +170,7 @@ At the end we implement the output as img tag::
 	* @param string $emailAddress The email address to resolve the gravatar for
 	* @return string the HTML <img>-Tag of the gravatar
 	*/
-	public function render() {
+	public function render($emailAddress) {
 	return '<img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" />';
 	}
 	}
