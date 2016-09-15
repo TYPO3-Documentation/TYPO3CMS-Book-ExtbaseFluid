@@ -4,9 +4,9 @@
 Command controllers
 ===================
 
-Command controllers will make logic available to the command line and the scheduler backend module.
+Command controllers make logic available to the command line and the scheduler backend module.
 
-This way, you can provide functionality for recurring tasks like mail queues, clean ups, imports and
+They make it possible to provide functionality for recurring tasks like mail queues, clean ups, imports and
 others, to administrators and backend users.
 
 .. _extbase_command_controller_creating:
@@ -14,8 +14,8 @@ others, to administrators and backend users.
 Creating command controllers
 ----------------------------
 
-`CommandController` are located at :file:`/Classes/Command/`.
-This is a simple example, meeting the minimum requirements.
+A `CommandController` needs to be located at :file:`/Classes/Command/`.
+This simple example, meets the minimum requirements.
 
 :file:`/Classes/Command/SimpleCommandController.php`::
 
@@ -37,9 +37,9 @@ The requirements are:
 
 #. Classname must match file name.
 #. Class must extend :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`.
-#. Method name must end with `Command`.
+#. Method names must end with `Command`.
 
-After creating the controller, you need to register him. Add the following line to
+After creating the controller, you need to register it. Add the following line to
 :file:`ext_localconf.php` to let TYPO3 know about the controller.
 
 :file:`/ext_localconf.php`::
@@ -65,7 +65,7 @@ The output should look like::
     -------------------------------------------------------------------------------
       simple:simple
 
-To call your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
+To execute your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
 
 .. note::
 
@@ -81,7 +81,7 @@ To call your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
 Command arguments
 -----------------
 
-Some commands will be flexible and therefore need some arguments, some are optional and some are
+Some commands need to be flexible and therefore need some arguments, some are optional and some are
 required.
 
 As with `ActionController`, you can define them the same way::
@@ -101,7 +101,7 @@ a default value.
 
 TYPO3 will map the incoming values to the documented type.
 
-You can check whether the documentation worked, by calling `typo3/cli_dispatch.phpsh extbase help
+You can check whether the documentation is correct, by calling `typo3/cli_dispatch.phpsh extbase help
 simple:arguments`. The result will be something like::
 
     COMMAND:
@@ -121,8 +121,8 @@ simple:arguments`. The result will be something like::
 Command documentation
 ---------------------
 
-Until now, you have to know what the command does and what the arguments mean. To hep others, you
-can provide further information within the PHPDoc, that will be displayed on CLI::
+So far, you have provided information on what the command and its arguments. To help others, you
+might want to provide further information within the PHPDoc, that will be displayed on the CLI::
 
     /**
      * This is a short description.
@@ -138,7 +138,7 @@ can provide further information within the PHPDoc, that will be displayed on CLI
 
     }
 
-This further information will be displayed like `typo3/cli_dispatch.phpsh extbase help
+The information will be displayed when calling `typo3/cli_dispatch.phpsh extbase help
 simple:arguments`::
 
     This is a short description.
