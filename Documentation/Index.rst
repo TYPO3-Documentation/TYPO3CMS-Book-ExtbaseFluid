@@ -21,30 +21,26 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    This is the 'latest' version of this documentation.
    Everybody is encouraged to send in pull requests to make
    this version reflect the actual state of latest developments.
-   Please help in rewriting the code examples so that namespaces
-   are used.
+   Please help in rewriting the code examples **so that namespaces
+   are used.**
 
-.. only:: html
-
-   .. tip::
-
-      :ref:`Sitemap`
 
 
 .. toctree::
-	:maxdepth: 2
+   :hidden:
 
-	0-Introduction/Index
-	1-Installation/Index
-	2-BasicPrinciples/Index
-	3-BlogExample/Index
-	4-FirstExtension/Index
-	5-Domain/Index
-	6-Persistence/Index
-	7-Controllers/Index
-	8-Fluid/Index
-	9-CrosscuttingConcerns/Index
-	10-Outlook/Index
-	a-CodingGuidelines/Index
-	b-ExtbaseReference/Index
-	Targets
+   Sitemap/Index
+   0-Introduction/Index
+   1-Installation/Index
+   2-BasicPrinciples/Index
+   3-BlogExample/Index
+   4-FirstExtension/Index
+   5-Domain/Index
+   6-Persistence/Index
+   7-Controllers/Index
+   8-Fluid/Index
+   9-CrosscuttingConcerns/Index
+   10-Outlook/Index
+   a-CodingGuidelines/Index
+   b-ExtbaseReference/Index
+   Targets
