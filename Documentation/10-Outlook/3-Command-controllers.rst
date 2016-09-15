@@ -1,23 +1,23 @@
-.. include:: ../Includes.txt
+g.. include:: ../Includes.txt
 .. _extbase_command_controller_about:
 
 Command controllers
 ===================
 
-Command controllers will make logic available to the command line and the scheduler backend module.
+Command controllers make logic available at the command line and in the scheduler backend module.
 
-This way, you can provide functionality for recurring tasks like mail queues, clean ups, imports and
-others, to administrators and backend users.
+They can provide functionality for recurring tasks like mail queues, cleanups, imports and
+more, which is then available for administrators and regular backend users.
 
 .. _extbase_command_controller_creating:
 
 Creating command controllers
 ----------------------------
 
-`CommandController` are located at :file:`/Classes/Command/`.
-This is a simple example, meeting the minimum requirements.
+A `CommandController` needs to be located at :file:`Classes/Command/`.
+This following simple example meets the minimum requirements.
 
-:file:`/Classes/Command/SimpleCommandController.php`::
+:file:`Classes/Command/SimpleCommandController.php`::
 
     <?php
     namespace Vendor\Example\Command;
@@ -33,13 +33,13 @@ This is a simple example, meeting the minimum requirements.
         }
     }
 
-The requirements are:
+Requirements are:
 
 #. Classname must match file name.
 #. Class must extend :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`.
-#. Method name must end with `Command`.
+#. Method names must end with `Command`.
 
-After creating the controller, you need to register him. Add the following line to
+After creation of the controller you need to register it. Add the following line to
 :file:`ext_localconf.php` to let TYPO3 know about the controller.
 
 :file:`/ext_localconf.php`::
@@ -65,12 +65,13 @@ The output should look like::
     -------------------------------------------------------------------------------
       simple:simple
 
-To call your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
+To execute your command call `typo3/cli_dispatch.phpsh extbase simple:simple`.
 
 .. note::
 
-    Commands are run within TYPO3 Backend mode. So there is no Frontend and therefore no page from
-    where TypoScript can be fetched.
+    Commands are running in TYPO3 Backend context.
+    Therefore you cannot directly access TypoScript of frontend pages
+    for example.
 
 .. Todo:
 
@@ -81,10 +82,10 @@ To call your command, call `typo3/cli_dispatch.phpsh extbase simple:simple`.
 Command arguments
 -----------------
 
-Some commands will be flexible and therefore need some arguments, some are optional and some are
-required.
+Some commands need to be flexible and therefore need some arguments which may be optional
+or required.
 
-As with `ActionController`, you can define them the same way::
+As with `ActionController` you can define them the same way::
 
     /**
      * @param int $required
@@ -101,8 +102,10 @@ a default value.
 
 TYPO3 will map the incoming values to the documented type.
 
-You can check whether the documentation worked, by calling `typo3/cli_dispatch.phpsh extbase help
-simple:arguments`. The result will be something like::
+You can check whether the documentation is correct, by calling `typo3/cli_dispatch.phpsh extbase help
+simple:arguments`. The result will be something like:
+
+.. code-block:: none
 
     COMMAND:
       example:simple:arguments
@@ -121,8 +124,9 @@ simple:arguments`. The result will be something like::
 Command documentation
 ---------------------
 
-Until now, you have to know what the command does and what the arguments mean. To hep others, you
-can provide further information within the PHPDoc, that will be displayed on CLI::
+So far you have provided information on what the command and its arguments. To help others, you
+may want to provide further information within the PHPDoc that is to be displayed on the
+commandline::
 
     /**
      * This is a short description.
@@ -138,8 +142,10 @@ can provide further information within the PHPDoc, that will be displayed on CLI
 
     }
 
-This further information will be displayed like `typo3/cli_dispatch.phpsh extbase help
-simple:arguments`::
+The information is shown when calling `typo3/cli_dispatch.phpsh extbase help
+simple:arguments`:
+
+.. code-block:: none
 
     This is a short description.
 
