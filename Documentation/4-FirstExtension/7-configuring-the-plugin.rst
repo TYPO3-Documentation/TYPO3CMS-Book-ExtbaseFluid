@@ -16,12 +16,11 @@ create in the top level of our extension directory.
     <?php
     if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
-    Tx_Extbase_Utility_Extension::configurePlugin(
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         $_EXTKEY,
         'List',
         array('Inventory' => 'list')
     );
-    ?>
 
 With the first line we prevent - like also in the file :file:`ext_tables.php` -
 of security reasons, that the PHP code can be called directly outside of TYPO3.
@@ -35,7 +34,7 @@ can execute. The array key is the name of the controller (without the suffix ``C
 and the array value is a comma separated list of all actions that are executable by the plugin.
 In our case this is the ``list`` action (also without the suffix ``Action``).
 Thus the array ``array('Inventory' -> 'list')`` allows to execute the method ``listAction()``
-in the ``Tx_Inventory_Controller_InventoryController`` by the plugin.
+in the ``\MyVendor\Inventory\Controller\InventoryController`` by the plugin.
 
 Per default all results of the actions are stored in the cache. If it is not desired for
 individual actions they can be specified by a fourth, optional argument.
@@ -54,11 +53,11 @@ of the content element *Plugin*. For this we insert the following line into the 
 
 ::
 
-    Tx_Extbase_Utility_Extension::registerPlugin(
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         $_EXTKEY,
         'List',
         'The Inventory List'
-        );
+    );
 
 The first argument is like the method ``configurePlugin()`` again the extension key
 and the second is the name of the plugin. The third argument is an arbitrary, not to long,

@@ -39,7 +39,7 @@ A validator is a PHP class that has to check a certain invariant. If
 the invariant is fulfilled than the validator returns ``true``
 otherwise ``false``. In Extbase all validators have to implement
 the interface
-:class:`Tx_Extbase_Validation_Validator_ValidatorInterface`.
+:class:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
 In this interface some methods are defined. The most important is called
 ``isValid($object)``. An object or value is passed over to it and
 it must return ``true`` when the object or value is valid,
@@ -47,7 +47,7 @@ otherwise it returns ``false``. There are some more methods in
 the :class:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
-:class:`Tx_Extbase_Validation_Validator_AbstractValidator`,
+:class:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
 because you get a default implemetation of the helper methods and you only
 have to implement the `isValid()` method.
 
@@ -91,7 +91,7 @@ empty. This is configued through the property ``$acceptsEmptyValues`` which is
 set to ``true`` as default.
 
 In the package
-:class:`Tx_Extbase_Validation_Validator_*` Extbase offers
+:class:`\TYPO3\CMS\Extbase\Validation\Validator\*` Extbase offers
 many validators for default requirements like the validation of emails,
 numbers or strings.
 
@@ -177,7 +177,10 @@ available. With it we can specify which validator is to be used for
 checking the annotated property. Let us take a look at this using a part
 of the domain model ``Post`` of the blog example::
 
-    class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEntity {
+    <?php
+    namespace \MyVendor\BlogExample\Domain\Model;
+
+    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         /**
          * @var string
          * @validate StringLength(minimum=3, maximum=50)
@@ -198,20 +201,23 @@ than three characters and will never be longer than 50 characters.
 
 Which validator class is to be used? Extbase looks for a validator
 class using
-``Tx_Extbase_Validation_Validator_*ValidatorName*Validator``.
+``\TYPO3\CMS\Extbase\Validation\Validator\*ValidatorName*Validator``.
 Using the above given annotation ``@validate StringLength`` the
 validator
-:class:`Tx_Extbase_Validation_Validator_StringLengthValidator`
+:class:`\TYPO3\CMS\Extbase\Validation\Validator\StringLengthValidator`
 is used.
 
 When you have created your own validator to check the invariants
 you can use it in the ``@validate`` annotation using the full
 class name, like shown in the following example::
 
-    class Tx_BlogExample_Domain_Model_Post extends Tx_Extbase_DomainObject_AbstractEntity {
+    <?php
+    namespace \MyVendor\BlogExample\Domain\Model;
+
+    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         /**
          * @var string
-         * @validate Tx_BlogExample_Domain_Validator_TitleValidator
+         * @validate \MyVendor\BlogExample\Domain\Validator\TitleValidator
          */
         protected $title;
 
@@ -222,7 +228,7 @@ class name, like shown in the following example::
     }
 
 Here we validate the property ``$title`` with the
-:class:`Tx_BlogExample_Domain_Validator_TitleValidator`.
+:class:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
 This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
 blog post is always build-on the scheme *Maintopic:
@@ -256,9 +262,9 @@ access to all object properties is possible.
 
 Important hereby is the correct naming convention. If you need a
 validator for the class
-:class:`Tx_ExtbaseExample_Domain_Model_User` it must be
+:class:`\MyVendor\ExtbaseExample\Domain\Model\User` it must be
 implemented in the class
-:class:`Tx_ExtbaseExample_Domain_Validator_UserValidator`.
+:class:`\MyVendor\ExtbaseExample\Domain\Validator\UserValidator`.
 The name of the validator for a model object is incidental by replacing
 the namespace ``Model`` with ``Validator`` and also
 append ``Validator``. When following the naming convention the
@@ -271,9 +277,12 @@ object is of the type ``user`` - after all the validator can be
 called with any object and has to return ``false`` in such
 case::
 
-    class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+    <?php
+    namespace \MyVendor\ExtbaseExample\Domain\Validator;
+
+    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
         public function isValid($user) {
-            if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
+            if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
                 return FALSE;
             }
@@ -298,9 +307,12 @@ Now we have created the foundation of our validator and can start
 with the proper implementation - the check for equality of the
 passwords. This is made quickly::
 
-    class Tx_ExtbaseExample_Domain_Validator_UserValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+    <?php
+    namespace \MyVendor\ExtbaseExample\Domain\Validator;
+
+    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
         public function isValid($user) {
-            if (! $user instanceof Tx_ExtbaseExample_Domain_Model_User) {
+            if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
                 return FALSE;
             }
@@ -338,13 +350,13 @@ Therefore a slightly modified form of the ``@validate``
 annotation can be used which is set in the comment block of the
 controller action. It has the format ``@validate
 *[variablename] [validators]*``, in the example
-below it is ``$pageName`` :class:`Tx_MyExtension_Domain_Validator_PagenameValidator`::
+below it is ``$pageName`` :class:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
 
     /**
      * Creates a new page with a given name.
      *
      * @param string $pageName THe name of the page which should be created.
-     * @validate $pageName Tx_MyExtension_Domain_Validator_PageNameValidator
+     * @validate $pageName \MyVendor\MyExtension\Domain\Validator\PageNameValidator
      */
     public function createPageAction($pageName) {
         ...
@@ -378,10 +390,10 @@ example::
      * Creates a website user for the given page name.
      *
      * @param string $pageName The name of the page where the user should be created.
-     * @param Tx_ExtbaseExample_Domain_Model_User $user The user which should be created.
-     * @validate $user Tx_BlogExample_Domain_Validator_CustomUserValidator
+     * @param \MyVendor\ExtbaseExample\Domain\Model\User $user The user which should be created.
+     * @validate $user \MyVendor\BlogExample\Domain\Validator\CustomUserValidator
      */
-    public function createUserAction($pageName, Tx_ExtbaseExample_Domain_Model_User $user) {
+    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user) {
         ...
     }
 
@@ -389,9 +401,9 @@ Here the following things are validated: ``$pageName``
 must be a *string*. The data type of the
 ``@param`` annotation is validated. For ``$user`` all
 ``@validate`` annotations of the model are validated. Also the
-``Tx_BlogExample_Domain_Validator_UserValidator`` is called if
+``\MyVendor\BlogExample\Domain\Validator\UserValidator`` is called if
 it exists. Beyond that the validator
-``Tx_BlogExample_Domain_Validator_CustomUserValidator`` is used
+``\MyVendor\BlogExample\Domain\Validator\CustomUserValidator`` is used
 to validate ``$user``.
 
 In some use cases it is reasonable that *inconsistent
@@ -422,7 +434,7 @@ validation error. Two actions are involved at editing the blog: The
 
 The ``editAction`` for the blog looks like this::
 
-    public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
         $this->view->assign('blog', $blog);
     }
 
@@ -448,7 +460,7 @@ as parameter.
 
 ::
 
-    public function updateAction((Tx_BlogExample_Domain_Model_Blog $blog) {
+    public function updateAction((\MyVendor\BlogExample\Domain\Model\Blog $blog) {
         $this->blogRepository->update($blog);
     }
 
@@ -481,10 +493,10 @@ annotation ``@dontvalidate ``- the comment block of the
 ``editAction`` must be changed like this::
 
     /**
-     * @param Tx_BlogExample_Domain_Model_Blog $blog The blog object
+     * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
      * @dontvalidate $blog
      */
-    public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
         $this->view->assign('blog', $blog);
     }
 
@@ -495,7 +507,7 @@ displayed correct.
 .. tip::
 
     If Extbase thows the exception
-    Tx_Extbase_MVC_Exception_InfiniteLoop it signs that the
+    \TYPO3\CMS\Extbase\Mvc\Exception\InfiniteLoopException it signs that the
     ``@dontvalidate`` annotation is missing.
 
 Fluid automatically adds the CSS class ``f3-form-error``
@@ -526,19 +538,19 @@ code::
     /**
      * This action shows the 'new' form for the blog.
      *
-     * @param Tx_BlogExample_Domain_Model_Blog $newBlog The optional default values
+     * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
      * @dontvalidate $newBlog
      */
-    public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+    public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL) {
         $this->view->assign('newBlog', $newBlog);
     }
 
     /**
      * This action creates the blog and stores it.
      *
-     * @param Tx_BlogExample_Domain_Model_Blog $newBlog
+     * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
      */
-    public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
+    public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog) {
         $this->blogRepository->add($newBlog);
     }
 
@@ -675,7 +687,7 @@ object: The changes are stored permanent now.
     this case an empty controller would be updating persistent
     objects::
 
-        public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
             // object will be automaticly persisted
         }
 

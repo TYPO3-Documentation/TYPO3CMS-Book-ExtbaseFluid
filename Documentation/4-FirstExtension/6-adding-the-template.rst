@@ -7,7 +7,7 @@ In Extbase frontend templates are created in a subdirectory of
 :file:`EXT:inventory/Resources/Private/Templates` - if not configured otherwise.
 The name of the subdirectory results in the last part of the controller
 class name without the ``Controller`` suffix.
-So the class name :class:`Tx_Inventory_Controller_InventoryController` results in the
+So the class name :class:`\MyVendor\Inventory\Controller\InventoryController` results in the
 directory name *inventory*.
 
 Below the directory *Inventory* we create the file with the HTML template. The name

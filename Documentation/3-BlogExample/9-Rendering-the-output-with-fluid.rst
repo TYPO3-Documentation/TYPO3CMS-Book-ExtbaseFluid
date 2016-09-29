@@ -114,7 +114,7 @@ Parsing the point goes recursively. That means Fluid can parse a string
     Cross Site Scripting-Attacks (XSS).
 
 As soon as Fluid is done with the whole template the result is appended to the
-``Response`` object. This is done in the :class:`Tx_Extbase_MVC_Controller_ActionController`
+``Response`` object. This is done in the :class:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`
 by the call ``$this->response->appendContent($this->view->render())``.
 
 Our journey slowly comes to an end. The *Request* is been fully answered by a

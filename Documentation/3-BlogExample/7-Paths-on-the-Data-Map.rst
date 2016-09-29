@@ -23,13 +23,16 @@ definitions (or *properties*). Let's for example look at the definition of the
 property *posts* within the ``Blog`` class. You can find this in the file
 :file:`EXT:blog_example/Classes/Domain/Model/blog.php`. ::
 
-    class Tx_BlogExample_Domain_Model_Blog extends Tx_Extbase_DomainObject_AbstractEntity {
+    <?php
+    namespace \MyVendor\BlogExample\Domain\Model;
+
+    class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         ...
 
         /**
          * The posts of this blog
          *
-         * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_post>
+         * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\BlogExample\Domain\Model\post>
          *
          */
         protected $posts;
@@ -41,15 +44,15 @@ property *posts* within the ``Blog`` class. You can find this in the file
 The property ``$posts`` contains within the PHP comment above some so called
 annotations which start with the @ character. The annotation::
 
-    @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_Model_Post>
+    @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\BlogExample\Domain\Model\Post>
 
 
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
-``Post`` objects of the class :class:`Tx_BlogExample_Domain_Model_Post`.
+``Post`` objects of the class :class:`\MyVendor\BlogExample\Domain\Model\Post`.
 
 .. note::
 
-    The :class:`Tx_Extbase_Persistence_ObjectStorage` is a class of Extbase. This
+    The :class:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage` is a class of Extbase. This
     class takes objects and ensures that an instance is unique within the
     ``ObjectStorage``. Objects within the ``ObjectStorage`` can be accessed by the
     methods ``attach()``, ``detach()`` and ``contains()`` amongst others. The
@@ -74,7 +77,7 @@ PHP-type will look like this::
 It is also possible to enter a class as type::
 
     /**
-     * @var Tx_BlogExample_Domain_Model_Author
+     * @var \MyVendor\BlogExample\Domain\Model\Author
      */
     protected $author;
 
@@ -83,7 +86,7 @@ Properties which should be bound to multiple child objects require the class
 name of the child elements in angle brackets::
 
     /**
-     * @var Tx_Extbase_Persistence_ObjectStorage<Tx_BlogExample_Domain_model_Tags>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\BlogExample\Domain\Model\Tags>
      */
     protected $tags;
 

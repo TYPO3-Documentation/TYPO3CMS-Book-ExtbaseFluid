@@ -12,7 +12,7 @@ Extbase building-up strongly of the rule "Convention over Configuration" (see al
 Foreign database tables correspond in rare cases the conventions of Extbase. Therefore the assignment
 of the class to a given table as well as the assignment of field names to property names of the classes
 must be configured via TypoScript. This assignment is also called *mapping*. The following configuration
-enables the storage of the object data of a class ``Tx_MyExtension_Domain_Model_Person`` in the table
+enables the storage of the object data of a class ``\MyVendor\MyExtension\Domain\Model\Person`` in the table
 ``tt_address``, which is available in most TYPO3 installations.
 
 ::
@@ -20,10 +20,10 @@ enables the storage of the object data of a class ``Tx_MyExtension_Domain_Model_
     plugin.tx_myextension {
         persistence {
             classes {
-                Tx_MyExtension_Domain_Model_Person {
+                \MyVendor\MyExtension\Domain\Model\Person {
                     mapping {
                         tableName = tt_address
-                        recordType = Tx_MyExtension_Domain_Model_Person
+                        recordType = \MyVendor\MyExtension\Domain\Model\Person
                         columns {
                             birthday.mapOnProperty = dateOfBirth
                             street.mapOnProperty = thoroughfare
@@ -47,7 +47,7 @@ assignments of the field names (left) to the corresponding properties (right) is
     you will find in "Preparing the tables of the Domain Objects" above in this chapter.
 
 This configuration causes Extbase to use the table ``tt_address`` when reconstructing or persisting of
-objects of the class ``Tx_MyExtension_Domain_Model_Person``. Thereby the values of the properties
+objects of the class ``\MyVendor\MyExtension\Domain\Model\Person``. Thereby the values of the properties
 ``dateOfBirth`` and ``thoroughfare`` are stored in the fields ``birthday`` and ``street``. If the
 configuration option ``tableName`` is not set, Extbase searches for a table that corresponds to the lower
 cased cased class name, in our case: ``tx_myextension_domain_model_person``. If for a property

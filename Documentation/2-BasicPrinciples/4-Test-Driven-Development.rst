@@ -123,18 +123,18 @@ Tests/Unit/Domain/Model/CustomerTest.php. Now we create a minimal testcase with 
 //code
 
 All our testcasses are named after the same namescheme like normal classes and
-they must be extended with Tx_Extbase_BaseTestCase. One testclass can contain
-many testmethods. These have to be public and have to contain the annotation
-@test in their PHPDOC-Block, so they can be performed. Please keep in mind that
-the name of the testmethod should make clear which expectations the test should
-fullfill. Now we can run the test for the first time. Therefore go to the
-TYPO3-Backend to the modul PHPUnit which is to find under the Admin Tools. Then
-you can choose your extension and click on Run all tests. Now you should, like
-it is shown in the figure 2-9, see a (yellow) bar and the Error message Not yet
-implemented. Because you will work much with the PHPUnit Environment, you should
-familiarize yourself with this. Try to run the test for extbase and fluid and
-also try the different Display options. For example you can let show you all
-tests or only the failed tests.
+they must be extended with \TYPO3\CMS\Core\Tests\BaseTestCase. One testclass
+can contain many testmethods. These have to be public and have to contain the
+annotation @test in their PHPDOC-Block, so they can be performed. Please keep
+in mind that the name of the testmethod should make clear which expectations
+the test should fullfill. Now we can run the test for the first time. Therefore
+go to the TYPO3-Backend to the modul PHPUnit which is to find under the Admin
+Tools. Then you can choose your extension and click on Run all tests. Now you
+should, like it is shown in the figure 2-9, see a (yellow) bar and the Error
+message Not yet implemented. Because you will work much with the PHPUnit
+Environment, you should familiarize yourself with this. Try to run the test
+for extbase and fluid and also try the different Display options. For example
+you can let show you all tests or only the failed tests.
 
 
 Now we know that our testcase is running, we can write our first usefull

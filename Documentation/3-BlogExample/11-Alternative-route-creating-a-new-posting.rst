@@ -45,12 +45,12 @@ Lets take a look at the called method ``newAction()``:
 	/**
 	 * Displays a form for creating a new post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
-	 * @param Tx_BlogExample_Domain_Model_Post $newPost An invalid new post object passed by a rejected createAction()
+	 * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
+	 * @param \MyVendor\BlogExample\Domain\Model\Post $newPost An invalid new post object passed by a rejected createAction()
 	 * @return string An HTML form for creating a new post
 	 * @dontvalidate $newPost
 	 */
-	public function newAction(Tx_BlogExample_Domain_Model_Blog $blog, Tx_BlogExample_Domain_Model_Post $newPost = NULL) {
+	public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL) {
 		$this->view->assign('authors', $this->personRepository->findAll();
 		$this->view->assign('blog', $blog);
 		$this->view->assign('newPost', $newPost);
@@ -66,8 +66,8 @@ parameters before an action is called. The controller delegates this  to an
 instance of the class :class:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
-class :class:`Tx_BlogExample_Domain_Model_Blog`, for the parameter ``$newPost`` it
-is an instance of the class :class:`Tx_BlogExample_Domian_Model_Post`.
+class :class:`\MyVendor\BlogExample\Domain\Model\Blog`, for the parameter ``$newPost`` it
+is an instance of the class :class:`\MyVendor\BlogExample\Domain\Model\Post`.
 
 How does Extbase know what the target of the conversion is? It takes this
 information from the information above the argument. If there is nothing declared
@@ -76,7 +76,7 @@ the line:
 
 ::
 
-	* @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
+	* @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
 
 The link is created with the name of the argument ``$blog``.
 In this way the link between the request parameter and the ``newAction()`` is resolved.
@@ -86,7 +86,7 @@ The link parameter::
 
 is assigned to the parameter::
 
-	Tx_BlogExample_Domain_Model_Blog $blog
+	\MyVendor\BlogExample\Domain\Model\Blog $blog
 
 of the ``newAction()`` with the name "blog". With the help of the UID 6 the
 corresponding blog object can be identified, reconstructed and given to the
@@ -176,12 +176,12 @@ Here you will see the stripped-down method:
 	/**
 	 * Creates a new post
 	 *
-	 * @param Tx_BlogExample_Domain_Model_Blog $blog The blog the post belongs to
-	 * @param Tx_BlogExample_Domain_Model_Post $newPost A fresh Post object which has not yet been persisted
+	 * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
+	 * @param \MyVendor\BlogExample\Domain\Model\Post $newPost A fresh Post object which has not yet been persisted
 	 * @return void
 	 */
-	public function createAction(Tx_BlogExample_Domain_Model_Blog $blog,
-		  Tx_BlogExample_Domain_Model_Post $newPost) {
+	public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $blog,
+		  \MyVendor\BlogExample\Domain\Model\Post $newPost) {
 		$blog->addPost($newPost);
 		$this->redirect('index', NULL, NULL, array('blog' => $blog));
 	}

@@ -32,7 +32,7 @@ devlog
 
 The extension *devlog* (available in TER) can used for logging the program sequence. All log messages are clearly structured in the backend module. This extension is especially helpful if no debug output is allowed in the frontend, eq. live systems.
 
-To log data you can use the method *t3lib_div::devlog($message, $extensionKey, $severity, $data)*, where *$message* is the message which should be logged, *$extensionKey* is the extension key of the running extension, *$severity* is a number between -1 and 3 which specifies the severity of an error, and *$data* is an optional array which can also be logged.
+To log data you can use the method *GeneralUtility::devlog($message, $extensionKey, $severity, $data)*, where *$message* is the message which should be logged, *$extensionKey* is the extension key of the running extension, *$severity* is a number between -1 and 3 which specifies the severity of an error, and *$data* is an optional array which can also be logged.
 
 More information can be found in the online documentation of the extension *devlog* in TER.
 

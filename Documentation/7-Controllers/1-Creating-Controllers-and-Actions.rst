@@ -7,18 +7,21 @@ The Controller classes are stored in the folder <link
 linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the
 Controller is composed by the name of the Domain Model and the Suffix
 :class:`Controller`. So the Controller
-:class:`Tx_SjrOffers_Controller_OfferController` is assigned
+:class:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
 to the Aggegate Root Object
-:class:`Tx_SjrOffers_Domain_Model_Offer`. And the Name of the
+:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the Name of the
 Class file is :file:`OfferController.php`.
 
 The Controller class must extend the class
-:class:`Tx_Extbase_MVC_Controller_ActionController` which is
+:class:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
 part of Extbase. The individual Actions are combined in seperate methods.
 The method names have to end in :class:`Action`. The body of
 :class:`OfferController` thus looks like this::
 
-    class Tx_SjrOffers_Controller_OfferController extends Tx_Extbase_MVC_Controller_ActionController {
+    <?php
+    namespace \MyVendor\SjrOffers\Controller;
+
+    class OfferController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         // Action methods will be following here
     }
 
@@ -55,7 +58,7 @@ name of the Method::
 
     public function indexAction() {
 
-        $offerRepository = t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
+        $offerRepository = t3lib_div_makeInstance('\MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
 
         $offers = $offerRepository->findAll();
 
@@ -74,7 +77,7 @@ get::
     public function indexAction() {
 
         $offerRepository =
-        t3lib_div_makeInstance('Tx_SjrOffers_Domain_Repository_OfferRepository');
+        t3lib_div_makeInstance('\MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
 
         $this->view->assign('offers', $offerRepository->findAll());
 
@@ -99,7 +102,7 @@ this::
 
     public function initializeAction() {
         $this->offerRepository =
-        t3lib_div::makeInstance('Tx_JjrOffers_Domain_Repository_OfferRepository');
+        GeneralUtility::makeInstance('\MyVendor\SjrOffers\Domain\Repository\OfferRepository');
     }
 
     public function indexAction() {
@@ -134,11 +137,11 @@ outside which Domain Object is to be displayed. In our case, the offer to
 be shown is passed to the Method as Argument::
 
     /**
-     * @param Tx_SjrOffers_Domain_Model_Offer $offer The offer to be shown
+     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
      * @return string The rendered HTML string
      */
 
-    public function showAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+    public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer) {
         $this->view->assign('offer', $offer);
     }
 
@@ -160,22 +163,22 @@ Extbase maps the arguments by their names. In our example Extbase detects,
 that the GET Argument :class:`tx_sjroffers_pi1[offer]=3
 `corresponds to the Method Argument
 :class:`$offer`:
-:class:`showAction(Tx_SjrOffers_Domain_Model_Offer
+:class:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer
 *$offer*)`. The type of this Argument is
 fetched by Extbase from the Method signature:
-:class:`showAction(*Tx_SjrOffers_Domain_Model_Offer*
+:class:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer)`. In case this so called *Type Hint
 *should not be present, or (e.g. for the types *string
 *or *int* in PHP) not possible, Extbase reads
 the type from the commentary written above the Method: :class:`@param
-*Tx_SjrOffers_Domain_Model_Offer*
+*\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer`.
 
 After successful assigning, the value of the incoming Argument has
 to be casted in the target type as well as checked for validity (read more
 about validation in chapter 9 in section "Validating Domain Objects"). In
 our case the incoming value is "3". Target type is the class
-:class:`Tx_SjrOffers_Domain_Model_Offer`. So Extbase
+:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. So Extbase
 interprets the incoming value as uid of the Object to be created and sends
 a request to the *Storage Backend* to find an Object
 with this uid. If the Object can be reconstructed fully valid it is passed
@@ -236,14 +239,14 @@ Method :class:`newAction()`.
 ::
 
     /**
-     * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization
-     * @param Tx_SjrOffers_Domain_Model_Offer $offer The new offer object
+     * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
+     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
      * @return string An HTML form for creating a new offer
      * @dontvalidate $newOffer
      */
 
-    public function newAction(Tx_SjrOffers_Domain_Model_Organization $organization,
-    Tx_SjrOffers_Domain_Model_Offer $newOffer = NULL) {
+    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization,
+    \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = NULL) {
 
         $this->view->assign('organization',$organization);
 
@@ -263,7 +266,7 @@ section "Template Creation by example". After the user filled in the data
 of the offer and submitted the form, the Method
 :class:`createAction()` is called. It expects as Arguments
 an :class:`Organization `Object and an Object of the class
-:class:`Tx_SjrOffers_Domain_Model_Offer`. Therefore Extbase
+:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
 :class:`createAction()` is called.
