@@ -7,7 +7,7 @@ You get the ready ``Blog`` objects delivered in an array. "Ready" means in this
 context, that every ``Blog`` object already has all it's ``Post`` objects and their
 ``Comment`` and ``Tag`` objects.
 
-These blogs are delivered to the object, which is responsible for the output for 
+These blogs are delivered to the object, which is responsible for the output for
 further processing: the so called *View*. If we make no own choice, like in our
 example, the TemplateView of Fluid is automatically available under the class
 variable ``$this->view``.
@@ -29,8 +29,8 @@ instantiated:
 ::
 
 	public function initializeAction() {
-		$this->blogRepository = t3lib_div::makeInstance('Tx_BlogExample_Domain_Repository_BlogRepository');
-		$this->administratorRepository = t3lib_div::makeInstance('Tx_BlogExample_Domain_Repository_AdministratorRepository');
+		$this->blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
+		$this->administratorRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\AdministratorRepository');
 	}
 
 This approach offers no performance gain (rather a negligible disadvantage), but

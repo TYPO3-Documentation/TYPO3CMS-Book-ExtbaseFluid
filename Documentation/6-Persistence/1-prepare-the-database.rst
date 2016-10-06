@@ -23,7 +23,7 @@ Preparing the tables of the Domain Objects
 
 Let's have a look at the definition of the database table which will
 aggregate the objects of the class
-:class:`Tx_SjrOffers_Domain_Model_Organization`:
+:class:`\MyVendor\SjrOffers\Domain\Model\Organization`:
 
 ::
 
@@ -463,9 +463,9 @@ Key in the table of the child object. In TYPO3, the parental object's
 table holds a separate value for counting the sum of the corresponding
 child objects. Consecutively, we list the definition of the relationship
 between the organization and its offers of the class
-``Tx_Sjr_Offers_Domain_Model_Organization``. This will later be
+``\MyVendor\SjrOffers\Domain\Model\Organization``. This will later be
 filled with instances of the class
-``Tx_Sjr_Offers_Domain_Model_Offer``.
+``\MyVendor\SjrOffers\Domain\Model\Offer``.
 
 ::
 
@@ -492,9 +492,9 @@ The definition of the table
 	Extbase stores the relationship between ``organization``
 	and the offer as a ``1:1-relationship``. This can be taken as
 	advantage by adding the property ``organization`` to the class
-	``Tx_Sjr_Offers_Domain_Model_Offer``. Consequently, it will be
+	``\MyVendor\SjrOffers\Domain\Model\Offer``. Consequently, it will be
 	filled with an instance of the class
-	``Tx_Sjr_Offers_Domain_Model_Organization`` and can therefore
+	``\MyVendor\SjrOffers\Domain\Model\Organization`` and can therefore
 	be used as a backreference from the offer to its corresponding
 	organization.
 

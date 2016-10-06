@@ -66,7 +66,7 @@ necessary. The complete conent of the plugin is then "packed" in a
 message* - will be created inside our sample extension in the
 controller, e.g. at unauthorized access (see also the sections for edit and delete controller actions in :ref:`chapter 7 <controlling-the-flow-with-controllers>`)::
 
-	public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+	public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer) {
 		$administrator = $offer->getOrganization()->getAdministrator();
 		if ($this->accessControlService->isLoggedIn($administrator)) {
 			...

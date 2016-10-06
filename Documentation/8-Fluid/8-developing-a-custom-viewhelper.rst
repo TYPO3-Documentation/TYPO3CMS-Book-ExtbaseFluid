@@ -48,11 +48,11 @@ operations.
 First of all, think about how the ViewHelper should be called inside
 the template: The ViewHelper is not part of the default distribution,
 therefore we need an own namespace import to use the ViewHelper. We import
-the namespace ``Tx_BlogExample_ViewHelpers`` with the token
+the namespace ``\MyVendor\BlogExample\ViewHelpers`` with the token
 ``blog``. Now, all tags starting with ``blog:`` are
 interpreted as ViewHelper::
 
-	``{namespace blog=Tx_BlogExample_ViewHelpers}``
+	``{namespace blog=\MyVendor\BlogExample\ViewHelpers}``
 
 Our ViewHelper should get the name gravatar and only get an email
 address as parameter. We will call the ViewHelper in the template as
@@ -73,31 +73,34 @@ namespace import and the name of the XML element. The classname consists
 of the following three parts:
 
 * full namespace (in our example
-  ``Tx_BlogExample_ViewHelpers``)
+  ``\MyVendor\BlogExample\ViewHelpers``)
 * the name of the ViewHelper in UpperCamelCase writing (in our
   example ``Gravatar``)
 * the ending ``ViewHelper``
 
 For the Gravatar ViewHelper the name of the class is
-``Tx_BlogExample_ViewHelpers_GravatarViewHelper``.
+``\MyVendor\BlogExample\ViewHelpers\GravatarViewHelper``.
 
 Following the naming conventions for Extbase extensions we create
 the ViewHelper skeleton in the PHP file
 *EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php*::
 
-	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+	<?php
+	namespace \MyVendor\BlogExample\ViewHelpers;
+
+	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	public function render() {
 	}
 	}
 
 Every ViewHelper must inherit from the class
-``Tx_Fluid_Core_ViewHelper_AbstractViewHelper``.
+``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper``.
 
 .. tip::
 
 	A ViewHelper can also inherit from subclasses of
 	``AbstractViewHelper``, e.g. from
-	``Tx_Fluid_Core_ViewHelper_TagBasedViewHelper``. Several
+	``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``. Several
 	subclasses are offering additional functionality. We will talk about the
 	just addressed TagBasedViewHelper later on in this chapter in detail in
 	"Creating XML tags using TagBasedViewHelper".
@@ -107,7 +110,10 @@ called once the ViewHelper is to be displayed in the template. The return
 value of the method is copied directly into the complete output. If we
 enhanced our ViewHelper from above as follows::
 
-	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+	<?php
+	namespace \MyVendor\BlogExample\ViewHelpers;
+
+	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 		public function render() {
 			return 'World';
 		}
@@ -115,7 +121,7 @@ enhanced our ViewHelper from above as follows::
 
 and we insert it in the template like this::
 
-	{namespace blog=Tx_BlogExample_ViewHelpers}
+	{namespace blog=\MyVendor\BlogExample\ViewHelpers}
 	Hello <blog:gravatar />
 
 ``Hello World`` should be displayed.
@@ -165,7 +171,10 @@ because the type of the parameter is based on this by Fluid.
 
 At the end we implement the output as img tag::
 
-	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+	<?php
+	namespace \MyVendor\BlogExample\ViewHelpers;
+
+	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	/**
 	* @param string $emailAddress The email address to resolve the gravatar for
 	* @return string the HTML <img>-Tag of the gravatar
@@ -202,7 +211,10 @@ $defaultValue)``. You can access these arguments through the array
 The above example could be changed in the following way and would
 function identical::
 
-	class Tx_BlogExample_ViewHelpers_GravatarViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+	<?php
+	namespace \MyVendor\BlogExample\ViewHelpers;
+
+	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	/**
 	* Arguments Initialization
 	*/
@@ -233,8 +245,8 @@ Creating XML tags using TagBasedViewHelper
 --------------------------------------------------------------------------------------------------
 
 For ViewHelper that create XML tags Fluid provides an enhanced
-baseclass: the ``Tx_Fluid_Core_TagBasedViewHelper``. This
-ViewHelper provides a *Tag-Builder* that can be used to
+baseclass: the ``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``.
+This ViewHelper provides a *Tag-Builder* that can be used to
 create tags in a simple way. It takes care about the syntactical correct
 creation of the tag and escapes for example single and double quote in
 attributes.

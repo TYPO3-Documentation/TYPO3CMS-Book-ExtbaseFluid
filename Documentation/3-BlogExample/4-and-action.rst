@@ -15,36 +15,39 @@ short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
 shortened version of the :class:`BlogController`::
 
-    class Tx_BlogExample_Controller_BlogController
-          extends Tx_Extbase_MVC_Controller_ActionController {
+    <?php
+    namespace \MyVendor\BlogExample\Controller;
+
+    class BlogController
+          extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
         public function indexAction() {
             $this->view->assign('blogs', $this->blogRepository->findAll());
         }
 
-        public function newAction(Tx_BlogExample_Domain_Model_Blog $newBlog = NULL) {
+        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL) {
             $this->view->assign('newBlog', $newBlog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function createAction(Tx_BlogExample_Domain_Model_Blog $newBlog) {
+        public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog) {
             $this->blogRepository->add($newBlog);
             $this->redirect('index');
         }
 
-        public function editAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+        public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
             $this->view->assign('blog', $blog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function updateAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
             $this->blogRepository->update($blog);
             // this does currently not work, use $this->blogRepository->add($blog); instead
             // see issue: https://forge.typo3.org/issues/76876
             $this->redirect('index');
         }
 
-        public function deleteAction(Tx_BlogExample_Domain_Model_Blog $blog) {
+        public function deleteAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
             $this->blogRepository->remove($blog);
             $this->redirect('index');
         }
@@ -85,12 +88,14 @@ change of an existing blog. The job of the
 From the request the controller can extract which action has to be
 called. The call is happening without the need to write another line of code
 in the BlogController. This does
-:class:`Tx_Extbase_MVC_Controller_ActionController`. The
+:class:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The
 BlogController "inherits" all methods from it, by deriving it form this
 class::
+    <?php
+    namespace \MyVendor\BlogExample\Controller;
 
-    class Tx_BlogExample_Controller_BlogController extends
-        Tx_Extbase_MVC_Controller_ActionController {...}
+    class BlogController extends
+        \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {...}
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
@@ -99,7 +104,7 @@ will get a standard action; in our case the
 (as shown above), which looks more detailled like this::
 
     public function indexAction() {
-        $blogRepository = t3lib_div::makeInstance('Tx_BlogExample_Domain_Repository_BlogRepository');
+        $blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
         $allAvailableBlogs = $blogRepository->findAll();
         $this->view->assign('blogs', $allAvailableBlogs);
         $content = $this->view->render();

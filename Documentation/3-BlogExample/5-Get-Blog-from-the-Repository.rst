@@ -7,14 +7,15 @@ Lets take a look into the ``BlogRepository`` and travel into the inner core of
 our little action island.
 
 ::
+	<?php
+	namespace \MyVendor\BlogExample\Domain\Repository;
 
-	class Tx_BlogExample_Domain_Repository_BlogRepository
-		extends Tx_Extbase_Persistence_Repository {
+	class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 The code is not shortened. The ``BlogRepository`` simply does not have any own
 code since all methods which are used very often are already implemented in the
-parent class :class:`Tx_Extbase_Persistence_Repository`. These functions are also
+parent class :class:`\TYPO3\CMS\Extbase\Persistence\Repository`. These functions are also
 available in all child classes. We call the method ``findAll()``, to retrieve all
 blog objects.
 

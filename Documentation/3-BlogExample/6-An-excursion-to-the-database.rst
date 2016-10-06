@@ -11,7 +11,7 @@ that extbase will take care about this you can skip this trip (chapter), or come
 back later. You will receive a free travel coupon then.
 
 The ``BlogRepository`` creates a ``Query`` object with the class
-:class:`Tx_Extbase_Persistence_Query`, which is specialised for ``Blog`` objects, and
+:class:`\TYPO3\CMS\Extbase\Persistence\Generic\Query`, which is specialised for ``Blog`` objects, and
 executes the query (``$query->execute()``). The ``Query`` object is mostly abstracted
 from the physical storage - normally a relational database. It does not contain
 any information of how something is searched for it only contains what is

@@ -27,7 +27,7 @@ thus looks like this:
 ``public function indexAction() {``
 
 ``$this->view->assign('organizations',
-$this->organizationRepository->findByStates(t3lib_div::intExplode(',',$this->settings['allowedStates'])));``
+$this->organizationRepository->findByStates(GeneralUtility::intExplode(',',$this->settings['allowedStates'])));``
 
 ``...``
 
@@ -38,7 +38,7 @@ Method :class:`findByStates()`, which we do not further
 investigate here (see more in chapter 6, section "Implement individual
 database queries"). The Method expects an array containing the allowed
 states. We generate it from the comma seperated list using the TYPO3 API
-function :class:`t3lib_div::intExplode()`. We then pass on the
+function :class:`GeneralUtility::intExplode()`. We then pass on the
 returned choice of organizations to the view, just as we are used to
 do.
 

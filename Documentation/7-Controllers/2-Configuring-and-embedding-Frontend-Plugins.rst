@@ -41,7 +41,7 @@ plugin name, Extbase can assign the configuration to the appropriate plugin.
 The third argument is an array which contains all controller-action combinations
 which the plugin is authorized to execute. The specification array('Offer' =>
 'index') authorizes the plugin to perform the method indexAction() in
-Tx_SjrOffers_Controller_OfferController. Be aware that the name of the
+\MyVendor\SjrOffers\Controller\OfferController. Be aware that the name of the
 controller is writen without the suffix Controller and the name of the action
 method without the suffix Action.
 

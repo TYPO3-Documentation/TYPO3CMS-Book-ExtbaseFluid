@@ -6,7 +6,7 @@ Make Products Persistent
 ========================
 
 From the class
-:class:`Tx_Inventory_Domain_Model_Product`, now we already can
+:class:`\MyVendor\Inventory\Domain\Model\Product`, now we already can
 generate instances – therefore concrete products with individual properties
 – at script run time. These are available however only in volatile form in
 the memory and are deleted by PHP after the page was produced completely by TYPO3.
@@ -109,7 +109,7 @@ appropriate arranged.
 		'0' => array('showitem' => 'name, description, quantity')
 	)
 	);
-	
+
 
 After we installed the Extension, we can create our first products in the
 backend. Like shown in image 4-2, we create a sys folder that takes the products (see 1 in figure 4-2).
@@ -133,18 +133,21 @@ world, is completely designed with this.
 
 In order to access the objects created in the backend, we create
 a Repository for the products. The
-``Tx_Inventory_Domain_Repository_ProductRepository`` is an
+``\MyVendor\Inventory\Domain\Repository\ProductRepository`` is an
 object, in that the products are discarded. We can request a Repository to find all (or
 certain) products and deliver it to us. The Repository class is very short
 in our case::
 
 	<?php
-	class Tx_Inventory_Domain_Repository_ProductRepository
-	extends Tx_Extbase_Persistence_Repository {}
-	
+	namespace \MyVendor\Inventory\Domain\Repository\;
+
+	use \TYPO3\CMS\Extbase\Persistence\Repository;
+
+	class ProductRepository extends Repository {}
+
 
 Our ``ProductRepository`` must be derived by
-``Tx_Extbase_Persistence_Repository`` and inherits by this all methods. It can
+``\TYPO3\CMS\Extbase\Persistence\Repository`` and inherits by this all methods. It can
 remain empty therefore in our simple example. We put the class file
 :file:`ProductRepository.php` into the directory :file:`EXT:inventory/Classes/Domain/Repository/`.
 

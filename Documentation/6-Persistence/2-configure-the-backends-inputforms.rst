@@ -641,8 +641,8 @@ contains the following stuff::
 		'enablecolumns' => array(
 			'disabled'	=> 'hidden'
 		),
-		'dynamicConfigFile'		=> t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile'	=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_sjroffers_domain_model_organization.gif'
+		'dynamicConfigFile'		=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile'	=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_sjroffers_domain_model_organization.gif'
 		)
 	);
 
@@ -712,21 +712,24 @@ We have already introduced the Repositories in Chapter 3. They serve with
 capabilities to save and reaccess our objects. We set up such a Repository
 object for every Aggregate-Root object which are, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
-``Tx_SjrOffers_Domain_Model_Organization`` is such an Aggregate-Root object. The
+``\MyVendor\SjrOffers\Domain\Model\Organization`` is such an Aggregate-Root object. The
 Repository's class name is derived from the class name of the Aggregate-Root
 object concatenated with the suffic *Repository*. The Repository needs to extend
-the class ``Tx_Extbase_Persistence_Repository``. The class file ``Tx_
-SjrOffers_Domain_Repository_OrganizationRepository`` will be saved in the
+the class ``\TYPO3\CMS\Extbase\Persistence\Repository``. The class file ``\MyVendor\
+SjrOffers\Domain\Repository\OrganizationRepository`` will be saved in the
 directory *EXT:sjr_ offers/Classes/Domain/Repository/*. Thus the directory
 *Repository* is on the same hierarchy-level as the direcory *Model*. In our
 case, the class body remains empty because all the important functionalities are
 already generically implemented in the super-class
-``Tx_Extbase_Persistence_Repository``.
+``\TYPO3\CMS\Extbase\Persistence\Repository``.
 
 ::
-	class Tx_SjrOffers_Domain_Repository_OrganizationRepository extends Tx_Extbase_Persistence_Repository {}
+	<?php
+	namespace \MyVendor\SjrOffers\Domain\Repository;
 
-We create a ``Tx_SjrOffers_Domain_Repository_OfferRepository`` exactly the same
+	class OrganizationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {}
+
+We create a ``\MyVendor\SjrOffers\Domain\Repository\OfferRepository`` exactly the same
 way but we will later extend it with own methods for accessing offers. It's very
 likely that we have to access the other objects for categories, regions and
 update data of contact informations of certain persons independent of the offers
@@ -739,7 +742,7 @@ objects for easier access from the Frontend.
 	yourself to a minimal number of Repositories. Instead, you should define the
 	access methods within the Aggregate-Root objects as ``find`` methods.
 
-``Tx_Extbase_Persistence_Repository`` serves with the following methods which
+``\TYPO3\CMS\Extbase\Persistence\Repository`` serves with the following methods which
 are of course accessable and overwritable in the extending child derivations:
 
 
@@ -915,7 +918,7 @@ normally deactivated due to its huge effects on performance. Before calling a
 Repository's methods they need to be instantiated at first with the TYPO3-API
 method ``makeInstance()``::
 
-	$offerRepository = t3lib_div::makeInstance('Tx_SjrOffers_Domain_Repository_ OfferRepository');
+	$offerRepository = GeneralUtility::makeInstance('\MyVendor\SjrOffers\Domain\Repository\OfferRepository');
 
 .. warning::
 

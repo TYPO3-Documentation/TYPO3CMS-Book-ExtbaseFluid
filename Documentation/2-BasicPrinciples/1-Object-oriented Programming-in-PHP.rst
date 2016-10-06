@@ -589,7 +589,7 @@ more than one instance of the shipyard object:
 
 In order to have the singletons correctly created you have to use
 the static TYPO3 Method
-:class:`t3lib_div::makeInstance()`. This method gives back
+:class:`GeneralUtility::makeInstance()`. This method gives back
 - as seen in the example above - always the same object, if you request
 a singleton.
 

@@ -20,7 +20,7 @@ against a naming convention which is defined in the
 ``$viewObjectNamePattern``. The default naming convention is
 following::
 
-	Tx_@extension_View_@controller_@action@format
+	\MyVendor\@extension\View\@controller\@action@format
 
 All parts beginning with ``@`` will be replaced accordingly.
 When no class with this name can be found, the ``@format`` will be
@@ -28,22 +28,25 @@ removed from the naming convention and a matching class again searched
 for.
 
 Our PHP based view for the list view of the post controller should
-have the class name ``Tx_BlogExample_view_Post_ListJSON``, because
+have the class name ``\MyVendor\BlogExample\View\Post\ListJSON``, because
 it applies only for the format JSON. So that the class according to the
 naming convention must be implemented in the file
 *EXT:blog_example/Classes/View/Post/ListJSON.php*.
 
 Each view must implement the interface
-``Tx_Extbase_MVC_View_ViewInterface``. This consists off some
+``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. This consists off some
 initializing methods and the ``render()`` method, which is called
 by the controller for displaying the view.
 
 It is often helpful to inherit directly from
-``Tx_Extbase_MVC_View_AbstractView`` which provides default
+``\TYPO3\CMS\Extbase\Mvc\View\AbstractView`` which provides default
 initializing methods and you only have to implement the
 ``render()`` method. A minimal view would like this::
 
-	class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
+	<?php
+	namespace \MyVendor\BlogExample\View\Post;
+
+	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		public function render() {
 			return 'Hello World';
 		}
@@ -53,7 +56,10 @@ Now we have the full expression power of PHP available and we can
 implement our own output logic. For example our JSON view could look like
 this::
 
-	class Tx_BlogExample_View_Post_ListJSON extends Tx_Extbase_MVC_View_AbstractView {
+	<?php
+	namespace \MyVendor\BlogExample\View\Post;
+
+	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		public function render() {
 			$postList = $this->viewData['posts'];
 			return json_encode($postList);
@@ -88,7 +94,7 @@ view.
 If you want to control the resolving and initializing of the view
 completely, you have to rewrite the method ``resolveView()``.
 This method has to return a view that implements
-``Tx_Extbase_MVC_ViewInterface``. Sometimes it is enough to just
+``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. Sometimes it is enough to just
 overwrite the resolution of the view object name. Therefore you must
 overwrite the method ``resolveViewObjectName()``. This method
 returns the name of the PHP class which should be used as view.

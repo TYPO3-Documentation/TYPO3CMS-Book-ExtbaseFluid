@@ -82,32 +82,32 @@ data of the instances are stored and with which type they should be stored.
 ::
 
     config.tx_extbase.persistence.classes {
-        Tx_MyExtension_Domain_Model_Organization {
+        \MyVendor\MyExtension\Domain\Model\Organization {
             mapping {
                 tableName = tx_myextension_domain_model_party
-                recordType = Tx_MyExtension_Domain_Model_Organization
+                recordType = \MyVendor\MyExtension\Domain\Model\Organization
             }
             subclasses {
-                Tx_MyExtension_Domain_Model_Company = Tx_MyExtension_Domain_Model_Company
-                Tx_MyExtension_Domain_Model_ScientificInstitution = Tx_MyExtension_Domain_Model_ScientificInstitution
+                \MyVendor\MyExtension\Domain\Model\Company = \MyVendor\MyExtension\Domain\Model\Company
+                \MyVendor\MyExtension\Domain\Model\ScientificInstitution = \MyVendor\MyExtension\Domain\Model\ScientificInstitution
             }
         }
-        Tx_MyExtension_Domain_Model_Person {
+        \MyVendor\MyExtension\Domain\Model\Person {
             mapping {
                 tableName = tx_myextension_domain_model_party
-                recordType = Tx_MyExtension_Domain_Model_Person
+                recordType = \MyVendor\MyExtension\Domain\Model\Person
             }
         }
-        Tx_MyExtension_Domain_Model_Company {
+        \MyVendor\MyExtension\Domain\Model\Company {
             mapping {
                 tableName = tx_myextension_domain_model_party
-                recordType = Tx_MyExtension_Domain_Model_Company
+                recordType = \MyVendor\MyExtension\Domain\Model\Company
             }
         }
-        Tx_MyExtension_Domain_Model_ScientificInstitution {
+        \MyVendor\MyExtension\Domain\Model\ScientificInstitution {
             mapping {
                 tableName = tx_myextension_domain_model_party
-                recordType = Tx_MyExtension_Domain_Model_ScientificInstitution
+                recordType = \MyVendor\MyExtension\Domain\Model\ScientificInstitution
             }
         }
     }
@@ -138,13 +138,13 @@ including the following configuration to your TCA::
         'ctrl' => $TCA['tx_myextension_domain_model_party']['ctrl'],
         'types' => array(
             '0' => array('showitem' => 'record_type, name'),
-            'Tx_MyExtension_Domain_Model_Organization' => array('showitem' => 'record_type,
+            '\MyVendor\MyExtension\Domain\Model\Organization' => array('showitem' => 'record_type,
                 name, numberOfEmployees'),
-            'Tx_MyExtension_Domain_Model_Person' => array('showitem' => 'record_type, name,
+            '\MyVendor\MyExtension\Domain\Model\Person' => array('showitem' => 'record_type, name,
                 dateOfBirth'),
-            'Tx_MyExtension_Domain_Model_Company' => array('showitem' => 'record_type, name,
+            '\MyVendor\MyExtension\Domain\Model\Company' => array('showitem' => 'record_type, name,
                 numberOfEmployees, typeOfBusiness'),
-            'Tx_MyExtension_Domain_Model_ScientificInstitution' => array('showitem' =>
+            '\MyVendor\MyExtension\Domain\Model\ScientificInstitution' => array('showitem' =>
                 'record_type, name, numberOfEmployees, researchFocus')
         ),
         'columns' => array(
@@ -155,13 +155,13 @@ including the following configuration to your TCA::
                     'type' => 'select',
                     'items' => array(
                         array('undefined', '0'),
-                        array('Organization', 'Tx_MyExtension_Domain_Model_Organization'),
-                        array('Person', 'Tx_MyExtension_Domain_Model_Person'),
-                        array('Company', 'Tx_MyExtension_Domain_Model_Company'),
+                        array('Organization', '\MyVendor\MyExtension\Domain\Model\Organization'),
+                        array('Person', '\MyVendor\MyExtension\Domain\Model\Person'),
+                        array('Company', '\MyVendor\MyExtension\Domain\Model\Company'),
                         array('ScientificInstitution',
-                            'Tx_MyExtension_Domain_Model_ScientificInstitution')
+                            '\MyVendor\MyExtension\Domain\Model\ScientificInstitution')
                     ),
-                    'default' => 'Tx_MyExtension_Domain_Model_Person'
+                    'default' => '\MyVendor\MyExtension\Domain\Model\Person'
                 )
             ),
             ...
@@ -177,17 +177,17 @@ are displayed after a confirmation by TYPO3.
 You can access the objects via repositories as normal. In your controller the corresponding lines
 can look like this::
 
-    $companyRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_MyExtension_Domain_Repository_CompanyRepository');
+    $companyRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\MyVendor\MyExtension\Domain\Repository\CompanyRepository');
     $companies = $companyRepository->findAll();
 
 You can also find straightforward all concret classas of a super class::
 
-    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_MyExtension_Domain_Repository_OrganizationRepository');
+    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\MyVendor\MyExtension\Domain\Repository\OrganizationRepository');
     $organizations = $organizationRepository->findAll();
 
 In the result set ``$organizationRepository`` there are domain objects of the class
-``Tx_MyExtension_Domain_Model_Organization`` and all configured subclasses ``Tx_MyExtension_Domain_Model_Company``
-and ``Tx_MyExtension_Domain_Model_ScientificInstitution`` are included. The query of a super class
+``\MyVendor\MyExtension\Domain\Model\Organization`` and all configured subclasses ``\MyVendor\MyExtension\Domain\Model\Company``
+and ``\MyVendor\MyExtension\Domain\Model\ScientificInstitution`` are included. The query of a super class
 is only possible for *Single Table Inheritanca* this time. In the future this should also be possible
 for *Concrete Table Inheritance*.
 

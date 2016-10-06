@@ -56,7 +56,7 @@ property values.
 	How does extbase know that a property value has changed? Every
 	object of the domain of your extension (domain object) must enhance a
 	defined class of extbase. For the blog class this is
-	``Tx_Extbase_DomainObject_AbstractEntity``. Inside this parent
+	``\TYPO3\CMS\Extbase\DomainObject\AbstractEntity``. Inside this parent
 	class a property ``$_cleanProperties`` is defined. This property
 	is directly, after the recontruction of the object (restored from the
 	database), initialized with the unchanged property values with a call of
@@ -73,7 +73,7 @@ property values.
 	attractive to do that. In FLOW3 the "observation" of the objects is solced
 	in an other way and it is not applicable to enhance a parent class of the
 	framework. The declaration ``extends
-	Tx_Extbase_DomainObject_AbstractEntity`` can simply be removed when
+	\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`` can simply be removed when
 	you port your extension to TYPO3 v5.
 
 In our example the backend find the new post while it iterates through
