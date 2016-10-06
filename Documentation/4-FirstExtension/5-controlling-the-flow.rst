@@ -5,7 +5,7 @@ Controlling The Flow
 
 The inventory created in the backend should be shown as a list in the frontend now.
 The creation of the HTML code out of the product objects to be shown is done by the *view*.
-Extbase uses the class :class:`\TYPO3\CMS\Fluid\View\TemplateView` of the extension
+Extbase uses the class :php:`\TYPO3\CMS\Fluid\View\TemplateView` of the extension
 Fluid as default for the view.
 
 The connection between the *model* and the *view* is the *controller*. It controls the
@@ -49,7 +49,7 @@ Extbase identifies all methods that ends with ``Action`` as actions - so as litt
 
 In the first line of the ``listAction()`` the ``ProductRepository`` is instanced. The products to be
 shown we get by the method ``findAll()`` of the repository. This method is implemented in the class
-:class:`\TYPO3\CMS\Extbase\Persistence\Repository`. Which methods are also still for disposition you can
+:php:`\TYPO3\CMS\Extbase\Persistence\Repository`. Which methods are also still for disposition you can
 read in chapter 6.
 
 .. tip::

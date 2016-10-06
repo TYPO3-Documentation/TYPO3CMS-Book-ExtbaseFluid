@@ -6,7 +6,7 @@ Make Products Persistent
 ========================
 
 From the class
-:class:`\MyVendor\Inventory\Domain\Model\Product`, now we already can
+:php:`\MyVendor\Inventory\Domain\Model\Product`, now we already can
 generate instances – therefore concrete products with individual properties
 – at script run time. These are available however only in volatile form in
 the memory and are deleted by PHP after the page was produced completely by TYPO3.
