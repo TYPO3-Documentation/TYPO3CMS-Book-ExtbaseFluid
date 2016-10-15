@@ -246,14 +246,14 @@ constraint, overall.
 You can sort the result of a query by assigning one or more rules ``$query->setOrderings($orderings);``
 to the ``Query`` object. These rules are collected in an associative array. Each array element has the
 property name on which the sort is based as its key, and the search order constant as its value.
-There are two constants for the search order: ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface:ORDER_ASCENDING``
-for an ascending order, and ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface:ORDER_DESCENDING`` for a descending
+There are two constants for the search order: ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface::ORDER_ASCENDING``
+for an ascending order, and ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface::ORDER_DESCENDING`` for a descending
 order. A complete sample for specifying a sort order looks like this::
 
     $query->setOrderings(
         array(
             'organization.name' => \TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface::ORDER_ASCENDING,
-            'title' => \TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface:ORDER_ASCENDING
+            'title' => \TYPO3\CMS\Extbase\Persistence\Generic\QueryInterface::ORDER_ASCENDING
         )
     );
 
