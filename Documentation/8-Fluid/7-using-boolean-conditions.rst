@@ -87,7 +87,7 @@ inline notation, but not strings.
   have to write a ViewHelper that returns the needed string. Then you can
   compare the object accessor with the output of the ViewHelper:
 
-  ``<f:if condition="{gender}" ==
+  ``<f:if condition="{gender} ==
   {my:male()}">...</f:if>``
 
 The just shown detailed notation for comparisons and modulo
