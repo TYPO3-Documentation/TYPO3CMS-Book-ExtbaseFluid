@@ -89,11 +89,11 @@ and passed to the View for future processing. Inside of our
 :class:`OfferController` we have to make use of
 :class:`OfferRepository` in the different Actions again and
 again. For that we don't have to intantiate the Repository in each and
-every Action, extbase offers the Method
+every Action, extbase offers the method
 :class:`initializeAction()`. It can be used for tasks
 concerning multiple Actions and is called before any Action is executed.
 In the class :class:`ActionController` the body of this
-Method is empty. You can overwrite it in your own Controller though. In
+method is empty. You can overwrite it in your own Controller though. In
 our case we assign the instance of our Repository to the Class Variable
 :class:`$offerRepository`. Our Controller thus looks like
 this::
@@ -109,19 +109,19 @@ this::
         $this->view->assign('offers', $this->offerRepository->findAll());
     }
 
-:class:`ActionController` not only calls hte Method
+:class:`ActionController` not only calls the method
 :class:`initializeAction()`, which is executed before any
-Action in the Controller, but also a Method in the Form of
+Action in the Controller, but also a method in the Form of
 :class:`initialize*Foo*Action()`, which
-is called only before the Method
-:class:`*foo*Action()`. The Method for
+is called only before the method
+:class:`*foo*Action()`. The method for
 the initializing of Action is of course not only useful for preparing
 Repositories. You can also use them for integrating JavaScript libraries
 or to check if a specific FE user is logged in.
 
 .. tip::
 
-    The trick of implementing an empty Method body in the super
+    The trick of implementing an empty method body in the super
     class, which is the "filled" in the subclass is called
     *Template Pattern*.
 
@@ -130,11 +130,11 @@ or to check if a specific FE user is logged in.
 Flow Pattern "display a single Domain Object"
 --------------------------------------------------------------------------------------------------
 
-The second pattern is best put into action by a single Mehod as
+The second pattern is best put into action by a single method as
 well. We call it :class:`showAction()`. In contrast to
-:class:`indexAction` we have to to tell this Method from
+:class:`indexAction` we have to to tell this method from
 outside which Domain Object is to be displayed. In our case, the offer to
-be shown is passed to the Method as Argument::
+be shown is passed to the method as Argument::
 
     /**
      * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
@@ -145,8 +145,8 @@ be shown is passed to the Method as Argument::
         $this->view->assign('offer', $offer);
     }
 
-Ususally the display of a single Object is called by a link in
-Forntend. In our example extension it connects the list view by something
+Usually the display of a single Object is called by a link in the
+frontend. In our example extension it connects the list view by something
 like the following URL:
 
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer``
@@ -157,20 +157,20 @@ Due to the 2 Arguments
 passes the request to the :class:`OfferController`. In the
 request we find the information that the Action *show
 *is to be called. Before passing on the further processing to
-the Method :class:`showAction()`, the Controller tries to
-map the Arguments received by the URL on the arguments of the Method.
+the method :class:`showAction()`, the Controller tries to
+map the Arguments received by the URL on the arguments of the method.
 Extbase maps the arguments by their names. In our example Extbase detects,
 that the GET Argument :class:`tx_sjroffers_pi1[offer]=3
-`corresponds to the Method Argument
+`corresponds to the method argument
 :class:`$offer`:
 :class:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer
 *$offer*)`. The type of this Argument is
-fetched by Extbase from the Method signature:
+fetched by Extbase from the method signature:
 :class:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer)`. In case this so called *Type Hint
 *should not be present, or (e.g. for the types *string
 *or *int* in PHP) not possible, Extbase reads
-the type from the commentary written above the Method: :class:`@param
+the type from the commentary written above the method: :class:`@param
 *\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer`.
 
@@ -182,7 +182,7 @@ our case the incoming value is "3". Target type is the class
 interprets the incoming value as uid of the Object to be created and sends
 a request to the *Storage Backend* to find an Object
 with this uid. If the Object can be reconstructed fully valid it is passed
-to the Method as argument. Inside of the Method
+to the method as argument. Inside of the method
 :class:`showAction()` the newly created Object is passed on
 to the view, which is taking care of the HTML output as usual.
 
@@ -194,9 +194,9 @@ to the view, which is taking care of the HTML output as usual.
     also a complex Aggregate.
 
 If an Argument is identified as invalid, the already implemented
-Method :class:`errorAction()` of
-:class:`ActionController` is called instead of the Method
-:class:`showAction()`. The Method then generates a message
+method :class:`errorAction()` of
+:class:`ActionController` is called instead of the method
+:class:`showAction()`. The method then generates a message
 for the frontend user and passes the processing to the previous Action, in
 case it is given. The latter is especially useful with invalid form field
 input as you'll see in the following.
@@ -210,7 +210,7 @@ For the third Flow Pattern, the one for creating a new Domain
 Object, two steps are required: First, a form for inputting the Domain
 Data has to be shown in Frontend. Second, a new Domain Object has to be
 created (using the incoming form data) and put in the appropriate
-Repository. We're going to implement these two steps in the Methods
+Repository. We're going to implement these two steps in the methods
 :class:`newAction() `and
 :class:`createAction()`.
 
@@ -221,7 +221,7 @@ Repository. We're going to implement these two steps in the Methods
     this Flow using our example extension and focus on some further
     aspects.
 
-First the Method :class:`newAction()` is called by a
+First the method :class:`newAction()` is called by a
 Link in frontend with the following URL:
 
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer``
@@ -229,12 +229,12 @@ Link in frontend with the following URL:
 Extbase instantiates the :class:`Organization `Object
 which is mapped to the Argument :class:`$organization, `just
 as it was the case with the :class:`Offer `Object in the
-Method :class:`showAction()`. In the URL are no information
+method :class:`showAction()`. In the URL are no information
 (yet) though, which value the Argument :class:`$newOffer
 `shall have. So the default value
-(:class:`=NULL`) set in the Method signature is used. With
+(:class:`=NULL`) set in the method signature is used. With
 these Arguments, the controller passes the further processing to the
-Method :class:`newAction()`.
+method :class:`newAction()`.
 
 ::
 
@@ -476,7 +476,7 @@ Let's look at an example with the Method
 
 We ask a previously instantiated
 :class:`AccessControlService` if the administrator of the
-organization reponsible for the offer is logged in in frontend. If yes, we
+organization reponsible for the offer is logged in the frontend. If yes, we
 do update the offer. If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
