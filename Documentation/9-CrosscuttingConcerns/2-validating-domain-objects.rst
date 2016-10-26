@@ -460,7 +460,7 @@ as parameter.
 
 ::
 
-    public function updateAction((\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
         $this->blogRepository->update($blog);
     }
 
