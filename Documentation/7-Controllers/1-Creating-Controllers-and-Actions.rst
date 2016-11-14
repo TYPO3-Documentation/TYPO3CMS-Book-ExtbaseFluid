@@ -285,7 +285,7 @@ displayed with all of its offers. We therefore start a new request
 :class:`OrganizationController` using the Method
 :class:`redirect()`. The actual organization is hereby
 passed on as an argument. Inside the
-:class:`ActionCotroller` you have the following Methods for
+:class:`ActionController` you have the following Methods for
 redirecting to other Actions at your disposal:
 
 <remark>TODO: Insert Code</remark>
