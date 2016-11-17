@@ -39,7 +39,7 @@ A validator is a PHP class that has to check a certain invariant. If
 the invariant is fulfilled than the validator returns ``true``
 otherwise ``false``. In Extbase all validators have to implement
 the interface
-:class:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
 In this interface some methods are defined. The most important is called
 ``isValid($object)``. An object or value is passed over to it and
 it must return ``true`` when the object or value is valid,
@@ -47,7 +47,7 @@ otherwise it returns ``false``. There are some more methods in
 the :class:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
-:class:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
 because you get a default implemetation of the helper methods and you only
 have to implement the `isValid()` method.
 
@@ -91,7 +91,7 @@ empty. This is configued through the property ``$acceptsEmptyValues`` which is
 set to ``true`` as default.
 
 In the package
-:class:`\TYPO3\CMS\Extbase\Validation\Validator\*` Extbase offers
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\*` Extbase offers
 many validators for default requirements like the validation of emails,
 numbers or strings.
 
@@ -204,7 +204,7 @@ class using
 ``\TYPO3\CMS\Extbase\Validation\Validator\*ValidatorName*Validator``.
 Using the above given annotation ``@validate StringLength`` the
 validator
-:class:`\TYPO3\CMS\Extbase\Validation\Validator\StringLengthValidator`
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\StringLengthValidator`
 is used.
 
 When you have created your own validator to check the invariants
@@ -228,7 +228,7 @@ class name, like shown in the following example::
     }
 
 Here we validate the property ``$title`` with the
-:class:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
+:php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
 This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
 blog post is always build-on the scheme *Maintopic:
@@ -262,9 +262,9 @@ access to all object properties is possible.
 
 Important hereby is the correct naming convention. If you need a
 validator for the class
-:class:`\MyVendor\ExtbaseExample\Domain\Model\User` it must be
+:php:`\MyVendor\ExtbaseExample\Domain\Model\User` it must be
 implemented in the class
-:class:`\MyVendor\ExtbaseExample\Domain\Validator\UserValidator`.
+:php:`\MyVendor\ExtbaseExample\Domain\Validator\UserValidator`.
 The name of the validator for a model object is incidental by replacing
 the namespace ``Model`` with ``Validator`` and also
 append ``Validator``. When following the naming convention the
@@ -350,7 +350,7 @@ Therefore a slightly modified form of the ``@validate``
 annotation can be used which is set in the comment block of the
 controller action. It has the format ``@validate
 *[variablename] [validators]*``, in the example
-below it is ``$pageName`` :class:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
+below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
 
     /**
      * Creates a new page with a given name.

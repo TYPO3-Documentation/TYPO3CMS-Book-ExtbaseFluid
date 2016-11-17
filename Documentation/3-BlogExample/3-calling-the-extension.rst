@@ -50,7 +50,7 @@ The class :class:`BlogController` can be found in the
 file
 :file:`EXT:blog_example/Classes/Controller/BlogController.php`.
 The complete name of the controller is
-:class:`\MyVendor\BlogExample\Controller\BlogController`. At first
+:php:`\MyVendor\BlogExample\Controller\BlogController`. At first
 this might seem long-winded but the syntax follows a very strict convention
 (please see box "Be careful, conventions!").
 

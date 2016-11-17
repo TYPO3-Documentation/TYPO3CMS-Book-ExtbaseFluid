@@ -7,13 +7,13 @@ The Controller classes are stored in the folder <link
 linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the
 Controller is composed by the name of the Domain Model and the Suffix
 :class:`Controller`. So the Controller
-:class:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
+:php:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
 to the Aggegate Root Object
-:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the Name of the
+:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the Name of the
 Class file is :file:`OfferController.php`.
 
 The Controller class must extend the class
-:class:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
+:php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
 part of Extbase. The individual Actions are combined in seperate methods.
 The method names have to end in :class:`Action`. The body of
 :class:`OfferController` thus looks like this::
@@ -178,7 +178,7 @@ After successful assigning, the value of the incoming Argument has
 to be casted in the target type as well as checked for validity (read more
 about validation in chapter 9 in section "Validating Domain Objects"). In
 our case the incoming value is "3". Target type is the class
-:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. So Extbase
+:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. So Extbase
 interprets the incoming value as uid of the Object to be created and sends
 a request to the *Storage Backend* to find an Object
 with this uid. If the Object can be reconstructed fully valid it is passed
@@ -266,7 +266,7 @@ section "Template Creation by example". After the user filled in the data
 of the offer and submitted the form, the Method
 :class:`createAction()` is called. It expects as Arguments
 an :class:`Organization `Object and an Object of the class
-:class:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
+:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
 :class:`createAction()` is called.

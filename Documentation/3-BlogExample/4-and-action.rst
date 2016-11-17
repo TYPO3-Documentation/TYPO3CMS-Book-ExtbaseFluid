@@ -88,7 +88,7 @@ change of an existing blog. The job of the
 From the request the controller can extract which action has to be
 called. The call is happening without the need to write another line of code
 in the BlogController. This does
-:class:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The
+:php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The
 BlogController "inherits" all methods from it, by deriving it form this
 class::
     <?php

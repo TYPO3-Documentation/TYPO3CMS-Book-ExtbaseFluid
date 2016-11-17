@@ -333,7 +333,7 @@ Normally you will let your controllers inherit from `ActionController`. If you
 have special requirements that can not be realized with the `ActionController`,
 you should have a look at the controllers below.
 
-:class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ControllerInterface`
+:php:`\TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface`
     The basic interface that must be implemented by all controllers.
 
 :ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\AbstractController`
@@ -369,16 +369,16 @@ you see the most important properties of the action controller:
     fail. Default is errorAction. In general, it is not sensible to change this.
 
 `$request`
-    Request object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\RequestInterface`.
+    Request object of type :php:`\TYPO3\CMS\Extbase\Mvc\RequestInterface`.
 
 `$response`
-    Response object of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\ResponseInterface`.
+    Response object of type :php:`\TYPO3\CMS\Extbase\Mvc\ResponseInterface`.
 
 `$settings`
     Domain-specific extension settings from TypoScript (as array), see :ref:`typoscript_configuration-settings`.
 
 `$view`
-    The view used of type :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface`.
+    The view used of type :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface`.
 
 `$viewObjectNamePattern`
     If no fluid template is found for the current action, Extbase attempts to find a
@@ -517,17 +517,17 @@ Domain model
 
 All classes of the domain model must inherit from one of the following two classes:
 
-:class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractEntity`
+:php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`
     Is used if the object is an entity, i.e. possesses an identity.
 
-:class:`\\TYPO3\\CMS\\Extbase\\DomainObject\\AbstractValueObject`
+:php:`\TYPO3\CMS\Extbase\DomainObject\AbstractValueObject`
     Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
     ValueObjects are immutable.
 
 Repositories
 ------------
 
-All repositories inherit from :class:`\\TYPO3\\CMS\\Extbase\\Persistence\\Repository`. A repository is always
+All repositories inherit from :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. A repository is always
 responsible for precisely one type of domain object. The naming of the repositories is important:
 If the domain object is, for example, *Blog* (with full name `\\Ex\\BlogExample\\Domain\\Model\\Blog`),
 then the corresponding repository is named *BlogRepository* (with full name
@@ -641,7 +641,7 @@ Validation
 You can write your own validators for domain models. These must be located in
 the folder :file:`Domain/Validator/`, they must be named exactly as the corresponding
 Domain model, but with the suffix Validator and implement the interface
-:class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface`. For more details, see the
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`. For more details, see the
 following Section.
 
 Validation API
@@ -651,7 +651,7 @@ Validation API
 
 Extbase provides a generic validation system which is used in many places in Extbase. Extbase
 provides validators for common data types, but you can also write your own validators. Each
-Validator implements the :class:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface`
+Validator implements the :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`
 that defines the following methods:
 
 .. note::
@@ -670,7 +670,7 @@ that defines the following methods:
     of the method isValid().
 
 You can call Validators in your own code with the method `createValidator($validatorName,
-$validatorOptions)` in :class:`\\TYPO3\\CMS\\Extbase\\Validation\\ValidatorResolver`. Though in
+$validatorOptions)` in :php:`\TYPO3\CMS\Extbase\Validation\ValidatorResolver`. Though in
 general, this is not necessary. Validators are often used in conjunction with domain objects and
 controller actions.
 
@@ -738,7 +738,7 @@ Localization
 
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
-:class:`\\TYPO3\\CMS\\Extbase\\Utility\\LocalizationUtility` for the translation of the labels. In addition,
+:php:`\TYPO3\CMS\Extbase\Utility\LocalizationUtility` for the translation of the labels. In addition,
 there is the Fluid ViewHelper `<f:translate>`, with the help of whom you can use that
 functionality in templates.
 

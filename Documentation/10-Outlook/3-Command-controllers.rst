@@ -36,7 +36,7 @@ This following simple example meets the minimum requirements.
 Requirements are:
 
 #. Classname must match file name.
-#. Class must extend :class:`\\TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`.
+#. Class must extend :php:`\TYPO3\CMS\Extbase\Mvc\Controller\CommandController`.
 #. Method names must end with `Command`.
 
 After creation of the controller you need to register it. Add the following line to

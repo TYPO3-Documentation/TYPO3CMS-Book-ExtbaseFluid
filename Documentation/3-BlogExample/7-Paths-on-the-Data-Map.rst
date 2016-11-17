@@ -48,11 +48,11 @@ annotations which start with the @ character. The annotation::
 
 
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
-``Post`` objects of the class :class:`\MyVendor\BlogExample\Domain\Model\Post`.
+``Post`` objects of the class :php:`\MyVendor\BlogExample\Domain\Model\Post`.
 
 .. note::
 
-    The :class:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage` is a class of Extbase. This
+    The :php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage` is a class of Extbase. This
     class takes objects and ensures that an instance is unique within the
     ``ObjectStorage``. Objects within the ``ObjectStorage`` can be accessed by the
     methods ``attach()``, ``detach()`` and ``contains()`` amongst others. The

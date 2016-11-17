@@ -23,7 +23,7 @@ Preparing the tables of the Domain Objects
 
 Let's have a look at the definition of the database table which will
 aggregate the objects of the class
-:class:`\MyVendor\SjrOffers\Domain\Model\Organization`:
+:php:`\MyVendor\SjrOffers\Domain\Model\Organization`:
 
 ::
 

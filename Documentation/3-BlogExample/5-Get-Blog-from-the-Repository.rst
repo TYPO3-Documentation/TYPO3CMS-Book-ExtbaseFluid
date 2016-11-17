@@ -15,7 +15,7 @@ our little action island.
 
 The code is not shortened. The ``BlogRepository`` simply does not have any own
 code since all methods which are used very often are already implemented in the
-parent class :class:`\TYPO3\CMS\Extbase\Persistence\Repository`. These functions are also
+parent class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. These functions are also
 available in all child classes. We call the method ``findAll()``, to retrieve all
 blog objects.
 

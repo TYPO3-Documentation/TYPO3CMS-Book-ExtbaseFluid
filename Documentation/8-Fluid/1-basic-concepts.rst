@@ -174,7 +174,7 @@ Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
 ``<f:for>`` will be interpreted as a ViewHelper since it
 starts with the prefix ``f:``. This is implemented in the class
-:class:`\TYPO3\CMS\Fluid\ViewHelpers\ForViewHelper`.
+:php:`\TYPO3\CMS\Fluid\ViewHelpers\ForViewHelper`.
 
 The first part of the class name is the complete Namespace like it
 was defined earlier with ``{namespace f=TYPO3\CMS\Fluid\ViewHelpers}``.
@@ -191,7 +191,7 @@ receives the array of all blog posts with the argument
     If the name of the ViewHelper contains a single or multiple
     periods, it will be resolved as a sub package. For example, the
     ViewHelper ``f:form.textfield`` is implemented in the class
-    :class:`\TYPO3\CMS\Fluid\ViewHelpers\Form\TextfieldViewHelper`.
+    :php:`\TYPO3\CMS\Fluid\ViewHelpers\Form\TextfieldViewHelper`.
     Therefore ViewHelpers can be divided further and structured even
     more.
 
