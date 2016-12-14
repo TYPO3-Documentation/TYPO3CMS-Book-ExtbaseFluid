@@ -20,7 +20,7 @@ enables the storage of the object data of a class ``\MyVendor\MyExtension\Domain
     plugin.tx_myextension {
         persistence {
             classes {
-                \MyVendor\MyExtension\Domain\Model\Person {
+                MyVendor\MyExtension\Domain\Model\Person {
                     mapping {
                         tableName = tt_address
                         recordType = \MyVendor\MyExtension\Domain\Model\Person
