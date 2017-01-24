@@ -24,7 +24,7 @@ installed extensions are the rule. These are in the folder
 :file:`typo3conf/ext/`. Globally installed extensions are
 available to all websites using the same installation. They are stored in
 :file:`typo3/ext/`. System extensions are delivered with the
-TYPO3-distribution and are in the folder *typo3/sysext/*.
+TYPO3-distribution and are in the folder :file:`typo3/sysext/`.
 Extbase or Fluid are examples of system extensions. All three paths are
 below the installation folder of TYPO3, in which also lies the file
 index.php.
@@ -93,7 +93,8 @@ appropriate, also a certain version).
 
 The file :file:`ext_icon.gif` contains the icon of the
 extension. For this you can use any graphic stored in GIF format. It should
-not exceed a width of 18 pixels and a height of 16 pixels. The icon appears
+not exceed a width of 18 pixels and a height of 16 pixels. Or you can use a graphic in
+PNG format with a width and height of 256 pixels. The icon appears
 in the extension manager and in the extension repository (TER).
 
 After the basic structure was constructed, the extension can already
