@@ -89,7 +89,6 @@ appropriate, also a certain version).
 |	  ``)``
 | 	 ``)``
 |	``);``
-|	``?>``
 
 The file :file:`ext_icon.gif` contains the icon of the
 extension. For this you can use any graphic stored in GIF format. It should
