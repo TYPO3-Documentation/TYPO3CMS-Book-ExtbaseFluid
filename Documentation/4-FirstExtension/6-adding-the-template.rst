@@ -8,9 +8,9 @@ In Extbase frontend templates are created in a subdirectory of
 The name of the subdirectory results in the last part of the controller
 class name without the ``Controller`` suffix.
 So the class name :php:`\MyVendor\Inventory\Controller\InventoryController` results in the
-directory name *inventory*.
+directory name *Inventory*.
 
-Below the directory *Inventory* we create the file with the HTML template. The name
+Below the directory :file:`Inventory` we create the file with the HTML template. The name
 of the file results of the name of the action that is called with an added
 suffix *.html*. So the filename in our case is *list.html*.
 
