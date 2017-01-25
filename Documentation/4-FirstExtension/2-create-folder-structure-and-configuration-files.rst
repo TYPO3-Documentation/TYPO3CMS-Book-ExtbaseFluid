@@ -34,7 +34,7 @@ Then, in the folder for local extensions
 :file:`inventory`. The name of this folder
 must be written like the extension key and therefore in lower-case letters,
 and where appropriate, with underscores. On the uppermost level lie the
-folders *Classes* and *Resources*. The
+folders :file:`Classes` and :file:`Resources`. The
 folder :file:`Classes` contains all PHP
 classes, with the exception of external PHP libraries. The folder
 :file:`Resources` contains all other files
@@ -42,14 +42,14 @@ that are also processed by our extension (e.g. HTML templates) or delivered
 directly to the front end (e.g. icons,javascript). Within the folder
 :file:`Classes` are the folders
 :file:`Controller` and
-*Domain*. In our example, the folder
-*Controller* contains only one class that will control
+:file:`Domain`. In our example, the folder
+:file:`Controller` contains only one class that will control
 the entire process of listing creation later. The folder
 *Domain* again contains the two folders
 :file:`Model` and
 :file:`Repository`. Resulting from all
 this, the folder structure within the extension folder
-*inventory/* should look as in image 4-1.
+:file:`inventory` should look as in image 4-1.
 
 .. figure:: /Images/4-FirstExtension/figure-4-1.png
 	:align: center
