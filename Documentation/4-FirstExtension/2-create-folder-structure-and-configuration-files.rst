@@ -24,7 +24,7 @@ installed extensions are the rule. These are in the folder
 :file:`typo3conf/ext/`. Globally installed extensions are
 available to all websites using the same installation. They are stored in
 :file:`typo3/ext/`. System extensions are delivered with the
-TYPO3-distribution and are in the folder *typo3/sysext/*.
+TYPO3-distribution and are in the folder :file:`typo3/sysext/`.
 Extbase or Fluid are examples of system extensions. All three paths are
 below the installation folder of TYPO3, in which also lies the file
 index.php.
@@ -34,7 +34,7 @@ Then, in the folder for local extensions
 :file:`inventory`. The name of this folder
 must be written like the extension key and therefore in lower-case letters,
 and where appropriate, with underscores. On the uppermost level lie the
-folders *Classes* and *Resources*. The
+folders :file:`Classes` and :file:`Resources`. The
 folder :file:`Classes` contains all PHP
 classes, with the exception of external PHP libraries. The folder
 :file:`Resources` contains all other files
@@ -42,14 +42,14 @@ that are also processed by our extension (e.g. HTML templates) or delivered
 directly to the front end (e.g. icons,javascript). Within the folder
 :file:`Classes` are the folders
 :file:`Controller` and
-*Domain*. In our example, the folder
-*Controller* contains only one class that will control
+:file:`Domain`. In our example, the folder
+:file:`Controller` contains only one class that will control
 the entire process of listing creation later. The folder
 *Domain* again contains the two folders
 :file:`Model` and
 :file:`Repository`. Resulting from all
 this, the folder structure within the extension folder
-*inventory/* should look as in image 4-1.
+:file:`inventory` should look as in image 4-1.
 
 .. figure:: /Images/4-FirstExtension/figure-4-1.png
 	:align: center
@@ -89,11 +89,11 @@ appropriate, also a certain version).
 |	  ``)``
 | 	 ``)``
 |	``);``
-|	``?>``
 
 The file :file:`ext_icon.gif` contains the icon of the
 extension. For this you can use any graphic stored in GIF format. It should
-not exceed a width of 18 pixels and a height of 16 pixels. The icon appears
+not exceed a width of 18 pixels and a height of 16 pixels. Or you can use a graphic in
+PNG format with a width and height of 256 pixels. The icon appears
 in the extension manager and in the extension repository (TER).
 
 After the basic structure was constructed, the extension can already
