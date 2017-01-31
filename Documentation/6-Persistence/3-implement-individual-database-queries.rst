@@ -163,7 +163,7 @@ complex queries such as::
                 $query->equals('organization', $organization),
                 $query->contains('regions', $region)
             )
-        )
+        );
         return $query->execute();
     }
 
