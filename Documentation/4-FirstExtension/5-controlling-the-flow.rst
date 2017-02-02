@@ -28,7 +28,7 @@ In our simple example the controller looks like this:
 ::
 
     <?php
-    namespace \MyVendor\Inventory\Controller\;
+    namespace \MyVendor\Inventory\Controller;
     use \TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
     use \TYPO3\CMS\Core\Utility\GeneralUtility;
     use \MyVendor\Inventory\Domain\Model\Repository\ProductRepository;
