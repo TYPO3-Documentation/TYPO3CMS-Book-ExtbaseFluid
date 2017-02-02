@@ -28,7 +28,7 @@ from the extbase class
 :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`. ::
 
     <?php
-    namespace \MyVendor\Inventory\Domain\Model\;
+    namespace \MyVendor\Inventory\Domain\Model;
 
     use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
