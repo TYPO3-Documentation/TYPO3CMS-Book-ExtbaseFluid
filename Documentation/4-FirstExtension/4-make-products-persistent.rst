@@ -139,7 +139,7 @@ certain) products and deliver it to us. The Repository class is very short
 in our case::
 
 	<?php
-	namespace \MyVendor\Inventory\Domain\Repository\;
+	namespace \MyVendor\Inventory\Domain\Repository;
 
 	use \TYPO3\CMS\Extbase\Persistence\Repository;
 
