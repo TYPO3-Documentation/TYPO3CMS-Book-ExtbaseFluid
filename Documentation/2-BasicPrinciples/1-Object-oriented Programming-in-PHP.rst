@@ -164,7 +164,7 @@ the following::
 
 	object(Ship)#1 (3) {
 
-		["name"] => NUL
+		["name"] => NULL
 
 		["coaches"] => NULL
 
@@ -271,6 +271,8 @@ constructor as Argument and then assigned to the Properties
 :class:`$coaches` and
 :class:`$name` respectively.
 
+
+<remark>TODO: Enter Code</remark>
 
 
 
