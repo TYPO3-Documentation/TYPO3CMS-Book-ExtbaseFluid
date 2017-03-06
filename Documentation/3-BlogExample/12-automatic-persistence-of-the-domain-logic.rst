@@ -22,7 +22,7 @@ objects of an object graph (aggregate). These are so called
 	the topic aggregate root you will find in the section "aggregates" in
 	chapter 2 a detailed introduction.
 
-The collection of new and deleted objectsas well as the root objects
+The collection of new and deleted objects as well as the root objects
 (in our case the ``Blog`` objects) are hand over from the
 persistence manager to the persistence backend. The backend has the task to
 manage the complete process in a controlled manner. The course is done in
@@ -31,7 +31,7 @@ the following order:
 * All new added aggregate root objects are inserted (first without
   to create the child and grandchild objects).
 * All properties of the aggregate root objects are persisted.
-* All kind objects are processed recusive in a corresponding manner.
+* All kind objects are processed recursive in a corresponding manner.
 * All removed objects were deleted.
 
 .. warning::
