@@ -48,11 +48,11 @@ operations.
 First of all, think about how the ViewHelper should be called inside
 the template: The ViewHelper is not part of the default distribution,
 therefore we need an own namespace import to use the ViewHelper. We import
-the namespace ``\MyVendor\BlogExample\ViewHelpers`` with the token
+the namespace ``MyVendor\BlogExample\ViewHelpers`` with the token
 ``blog``. Now, all tags starting with ``blog:`` are
 interpreted as ViewHelper::
 
-	``{namespace blog=\MyVendor\BlogExample\ViewHelpers}``
+	``{namespace blog=MyVendor\BlogExample\ViewHelpers}``
 
 Our ViewHelper should get the name gravatar and only get an email
 address as parameter. We will call the ViewHelper in the template as
@@ -86,7 +86,7 @@ the ViewHelper skeleton in the PHP file
 *EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php*::
 
 	<?php
-	namespace \MyVendor\BlogExample\ViewHelpers;
+	namespace MyVendor\BlogExample\ViewHelpers;
 
 	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	public function render() {
@@ -111,7 +111,7 @@ value of the method is copied directly into the complete output. If we
 enhanced our ViewHelper from above as follows::
 
 	<?php
-	namespace \MyVendor\BlogExample\ViewHelpers;
+	namespace MyVendor\BlogExample\ViewHelpers;
 
 	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 		public function render() {
@@ -121,7 +121,7 @@ enhanced our ViewHelper from above as follows::
 
 and we insert it in the template like this::
 
-	{namespace blog=\MyVendor\BlogExample\ViewHelpers}
+	{namespace blog=MyVendor\BlogExample\ViewHelpers}
 	Hello <blog:gravatar />
 
 ``Hello World`` should be displayed.
@@ -172,7 +172,7 @@ because the type of the parameter is based on this by Fluid.
 At the end we implement the output as img tag::
 
 	<?php
-	namespace \MyVendor\BlogExample\ViewHelpers;
+	namespace MyVendor\BlogExample\ViewHelpers;
 
 	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	/**
@@ -212,7 +212,7 @@ The above example could be changed in the following way and would
 function identical::
 
 	<?php
-	namespace \MyVendor\BlogExample\ViewHelpers;
+	namespace MyVendor\BlogExample\ViewHelpers;
 
 	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	/**
