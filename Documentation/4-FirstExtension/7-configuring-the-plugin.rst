@@ -80,16 +80,16 @@ The next call of the page, with the plugin on it, shows the inventory as a table
 
 With this the first little Extbase extension is finished. The example was intentional held simple.
 It illustrate the important steps and the conventions we have to observe.
-For a full-grown extension there are some ingedients missing:
+For a full-grown extension there are some ingredients missing:
 
 * Real domain models have a high complexity. (Products for example have different prices and are
   assigned to product categories.)
 
 * Multiple different views have to be generated (single view, list view with search and so on).
 
-* The user of the web site should be interact with the data by different modes (edit, create, sort and so on).
+* The user of the web site should interact with the data by different modes (edit, create, sort and so on).
 
-* Input from the web sie user has to check (validate) for consistence.
+* Input from the web site user has to check (validate) for consistence.
 
 The sample extension we show from chapter 5 on, is significant multifaceted.
 
