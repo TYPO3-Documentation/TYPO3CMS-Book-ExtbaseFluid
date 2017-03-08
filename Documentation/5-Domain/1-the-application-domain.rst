@@ -7,7 +7,7 @@ The main difference to the common approach to develop an extension is
 the concentration to the domain of the client - in our case to the domain of
 the offer management inside the Stadtjugendrings Stuttgart. First the
 essential core terms are to be extracted with which the employees of the
-Stadtjugendring are interact daily. Terms of the domain of the content
+Stadtjugendring interact daily. Terms of the domain of the content
 management system (e.g. "list view" or "search") are not playing roles by
 this. After a first project meeting with the contact persons of the SJR
 following characteristics were defined:
@@ -17,7 +17,7 @@ Stadtjugendring</remark>
 
 * Every member organization can edit their contact data via the front end.
 * Every member organization can add, edit and delete their offers.
-  The offers can searched by the users and filterd by several criteria.Filter criteria are specially:
+  The offers can searched by the users and filterd by several criteria. Filter criteria are specially:
 
   the duration of validity of the offer
 
@@ -67,14 +67,14 @@ Here is an excerpt of the list:
 * "An organization can be assigned with multiple contact persons."
 * "An offer can be assigned with a contact person. The contact
   persons of the organization are shown as selection."
-* "Is there an offfer without a contact person, the main contact
+* "Is there an offer without a contact person, the main contact
   of the organization is mentioned."
 * "An offer can show different attendance fees (e.g. for member
   and non member)."
 
 The terms and rules are taken in relationship now. From the
-past thoughts a first draft of the domain is made, wich you can see in
-figure 5-2. Every rectangle emblematize an objects of the domain.The lower
+past thoughts a first draft of the domain is made, which you can see in
+figure 5-2. Every rectangle emblematize an object of the domain.The lower
 half of the bin shows an extract of its properties. Properties in
 *italic* writing of a parent object are holding
 references to the child objects. The chaining lines with an arrow point to
@@ -144,7 +144,7 @@ three domain objects succeed these common property from a domain object
 
 Our domain model has reached a certain level of maturity. Of course
 there is certain space for more optimization. The risk exists, that we lose
-in the details, whichwill be irrelevant in a later revision. We suggest that
+in the details, which will be irrelevant in a later revision. We suggest that
 you first implement a basic model and than - with additional knowledge of
 the yet unknown details of the model - improve it step by step. Lets start
 with our first lines of code.
