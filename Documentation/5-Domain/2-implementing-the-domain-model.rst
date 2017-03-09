@@ -14,8 +14,8 @@ the code. Ultimately, this is a matter of taste. We opted for the approach from
 top to bottom.
 
 So we begin with the concept of organization. The file containing the class
-definition we put into the folder EXT: sjr_offers/Classes/Domain/Model/ and
-rename it according to the last part of the class name: Organization.php.
+definition we put into the folder :file:`EXT:sjr_offers/Classes/Domain/Model/` and
+rename it according to the last part of the class name: :php:`Organization.php`.
 
 .. note::
 	Using the abbreviation EXT: we cut off the part of the path that leads to the
@@ -58,20 +58,20 @@ First, we create the corresponding test class in the appropriate folder
 	recommend you to build the same structure as in classes. With an increasing
 	number of unit tests you will be able to remain focused.
 
-Note that our test class extends the class
-\MyVendor\SjrOffers\Domain\Model\OrganizationTest \TYPO3\CMS\Core\Tests\BaseTestCase of Extbase.
+Note that our test class :php:`\MyVendor\SjrOffers\Domain\Model\OrganizationTest` extends the class :php:`\TYPO3\CMS\Core\Tests\BaseTestCase` of Extbase.
 Among other things, this class initializes the autoloader, which makes the
-inclusion of the class files require_once() obsolete.
+inclusion of the class files `require_once()` obsolete.
 
 Remarkable is the remarkably long method name. Method names of this kind are
-tipical for Unit-Tests, because these names could be transormed into readable
+typical for Unit-Tests, because these names could be transormed into readable
 sentences. So please formulate the method name so that it describes, which
 result demonstrates a successful test. It gives you one (always current)
 documentation of the functionality of your extension. The test is not able to
-run because the appropriate class and its method get-Name() note yet exist. So
+run because the appropriate class and its method `get-Name()` note yet exist. So
 we create first a minimum trunk of the class and its methods.
 
 ::
+
 	<?php
 	namespace \MyVendor\SjrOffers\Domain\Model;
 
@@ -122,12 +122,12 @@ Only now we add just enough code that the test is successful:
 	#. After a successful test-run, go to the next code to be implemented.
 
 Currently, the name can only be set during the instantiation of the class,
-because only at this moment the Constructor __construct() is called. Because it
+because only at this moment the Constructor `__construct()` is called. Because it
 should be possible at a later moment to change the name, we introduce a public
-method setName($name) with the according test. Note also that we have slightly
+method ``setName($name)`` with the according test. Note also that we have slightly
 modified the code in the constructor. We now use instead of the direct
-$this->name = $name the respective Setter. In the comment about the definition
-of property $name,the type of property is specified. In our case the name of the
+``$this->name = $name`` the respective Setter. In the comment about the definition
+of property ``$name``, the type of property is specified. In our case the name of the
 String. Thereby our class looks like as follows:
 
 ::
@@ -155,11 +155,11 @@ String. Thereby our class looks like as follows:
 		}
 	}
 
-Now we implement step by step the class \MyVendor\SjrOffers\Domain\Model\Organization –
+Now we implement step by step the class :php:`\MyVendor\SjrOffers\Domain\Model\Organization` –
 always protected by our tests. Here we meet the requirement that there can be
 multiple contact persons. We want to keep ready in the capacity of contacts. So
-we set there a \TYPO3\CMS\Extbase\Persistence\ObjectStorage, which later takes the
-instances of the class \MyVendor\SjrOffers\Domain\Model\Person (or more precisely, the
+we set there a :php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage`, which later takes the
+instances of the class :php:`\MyVendor\SjrOffers\Domain\Model\Person` (or more precisely, the
 references to instances).
 
 But the test at first:
@@ -177,7 +177,7 @@ But the test at first:
 	}
 
 The contact person should be an instance of the class
-\MyVendor\SjrOffers\Domain\Model\Person. Since this class does not exist, one could
+:php:`\MyVendor\SjrOffers\Domain\Model\Person`. Since this class does not exist, one could
 make the next working to implement them. Thus we would probably get bogged down
 and jump from one class to the other. When writing unit tests can be upheld in
 so-called Mocks back. A mock is an object that can behave as if it were another.
@@ -198,9 +198,9 @@ example:
 		$this->assertTrue($organization->getContacts()->contains($mockContact));
 	}
 
-The variable $mockContact contains the object, which behaves like an instance of
-the class \MyVendor\SjrOffers\Domain\Model\Person. Because of this we can now use the
-two methods addContact() and implement getContacts ():
+The variable ``$mockContact`` contains the object, which behaves like an instance of
+the class :php:`\MyVendor\SjrOffers\Domain\Model\Person`. Because of this we can now use the
+two methods `addContact()` and implement `getContacts()`:
 
 ::
 
@@ -228,17 +228,17 @@ two methods addContact() and implement getContacts ():
 		return clone $this->contacts;
 	}
 
-The comment about the definition of property is $contacts of crucial importance.
+The comment about the definition of property is ``$contacts`` of crucial importance.
 Extbase "reads" the comment and concludes of it, that an ObjectStorage should be
 created and from which class the objects should which are in it included (also
 see chapter 3). Omission of this information would lead to a PHP exception:
 »Could not determine the type of the contained objects«.
 
 Another special feature is the key word clone. With clone the method
-getContacts()  clones the ObjectStorage before returning to the caller. Cloning
-causes that the objects are copied within the ObjectStorageand the reference to
+`getContacts()` clones the ObjectStorage before returning to the caller. Cloning
+causes that the objects are copied within the ObjectStorage and the reference to
 the original contacts is deleted. This is necessary because the caller does not
-know that it gets delivered a ObjectStorage instead of a PHP array. Would the
+know that it gets delivered an ObjectStorage instead of a PHP array. Would the
 caller manipulate now the containing objects without using the keyword clone, he
 would change the original data by accident.
 
@@ -291,11 +291,11 @@ and m:n relationships the add and remove methods are added.
 	addContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
 	removeContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
 
-Be careful about the subtle differences here. The methods and setContacts
-getContacts refer simultaneously to all contacts. They expect and hence provide
-an ObjectStorage. The methods addContact and removeContact refer to a single
+Be careful about the subtle differences here. The methods `setContacts()` and
+`getContacts()` refer simultaneously to all contacts. They expect and hence provide
+an ObjectStorage. The methods `addContact()` and `removeContact()` refer to a single
 Contact-Object that is added to the list or removed from. To extract a single
-contact from the list, let us first bring all contacts with getContacts() and
+contact from the list, let us first bring all contacts with `getContacts()` and
 then draw on the methods of the ObjectStorage to individual contacts.
 
 The property offers, we proceed to the equivalent property contacts. The
@@ -344,7 +344,7 @@ supported annotations, see the index.
 So far, the impression may arise that domain models consist only of setters and
 getters. The domain objects, however, contain the main part of the business
 logic. In the following section, we add to our class
-\MyVendor\SjrOffers\Domain\Model\Organization a small part of this business logic.
+:php:`\MyVendor\SjrOffers\Domain\Model\Organization` a small part of this business logic.
 
 
 Adding business logic to the domain objects
@@ -353,8 +353,8 @@ Adding business logic to the domain objects
 Part in deciding which part of the business logic belongs to a particular domain
 model, you can be guided by what questions we can ask the domain object in the
 "real" world. We can ask the organization for the list of all contacts, for
-example. So we implement a method getAllContacts(). In contrast to the
-previously implemented method getContacts() this should deliver in addition to
+example. So we implement a method `getAllContacts()`. In contrast to the
+previously implemented method `getContacts()` this should deliver in addition to
 these direct contacts of the organization but also provide the contact for all
 services. For this the organization has to pass through all their offerings and
 add one if there is a existing contact to the result. This is especially useful
@@ -373,12 +373,12 @@ for administrators of an organization. The implementation is as follows:
 		return $contacts;
 	}
 
-The organization gets first by using getContacts() their direct contact.
-Therefore all the offers are iterated with foreach. The query is_object() is
+The organization gets first by using `getContacts()` their direct contact.
+Therefore all the offers are iterated with foreach. The query `is_object()` is
 necessary because the offer returns NULL if a contact is missing. The contact
 person of the offer will be added to the ObjectStorage as the variable
-$contacts. At this point it becomes clear how important is the keyword clone of
-the method getContacts(). If the ObjectStorage would not have been cloned, we
+``$contacts``. At this point it becomes clear how important is the keyword clone of
+the method `getContacts()`. If the ObjectStorage would not have been cloned, we
 would add all the contacts of the offers of the organization as primary
 contacts. In addition, we benefit here by a special property of the
 ObjectStorage: It takes one and the same object only once. If it had not this
@@ -387,9 +387,9 @@ once in the list.
 
 .. note::
 
-	Alternatively to the method getAllOffers() in the domain object Organization,
+	Alternatively to the method `getAllOffers()` in the domain object Organization,
 	you could have also implement a method in an OfferRepository
-	findAllContacts($organization). There it would have been possible to get the
+	``findAllContacts($organization)``. There it would have been possible to get the
 	offers by a little bit more complex query direct from the database. But we
 	follow the important basic rule of the Domain-Driven Design at this place, which
 	says that a element of an aggregate (the totality of all the terms contained in
@@ -398,8 +398,8 @@ once in the list.
 	actually a performance problem.
 
 We finish that implementation of the class from
-\MyVendor\SjrOffers\Domain\Model\Organization and turn to the class
-\MyVendor\SjrOffers\Domain\Model\Offer. The basic approach here is not fundamentally
+:php:`\MyVendor\SjrOffers\Domain\Model\Organization` and turn to the class
+:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. The basic approach here is not fundamentally
 different from the last. Let's take a look at the (shortened) class which
 emphasizes some peculiarities.
 
@@ -487,8 +487,8 @@ created mocks for the in our tests.
 Then we add the class to the necessary getters and setters. Even class
 internally it is advisable to access using setter and getter. So there (maybe
 later) the actual code is used before the setting of the property value is done.
-The title which is passed to the constructor is not set by $this-> title =
-$title, but by $this->setTitle($title).
+The title which is passed to the constructor is not set by ``$this->title =
+$title``, but by ``$this->setTitle($title)``.
 
 The objects that are kept at the properties attendanceFees, categories and
 regions, we set off in an object storage. At the three properties so we
@@ -501,7 +501,7 @@ Use inheritance in class hierarchies
 The domain objects and their relationships can be mapped generally good in a
 tree hierarchy. Such a hierarchy can be find in figure 5-2. Organisations
 include Offers. In turn, offers "contained" small fees. In our domain model is
-however, a second kind of hierarchy: the class hierarchy. In this hirarchy we
+however, a second kind of hierarchy: the class hierarchy. In this hierarchy we
 have set that the objects ageRange, dateRange and attendanceRange are a
 concretization. They inherit properties and methods. In modelling we consider
 the opposite approach: You have to search properties which are in common in that
@@ -580,11 +580,11 @@ In the class Range Constraint all common properties and methods are gathered. Th
 		}
 	}
 
-All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values ​​12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject.
+All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values 12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject.
 
 The class rank by the keyword abstract constraint was marked as abstract. Thus we prevent the Range object itself is instantiated.
 
-We have furthermore implement a method normalizeValue(). These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
+We have furthermore implement a method `normalizeValue()`. These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
 
 ::
 
@@ -613,21 +613,24 @@ We have furthermore implement a method normalizeValue(). These »adjusted« the 
  }
 
 
-The class DateRange implements furthermore the interface DateRangeInterface. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implent the NumericRangeInterface. The classes AgeRange and AttendanceRange Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
+The class :class:`DateRange` implements furthermore the interface :class:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :class:`NumericRangeInterface`. The classes :class:`AgeRange` and :class:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
 
 ::
- <?php
- namespace \MyVendor\SjrOffers\Domain\Model;
 
- class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
- implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
- }
- class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
- implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
- }
- interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {}
+ 	<?php
+ 	namespace \MyVendor\SjrOffers\Domain\Model;
 
- interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {}
+ 	class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+ 	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
+ 	}
+ 	
+	class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+ 	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
+ 	}
+	
+ 	interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {}
+
+ 	interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {}
 
 
 

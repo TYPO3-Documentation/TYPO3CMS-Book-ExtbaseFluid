@@ -115,6 +115,6 @@ values.
     class "empty" without a name must be delivered. With this Extbase offends
     against the pure doctrine because the constructor actually should
     guarantee the minimal configuration of the object
-    *Organization*. In Extbase, This however better is done
+    *Organization*. In Extbase, this however is done
     with so-called validators (see the section "validating domain objects" in
     chapter 9).

@@ -22,7 +22,7 @@ umbrella organization for about 400 youth organizations in Stuttgart, such
 as sports clubs, cultural clubs and religious communities. Among other
 things the SJR assists those societies to publish their offers in the
 Greater Stuttgart. Currently a lot of effort goes into research and involves
-high costs by printing flayer. In the future those offers will be managed by
+high costs by printing flyer. In the future those offers will be managed by
 the youth organizations via the Internet. At the same time parents, children
 and teenager should be able to find suitable offers and display them easily.
 You can download the originated extension with the extension-key
