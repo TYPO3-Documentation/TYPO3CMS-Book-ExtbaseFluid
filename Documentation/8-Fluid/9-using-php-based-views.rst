@@ -44,7 +44,7 @@ initializing methods and you only have to implement the
 ``render()`` method. A minimal view would like this::
 
 	<?php
-	namespace \MyVendor\BlogExample\View\Post;
+	namespace MyVendor\BlogExample\View\Post;
 
 	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		public function render() {
@@ -57,7 +57,7 @@ implement our own output logic. For example our JSON view could look like
 this::
 
 	<?php
-	namespace \MyVendor\BlogExample\View\Post;
+	namespace MyVendor\BlogExample\View\Post;
 
 	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
 		public function render() {
