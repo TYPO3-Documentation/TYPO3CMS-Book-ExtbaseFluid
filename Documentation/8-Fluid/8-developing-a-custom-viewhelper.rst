@@ -52,7 +52,7 @@ the namespace ``MyVendor\BlogExample\ViewHelpers`` with the token
 ``blog``. Now, all tags starting with ``blog:`` are
 interpreted as ViewHelper::
 
-	``{namespace blog=MyVendor\BlogExample\ViewHelpers}``
+	{namespace blog=MyVendor\BlogExample\ViewHelpers}
 
 Our ViewHelper should get the name gravatar and only get an email
 address as parameter. We will call the ViewHelper in the template as
