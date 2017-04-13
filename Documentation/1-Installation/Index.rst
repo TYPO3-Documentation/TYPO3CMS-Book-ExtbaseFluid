@@ -3,12 +3,12 @@
 Installation
 ============
 
-In this chapter we want to help you to set up an effecient working
+In this chapter we want to help you to set up an efficient working
 environment. There are some notes how to set up the development server to
 start with. After that there will be an explanation how to install the two
 TYPO3 Extensions *extbase* and *fluid* which this book is about. Furthermore we
 will give you some recommendations how set up your development environment
-(IDE), to have code completion und the IDE integrated Debugger right at your
+(IDE), to have code completion and the IDE integrated Debugger right at your
 hand. A list of some more TYPO3 Extensions that might be helpful to you,
 will round up this chapter - including information from which sources to get
 them.
