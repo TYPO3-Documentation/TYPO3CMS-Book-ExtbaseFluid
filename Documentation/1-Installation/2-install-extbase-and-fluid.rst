@@ -8,8 +8,8 @@ core as so called *System Extensions*. To install these,
 go to the Extension Manager and select *Install
 Extensions*. Click the little plus icon at the beginnings of the
 entries for the Extensions *extbase* and
-*fluid*. Afterwards -if neccessary- there will by a
-dialogue, adjusting the TYPO3 database a little, because Extbase will need a
+*fluid*. Afterwards -if necessary- there will by a
+dialog, adjusting the TYPO3 database a little, because Extbase will need a
 new database table to store cache informations.
 
 Now you have installed Extbase and Fluid and can use them for
@@ -35,7 +35,7 @@ Fluid.
 
 The development of Extbase and Fluid proceeds quite fast. If you miss
 certain functionalities or experiencing an issue, you should install the
-development versions of Extbase and Fluid from the software versionining
+development versions of Extbase and Fluid from the software versioning
 system Subversion. Open the *typo3conf/ext/* directory of
 your TYPO3 instance on the command line and get the development versions
 (called trunk) of Extbase and Fluid with the command line tool
