@@ -31,14 +31,14 @@ of the extension can easily be created individually.
 Extbase ensures a clear separation between different concerns, which makes maintenance a lot
 more simple thanks to modular code. Because of this modular design, the development time
 and associated costs are reduced for initial development and for adjustments. Extbase
-also lessens the burden on the developer when it comes to security-relevant and repetetive tasks:
+also lessens the burden on the developer when it comes to security-relevant and repetitive tasks:
 for example the validation of arguments, the persistence of data, and access to TypoScript and
 FlexForm settings. Developers can therefore focus on solving the problems of their clients much more efficiently.
 
 Because of the modern architecture and the usage of up-to-date software
 development paradigms, using Extbase needs different knowledge than before.
 Instead of "hacking together" an extension, programmers now must understand
-some concepts like Domain-Driven Design, whilst planning and modelling the extension
+some concepts like Domain-Driven Design, whilst planning and modeling the extension
 more thoroughly before implementation. In return, the source code
 of the extension becomes a lot more readable, more flexible and more
 extensible. Moreover, the concepts are also applicable within other

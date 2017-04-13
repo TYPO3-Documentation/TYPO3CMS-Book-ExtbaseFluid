@@ -29,7 +29,7 @@ In chapter 4, *Creating a first extension*, we show
 you a minimal extension. With this extension, data is managed through the
 TYPO3 backend and displayed in the Frontend.
 
-Chapter 5, *Modelling the Domain*, shows
+Chapter 5, *Modeling the Domain*, shows
 Domain-Driven Design with a practical example. It shows how a model can be
 planned and implemented.
 

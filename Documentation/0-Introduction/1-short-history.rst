@@ -48,7 +48,7 @@ With the background of this manifesto, the decision was made to
 re-implement two parts of TYPO3 v4:
 
 * A modern successor for the base class
-  :class:`tslib_piBase`, on which by now the majority of the
+  :php:`tslib_piBase`, on which by now the majority of the
   3600 extensions for TYPO3 builds on. From there, Extbase emerged.
 * A new template engine for outputting data, which connects
   flexibility, ease of use and extensibility: Fluid.
