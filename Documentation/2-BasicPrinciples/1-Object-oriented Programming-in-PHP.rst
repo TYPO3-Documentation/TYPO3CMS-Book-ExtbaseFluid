@@ -80,7 +80,7 @@ Classes and Objects
 Let's now take a step back and imagine there's a blueprint for
 ships in general. We now focus not on the ship but this blueprint. It is
 called a *Class*, in this case it is the Class
-:class:`ship`. In PHP this is written as follows::
+:php:`ship`. In PHP this is written as follows::
 
 	<?php
 
@@ -98,7 +98,7 @@ called a *Class*, in this case it is the Class
 	the beginning and end. We will spare them in the following examples to
 	make the listings a bit shorter.
 
-The key word :class:`class` opens the Class and
+The key word :php:`class` opens the Class and
 inside the curly brackets Properties and Methods are written. we'll now
 add these Properties and Methods::
 
@@ -121,12 +121,12 @@ add these Properties and Methods::
 
 	}
 
-Our ship now has a name (:class:`$name`), a number of coaches
-(:class:`$coaches`) and a speed (:class:`$speed`). In addition we built in a
-variable containing the status of the engine (:class:`$engineStatus`). A real
+Our ship now has a name (:php:`$name`), a number of coaches
+(:php:`$coaches`) and a speed (:php:`$speed`). In addition we built in a
+variable containing the status of the engine (:php:`$engineStatus`). A real
 ship, of course, has much more properties all important somehow – for our
 abstraction these few will be sufficient though. We'll focus on why every
-Property is marked with the key word :class:`public` further down.
+Property is marked with the key word :php:`public` further down.
 
 
 .. tip::
@@ -137,16 +137,16 @@ Property is marked with the key word :class:`public` further down.
 	case. This is a convention used in extbase (as well as FLOW3).
 
 We can also switch on the engine
-(:class:`startEngine()`), travel with the ship to the
-desired destination (:class:`moveTo($location)`) and switch
-off the engine again (:class:`stopEnginge()`). Note that all
+(:php:`startEngine()`), travel with the ship to the
+desired destination (:php:`moveTo($location)`) and switch
+off the engine again (:php:`stopEnginge()`). Note that all
 Methods are empty, i.e. we have no content at all. We'll change this in
 the following examples, of course. The line containing the Method name and (if
 available) parameters is called the Method signature or method head. Everything
 contained by the Method is called the Method body accordingly.
 
 Now we will finally create an Object from our Class. The Class
-:class:`ship` will be the blueprint and :class:`$fidelio` the concrete Object.
+:php:`ship` will be the blueprint and :php:`$fidelio` the concrete Object.
 
 ::
 
@@ -159,7 +159,7 @@ Now we will finally create an Object from our Class. The Class
 The key word *new* is used to create a concrete Object from the Class.
 This Object is also called an *Instance* and the creation
 process consequentially *Instantiation*. We can use the
-command ``var_dump()`` to closely examine the object. We'll see
+command `var_dump()` to closely examine the object. We'll see
 the following::
 
 	object(Ship)#1 (3) {
@@ -192,7 +192,7 @@ same values.
 		echo 'Objects are not identical!'
 	}
 
-In this example the output is ``Objects are not identical!``
+In this example the output is `Objects are not identical!`
 
 
 The arrow operator
@@ -224,11 +224,11 @@ $this
 
 Using the arrow operator we can now comfortably access Properties
 and Methods of an Object. But what if we want to do this from
-inside a Method, e.g. to set :class:`$speed` inside of the
-Method :class:`startEngine()`? We don't know at this
+inside a Method, e.g. to set :php:`$speed` inside of the
+Method :php:`startEngine()`? We don't know at this
 point what an object to be instantiated later will be called. So we need
 a mechanism to do this independent from the name. This is done with the
-special variable :class:`$this`.
+special variable :php:`$this`.
 
 ::
 
@@ -248,7 +248,7 @@ special variable :class:`$this`.
 
 	}
 
-With ``$this->speed`` you can access the Property
+With `$this->speed` you can access the Property
 "speed" in the actual Object independently of it's name.
 
 
@@ -263,13 +263,13 @@ guest will not be forced to sleep in emergency accommodation. So we can
 define the number of coaches right when instantiating. The processing of
 the given value is done in a Method automatically called on creation of
 an Object, the so called *Constructor*. This special
-Method always has the name :class:`__construct()` (the
+Method always has the name :php:`__construct()` (the
 first two characters are underscores).
 
 The values received from instantiating are now passed on to the
 constructor as Argument and then assigned to the Properties
-:class:`$coaches` and
-:class:`$name` respectively.
+:php:`$coaches` and
+:php:`$name` respectively.
 
 
 <remark>TODO: Enter Code</remark>
@@ -292,7 +292,7 @@ it a bit. The basis is the same. Therefore it makes no sense to completely
 redefine the new ship – instead we use the old definition and just add the
 golf course – just as the shipping company did. Technically speaking we
 extend an "old" Class definition by using the key word
-``extends``.
+`extends`.
 
 ::
 
@@ -319,21 +319,21 @@ extend an "old" Class definition by using the key word
 
 Our new luxury liner comes into existence as easy as that. We
 define that the luxury liner just extends the Definition of the class
-:class:`Ship`. The extended class (in our example
-:class:`Ship`) is called the *parent class*
+:php:`Ship`. The extended class (in our example
+:php:`Ship`) is called the *parent class*
 or *superclass*. The class formed by
-Extension (in our example :class:`LuxuryLiner`) is called the
+Extension (in our example :php:`LuxuryLiner`) is called the
 *child class* or *sub class*.
 
-The class :class:`LuxuryLiner` now contains the
-complete configuration of the base class :class:`Ship`
+The class :php:`LuxuryLiner` now contains the
+complete configuration of the base class :php:`Ship`
 (including all Properties and Methods) and defines additional Properties
 (like the amount of luxury coaches in
-:class:`$luxuryCoaches`) and additional Methods (like
-:class:`golfSimulatorStart()` and
-:class:`golfSimulatorStop()`). Inside these Methods you can
+:php:`$luxuryCoaches`) and additional Methods (like
+:php:`golfSimulatorStart()` and
+:php:`golfSimulatorStop()`). Inside these Methods you can
 again access the Properties and Methods of the parent class by using
-:class:`$this`.
+:php:`$this`.
 
 
 Overriding Properties and Methods
@@ -343,16 +343,16 @@ Inside an inherited class you can not only access Properties and
 Methods of the parent class or define new ones. It's even possible to
 override the original Properties and Methods. This can be very useful,
 e.g. for giving a Method of a child class a new functionality. Let's
-have a look at the Method :class:`startEngine()` for
+have a look at the Method :php:`startEngine()` for
 example:
 
 <remark>TODO: Enter Code</remark>
 
 Our luxury liner (of course) has an additional motor so this has
 to be switched on also if the Method
-:class:`startEngine()` is called. The child class now
+:php:`startEngine()` is called. The child class now
 overrides the Method of the parent class and so only the Method
-:class:`startEngine()` of the child class is
+:php:`startEngine()` of the child class is
 called.
 
 
@@ -362,13 +362,13 @@ Access to the parent class through "parent"
 
 Overriding a Method comes in handy but has a serious
 disadvantage. When changing the Method
-:class:`startEngine()` in the parent class, we'd also have
+:php:`startEngine()` in the parent class, we'd also have
 to change the Method in the child class. This is not only a source for
 errors but also kind of inconvenient. It would be better to just call
 the Method of the parent class and then add additional code before or
 after the call. That's exactly what can be done by using the key word
-:class:`parent`. With
-:class:`parent::methodname()` <remark>TODO: "methodname"
+:php:`parent`. With
+:php:`parent::methodname()` <remark>TODO: "methodname"
 should be "emphasis" in addition to "classname". I did not get it,
 sorry!</remark> the Method of the parent class can be accessed
 comfortably - so our former example can be re-written in a smarter
@@ -385,7 +385,7 @@ Sometimes it is useful to define "placeholder Methods" in the
 parent class which are filled in the child class. These "placeholders"
 are called *abstract Methods*. A class containing
 abstract Methods is called *abstract Class*. For our
-ship there could be a Method :class:`setupCoaches()`. Each
+ship there could be a Method :php:`setupCoaches()`. Each
 type of ship is to be handled differently for each has a proper
 configuration. So each ship must have such a Method but the concrete
 implementation is to be done separately for each ship type.
@@ -393,8 +393,8 @@ implementation is to be done separately for each ship type.
 <remark>TODO: Enter Code</remark>
 
 In the parent class we have defined only the body of the Method
-:class:`setupCoaches()`. The key word
-:class:`abstract` makes sure that the Method must be
+:php:`setupCoaches()`. The key word
+:php:`abstract` makes sure that the Method must be
 implemented in the child class. So using abstract classes we can define
 which Methods have to be present later without having to implement them
 right away.
@@ -409,18 +409,18 @@ Interfaces are a special case of abstract classes in which
 specification and implementation of functionality can be kept apart. In
 our cruise example we have some ships supporting satellite TV and some
 who don't. The ships who do have the Methods
-:class:`enableTV()` and
-:class:`disableTV()`. It is useful to define an interface
+:php:`enableTV()` and
+:php:`disableTV()`. It is useful to define an interface
 for that:
 
 <remark>TODO: Enter Code</remark>
 
-Using the key word :class:`implements` it is made
+Using the key word :php:`implements` it is made
 sure that the class implements the given interface. All Methods in the
 interface definition then have to be realized. The object
-:class:`LuxuryLiner` now is of the type
-:class:`Ship` but also of the type
-:class:`SatelliteTV`. It is also possible to implement not
+:php:`LuxuryLiner` now is of the type
+:php:`Ship` but also of the type
+:php:`SatelliteTV`. It is also possible to implement not
 only one interface class but multiple separated by comma. Of course
 interfaces can also be inherited by other interfaces.
 
@@ -438,13 +438,13 @@ visibilities exist:
 
 * *public*: Properties and Methods with this
   visibility can be accessed from outside the Object. If no Visibility
-  is defined, the behaviour of :class:`public` is
+  is defined, the behavior of :php:`public` is
   used.
 * *protected*: Properties and Methods with
-  visibility :class:`protected` can only be accessed
+  visibility :php:`protected` can only be accessed
   from inside the class and it's child classes.
 * *private*: Properties and Methods set to
-  :class:`private` can only be accessed from inside the
+  :php:`private` can only be accessed from inside the
   class itself, not from child classes.
 
 Access to Properties
@@ -455,16 +455,16 @@ properties:
 
 <remark>TODO: Enter Code</remark>
 
-The :class:`LuxuryLiner` may alter the property
-:class:`coaches`, for this is
-:class:`protected`. If it was
-:class:`private` no access from inside of the child class
+The :php:`LuxuryLiner` may alter the property
+:php:`coaches`, for this is
+:php:`protected`. If it was
+:php:`private` no access from inside of the child class
 would be possible. Access from outside of the hierarchy of inheritance
 (like in the last line of the example) is not possible. It would only be
-possible if the Property was :class:`public`.
+possible if the Property was :php:`public`.
 
 We recommend to define all Properties as
-:class:`protected`. Like that they can not be altered any
+:php:`protected`. Like that they can not be altered any
 more from outside and you should use special Methods (called getter and
 setter) to alter or read them. We'll explain the use of these Methods in
 the following section.
@@ -475,11 +475,11 @@ Access to Methods
 -------------------------------------------------
 
 All Methods the Object makes available to the outside have to be
-defined as :class:`public`. All Methods containing
-implementation details, e.g. :class:`setupCoaches()` in
+defined as :php:`public`. All Methods containing
+implementation details, e.g. :php:`setupCoaches()` in
 the above example, should be defined as
-:class:`protected`. The visibility
-:class:`private` should be used most rarely, for it
+:php:`protected`. The visibility
+:php:`private` should be used most rarely, for it
 prevents Methods from being overwritten or extended.
 
 Often you'll have to read or set Properties of an Object from
@@ -489,22 +489,22 @@ respectively *getter*. See the example.
 
 <remark>TODO: Enter Code</remark>
 
-We now have a Method :class:`setCoaches()` which
+We now have a Method :php:`setCoaches()` which
 sets the number of coaches. Furthermore it changes - depending on the
 number of coaches - the ship category. You now see the advantage: When
 using Methods to get and set the Properties, you can perform more
 complex operations, as e.g. setting of dependent Properties. This
 preserves consistency of the object. If you set
-:class:`$coaches` and
-:class:`$classification` to :class:`public`,
+:php:`$coaches` and
+:php:`$classification` to :php:`public`,
 we could set the number of cabins to 1000 and classification to
-:class:`NORMAL` - and our ship would end up being
+:php:`NORMAL` - and our ship would end up being
 inconsistent.
 
 .. tip::
 
 	In extbase you'll find getter and setter Methods all over. No
-	Property in extbase is set to :class:`public`.
+	Property in extbase is set to :php:`public`.
 
 
 Static Methods and Properties
@@ -514,8 +514,8 @@ Until now we worked with Objects instantiated from classes.
 Sometimes though it does not make sense to generate a complete object
 just to be able to use a function of a class. For this php offers the
 possibility to directly access Properties and Methods. These are then
-referred to as :class:`static Properties` respectively
-:class:`static Methods`. Take as a rule of thumb: static
+referred to as :php:`static Properties` respectively
+:php:`static Methods`. Take as a rule of thumb: static
 Properties are necessary every time two instances of a class are to have
 a common Property. Static Methods are often used for function
 libraries.
@@ -524,27 +524,27 @@ Transferred to our example this means that all ships are
 constructed by the same shipyard. In case of technical emergency all
 ships need to know the actual emergency phone number of this shipyard. So
 we save this number in a static Property
-:class:`$shipyardSupportTelephoneNumber`:
+:php:`$shipyardSupportTelephoneNumber`:
 
 <remark>TODO: Enter Code</remark>
 
 What happens here? We instantiate two different ships which both
 have a problem and do contact the shipyard. Inside the method
-:class:`reportTechnicalProblem()` you see that if you want
+:php:`reportTechnicalProblem()` you see that if you want
 to use static properties you have to trigger them with the key word
-:class:`self::`. If the emergency phone number now changes,
+:php:`self::`. If the emergency phone number now changes,
 the shipyard has to tell all the ships about the new number. For this is
 uses the *static method*
-:class:`setShipyardSupportTelephoneNumber($newNumber)`. For
+:php:`setShipyardSupportTelephoneNumber($newNumber)`. For
 the Method is static, it is called through the scheme
-:class:`classname::methodname() <remark>TODO: "methodname" should be
+:php:`classname::methodname() <remark>TODO: "methodname" should be
 "emphasis" in addition to "classname". I did not get it,
 sorry!</remark><remark></remark>`, in our case
-:class:`LuxuryLiner::setShipyardSupportTelephoneNumber(...)`.
+:php:`LuxuryLiner::setShipyardSupportTelephoneNumber(...)`.
 If you check the latter two problem reports you see that all instances of
 the class use the new phone number. So both ship objects have access to the
 same static variable
-:class:`$shipyardSupportTelephoneNumber`.
+:php:`$shipyardSupportTelephoneNumber`.
 
 
 
@@ -583,7 +583,7 @@ Singleton
 This design pattern makes sure that only one instance of a class
 can exist *at a time*. In TYPO3 you can mark a class
 as singleton by letting it implement the interface
-:class:`t3lib_Singleton`. An example: our luxury liners
+:php:`t3lib_Singleton`. An example: our luxury liners
 are all constructed in the same shipyard. So there is no sense in having
 more than one instance of the shipyard object:
 
@@ -591,7 +591,7 @@ more than one instance of the shipyard object:
 
 In order to have the singletons correctly created you have to use
 the static TYPO3 Method
-:class:`GeneralUtility::makeInstance()`. This method gives back
+:php:`GeneralUtility::makeInstance()`. This method gives back
 - as seen in the example above - always the same object, if you request
 a singleton.
 
@@ -604,7 +604,7 @@ Prototype is sort of the antagonist to Singleton. While for each
 class only one object is instantiated when using Singleton, it is
 explicitly allowed to have multiple instances when using Prototype. Each
 class not implementing the Interface
-:class:`t3lib_Singleton` automatically is of the type
+:php:`t3lib_Singleton` automatically is of the type
 *Prototype*.
 
 .. tip::

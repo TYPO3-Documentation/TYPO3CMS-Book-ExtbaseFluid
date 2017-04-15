@@ -60,13 +60,13 @@ final model. Take this time!
 	- Tackling Complexity in the Heart of Software (Addison-Wesley)", how to create
 	a meaningful model of the reality in software, so this is helpful for solving a
 	particular problem. For this he has founded the term "Domain-driven design". He
-	wrote downa the combined knowledge of many good software developers, which now
+	wrote down the combined knowledge of many good software developers, which now
 	makes it possible to address the systematic creation of models and make them
 	learnable.
 
 Extbase offers you a variety support of Domain-Driven Design. You do not have to
 care for e.g. storing data in the database. If the domain contains complex
-invariants (ie rules that must not be violated) so you can implement this
+invariants (e.g. rules that must not be violated) so you can implement this
 elegantly over so-called validators. In addition, you have fluid as a powerful
 templating engine for efficient output of data available. So you can focus on
 the problem domain, rather than have to invest much time in the output of the
@@ -98,8 +98,8 @@ the form a glossary to ensure always, that the domain expert and the developer
 understand each other correct.
 
 This so-called ubiquitous language does not apply only during communication: it
-should be found in the source code (eg class or method names) as well. This
-makes it possible to consult experts with problems withion the domain and make
+should be found in the source code (e.g. class or method names) as well. This
+makes it possible to consult experts with problems within the domain and make
 decisions with the domain expert on the basis of the source code, whether the
 business logic has been implemented correctly.
 
@@ -120,7 +120,7 @@ states? Then the object is an entity. Or is it an attribute that describes other
 things in detail? Then the object is of type value object. Hereafter we will go
 into more detail on the distinction between these two types.
 
-There are also concepts that could'nt assigned directly to be entities or value
+There are also concepts that couldn't assigned directly to be entities or value
 objects - this happens every time you speak of activities during the modeling
 phase. For this purpose the concept of services is introduced.
 
@@ -135,7 +135,7 @@ changes.
 
 The identity of an object is defined by an immutable property or a combination
 of several immutable properties of the object. At least one property must be
-identity-determining. Normally extbase takes care about automaticalles and
+identity-determining. Normally extbase takes care about automatically and
 therefore assigns a unique value to a (hidden) identity property. You can also
 select this by yourself and select which combination of properties should be
 identity-determining.
@@ -153,7 +153,7 @@ identity-determining properties that are important within your domain. How can I
 identify a human clearly? The passport number and country - taken together-
 perhaps are such a clear identification, but is often less practical: Who wants
 to give his passport number if he logs into a Web site? For an internet forum,
-it's pratical, for example, to determine the identity of the forum membere with
+it's practical, for example, to determine the identity of the forum member with
 his mail address. But if you write an e-government application, the identity
 card number would considered instead.
 
@@ -200,7 +200,7 @@ value. You can only create a new value object and eliminate the old.
 
 .. note::
 
-	Although you could provice methods for changing the internal state of a
+	Although you could provide methods for changing the internal state of a
 	value object, it is not allowed to change the state at any time. Take the
 	example of the color object, which could contain a new method "makeBrighter()".
 	This method must change the color value and give back a new color object with
@@ -223,7 +223,7 @@ are just simple values​​.
 In an application that optimizes the delivery of letters for the post office,
 addresses can be associated with other characteristics such as the name of the
 postman who delivered the mail. This name, however, belongs not to the identity
-of the object and can change over time (eg if a postman retired) - a clear
+of the object and can change over time (e.g. if a postman retired) - a clear
 reference to the usage of an entity.
 
 So you see: you can not always say clearly whether objects are entities or value
@@ -270,7 +270,7 @@ refinement of associations you can find help with the following questions:
 #. Is the many-to-many association important in the application domain?
 #. Can the association be made ​​unilaterally, as there is a main direction in
    which the objects are queried?
-#. Could the association be specified in greater detail, eg by qualifying the
+#. Could the association be specified in greater detail, e.g. by qualifying the
    individual elements more closely?
 #. Is the association for the core functionality needed at all?
 
@@ -305,7 +305,7 @@ to be an entity.
 
 Transferred to the car analogy it is like this: The service station may not
 maintain a permanent reference to the engine, but needs to remember a permanent
-reference to the car (eg by the vehicle number as the external identity). If you
+reference to the car (e.g. by the vehicle number as the external identity). If you
 require a reference to engine for your work - you can reach it via the car.
 
 Through this rules of referencing the domain will be structured further, which
@@ -355,7 +355,7 @@ mention the case where the power fails and then the objects are gone).
 
 Chapter 2.2 / page 34
 
-So we need a way to maintain only neededd objects in the memory. The active
+So we need a way to maintain only needed objects in the memory. The active
 state actually consists of several sub-states, which are shown in Figure 2-3.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-3.png
@@ -370,7 +370,7 @@ request PHP will remove the object from the memory: It will be deleted. To
 change object to be permanent, i.e. over multiple requests, it must be converted
 from a transient object to a persistent object. Repositories are responsible for
 this. These allow the permanent storage and retrieval of objects based on
-certain criterias. But how to use repositories now in practice? While you add an
+certain criteria. But how to use repositories now in practice? While you add an
 object to a repository, it will be persisted. Now the repository is responsible
 for the object. It automatically cares about the storing of an object at the end
 of a request.
@@ -474,7 +474,7 @@ title is "Domain-driven Design". If you now change a book-object (for example,
 by correcting a typo in the table of contents), these changes are saved
 automatically, and the next search operation, will return the revised object.
 
-So how can you make a repository reponsible for an object? For this the
+So how can you make a repository responsible for an object? For this the
 repository has the method add($object). If you want to commit a new object to
 the BookRepository for example, you can create it using $book = new
 Book('Extbase and Fluid'). A new book titled "Extbase and Fluid" can added to
@@ -485,7 +485,7 @@ database.
 
 For each aggregate root exactly one repository has to exists, which is
 responsible for that object type and his sub objects. By using this repository,
-you can then locate the desired aggregate root object by different criterias.
+you can then locate the desired aggregate root object by different criteria.
 Conversely, this means: In extbase you define an object type as aggregate root
 object by creating a repository for this type.
 

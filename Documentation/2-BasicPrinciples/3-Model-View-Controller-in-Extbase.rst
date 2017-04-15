@@ -119,7 +119,7 @@ The View displays the data and returns the Response to the user.(5)
 Now as the first request is completely dispatched the user has a list of all
 Blog-Posts displayed in the browser. Now the user clicks on a single Blog-Post and gets
 the complete blog post. In addition the user can add a comment to this post.
-With the help of Figure 2-6 we wan't to understand how the comment is stored.
+With the help of Figure 2-6 we want to understand how the comment is stored.
 
 When submitting the comment form the user creates a new request (1)
 containing the according controller and action. In our example the controller is
@@ -151,7 +151,7 @@ Model and usually forward to displaying actions. In the above example we first
 saw a displaying action and then a modifying action.
 
 Now we have all the Modules we need for developing our Application.
-You got to know the Object-oriented basics, modelled the application domain
+You got to know the Object-oriented basics, modeled the application domain
 with Domain Driven Design and introduced the clean separation between the
 Domain Model and the Presentation Logic
 

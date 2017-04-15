@@ -8,7 +8,7 @@ Basic Principles
 TYPO3 comes with an impressive variety of available extensions. As
 usual with Open Source Projects, these extensions have been written by
 various Programmers. Extensions are used in all sorts of projects: Some are
-written for use in small organisations or even in private, others are developed in
+written for use in small organizations or even in private, others are developed in
 big teams in the context of major projects. While a newbie, writing his
 first extension, may struggle with some first-time problems concerning TYPO3,
 many big projects are based on homemade Frameworks. So style and

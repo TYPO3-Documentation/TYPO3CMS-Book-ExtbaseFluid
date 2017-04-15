@@ -32,19 +32,19 @@ callback, if a failure is implemented into the existing functions.
 
 	Field report
 
-	When Robert Lemke and other Coredevelopers suggested to make the development for
-	FLOW3 test driven, I was sceptic. Test-Driven Development sounded like a nice
+	When Robert Lemke and other Core Developers suggested to make the development for
+	FLOW3 test driven, I was skeptic. Test-Driven Development sounded like a nice
 	concept, but I did not know how to test a framework this size reasonable. Also
 	in the internet there were often only very simple academic examples to find.
 	Until this time I had only a theoretical overview over TDD.
 	Even when I started to test, when the Fluid development started. The first test
-	were not Unit- but Integrationtests. This means they tested Fluid in the view of
+	were not Unit- but Integration tests. This means they tested Fluid in the view of
 	a user:
 	There were not parsed little Template-Snippets and compared with the
 	expectations. The first tests took there time - it felt strange to test things,
 	which were not implemented at this time. But after the first test was written
-	and this test run through succesfully, I was able to make the following
-	development cycles extremly fast. Because of Test-Driven Development I was able
+	and this test run through successfully, I was able to make the following
+	development cycles extremely fast. Because of Test-Driven Development I was able
 	during a train ride to totally reconstruct the core of Fluid. Without tests, it
 	seriously would have took me days until all would have worked at the end.
 	Especially the feedback I got at once, I really appreciate. You click on a
@@ -60,12 +60,12 @@ First test, then implementing
 ------------------------------
 
 The goal of Test-Driven Development is to make test explicit and automatic
-repeatable. The workflow is different of the classic programming, seperated into
+repeatable. The workflow is different of the classic programming, separated into
 very small iterations.
 
 Using Test-Driven Development you write your Unit tests for your features before
 you write your features theirselves. Unit tests are automatically repeatable
-tests of methods, classes und little program parts. Even during the writing of
+tests of methods, classes and little program parts. Even during the writing of
 the tests, you should seriously think about the desired functionality. When you
 are running your tests, they naturally will fail, because the tested
 functionality is not implemented yet. In the next step you will have to write
@@ -85,15 +85,15 @@ starts over.
 
 The fortune of this method is obviously.
 
-Because you are forced by writing of the tests to seperate big features into
+Because you are forced by writing of the tests to separate big features into
 smaller pieces, you have during the implementation the possibility to fully
 concentrate on the functionality you have actually to implement. Furthermore
 these change of the point of view between Developer and User of a class is the
-reason for better code which does what it should. TDD is especially usefull for
-designing of api's: Because of the testing you as developer change your
-perspective into the one of the user of the api and so you are able to identify
-inconsistences and missing functionality much faster.
-In addition Unit tests are a kind of safety net against unrequested behaviour.
+reason for better code which does what it should. TDD is especially useful for
+designing of APIs: Because of the testing you as developer change your
+perspective into the one of the user of the API and so you are able to identify
+inconsistencies and missing functionality much faster.
+In addition Unit tests are a kind of safety net against unrequested behavior.
 In the case of destroying a functionality when you are programming, you are getting through the Unit tests feedback directly and are able to correct the bug
 at once. This is the reason why the chance of regressions (producing bugs same
 time you are correcting another) is furthermore decreasing. According to some
@@ -113,7 +113,7 @@ that the name is correctly saved into the object. At first you have to install
 the phpunit-Extension from the TYPO3 Extension Repository (TER), because we will
 run the tests with this. The next step is to go to our own extension and create
 a folder "Tests/Unit/" in the main folder of the extension, if it not exists.
-This will contain later all our unit tests. Our customer objekt which we have to
+This will contain later all our unit tests. Our customer object which we have to
 create, will be situated in Classes/Domain/Model/Customer.php because it is part
 of our Domainmodel in our extension.
 
@@ -122,13 +122,13 @@ Tests/Unit/Domain/Model/CustomerTest.php. Now we create a minimal testcase with 
 
 //code
 
-All our testcasses are named after the same namescheme like normal classes and
+All our testcases are named after the same namescheme like normal classes and
 they must be extended with \TYPO3\CMS\Core\Tests\BaseTestCase. One testclass
 can contain many testmethods. These have to be public and have to contain the
 annotation @test in their PHPDOC-Block, so they can be performed. Please keep
 in mind that the name of the testmethod should make clear which expectations
-the test should fullfill. Now we can run the test for the first time. Therefore
-go to the TYPO3-Backend to the modul PHPUnit which is to find under the Admin
+the test should fulfill. Now we can run the test for the first time. Therefore
+go to the TYPO3-Backend to the module PHPUnit which is to find under the Admin
 Tools. Then you can choose your extension and click on Run all tests. Now you
 should, like it is shown in the figure 2-9, see a (yellow) bar and the Error
 message Not yet implemented. Because you will work much with the PHPUnit
@@ -137,7 +137,7 @@ for extbase and fluid and also try the different Display options. For example
 you can let show you all tests or only the failed tests.
 
 
-Now we know that our testcase is running, we can write our first usefull
+Now we know that our testcase is running, we can write our first useful
 testcase. This should test, if a name which is specified in the constructor, can
 be accessed again.
 
@@ -190,9 +190,9 @@ Test individual objects
 
 Our first example about Unit-Tests was very simple. In this section we show you
 how to test classes that depend on other classes. Suppose we have a program
-which is writting log messages and they should be send per mail. For those there
+which is writing log messages and they should be send per mail. For those there
 is a class EmailLogger that send the log data via e-mail. These class implements
-the potencial complex goal of the e-mail sending on is own, but is using another
+the potential complex goal of the e-mail sending on is own, but is using another
 class which is called EmailService. EmailService uses, depending on the used
 configuration a SMTP-Server or the mail() function of PHP. This is shown in
 the figure 2-10: The email logger class has a reference on the email service.
@@ -268,11 +268,9 @@ sense to store them in a variable. In lines 7 through 9, we instantiate the
 EmailLogger and initiate him a mock object of the EmailService.
 In line 10 passes through the truly fascinating: We expect that in the
 EmailService an unique method call is sent, with the parameters
-'logging@domain.local ',' Message Log ', $message. Once we have specified our
-expectations, we can at line 11, the Nachicht
-by email logger log. Once we have specified our expectations, we can at line 11
-let the EmailLogger log the message. At the end of the testcases our
-expectations are automatically controlled.
+`` 'logging@domain.local ',' Message Log ', $message ``. Once we have specified our 
+expectations, we can at line 11 let the EmailLogger log the message. At the end 
+of the testcases our expectations are automatically controlled.
 If the the method send was called exactly once or with the false parameter
 values, the test will fail with a detailed error message. What have we achieved?
 We have tested the EmailLogger without the use of Email-Service and still ensure
