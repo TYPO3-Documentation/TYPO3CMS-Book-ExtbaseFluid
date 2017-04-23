@@ -380,9 +380,8 @@ objects in the frontend.*
 |Editing (edit,   |Like displaying an object. The domain data is stored in the "translated"|
 |update)          |data record, in the above example in the record with the UID 42.        |
 +-----------------+------------------------------------------------------------------------+
-|Creation (new,   |Independent of the selected frontend language the domain object is first|
-|create)          |marked valid for all languages. The data is stored in a new record in   |
-|                 |whose field ``sys_language_uid`` the number -1 is inserted.             |
+|Creation (new,   |Independent of the selected frontend language the data is stored in a   |
+|create)          |new record in whose field ``sys_language_uid`` the number 0 is inserted.|
 +-----------------+-----------------------------------+------------------------------------+
 
 Extbase also supports all default functions of the localization of
