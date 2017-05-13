@@ -133,13 +133,13 @@ world, is completely designed with this.
 
 In order to access the objects created in the backend, we create
 a Repository for the products. The
-``\MyVendor\Inventory\Domain\Repository\ProductRepository`` is an
+``MyVendor\Inventory\Domain\Repository\ProductRepository`` is an
 object, in that the products are discarded. We can request a Repository to find all (or
 certain) products and deliver it to us. The Repository class is very short
 in our case::
 
 	<?php
-	namespace \MyVendor\Inventory\Domain\Repository;
+	namespace MyVendor\Inventory\Domain\Repository;
 
 	use \TYPO3\CMS\Extbase\Persistence\Repository;
 

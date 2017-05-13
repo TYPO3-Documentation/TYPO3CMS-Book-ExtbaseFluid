@@ -24,7 +24,7 @@ property *posts* within the ``Blog`` class. You can find this in the file
 :file:`EXT:blog_example/Classes/Domain/Model/blog.php`. ::
 
     <?php
-    namespace \MyVendor\BlogExample\Domain\Model;
+    namespace MyVendor\BlogExample\Domain\Model;
 
     class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         ...

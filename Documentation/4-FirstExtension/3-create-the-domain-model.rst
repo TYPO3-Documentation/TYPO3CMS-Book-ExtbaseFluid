@@ -6,7 +6,7 @@ Create The Domain Model
 The domain of our first extension is very simple. The essential
 concept of our domain is the "product". All the important properties for us
 of a product and its "behavior" are defined in a class with the name
-:php:`\MyVendor\Inventory\Domain\Model\Product`. The code of this
+:php:`MyVendor\Inventory\Domain\Model\Product`. The code of this
 class is stored in a file with the name :file:`Product.php`.
 The name of the file arises through supplements of :file:`.php`
 at the last word, to count after the last underscore, of the class name.
@@ -17,7 +17,7 @@ This class file is stored in the folder
 
     The labels of the classes always must reflect the folder structure.
     For example extbase expects the class
-    :php:`\MyVendor\MyExtension\FirstFolder\SecondFolder\File` in the
+    :php:`MyVendor\MyExtension\FirstFolder\SecondFolder\File` in the
     folder
     :file:`my_extension/Classes/FirstFolder/SecondFolder/File.php`.
     Pay attention to the corresponding upper case of the folder names.
@@ -28,7 +28,7 @@ from the extbase class
 :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`. ::
 
     <?php
-    namespace \MyVendor\Inventory\Domain\Model;
+    namespace MyVendor\Inventory\Domain\Model;
 
     use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 

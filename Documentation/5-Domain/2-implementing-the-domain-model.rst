@@ -73,7 +73,7 @@ we create first a minimum trunk of the class and its methods.
 ::
 
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	class Organization {
 		public function getName() {
@@ -91,7 +91,7 @@ Only now we add just enough code that the test is successful:
 ::
 
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	class Organization extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity{
 		/**
@@ -133,7 +133,7 @@ String. Thereby our class looks like as follows:
 ::
 
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	class Organization {
 
@@ -406,7 +406,7 @@ emphasizes some peculiarities.
 ::
 
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	class Offer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
@@ -523,7 +523,7 @@ In the class Range Constraint all common properties and methods are gathered. Th
 ::
 
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	abstract class RangeConstraint extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
@@ -589,7 +589,7 @@ We have furthermore implement a method `normalizeValue()`. These »adjusted« th
 ::
 
  	<?php
-	namespace \MyVendor\SjrOffers\Domain\Model;
+	namespace MyVendor\SjrOffers\Domain\Model;
 
 	class DateRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
  implements \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {
@@ -618,7 +618,7 @@ The class :class:`DateRange` implements furthermore the interface :class:`DateRa
 ::
 
  	<?php
- 	namespace \MyVendor\SjrOffers\Domain\Model;
+ 	namespace MyVendor\SjrOffers\Domain\Model;
 
  	class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
  	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {

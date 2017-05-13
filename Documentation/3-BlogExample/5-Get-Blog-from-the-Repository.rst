@@ -8,7 +8,7 @@ our little action island.
 
 ::
 	<?php
-	namespace \MyVendor\BlogExample\Domain\Repository;
+	namespace MyVendor\BlogExample\Domain\Repository;
 
 	class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}

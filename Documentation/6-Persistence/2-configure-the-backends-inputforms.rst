@@ -725,7 +725,7 @@ already generically implemented in the super-class
 
 ::
 	<?php
-	namespace \MyVendor\SjrOffers\Domain\Repository;
+	namespace MyVendor\SjrOffers\Domain\Repository;
 
 	class OrganizationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {}
 

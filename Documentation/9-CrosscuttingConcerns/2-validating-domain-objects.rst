@@ -178,7 +178,7 @@ checking the annotated property. Let us take a look at this using a part
 of the domain model ``Post`` of the blog example::
 
     <?php
-    namespace \MyVendor\BlogExample\Domain\Model;
+    namespace MyVendor\BlogExample\Domain\Model;
 
     class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         /**
@@ -212,7 +212,7 @@ you can use it in the ``@validate`` annotation using the full
 class name, like shown in the following example::
 
     <?php
-    namespace \MyVendor\BlogExample\Domain\Model;
+    namespace MyVendor\BlogExample\Domain\Model;
 
     class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         /**
@@ -278,7 +278,7 @@ called with any object and has to return ``false`` in such
 case::
 
     <?php
-    namespace \MyVendor\ExtbaseExample\Domain\Validator;
+    namespace MyVendor\ExtbaseExample\Domain\Validator;
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
         public function isValid($user) {
@@ -308,7 +308,7 @@ with the proper implementation - the check for equality of the
 passwords. This is made quickly::
 
     <?php
-    namespace \MyVendor\ExtbaseExample\Domain\Validator;
+    namespace MyVendor\ExtbaseExample\Domain\Validator;
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
         public function isValid($user) {

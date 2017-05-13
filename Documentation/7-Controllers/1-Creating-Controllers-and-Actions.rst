@@ -19,7 +19,7 @@ The method names have to end in :class:`Action`. The body of
 :class:`OfferController` thus looks like this::
 
     <?php
-    namespace \MyVendor\SjrOffers\Controller;
+    namespace MyVendor\SjrOffers\Controller;
 
     class OfferController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         // Action methods will be following here

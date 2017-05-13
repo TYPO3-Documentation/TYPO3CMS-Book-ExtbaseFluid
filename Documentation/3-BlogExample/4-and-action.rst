@@ -16,7 +16,7 @@ so called `Actions`. Let's have a deeper look at a
 shortened version of the :class:`BlogController`::
 
     <?php
-    namespace \MyVendor\BlogExample\Controller;
+    namespace MyVendor\BlogExample\Controller;
 
     class BlogController
           extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
@@ -92,7 +92,7 @@ in the BlogController. This does
 BlogController "inherits" all methods from it, by deriving it form this
 class::
     <?php
-    namespace \MyVendor\BlogExample\Controller;
+    namespace MyVendor\BlogExample\Controller;
 
     class BlogController extends
         \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {...}
