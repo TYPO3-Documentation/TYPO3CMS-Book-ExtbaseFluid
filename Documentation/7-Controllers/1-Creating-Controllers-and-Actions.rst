@@ -58,7 +58,7 @@ name of the Method::
 
     public function indexAction() {
 
-        $offerRepository = t3lib_div_makeInstance('\MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
+        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
 
         $offers = $offerRepository->findAll();
 
@@ -76,8 +76,9 @@ get::
 
     public function indexAction() {
 
-        $offerRepository =
-        t3lib_div_makeInstance('\MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
+        $offerRepository = 
+        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
+
 
         $this->view->assign('offers', $offerRepository->findAll());
 
@@ -102,7 +103,7 @@ this::
 
     public function initializeAction() {
         $this->offerRepository =
-        GeneralUtility::makeInstance('\MyVendor\SjrOffers\Domain\Repository\OfferRepository');
+        GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\Repository\OfferRepository');
     }
 
     public function indexAction() {
