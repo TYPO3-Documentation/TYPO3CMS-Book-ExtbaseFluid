@@ -57,8 +57,8 @@ this, the folder structure within the extension folder
 	Figure 4-1: The simplest directory structure with the basic files
 
 So that the extension can be loaded by TYPO3, we require two
-configuration files. These are discarded into the extension folder
-:file:`inventory/` on the uppermost level. You can copy and
+configuration files. These are located in the extension's folder
+:file:`inventory/` at the uppermost level. You can copy and
 adapt these files from an existing extension. Later you will let them be
 created by the kickstarter.
 
