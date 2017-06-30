@@ -21,7 +21,8 @@ The method names have to end in :class:`Action`. The body of
     <?php
     namespace MyVendor\SjrOffers\Controller;
 
-    class OfferController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+    class OfferController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+    {
         // Action methods will be following here
     }
 
@@ -45,27 +46,23 @@ generate your own Flows.
     Note that you are free to choose the method names for your
     *Actions* as you like. Nevertheless we recommend to
     stick to the names presented here, to help other Developers to find
-    their way through your Code.
+    their way through your code.
 
 
 Flow Pattern "display a list of Domain Objects"
 --------------------------------------------------------------------------------------------------
 
-The first pattern in our example fits the Action "*display
-a list of all offers*". One Action Method usually will be enough
-for implementing This. we choose `indexAction` as
-name of the Method::
+The first pattern in our example fits the action "*display
+a list of all offers*". One action method usually will be enough
+for implementing this. We choose `indexAction` as
+name of the method::
 
-    public function indexAction() {
-
-        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
-
+    public function indexAction()
+    {
+        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\RepositoryOfferRepository::class);
         $offers = $offerRepository->findAll();
-
         $this->view->assign('offers', $offers);
-
         return $this->view->render();
-
     }
 
 This can be simplified even more. As described in chapter 4 in
@@ -74,14 +71,10 @@ content. Furthermore we avoid initializing the variable
 `$offers`, which we only use once. So we
 get::
 
-    public function indexAction() {
-
-        $offerRepository = 
-        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\RepositoryOfferRepository');
-
-
+    public function indexAction()
+    {
+        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\RepositoryOfferRepository::class);
         $this->view->assign('offers', $offerRepository->findAll());
-
     }
 
 This Flow is prototypic for a task which merely has to give out
@@ -99,14 +92,18 @@ our case we assign the instance of our Repository to the Class Variable
 :class:`$offerRepository`. Our Controller thus looks like
 this::
 
+    /**
+     * @var \MyVendor\SjrOffers\Domain\Repository\OfferRepository
+     */
     protected $offerRepository;
 
-    public function initializeAction() {
-        $this->offerRepository =
-        GeneralUtility::makeInstance('MyVendor\SjrOffers\Domain\Repository\OfferRepository');
+    public function initializeAction()
+    {
+        $this->offerRepository = GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\Repository\OfferRepository::class);
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->view->assign('offers', $this->offerRepository->findAll());
     }
 
@@ -141,8 +138,8 @@ be shown is passed to the method as Argument::
      * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
      * @return string The rendered HTML string
      */
-
-    public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer) {
+    public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+    {
         $this->view->assign('offer', $offer);
     }
 
@@ -203,7 +200,6 @@ case it is given. The latter is especially useful with invalid form field
 input as you'll see in the following.
 
 
-
 Flow Pattern "creating a new Domain Object"
 --------------------------------------------------------------------------------------------------
 
@@ -245,15 +241,11 @@ method :class:`newAction()`.
      * @return string An HTML form for creating a new offer
      * @dontvalidate $newOffer
      */
-
-    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization,
-    \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = NULL) {
-
-        $this->view->assign('organization',$organization);
-
-        $this->view->assign('newOffer',$newOffer);
-
-        $this->view->assign('regions',$this->regionRepository->findAll());
+    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = NULL)
+    {
+        $this->view->assign('organization', $organization);
+        $this->view->assign('newOffer', $newOffer);
+        $this->view->assign('regions', $this->regionRepository->findAll());
     }
 
 This Action passes to the view: in
@@ -417,7 +409,6 @@ example, if you have to work with data of a form which you did not create
 yourself.
 
 
-
 Flow Pattern "Editing an existing Domain Object"
 --------------------------------------------------------------------------------------------------
 
@@ -519,14 +510,12 @@ this snippet from a template:
     the Domain of our extension. It "belongs" to the Domain of the Content
     Management System. There are Domain Services also of course, like a
     Service creating a continuous invoice number. They are usually located
-    in <link
-    linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
+    in <link linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
 
 We make use of an :class:`IfAuthenticatedViewHelper`
 to acces the :class:`AccessControlService`. The class file
 <link linkend="???">IfAuthenticatedViewHelper.php</link> is in our case
-located in <link
-linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.
+located in <link linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.
 
 <remark>TODO: Insert Code</remark>
 
@@ -537,7 +526,6 @@ opportunity to use if-else branches. It delegates the access check to the
 result, in our case a link with an edit icon is generated, which leads to
 the Method :class:`editAction()` of the
 :class:`OfferController`.
-
 
 
 Flow Pattern "Deleting a Domain Object"
@@ -607,5 +595,3 @@ The Flow inside of a Controller is triggered from outside by
 TYPO3. For extensions which generate content for the frontend, this is
 usually done by a plugin, placed on the appropriate page. How to configure
 such a plugin you'll see in the following section:
-
-
