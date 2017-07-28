@@ -310,6 +310,20 @@ this TypoScript setting.
     <https://docs.typo3.org/typo3cms/extensions/core/latest/Changelog/7.3/Feature-66111-AddTemplaterootpathsSupportToCobjectFluidtemplate.html#feature-66111-add-templaterootpaths-support-to-cobject-fluidtemplate>`_.
     We will update the documentation in the near future to reflect this new possibilities.
     In the meantime, just check out the documentation for the feature.
+    
+    .. _typoscript_configuration-mvc:
+
+mvc
+----
+
+Useful mvc settings for error handlings
+
+`mvc.callDefaultActionIfActionCantBeResolved`
+    Will cause the controller to show it's default action e.g. if the called action is not allowed by the controller
+
+`mvc.throwPageNotFoundExceptionIfActionCantBeResolved`
+    Same as above but this will cause an page not found error.
+
 
 .. _typoscript_configuration-local_lang:
 
