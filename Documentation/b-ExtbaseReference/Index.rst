@@ -311,18 +311,21 @@ this TypoScript setting.
     We will update the documentation in the near future to reflect this new possibilities.
     In the meantime, just check out the documentation for the feature.
     
-    .. _typoscript_configuration-mvc:
+
+.. _typoscript_configuration-mvc:
 
 mvc
-----
+---
 
-Useful mvc settings for error handlings
+These are useful mvc settings about error handling:
 
 `mvc.callDefaultActionIfActionCantBeResolved`
-    Will cause the controller to show it's default action e.g. if the called action is not allowed by the controller
+    Will cause the controller to show it's default action 
+    e.g. if the called action is not allowed by the controller.
 
 `mvc.throwPageNotFoundExceptionIfActionCantBeResolved`
-    Same as above but this will cause an page not found error.
+    Same as `mvc.callDefaultActionIfActionCantBeResolved` 
+    but this will raise a "page not found" error.
 
 
 .. _typoscript_configuration-local_lang:
