@@ -448,3 +448,174 @@ In any backend storage case, the call
     $offersInRegion = $query->matching($query->contains('regions', $region))->count();
 
 thus returns the count of offers of a given region.
+
+
+Implicit relation cardinality handling
+--------------------------------------
+
+Extbase support server types of cardinalities that describe the relationship
+between entities - which among these are ``RELATION_HAS_ONE`` (1:1),
+``RELATION_HAS_MANY`` (1:n) and ``RELATION_HAS_AND_BELONGS_TO_MANY`` (m:n).
+
+Using these types in individual queries, will result in invoking a ``LEFT JOIN``
+on the database layer. The following section are using the *Blog Example* to
+explain what happens under the hood in terms of database queries. The entities
+used are the following:
+
+* ``Blog.posts`` *having 1:n relation to* ``Post``
+* ``Post.author`` *having 1:1 relation to* ``Person``
+* ``Person.tags`` *having m:n relation to* ``Tag``
+* ``Person.tagsSpecial`` *having m:n relation to* ``Tag``
+
+.. note::
+
+    The table names in the following SQL-like examples have been shortened for
+    better readability. Instead of ``tx_blogexample_post`` the real table name
+    used in the **Blog Example** would be ``tx_blogexample_domain_model_post``.
+    Besides that, only the relevant query parts as mentioned, not all of them.
+
+1:1 (RELATION_HAS_ONE)
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+    $query = $postRepository->createQuery();
+    $query->matching(
+        $query->equals('author.firstname', 'Dave')
+    );
+    $posts = $query->execute();
+
+.. code-block:: sql
+
+    SELECT    tx_blogexample_post.*
+    FROM      tx_blogexample_post
+    LEFT JOIN tx_blogexample_person
+    ON        tx_blogexample_post.author = tx_blogexample_person.uid
+    WHERE     tx_blogexample_person.firstname = 'Dave';
+
+Even if the SQL-like query contains a ``LEFT JOIN``, due to the 1:1 cardinality
+this won't lead to duplicate results for ``Post`` entities.
+
+1:n (RELATION_HAS_MANY)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+    $query = $blogRepository->createQuery();
+    $query->matching(
+        $query->greaterThanOrEqual('posts.date', 1501234567)
+    );
+    $blogs = $query->execute();
+
+.. code-block:: sql
+
+    SELECT    tx_blogexample_blog.*
+    FROM      tx_blogexample_blog
+    LEFT JOIN tx_blogexample_post
+    ON        tx_blogexample_blog.uid = tx_blogexample_post.blog
+    WHERE     tx_blogexample_post.date >= 1501234567;
+
+Since there might be more ``Post`` entities belonging to a single ``Blog``
+entity it will happen that the ``LEFT JOIN`` results in having many duplicate
+``Blog`` entities in the result set.
+
+
+m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+    $query = $postRepository->createQuery();
+    $query->matching(
+        $query->logicalOr([
+            $query->equals('author.tags.name', 'typo3'),
+            $query->equals('author.tagsSpecial.name', 'typo3')
+        ])
+    );
+    $posts = $query->execute();
+
+.. code-block:: sql
+
+    SELECT    tx_blogexample_post.*
+    FROM      tx_blogexample_post
+    LEFT JOIN tx_blogexample_person
+    ON        tx_blogexample_post.author = tx_blogexample_person.uid
+    LEFT JOIN tx_blogexample_tag_mm tx_blogexample_tag_mm_1
+    ON        tx_blogexample_tag_mm_1.uid_local = tx_blogexample_person.uid
+    AND       tx_blogexample_tag_mm_1.fieldname = 'tags'
+    LEFT JOIN tx_blogexample_tag_mm tx_blogexample_tag_mm_2
+    ON        tx_blogexample_tag_mm_2.uid_local = tx_blogexample_person.uid
+    AND       tx_blogexample_tag_mm_2.fieldname = 'tags_special'
+    LEFT JOIN tx_blogexample_tag tx_blogexample_tag_1
+    ON        tx_blogexample_tag_mm_1.uid_foreign = tx_blogexample_tag_1.uid
+    LEFT JOIN tx_blogexample_tag tx_blogexample_tag_2
+    ON        tx_blogexample_tag_mm_2.uid_foreign = tx_blogexample_tag_2.uid
+    WHERE     tx_blogexample_tag_1.name = 'typo3'
+    OR        tx_blogexample_tag_2.name = 'typo3';
+
+Since the nature of a many-to-many relation is to be used by various entities,
+this also will result lots of duplicated ``Post`` entities in the result set in
+this rather complex query example.
+
+Distinct entity handling in query result set
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+
+    This section refers to functionality that has been introduced in **TYPO3 8 LTS**
+    and is valid for any later version. Releases up to and including TYPO3 7 LTS
+    are not affected.
+
++--------------------------------------------+---------------------------------------------+
+| Cardinality                                | distinct entity handling suggesed           |
++============================================+=============================================+
+| 1:1 (``RELATION_HAS_ONE``)                 | ... no ...                                  |
+|                                            | since for each left-sided entity there      |
+|                                            | is always just one right-sided entity       |
++--------------------------------------------+---------------------------------------------+
+| 1:n (``RELATION_HAS_MANY``)                | ... yes ...                                 |
+|                                            | since having more than on right-sided       |
+|                                            | entities will lead to left-sided duplicates |
++--------------------------------------------+---------------------------------------------+
+| m:n (``RELATION_HAS_AND_BELONGS_TO_MANY``) | ... yes ...                                 |
+|                                            | since having more than on right-sided       |
+|                                            | entities will lead to left-sided duplicates |
++--------------------------------------------+---------------------------------------------+
+
+Up to TYPO3 7 LTS each of the queries for all types of cardinalities mentioned
+before have been resolved to unique entities only by applying a ``SELECT DISTINCT``
+statement in the SQL-like query. However, since introducing *Doctrine DBAL* with
+TYPO3 8 LTS, ``DISTINCT`` and ``GROUP BY`` statements cannot be used without
+side-effects on all database management systems.
+
+For instance, this works fine on *MySQL*  or *MariaDB*, but does not work on
+*PostgreSQL* and *SQL Server* with the mentioned scenarios - for later mentioned
+DBMS the complete list of fields must be given in the ``SELECT`` part of the query
+(``uid, title, date, content, ...`` instead of just using the wildcard ``*``).
+
+That's the reason why ``QuerySettings`` has been extended by the ``resolveDistinctEntities``
+functionality which invokes a post-processing of retrieved entities on the application
+layer instead of the database layer. With having `resolveDistinctEntities`, Extbase
+applications in TYPO3 8 LTS and further versions behave similar to applications
+being using in TYPO3 7 LTS.
+
+The default values of this functionality for Extbase queries are the following:
+
+* if built using query-builder: `resolveDistinctEntities` is enabled per default
+* if defined using a custom statement: `resolveDistinctEntities` is disabled
+  per default to avoid side-effects
+
+However, the default behavior can be overriden by explicitly using ``QuerySettings``:
+
+.. code-block:: php
+
+    $query = $postRepository->createQuery();
+    // trigger resolving distinct entities explicitly
+    $query->getQuerySettings()->setResolveDistinctEntities(true);
+    $query->matching(
+        $query->logicalOr([
+            $query->equals('author.tags.name', 'typo3'),
+            $query->equals('author.tagsSpecial.name', 'typo3')
+        ])
+    );
+    $posts = $query->execute();
