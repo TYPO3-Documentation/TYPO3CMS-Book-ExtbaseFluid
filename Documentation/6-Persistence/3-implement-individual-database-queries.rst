@@ -454,11 +454,11 @@ Implicit relation cardinality handling
 --------------------------------------
 
 Extbase support serveral types of cardinalities that describe the relationship
-between entities - which among these are ``RELATION_HAS_ONE`` (1:1),
+between entities - among these are ``RELATION_HAS_ONE`` (1:1),
 ``RELATION_HAS_MANY`` (1:n) and ``RELATION_HAS_AND_BELONGS_TO_MANY`` (m:n).
 
 Using these types in individual queries, will result in invoking an implicit
-``LEFT JOIN`` on the database layer. The following section are using the
+``LEFT JOIN`` on the database layer. The following sections are using the
 *Blog Example* to explain what happens under the hood in terms of database
 queries. The used entities are the following:
 
@@ -516,7 +516,7 @@ this won't lead to duplicate results for ``Post`` entities.
     WHERE     tx_blogexample_post.date >= 1501234567;
 
 Since there might be more ``Post`` entities belonging to a single ``Blog``
-entity it will happen that the ``LEFT JOIN`` results in having many duplicate
+entity it could happen that the ``LEFT JOIN`` results in having many duplicate
 ``Blog`` entities in the result set.
 
 
@@ -554,7 +554,7 @@ m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
     OR        tx_blogexample_tag_2.name = 'typo3';
 
 Since the nature of a many-to-many relation is to be used by various entities,
-this also will result lots of duplicated ``Post`` entities in the result set in
+this will also result lots of duplicated ``Post`` entities in the result set in
 this rather complex query example.
 
 Distinct entity handling in query result set
@@ -568,12 +568,12 @@ Distinct entity handling in query result set
 |                                            | is always just one right-sided entity       |
 +--------------------------------------------+---------------------------------------------+
 | 1:n (``RELATION_HAS_MANY``)                | ... yes ...                                 |
-|                                            | since having more than on right-sided       |
-|                                            | entities will lead to left-sided duplicates |
+|                                            | since having more than one right-sided      |
+|                                            | entity will lead to left-sided duplicates   |
 +--------------------------------------------+---------------------------------------------+
 | m:n (``RELATION_HAS_AND_BELONGS_TO_MANY``) | ... yes ...                                 |
-|                                            | since having more than on right-sided       |
-|                                            | entities will lead to left-sided duplicates |
+|                                            | since having more than one right-sided      |
+|                                            | entity will lead to left-sided duplicates   |
 +--------------------------------------------+---------------------------------------------+
 
 For each of the above mentioned scenarios when having distinct entity handling
