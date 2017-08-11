@@ -453,14 +453,14 @@ thus returns the count of offers of a given region.
 Implicit relation cardinality handling
 --------------------------------------
 
-Extbase support server types of cardinalities that describe the relationship
+Extbase support serveral types of cardinalities that describe the relationship
 between entities - which among these are ``RELATION_HAS_ONE`` (1:1),
 ``RELATION_HAS_MANY`` (1:n) and ``RELATION_HAS_AND_BELONGS_TO_MANY`` (m:n).
 
-Using these types in individual queries, will result in invoking a ``LEFT JOIN``
-on the database layer. The following section are using the *Blog Example* to
-explain what happens under the hood in terms of database queries. The entities
-used are the following:
+Using these types in individual queries, will result in invoking an implicit
+``LEFT JOIN`` on the database layer. The following section are using the
+*Blog Example* to explain what happens under the hood in terms of database
+queries. The used entities are the following:
 
 * ``Blog.posts`` *having 1:n relation to* ``Post``
 * ``Post.author`` *having 1:1 relation to* ``Person``
@@ -509,7 +509,7 @@ this won't lead to duplicate results for ``Post`` entities.
 
 .. code-block:: sql
 
-    SELECT    tx_blogexample_blog.*
+    SELECT    DISTINCT tx_blogexample_blog.*
     FROM      tx_blogexample_blog
     LEFT JOIN tx_blogexample_post
     ON        tx_blogexample_blog.uid = tx_blogexample_post.blog
@@ -536,7 +536,7 @@ m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
 
 .. code-block:: sql
 
-    SELECT    tx_blogexample_post.*
+    SELECT    DISTINCT tx_blogexample_post.*
     FROM      tx_blogexample_post
     LEFT JOIN tx_blogexample_person
     ON        tx_blogexample_post.author = tx_blogexample_person.uid
@@ -560,14 +560,8 @@ this rather complex query example.
 Distinct entity handling in query result set
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
-
-    This section refers to functionality that has been introduced in **TYPO3 8 LTS**
-    and is valid for any later version. Releases up to and including TYPO3 7 LTS
-    are not affected.
-
 +--------------------------------------------+---------------------------------------------+
-| Cardinality                                | distinct entity handling suggesed           |
+| Cardinality                                | distinct entity handling suggested          |
 +============================================+=============================================+
 | 1:1 (``RELATION_HAS_ONE``)                 | ... no ...                                  |
 |                                            | since for each left-sided entity there      |
@@ -582,40 +576,8 @@ Distinct entity handling in query result set
 |                                            | entities will lead to left-sided duplicates |
 +--------------------------------------------+---------------------------------------------+
 
-Up to TYPO3 7 LTS each of the queries for all types of cardinalities mentioned
-before have been resolved to unique entities only by applying a ``SELECT DISTINCT``
-statement in the SQL-like query. However, since introducing *Doctrine DBAL* with
-TYPO3 8 LTS, ``DISTINCT`` and ``GROUP BY`` statements cannot be used without
-side-effects on all database management systems.
-
-For instance, this works fine on *MySQL*  or *MariaDB*, but does not work on
-*PostgreSQL* and *SQL Server* with the mentioned scenarios - for later mentioned
-DBMS the complete list of fields must be given in the ``SELECT`` part of the query
-(``uid, title, date, content, ...`` instead of just using the wildcard ``*``).
-
-That's the reason why ``QuerySettings`` has been extended by the ``resolveDistinctEntities``
-functionality which invokes a post-processing of retrieved entities on the application
-layer instead of the database layer. With having `resolveDistinctEntities`, Extbase
-applications in TYPO3 8 LTS and further versions behave similar to applications
-being using in TYPO3 7 LTS.
-
-The default values of this functionality for Extbase queries are the following:
-
-* if built using query-builder: `resolveDistinctEntities` is enabled per default
-* if defined using a custom statement: `resolveDistinctEntities` is disabled
-  per default to avoid side-effects
-
-However, the default behavior can be overriden by explicitly using ``QuerySettings``:
-
-.. code-block:: php
-
-    $query = $postRepository->createQuery();
-    // trigger resolving distinct entities explicitly
-    $query->getQuerySettings()->setResolveDistinctEntities(true);
-    $query->matching(
-        $query->logicalOr([
-            $query->equals('author.tags.name', 'typo3'),
-            $query->equals('author.tagsSpecial.name', 'typo3')
-        ])
-    );
-    $posts = $query->execute();
+For each of the above mentioned scenarios when having distinct entity handling
+is suggested, an implicit ``SELECT DISTINCT`` statement is used instead of the
+regular plain ``SELECT`` statement. This does also apply to counting result
+sets, where ``COUNT(DISTINCT <table-name>.uid)`` is used instead of a plain
+``COUNT(*)`` statement.
