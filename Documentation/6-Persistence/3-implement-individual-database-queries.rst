@@ -448,3 +448,133 @@ In any backend storage case, the call
     $offersInRegion = $query->matching($query->contains('regions', $region))->count();
 
 thus returns the count of offers of a given region.
+
+
+Implicit relation cardinality handling
+--------------------------------------
+
+Extbase supports serveral types of cardinalities that describe the relationship
+between entities - among these are RELATION_HAS_ONE (1:1),
+RELATION_HAS_MANY (1:n) and RELATION_HAS_AND_BELONGS_TO_MANY (m:n).
+
+Using these types in individual queries will result in invoking an implicit
+`LEFT JOIN` on the database layer. The following sections are using the
+:ref:`Blog Example <The-Blog-Example>` to explain what happens under the hood in terms of database
+queries. The used entities are the following:
+
+* `Blog.posts` having 1:n relation to `Post`
+* `Post.author` having 1:1 relation to `Person`
+* `Person.tags` having m:n relation to `Tag`
+* `Person.tagsSpecial` having m:n relation to `Tag`
+
+.. note::
+
+    The table names in the following SQL-like examples have been shortened for
+    better readability. Instead of `tx_blogexample_post` the real table name
+    used in the **Blog Example** would be `tx_blogexample_domain_model_post`.
+    Besides that, only the relevant query parts as mentioned, not all of them.
+
+1:1 (RELATION_HAS_ONE)
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+   $query = $postRepository->createQuery();
+   $query->matching(
+      $query->equals('author.firstname', 'Dave')
+   );
+   $posts = $query->execute();
+
+.. code-block:: sql
+
+   SELECT    tx_blogexample_post.*
+   FROM      tx_blogexample_post
+   LEFT JOIN tx_blogexample_person
+   ON        tx_blogexample_post.author = tx_blogexample_person.uid
+   WHERE     tx_blogexample_person.firstname = 'Dave';
+
+Even if the SQL-like query contains a ``LEFT JOIN``, due to the 1:1 cardinality
+this won't lead to duplicate results for ``Post`` entities.
+
+1:n (RELATION_HAS_MANY)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+   $query = $blogRepository->createQuery();
+   $query->matching(
+      $query->greaterThanOrEqual('posts.date', 1501234567)
+   );
+   $blogs = $query->execute();
+
+.. code-block:: sql
+
+   SELECT    DISTINCT tx_blogexample_blog.*
+   FROM      tx_blogexample_blog
+   LEFT JOIN tx_blogexample_post
+   ON        tx_blogexample_blog.uid = tx_blogexample_post.blog
+   WHERE     tx_blogexample_post.date >= 1501234567;
+
+Since there might be more ``Post`` entities belonging to a single ``Blog``
+entity it could happen that the ``LEFT JOIN`` results in having many duplicate
+``Blog`` entities in the result set.
+
+
+m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: php
+
+   $query = $postRepository->createQuery();
+   $query->matching(
+      $query->logicalOr([
+         $query->equals('author.tags.name', 'typo3'),
+         $query->equals('author.tagsSpecial.name', 'typo3')
+       ])
+   );
+   $posts = $query->execute();
+
+.. code-block:: sql
+
+    SELECT    DISTINCT tx_blogexample_post.*
+    FROM      tx_blogexample_post
+    LEFT JOIN tx_blogexample_person
+    ON        tx_blogexample_post.author = tx_blogexample_person.uid
+    LEFT JOIN tx_blogexample_tag_mm tx_blogexample_tag_mm_1
+    ON        tx_blogexample_tag_mm_1.uid_local = tx_blogexample_person.uid
+    AND       tx_blogexample_tag_mm_1.fieldname = 'tags'
+    LEFT JOIN tx_blogexample_tag_mm tx_blogexample_tag_mm_2
+    ON        tx_blogexample_tag_mm_2.uid_local = tx_blogexample_person.uid
+    AND       tx_blogexample_tag_mm_2.fieldname = 'tags_special'
+    LEFT JOIN tx_blogexample_tag tx_blogexample_tag_1
+    ON        tx_blogexample_tag_mm_1.uid_foreign = tx_blogexample_tag_1.uid
+    LEFT JOIN tx_blogexample_tag tx_blogexample_tag_2
+    ON        tx_blogexample_tag_mm_2.uid_foreign = tx_blogexample_tag_2.uid
+    WHERE     tx_blogexample_tag_1.name = 'typo3'
+    OR        tx_blogexample_tag_2.name = 'typo3';
+
+Since the nature of a many-to-many relation is to be used by various entities,
+this will also lead to lots of duplicated `Post` entities in the result set in
+this rather complex query example.
+
+Distinct entity handling in query result set
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-----------------------------------------+--------------------------------------------------+
+| Cardinality                             | distinct entity handling suggested               |
++=========================================+=====+============================================+
+| 1:1 (RELATION_HAS_ONE)                  | no  | since for each left-sided entity there     |
+|                                         |     | is always just one right-sided entity      |
++-----------------------------------------+-----+--------------------------------------------+
+| 1:n (RELATION_HAS_MANY)                 | yes | since having more than one right-sided     |
+|                                         |     | entity will lead to left-sided duplicates  |
++-----------------------------------------+-----+--------------------------------------------+
+| m:n (RELATION_HAS_AND_BELONGS_TO_MANY)  | yes | since having more than one right-sided     |
+|                                         |     | entity will lead to left-sided duplicates  |
++-----------------------------------------+-----+--------------------------------------------+
+
+For each of the above mentioned scenarios, when having distinct entity handling
+is suggested, an implicit `SELECT DISTINCT` statement is used instead of the
+regular plain `SELECT` statement. This does also apply to counting result
+sets where `COUNT(DISTINCT <table-name>.uid)` is used instead of a plain
+`COUNT(*)` statement.

@@ -1,7 +1,9 @@
 .. include:: ../Includes.txt
 
+.. _The-Blog-Example:
+
 A journey through the Blog Example
-======================================================
+==================================
 
 In this chapter we accompany you on a journey through a simple TYPO3
 extension. While traveling on this round trip you get to know more about the
