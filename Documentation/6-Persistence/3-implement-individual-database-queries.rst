@@ -578,4 +578,3 @@ is suggested, an implicit `SELECT DISTINCT` statement is used instead of the
 regular plain `SELECT` statement. This does also apply to counting result
 sets where `COUNT(DISTINCT <table-name>.uid)` is used instead of a plain
 `COUNT(*)` statement.
-g
