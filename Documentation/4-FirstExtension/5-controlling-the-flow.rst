@@ -44,7 +44,7 @@ In our simple example the controller looks like this:
     ?>
 
 Our ``\MyVendor\Inventory\Controller\InventoryController`` must be derived from the
-``\MyVendor\Extbase\MVC\Controller\ActionController``. It contains only the method ``findAll()``.
+``\MyVendor\Extbase\MVC\Controller\ActionController``. It contains only the method ``listAction()``.
 Extbase identifies all methods that ends with ``Action`` as actions - so as little plan of procedures.
 
 In the first line of the ``listAction()`` the ``ProductRepository`` is instanced. The products to be
