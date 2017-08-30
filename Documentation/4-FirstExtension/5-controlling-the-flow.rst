@@ -61,7 +61,7 @@ read in chapter 6.
     always the same object, independent of the place in your code where it is requested.
     In contrast the creation with "new" always returns a new and therefor empty repository object.
 
-As result we get a PHP array with the product objects. We pass these objects to the view with
+As result we get a ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`` object with the product objects. We pass these objects to the view with
 ``$this->view->assign(...)``. Without our further assistance, at the end of the action the view is
 invited to return the passed content rendered based on a HTML template back to TYPO3.
 
