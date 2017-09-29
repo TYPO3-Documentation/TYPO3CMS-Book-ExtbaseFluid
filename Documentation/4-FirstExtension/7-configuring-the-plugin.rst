@@ -6,7 +6,7 @@ Configuring The Plugin
 An extension normally offers a so called *Plugin* for the output of the data.
 A plugin is a content element, that can be placed on a page like a text element
 or an image. It is a "virtual" collection of one or more actions.
-These actions could lie completely in different controller.
+These actions could lie completely in different controllers.
 In our example there is only one controller action combination, namely ``Inventory->list``.
 This combination is registered in the file :file:`ext_localconf.php`, that we
 create in the top level of our extension directory.
