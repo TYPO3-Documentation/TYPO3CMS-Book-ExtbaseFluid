@@ -9,12 +9,12 @@ In the following we want to present some extensions which are helpful for the de
 blog_example
 ------------
 
-This blog example is described in this book in detail. It's an introductory example which has many Facets and Features of Extbase and Fluid. It's found in TER with the extension key *blog_example* or in the subversion *https://git.typo3.org/TYPO3CMS/CoreProjects/MVC/blog_example.git*.
+This blog example is described in this book in detail. It's an introductory example which has many Facets and Features of Extbase and Fluid. It's found in TER with the extension key *blog_example* or in the git repository at *https://git.typo3.org/TYPO3CMS/CoreProjects/MVC/blog_example.git*.
 
 viewhelpertest
 --------------
 
-This extension all Fluid-ViewHelper and its usage is demonstrated. It will be used for testing for fluid distribution by the fluid developer team. It's also helpful to understand the usage of ViewHelpers in practical examples. It's found in the subversion repository under *https://git.typo3.org/TYPO3CMS/CoreProjects/MVC/viewhelpertest.git*.
+This extension all Fluid-ViewHelper and its usage is demonstrated. It will be used for testing for fluid distribution by the fluid developer team. It's also helpful to understand the usage of ViewHelpers in practical examples. It's found in the git repository under *https://git.typo3.org/TYPO3CMS/CoreProjects/MVC/viewhelpertest.git*.
 
 extension_builder
 -----------------
