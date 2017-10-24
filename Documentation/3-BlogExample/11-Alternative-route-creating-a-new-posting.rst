@@ -63,7 +63,7 @@ post object, that has to be created with the form. Actually the parameter
 
 Our ``PostController``, that is derived from ``ActionController``, prepares all
 parameters before an action is called. The controller delegates this  to an
-instance of the class :class:`PropertyManager`, that has mainly two functions: it
+instance of the class :php:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\MyVendor\BlogExample\Domain\Model\Blog`, for the parameter ``$newPost`` it

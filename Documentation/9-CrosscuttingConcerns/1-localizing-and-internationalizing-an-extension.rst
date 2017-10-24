@@ -360,7 +360,7 @@ selection is enough. Concurrently it has the disadvantage of a higher
 administration effort during persistance. Extbase will do this for you by
 carrying the UID of the language of the domain model and the UID of the
 data record in which the domain data is effectively stored as "hidden"
-properties of the :class:`AbstractDomainObject` internally.
+properties of the :php:`AbstractDomainObject` internally.
 In Table 9-2 you find for different actions in the frontend the behavior
 of Extbase for localized domain objects.
 

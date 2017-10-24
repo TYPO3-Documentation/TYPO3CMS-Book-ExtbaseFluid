@@ -5,15 +5,15 @@ And... action!
 
 Our journey through the blog example is not only an educational, but
 also an activity holiday. We now turn to the activities. We are already in
-the :class:`BlogController`. You can find the class file under
+the :php:`BlogController`. You can find the class file under
 :file:`EXT:blog_example/Classes/BlogController.php`.
 
 In software development, there are different variants of controllers.
 In Extbase the controllers mostly exist as
-:class:`ActionController`. This variant is characterized by
+:php:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
-shortened version of the :class:`BlogController`::
+shortened version of the :php:`BlogController`::
 
     <?php
     namespace MyVendor\BlogExample\Controller;
@@ -55,7 +55,7 @@ shortened version of the :class:`BlogController`::
     }
 
 The method `indexAction()` within the
-:class:`BlogController` is responsible for showing a list of
+:php:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
 `showMeTheListAction()`. The only important point is,
 that it ends with `Action` in order to help Extbase
@@ -88,9 +88,9 @@ change of an existing blog. The job of the
 From the request the controller can extract which action has to be
 called. The call is happening without the need to write another line of code
 in the BlogController. This does
-:php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The
-BlogController "inherits" all methods from it, by deriving it form this
-class::
+:php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
+"inherits" all methods from it, by deriving it form this class::
+
     <?php
     namespace MyVendor\BlogExample\Controller;
 
@@ -117,11 +117,11 @@ our journey. All files, which are defined in the repository-classes, are
 located in the folder
 :file:`EXT:blog_example/Classes/Domain/Repository/`. This you
 can also derive directly from the Name
-:class:`BlogExample_Domain_Repository_BlogRepository`. This
+:php:`BlogExample_Domain_Repository_BlogRepository`. This
 naming scheme is a big advantage by the way, if you search a particular
-class file. The name :class:`BlogRepository` results from the
+class file. The name :php:`BlogRepository` results from the
 name of the class, whose instances are managed by the repository, namely by
-adding :class:`Repository`. A repository can only manage one
+adding :php:`Repository`. A repository can only manage one
 single class at a time. The second line retrieves all available blogs by
 `findAll()`.
 

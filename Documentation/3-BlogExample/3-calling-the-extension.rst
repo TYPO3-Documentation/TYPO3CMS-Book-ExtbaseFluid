@@ -43,10 +43,10 @@ to the according position within the code of our blog example:
 When these preparations are full-filled by the Extbase dispatcher, we
 are able to travel to the first stop of our destination: the controller. In
 our example the further processing is assigned to the
-:class:`BlogController`. A reference to the ``request`` and the
+:php:`BlogController`. A reference to the ``request`` and the
 ``response`` is handed over.
 
-The class :class:`BlogController` can be found in the
+The class :php:`BlogController` can be found in the
 file
 :file:`EXT:blog_example/Classes/Controller/BlogController.php`.
 The complete name of the controller is
@@ -64,8 +64,8 @@ this might seem long-winded but the syntax follows a very strict convention
 	This style for notation is commonly known as
 	*UpperCamelCase* because each capital letter suggests
 	the hump of a camel. For extensions the first part always is
-	":class:`Tx`". The second part is the name of the extension
-	- in the underlying case ":class:`BlogExample`". The last
+	":php:`Tx`". The second part is the name of the extension
+	- in the underlying case ":php:`BlogExample`". The last
 	art is the name of the domain object. The center between those parts
 	builds the path to the class file below the folder
 	:file:`Classes`. In our case the file is stored directly

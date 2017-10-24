@@ -44,7 +44,7 @@ In this interface some methods are defined. The most important is called
 ``isValid($object)``. An object or value is passed over to it and
 it must return ``true`` when the object or value is valid,
 otherwise it returns ``false``. There are some more methods in
-the :class:`ValidatorInterface` to make it possible to pass
+the :php:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
@@ -54,7 +54,7 @@ have to implement the `isValid()` method.
 .. tip::
 
     You will find the complete reference of the
-    :class:`ValidatorInterface` in Appendix B.
+    :php:`ValidatorInterface` in Appendix B.
 
 For example, a validator which checks whether the passed string is
 an email address looks like this::

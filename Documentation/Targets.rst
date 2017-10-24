@@ -1,10 +1,14 @@
+
 .. include:: Includes.txt
 
+.. _Linktargets:
 
+===========
+Linktargets
+===========
 
-.. _labels-for-crossreferencing:
-
-Index: Labels for Crossreferencing
-==================================
+Labels for Cross-Referencing
+============================
 
 .. ref-targets-list::
+

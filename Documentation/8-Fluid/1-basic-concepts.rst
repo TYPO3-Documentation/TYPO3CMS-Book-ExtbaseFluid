@@ -33,14 +33,15 @@ Accessors*.
     more flexible and versatile.
 
 Object Accessors are written in curly brackets. For example,
-``{blogTitle}`` will output the content of the variable
-``blogTitle``. The variables have to be assigned in the
-controller with ``$this->view->assign(variableName,
-object)``. Let us look at this in an example of a list of blog posts.
+`{blogTitle}` will output the content of the variable
+`blogTitle`. The variables have to be assigned in the
+controller with :php:`$this->view->assign(variableName, object)`.
+Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
 code::
+
     namespace ExtbaseTeam\BlogExample\Controller;
-    
+
     class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         ...
         public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {

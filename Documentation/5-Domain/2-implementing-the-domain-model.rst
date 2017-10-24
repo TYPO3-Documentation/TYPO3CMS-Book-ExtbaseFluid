@@ -613,7 +613,7 @@ We have furthermore implement a method `normalizeValue()`. These »adjusted« th
  }
 
 
-The class :class:`DateRange` implements furthermore the interface :class:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :class:`NumericRangeInterface`. The classes :class:`AgeRange` and :class:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
+The class :php:`DateRange` implements furthermore the interface :php:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :php:`NumericRangeInterface`. The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
 
 ::
 
@@ -623,11 +623,11 @@ The class :class:`DateRange` implements furthermore the interface :class:`DateRa
  	class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
  	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
  	}
- 	
+
 	class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
  	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
  	}
-	
+
  	interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {}
 
  	interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {}

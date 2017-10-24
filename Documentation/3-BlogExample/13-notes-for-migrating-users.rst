@@ -14,7 +14,7 @@ characterized by:
   (frontend) plugins and (backend) modules and accordingly.
 * the highly mixture of tasks inside less classes (which are most
   called ``pi1, pi2`` and so on),
-* the usage of methods of the base class :class:`tslib_pibase`, from which the most classes have to inherit from,
+* the usage of methods of the base class :php:`tslib_pibase`, from which the most classes have to inherit from,
   as well as
 * the creation of extensions centered to database tables with the kickstarter.
 

@@ -9,7 +9,7 @@ This book uses the following typographic conventions:
 
 *emphasized content*
 
-:class:`class names`,
+:php:`class names`,
 
 `method names`,
 

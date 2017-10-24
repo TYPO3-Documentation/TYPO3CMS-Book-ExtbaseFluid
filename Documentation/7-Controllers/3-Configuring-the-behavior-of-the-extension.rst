@@ -6,8 +6,8 @@ Configuring the behavior of the extension
 Not all organizations are to be displayed in our example extensions,
 but just the ones belonging to a certain status (like e.g. internal,
 external, non-member). In the TypoScript template of our page we therefore
-establish an option :class:`allowedStates` under the path
-:class:`tx_sjroffers.settings`:
+establish an option :php:`allowedStates` under the path
+:php:`tx_sjroffers.settings`:
 
 ``plugin.tx_sjroffers {``
 
@@ -20,8 +20,8 @@ establish an option :class:`allowedStates` under the path
 ``}``
 
 Extbase makes the settings inside of the path
-:class:`plugin.tx_sjroffers.settings` available as an array in
-the class variable :class:`$this->settings`. Our Action
+:php:`plugin.tx_sjroffers.settings` available as an array in
+the class variable :php:`$this->settings`. Our Action
 thus looks like this:
 
 ``public function indexAction() {``
@@ -33,19 +33,19 @@ $this->organizationRepository->findByStates(GeneralUtility::intExplode(',',$this
 
 ``}``
 
-In the :class:`OrganizationRepository`, we implemented a
-Method :class:`findByStates()`, which we do not further
+In the :php:`OrganizationRepository`, we implemented a
+Method :php:`findByStates()`, which we do not further
 investigate here (see more in chapter 6, section "Implement individual
 database queries"). The Method expects an array containing the allowed
 states. We generate it from the comma seperated list using the TYPO3 API
-function :class:`GeneralUtility::intExplode()`. We then pass on the
+function :php:`GeneralUtility::intExplode()`. We then pass on the
 returned choice of organizations to the view, just as we are used to
 do.
 
 .. tip::
 
 	Of course we could also have passed the comma seperated list
-	directly to the Method :class:`findByStates()`. We do
+	directly to the Method :php:`findByStates()`. We do
 	recommend, though, to prepare all parameter coming from outside
 	(settings, form input) before passing them on to the two other
 	components Model and View.

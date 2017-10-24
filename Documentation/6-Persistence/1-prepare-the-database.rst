@@ -81,7 +81,7 @@ value of the property ``address`` is saved in the field
 into the fieldname ``telephone_number`` etc.
 
 However, the table definition contains additional fields that have
-no correlating property in the class :class:`Organisation`.
+no correlating property in the class :php:`Organisation`.
 They are needed by TYPO3 for providing functionalities like Localization,
 Workspaces and Versioning. The according TYPO3-specific fields are:
 

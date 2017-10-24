@@ -6,7 +6,7 @@ Creating Controllers and Actions
 The Controller classes are stored in the folder <link
 linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the
 Controller is composed by the name of the Domain Model and the Suffix
-:class:`Controller`. So the Controller
+:php:`Controller`. So the Controller
 :php:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
 to the Aggegate Root Object
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the Name of the
@@ -15,8 +15,8 @@ Class file is :file:`OfferController.php`.
 The Controller class must extend the class
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
 part of Extbase. The individual Actions are combined in seperate methods.
-The method names have to end in :class:`Action`. The body of
-:class:`OfferController` thus looks like this::
+The method names have to end in :php:`Action`. The body of
+:php:`OfferController` thus looks like this::
 
     <?php
     namespace MyVendor\SjrOffers\Controller;
@@ -80,16 +80,16 @@ get::
 This Flow is prototypic for a task which merely has to give out
 data. Domain Objects are fetched from a Repository previously instatiated
 and passed to the View for future processing. Inside of our
-:class:`OfferController` we have to make use of
-:class:`OfferRepository` in the different Actions again and
+:php:`OfferController` we have to make use of
+:php:`OfferRepository` in the different Actions again and
 again. For that we don't have to intantiate the Repository in each and
 every Action, extbase offers the method
-:class:`initializeAction()`. It can be used for tasks
+:php:`initializeAction()`. It can be used for tasks
 concerning multiple Actions and is called before any Action is executed.
-In the class :class:`ActionController` the body of this
+In the class :php:`ActionController` the body of this
 method is empty. You can overwrite it in your own Controller though. In
 our case we assign the instance of our Repository to the Class Variable
-:class:`$offerRepository`. Our Controller thus looks like
+:php:`$offerRepository`. Our Controller thus looks like
 this::
 
     /**
@@ -107,12 +107,12 @@ this::
         $this->view->assign('offers', $this->offerRepository->findAll());
     }
 
-:class:`ActionController` not only calls the method
-:class:`initializeAction()`, which is executed before any
+:php:`ActionController` not only calls the method
+:php:`initializeAction()`, which is executed before any
 Action in the Controller, but also a method in the Form of
-:class:`initialize*Foo*Action()`, which
+:php:`initialize*Foo*Action()`, which
 is called only before the method
-:class:`*foo*Action()`. The method for
+:php:`*foo*Action()`. The method for
 the initializing of Action is of course not only useful for preparing
 Repositories. You can also use them for integrating JavaScript libraries
 or to check if a specific FE user is logged in.
@@ -129,8 +129,8 @@ Flow Pattern "display a single Domain Object"
 --------------------------------------------------------------------------------------------------
 
 The second pattern is best put into action by a single method as
-well. We call it :class:`showAction()`. In contrast to
-:class:`indexAction` we have to to tell this method from
+well. We call it :php:`showAction()`. In contrast to
+:php:`indexAction` we have to to tell this method from
 outside which Domain Object is to be displayed. In our case, the offer to
 be shown is passed to the method as Argument::
 
@@ -152,23 +152,23 @@ like the following URL:
 Due to the 2 Arguments
 ``tx_sjroffers_pi1[controller]=Offer`` and
 ``tx_sjroffers_pi1[action]=show``, the dispatcher of Extbase
-passes the request to the :class:`OfferController`. In the
+passes the request to the :php:`OfferController`. In the
 request we find the information that the Action *show
 *is to be called. Before passing on the further processing to
-the method :class:`showAction()`, the Controller tries to
+the method :php:`showAction()`, the Controller tries to
 map the Arguments received by the URL on the arguments of the method.
 Extbase maps the arguments by their names. In our example Extbase detects,
-that the GET Argument :class:`tx_sjroffers_pi1[offer]=3
+that the GET Argument :php:`tx_sjroffers_pi1[offer]=3
 `corresponds to the method argument
-:class:`$offer`:
-:class:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer
+:php:`$offer`:
+:php:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer
 *$offer*)`. The type of this Argument is
 fetched by Extbase from the method signature:
-:class:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer*
+:php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer)`. In case this so called *Type Hint
 *should not be present, or (e.g. for the types *string
 *or *int* in PHP) not possible, Extbase reads
-the type from the commentary written above the method: :class:`@param
+the type from the commentary written above the method: :php:`@param
 *\MyVendor\SjrOffers\Domain\Model\Offer*
 $offer`.
 
@@ -181,7 +181,7 @@ interprets the incoming value as uid of the Object to be created and sends
 a request to the *Storage Backend* to find an Object
 with this uid. If the Object can be reconstructed fully valid it is passed
 to the method as argument. Inside of the method
-:class:`showAction()` the newly created Object is passed on
+:php:`showAction()` the newly created Object is passed on
 to the view, which is taking care of the HTML output as usual.
 
 .. tip::
@@ -192,9 +192,9 @@ to the view, which is taking care of the HTML output as usual.
     also a complex Aggregate.
 
 If an Argument is identified as invalid, the already implemented
-method :class:`errorAction()` of
-:class:`ActionController` is called instead of the method
-:class:`showAction()`. The method then generates a message
+method :php:`errorAction()` of
+:php:`ActionController` is called instead of the method
+:php:`showAction()`. The method then generates a message
 for the frontend user and passes the processing to the previous Action, in
 case it is given. The latter is especially useful with invalid form field
 input as you'll see in the following.
@@ -208,8 +208,8 @@ Object, two steps are required: First, a form for inputting the Domain
 Data has to be shown in Frontend. Second, a new Domain Object has to be
 created (using the incoming form data) and put in the appropriate
 Repository. We're going to implement these two steps in the methods
-:class:`newAction() `and
-:class:`createAction()`.
+:php:`newAction() `and
+:php:`createAction()`.
 
 .. tip::
 
@@ -218,20 +218,20 @@ Repository. We're going to implement these two steps in the methods
     this Flow using our example extension and focus on some further
     aspects.
 
-First the method :class:`newAction()` is called by a
+First the method :php:`newAction()` is called by a
 Link in frontend with the following URL:
 
 ``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer``
 
-Extbase instantiates the :class:`Organization `Object
-which is mapped to the Argument :class:`$organization, `just
-as it was the case with the :class:`Offer `Object in the
-method :class:`showAction()`. In the URL are no information
-(yet) though, which value the Argument :class:`$newOffer
+Extbase instantiates the :php:`Organization `Object
+which is mapped to the Argument :php:`$organization, `just
+as it was the case with the :php:`Offer `Object in the
+method :php:`showAction()`. In the URL are no information
+(yet) though, which value the Argument :php:`$newOffer
 `shall have. So the default value
-(:class:`=NULL`) set in the method signature is used. With
+(:php:`=NULL`) set in the method signature is used. With
 these Arguments, the controller passes the further processing to the
-method :class:`newAction()`.
+method :php:`newAction()`.
 
 ::
 
@@ -249,20 +249,20 @@ method :class:`newAction()`.
     }
 
 This Action passes to the view: in
-:class:`organization` the :class:`Organization
-`Object, in :class:`newOffer`
-:class:`NULL` (to begin with) the and in :class:`region
-`all :class:`Region `Objects contained in the
-:class:`RegionRepository`. The view creates the output of
+:php:`organization` the :php:`Organization
+`Object, in :php:`newOffer`
+:php:`NULL` (to begin with) the and in :php:`region
+`all :php:`Region `Objects contained in the
+:php:`RegionRepository`. The view creates the output of
 the form in frontend, using a template, which we focus on in chapter 8 in
 section "Template Creation by example". After the user filled in the data
 of the offer and submitted the form, the Method
-:class:`createAction()` is called. It expects as Arguments
-an :class:`Organization `Object and an Object of the class
+:php:`createAction()` is called. It expects as Arguments
+an :php:`Organization `Object and an Object of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
-:class:`createAction()` is called.
+:php:`createAction()` is called.
 
 <remark>TODO: Insert Code</remark>
 
@@ -274,37 +274,37 @@ returning to TYPO3.
 After creating the new offer, the appropriate organization is to be
 displayed with all of its offers. We therefore start a new request
 (*request-response-cycle*) by redirecting to
-:class:`showAction()` of the
-:class:`OrganizationController` using the Method
-:class:`redirect()`. The actual organization is hereby
+:php:`showAction()` of the
+:php:`OrganizationController` using the Method
+:php:`redirect()`. The actual organization is hereby
 passed on as an argument. Inside the
-:class:`ActionController` you have the following Methods for
+:php:`ActionController` you have the following Methods for
 redirecting to other Actions at your disposal:
 
 <remark>TODO: Insert Code</remark>
 
-Using the :class:`redirect(`) Method, you can start a
+Using the :php:`redirect(`) Method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
-given Action (specified in :class:`$actionName`) of the
+given Action (specified in :php:`$actionName`) of the
 appropriate controller (specified in
-:class:`$controllerName`) in the given extension (specified
-in :class:`$extensionName`) is called. If you did not
+:php:`$controllerName`) in the given extension (specified
+in :php:`$extensionName`) is called. If you did not
 specify a controller or extension, Extbase assumes, that you stay in the
-same context. In the fourth parameter :class:`$arguments`
-you can pass an Array of arguments. In our example:class:`
+same context. In the fourth parameter :php:`$arguments`
+you can pass an Array of arguments. In our example:php:`
 array('organization' => $organization)` <remark>TODO:
 "organization" should be "emphasis" in addition to "classname". I did not
 get it, sorry!</remark> would look like this in the URL:
-:class:`tx_sjroffers_pi1[organization]=5`. The Array key is
+:php:`tx_sjroffers_pi1[organization]=5`. The Array key is
 transcribed to the parameter name, while the organization object in
-:class:`$organization` is transformed into the number 5,
+:php:`$organization` is transformed into the number 5,
 which is the appropriate UID. If you want to link to another page inside
 the TYPO3 installation, you can pass its uid in the 5th parameter
-(:class:`$pageUid`). A delay before redirecting can be
-achieved by using the 6th parameter (:class:`$delay`). By
+(:php:`$pageUid`). A delay before redirecting can be
+achieved by using the 6th parameter (:php:`$delay`). By
 default the reason for redirecting is set to status code 303 (which means
 *See Other*).You can use the 7th parameter
-(:class:`$statusCode`) to override this (for example with
+(:php:`$statusCode`) to override this (for example with
 301, which means *Moved Permanentely*).
 
 In our example, the following code is sent to the Browser. It
@@ -312,18 +312,18 @@ provokes the immedeate reload of the page with the given URL:
 
 <remark>TODO: insert Code</remark>
 
-The Method :class:`redirectToURI()` corresponds to the
-Method :class:`redirect()`, but you can directly set a URL
+The Method :php:`redirectToURI()` corresponds to the
+Method :php:`redirect()`, but you can directly set a URL
 respectively URI as string, e.g. <remark>TODO: insert Code</remark>. With
 this, you have all the freedom to do what you need. The Method
-:class:`forward()`, at last, does a redirect of the request
+:php:`forward()`, at last, does a redirect of the request
 to another Action on the spot, just as the two redirect Methods. In
 contrast to them, no request-response-cycle ist started, though. The
 request Object is only updated with the details concerning Action,
 Controller and Extension, and then passed back to the dispatcher for
 processing. The dispatcher then passes on the actual
-:class:`Request-` and
-:class:`Response-` Objects to the appropriate Controller.
+:php:`Request-` and
+:php:`Response-` Objects to the appropriate Controller.
 Here, too, applies: If no Controller or Extension is set, the actual
 context is kept.
 
@@ -333,15 +333,15 @@ redirects to B, B redirects to A again). In this case, Extbase stops the
 processing after some steps.
 
 There is another important difference to the redirect Methods. When
-redirecting using the Method :class:`forward()`, new objects
+redirecting using the Method :php:`forward()`, new objects
 will not (yet) be persisted to database. This is not done until at the end
 of a request-response-cycle. Therefore no UID has yet been assigned to a
 new Object and the transcription to a URL parameter fails. You can
 manually trigger the action of persisting before the redirection, by using
-:class:`Tx_Extbase_Dispatcher::getPersistenceManager()->persistAll()`,
+:php:`Tx_Extbase_Dispatcher::getPersistenceManager()->persistAll()`,
 though.
 
-When calling the Method :class:`createAction(),` we
+When calling the Method :php:`createAction(),` we
 already described the case of all Arguments being valid. But what happens,
 if a Frontend user inserts invalid data - or even manipulates the form to
 deliberately attack the website?
@@ -352,23 +352,23 @@ deliberately attack the website?
     chapter 9
 
 Fluid adds multiple hidden fields to the form generated by the
-Method :class:`newAction()`. These contain information about
-the origin of the form (:class:`__referrer`) as well as, in
-encrypted form (:class:`__hmac`), the structure of the form
+Method :php:`newAction()`. These contain information about
+the origin of the form (:php:`__referrer`) as well as, in
+encrypted form (:php:`__hmac`), the structure of the form
 (shorted in the example below).
 
 <remark>TODO: Insert Code</remark>
 
 If now a validation error occurs when calling the Method
-:class:`createAction()`, an error message ist saved and the
+:php:`createAction()`, an error message ist saved and the
 processing is passed back to the previous Action, including all already
 inserted form data. Extbase reads the neccessary information from the
-hidden fields:class:`__referrer`. In our case the Method
-:class:`newAction()` is called again. In contrast to the
+hidden fields:php:`__referrer`. In our case the Method
+:php:`newAction()` is called again. In contrast to the
 first call, Extbase now tries to create an (invalid)
-:class:`Offer` Object from the form data, and to pass it to
-the Method in :class:`$newOffer`. Due to the annotation
-:class:`@dontvalidate $newOffer` Extbase this time acceptes
+:php:`Offer` Object from the form data, and to pass it to
+the Method in :php:`$newOffer`. Due to the annotation
+:php:`@dontvalidate $newOffer` Extbase this time acceptes
 the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again and the previously saved error message is
 displayed if the template is intenting so.
@@ -385,7 +385,7 @@ displayed if the template is intenting so.
     Version 1.2. In section "Localize error messages" in chapter 8, we
     describe a possibility to translate them too, though.
 
-Using the hidden field :class:`__hmac`, Extbase
+Using the hidden field :php:`__hmac`, Extbase
 compares in an early stage the structure of a form inbetween delivery to
 the browser and arrival of the form data. If the structure has changed,
 Extbase assumes an evil assault and aborts the request with an error
@@ -393,18 +393,18 @@ message. You can skip this check by annotting the Method with
 @dontverifyrequesthash, though. So you have two annotiations for Action
 Methods at your disposal:
 
-* :class:`@dontvalidate*$argumentName*`
-* :class:`@dontverifyrequesthash`
+* :php:`@dontvalidate*$argumentName*`
+* :php:`@dontverifyrequesthash`
 
-Using the annotation :class:`@dontvalidate
+Using the annotation :php:`@dontvalidate
 *$argumentName*` you tell Extbase that the
 argument is not to be validated. If the argument is an Object, the
 validation of its properties is also bypassed.
 
-The annotation :class:`@dontverifyrequesthash` makes
+The annotation :php:`@dontverifyrequesthash` makes
 Extbase skip the check of integrity of the form. It is not checked any
 more, if the frontend user has e.g. added a
-:class:`password` field. This annotation comes in handy for
+:php:`password` field. This annotation comes in handy for
 example, if you have to work with data of a form which you did not create
 yourself.
 
@@ -414,26 +414,26 @@ Flow Pattern "Editing an existing Domain Object"
 
 The flow pattern we will now present is quite similar to the
 previuos one. We again need two action Methods, which this time we call
-:class:`editAction()` and
-:class:`updateAction()`. The Method
-:class:`editAction()` provides the form for editing, while
-:class:`updateAction()` updates the Object in the
-Repository. In contrast to :class:`newAction()` it is not
+:php:`editAction()` and
+:php:`updateAction()`. The Method
+:php:`editAction()` provides the form for editing, while
+:php:`updateAction()` updates the Object in the
+Repository. In contrast to :php:`newAction()` it is not
 necessary to pass an organization to the Method
-:class:`editAction()`. It is sufficient to pass the offer to
+:php:`editAction()`. It is sufficient to pass the offer to
 be edited as an Argument.
 
 <remark>TODO: Insert Code</remark>
 
-Note once again the annotation :class:`@donvalidate
-$offer`. The Method :class:`updateAction()`
+Note once again the annotation :php:`@donvalidate
+$offer`. The Method :php:`updateAction()`
 receives the changed offer and updates it in the repository. Afterwards a
 new request is started and the organization is shown with its updated
 offers.
 
 .. warning::
     Do not forget to expicitly update the changed Domain Object
-    using :class:`update()`. Extbase will not do this
+    using :php:`update()`. Extbase will not do this
     automatically for you, for doing so could lead to unexpected results.
     For example if you have to manipulate the incoming Domain Object
     inside your Action Method.
@@ -462,18 +462,18 @@ your TYPO3 system in the *Core Documentation*
 linkend="???">http://typo3.org/documentation/document-library/core-documentation/doc_core_inside/4.2.0/view/2/4/</link>.
 The second level, we are going to implement in all "critcal" Actions.
 Let's look at an example with the Method
-:class:`updateAction()`.
+:php:`updateAction()`.
 
 <remark>TODO: Insert Code</remark>
 
 We ask a previously instantiated
-:class:`AccessControlService` if the administrator of the
+:php:`AccessControlService` if the administrator of the
 organization reponsible for the offer is logged in the frontend. If yes, we
 do update the offer. If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
 Extbase does not yet offer an API for access control. We therefore
-implemented an :class:`AccessControlService` on ourselves.
+implemented an :php:`AccessControlService` on ourselves.
 The description of the class is to be found in the file <link
 linkend="???">EXT:sjr_offers/Classes/Service/AccessControlService.php</link>.
 
@@ -495,37 +495,37 @@ this snippet from a template:
     Services are often stateless. In this context that means that
     their function does not dependend on previous access. This does not
     rule out dependency to the "environment". In our example you can be
-    sure, that a verification by :class:`isLoggendIn()`
+    sure, that a verification by :php:`isLoggendIn()`
     always leads to the same result, regardless of any earlier
     verification - given that the "environment" has not changed
     (considerably), e.g. by the Administrator logging out or even losing
     his acces rights.
 
     Services usually can be built as *Singleton*
-    (:class:`implements t3lib_Singleton`). You can find
+    (:php:`implements t3lib_Singleton`). You can find
     detailed information to *Singleton* in chapter 2 in
     section "Singleton".
 
-    The :class:`AccessControlService` is not Part of
+    The :php:`AccessControlService` is not Part of
     the Domain of our extension. It "belongs" to the Domain of the Content
     Management System. There are Domain Services also of course, like a
     Service creating a continuous invoice number. They are usually located
     in <link linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
 
-We make use of an :class:`IfAuthenticatedViewHelper`
-to acces the :class:`AccessControlService`. The class file
+We make use of an :php:`IfAuthenticatedViewHelper`
+to acces the :php:`AccessControlService`. The class file
 <link linkend="???">IfAuthenticatedViewHelper.php</link> is in our case
 located in <link linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.
 
 <remark>TODO: Insert Code</remark>
 
-The :class:`IfAuthenticatedViewHelper` extends the
-:class:`If`-ViewHelper of fluid and therefore provides the
+The :php:`IfAuthenticatedViewHelper` extends the
+:php:`If`-ViewHelper of fluid and therefore provides the
 opportunity to use if-else branches. It delegates the access check to the
-:class:`AccessControlService`. If the check gives a positive
+:php:`AccessControlService`. If the check gives a positive
 result, in our case a link with an edit icon is generated, which leads to
-the Method :class:`editAction()` of the
-:class:`OfferController`.
+the Method :php:`editAction()` of the
+:php:`OfferController`.
 
 
 Flow Pattern "Deleting a Domain Object"
@@ -533,12 +533,12 @@ Flow Pattern "Deleting a Domain Object"
 
 The last Flow pattern realizes the deletion of an existing Domain
 Object in one single Action. The appropriates Method
-:class:`deleteAction()` is kind of straightforward:
+:php:`deleteAction()` is kind of straightforward:
 
 <remark>TODO: Insert Code</remark>
 
 The importat thing here is that you delete the given Offer from the
-Repository using the method :class:`remove()`. After running
+Repository using the method :php:`remove()`. After running
 through your extension, Extbase will delete the assosciated record from
 the Database respectively mark it as deleted.
 
@@ -552,8 +552,8 @@ the Database respectively mark it as deleted.
 
 The flow patterns we present here are meant to be blueprints for
 your own flows. In real life projects they may get way more complex. The
-Method :class:`indexAction()` of the
-:class:`OfferController` looks like this in it's "final
+Method :php:`indexAction()` of the
+:php:`OfferController` looks like this in it's "final
 stage":
 
 <remark>TODO: Insert Code</remark>
@@ -566,7 +566,7 @@ piece by piece.
 One requirement our extension has to realize, is that a visitor of
 the website can define a special demand, which is then used to filter the
 range of offers. We already implemented an appropriate Method
-:class:`findDemanded()` (see chaper 6, <remark>TODO: enter
+:php:`findDemanded()` (see chaper 6, <remark>TODO: enter
 correct section name</remark>). To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
@@ -587,7 +587,7 @@ the accordant options in a form (see pic. 7-2).
     good example. In our example extension we sourced it out to a
     *service* object. Another possibility is to create
     a basis Controller which extends the
-    :class:`ActionController` of Extbase. Inside you
+    :php:`ActionController` of Extbase. Inside you
     implement the shared functionality. Then the concrete controllers with
     you Actions extend this Basis Controller again.
 

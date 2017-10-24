@@ -258,19 +258,21 @@ But more than that: We also want to ensure that the EmailLogger really calls the
 method for sending the e-mail! Therefore we can use Mocks. Mocks are more or
 less "dummies" for real objects that emulate the behavior of objects. They are
 also help to ensure specific calls or parameters. A test that tests the
-EmailLogger that could be as follows:
+EmailLogger that could be as follows::
 
-//code
+   // code
 
 The procedure in detail: In line 6, the variable $message with our dummy message
 filled, we want to log. This message we need several more times, so it makes
 sense to store them in a variable. In lines 7 through 9, we instantiate the
 EmailLogger and initiate him a mock object of the EmailService.
+
 In line 10 passes through the truly fascinating: We expect that in the
 EmailService an unique method call is sent, with the parameters
-`` 'logging@domain.local ',' Message Log ', $message ``. Once we have specified our 
-expectations, we can at line 11 let the EmailLogger log the message. At the end 
+:php:`'logging@domain.local','Message Log', $message`. Once we have specified our
+expectations, we can at line 11 let the EmailLogger log the message. At the end
 of the testcases our expectations are automatically controlled.
+
 If the the method send was called exactly once or with the false parameter
 values, the test will fail with a detailed error message. What have we achieved?
 We have tested the EmailLogger without the use of Email-Service and still ensure
