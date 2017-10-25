@@ -4,14 +4,13 @@ Get Blog from the Repository
 ============================
 
 Lets take a look into the ``BlogRepository`` and travel into the inner core of
-our little action island.
+our little action island. ::
 
-::
-	<?php
-	namespace MyVendor\BlogExample\Domain\Repository;
+    <?php
+    namespace MyVendor\BlogExample\Domain\Repository;
 
-	class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-	}
+    class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+    }
 
 The code is not shortened. The ``BlogRepository`` simply does not have any own
 code since all methods which are used very often are already implemented in the

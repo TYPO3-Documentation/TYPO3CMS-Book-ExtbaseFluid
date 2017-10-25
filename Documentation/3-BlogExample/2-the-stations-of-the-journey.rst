@@ -2,9 +2,9 @@ The stations of the journey
 ===========================================
 
 Now that you have had a look at your journey destination and hopefully
-don't feel disoriented when we stop at the several steps, you are now able
+don't feel disoriented when we stop at the several steps, you are able
 to start. Figure 3-3 gives you an overview of the stations on the journey,
-which you will get to know more detailed in the upcoming sections.
+which you will get to know in more detail during the upcoming sections.
 
 .. figure:: /Images/3-BlogExample/figure-3-3.png
 	:align: center
@@ -20,26 +20,25 @@ but hands over the control to the Extbase *Dispatcher*
 (1).<remark>TODO: Add callouts</remark>
 
 The *Dispatcher* bundles all information of the
-request in a *Request* and sends it to the responsible
-part of the extension, which takes over the flow control - the so called
+request in a *Request* and sends it to the appropriate
+part of the extension, which takes over the flow control — the so called
 *Controller* (2).
 
-Within the controller the responsible storage room, which is in charge
-of the blogs, - the *Repository* - is instructed to
-return all the stored blogs using the method ``findAll()``
+Within the controller the appropriate storage facility which is in charge
+of the blogs — the *Repository* — is instructed to
+return all the stored blog posts using the method ``findAll()``
 (3).
 
 The *Repository* returns a collection of the
-already made ``Blog`` objects with all of its posts, comments and
+already present ``Blog`` objects with all of their posts, comments and
 tags (4).
 
 The *Controller* sends these blogs to the part of
-the extension responsible for the output - the *View* -
+the extension responsible for the output — the *View* —
 and advises it to render the content in the requested output format
 (5).
 
 The *View* returns the rendered content
 encapsulated in a *Response* back to the
-*Dispatcher*, which on its turn returns the HTML code to
+*Dispatcher*, which in turn returns the HTML code to
 the calling TYPO3 process (6).
-

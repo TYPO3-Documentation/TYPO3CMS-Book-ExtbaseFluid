@@ -5,31 +5,31 @@
 A journey through the Blog Example
 ==================================
 
-In this chapter we accompany you on a journey through a simple TYPO3
-extension. While traveling on this round trip you get to know more about the
-extension development with Extbase and Fluid and learn the most important
-stations and coordinates of the extension development with the help of a
-example extension. You first familiarize with the geography and the typical
-characteristics of a extension and find out, which processes run in the
-background. This knowledge will then help you in the creation of an own
-extension
+In this chapter we accompany you on a journey through a simple TYPO3 extension.
+While travelling on this round trip, you will get to know more about extension
+development with Extbase and Fluid and learn the most important stations and
+coordinates of extension development with the help of an example extension. You
+will first familiarize yourself with the geography and the typical
+characteristics of an extension and find out which processes run in the
+background. This knowledge will then help you in the creation of your own
+extension.
 
-If you search for a specific manual for the creation of an extension,
-chapter 4 will show you the right set of tools. However we recommend you to
-build the fundamentals for that in this chapter. The journey that lies ahead
-of us, could also have the title "Europe in five days. If you discover nice
+If you are looking for a manual specifically on creating an extension,
+chapter 4 will show you the right set of tools. However, we recommend to
+work on the fundamentals in this chapter. The journey that lies ahead
+of us could also have the title "Europe in five days." If you discover nice
 places, you should visit them later without the travel group.
 
-It is a benefit, if you look into the original sourcecode while
-reading the text so the orientation in your own extension later will be much
-easier.
+You will find it beneficial to look at the original source code while
+reading the text, so you will have an easier time getting your bearings in your
+own extension later.
 
 .. note::
 
 	If you use a debugger, it can be interesting to follow a full cycle
-	in the single step modus. For that you have to set a breakpoint in the
+	in single step mode. For that you have to set a breakpoint in the
 	file :file:`Dispatcher.php`. You will find this class - like
-	every other class of Extbase also - in the folder
+	every other class of Extbase - in the folder
 	:file:`typo3/sysext/extbase/Classes/`.
 
 At the end of this chapter you will find a short comparison of the
