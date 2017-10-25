@@ -41,12 +41,12 @@ with TYPO3, you'll find it at
 
 .. tip::
 
-	By default NetBeans uses space chars for code indentation. But as
-	the TYPO3 Coding Guidelines demand Tabs for indentation, you should
-	configure NetBeans accordingly. Open the preferences dialog of NetBeans
+	By default NetBeans uses space chars for code indentation. And also
+	the TYPO3 Coding Guidelines follow the PSR-2-standard and demand tabs for indentation.
+	Make sure to configure NetBeans accordingly. Open the preferences dialog of NetBeans
 	and choose the entry *Editor*. Now, in the section
-	*Formatting*, deactivate the option *Expand
-	Tabs to Spaces* and adjust the options *Number of
+	*Formatting*, make sure the option *Expand Tabs to Spaces*
+	is activated and adjust the options *Number of
 	Spaces per Indent* and *Tab Size* to the same
 	values (e.g. 4).
 
