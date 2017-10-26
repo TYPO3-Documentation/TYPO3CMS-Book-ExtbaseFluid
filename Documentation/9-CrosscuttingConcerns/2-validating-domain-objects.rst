@@ -410,7 +410,7 @@ In some use cases it is reasonable that *inconsistent
 domain objects* are gives as arguments. That can be the case
 for multi page forms, because after filling the first page the domain
 object is not complete. In this case you can use the annotation
-``@dontvalidate *$parameter*``. This
+``@ignorevalidation *$parameter*``. This
 prevents the processing of the ``@validate`` annotations in the
 domain model and calling the validator class of the domain
 object.
@@ -489,12 +489,12 @@ Now we get an other problem: Also the ``editAction``
 validates all parameter, but our blog object is not valid - we are
 captured in an endless loop. Therefore we have to suppress the argument
 validation for the ``editAction``. For this we need the
-annotation ``@dontvalidate ``- the comment block of the
+annotation ``@ignorevalidation ``- the comment block of the
 ``editAction`` must be changed like this::
 
     /**
      * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
-     * @dontvalidate $blog
+     * @ignorevalidation $blog
      */
     public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
         $this->view->assign('blog', $blog);
@@ -508,7 +508,7 @@ displayed correct.
 
     If Extbase thows the exception
     \TYPO3\CMS\Extbase\Mvc\Exception\InfiniteLoopException it signs that the
-    ``@dontvalidate`` annotation is missing.
+    ``@ignorevalidation`` annotation is missing.
 
 Fluid automatically adds the CSS class ``f3-form-error``
 to all erroneous fields - so you can frame them in red for example using
@@ -539,7 +539,7 @@ code::
      * This action shows the 'new' form for the blog.
      *
      * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
-     * @dontvalidate $newBlog
+     * @ignorevalidation $newBlog
      */
     public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL) {
         $this->view->assign('newBlog', $newBlog);
@@ -571,7 +571,7 @@ has also to conform with the name of the Fluid template
 (``newBlog`` in the example). Also the parameter for the
 `newAction` must be marked as optional and the
 validation of the parameter must be suppressed with
-``@dontvalidate``. Finally you can output validation errors in
+``@ignorevalidation``. Finally you can output validation errors in
 the template using the ``flashMessages`` ViewHelper when saving
 the data.
 
