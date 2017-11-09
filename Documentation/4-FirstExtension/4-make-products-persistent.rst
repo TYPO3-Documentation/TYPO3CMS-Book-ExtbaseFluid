@@ -46,7 +46,7 @@ configuration, that is stored in a PHP array, the so-called
 *Table-Configuration-Array* (shortly *TCA*).
 
 Within the Extension we can access the data transparently by the repositories.
-"Transparently" means that we don't have to thought about the *type*
+"Transparently" means that we don't have to think about the *type*
 of the storage of the data when accessing the repositories.
 
 So that the Backend now, how it should show the product data
