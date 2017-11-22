@@ -750,7 +750,7 @@ Therefore Extbase offers an alternative about Annotations. Let us have a look at
 	protected $regions;
 
 The values of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @validate [...] is set. The annotation @validate StringLength (minimum = 3, maximum = 50) on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
-The validator StringLength is provided by Extbase of charge. The name of the associated class is \TYPO3\CMS\Extbase\Validation\Validator\StringLengthValidator. The options minimum and maximum are passed to the Validator and are evaluated there.
+The validator StringLength is provided by Extbase of charge. The name of the associated class is \\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator. The options minimum and maximum are passed to the Validator and are evaluated there.
 
 With the validation, we conclude the modeling and implementation of the domain at first. With that achieved, it is possible to store domain objects, which where generated during a page view in memory. All data will be lost at the end
 of the page view. In order for the domain objects are permanently on the grouting, the persistence layer is to be set up accordingly.
