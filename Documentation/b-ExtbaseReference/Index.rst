@@ -71,12 +71,15 @@ Additionally you need to specify which actions should not be cached. To do this,
 the fourth parameter also is a list of controller action Combinations in the
 same format as above, containing all the non-cached-actions.
 
-:file:`ext_tables.php`::
+:file:`Configuration/TCA/Overrides/tt_content.php`:
+
+.. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor' . $_EXTKEY,
+        'Vendor.ExtKey',
         $pluginName,
-        $backendTitle
+        $backendTitle,
+        $pluginIcon
     );
 
 The extension key and `$pluginName` must be completely identical to the definition
@@ -85,11 +88,7 @@ the Backend.
 
 .. note::
 
-   In order to benefit from caching, put the
-   :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin()`
-   call in :file:`Configuration/TCA/Overrides/tt_content.php` instead.
-
-   **Attention:** The variable :php:`$_EXTKEY` is not available here,
+   **Attention:** The variable :php:`$_EXTKEY` is not available in the directory :file:`Configuration/TCA/`,
    so you have to fill in your extension key directly.
 
 Below there is a complete configuration example for the registration of a
@@ -97,35 +96,36 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables
 
 *Example B-1: Configuration of an extension in the file ext_localconf.php*
 
-::
+.. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Ex' . $_EXTKEY,
+        'Vendor.ExtKey',
         'Blog',
-        array(
+        [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
             'Post' => 'index,show,new,create,delete,edit,update',
             'Comment' => 'create',
-        ),
-        array(
+        ],
+        [
             'Blog' => 'delete,deleteAll,edit,update,populate',
             'Post' => 'show,delete,edit,update',
             'Comment' => 'create',
-        )
+        ]
     );
 
-*Example B-2: Configuration of an extension in the file ext_tables.php*
+*Example B-2: Configuration of an extension in the file Configuration/TCA/Overrides/tt_content.php*
 
-::
+.. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Ex' . $_EXTKEY,
+        'Vendor.ExtKey',
         'Blog',
-        'A Blog Example'
+        'A Blog Example',
+        'EXT:blog/Resources/Public/Icons/Extension.svg'
     );
 
 The plugin name is ``Blog``. It is important that the name is exactly the same in
-:file:`ext_localconf.php` and :file:`ext_tables.php`. The default action is ``index`` of controller
+:file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`. The default action is ``index`` of controller
 ``blog`` since it's the first element defined in the array and the first action in the list.
 
 All actions which change data must not be cacheable. Above, this is for example
@@ -136,7 +136,7 @@ Example*" in the list of plugins (see Figure B-1).
     :align: center
 
     Figure B-1: In the selection field for frontend plugins, the name which was defined in the
-    file :file:`ext_tables.php` will be displayed
+    file :file:`Configuration/TCA/Overrides/tt_content.php` will be displayed
 
 .. _caching_of_actions_and_records:
 
@@ -318,7 +318,7 @@ this TypoScript setting.
     <https://docs.typo3.org/typo3cms/extensions/core/latest/Changelog/7.3/Feature-66111-AddTemplaterootpathsSupportToCobjectFluidtemplate.html#feature-66111-add-templaterootpaths-support-to-cobject-fluidtemplate>`_.
     We will update the documentation in the near future to reflect this new possibilities.
     In the meantime, just check out the documentation for the feature.
-    
+
 
 .. _typoscript_configuration-mvc:
 
@@ -328,11 +328,11 @@ mvc
 These are useful mvc settings about error handling:
 
 `mvc.callDefaultActionIfActionCantBeResolved`
-    Will cause the controller to show it's default action 
+    Will cause the controller to show it's default action
     e.g. if the called action is not allowed by the controller.
 
 `mvc.throwPageNotFoundExceptionIfActionCantBeResolved`
-    Same as `mvc.callDefaultActionIfActionCantBeResolved` 
+    Same as `mvc.callDefaultActionIfActionCantBeResolved`
     but this will raise a "page not found" error.
 
 
@@ -708,7 +708,7 @@ example:
 
 *Example B-4: validation in the domain object*
 
-::
+.. code-block:: php
 
     namespace Ex\BlogExample\Domain\Model;
 

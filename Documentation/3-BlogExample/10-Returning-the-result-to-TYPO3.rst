@@ -15,9 +15,9 @@ the persistence manager remained at this time inactive.
 We have now finally reached the end of our trip. The Dispatcher has still to
 return the rendered Content to the TYPO3 framework.
 
-::
+.. code-block:: php
 
-	return $response->getContent();
+   return $response->getContent();
 
 In this section you had learned how the extension is a list of blogs is issued.
 Below we take an alternative route by creating a new post. You will learn about

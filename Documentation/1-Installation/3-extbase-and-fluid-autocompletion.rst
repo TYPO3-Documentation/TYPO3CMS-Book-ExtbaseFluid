@@ -13,10 +13,10 @@ Extbase and Fluid classes.
 
 
 .. figure:: /Images/1-Installation/figure-1-2.png
-	:align: center
+   :align: center
 
-	Figure 1-2: The autocompletion feature will show you possible class names
-	and their code documentation.
+   Figure 1-2: The autocompletion feature will show you possible class names
+   and their code documentation.
 
 
 In NetBeans right-click your Extension project and choose

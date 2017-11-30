@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
 Implementing the domain model
-================================================
+=============================
 
 With the implementation of the domain there are two different approaches to:
 From top to bottom or from the bottom to the top. In the first case you start
@@ -15,48 +15,50 @@ top to bottom.
 
 So we begin with the concept of organization. The file containing the class
 definition we put into the folder :file:`EXT:sjr_offers/Classes/Domain/Model/` and
-rename it according to the last part of the class name: :php:`Organization.php`.
+rename it according to the last part of the class name: :file:`Organization.php`.
 
 .. note::
-	Using the abbreviation EXT: we cut off the part of the path that leads to the
-	extension folder. For more information on possible locations of the extension
-	folder, see Chapter 4
+   Using the abbreviation EXT: we cut off the part of the path that leads to the
+   extension folder. For more information on possible locations of the extension
+   folder, see Chapter 4
 
 .. note::
 
-	At this point in the development process, we find ourselves facing a fundamental
-	decision: Should we develop our code secure by testing (using the method of
-	test-driven development), or should we test only the final result? We know that
-	the entry is in the method of test-driven development is a barrier. However, it
-	is worthwhile to take the step because you will notice that you can increase
-	your efficiency with TDD and save yourself a lot of frustrating experiences (eg
-	in the painful search for an error). More information about the test-driven
-	development, see chapter Chapter 2 in the section "Test-Driven Development". If
-	you still decide to test only at the end, you can create the cycles of test
-	development and skip the class in a train. We have cautioned, however.
+   At this point in the development process, we find ourselves facing a fundamental
+   decision: Should we develop our code secure by testing (using the method of
+   test-driven development), or should we test only the final result? We know that
+   the entry is in the method of test-driven development is a barrier. However, it
+   is worthwhile to take the step because you will notice that you can increase
+   your efficiency with TDD and save yourself a lot of frustrating experiences (eg
+   in the painful search for an error). More information about the test-driven
+   development, see chapter Chapter 2 in the section "Test-Driven Development". If
+   you still decide to test only at the end, you can create the cycles of test
+   development and skip the class in a train. We have cautioned, however.
 
 First, we create the corresponding test class in the appropriate folder
 \MyVendor\SjrOffers\Domain\Model\OrganizationTest EXT: sjr_offers/Tests /Domain
 /Model/. After that we write our test.
 
-::
+.. code-block:: php
 
-	class OrganizationTest extends \TYPO3\CMS\Core\Tests\BaseTestCase {
+   class OrganizationTest extends \TYPO3\CMS\Core\Tests\BaseTestCase
+   {
 
-		/**
-		 * @test
-		 */
-		public function anInstanceOfTheOrganizationCanBeConstructed() {
-			$organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Name');
-			$this->assertEquals('Name', $organization->getName());
-		}
-	}
+      /**
+       * @test
+       */
+      public function anInstanceOfTheOrganizationCanBeConstructed()
+      {
+         $organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Name');
+         $this->assertEquals('Name', $organization->getName());
+      }
+   }
 
 .. note::
 
-	In the folder Tests you can select the folder structure freely. We, however, we
-	recommend you to build the same structure as in classes. With an increasing
-	number of unit tests you will be able to remain focused.
+   In the folder Tests you can select the folder structure freely. We, however, we
+   recommend you to build the same structure as in classes. With an increasing
+   number of unit tests you will be able to remain focused.
 
 Note that our test class :php:`\MyVendor\SjrOffers\Domain\Model\OrganizationTest` extends the class :php:`\TYPO3\CMS\Core\Tests\BaseTestCase` of Extbase.
 Among other things, this class initializes the autoloader, which makes the
@@ -67,93 +69,124 @@ typical for Unit-Tests, because these names could be transormed into readable
 sentences. So please formulate the method name so that it describes, which
 result demonstrates a successful test. It gives you one (always current)
 documentation of the functionality of your extension. The test is not able to
-run because the appropriate class and its method `get-Name()` note yet exist. So
+run because the appropriate class and its method `getName()` note yet exist. So
 we create first a minimum trunk of the class and its methods.
 
-::
+.. code-block:: php
 
-	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-	class Organization {
-		public function getName() {
-		}
-	}
+   class Organization
+   {
+      public function getName()
+      {
+
+      }
+   }
 
 The test is now able to run, but failed as expected (see Figure 5-5).
 
 .. figure:: /Images/5-Domain/figure-5-5.jpg
 
-	Figure 5-5: message of the failed first test run
+   Figure 5-5: message of the failed first test run
 
 Only now we add just enough code that the test is successful:
 
-::
+.. code-block:: php
 
-	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
 
-	class Organization extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity{
-		/**
-		 * @var string The name of the organization
-		 */
-		protected $name;
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-		public function __construct($name) {
-			$this->name = $name;
-		}
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-		public function getName() {
-			return $this->name;
-		}
-	}
+   class Organization extends AbstractEntity
+   {
+
+      /**
+       * @var string The name of the organization
+       */
+      protected $name;
+
+      /**
+       * Constructor
+       */
+      public function __construct($name)
+      {
+         $this->name = $name;
+      }
+
+      /**
+       * Get the name of the organization
+       */
+      public function getName()
+      {
+         return $this->name;
+      }
+   }
 
 .. sidebar:: Test-Driven Development at a glance
 
-	This approach is typical of the Test-Driven Development (see chapter 2, section »Test-Driven Development«). So once again summarized the essential steps:
+   This approach is typical of the Test-Driven Development (see chapter 2, section »Test-Driven Development«). So once again summarized the essential steps:
 
-	#. Create a unit test and possibly a test class.
-	#. Implement classes and methods just as much that the script runs through
-	   without syntax or run-time error ("Fatal Error").
-	#. Let the unit test fails ( at this time we have not implemented any code for
-	   the solution of this step).
-	#. Implement a minimal solution.
-	#. Run the test again and if it is necessary make the implementation better.
-	#. After a successful test-run, go to the next code to be implemented.
+   #. Create a unit test and possibly a test class.
+   #. Implement classes and methods just as much that the script runs through
+      without syntax or run-time error ("Fatal Error").
+   #. Let the unit test fails ( at this time we have not implemented any code for
+      the solution of this step).
+   #. Implement a minimal solution.
+   #. Run the test again and if it is necessary make the implementation better.
+   #. After a successful test-run, go to the next code to be implemented.
 
 Currently, the name can only be set during the instantiation of the class,
-because only at this moment the Constructor `__construct()` is called. Because it
+because only at this moment the Constructor :php:`__construct()` is called. Because it
 should be possible at a later moment to change the name, we introduce a public
-method ``setName($name)`` with the according test. Note also that we have slightly
+method :php:`setName($name)` with the according test. Note also that we have slightly
 modified the code in the constructor. We now use instead of the direct
-``$this->name = $name`` the respective Setter. In the comment about the definition
-of property ``$name``, the type of property is specified. In our case the name of the
+:php:`$this->name = $name` the respective Setter. In the comment about the definition
+of property :php:`$name`, the type of property is specified. In our case the name of the
 String. Thereby our class looks like as follows:
 
-::
+.. code-block:: php
 
-	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-	class Organization {
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-		/**
-		 * @var string The name of the organization
-		 */
-		protected $name;
+   class Organization extends AbstractEntity
+   {
 
-		public function __construct($name) {
-			$this->setName($name);
-		}
+      /**
+       * @var string The name of the organization
+       */
+      protected $name;
 
-		public function setName($name) {
-			$this->name = $name;
-		}
+      /**
+       * Constructor
+       */
+      public function __construct($name)
+      {
+         $this->setName($name);
+      }
 
-		public function getName() {
-			return $this->name;
-		}
-	}
+      /**
+       * Set the name of the organization
+       */
+      public function setName($name)
+      {
+         $this->name = $name;
+      }
+
+      /**
+       * Get the name of the organization
+       */
+      public function getName()
+      {
+         return $this->name;
+      }
+   }
 
 Now we implement step by step the class :php:`\MyVendor\SjrOffers\Domain\Model\Organization` –
 always protected by our tests. Here we meet the requirement that there can be
@@ -164,17 +197,18 @@ references to instances).
 
 But the test at first:
 
-::
+.. code-block:: php
 
-	/**
-	 * @test
-	 */
-	public function theContactsAreInitializedAsEmptyObjectStorage() {
-		$organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Youth Organization');
-		$this->assertEquals('\TYPO3\CMS\Extbase\Persistence\ObjectStorage',
-		get_class($organization->getContacts()));
-		$this->assertEquals(0, count($organization->getContacts()));
-	}
+   /**
+    * @test
+    */
+   public function theContactsAreInitializedAsEmptyObjectStorage()
+   {
+      $organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Youth Organization');
+      $this->assertEquals('\TYPO3\CMS\Extbase\Persistence\ObjectStorage',
+      get_class($organization->getContacts()));
+      $this->assertEquals(0, count($organization->getContacts()));
+   }
 
 The contact person should be an instance of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Person`. Since this class does not exist, one could
@@ -186,47 +220,51 @@ which will behave like the target object. Lets take a look at the test as an
 example:
 
 
-::
+.. code-block:: php
 
-	/**
-	 * @test
-	 */
-	public function aContactCanBeAdded() {
-		$organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Youth Organization');
-		$mockContact = $this->getMock('\MyVendor\SjrOffers\Domain\Model\Person');
-		$organization->addContact($mockContact);
-		$this->assertTrue($organization->getContacts()->contains($mockContact));
-	}
+   /**
+    * @test
+    */
+   public function aContactCanBeAdded()
+   {
+      $organization = new \MyVendor\SjrOffers\Domain\Model\Organization('Youth Organization');
+      $mockContact = $this->getMock('\MyVendor\SjrOffers\Domain\Model\Person');
+      $organization->addContact($mockContact);
+      $this->assertTrue($organization->getContacts()->contains($mockContact));
+   }
 
 The variable ``$mockContact`` contains the object, which behaves like an instance of
 the class :php:`\MyVendor\SjrOffers\Domain\Model\Person`. Because of this we can now use the
 two methods `addContact()` and implement `getContacts()`:
 
-::
+.. code-block:: php
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person> The contacts of the organization
-	 */
-	protected $contacts;
+   /**
+    * The contacts of the organization
+    *
+    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person>
+    */
+   protected $contacts;
 
-	/**
-	 * Adds a contact to the organization
-	 *
-	 * @param \MyVendor\SjrOffers\Domain\Model\Person The contact to be added
-	 * @return void
-	 */
-	public function addContact(\MyVendor\SjrOffers\Domain\Model\Person $contact) {
-		$this->contacts->attach($contact);
-	}
+   /**
+    * Adds a contact to the organization
+    *
+    * @param \MyVendor\SjrOffers\Domain\Model\Person The contact to be added
+    * @return void
+    */
+   public function addContact(\MyVendor\SjrOffers\Domain\Model\Person $contact)
+   {
+      $this->contacts->attach($contact);
+   }
 
-	/**
-	 * Returns the contacts of the organization
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person> The contacts of the organization
-	 */
-	public function getContacts() {
-		return clone $this->contacts;
-	}
+   /**
+    * Returns the contacts of the organization
+    *
+    * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person> The contacts of the organization
+    */
+   public function getContacts() {
+      return clone $this->contacts;
+   }
 
 The comment about the definition of property is ``$contacts`` of crucial importance.
 Extbase "reads" the comment and concludes of it, that an ObjectStorage should be
@@ -251,11 +289,11 @@ the testing. But we use it always in the background.
 
 .. figure:: /Images/5-Domain/figure-5-6.jpg
 
-	Figure 5-6: By the test-driven development there is a residual »Green-Bar-Feeling«.
+   Figure 5-6: By the test-driven development there is a residual »Green-Bar-Feeling«.
 
 
 Implementing relationships between domain objects
----------------------------------------------------
+-------------------------------------------------
 
 Extbase supports three different types of hierarchical relationship between domain objects.
 
@@ -275,21 +313,21 @@ object categories as a property.
 
 .. note::
 
-	In addition to these relations an n: 1 relationship is often used: A company has
-	a representative, a representative can work for several companies. In Extbase
-	such a relationship is always mapped by an m: n relationship in which the number
-	of child objects (agents) from the perspective of a parent object (enterprise)
-	is limited to just one.
+   In addition to these relations an n: 1 relationship is often used: A company has
+   a representative, a representative can work for several companies. In Extbase
+   such a relationship is always mapped by an m: n relationship in which the number
+   of child objects (agents) from the perspective of a parent object (enterprise)
+   is limited to just one.
 
 In a 1:1 relationship set and get methods are implemented. At the polyhydric 1:n
 and m:n relationships the add and remove methods are added.
 
-::
+.. code-block:: php
 
-	setContacts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contacts)
-	getContacts()
-	addContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
-	removeContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
+   setContacts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contacts)
+   getContacts()
+   addContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
+   removeContact(\MyVendor\SjrOffers\Domain\Model\Contact $contact)
 
 Be careful about the subtle differences here. The methods `setContacts()` and
 `getContacts()` refer simultaneously to all contacts. They expect and hence provide
@@ -303,14 +341,14 @@ definition of the property offers includes in the comment two special
 annotations:
 @lazy and @cascade remove.
 
-::
+.. code-block:: php
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Offer> The offers the organization has to offer
-	 * @lazy
-	 * @cascade remove
-	 */
-	protected $offers;
+   /**
+    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Offer> The offers the organization has to offer
+    * @lazy
+    * @cascade remove
+    */
+   protected $offers;
 
 By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
@@ -321,10 +359,10 @@ increase in speed.
 
 .. note::
 
-	Beware, however, against all the properties provided by child objects with
-	@lazy, because this can lead to frequent loading of child objects. The ensuing,
-	small-scaled database accesses reduces the performance and cause then the exact
-	opposite of what you wanted to achieve with the lazy-loading.
+   Beware, however, against all the properties provided by child objects with
+   @lazy, because this can lead to frequent loading of child objects. The ensuing,
+   small-scaled database accesses reduces the performance and cause then the exact
+   opposite of what you wanted to achieve with the lazy-loading.
 
 The annotation @cascade remove causes if the organization is deleted, the offers
 will be also deleted immediately. Extbase leaves usually persist unchanged all
@@ -333,9 +371,9 @@ child objects.
 
 .. note::
 
-	In FLOW3 in this behavior is slightly different. Here child objects to which no
-	more can be accessed from a repository, are automatically deleted. In TYPO3 4.x,
-	you can definitely still access the orphaned objects at the backend.
+   In FLOW3 in this behavior is slightly different. Here child objects to which no
+   more can be accessed from a repository, are automatically deleted. In TYPO3 4.x,
+   you can definitely still access the orphaned objects at the backend.
 
 Besides these two there are a few more annotations available, which will be used
 in other contexts (eg in the controller). The complete list of all by Extbase
@@ -360,18 +398,19 @@ services. For this the organization has to pass through all their offerings and
 add one if there is a existing contact to the result. This is especially useful
 for administrators of an organization. The implementation is as follows:
 
-::
+.. code-block:: php
 
-	public function getAllContacts() {
-		$contacts = $this->getContacts();
-		foreach ($this->getOffers() as $offer) {
-			$contact = $offer->getContact();
-			if (is_object($contact)) {
-				$contacts->attach($contact);
-			}
-		}
-		return $contacts;
-	}
+   public function getAllContacts()
+   {
+      $contacts = $this->getContacts();
+      foreach ($this->getOffers() as $offer) {
+         $contact = $offer->getContact();
+         if (is_object($contact)) {
+            $contacts->attach($contact);
+         }
+      }
+      return $contacts;
+   }
 
 The organization gets first by using `getContacts()` their direct contact.
 Therefore all the offers are iterated with foreach. The query `is_object()` is
@@ -387,15 +426,15 @@ once in the list.
 
 .. note::
 
-	Alternatively to the method `getAllOffers()` in the domain object Organization,
-	you could have also implement a method in an OfferRepository
-	``findAllContacts($organization)``. There it would have been possible to get the
-	offers by a little bit more complex query direct from the database. But we
-	follow the important basic rule of the Domain-Driven Design at this place, which
-	says that a element of an aggregate (the totality of all the terms contained in
-	the organization) should be accesssed by the root object (Aggregate-Root). The
-	alternative we choose only, if the iterating through all the offers causes
-	actually a performance problem.
+   Alternatively to the method `getAllOffers()` in the domain object Organization,
+   you could have also implement a method in an OfferRepository
+   ``findAllContacts($organization)``. There it would have been possible to get the
+   offers by a little bit more complex query direct from the database. But we
+   follow the important basic rule of the Domain-Driven Design at this place, which
+   says that a element of an aggregate (the totality of all the terms contained in
+   the organization) should be accesssed by the root object (Aggregate-Root). The
+   alternative we choose only, if the iterating through all the offers causes
+   actually a performance problem.
 
 We finish that implementation of the class from
 :php:`\MyVendor\SjrOffers\Domain\Model\Organization` and turn to the class
@@ -403,64 +442,86 @@ We finish that implementation of the class from
 different from the last. Let's take a look at the (shortened) class which
 emphasizes some peculiarities.
 
-::
+.. code-block:: php
 
-	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-	class Offer extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-		/**
-		 * @var \MyVendor\SjrOffers\Domain\Model\Organization The organization of the offer
-		 */
-		protected $organization;
-		protected $title;
-		protected $image;
-		protected $teaser;
-		protected $description;
-		protected $services;
-		protected $dates;
-		protected $venue;
-		/**
-		 * @var \MyVendor\SjrOffers\Domain\Model\AgeRange The age range of the offer.
-		 */
-		protected $ageRange;
-		/**
-		 * @var \MyVendor\SjrOffers\Domain\Model\DateRange The date range of the offer.
-		 */
-		protected $dateRange;
-		/**
-		 * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange The attendance range.
-		 */
-		protected $attendanceRange;
-		/**
-		 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee>
-		 */
-		protected $attendanceFees;
-		/**
-		 * @var \MyVendor\SjrOffers\Domain\Model\Person The contact of the offer
-		 */
-		protected $contact;
-		/**
-		 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category> The categories the offer is assigned to
-		 */
-		protected $categories;
-		/**
-		 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region> The regions the offer is available
-		 */
-		protected $regions;
+   class Offer extends AbstractEntity
+   {
 
-		/**
-		 * @param string $title The title of the offer
-		 */
-		public function __construct($title) {
-			$this->setTitle($title);
-			$this->setAttendanceFees(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-			$this->setCategories(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-			$this->setRegions(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-		}
-		// Getter and Setter
-	}
+      /**
+       * The organization of the offer
+       *
+       * @var \MyVendor\SjrOffers\Domain\Model\Organization
+       */
+      protected $organization;
+
+      protected $title;
+      protected $image;
+      protected $teaser;
+      protected $description;
+      protected $services;
+      protected $dates;
+      protected $venue;
+
+      /**
+       * @var \MyVendor\SjrOffers\Domain\Model\AgeRange The age range of the offer.
+       */
+      protected $ageRange;
+
+      /**
+       * @var \MyVendor\SjrOffers\Domain\Model\DateRange The date range of the offer.
+       */
+      protected $dateRange;
+
+      /**
+       * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange The attendance range.
+       */
+      protected $attendanceRange;
+
+      /**
+       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee>
+       */
+      protected $attendanceFees;
+
+      /**
+       * The contact of the offer
+       *
+       * @var \MyVendor\SjrOffers\Domain\Model\Person
+       */
+      protected $contact;
+
+      /**
+       * The categories the offer is assigned to
+       *
+       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category>
+       */
+      protected $categories;
+
+      /**
+       * The regions the offer is available
+       *
+       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region>
+       */
+      protected $regions;
+
+      /**
+       * The title of the offer
+       *
+       * @param string $title
+       */
+      public function __construct($title)
+      {
+         $this->setTitle($title);
+         $this->setAttendanceFees(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+         $this->setCategories(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+         $this->setRegions(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+      }
+      // Getter and Setter
+   }
 
 The property organization of the object Offer includes a back reference of the
 offering organization. We have introduced them to have later a quick access at
@@ -471,14 +532,14 @@ Organization (Aggregate Root) should.
 
 .. note::
 
-	The back reference in the form of property organization is similar in some
-	aspects to the foreign key organization in the database table
-	tx_sjroffers_domain_model_offer. This foreign key contains the uid and links the
-	offer-tuple associated with the corresponding tuple from the table
-	tx_sjroffers_domain_model_organization. We use here sent from the fact that the
-	integer value of the uid is converted by Extbase because of the annotation @var
-	\MyVendor\SjrOffers\Domain\Model\Organization into the corresponding object
-	Organization.
+   The back reference in the form of property organization is similar in some
+   aspects to the foreign key organization in the database table
+   tx_sjroffers_domain_model_offer. This foreign key contains the uid and links the
+   offer-tuple associated with the corresponding tuple from the table
+   tx_sjroffers_domain_model_organization. We use here sent from the fact that the
+   integer value of the uid is converted by Extbase because of the annotation @var
+   \MyVendor\SjrOffers\Domain\Model\Organization into the corresponding object
+   Organization.
 
 The properties ageRange, dateRange and attendanceRange contains the objects of
 the type RangeConstraint. These classes we have to create at first and had
@@ -511,126 +572,150 @@ separately.
 
 .. figure:: /Images/5-Domain/figure-5-7.png
 
-	Figure 5-7: Creating the Range Constraints
+   Figure 5-7: Creating the Range Constraints
 
 .. figure:: /Images/5-Domain/figure-5-8.png
 
-	Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
+   Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
 
 
 In the class Range Constraint all common properties and methods are gathered. The properties minimumValue and maximumValue are of the type integer by default. But the inherited class DateRange expected as property values not Numbers, but objects of type DateTime. So we »override« the type definition in the class DateRange and set the type DateTime. The class RangeConstraint looks like as follows (Comments were partly removed):
 
-::
+.. code-block:: php
 
-	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
 
-	abstract class RangeConstraint extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-		/**
-		 * @var int The minimum value
-		 */
-		protected $minimumValue;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
 
-		/**
-		 * @var int The maximum value
-		 */
-		protected $maximumValue;
+   abstract class RangeConstraint extends AbstractValueObject
+   {
 
-		/**
-		 * @param int $minimumValue
-		 * @param int $maximumValue
-		 */
-		public function __construct($minimumValue = NULL, $maximumValue = NULL) {
-			$this->setMinimumValue($minimumValue);
-			$this->setMaximumValue($maximumValue);
-		}
+      /**
+       * @var int The minimum value
+       */
+      protected $minimumValue;
 
-		/**
-		 * @param mixed The minimum value
-		 * @return void
-		 */
-		public function setMinimumValue($minimumValue = NULL) {
-			$this->minimumValue = $this->normalizeValue($minimumValue);
-		}
+      /**
+       * @var int The maximum value
+       */
+      protected $maximumValue;
 
-		public function getMinimumValue() {
-			return $this->minimumValue;
-		}
+      /**
+       * @param int $minimumValue
+       * @param int $maximumValue
+       */
+      public function __construct($minimumValue = null, $maximumValue = null)
+      {
+         $this->setMinimumValue($minimumValue);
+         $this->setMaximumValue($maximumValue);
+      }
 
-		/**
-		 * @param mixed The maximum value
-		 * @return void
-		 */
-		public function setMaximumValue($maximumValue = NULL) {
-			$this->maximumValue = $this->normalizeValue($maximumValue);
-		}
+      /**
+       * @param mixed The minimum value
+       * @return void
+       */
+      public function setMinimumValue($minimumValue = null)
+      {
+         $this->minimumValue = $this->normalizeValue($minimumValue);
+      }
 
-		public function getMaximumValue() {
-			return $this->maximumValue;
-		}
+      public function getMinimumValue()
+      {
+         return $this->minimumValue;
+      }
 
-		public function normalizeValue($value = NULL) {
-			if ($value !== NULL && $value !== '') {
-				$value = abs(intval($value));
-			} else {
-				$value = NULL;
-			}
-			return $value;
-		}
-	}
+      /**
+       * @param mixed The maximum value
+       * @return void
+       */
+      public function setMaximumValue($maximumValue = null)
+      {
+         $this->maximumValue = $this->normalizeValue($maximumValue);
+      }
+
+      public function getMaximumValue()
+      {
+         return $this->maximumValue;
+      }
+
+      public function normalizeValue($value = null)
+      {
+         if ($value !== null && $value !== '') {
+            $value = abs(int()$value);
+         } else {
+            $value = null;
+         }
+         return $value;
+      }
+   }
 
 All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values 12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject.
 
 The class rank by the keyword abstract constraint was marked as abstract. Thus we prevent the Range object itself is instantiated.
 
-We have furthermore implement a method `normalizeValue()`. These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
+We have furthermore implement a method :php:`normalizeValue()`. These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
 
-::
+.. code-block:: php
+   :caption: DateRange.php
+   :name: daterange
 
- 	<?php
-	namespace MyVendor\SjrOffers\Domain\Model;
+   <?php
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-	class DateRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
- implements \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {
+   class DateRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+      implements \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\DateTime The minimum value
-	 */
-	protected $minimumValue;
+   /**
+    * The minimum value
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\DateTime
+    */
+   protected $minimumValue;
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\DateTime The maximum value
-	 */
-	protected $maximumValue;
+   /**
+    * The maximum value
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\DateTime
+    */
+   protected $maximumValue;
 
-	public function normalizeValue($value = NULL) {
-		if (!($value instanceof DateTime)) {
-			$value = NULL;
-		}
-		return $value;
-	}
+   public function normalizeValue($value = NULL)
+   {
+      if (!($value instanceof \DateTime)) {
+         $value = null;
+      }
+      return $value;
+   }
  }
 
 
 The class :php:`DateRange` implements furthermore the interface :php:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :php:`NumericRangeInterface`. The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
 
-::
+.. code-block:: php
 
- 	<?php
- 	namespace MyVendor\SjrOffers\Domain\Model;
+    <?php
 
- 	class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
- 	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
- 	}
+    namespace MyVendor\SjrOffers\Domain\Model;
 
-	class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
- 	implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {
- 	}
+    class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+       implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+    {
+    }
 
- 	interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface {}
+   class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+       implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+    {
+    }
 
- 	interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface {}
+    interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+    {
+    }
+
+    interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface
+    {
+    }
 
 
 
@@ -638,10 +723,10 @@ We have implemented the terms age range, number of participants and offer an ade
 
 .. figure:: /Images/5-Domain/figure-5-9.png
 
-	Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
+   Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 
 Validate the domain objects
-----------------------------
+---------------------------
 The business logic often looks for rules as to the properties of the data domain objects
 needs to be. Here are some examples of such so-called invariants in our
 Extension:
@@ -652,12 +737,13 @@ Extension:
 
 You can implement the check of the details of these invariants directly the domain model. In the setter of the title of an offer would stand the following code:
 
-::
+.. code-block:: php
 
- public function setTitle($title) {
-	if (strlen($title) > 3 && strlen($title) < 50) {
-		$this->title = $title;
-	}
+ public function setTitle($title)
+ {
+   if (strlen($title) > 3 && strlen($title) < 50) {
+      $this->title = $title;
+   }
  }
 
 This has several disadvantages:
@@ -668,89 +754,120 @@ This has several disadvantages:
 
 Therefore Extbase offers an alternative about Annotations. Let us have a look at the definitions of the properties of the class Offer definition - this time with all the comments:
 
-::
+.. code-block:: php
 
- 	/**
-	 * @var string The title of the offer
-	 * @validate StringLength(minimum = 3, maximum = 50)
-	 */
-	protected $title;
+    /**
+    * The title of the offer
+    *
+    * @var string
+    * @validate StringLength(minimum = 3, maximum = 50)
+    */
+   protected $title;
 
-	/**
-	 * @var string A single image of the offer
-	 */
-	protected $image;
+   /**
+    * A single image of the offer
+    *
+    * @var string
+    */
+   protected $image;
 
-	/**
-	 * @var string The teaser of the offer. A line of text.
-	 * @validate StringLength(maximum = 150)
-	 */
-	protected $teaser;
+   /**
+    * The teaser of the offer. A line of text.
+    *
+    * @var string
+    * @validate StringLength(maximum = 150)
+    */
+   protected $teaser;
 
-	/**
-	 * @var string The description of the offer. A longer text.
-	 * @validate StringLength(maximum = 2000)
-	 */
-	protected $description;
+   /**
+    * The description of the offer. A longer text.
+    *
+    * @var string
+    * @validate StringLength(maximum = 2000)
+    */
+   protected $description;
 
-	/**
-	 * @var string The services of the offer.
-	 * @validate StringLength(maximum = 1000)
-	 */
-	protected $services;
+   /**
+    * The services of the offer.
+    *
+    * @var string
+    * @validate StringLength(maximum = 1000)
+    */
+   protected $services;
 
-	/**
-	 * @var string The textual description of the dates. E.g. "Monday to Friday, 8-12"
-	 * @validate StringLength(maximum = 1000)
-	 */
-	protected $dates;
+   /**
+    * The textual description of the dates. E.g. "Monday to Friday, 8-12"
+    *
+    * @var string
+    * @validate StringLength(maximum = 1000)
+    */
+   protected $dates;
 
-	/**
-	 * @var string The venue of the offer.
-	 * @validate StringLength(maximum = 1000)
-	 */
-	protected $venue;
+   /**
+    * The venue of the offer.
+    *
+    * @var string
+    * @validate StringLength(maximum = 1000)
+    */
+   protected $venue;
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\AgeRange The age range of the offer.
-	 * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
-	 */
-	protected $ageRange;
+   /**
+    * The age range of the offer.
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\AgeRange
+    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    */
+   protected $ageRange;
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\DateRange The date range of the offer is valid.
-	 * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
-	 */
-	protected $dateRange;
+   /**
+    * The date range of the offer is valid.
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\DateRange
+    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    */
+   protected $dateRange;
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange The attendance range of the offer.
-	 * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
-	 */
-	protected $attendanceRange;
+   /**
+    * The attendance range of the offer.
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange
+    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    */
+   protected $attendanceRange;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee> The attendance fees of the offer
-	 */
-	protected $attendanceFees;
+   /**
+    * The attendance fees of the offer
+    *
+    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee>
+    */
+   protected $attendanceFees;
 
-	/**
-	 * @var \MyVendor\SjrOffers\Domain\Model\Person The contact of the offer
-	 */
-	protected $contact;
+   /**
+    * The contact of the offer
+    *
+    * @var \MyVendor\SjrOffers\Domain\Model\Person
+    */
+   protected $contact;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category> The categories the offer is assigned to
-	*/
-	protected $categories;
+   /**
+    * The categories the offer is assigned to
+    *
+    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category>
+    */
+   protected $categories;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region> The regions the offer is available
-	 */
-	protected $regions;
+   /**
+    * The regions the offer is available
+    *
+    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region>
+    */
+   protected $regions;
 
-The values of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @validate [...] is set. The annotation @validate StringLength (minimum = 3, maximum = 50) on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
-The validator StringLength is provided by Extbase of charge. The name of the associated class is \\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator. The options minimum and maximum are passed to the Validator and are evaluated there.
+The values of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @validate […] is set. The annotation :php:`@validate StringLength (minimum = 3, maximum = 50)` on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
+The validator StringLength is provided by Extbase of charge. The name of the associated class is :php:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator`.
+The options minimum and maximum are passed to the Validator and are evaluated there.
 
-With the validation, we conclude the modeling and implementation of the domain at first. With that achieved, it is possible to store domain objects, which where generated during a page view in memory. All data will be lost at the end
-of the page view. In order for the domain objects are permanently on the grouting, the persistence layer is to be set up accordingly.
+With the validation, we conclude the modeling and implementation of the domain at first.
+With that achieved, it is possible to store domain objects, which where generated during a page view in memory.
+All data will be lost at the end of the page view. In order for the domain objects are permanently on the grouting,
+the persistence layer is to be set up accordingly.

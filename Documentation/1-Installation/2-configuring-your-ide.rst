@@ -14,13 +14,13 @@ depends on your personal preferences which one you should use.
 
 .. sidebar:: Sources
 
-	The NetBeans IDE is offered for Windows, Linux and Mac OS X. We use
-	NetBeans PHP, which you can download from
-	*http://netbeans.org*.
+   The NetBeans IDE is offered for Windows, Linux and Mac OS X. We use
+   NetBeans PHP, which you can download from
+   *http://netbeans.org*.
 
-	Eclipse is also available for all important Operating Systems. The
-	PHP IDE is called Eclipse PDT, which you can download from
-	*http://eclipse.org/pdt*.
+   Eclipse is also available for all important Operating Systems. The
+   PHP IDE is called Eclipse PDT, which you can download from
+   *http://eclipse.org/pdt*.
 
 In general you should create projects for Extbase and Fluid in NetBeans,
 Eclipse or PhpStorm. You will be able to have a look at the
@@ -41,14 +41,14 @@ with TYPO3, you'll find it at
 
 .. tip::
 
-	By default NetBeans uses space chars for code indentation. And also
-	the TYPO3 Coding Guidelines follow the PSR-2-standard and demand tabs for indentation.
-	Make sure to configure NetBeans accordingly. Open the preferences dialog of NetBeans
-	and choose the entry *Editor*. Now, in the section
-	*Formatting*, make sure the option *Expand Tabs to Spaces*
-	is activated and adjust the options *Number of
-	Spaces per Indent* and *Tab Size* to the same
-	values (e.g. 4).
+   By default NetBeans uses space chars for code indentation. And also
+   the TYPO3 Coding Guidelines follow the PSR-2-standard and demand tabs for indentation.
+   Make sure to configure NetBeans accordingly. Open the preferences dialog of NetBeans
+   and choose the entry *Editor*. Now, in the section
+   *Formatting*, make sure the option *Expand Tabs to Spaces*
+   is activated and adjust the options *Number of
+   Spaces per Indent* and *Tab Size* to the same
+   values (e.g. 4).
 
 In Eclipse creating projects for Extbase and Fluid will work like
 this: Click on *File* → *New Project*

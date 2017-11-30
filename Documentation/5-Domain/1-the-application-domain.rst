@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
-the application domain
-================================================
+The application domain
+======================
 
 The main difference to the common approach to develop an extension is
 the concentration to the domain of the client - in our case to the domain of
@@ -12,8 +12,7 @@ management system (e.g. "list view" or "search") are not playing roles by
 this. After a first project meeting with the contact persons of the SJR
 following characteristics were defined:
 
-<remark>TODO: check for a translation of
-Stadtjugendring</remark>
+.. TODO: check for a translation of Stadtjugendring
 
 * Every member organization can edit their contact data via the front end.
 * Every member organization can add, edit and delete their offers.
@@ -46,7 +45,7 @@ offer management not exist isolated inside the SJR. It is in fact embedded
 in the whole business. And there the term of member organization (or short
 *organization*) make more sense.
 
-<remark>TODO: check if vendor is the right term</remark>
+.. TODO: check if vendor is the right term
 
 .. tip::
 
@@ -109,20 +108,20 @@ those parent child relations. An additional rhomb symbolized an
 Let us improve the first draft of the domain model. The offer has
 several property pairs, that belong together:
 
-* ``minimumAge`` and ``maximumAge`` (the minimal
+* `minimumAge` and `maximumAge` (the minimal
   and maximal age)
-* ``minimumAttendants`` and
-* ``maximumAttendants`` (the minimal and maximal count of attendees)
-* ``firstDate`` and ``lastDate`` (date of beginning and end)
+* `minimumAttendants` and
+* `maximumAttendants` (the minimal and maximal count of attendees)
+* `firstDate` and `lastDate` (date of beginning and end)
 
 These property pairs are subject to own rules, that are not
-part of a single property. The minimal age limit (``minimumAge``)
+part of a single property. The minimal age limit (`minimumAge`)
 for example should not be greater than the maximum age limit
-(``maximumAge``). The observation of this rule can be done by the
+(`maximumAge`). The observation of this rule can be done by the
 offer itselfby a corresponding validation. But it rather belongs to the
 property pair. We store each property pair in an own domain object:
-``AgeRange``, ``AttendanceRange`` and
-``DateRange``. The outcome of this is the optimized second draft
+`AgeRange`, `AttendanceRange` and
+`DateRange`. The outcome of this is the optimized second draft
 (see figure 5-3).
 
 .. figure:: /Images/5-Domain/figure-5-3.png
@@ -133,8 +132,8 @@ property pair. We store each property pair in an own domain object:
 The specific domain objects have a common property, they have a lower
 and upper value. With this we can insert a class hierarchy in which the
 three domain objects succeed these common property from a domain object
-``RangeConstraint``. This has two generic properties:
-``minimumValue`` and ``maximumValue`` (see figure
+`RangeConstraint`. This has two generic properties:
+`minimumValue` and `maximumValue` (see figure
 5-4).
 
 .. figure:: /Images/5-Domain/figure-5-4.png

@@ -43,8 +43,8 @@ to the according position within the code of our blog example:
 When these preparations are fulfilled by the Extbase dispatcher, we
 are able to travel to the first stop of our destination: the controller. In
 our example all further processing is assigned to the
-:php:`BlogController`. A reference to the ``request`` and the
-``response`` is handed over.
+:php:`BlogController`. A reference to the `request` and the
+`response` is handed over.
 
 The class :php:`BlogController` can be found in the
 file
@@ -56,19 +56,19 @@ this might seem long-winded but the syntax follows a very strict convention
 
 .. tip::
 
-	Be careful, conventions!
+   Be careful, conventions!
 
-	The name of a class is separated into individual parts, which
-	themselves are divided by an underscore. All parts of a class name are
-	spelled with capital camel case, where each initial letter is capitalized.
-	This style for notation is commonly known as
-	*UpperCamelCase* because each capital letter suggests
-	the hump of a camel. For extensions the first part always is
-	":php:`Tx`". The second part is the name of the extension
-	- in the underlying case ":php:`BlogExample`". The last
-	part is the name of the domain object. The center between those parts
-	builds the path to the class file below the folder
-	:file:`Classes`. In our case the file is stored directly
-	within the folder :file:`Controller`. The name of the class
-	file is taken from the last part of the class name appended with the
-	suffix :file:`.php`.
+   The name of a class is separated into individual parts, which
+   themselves are divided by an underscore. All parts of a class name are
+   spelled with capital camel case, where each initial letter is capitalized.
+   This style for notation is commonly known as
+   *UpperCamelCase* because each capital letter suggests
+   the hump of a camel. For extensions the first part always is
+   ":php:`Tx`". The second part is the name of the extension
+   - in the underlying case ":php:`BlogExample`". The last
+   part is the name of the domain object. The center between those parts
+   builds the path to the class file below the folder
+   :file:`Classes`. In our case the file is stored directly
+   within the folder :file:`Controller`. The name of the class
+   file is taken from the last part of the class name appended with the
+   suffix :file:`.php`.

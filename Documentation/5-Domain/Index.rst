@@ -3,7 +3,7 @@
 .. _modeling-the-domain:
 
 Modeling the Domain
-===============================================
+===================
 
 In this chapter you are going to learn how to subject an area of the
 real world - a so called *Domain* - to a process of

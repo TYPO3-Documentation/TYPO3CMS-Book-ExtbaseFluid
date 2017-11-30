@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
 Setting up the persistence layer
-================================================
+================================
 
 As already insinuated in previous chapters it is the Persistence Layer which
 takes care about conserving Domain Objects durably. Thus, in this chapter we

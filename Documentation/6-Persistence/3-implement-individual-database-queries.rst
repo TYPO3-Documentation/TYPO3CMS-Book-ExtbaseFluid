@@ -3,7 +3,7 @@
 .. _individual_database_queries:
 
 Individual Database Queries
-================================================
+===========================
 
 The previous descriptions about generic methods of queries to a Repository are
 sufficient for simple use-cases. However, there are many cases where they are
@@ -42,14 +42,16 @@ database backend. Those information contain:
 * (Optional) Parameters concerning the *Orderings* of the result set.
 
 Within a Repository you can create a Query object by using the command
-``$this->createQuery()``. The Query object is already customized to the class
+:php:`$this->createQuery().` The Query object is already customized to the class
 which is managed by the Repository. Thus, the result set only consists of
 objects of that class, i.e. it consists of Offer objects within the
-``OfferRepository``. After giving all needed information to the Query object
+:php:`OfferRepository`. After giving all needed information to the Query object
 (detailed information will be given later on) you execute the request by using
-``execute()`` which returns a sorted Array with the properly instantiated
+:php:`execute()` which returns a sorted Array with the properly instantiated
 objects (or a via limit and offset customized section of it). For example, the
-generic method ``findAll()`` looks as follows::
+generic method :php:`findAll()` looks as follows:
+
+.. code-block:: php
 
     public function findAll() {
         return $this->createQuery()->execute();
@@ -58,7 +60,9 @@ generic method ``findAll()`` looks as follows::
 In this simple first use-case we don't apply any constraining parameter to the Query
 object. However, we have to define such a parameter to implement the first
 specified request, "Find all the offers for a certain region". Thus, the
-corresponding method looks as follows::
+corresponding method looks as follows:
+
+.. code-block:: php
 
     public function findInRegion(\MyVendor\SjrOffers\Domain\Model\Region $region) {
         $query = $this->createQuery();
@@ -96,7 +100,7 @@ checks if a multi-valued property contains a single-valued operand. The opposite
 of the introduced method ``findInRegion()`` is ``findOfferedBy()`` which accepts
 a multi-valued operand (``$organizations``).
 
-::
+.. code-block:: php
 
     public function findOfferedBy(array $organizations) {
         $query = $this->createQuery();
@@ -154,20 +158,24 @@ be true if only one of the given parameters is true. Since Extbase 1.1, both met
 accept an Array of constraints. Last, but not least, the function
 ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
-complex queries such as::
+complex queries such as:
+
+.. code-block:: php
 
     public function findMatchingOrganizationAndRegion(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Region $region) {
         $query = $this->createQuery();
         $query->matching(
             $query->logicalAnd(
-                $query->equals('organization', $organization),
-                $query->contains('regions', $region)
+                [
+                    $query->equals('organization', $organization),
+                    $query->contains('regions', $region)
+                ]
             )
         );
         return $query->execute();
     }
 
-The method ``findMatchingOrganizationAndRegion()`` returns those offers that
+The method :php:`findMatchingOrganizationAndRegion()` returns those offers that
 match both the given organization and the given region.
 
 For our example extension we have the complex specification to find all offers
@@ -178,39 +186,50 @@ in their own ``Demand`` object that basically consists of the properties ``age``
 ``region``, ``category`` and ``searchWord``, plus their getters and setters.
 In addition to the restrictions for the needs of the user, there comes the request
 to show the current offers. This example request denotes a date constraint at most one week ago.
-In the method ``findDemanded()`` of the ``offerRepository``, the request is implemented::
+In the method ``findDemanded()`` of the ``offerRepository``, the request is implemented:
 
-    public function findDemanded(\MyVendor\SjrOffers\Domain\Model\Demand $demand) {
+.. code-block:: php
+
+    public function findDemanded(\MyVendor\SjrOffers\Domain\Model\Demand $demand)
+    {
         $query = $this->createQuery();
-        $constraints = array();
-        if ($demand->getRegion() !== NULL) {
+        $constraints = [];
+        if ($demand->getRegion() !== null) {
             $constraints[] = $query->contains('regions', $demand->getRegion());
         }
-        if ($demand->getCategory() !== NULL) {
+        if ($demand->getCategory() !== null) {
             $constraints[] = $query->contains('categories', $demand->getCategory());
         }
-        if ($demand->getOrganization() !== NULL) {
+        if ($demand->getOrganization() !== null) {
             $constraints[] = $query->contains('organization', $demand->getOrganization());
         }
         if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
             $constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
         }
-        if ($demand->getAge() !== NULL) {
+        if ($demand->getAge() !== null) {
             $constraints[] = $query->logicalAnd(
-                $query->logicalOr(
-                    $query->equals('ageRange.minimumValue', NULL),
-                    $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-                ),
-                $query->logicalOr(
-                    $query->equals('ageRange.maximumValue', NULL),
-                    $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-                ),
+                [
+                    $query->logicalOr(
+                        [
+                            $query->equals('ageRange.minimumValue', null),
+                            $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+                        ]
+                    ),
+                    $query->logicalOr(
+                        [
+                            $query->equals('ageRange.maximumValue', null),
+                            $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+                        ]
+                    ),
+                ]
             );
         }
         $constraints[] = $query->logicalOr(
-            $query->equals('dateRange.minimumValue', NULL),
-            $query->equals('dateRange.minimumValue', 0),
-            $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
+            [
+                $query->equals('dateRange.minimumValue', null),
+                $query->equals('dateRange.minimumValue', 0),
+                $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
+            ]
         );
         $query->matching($query->logicalAnd($constraints));
         return $query->execute();
@@ -224,21 +243,27 @@ query is executed and the located ``Offer`` objects are returned to the caller.
 
 The example's offer age range requirement is interesting.
 
-::
+.. code-block:: php
 
     $constraints[] = $query->logicalAnd(
-        $query->logicalOr(
-            $query->equals('ageRange.minimumValue', NULL),
-            $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-        ),
-        $query->logicalOr(
-            $query->equals('ageRange.maximumValue', NULL),
-            $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-        ),
+        [
+            $query->logicalOr(
+                [
+                    $query->equals('ageRange.minimumValue', null),
+                    $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+                ]
+            ),
+            $query->logicalOr(
+                [
+                    $query->equals('ageRange.maximumValue', null),
+                    $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+                ]
+            ),
+        ]
     );
 
 This requirement is fulfilled using multiple levels of nested query constraints. Each ``logicalOr()``
-condition allows either an unset age (value ``equals() NULL``) or a boundary
+condition allows either an unset age (value ``equals() null``) or a boundary
 age value. (Here, the minimum age is more recent in the past than the maximum age, on a timeline.)
 The ``logicalAnd()`` constraint then joins the two ``logicalOr()`` constraints, making a single
 constraint, overall.
@@ -248,13 +273,15 @@ to the ``Query`` object. These rules are collected in an associative array. Each
 property name on which the sort is based as its key, and the search order constant as its value.
 There are two constants for the search order: ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING``
 for an ascending order, and ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING`` for a descending
-order. A complete sample for specifying a sort order looks like this::
+order. A complete sample for specifying a sort order looks like this:
+
+.. code-block:: php
 
     $query->setOrderings(
-        array(
+        [
             'organization.name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
             'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-        )
+        ]
     );
 
 Multiple orderings are processed in the specified order. In our sample the offers are ordered first
@@ -264,7 +291,9 @@ specifying the property names.
 
 If you need only an extract of the result set, you can do this with the two parameters, ``Limit``
 and ``Offset``. Assuming you want to get the tenth up to thirtieth offers from the overall query result
-from the repository, you can use the following lines::
+from the repository, you can use the following lines:
+
+.. code-block:: php
 
     $query->setOffset(10);
     $query->setLimit(20);
@@ -281,19 +310,21 @@ easily port your query code to FLOW3.
 .. note::
 
     The ``Query`` object leans against the *Java Specification Request* (JSR) 283. JSR 283
-    describes a standardised content repository for Java, The FLOW3 team ported this idea to PHP. You can
+    describes a standardised content repository for Java, The FLOW team ported this idea to PHP. You can
     find more information about this at
     :file:`http://jcp.org/en/jsr/detail?id=283`.
 
 Even so, using the method ``statement()`` of the ``Query`` object, you can send a native SQL statement to
 the database.
 
-::
+.. code-block:: php
 
     $result = $query->statement('SELECT * FROM tx_sjroffers_domain_model_offer
         WHERE title LIKE ? AND organization IN ?', array('%climbing%', array(33,47)));
 
-is translated by Extbase to the following query::
+is translated by Extbase to the following query:
+
+.. code-block:: php
 
     SELECT * FROM tx_sjroffers_domain_model_offer WHERE title LIKE '%climbing%' AND
         organization IN ('33','47')
@@ -315,7 +346,7 @@ The method ``execute()`` per default returns a ready built object and the relate
 e.g. if you want to manipulate them before you build objects out of them. For this, you have to change
 the settings of the ``Query`` object.
 
-::
+.. code-block:: php
 
     $query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
@@ -323,7 +354,7 @@ Since Extbase 1.2, the method ``execute()`` returns a multidimensional array wit
 Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
 look at an object with a single value property.
 
- ::
+.. code-block:: php
 
     array(
         'identifier' => '<identifier>',

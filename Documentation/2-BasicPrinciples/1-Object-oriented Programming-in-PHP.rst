@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
 Object-oriented programming in PHP
-=================================================
+==================================
 
 Object-oriented programming is a Programming Paradigm versatilely
 applied in extbase and the extensions built on it. In this section we will
@@ -35,7 +35,7 @@ you can reach your holiday destination a bit faster.
 
 
 Why Object Orientation after all?
--------------------------------------------------
+---------------------------------
 
 Surely some users will ask themselves why they should develop object
 orientated in the first place. Why not (just like until now) keep on
@@ -80,46 +80,55 @@ Classes and Objects
 Let's now take a step back and imagine there's a blueprint for
 ships in general. We now focus not on the ship but this blueprint. It is
 called a *Class*, in this case it is the Class
-:php:`ship`. In PHP this is written as follows::
+`Ship`. In PHP this is written as follows:
 
-	<?php
+.. code-block:: php
 
-	class ship {
+   <?php
 
-		...
-
-	}
-
-	?>
+   class Ship
+   {
+      // …
+   }
 
 .. tip::
 
-	In this piece of code note that we kept the necessary PHP tags at
-	the beginning and end. We will spare them in the following examples to
-	make the listings a bit shorter.
+   In this piece of code note that we kept the necessary PHP tags at
+   the beginning and end. We will spare them in the following examples to
+   make the listings a bit shorter.
 
 The key word :php:`class` opens the Class and
 inside the curly brackets Properties and Methods are written. we'll now
-add these Properties and Methods::
+add these Properties and Methods:
 
-	class ship {
+.. code-block:: php
 
-		public $name;
+   class Ship {
 
-		public $coaches;
+      public $name;
 
-		public $engineStatus;
+      public $coaches;
 
-		public $speed;
+      public $engineStatus;
 
+      public $speed;
 
-		function startEngine() {}
+      function startEngine()
+      {
 
-		function stopEngine() {}
+      }
 
-		function moveTo($location) {}
+      function stopEngine()
+      {
 
-	}
+      }
+
+      function moveTo($location)
+      {
+
+      }
+
+   }
 
 Our ship now has a name (:php:`$name`), a number of coaches
 (:php:`$coaches`) and a speed (:php:`$speed`). In addition we built in a
@@ -131,10 +140,10 @@ Property is marked with the key word :php:`public` further down.
 
 .. tip::
 
-	For Methods and Properties we use a notation called
-	*lowerCamelCase*: The first letter is lower case
-	and all other parts are added without blank or underscore in upper
-	case. This is a convention used in extbase (as well as FLOW3).
+   For Methods and Properties we use a notation called
+   *lowerCamelCase*: The first letter is lower case
+   and all other parts are added without blank or underscore in upper
+   case. This is a convention used in extbase (as well as FLOW3).
 
 We can also switch on the engine
 (:php:`startEngine()`), travel with the ship to the
@@ -148,31 +157,33 @@ contained by the Method is called the Method body accordingly.
 Now we will finally create an Object from our Class. The Class
 :php:`ship` will be the blueprint and :php:`$fidelio` the concrete Object.
 
-::
+.. code-block:: php
 
-	$fidelio = new Ship();
+   $fidelio = new Ship();
 
-	// Display the Object
+   // Display the Object
 
-	var_dump($fidelio);
+   var_dump($fidelio);
 
 The key word *new* is used to create a concrete Object from the Class.
 This Object is also called an *Instance* and the creation
 process consequentially *Instantiation*. We can use the
 command `var_dump()` to closely examine the object. We'll see
-the following::
+the following:
 
-	object(Ship)#1 (3) {
+.. code-block:: php
 
-		["name"] => NULL
+   object(Ship)#1 (3) {
 
-		["coaches"] => NULL
+      ["name"] => NULL
 
-		["engineStatus"] => NULL
+      ["coaches"] => NULL
 
-		["speed"] => NULL
+      ["engineStatus"] => NULL
 
-	}
+      ["speed"] => NULL
+
+   }
 
 We can clearly see that our Object has 4 Properties with a concrete
 value, at the moment still NULL, for we did not yet assign anything. We
@@ -180,47 +191,48 @@ can instantiate as many Objects from a class as we like and every single
 one will differ from the others – even if all of the Properties have the
 same values.
 
-::
+.. code-block:: php
 
-	$fidelio1 = new Ship();
-	$fidelio2 = new Ship();
+   $fidelio1 = new Ship();
+   $fidelio2 = new Ship();
 
-	if ($fidelio1 === $fidelio2) {
-		echo 'Objects are identical!'
+   if ($fidelio1 === $fidelio2) {
+      echo 'Objects are identical!'
 
-	} else {
-		echo 'Objects are not identical!'
-	}
+   } else {
+      echo 'Objects are not identical!'
+   }
 
 In this example the output is `Objects are not identical!`
 
 
 The arrow operator
--------------------------------------------------
+------------------
 
 We are able to create an Object now but of course it's Properties
 are still empty. We'll hurry to change this by assigning values to the
 Properties. For this we use a special operator, the so called arrow
 operator (->). We can use it for getting access to the properties of
 an Object or calling Methods. In the following example we set the name
-of the ship and call some Methods::
+of the ship and call some Methods:
 
-	$ship = new Ship();
+.. code-block:: php
 
-	$ship->name = "FIDELIO";
+   $ship = new Ship();
 
-	echo "The ship's Name is ". $ship->name;
+   $ship->name = 'FIDELIO';
 
-	$ship->startEngine();
+   echo 'The ship's Name is ' . $ship->name;
 
-	$ship->moveTo('Bahamas');
+   $ship->startEngine();
 
-	$ship->stopEngine();
+   $ship->moveTo('Bahamas');
 
+   $ship->stopEngine();
 
 
 $this
--------------------------------------------------
+-----
 
 Using the arrow operator we can now comfortably access Properties
 and Methods of an Object. But what if we want to do this from
@@ -230,25 +242,23 @@ point what an object to be instantiated later will be called. So we need
 a mechanism to do this independent from the name. This is done with the
 special variable :php:`$this`.
 
-::
+.. code-block:: php
 
-	class Ship {
+   class Ship
+   {
+      // …
 
-		...
+      public $speed;
 
-		public $speed;
+      // …
 
-		...
+      function startEngine()
+      {
+         $this->speed = 200;
+      }
+   }
 
-		function startEngine() {
-
-			$this->speed = 200;
-
-		}
-
-	}
-
-With `$this->speed` you can access the Property
+With :php:`$this->speed` you can access the Property
 "speed" in the actual Object independently of it's name.
 
 
@@ -294,28 +304,26 @@ golf course – just as the shipping company did. Technically speaking we
 extend an "old" Class definition by using the key word
 `extends`.
 
-::
+.. code-block:: php
 
-	class LuxuryLiner extends Ship {
+   class LuxuryLiner extends Ship
+   {
 
-		public $luxuryCoaches;
+      public $luxuryCoaches;
 
-		function golfSimulatorStart() {
+      function golfSimulatorStart()
+      {
+         echo 'Golf simulator on ship ' . $this->name . '
+         started.';
+      }
 
-			echo 'Golf simulator on ship ' . $this->name . '
-			started.';
+      function golfSimulatorStop() {
+         echo 'Golf simulator on ship ' . $this->name . '
+         stopped.';
+      }
+   }
 
-		}
-
-		function golfSimulatorStop() {
-
-			echo 'Golf simulator on ship ' . $this->name . '
-			stopped.';
-
-		}
-	}
-
-	$luxuryShip = new LuxuryLiner('FIDELIO2','600')
+   $luxuryShip = new LuxuryLiner('FIDELIO2','600')
 
 Our new luxury liner comes into existence as easy as that. We
 define that the luxury liner just extends the Definition of the class
@@ -337,7 +345,7 @@ again access the Properties and Methods of the parent class by using
 
 
 Overriding Properties and Methods
--------------------------------------------------
+---------------------------------
 
 Inside an inherited class you can not only access Properties and
 Methods of the parent class or define new ones. It's even possible to
@@ -358,7 +366,7 @@ called.
 
 
 Access to the parent class through "parent"
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 Overriding a Method comes in handy but has a serious
 disadvantage. When changing the Method
@@ -379,7 +387,7 @@ way:
 
 
 Abstract classes
--------------------------------------------------
+----------------
 
 Sometimes it is useful to define "placeholder Methods" in the
 parent class which are filled in the child class. These "placeholders"
@@ -402,7 +410,7 @@ right away.
 
 
 Interfaces
--------------------------------------------------
+----------
 
 Interfaces are a special case of abstract classes in which
 *all Methods* are abstract. Using Interfaces,
@@ -428,7 +436,7 @@ interfaces can also be inherited by other interfaces.
 
 
 Visibilities: public, private and protected
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 Access to Properties and Methods can be restricted by different
 visibilities to hide implementation details of a class. The meaning of a
@@ -448,7 +456,7 @@ visibilities exist:
   class itself, not from child classes.
 
 Access to Properties
--------------------------------------------------
+--------------------
 
 This small example demonstrates how to work with protected
 properties:
@@ -472,7 +480,7 @@ the following section.
 
 
 Access to Methods
--------------------------------------------------
+-----------------
 
 All Methods the Object makes available to the outside have to be
 defined as :php:`public`. All Methods containing
@@ -503,12 +511,12 @@ inconsistent.
 
 .. tip::
 
-	In extbase you'll find getter and setter Methods all over. No
-	Property in extbase is set to :php:`public`.
+   In extbase you'll find getter and setter Methods all over. No
+   Property in extbase is set to :php:`public`.
 
 
 Static Methods and Properties
--------------------------------------------------
+-----------------------------
 
 Until now we worked with Objects instantiated from classes.
 Sometimes though it does not make sense to generate a complete object
@@ -549,7 +557,7 @@ same static variable
 
 
 Important design- and architectural patterns
---------------------------------------------------------------------------------------------------
+--------------------------------------------
 
 In software engineering you'll sooner or later stumble upon design
 problems that are connatural and solved in a similar way. Clever people
@@ -566,10 +574,10 @@ them
 
 .. tip::
 
-	Further information about design patterns can e.g. be found on
-	<link linkend="???">http://sourcemaking.com/</link> or in the book
-	*PHP Design Patterns* by Stephan Schmidt, published
-	by O'Reilly.
+   Further information about design patterns can e.g. be found on
+   <link linkend="???">http://sourcemaking.com/</link> or in the book
+   *PHP Design Patterns* by Stephan Schmidt, published
+   by O'Reilly.
 
 From the big number of design patterns, we will have a closer look
 on two that are essential when programming with extbase:
@@ -578,50 +586,46 @@ on two that are essential when programming with extbase:
 
 
 Singleton
--------------------------------------------------
+---------
 
 This design pattern makes sure that only one instance of a class
 can exist *at a time*. In TYPO3 you can mark a class
 as singleton by letting it implement the interface
-:php:`t3lib_Singleton`. An example: our luxury liners
+:php:`\TYPO3\CMS\Core\SingletonInterface`. An example: our luxury liners
 are all constructed in the same shipyard. So there is no sense in having
 more than one instance of the shipyard object:
 
-<remark>TODO: Enter Code</remark>
+
 
 In order to have the singletons correctly created you have to use
-the static TYPO3 Method
-:php:`GeneralUtility::makeInstance()`. This method gives back
-- as seen in the example above - always the same object, if you request
-a singleton.
+the :php:`ObjectManager`
 
-
+.. todo Code Example for :php:`\TYPO3\CMS\Extbase\Object\ObjectManagerInterface`
 
 Prototype
--------------------------------------------------
+---------
 
 Prototype is sort of the antagonist to Singleton. While for each
 class only one object is instantiated when using Singleton, it is
 explicitly allowed to have multiple instances when using Prototype. Each
 class not implementing the Interface
-:php:`t3lib_Singleton` automatically is of the type
+:php:`\TYPO3\CMS\Core\SingletonInterface` automatically is of the type
 *Prototype*.
 
 .. tip::
 
-	Originally for the design pattern
-	*Prototype* is specified that a new Object is to
-	be created by cloning an Object prototype. We use Prototype as
-	counterpart to Singleton without a concrete pattern implementation
-	in the background though. For the functionality we experience, this
-	does not make any difference: We invariably get back a new instance
-	of a class.
+   Originally for the design pattern
+   *Prototype* is specified that a new Object is to
+   be created by cloning an Object prototype. We use Prototype as
+   counterpart to Singleton without a concrete pattern implementation
+   in the background though. For the functionality we experience, this
+   does not make any difference: We invariably get back a new instance
+   of a class.
 
 Now that we refreshed your knowledge of object oriented
 programming we can take a look at the deeper concepts of extbase:
 Domain Driven Design, Model View Controller and Test Driven Development.
-You'll spot the basics we just talked about in the following
-frequently.
+You'll spot the basics we just talked about in the following frequently.
 
 
 

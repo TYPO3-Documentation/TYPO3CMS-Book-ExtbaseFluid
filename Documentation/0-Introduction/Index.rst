@@ -17,12 +17,12 @@ The birth of Extbase and Fluid also took place in this phase of re-orientation.
 
 .. sidebar:: TYPO3 v4 and TYPO3 v6
 
-	Because the internal structures of TYPO3 v4 grew organically, they
-	could be quite confusing. When developing the new version 6 of the CMS, the
-	TYPO3 team decided to start from scratch. Special attention was placed on
-	clean code and an easy and powerful infrastructure. It quickly emerged that the first
-	priority would be a web application framework, before the CMS itself
-	was to be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
+   Because the internal structures of TYPO3 v4 grew organically, they
+   could be quite confusing. When developing the new version 6 of the CMS, the
+   TYPO3 team decided to start from scratch. Special attention was placed on
+   clean code and an easy and powerful infrastructure. It quickly emerged that the first
+   priority would be a web application framework, before the CMS itself
+   was to be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
 
 Extbase is a PHP-based framework which supports developers in creating clean and easily
 maintainable TYPO3 extensions. The template engine Fluid makes sure that the user interface
@@ -62,10 +62,10 @@ Not only developers can profit from Extbase: the FLOW3 development team can also
 for their real-world applicability and subsequently remove bugs and amend inconsistencies which occur in Extbase and Fluid.
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 2
 
-	1-short-history
-	2-target-audience
-	3-structure
-	4-typographic-conventions
-	5-thanks
+   1-short-history
+   2-target-audience
+   3-structure
+   4-typographic-conventions
+   5-thanks

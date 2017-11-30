@@ -36,9 +36,9 @@ is usually implemented in the *Model*. Because the Controller is
 difficult to test, it should stay as slim as possible.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-4.png
-	:align: center
+   :align: center
 
-	Figure 2-4: Das MVC-Pattern unterteilt die Andwendung in drei globale Schichten
+   Figure 2-4: The MVC pattern divides the application into three global layers
 
 
 The top layer, the *View* encapsulates the whole
@@ -46,25 +46,25 @@ Presentation Logic and everything related with the presentation of data.
 
 .. sidebar:: Firsthand Report
 
-	About 2 years ago I started to deal with the MVC-Paradigm.
-	I consulted various sources and tried to get an idea how i could fit my extensions
-	to this structure. At this point i failed due to the enormous variations of MVC.
-	No source was able to help me structure my usual, plugin oriented code. It was clear
-	to me that Database Queries belong to the Model and the template is part of the View.
-	But where should subject-oriented Source be held? And how can you prevent that
-	Objects of the Model mix SQL-Code, Domain specific Parts and persistence methods again?
-	All in all, getting started with MVC demanded a high frustration tolerance. Finally,
-	Domain Driven Design ( DDD ) showed me a way to the MVC Paradigm, because DDD enables
-	a clean separation of concerns inside the Model that finally slims the View and
-	Controller
-	With the further separation of the Model Layer into the Domain Model
-	( the heart of the application ), the Repositories ( as database layer ) and the
-	Validators ( which contain the invariants of the Model ) the MVC Scheme is easier
-	to implement and understand.
-	- Jochen Rau
+   About 2 years ago I started to deal with the MVC-Paradigm.
+   I consulted various sources and tried to get an idea how i could fit my extensions
+   to this structure. At this point i failed due to the enormous variations of MVC.
+   No source was able to help me structure my usual, plugin oriented code. It was clear
+   to me that Database Queries belong to the Model and the template is part of the View.
+   But where should subject-oriented Source be held? And how can you prevent that
+   Objects of the Model mix SQL-Code, Domain specific Parts and persistence methods again?
+   All in all, getting started with MVC demanded a high frustration tolerance. Finally,
+   Domain Driven Design ( DDD ) showed me a way to the MVC Paradigm, because DDD enables
+   a clean separation of concerns inside the Model that finally slims the View and
+   Controller
+   With the further separation of the Model Layer into the Domain Model
+   ( the heart of the application ), the Repositories ( as database layer ) and the
+   Validators ( which contain the invariants of the Model ) the MVC Scheme is easier
+   to implement and understand.
+   - Jochen Rau
 
 The Interaction of Model, View and Controller
---------------------------------------------------------------------------------------------------
+---------------------------------------------
 
 The Functionality of many Applications can be split into modules. This modules can
 be further differentiated. The Functionality of a Blog e.g. can be split as follows:
@@ -100,7 +100,7 @@ we look at should display a list of blog posts (see Figure 2-5):
 
 The User sends a request (1). The request Object contains information about the controller
 and action that should be called and optionally additional parameters. In this example the
-Controller is ``Post`` and the action ``list``
+Controller is `Post` and the action `list`
 
 To respond to the request the action has to query certain data from the Model.(2)
 In return it receives on or several domain Objects. In our example the action queries
@@ -112,9 +112,9 @@ presentation (4) - the array with Blog-Posts in our case.
 The View displays the data and returns the Response to the user.(5)
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-5.png
-	:align: center
+   :align: center
 
-	Figure 2-5: In this request a list of Blog-Post is displayed.
+   Figure 2-5: In this request a list of Blog-Post is displayed.
 
 Now as the first request is completely dispatched the user has a list of all
 Blog-Posts displayed in the browser. Now the user clicks on a single Blog-Post and gets
@@ -123,7 +123,7 @@ With the help of Figure 2-6 we want to understand how the comment is stored.
 
 When submitting the comment form the user creates a new request (1)
 containing the according controller and action. In our example the controller is
-``Comment`` and the action is ``new``. Furthermore the request
+`Comment` and the action is `new`. Furthermore the request
 contains the comment text and a reference to the commented Blog-Post.
 
 The called action now has to modify the Model and add the new comment to the
@@ -131,19 +131,19 @@ according Blog-Post. (2)
 
 
 After that the action forwards to another action (3). In our case we forward
-to the ``show-Action`` in the ``PostController``,
+to the `show-Action` in the `PostController`,
 which displays the Blog-Post and the freshly added comment.
 
 
-Now the ``show``-Action calls the according view and hands
+Now the `show`-Action calls the according view and hands
 over the Blog-Post that should be displayed. (4)
 
 The view now displays the data and returns the result to the user. (5)
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-6.png
-	:align: center
+   :align: center
 
-	Figure 2-6: In this request a comment is stored.
+   Figure 2-6: In this request a comment is stored.
 
 You will often see that actions can be sorted into two categories:
 Some actions control the display of a Model, while other actions modify the
@@ -162,17 +162,17 @@ is another helpful Module for the extension development with Extbase and Fluid.
 
 .. sidebar:: Differences to the classic MVC-Pattern
 
-	If you previously have developed desktop applications with the MVC-Pattern you will
-	notice some differences to the mentioned MVC Variant.
-	Strictly speaking we have only mentioned the server-side components of the view,
-	but there is a client-side component involved too: The Webbrowser ultimately displays
-	the data from our web application, so it has to be part of the view-layer. Furthermore
-	the view can be modified on the client-side with JavaScript. As a consequence, the
-	view is even more separated as in the classic MVC Pattern.
+   If you previously have developed desktop applications with the MVC-Pattern you will
+   notice some differences to the mentioned MVC Variant.
+   Strictly speaking we have only mentioned the server-side components of the view,
+   but there is a client-side component involved too: The Webbrowser ultimately displays
+   the data from our web application, so it has to be part of the view-layer. Furthermore
+   the view can be modified on the client-side with JavaScript. As a consequence, the
+   view is even more separated as in the classic MVC Pattern.
 
 
-	In the *Desktop*-MVC-Pattern the View listens for changes
-	in the Model ( usually using the *Observer* Design Pattern ).
-	This enables the view to react immediately to changes in the Model. As we only discuss
-	the server side of the view and the server and the client don't share a persistent
-	connection changes in the Model can not be visible in the browser immediately.
+   In the *Desktop*-MVC-Pattern the View listens for changes
+   in the Model ( usually using the *Observer* Design Pattern ).
+   This enables the view to react immediately to changes in the Model. As we only discuss
+   the server side of the view and the server and the client don't share a persistent
+   connection changes in the Model can not be visible in the browser immediately.

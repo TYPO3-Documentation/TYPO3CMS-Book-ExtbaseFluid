@@ -1,17 +1,15 @@
 .. include:: ../Includes.txt
 
 Create The Domain Model
-================================================
+=======================
 
 The domain of our first extension is very simple. The essential
 concept of our domain is the "product". All the important properties for us
 of a product and its "behavior" are defined in a class with the name
-:php:`MyVendor\Inventory\Domain\Model\Product`. The code of this
+:php:`MyVendor\StoreInventory\Domain\Model\Product`. The code of this
 class is stored in a file with the name :file:`Product.php`.
-The name of the file arises through supplements of :file:`.php`
-at the last word, to count after the last underscore, of the class name.
-This class file is stored in the folder
-:file:`EXT:inventory/Classes/Domain/Model/`.
+The name of the file arises through the class name and the supplements of the file extension :file:`.php`.
+This class file is stored in the folder :file:`EXT:store_inventory/Classes/Domain/Model/`.
 
 .. tip::
 
@@ -23,70 +21,126 @@ This class file is stored in the folder
     Pay attention to the corresponding upper case of the folder names.
 
 Below we have a view into this file, note that the class
-:php:`\MyVendor\Inventory\Domain\Model\Product` must be derivated
+:php:`\MyVendor\StoreInventory\Domain\Model\Product` must be derivated
 from the extbase class
-:php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`. ::
+:php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
+
+.. code-block:: php
+   :caption: File: Classes/Domain/Model/Product.php
+   :name: product-php
 
     <?php
-    namespace MyVendor\Inventory\Domain\Model;
 
-    use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+    namespace MyVendor\StoreInventory\Domain\Model;
 
-    class Product extends AbstractEntity {
-    /**
-     * @var string
-     **/
-    protected $name = '';
+    use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-    /**
-     * @var string
-     **/
-    protected $description = '';
+    class Product extends AbstractEntity
+    {
 
-    /**
-     * @var int
-     **/
-    protected $quantity = 0;
+        /**
+         * The name of the product
+         *
+         * @var string
+         **/
+        protected $name = '';
 
-    public function __construct($name = '', $description = '', $quantity = 0) {
-        $this->setName($name);
-        $this->setDescription($description);
-        $this->setQuantity($quantity);
+        /**
+         * The description of the product
+         *
+         * @var string
+         **/
+        protected $description = '';
+
+        /**
+         * The quantity in the store inventory
+         *
+         * @var int
+         **/
+        protected $quantity = 0;
+
+        /**
+         * Product constructor.
+         *
+         * @param string $name
+         * @param string $description
+         * @param int $quantity
+         */
+        public function __construct($name = '', $description = '', $quantity = 0)
+        {
+            $this->setName($name);
+            $this->setDescription($description);
+            $this->setQuantity($quantity);
+        }
+
+        /**
+         * Sets the name of the product
+         *
+         * @param string $name
+         */
+        public function setName(string $name)
+        {
+            $this->name = $name;
+        }
+
+        /**
+         * Gets the name of the product
+         *
+         * @return string
+         */
+        public function getName()
+        {
+            return $this->name;
+        }
+
+        /**
+         * Sets the description of the product
+         *
+         * @param string $description
+         */
+        public function setDescription(string $description)
+        {
+            $this->description = $description;
+        }
+
+        /**
+         * Gets the description of the product
+         *
+         * @return string
+         */
+        public function getDescription()
+        {
+            return $this->description;
+        }
+
+        /**
+         * Sets the quantity in the store inventory of the product
+         *
+         * @param int $quantity
+         */
+        public function setQuantity(int $quantity)
+        {
+            $this->quantity = $quantity;
+        }
+
+        /**
+         * Gets the quantity in the store inventory of the product
+         *
+         * @return int
+         */
+        public function getQuantity()
+        {
+            return $this->quantity;
+        }
+
     }
 
-    public function setName($name) {
-        $this->name = (string)$name;
-    }
 
-    public function getName() {
-        return $this->name;
-    }
 
-    public function setDescription($description) {
-        $this->description = (string)$description;
-    }
-
-    public function getDescription() {
-        return $this->description;
-    }
-
-    public function setQuantity($quantity) {
-        $this->quantity = (int)$quantity;
-    }
-
-    public function getQuantity() {
-        return $this->quantity;
-    }
-
-    }
-    ?>
-
-The product properties are designed as class variable
-``$name``, ``$description`` and ``$quantity`` and
-protected (*encapsulated*) against direct access from
-outside by the keyword ``protected`` . The property values can be
-set and/or read only by the methods `setProperty()`
-and `getProperty()` declared as ``public``.
+The product properties are designed as class variable :php:`$name`, :php:`$description` and :php:`$quantity` and
+protected (*encapsulated*) against direct access from outside by the keyword `protected`.
+The property values can be set and/or read only by the methods :php:`setProperty()`
+and :php:`getProperty()` declared as `public`.
 Methods in this form are used very frequently and therefore they are
 generically named Getter and Setter for short.
 
@@ -98,7 +152,7 @@ generically named Getter and Setter for short.
     to make changes to the calling object. Also, for example, the reading can
     be permitted, without simultaneously allowing writing access. Later on,
     the tedious work needed to code these methods will be made for you by the
-    Kickstarter. Moreover, most development environments offer macros or
+    *Extension Builder*. Moreover, most development environments offer macros or
     snippets for this purpose. Note that in different moments Extbase
     internally tries to fill a property ``$name`` over a method
     ``setName()``.

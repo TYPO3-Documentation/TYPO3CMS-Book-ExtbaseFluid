@@ -3,28 +3,34 @@
 Creating Controllers and Actions
 ================================
 
-The Controller classes are stored in the folder <link
-linkend="???">EXT:sjr_offer/Classes/Controller/</link>. The name of the
+The Controller classes are stored in the folder :file:`EXT:sjr_offer/Classes/Controller/`. The name of the
 Controller is composed by the name of the Domain Model and the Suffix
 :php:`Controller`. So the Controller
 :php:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
 to the Aggegate Root Object
-:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the Name of the
+:php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the name of the
 Class file is :file:`OfferController.php`.
 
 The Controller class must extend the class
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
 part of Extbase. The individual Actions are combined in seperate methods.
 The method names have to end in :php:`Action`. The body of
-:php:`OfferController` thus looks like this::
+:php:`OfferController` thus looks like this:
 
-    <?php
-    namespace MyVendor\SjrOffers\Controller;
+.. code-block:: php
+   :caption: OfferController.php
+   :name: offer-controller
 
-    class OfferController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
-    {
-        // Action methods will be following here
-    }
+   <?php
+
+   namespace MyVendor\SjrOffers\Controller;
+
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class OfferController extends ActionController
+   {
+      // Action methods will be following here
+   }
 
 When realizing the desired tasks through *Action*
 methods you will often stumble upon very similar flows and patterns. Each
@@ -39,83 +45,83 @@ of *Actions*:
 
 We will shed some light on these recurring patterns in the following
 sections. Together with the schedule model you will learn the background to
-generate your own Flows.
+generate your own flows.
 
 .. tip::
 
     Note that you are free to choose the method names for your
     *Actions* as you like. Nevertheless we recommend to
-    stick to the names presented here, to help other Developers to find
+    stick to the names presented here, to help other developers to find
     their way through your code.
 
 
 Flow Pattern "display a list of Domain Objects"
---------------------------------------------------------------------------------------------------
+-----------------------------------------------
 
 The first pattern in our example fits the action "*display
 a list of all offers*". One action method usually will be enough
-for implementing this. We choose `indexAction` as
-name of the method::
+for implementing this. We choose :php:`indexAction` as
+name of the method:
 
-    public function indexAction()
-    {
-        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\RepositoryOfferRepository::class);
-        $offers = $offerRepository->findAll();
-        $this->view->assign('offers', $offers);
-        return $this->view->render();
-    }
+.. code-block:: php
+
+   // …
+   /**
+    * @var OfferRepository
+    */
+   private $offerRepository;
+
+   /**
+    * Inject the offer repository
+    *
+    * @param \MyVendor\SjrOffers\Domain\Repository\OfferRepository $offerRepository
+    */
+   public function injectOfferRepository(OfferRepository $offerRepository)
+   {
+      $this->offerRepository = $offerRepository;
+   }
+
+   /**
+    * Index Action
+    *
+    * @return string
+    */
+   public function indexAction()
+   {
+       $offers = $this->offerRepository->findAll();
+       $this->view->assign('offers', $offers);
+       return $this->view->render();
+   }
+
 
 This can be simplified even more. As described in chapter 4 in
 section "controlling the flow", it is not necessary to return the rendered
 content. Furthermore we avoid initializing the variable
-`$offers`, which we only use once. So we
-get::
+:php:`$offers`, which we only use once. So we get:
 
-    public function indexAction()
-    {
-        $offerRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\RepositoryOfferRepository::class);
-        $this->view->assign('offers', $offerRepository->findAll());
-    }
+.. code-block:: php
 
-This Flow is prototypic for a task which merely has to give out
-data. Domain Objects are fetched from a Repository previously instatiated
-and passed to the View for future processing. Inside of our
-:php:`OfferController` we have to make use of
-:php:`OfferRepository` in the different Actions again and
-again. For that we don't have to intantiate the Repository in each and
-every Action, extbase offers the method
-:php:`initializeAction()`. It can be used for tasks
-concerning multiple Actions and is called before any Action is executed.
-In the class :php:`ActionController` the body of this
-method is empty. You can overwrite it in your own Controller though. In
-our case we assign the instance of our Repository to the Class Variable
-:php:`$offerRepository`. Our Controller thus looks like
-this::
+   /**
+    * Index Action
+    *
+    * @return void
+    */
+   public function indexAction()
+   {
+       $this->view->assign('offers', $this->offerRepository->findAll());
+   }
 
-    /**
-     * @var \MyVendor\SjrOffers\Domain\Repository\OfferRepository
-     */
-    protected $offerRepository;
+initializeAction
+----------------
 
-    public function initializeAction()
-    {
-        $this->offerRepository = GeneralUtility::makeInstance(\MyVendor\SjrOffers\Domain\Repository\OfferRepository::class);
-    }
+In old TYPO3 Versions the :php:`initializeAction()` was used to get the repository instance.
+Later we can use this action, to modify the Request, before the property mapper is executed or
+intgrate JavaScript libraries.
 
-    public function indexAction()
-    {
-        $this->view->assign('offers', $this->offerRepository->findAll());
-    }
-
-:php:`ActionController` not only calls the method
-:php:`initializeAction()`, which is executed before any
+The :php:`ActionController` not only calls the method :php:`initializeAction()`, which is executed before any
 Action in the Controller, but also a method in the Form of
-:php:`initialize*Foo*Action()`, which
-is called only before the method
-:php:`*foo*Action()`. The method for
-the initializing of Action is of course not only useful for preparing
-Repositories. You can also use them for integrating JavaScript libraries
-or to check if a specific FE user is logged in.
+:php:`initialize*Foo*Action()`, which is called only before the method
+:php:`*foo*Action()`.
 
 .. tip::
 
@@ -126,70 +132,68 @@ or to check if a specific FE user is logged in.
 
 
 Flow Pattern "display a single Domain Object"
---------------------------------------------------------------------------------------------------
+---------------------------------------------
 
 The second pattern is best put into action by a single method as
 well. We call it :php:`showAction()`. In contrast to
 :php:`indexAction` we have to to tell this method from
 outside which Domain Object is to be displayed. In our case, the offer to
-be shown is passed to the method as Argument::
+be shown is passed to the method as Argument:
 
-    /**
-     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
-     * @return string The rendered HTML string
-     */
-    public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
-    {
-        $this->view->assign('offer', $offer);
-    }
+.. code-block:: php
+
+   /**
+    * Show action
+    *
+    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
+    * @return string The rendered HTML string
+    */
+   public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   {
+      $this->view->assign('offer', $offer);
+   }
 
 Usually the display of a single Object is called by a link in the
 frontend. In our example extension it connects the list view by something
 like the following URL:
 
-``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer``
+`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer`
 
 Due to the 2 Arguments
-``tx_sjroffers_pi1[controller]=Offer`` and
-``tx_sjroffers_pi1[action]=show``, the dispatcher of Extbase
+`tx_sjroffers_pi1[controller]=Offer` and
+`tx_sjroffers_pi1[action]=show`, the dispatcher of Extbase
 passes the request to the :php:`OfferController`. In the
-request we find the information that the Action *show
-*is to be called. Before passing on the further processing to
+request we find the information that the Action *show* is to be called. Before passing on the further processing to
 the method :php:`showAction()`, the Controller tries to
 map the Arguments received by the URL on the arguments of the method.
 Extbase maps the arguments by their names. In our example Extbase detects,
-that the GET Argument :php:`tx_sjroffers_pi1[offer]=3
-`corresponds to the method argument
+that the GET Argument `tx_sjroffers_pi1[offer]=3` corresponds to the method argument
 :php:`$offer`:
-:php:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer
-*$offer*)`. The type of this Argument is
-fetched by Extbase from the method signature:
-:php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer*
-$offer)`. In case this so called *Type Hint
-*should not be present, or (e.g. for the types *string
-*or *int* in PHP) not possible, Extbase reads
-the type from the commentary written above the method: :php:`@param
-*\MyVendor\SjrOffers\Domain\Model\Offer*
-$offer`.
+:php:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer *$offer*)`.
+The type of this Argument is fetched by Extbase from the method signature:
+:php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer* $offer)`.
+In case this so called *Type Hint* should not be present,
+ Extbase reads the type from the annotation written above the method:
+:php:`@param *\MyVendor\SjrOffers\Domain\Model\Offer* $offer`.
 
-After successful assigning, the value of the incoming Argument has
+After successful assigning, the value of the incoming argument has
 to be casted in the target type as well as checked for validity (read more
 about validation in chapter 9 in section "Validating Domain Objects"). In
 our case the incoming value is "3". Target type is the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. So Extbase
-interprets the incoming value as uid of the Object to be created and sends
+interprets the incoming value as uid of the object to be created and sends
 a request to the *Storage Backend* to find an Object
-with this uid. If the Object can be reconstructed fully valid it is passed
+with this uid. If the object can be reconstructed fully valid it is passed
 to the method as argument. Inside of the method
-:php:`showAction()` the newly created Object is passed on
+:php:`showAction()` the newly created object is passed on
 to the view, which is taking care of the HTML output as usual.
 
 .. tip::
 
-    Inside of the Template you can access all Properties of the
+    Inside of the template you can access all properties of the
     Domain Object, including all existing child objects. Thus this Flow
-    Pattern does not only cover single Domain Objects but, in the event,
-    also a complex Aggregate.
+    Pattern does not only cover single domain objects but, in the event,
+    also a complex aggregate.
 
 If an Argument is identified as invalid, the already implemented
 method :php:`errorAction()` of
@@ -201,7 +205,7 @@ input as you'll see in the following.
 
 
 Flow Pattern "creating a new Domain Object"
---------------------------------------------------------------------------------------------------
+-------------------------------------------
 
 For the third Flow Pattern, the one for creating a new Domain
 Object, two steps are required: First, a form for inputting the Domain
@@ -221,19 +225,18 @@ Repository. We're going to implement these two steps in the methods
 First the method :php:`newAction()` is called by a
 Link in frontend with the following URL:
 
-``http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer``
+`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
 
 Extbase instantiates the :php:`Organization `Object
-which is mapped to the Argument :php:`$organization, `just
-as it was the case with the :php:`Offer `Object in the
+which is mapped to the Argument :php:`$organization,` just
+as it was the case with the :php:`Offer` object in the
 method :php:`showAction()`. In the URL are no information
-(yet) though, which value the Argument :php:`$newOffer
-`shall have. So the default value
-(:php:`=NULL`) set in the method signature is used. With
+(yet) though, which value the Argument :php:`$newOffer` shall have. So the default value
+(:php:`=null`) set in the method signature is used. With
 these Arguments, the controller passes the further processing to the
 method :php:`newAction()`.
 
-::
+.. code-block:: php
 
     /**
      * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
@@ -241,18 +244,15 @@ method :php:`newAction()`.
      * @return string An HTML form for creating a new offer
      * @dontvalidate $newOffer
      */
-    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = NULL)
+    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null)
     {
         $this->view->assign('organization', $organization);
         $this->view->assign('newOffer', $newOffer);
         $this->view->assign('regions', $this->regionRepository->findAll());
     }
 
-This Action passes to the view: in
-:php:`organization` the :php:`Organization
-`Object, in :php:`newOffer`
-:php:`NULL` (to begin with) the and in :php:`region
-`all :php:`Region `Objects contained in the
+This action passes to the view in :php:`organization` the :php:`Organization` object, in :php:`newOffer`
+:php:`null` (to begin with) the and in :php:`region` all :php:`Region` Objects contained in the
 :php:`RegionRepository`. The view creates the output of
 the form in frontend, using a template, which we focus on in chapter 8 in
 section "Template Creation by example". After the user filled in the data
@@ -264,7 +264,7 @@ instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
 :php:`createAction()` is called.
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 The new offer is allocated to the organization and inversly the
 organization is allocated to the offer. Thanks to this allocation Extbase
@@ -281,7 +281,7 @@ passed on as an argument. Inside the
 :php:`ActionController` you have the following Methods for
 redirecting to other Actions at your disposal:
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 Using the :php:`redirect(`) Method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
@@ -310,7 +310,7 @@ default the reason for redirecting is set to status code 303 (which means
 In our example, the following code is sent to the Browser. It
 provokes the immedeate reload of the page with the given URL:
 
-<remark>TODO: insert Code</remark>
+.. TODO: Insert Code
 
 The Method :php:`redirectToURI()` corresponds to the
 Method :php:`redirect()`, but you can directly set a URL
@@ -357,7 +357,7 @@ the origin of the form (:php:`__referrer`) as well as, in
 encrypted form (:php:`__hmac`), the structure of the form
 (shorted in the example below).
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 If now a validation error occurs when calling the Method
 :php:`createAction()`, an error message ist saved and the
@@ -423,7 +423,7 @@ necessary to pass an organization to the Method
 :php:`editAction()`. It is sufficient to pass the offer to
 be edited as an Argument.
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 Note once again the annotation :php:`@donvalidate
 $offer`. The Method :php:`updateAction()`
@@ -464,7 +464,7 @@ The second level, we are going to implement in all "critcal" Actions.
 Let's look at an example with the Method
 :php:`updateAction()`.
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 We ask a previously instantiated
 :php:`AccessControlService` if the administrator of the
@@ -474,17 +474,16 @@ displayed in the subsequently called organization overview.
 
 Extbase does not yet offer an API for access control. We therefore
 implemented an :php:`AccessControlService` on ourselves.
-The description of the class is to be found in the file <link
-linkend="???">EXT:sjr_offers/Classes/Service/AccessControlService.php</link>.
+The description of the class is to be found in the file :file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 The third level can easily be bypassed by manually typing the link
 or the form data. It therefore only reduces the confusion for honest
 visitors and the stimulus for the bad ones. Let's take a short look on
 this snippet from a template:
 
-<remark>TODO: Insert Code</remark>
+.. TODO: Insert Code
 
 .. tip::
 
@@ -529,7 +528,7 @@ the Method :php:`editAction()` of the
 
 
 Flow Pattern "Deleting a Domain Object"
---------------------------------------------------------------------------------------------------
+---------------------------------------
 
 The last Flow pattern realizes the deletion of an existing Domain
 Object in one single Action. The appropriates Method

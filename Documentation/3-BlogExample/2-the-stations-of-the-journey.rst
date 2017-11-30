@@ -7,9 +7,9 @@ to start. Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know in more detail during the upcoming sections.
 
 .. figure:: /Images/3-BlogExample/figure-3-3.png
-	:align: center
+   :align: center
 
-	Figure 3-3: The several stations of the journey
+   Figure 3-3: The several stations of the journey
 
 When an extension like the blog example is called, the following
 happens behind the scenes:
@@ -26,7 +26,7 @@ part of the extension, which takes over the flow control — the so called
 
 Within the controller the appropriate storage facility which is in charge
 of the blogs — the *Repository* — is instructed to
-return all the stored blog posts using the method ``findAll()``
+return all the stored blog posts using the method :php:`findAll()`
 (3).
 
 The *Repository* returns a collection of the

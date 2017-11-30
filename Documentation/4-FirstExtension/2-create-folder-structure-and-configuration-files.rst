@@ -1,14 +1,14 @@
 .. include:: ../Includes.txt
 
 Create Folder Structure And Configuration Files
-================================================================================================
+===============================================
 
 Before we write the first line of code, we must arrange the
 infrastructure of the extension. Beside the folder structure there are some
 minimum needed configuration files counting. We put the unique identifier of
-our extension (extension-key) as ``inventory``, and thus
+our extension (extension-key) as ``store_inventory``, and thus
 we specify at the same time the name of the extension as
-*Inventory*.
+*Store Inventory*.
 
 .. tip::
 
@@ -21,82 +21,81 @@ we specify at the same time the name of the extension as
 
 Extensions can be stored at different places in TYPO3. Locally
 installed extensions are the rule. These are in the folder
-:file:`typo3conf/ext/`. Globally installed extensions are
-available to all websites using the same installation. They are stored in
-:file:`typo3/ext/`. System extensions are delivered with the
+:file:`typo3conf/ext/`. System extensions are delivered with the
 TYPO3-distribution and are in the folder :file:`typo3/sysext/`.
-Extbase or Fluid are examples of system extensions. All three paths are
+Extbase or Fluid are examples of system extensions. The two paths are
 below the installation folder of TYPO3, in which also lies the file
 index.php.
 
 Then, in the folder for local extensions
 :file:`typo3conf/ext/` we create the folder
-:file:`inventory`. The name of this folder
+:file:`store_inventory`. The name of this folder
 must be written like the extension key and therefore in lower-case letters,
 and where appropriate, with underscores. On the uppermost level lie the
 folders :file:`Classes` and :file:`Resources`. The
-folder :file:`Classes` contains all PHP
-classes, with the exception of external PHP libraries. The folder
-:file:`Resources` contains all other files
-that are also processed by our extension (e.g. HTML templates) or delivered
-directly to the front end (e.g. icons,javascript). Within the folder
+folder :file:`Classes` contains all PHP classes, with the exception of external PHP libraries. The folder
+:file:`Resources` contains two directories named :file:`Private` and :file:`Public`.
+The folder :file:`Resources/Private/` contains subfolders like :file:`Templates`, :file:`Layouts`, :file:`Partials`
+and :file:`Language`. These files can only be accessed through the file system.
+The folder :file:`Resources/Public/` contains subfolders like :file:`Icons`, :file:`Css`, :file:`Js`. These files can be accessed through the web browser.
+Within the folder
 :file:`Classes` are the folders
 :file:`Controller` and
 :file:`Domain`. In our example, the folder
 :file:`Controller` contains only one class that will control
-the entire process of listing creation later. The folder
-*Domain* again contains the two folders
+the entire process of listing creation later. The folder *Domain* again contains the two folders
 :file:`Model` and
-:file:`Repository`. Resulting from all
-this, the folder structure within the extension folder
+:file:`Repository`. Resulting from all this, the folder structure within the extension folder
 :file:`inventory` should look as in image 4-1.
 
 .. figure:: /Images/4-FirstExtension/figure-4-1.png
 	:align: center
 
-	Figure 4-1: The simplest directory structure with the basic files
+	Figure 4-1: The standard directory structure with the important files for the extension manager
 
 So that the extension can be loaded by TYPO3, we require two
 configuration files. These are located in the extension's folder
-:file:`inventory/` at the uppermost level. You can copy and
+:file:`store_inventory/` at the uppermost level. You can copy and
 adapt these files from an existing extension. Later you will let them be
-created by the kickstarter.
+created by the extension *Extension Builder*.
 
 The file :file:`ext_emconf.php` contains the meta
 information for the extension, e.g. the title, a description, the status,
 the name of the author etc.. It does not differ to conventional extensions.
-It is recommended to indicate the dependence to Extbase and Fluid (if
-appropriate, also a certain version).
+You find the complete documentation in the :ref:`Core Api Reference <t3coreapi:extension-declaration>`
 
+.. code-block:: php
 
-|	``<?php``
-|	``$EM_CONF[$_EXTKEY] = array(``
-|	 ``'title' => 'Inventory List',``
-|	 ``'description' => 'An extension to manage a stock.',``
-|	 ``'category' => 'plugin',``
-|	 ``'author' => 'Jochen Rau',``
-|	 ``'author_company' => '',``
-|	 ``'author_email' => '',``
-|	 **'dependencies' => 'extbase,fluid',**
-|	 ``'state' => 'alpha',``
-|	 ``'clearCacheOnLoad' => '1',``
-|	 ``'version' => '0.0.0',``
-|	 ``'constraints' => array(``
-|	  ``'depends' => array(``
-|		``'typo3' => '7.6.0-7.6.99',``
-|		**'extbase' => '1.0.0-0.0.0',**
-|		**'fluid' => '1.0.0-0.0.0',**
-|	  ``)``
-| 	 ``)``
-|	``);``
+	<?php
 
-The file :file:`ext_icon.gif` contains the icon of the
-extension. For this you can use any graphic stored in GIF format. It should
-not exceed a width of 18 pixels and a height of 16 pixels. Or you can use a graphic in
-PNG format with a width and height of 256 pixels. The icon appears
-in the extension manager and in the extension repository (TER).
+	$EM_CONF[$_EXTKEY] = [
+		'title' => 'Store Inventory',
+		'description' => 'An extension to manage a stock.',
+		'category' => 'plugin',
+		'author' => 'John Doe',
+		'author_company' => 'John Doe Inc.',
+		'author_email' => 'john.doe@example.com',
+		'state' => 'alpha',
+		'clearCacheOnLoad' => true,
+		'version' => '0.0.0',
+		'constraints' => [
+			'depends' => [
+				'typo3' => '8.7.0-8.9.99',
+			]
+		],
+		'autoload' => [
+			'psr-4' => [
+				'MyVendor\\StoreInventory\\' => 'Classes'
+			]
+		],
+	];
 
-After the basic structure was constructed, the extension can already
-be shown in the extension manager and can be installed. But first we turn to
-our domain.
+The extension icon was in previous versions of TYPO3 the file :file:`ext_icon.gif`.
+In TYPO3 8 you can choose between a PNG or SVG with a width and height of 256 pixels. The file must have the filename :file:`Extension.png` or :file:`Extension.svg` and must be stored in the directory :file:`Resources/Public/Icons/`.
+The icon appears in the extension manager and in the extension repository (TER).
 
+If the extension has namespaced classes following the PSR-4 standard, then you
+can add the autoload array to your :file:`ext_emconf.php` file.
+
+After the basic structure was constructed, the extension can already be shown in the extension manager and
+can be installed. But first we turn to our domain.

@@ -28,10 +28,10 @@ instantiated:
 
 ::
 
-	public function initializeAction() {
-		$this->blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
-		$this->administratorRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\AdministratorRepository');
-	}
+   public function initializeAction() {
+      $this->blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
+      $this->administratorRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\AdministratorRepository');
+   }
 
 This approach offers no performance gain (rather a negligible disadvantage), but
 we avoid duplicate code. In addition to the method ``initializeAction()``, that is
@@ -48,9 +48,9 @@ automatically calls the method ``render()``.
 
 .. note::
 
-	This automatism can be confusing, because you have to specify return '';
-	explicitly vice versa, to suppress the rendering process. Sometimes this might
-	be handy to discover errors.
+   This automatism can be confusing, because you have to specify return '';
+   explicitly vice versa, to suppress the rendering process. Sometimes this might
+   be handy to discover errors.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags

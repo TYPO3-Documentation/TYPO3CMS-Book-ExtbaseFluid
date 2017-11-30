@@ -10,6 +10,10 @@ hassles with details. In the following chapters we will turn to a more
 complex example, to cover exhaustively all fundamental attributes of extbase
 and fluid.
 
+You can get the extension here:
+
+`<https://github.com/TYPO3-Documentation-Examples/store_inventory>`_
+
 .. toctree::
 	:maxdepth: 2
 

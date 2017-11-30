@@ -13,9 +13,14 @@ In Extbase the controllers mostly exist as
 :php:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
-shortened version of the :php:`BlogController`::
+shortened version of the :php:`BlogController`:
+
+.. code-block:: php
+   :caption: Classes/BlogController.php
+   :name: blogcontroller-php
 
     <?php
+
     namespace MyVendor\BlogExample\Controller;
 
     class BlogController
@@ -25,7 +30,7 @@ shortened version of the :php:`BlogController`::
             $this->view->assign('blogs', $this->blogRepository->findAll());
         }
 
-        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL) {
+        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = null) {
             $this->view->assign('newBlog', $newBlog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }

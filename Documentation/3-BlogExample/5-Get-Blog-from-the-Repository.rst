@@ -4,12 +4,16 @@ Get Blog from the Repository
 ============================
 
 Lets take a look into the ``BlogRepository`` and travel into the inner core of
-our little action island. ::
+our little action island.
+
+.. code-block:: php
 
     <?php
     namespace MyVendor\BlogExample\Domain\Repository;
 
-    class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+    class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+    {
+
     }
 
 The code is not shortened. The ``BlogRepository`` simply does not have any own
@@ -20,28 +24,28 @@ blog objects.
 
 .. sidebar:: Excursion: The Repository
 
-	The way a repository works is much like a library of a university which works
-	in the following way:
+   The way a repository works is much like a library of a university which works
+   in the following way:
 
-	You tell an employee of the library to find a book matching certain criteria.
-	After a few minutes till days you get the corresponding book. In this case it
-	doesn't matter to you if the book is right below the counter, in a shelf, in
-	the cellar, or is not even printed yet (except from the time issue - but
-	students have time). It is only important that you get the book at any time.
-	Remarks made with a pencil by you will be added permanently (hopefully without
-	changes) when you return the book.
+   You tell an employee of the library to find a book matching certain criteria.
+   After a few minutes till days you get the corresponding book. In this case it
+   doesn't matter to you if the book is right below the counter, in a shelf, in
+   the cellar, or is not even printed yet (except from the time issue - but
+   students have time). It is only important that you get the book at any time.
+   Remarks made with a pencil by you will be added permanently (hopefully without
+   changes) when you return the book.
 
-	That is translated to a repository: Via a repository you tell a method to find
-	an object matching certain criteria. After a few milliseconds till seconds you
-	receive the corresponding object. In this case you don't care where the object
-	is stored. Practically it even doesn't matter if the object is stored in the
-	memory, must be fetched from the hard drive, is retrieved via web service from
-	another server, or is instantiated for the first time (except from the speed -
-	but users have time). The only important thing is that the object is
-	instantiated and delivered to you. Object attributes changed by you will be
-	stored when you leave the extension.
+   That is translated to a repository: Via a repository you tell a method to find
+   an object matching certain criteria. After a few milliseconds till seconds you
+   receive the corresponding object. In this case you don't care where the object
+   is stored. Practically it even doesn't matter if the object is stored in the
+   memory, must be fetched from the hard drive, is retrieved via web service from
+   another server, or is instantiated for the first time (except from the speed -
+   but users have time). The only important thing is that the object is
+   instantiated and delivered to you. Object attributes changed by you will be
+   stored when you leave the extension.
 
 .. note::
 
-	Although you don't need to implement your own logic extbase expects an existing
-	class.
+   Although you don't need to implement your own logic extbase expects an existing
+   class.

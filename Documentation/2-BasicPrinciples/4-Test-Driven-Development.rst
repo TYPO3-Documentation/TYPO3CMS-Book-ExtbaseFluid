@@ -17,10 +17,10 @@ Furthermore by a test is not only a little code fragment tested, but often a
 more complex routine.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-7.png
-	:align: center
+   :align: center
 
-	Figure 2-7: in the classic software development exist a strict isolation
-	between the Development- and the Testphase.
+   Figure 2-7: in the classic software development exist a strict isolation
+   between the Development- and the Testphase.
 
 By using Test-Driven Development (TDD) these problems should be solved. Tests
 could be fast completed and reproducible. These increases the developers
@@ -30,31 +30,31 @@ callback, if a failure is implemented into the existing functions.
 
 .. note::
 
-	Field report
+   Field report
 
-	When Robert Lemke and other Core Developers suggested to make the development for
-	FLOW3 test driven, I was skeptic. Test-Driven Development sounded like a nice
-	concept, but I did not know how to test a framework this size reasonable. Also
-	in the internet there were often only very simple academic examples to find.
-	Until this time I had only a theoretical overview over TDD.
-	Even when I started to test, when the Fluid development started. The first test
-	were not Unit- but Integration tests. This means they tested Fluid in the view of
-	a user:
-	There were not parsed little Template-Snippets and compared with the
-	expectations. The first tests took there time - it felt strange to test things,
-	which were not implemented at this time. But after the first test was written
-	and this test run through successfully, I was able to make the following
-	development cycles extremely fast. Because of Test-Driven Development I was able
-	during a train ride to totally reconstruct the core of Fluid. Without tests, it
-	seriously would have took me days until all would have worked at the end.
-	Especially the feedback I got at once, I really appreciate. You click on a
-	button and after a few seconds you got your feedback.
-	After this I am infected, learned about Mock- and Stubobjects, and today I do
-	not want to miss it. (In this chapter you will get an introduction into these concepts.)
-	If you want to learn TDD, you will jump in at the deep end, and to
-	try it at the next project. Until the first Unit test is finished, it will take
-	a while and after this it will go really faster.
-	– Sebastian Kurfürst
+   When Robert Lemke and other Core Developers suggested to make the development for
+   FLOW3 test driven, I was skeptic. Test-Driven Development sounded like a nice
+   concept, but I did not know how to test a framework this size reasonable. Also
+   in the internet there were often only very simple academic examples to find.
+   Until this time I had only a theoretical overview over TDD.
+   Even when I started to test, when the Fluid development started. The first test
+   were not Unit- but Integration tests. This means they tested Fluid in the view of
+   a user:
+   There were not parsed little Template-Snippets and compared with the
+   expectations. The first tests took there time - it felt strange to test things,
+   which were not implemented at this time. But after the first test was written
+   and this test run through successfully, I was able to make the following
+   development cycles extremely fast. Because of Test-Driven Development I was able
+   during a train ride to totally reconstruct the core of Fluid. Without tests, it
+   seriously would have took me days until all would have worked at the end.
+   Especially the feedback I got at once, I really appreciate. You click on a
+   button and after a few seconds you got your feedback.
+   After this I am infected, learned about Mock- and Stubobjects, and today I do
+   not want to miss it. (In this chapter you will get an introduction into these concepts.)
+   If you want to learn TDD, you will jump in at the deep end, and to
+   try it at the next project. Until the first Unit test is finished, it will take
+   a while and after this it will go really faster.
+   – Sebastian Kurfürst
 
 First test, then implementing
 ------------------------------
@@ -78,10 +78,10 @@ this new functionality. In this way the process of testing an implementing
 starts over.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-8.png
-	:align: center
+   :align: center
 
-	Figure 2-8: with Test-Driven Development testing and development are
-	alternating
+   Figure 2-8: with Test-Driven Development testing and development are
+   alternating
 
 The fortune of this method is obviously.
 
@@ -147,10 +147,10 @@ be accessed again.
 
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-9.png
-	:align: center
+   :align: center
 
-	Figure 2-9: With the testrunner you are able to run easily the Unit tests
-	in the TYPO3-Backend.
+   Figure 2-9: With the testrunner you are able to run easily the Unit tests
+   in the TYPO3-Backend.
 
 When we run the testcase, we will be displayed a fatal error from PHP, because
 the class we want to test does not exist already. Now we are changing roles: We
@@ -198,9 +198,9 @@ configuration a SMTP-Server or the mail() function of PHP. This is shown in
 the figure 2-10: The email logger class has a reference on the email service.
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-10.png
-	:align: center
+   :align: center
 
-	Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
+   Figure 2-10: The EmailLogger uses for sending of the emails the EmailService.
 
 We now want to test the class EmailLogger without using the EmailService. We do
 not want to send real emails with every test run. To reach that goal we need two
@@ -237,8 +237,8 @@ follows from:
 
 .. note::
 
-	FLOW3 offers first class Dependency Injection support. If you migrate your
-	extensions on FLOW3 later, this part is much simpler.
+   FLOW3 offers first class Dependency Injection support. If you migrate your
+   extensions on FLOW3 later, this part is much simpler.
 
 We can now operate in a test case from the outside, which the EmailService the
 EmailLogger gets. We could write a TestEmailService, for example, which simple
@@ -281,7 +281,7 @@ Also, we had no separate "placeholder" class to write for Email-Service, because
 we used the mock-functionality from PHPUnit.
 
 
-.. note
+.. note::
 
-	You have to get used to the writing style for Mock objects; But it will go on
-	with the time in flesh and blood.
+   You have to get used to the writing style for Mock objects; But it will go on
+   with the time in flesh and blood.
