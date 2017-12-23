@@ -13,7 +13,7 @@ In this example, we provide a string that will be converted to an integer::
         $output = $this->objectManager->get('TYPO3\CMS\Extbase\Property\PropertyMapper')
             ->convert('10', 'integer');
 
-Conversion is done by using the :ref:`t3api:TYPO3\\CMS\\Extbase\\Property\\PropertyMapper::convert`
+Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper::convert()`
 method.
 
 How to use property mapper
@@ -32,7 +32,7 @@ where some points must be considered. This example will show a simple conversati
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser'
         );
 
-The result will be a new instance of :ref:`t3api:TYPO3\\CMS\\Extbase\\Domain\\Model\\FrontendUser`
+The result will be a new instance of :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUser`
 with defined property `username`.
 
 .. note::
@@ -42,7 +42,7 @@ Allow mapping of sub-properties
 -------------------------------
 
 It's also possible to map to subtypes. In the above example, the `FrontendUser` has a sub-property
-of type :ref:`TYPO3\\CMS\\Extbase\\Domain\\Model\\FrontendUserGroup`. If you wanna map an incoming id,
+of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you wanna map an incoming id,
 you have to configure the mapper as per default he won't map sub properties for security reasons::
 
     $input = [

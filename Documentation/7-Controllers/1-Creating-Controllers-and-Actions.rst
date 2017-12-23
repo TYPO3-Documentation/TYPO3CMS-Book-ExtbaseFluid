@@ -173,7 +173,7 @@ that the GET Argument `tx_sjroffers_pi1[offer]=3` corresponds to the method argu
 The type of this Argument is fetched by Extbase from the method signature:
 :php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer* $offer)`.
 In case this so called *Type Hint* should not be present,
- Extbase reads the type from the annotation written above the method:
+Extbase reads the type from the annotation written above the method:
 :php:`@param *\MyVendor\SjrOffers\Domain\Model\Offer* $offer`.
 
 After successful assigning, the value of the incoming argument has

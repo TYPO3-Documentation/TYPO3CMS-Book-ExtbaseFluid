@@ -24,22 +24,22 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
 
 Firstly, you should dip into the top layer of the TCA hierarchy. The TCA
 for table *tx_sjroffers_domain_model_organization* is in the
-file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php and has this structure:
+file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php` and has this structure:
 
 .. code-block:: php
 
-<?php
-return [
-    'ctrl' => [
-        // …
-    ],
-    'columns' => [
-        // …
-    ],
-    'types' => [
-        // …
-    ]
-];
+   <?php
+   return [
+       'ctrl' => [
+           // …
+       ],
+       'columns' => [
+           // …
+       ],
+       'types' => [
+           // …
+       ]
+   ];
 
 The structure for the other tables like tx_sjroffers_domain_model_offer and tx_sjroffers_domain_model_person are equal.
 
@@ -213,7 +213,8 @@ prevented (`required`).
 
 .. note::
 
-**Important:** When a field is defined as required, the Domain Model must have the annotation `@NotEmpty` for the validator.
+   **Important:** When a field is defined as required, the Domain Model must have the
+   annotation `@NotEmpty` for the validator.
 
 .. figure:: /Images/6-Persistence/figure-6-1.png
    :align: center

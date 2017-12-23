@@ -688,7 +688,6 @@ We have furthermore implement a method :php:`normalizeValue()`. These »adjusted
       }
       return $value;
    }
- }
 
 
 The class :php:`DateRange` implements furthermore the interface :php:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :php:`NumericRangeInterface`. The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.

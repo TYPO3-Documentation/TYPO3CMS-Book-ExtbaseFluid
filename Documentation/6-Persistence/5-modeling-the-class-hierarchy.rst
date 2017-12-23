@@ -49,7 +49,7 @@ additional configuration efford needed. Furthermore the table must have an addit
 that contains the type of the stored database tupel. The table definition schematicly looks
 like this:
 
-.. code-block:: mysql
+.. code-block:: sql
 
    CREATE TABLE tx_myextension_domain_model_party {
       uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
@@ -71,7 +71,6 @@ The name of the field that contains the type can be choosen freely. In our case 
 
 .. code-block:: php
    :caption: Configuration/TCA/tx_myextension_domain_model_party.php
-   :name: tx-myextension-domain-model-party-php
 
    // …
    'ctrl' => [
@@ -142,7 +141,6 @@ including the following configuration to your TCA:
 
 .. code-block:: php
    :caption: Configuration/TCA/tx_myextension_domain_model_party.php
-   :name: tx-myextension-domain-model-party-php
 
     // …
    'types' => [

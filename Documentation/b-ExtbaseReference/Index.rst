@@ -1,8 +1,3 @@
-.. Todo: Interfaces are currently not in the inventory of t3api.
-    We should reference them, as soon as they are inside. Xavier already rendered them, but I didn't
-    get the url running for latest.
-    We also should ref all code to the API.
-
 .. include:: ../Includes.txt
 .. _extbase_reference:
 
@@ -361,14 +356,14 @@ you should have a look at the controllers below.
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface`
     The basic interface that must be implemented by all controllers.
 
-:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\AbstractController`
+:php:`TYPO3\CMS\Extbase\Mvc\Controller\AbstractController`
     Abstract controller with basic functionality.
 
-:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\ActionController`
+:php:`TYPO3\CMS\Extbase\Mvc\Controller\ActionController`
     The most widely used controller in Extbase. An overview of its API is given in
     the following section.
 
-:ref:`t3api:TYPO3\\CMS\\Extbase\\Mvc\\Controller\\CommandController`
+:php:`TYPO3\CMS\Extbase\Mvc\Controller\CommandController`
     Extend this controller if you want to provide commands to the scheduler or command line
     interface.
 
