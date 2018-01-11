@@ -50,7 +50,7 @@ backend. Let's have a look at the following two files:
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Vendor' . $_EXTKEY,
-        $pluginName
+        $pluginName,
         $controllerActionCombinations,
         $uncachedActions
     );
