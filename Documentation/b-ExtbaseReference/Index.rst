@@ -29,21 +29,21 @@ to make it possible to have multiple frontend plugins.
 .. sidebar:: Why two files?
 
     You may wonder why you need to edit both, file :file:`ext_localconf.php` and file
-    :file:`ext_tables.php`, to configure a plugin. The reason lays in the architecture of TYPO3:
-    file :file:`ext_localconf.php` is evaluated in the frontend and file :file:`ext_tables.php` in
-    the backend. Therefore, in file :file:`ext_tables.php` we add the entry to the plugin list (for
+    :file:`Configuration/TCA/Overrides/tt_content.php`, to configure a plugin. The reason lays in the architecture of TYPO3:
+    file :file:`ext_localconf.php` is evaluated in the frontend and file :file:`Configuration/TCA/Overrides/tt_content.php` in
+    the backend. Therefore, in file :file:`Configuration/TCA/Overrides/tt_content.php` we add the entry to the plugin list (for
     the backend). In addition, the list of controller / action combinations is required at runtime
     in the frontend - and therefore this must be defined in the file file :file:`ext_localconf.php`.
 
     For further information, check out :ref:`Extension configuration files
     <t3coreapi:extension-configuration-files>`.
 
-For the definition of a plugin, the files :file:`ext_localconf.php` and :file:`ext_tables.php`
+For the definition of a plugin, the files :file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`
 have to be adjusted.
 
 In :file:`ext_localconf.php` resides the definition of permitted controller action
 Combinations. Also here you have to define which actions should not be cached.
-In :file:`ext_tables.php` there is only the configuration of the plugin selector for the
+In :file:`Configuration/TCA/Overrides/tt_content.php` there is only the configuration of the plugin selector for the
 backend. Let's have a look at the following two files:
 
 :file:`ext_localconf.php`::
@@ -87,7 +87,7 @@ the Backend.
    so you have to fill in your extension key directly.
 
 Below there is a complete configuration example for the registration of a
-frontend plugin within the files :file:`ext_localconf.php` and :file:`ext_tables.php`.
+frontend plugin within the files :file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`.
 
 *Example B-1: Configuration of an extension in the file ext_localconf.php*
 
