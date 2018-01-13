@@ -743,7 +743,7 @@ Each controller argument is validated by the following rules:
 * If there is set an annotation `@ignorevalidation` for the argument, no validation is done.
 * Additional validation rules can be specified via further `@validate` annotations in the methods
   PHPDoc block. The syntax is *@validate $variableName Validator1, Validator2, ...* The syntax is
-  almost the same as with validators in the domain model, you only needs to set explicitly the
+  almost the same as with validators in the domain model, you only need to set explicitly the
   variable name.
 
 If the arguments of an action can not be validated, then the `errorAction` is executed, which will
