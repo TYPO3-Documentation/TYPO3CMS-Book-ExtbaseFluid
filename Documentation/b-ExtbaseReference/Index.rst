@@ -260,13 +260,13 @@ Settings relevant to the persistence layer of Extbase.
 settings
 --------
 
-Here reside are all the domain-specific extension settings. This setting are
-available as an array in the controllers in `$this->settings` and in any Fluid
+Here reside are all the domain-specific extension settings. These settings are
+available in the controllers as the array variable `$this->settings` and in any Fluid
 template with `{settings}`.
 
 .. tip::
 
-    The settings allow you to pass orbitary information to template, even for 3rd party extensions.
+    The settings allow you to pass orbitary information to a template, even for 3rd party extensions.
     Just make sure you prefix them with a unique vendor to prevent collisions with further updates
     of the extensions.
 
@@ -323,7 +323,7 @@ mvc
 These are useful mvc settings about error handling:
 
 `mvc.callDefaultActionIfActionCantBeResolved`
-    Will cause the controller to show it's default action
+    Will cause the controller to show its default action
     e.g. if the called action is not allowed by the controller.
 
 `mvc.throwPageNotFoundExceptionIfActionCantBeResolved`
@@ -354,13 +354,13 @@ have special requirements that can not be realized with the `ActionController`,
 you should have a look at the controllers below.
 
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface`
-    The basic interface that must be implemented by all controllers.
+    This basic interface that must be implemented by all controllers.
 
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\AbstractController`
-    Abstract controller with basic functionality.
+    Abstract controller with the basic functionality of the ControllerInterface.
 
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\ActionController`
-    The most widely used controller in Extbase. An overview of its API is given in
+    The most widely used controller in Extbase. It extends the AbstractController. An overview of its API is given in
     the following section.
 
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\CommandController`
