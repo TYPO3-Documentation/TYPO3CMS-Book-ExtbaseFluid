@@ -70,15 +70,16 @@ same format as above, containing all the non-cached-actions.
 
 .. code-block:: php
 
+    $extensionKey = 'example_extensionkey';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.ExtKey',
+        'Vendor.' . $extensionKey,
         $pluginName,
         $backendTitle,
         $pluginIcon
     );
 
-The extension key and `$pluginName` must be completely identical to the definition
-in :file:`ext_localconf.php`. `$backendTitle` defines the displayed name of the plugin in
+The extension key (`$extensionKey` or `$_EXTKEY`) and `$pluginName` must be completely identical to the definition
+in :file:`ext_localconf.php`. `$extensionKey` must be filled with the extension key by yourself, where `$_EXTKEY` is not available. `$backendTitle` defines the displayed name of the plugin in
 the Backend.
 
 .. note::
@@ -94,7 +95,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ExtKey',
+        'Vendor.' . $_EXTKEY,
         'Blog',
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
@@ -112,8 +113,9 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
 .. code-block:: php
 
+    $extensionKey = 'example_extensionkey';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.ExtKey',
+        'Vendor.' . $extensionKey,
         'Blog',
         'A Blog Example',
         'EXT:blog/Resources/Public/Icons/Extension.svg'
