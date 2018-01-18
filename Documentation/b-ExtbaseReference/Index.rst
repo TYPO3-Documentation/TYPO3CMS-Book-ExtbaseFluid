@@ -48,6 +48,7 @@ backend. Let's have a look at the following two files:
 
 :file:`ext_localconf.php`::
 
+    $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Vendor' . $_EXTKEY,
         $pluginName,
@@ -71,6 +72,7 @@ same format as above, containing all the non-cached-actions.
 .. code-block:: php
 
     $extensionKey = 'example_extensionkey';
+    $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Vendor.' . $extensionKey,
         $pluginName,
@@ -94,9 +96,10 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
 .. code-block:: php
 
+    $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Vendor.' . $_EXTKEY,
-        'Blog',
+        $pluginName,
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
             'Post' => 'index,show,new,create,delete,edit,update',
@@ -114,14 +117,15 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     $extensionKey = 'example_extensionkey';
+    $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Vendor.' . $extensionKey,
-        'Blog',
+        $pluginName,
         'A Blog Example',
         'EXT:blog/Resources/Public/Icons/Extension.svg'
     );
 
-The plugin name is ``Blog``. It is important that the name is exactly the same in
+The plugin name (`$pluginName`) is ``Blog``. It is important that the name is exactly the same in
 :file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`. The default action is ``index`` of controller
 ``blog`` since it's the first element defined in the array and the first action in the list.
 
