@@ -1,4 +1,4 @@
-g.. include:: ../Includes.txt
+.. include:: ../Includes.txt
 .. _extbase_command_controller_about:
 
 Command controllers
