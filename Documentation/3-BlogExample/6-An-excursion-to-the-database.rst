@@ -26,7 +26,7 @@ finally be translated to ``SELECT * FROM tx_blogexample_domain_model_blog``.
 The Storage-Backend returns the "raw" results as a collection (array) of
 database tuples. Every database tuple corresponds to a table row and is in itself
 an associative array with the field names as keys and the field contents as
-value. It does not contain any objects yet and also does not contain any data on posts,
+value. It does not contain any objects yet and it also does not contain any data on posts,
 comments or tags which belong to the database record. The task to build
 a complete object tree starting from the ``Blog`` object down to the last tag of a
 post will be handed over to another object - the ``DataMapper``.
