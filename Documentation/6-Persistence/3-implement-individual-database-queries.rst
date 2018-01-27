@@ -34,7 +34,7 @@ positively affects the performance of your application.
 
 You can use Extbase's *Query*-object for implementing individual queries by
 giving it all the essential information needed for a qualified request to the
-database backend. Those information contain:
+database backend. This information contains:
 
 * The request's class (*Type*) to which the request applies.
 * An (optional) *Constraint* which restricts the result set.
