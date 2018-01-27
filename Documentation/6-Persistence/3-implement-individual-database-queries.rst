@@ -49,7 +49,7 @@ objects of that class, i.e. it consists of Offer objects within the
 (detailed information will be given later on) you execute the request by using
 :php:`execute()` which returns a sorted Array with the properly instantiated
 objects (or a via limit and offset customized section of it). For example, the
-generic method :php:`findAll()` looks as follows:
+generic Repository method :php:`findAll()` looks as follows:
 
 .. code-block:: php
 
