@@ -354,7 +354,7 @@ By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
 The annotation @lazy causes Extbase to load the objects and build only when they
 are actually needed (lazy loading). This can be an appropriate data structure,
-eg many organizations, each with very many offers, that lead to a significant
+e.g. many organizations, each with very many offers, that lead to a significant
 increase in speed.
 
 .. note::
@@ -376,7 +376,7 @@ child objects.
    you can definitely still access the orphaned objects at the backend.
 
 Besides these two there are a few more annotations available, which will be used
-in other contexts (eg in the controller). The complete list of all by Extbase
+in other contexts (e.g. in the controller). The complete list of all by Extbase
 supported annotations, see the index.
 
 So far, the impression may arise that domain models consist only of setters and
