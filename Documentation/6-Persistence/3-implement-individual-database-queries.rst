@@ -57,15 +57,16 @@ generic method :php:`findAll()` looks as follows:
         return $this->createQuery()->execute();
     }
 
-.. note::
+You must set the storagePid to the allowed pages before a query will find any records.
+By default a query only searches on the root page with id=0
 
-    You must set the storagePid to the allowed pages before a query will find any records. By default a query only searches on the root page with id=0 .
+Typoscript example of an extension for the page ids 12 and 22
 
-Typoscript example of an extension for the page ids 12 and 22:
+::
 
     plugin.tx_[lowercasedextensionname] {
       persistence {
-         storagePid = 12,22
+        storagePid = 12,22
       }
     }
 
