@@ -53,6 +53,12 @@ generic Repository method :php:`findAll()` looks as follows:
 
 .. code-block:: php
 
+    /**
+     * Returns all objects of this repository.
+     *
+     * @return QueryResultInterface|array
+     * @api
+     */
     public function findAll() {
         return $this->createQuery()->execute();
     }
