@@ -63,6 +63,19 @@ generic Repository method :php:`findAll()` looks as follows:
         return $this->createQuery()->execute();
     }
 
+You must set the storagePid to the allowed pages before a query will find any records.
+By default a query only searches on the root page with id=0
+
+Typoscript example of an extension for the page ids 12 and 22
+
+::
+
+    plugin.tx_[lowercasedextensionname] {
+      persistence {
+        storagePid = 12,22
+      }
+    }
+
 In this simple first use-case we don't apply any constraining parameter to the Query
 object. However, we have to define such a parameter to implement the first
 specified request, "Find all the offers for a certain region". Thus, the
