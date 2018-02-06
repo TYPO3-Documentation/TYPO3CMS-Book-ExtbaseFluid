@@ -63,6 +63,36 @@ generic Repository method :php:`findAll()` looks as follows:
         return $this->createQuery()->execute();
     }
 
+More Repository search methods are available:
+
+.. code-block:: php
+
+    /**
+     * Finds an object matching the given unique id.
+     *
+     * @param int $uid The unique id of the object to find
+     * @return object The matching object if found, otherwise NULL
+     * @api
+     */
+    public function findByUid($uid)
+    {
+        return $this->findByIdentifier($uid);
+    }
+
+.. code-block:: php
+
+    /**
+     * Finds an object matching the given identifier.
+     *
+     * @param int $uid The identifier of the object to find
+     * @return object The matching object if found, otherwise NULL
+     * @api
+     */
+    public function findByIdentifier($identifier)
+    {
+        return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
+    }
+
 You must set the storagePid to the allowed pages before a query will find any records.
 By default a query only searches on the root page with id=0
 
@@ -76,7 +106,8 @@ Typoscript example of an extension for the page ids 12 and 22
       }
     }
 
-In this simple first use-case we don't apply any constraining parameter to the Query
+
+In the first simple use-case we don't apply any constraining parameter to the Query
 object. However, we have to define such a parameter to implement the first
 specified request, "Find all the offers for a certain region". Thus, the
 corresponding method looks as follows:
