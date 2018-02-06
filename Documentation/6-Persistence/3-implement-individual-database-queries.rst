@@ -49,10 +49,16 @@ objects of that class, i.e. it consists of Offer objects within the
 (detailed information will be given later on) you execute the request by using
 :php:`execute()` which returns a sorted Array with the properly instantiated
 objects (or a via limit and offset customized section of it). For example, the
-generic method :php:`findAll()` looks as follows:
+generic Repository method :php:`findAll()` looks as follows:
 
 .. code-block:: php
 
+    /**
+     * Returns all objects of this repository.
+     *
+     * @return QueryResultInterface|array
+     * @api
+     */
     public function findAll() {
         return $this->createQuery()->execute();
     }
@@ -85,6 +91,19 @@ More Repository search methods are available:
     public function findByIdentifier($identifier)
     {
         return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
+    }
+
+You must set the storagePid to the allowed pages before a query will find any records.
+By default a query only searches on the root page with id=0
+
+Typoscript example of an extension for the page ids 12 and 22
+
+::
+
+    plugin.tx_[lowercasedextensionname] {
+      persistence {
+        storagePid = 12,22
+      }
     }
 
 
@@ -335,8 +354,8 @@ get.
 
 At first, the usage of a ``Query`` object with ``Constraint`` objects instead of directly written
 SQL statements looks very inefficient. But doing so here in Extbase makes possible a complete abstraction
-of the storage backend. FLOW3 does the same with its ``Query`` object and an identical API, so you can now
-easily port your query code to FLOW3.
+of the storage backend. Neos Flow does the same with its ``Query`` object and an identical API, so you can now
+easily port your query code to Neos Flow.
 
 .. note::
 
@@ -369,8 +388,8 @@ is translated by Extbase to the following query:
     (for example with ``$GLOBALS['TYPO3_DB']->exec_SELECTgetRows([...])``). You have to
     handle the creation and maintenance of the objects by yourself.
 
-    The method ``statement()`` is not part of the FLOW3 API. If you want to port your extension later
-    to FLOW3 you have to assign these calls manually. The same also applies when using the TYPO3 4.x API.
+    The method ``statement()`` is not part of the Neos Flow API. If you want to port your extension later
+    to Neos Flow you have to assign these calls manually. The same also applies when using the TYPO3 4.x API.
 
 The method ``execute()`` per default returns a ready built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
@@ -493,7 +512,7 @@ the remaining three settings are only effective by ``matching()``.
 .. warning::
 
     The ``QuerySettings`` object encapsulates specific settings of TYPO3 4.x.
-    In FLOW3 as well as TYPO3 5.x the concepts of localization, the access rights and the
+    In Neos Flow as well as TYPO3 5.x the concepts of localization, the access rights and the
     page tree structure are completely different. At the moment of publishing Extbase 1.1,
     this books deals with it, the concepts are not finally defined. For this, the conducted settings
     are not compatible with that of TYPO3 5.x.
