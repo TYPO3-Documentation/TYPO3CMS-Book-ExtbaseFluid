@@ -5,6 +5,17 @@
 A journey through the Blog Example
 ==================================
 
+.. attention::
+   
+   * The latest version propably is: 
+     `plobacher/extbasebookexample <https://github.com/plobacher/extbasebookexample>`__,
+     see the `extbasebook <https://leanpub.com/typo3extbase-en>`__ or
+     `(de) Extbasebuch <https://leanpub.com/typo3extbase>`__
+
+   * This version seems outdated:
+     `ext:blog_example (Last update 2011-03-07) <https://extensions.typo3.org/extension/blog_example/>`__
+     
+
 In this chapter we accompany you on a journey through a simple TYPO3 extension.
 While travelling on this round trip, you will get to know more about extension
 development with Extbase and Fluid and learn the most important stations and
