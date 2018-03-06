@@ -6,6 +6,8 @@ A journey through the Blog Example
 ==================================
 
 .. attention::
+
+   About the code of the blog example:
    
    * The latest version propably is: 
      `plobacher/extbasebookexample <https://github.com/plobacher/extbasebookexample>`__,
