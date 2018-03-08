@@ -16,22 +16,17 @@ create in the top level of our extension directory.
     <?php
     defined('TYPO3_MODE') || die('Access denied.');
 
-    call_user_func(
-        function () {
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-                'MyVendor.StoreInventory',
-                'Pi1',
-                [
-                    'StoreInventory' => 'list',
-                ],
-                // non-cacheable actions
-                [
-                    'StoreInventory' => '',
-                ]
-            );
-        }
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'MyVendor.StoreInventory',
+        'Pi1',
+        [
+            'StoreInventory' => 'list',
+        ],
+        // non-cacheable actions
+        [
+            'StoreInventory' => '',
+        ]
     );
-
 
 With the first line we prevent of security reasons, that the PHP code can be called directly outside of TYPO3.
 The static method ``configurePlugin()`` of the class offers several arguments.
