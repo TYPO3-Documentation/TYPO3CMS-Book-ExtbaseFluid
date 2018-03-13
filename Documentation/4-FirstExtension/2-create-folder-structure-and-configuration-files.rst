@@ -53,10 +53,10 @@ the entire process of listing creation later. The folder *Domain* again contains
 
 	Figure 4-1: The standard directory structure with the important files for the extension manager
 
-So that the extension can be loaded by TYPO3, we require two
-configuration files. These are located in the extension's folder
+So that the extension can be loaded by TYPO3, we require a single
+configuration file. This is located in the extension's folder
 :file:`store_inventory/` at the uppermost level. You can copy and
-adapt these files from an existing extension. Later you will let them be
+adapt this file from an existing extension. Later you will let them be
 created by the extension *Extension Builder*.
 
 The file :file:`ext_emconf.php` contains the meta
@@ -91,7 +91,9 @@ You find the complete documentation in the :ref:`Core Api Reference <t3coreapi:e
 	];
 
 The extension icon was in previous versions of TYPO3 the file :file:`ext_icon.gif`.
-In TYPO3 8 you can choose between a PNG or SVG with a width and height of 256 pixels. The file must have the filename :file:`Extension.png` or :file:`Extension.svg` and must be stored in the directory :file:`Resources/Public/Icons/`.
+In TYPO3 8 you can choose between a PNG or SVG with a width and height of 256 pixels. The file must
+have the filename :file:`Extension.png` or :file:`Extension.svg` and must be stored in the directory
+:file:`Resources/Public/Icons/`.
 The icon appears in the extension manager and in the extension repository (TER).
 
 If the extension has namespaced classes following the PSR-4 standard, then you
