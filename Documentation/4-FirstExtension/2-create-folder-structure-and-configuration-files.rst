@@ -93,7 +93,7 @@ extension. Find a complete reference in chapter
 
 In previous versions of TYPO3 the extension icon was named
 :file:`ext_icon.gif`. Starting with TYPO3 8 you can choose between PNG or SVG
-format ((with a width and height of 256 pixels)). The file must have the name
+format. The file must have the name
 :file:`Extension.png` or :file:`Extension.svg` and must be stored in the
 directory :file:`Resources/Public/Icons/`.
 The icon will be displayed in the extension manager and in the TYPO3 extension
