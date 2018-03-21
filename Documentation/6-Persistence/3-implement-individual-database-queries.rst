@@ -185,7 +185,7 @@ In the method ``findDemanded()`` of the ``offerRepository`` the request is imple
 		$query = $this->createQuery();
 		$constraints = array();
 		if ($demand->getRegion() !== NULL) {
-			$constraints[] = $query->contains('regions', '$demand->getRegion());
+			$constraints[] = $query->contains('regions', $demand->getRegion());
 		}
 		if ($demand->getCategory() !== NULL) {
 			$constraints[] = $query->contains('categories', $demand->getCategory());
