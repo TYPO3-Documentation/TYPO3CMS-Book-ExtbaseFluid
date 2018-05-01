@@ -56,8 +56,9 @@ After creation of the controller you need to register it. Add the following line
 Calling commands
 ----------------
 
-Once a command is registered and available, you can check the availability by calling
-`typo3/cli_dispatch.phpsh extbase help`.
+Re-install your extension to complete the registration. Once a command is registered and available, you can check the availability by calling
+`
+/cli_dispatch.phpsh extbase help`.
 
 The output should look like::
 
