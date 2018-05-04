@@ -30,8 +30,8 @@ aggregate the objects of the class
    :name: ext-tables-sql
 
    CREATE TABLE tx_sjroffers_domain_model_organization (
-      uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
-      pid int(11) DEFAULT '0' NOT NULL,
+      uid int(11) unsigned DEFAULT 0 NOT NULL auto_increment,
+      pid int(11) DEFAULT 0 NOT NULL,
 
       name varchar(255) NOT NULL,
       address text NOT NULL,
@@ -45,14 +45,14 @@ aggregate the objects of the class
       offers int(11) NOT NULL,
       administrator int(11) NOT NULL,
 
-      tstamp int(11) unsigned DEFAULT '0' NOT NULL,
-      crdate int(11) unsigned DEFAULT '0' NOT NULL,
-      deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-      hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-      sys_language_uid int(11) DEFAULT '0' NOT NULL,
-      l18n_parent int(11) DEFAULT '0' NOT NULL,
+      tstamp int(11) unsigned DEFAULT 0 NOT NULL,
+      crdate int(11) unsigned DEFAULT 0 NOT NULL,
+      deleted tinyint(4) unsigned DEFAULT 0 NOT NULL,
+      hidden tinyint(4) unsigned DEFAULT 0 NOT NULL,
+      sys_language_uid int(11) DEFAULT 0 NOT NULL,
+      l18n_parent int(11) DEFAULT 0 NOT NULL,
       l18n_diffsource mediumblob NOT NULL,
-      access_group int(11) DEFAULT '0' NOT NULL,
+      access_group int(11) DEFAULT 0 NOT NULL,
 
       PRIMARY KEY (uid),
       KEY parent (pid),
