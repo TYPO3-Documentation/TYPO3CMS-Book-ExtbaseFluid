@@ -25,7 +25,7 @@ If you have enhancement issues or find bugs you can post them to the development
 Concept
 -------
 
-The modelling of the domain model of an extension is the core functionality of the Etbase Kickstarter.
+The modelling of the domain model of an extension is the core functionality of the Extbase Kickstarter.
 In a graphical user interface the new domian objects are created, with performing properties
 and methods and applying the relations between the domain objects.
 
