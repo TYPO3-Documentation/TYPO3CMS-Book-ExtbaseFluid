@@ -7,7 +7,7 @@ So far we have elucidated how frontend plugins can be implemented as Extbase ext
 It is basically possible to create backend modules with Extbase. Because of not so much
 testing of the implementation like for frontend plugins, we only have a short look at it.
 
-Basically all works same as in the frontend (see chapter 4, section "Configure the plugin"):
+Basically all works the same as in the frontend (see chapter 4, section "Configure the plugin"):
 The functionality is implemented normal in the controller and actions, now it must be defined
 which group of actions are realizing the representation in the backend - that is, the
 backend module must be *registered*. This is done in the file :file:`ext_tables.php` in the
@@ -45,7 +45,7 @@ In line 12 till 16 common definitions for the access rights, the icon and the ti
     When registering frontend plugins there must be defined which actions are not to be stored in the
     cache. For backend modules that is not needed, because there is no caching of the output.
 
-Now the backend module is ready equipped, and after installation of the extension you can try it out.
+Now the backend module is ready equipped. You can try it out after installing the extension.
 Now you perhaps discover that the design has not the look and feel of a TYPO3 backend. To simplify the
 creation of aligned backend modules there are backend ViewHelper for ajustment of the design, that
 you will find below ``f:be.*``. Because these ViewHelper are heavy in enhancement, their documentation
