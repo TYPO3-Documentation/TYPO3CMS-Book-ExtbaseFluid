@@ -25,7 +25,7 @@ If you have enhancement issues or find bugs you can post them to the development
 Concept
 -------
 
-The modelling of the domain model of an extension is the core functionality of the Etbase Kickstarter.
+The modelling of the domain model of an extension is the core functionality of the Extbase Kickstarter.
 In a graphical user interface the new domian objects are created, with performing properties
 and methods and applying the relations between the domain objects.
 
@@ -49,11 +49,11 @@ Sample modelling
 
 We want to demponstrate the usage of the kickstarter with an example of a little news extension.
 First we create a domian object ``News``, with the properties ``title``, ``author`` and ``text``.
-Because we additionally want to create a comment funktion for news, the doamin objects needs a
+Because we additionally want to create a comment function for news, the domain objects needs a
 list of ``Comment`` objects in which the comments are to be stored.
 
 Now choose the module *Extbase Kickstarter* in the TYPO3 backend. To create a new extension you
-have to select the sub module *Domain Modeller*. THen a graphical user interface (like figure 10-1)
+have to select the sub module *Domain Modeller*. Then a graphical user interface (like figure 10-1)
 is shown, with it you can model the domain objects.
 
 .. figure:: /Images/10-Outlook/figure-10-1.png
@@ -72,8 +72,8 @@ entry *Properties* can now be made the desired properties for the domain object 
 	Figure 10-2: The domain object News has the properties title, author and text, and is defined
 	as Aggregate Root.
 
-Now we have doe modelling the domain object ``Comment`` and connect it to the just created
-``News`` object. For this we create like just described a second object with the name ``Comment``
+Now we have done modelling the domain object ``Comment`` and connect it to the just created
+``News`` object. For this we create, like just described, a second object with the name ``Comment``
 and a property for the comment text. To make the connection between the ``News`` and the
 ``Comment`` object, a new relation must be add to the ``News``` object. We take ``comments``
 as name for the relation and configure *type* for a ``0..*`` relation with foreign key.
@@ -89,15 +89,15 @@ open the tab on the left side of the workspace and fill in the needed informatio
 click on *Save* the extension is saved and all files are generated.
 
 The extension can be installed with the extension manager now, and can be added to a page
-in the TYPO3 frontend. If you call this page you will see that automaically a list, single
-and edit view for editing of news entries are generated - this is the dynamic Scaffolding.
+in the TYPO3 frontend. If you call this page, you will see that automagically a list, a single
+and a edit view for editing of news entries are generated - this is the dynamic Scaffolding.
 To change this to explicit templates the sub module *Convert Dynamic to Static Scaffolding*
 can be used.
 
-Now you have implement a simple extension with the kickstarter and can further enhance it.
+Now you have implementd a simple extension with the kickstarter and can further enhance it.
 
 The extbase kickstarter resides - like said at the beginning - heavy in the development stage.
-At the moment there are plans of the development team to use a standarized desciption language
+At the moment there are plans of the development team to use a standarized description language
 for the emerging models. Also the team around the kickstarter will try to implement functions
 to edit existing extensions.
 
