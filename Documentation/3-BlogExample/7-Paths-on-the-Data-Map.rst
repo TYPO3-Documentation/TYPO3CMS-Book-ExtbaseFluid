@@ -92,8 +92,8 @@ name of the child elements in angle brackets::
 
 
 Extbase gathers the type of the relation from the configuration of the database
-table column. Lets take a look at the definition of the column posts. It can be
-found in the file :file:`tca.php` within the path *Configuration/TCA/*. ::
+table column. Let's take a look at the definition of the column ``posts``. It can be
+found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
     $TCA['tx_blogexample_domain_model_blog'] = array(
         ...
