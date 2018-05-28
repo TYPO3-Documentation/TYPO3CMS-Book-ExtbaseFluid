@@ -127,6 +127,6 @@ will be continued recursively over the complete object graph - the blog with all
 its containing posts, comments, tags etc. - starting from the single blog as
 root object.
 
-After our exhausting journey lets get back to the realm of our extension.
+After our exhausting journey let's get back to the realm of our extension.
 Remember that normally you will not need to enter these paths - except the case
 that you are into customised journeys.
