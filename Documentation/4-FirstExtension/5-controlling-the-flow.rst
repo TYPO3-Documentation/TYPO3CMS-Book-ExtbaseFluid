@@ -71,8 +71,8 @@ In our simple example the controller looks like this:
 
 
 
-Our ``\MyVendor\StoreInventory\Controller\InventoryController`` must be derived from the
-``\MyVendor\Extbase\MVC\Controller\ActionController``. It contains only the method ``listAction()``.
+Our ``\MyVendor\StoreInventory\Controller\StoreInventoryController`` must be derived from the
+``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController``. It contains only the method ``listAction()``.
 Extbase identifies all methods that ends with ``Action`` as actions - so as little plan of procedures.
 
 In the method ``injectProductRepository()`` the ``ProductRepository`` is instanced.

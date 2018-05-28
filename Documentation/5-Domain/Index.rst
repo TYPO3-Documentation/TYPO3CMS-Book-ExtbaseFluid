@@ -24,7 +24,7 @@ things the SJR assists those societies to publish their offers in the
 Greater Stuttgart. Currently a lot of effort goes into research and involves
 high costs by printing flyer. In the future those offers will be managed by
 the youth organizations via the Internet. At the same time parents, children
-and teenager should be able to find suitable offers and display them easily.
+and teenagers should be able to find suitable offers and display them easily.
 You can download the originated extension with the extension-key
 *sjr_offers* at the extension repository
 (`http://typo3.org/extensions/repository/view/sjr_offers/current/ <http://typo3.org/extensions/repository/view/sjr_offers/current/>`_).

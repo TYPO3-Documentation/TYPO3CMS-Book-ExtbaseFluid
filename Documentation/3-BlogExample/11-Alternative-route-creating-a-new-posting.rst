@@ -23,7 +23,7 @@ front end, that looks - a bit purged - like this:
    <a href="index.php?id=99&tx_blogexample_pi1[blog]=6&tx_blogexample_pi1[action]=new&tx_blogexample_pi1[controller]=post">Create a new Post</a>
 
 This was created with the following Fluid code in the template
-*EXT:blog_example/Resources/Private/Templates/Post/index.html*:
+*EXT:blog_example/Resources/Private/Templates/Post/Index.html*:
 
 ::
 

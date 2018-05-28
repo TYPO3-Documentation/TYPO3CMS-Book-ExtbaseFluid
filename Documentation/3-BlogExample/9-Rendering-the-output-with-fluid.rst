@@ -10,7 +10,7 @@ Fluid searches at an place defined by conventions.
 All front end templates can be found in :file:`EXT:blog_example/Resources/Private/Templates`
 by default. There for example are the two subfolders *Blog* and *Post*.
 Since the call was made by the ``indexAction()`` of the ``BlogController`` fluid
-searches in the folder *Blog* for a file named *index* and - if not setup up
+searches in the folder *Blog* for a file named *Index* and - if not setup up
 differently - the suffix *.html*. So every action method has its own template.
 Possible other formats are e.g. *.pdf*, *.json* or *.xml*. In table 3.1 you
 can find some examples for these convention.
@@ -20,20 +20,20 @@ can find some examples for these convention.
 +-----------+------------+------------+--------------------------------------------+
 |Controller |Action      |Format      |Path and filename                           |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |index       |unspecified |Resources/Private/Templates/Blog/index.html |
+|Blog       |index       |unspecified |Resources/Private/Templates/Blog/Index.html |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |index       |txt         |Resources/Private/Templates/Blog/index.txt  |
+|Blog       |index       |txt         |Resources/Private/Templates/Blog/Index.txt  |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |new         |unspecified |Resources/Private/Templates/Blog/new.html   |
+|Blog       |new         |unspecified |Resources/Private/Templates/Blog/New.html   |
 +-----------+------------+------------+--------------------------------------------+
-|Post       |unspecified |unspecified |Resources/Private/Templates/Post/index.html |
+|Post       |unspecified |unspecified |Resources/Private/Templates/Post/Index.html |
 +-----------+------------+------------+--------------------------------------------+
 
-In our case the file *index.html* will be loaded. The content will be parsed step
+In our case the file *Index.html* will be loaded. The content will be parsed step
 by step, line by line. Here you see an extract of the template file:
 
 .. code-block:: html
-   :caption: index.html
+   :caption: Index.html
    :name: index-html
 
     <p>Welcome to the Blog Example!</p>

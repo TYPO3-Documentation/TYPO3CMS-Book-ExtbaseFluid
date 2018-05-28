@@ -16,18 +16,18 @@ following characteristics were defined:
 
 * Every member organization can edit their contact data via the front end.
 * Every member organization can add, edit and delete their offers.
-  The offers can searched by the users and filterd by several criteria. Filter criteria are specially:
+  The offers can be searched by the users and filtered by several criteria. Filter criteria are specially:
 
-  the duration of validity of the offer
+  - the duration of validity of the offer
 
-  the target audience for which the offer is straightened (mostly
+  - the target audience for which the offer is straightened (mostly
   the age span, but also physical handicapped, swimmer and so on)
 
-  the target area for which the offer may be for interest (one or
+  - the target area for which the offer may be for interest (one or
   more city districts, nationwide), as well as
 
-  a free selectable category to which the offer is counted among
-  (e.g. "sport offer" or "spare time"
+  - a free selectable category to which the offer is counted among
+  (e.g. "sport offer" or "spare time")
 * The offers are output in list form and single view in the front end.
 * A single organization can be shown with its offers in a view.
 * The offers can be collected to a flyer which contains all information to the offers.
@@ -118,7 +118,7 @@ These property pairs are subject to own rules, that are not
 part of a single property. The minimal age limit (`minimumAge`)
 for example should not be greater than the maximum age limit
 (`maximumAge`). The observation of this rule can be done by the
-offer itselfby a corresponding validation. But it rather belongs to the
+offer itself by a corresponding validation. But it rather belongs to the
 property pair. We store each property pair in an own domain object:
 `AgeRange`, `AttendanceRange` and
 `DateRange`. The outcome of this is the optimized second draft
@@ -144,7 +144,7 @@ three domain objects succeed these common property from a domain object
 Our domain model has reached a certain level of maturity. Of course
 there is certain space for more optimization. The risk exists, that we lose
 in the details, which will be irrelevant in a later revision. We suggest that
-you first implement a basic model and than - with additional knowledge of
-the yet unknown details of the model - improve it step by step. Lets start
+you first implement a basic model and then - with additional knowledge of
+the yet unknown details of the model - improve it step by step. Let's start
 with our first lines of code.
 
