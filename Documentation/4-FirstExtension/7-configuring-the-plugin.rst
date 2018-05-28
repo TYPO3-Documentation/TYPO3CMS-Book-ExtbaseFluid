@@ -28,13 +28,15 @@ create in the top level of our extension directory.
         ]
     );
 
-With the first line we prevent of security reasons, that the PHP code can be called directly outside of TYPO3.
-The static method ``configurePlugin()`` of the class offers several arguments.
-With the first we assign the extension key, which stand by in the global variable
-``$EXTKEY`` (it follows from the name of the extension directory) prefixed by the vendor namespace followed by a dot. This indicates, that we use namespaces for our php classes.
-With the second argument we give an unique name for the plugin (in UpperCamelCase notation).
-Because of historical reasons there is often used ``Pi1``, but maybe it is better to use more meaningfull
-names like "InventoryList".
+With the first line we prevent of security reasons, that the PHP code can be
+called directly outside of TYPO3.  The static method ``configurePlugin()`` of
+the class offers several arguments.  With the first we assign the extension key
+(it follows from the name of the extension directory) prefixed by the vendor
+namespace followed by a dot. This indicates, that we use namespaces for our php
+classes.  With the second argument we give an unique name for the plugin (in
+UpperCamelCase notation).  Because of historical reasons there is often used
+``Pi1``, but maybe it is better to use more meaningfull names like
+"InventoryList".
 This is used later to clearly identify the plugin amongst other plugins on the page.
 The third argument is an array with all controller action combinations, the plugin
 can execute. The array key is the name of the controller (without the suffix ``Controller``)

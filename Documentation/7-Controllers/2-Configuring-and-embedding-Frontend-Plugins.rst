@@ -17,10 +17,10 @@ a content element with Typo3 using the static method registerPlugin().
 <remark>TODO:code</remark>
 
 The method registerPlugin() expects three argumets. The first argument is the
-extension key (sjr_offers in our example). This key is available in TYPO3's
-global variable $_EXTKEY and is the same as the directory name of the extension.
+extension key (sjr_offers in our example). This key is the same as the directory
+name of the extension.
 The second parameter is a freely selectable name of the plugin (a short,
-meaningful name in UpperCAmelCase). The plugin name plays a significant role in
+meaningful name in UpperCamelCase). The plugin name plays a significant role in
 the allocation of GET- and POST parameters to the appropriate plugin:
 http://localhost/index.php?id=123&ts_sjroffers_list[offer]=3. The third argument
 is the label by which the plugin appears in the list of plugin in the backend.

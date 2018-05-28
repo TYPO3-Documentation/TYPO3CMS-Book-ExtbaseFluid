@@ -50,7 +50,7 @@ backend. Let's have a look at the following two files:
 
     $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.' . $_EXTKEY,
+        'Vendor.ext_key',
         $pluginName,
         $controllerActionCombinations,
         $uncachedActions
@@ -80,14 +80,11 @@ same format as above, containing all the non-cached-actions.
         $pluginIcon
     );
 
-The extension key (`$extensionKey` or `$_EXTKEY`) and `$pluginName` must be completely identical to the definition
-in :file:`ext_localconf.php`. `$extensionKey` must be filled with the extension key by yourself, where `$_EXTKEY` is not available. `$backendTitle` defines the displayed name of the plugin in
-the Backend.
-
-.. note::
-
-   **Attention:** The variable :php:`$_EXTKEY` is not available in the directory :file:`Configuration/TCA/`,
-   so you have to fill in your extension key directly.
+The extension key (`$extensionKey` or `example_extensionkey`) and `$pluginName`
+must be completely identical to the definition in :file:`ext_localconf.php`.
+`$extensionKey` must be filled with the extension key by
+yourself.`$backendTitle` defines the displayed name of the plugin in the
+Backend.
 
 Below there is a complete configuration example for the registration of a
 frontend plugin within the files :file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`.
@@ -98,7 +95,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
     $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.' . $_EXTKEY,
+        'Vendor.ext_key',
         $pluginName,
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
