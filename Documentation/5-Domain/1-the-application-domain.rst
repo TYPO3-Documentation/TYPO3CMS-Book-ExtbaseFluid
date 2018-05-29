@@ -21,21 +21,21 @@ following characteristics were defined:
   - the duration of validity of the offer
 
   - the target audience for which the offer is straightened (mostly
-  the age span, but also physical handicapped, swimmer and so on)
+    the age span, but also physical handicapped, swimmer and so on)
 
   - the target area for which the offer may be for interest (one or
-  more city districts, nationwide), as well as
+    more city districts, nationwide), as well as
 
   - a free selectable category to which the offer is counted among
-  (e.g. "sport offer" or "spare time")
+    (e.g. "sport offer" or "spare time")
 * The offers are output in list form and single view in the front end.
 * A single organization can be shown with its offers in a view.
 * The offers can be collected to a flyer which contains all information to the offers.
 
 .. figure:: /Images/5-Domain/figure-5-1.png
-	:align: center
+   :align: center
 
-	Figure 5-1: The still incoherent terms of the domain
+   Figure 5-1: The still incoherent terms of the domain
 
 These terms are the result of a process. Some of them are modified
 many times during the discussions. So the first choosen term of
@@ -49,14 +49,14 @@ in the whole business. And there the term of member organization (or short
 
 .. tip::
 
-	This development of a common language of developers (also ourselves)
-	and domain experts (also the employees of the SJR) maybe is the most
-	important part of the Domain Driven Design. In the literature you find the
-	slightly bulky term *Ubiquitos Language*. Requirement
-	for this process is that the developer take care for contact with the
-	domain experts. This is notably in bigger projects in many cases not the
-	case. More about the development of an Ubiquitos Language you can read
-	about in chapter 2 in the section "Develop a common language".
+   This development of a common language of developers (also ourselves)
+   and domain experts (also the employees of the SJR) maybe is the most
+   important part of the Domain Driven Design. In the literature you find the
+   slightly bulky term *Ubiquitos Language*. Requirement
+   for this process is that the developer take care for contact with the
+   domain experts. This is notably in bigger projects in many cases not the
+   case. More about the development of an Ubiquitos Language you can read
+   about in chapter 2 in the section "Develop a common language".
 
 First of all the located rules and operations are fixed down on paper.
 Here is an excerpt of the list:
@@ -81,29 +81,29 @@ those parent child relations. An additional rhomb symbolized an
 *aggregate*, also a package of child objects.
 
 .. figure:: /Images/5-Domain/figure-5-2.png
-	:align: center
+   :align: center
 
-	Figure 5-2: First draft of the domain.
-
-.. tip::
-
-	This figure was created by a drawing program. In the communication
-	with the customer we are aware of using drawing programs or UML tools,
-	which would be constrict the workflow in this phase. Simple hand drafts
-	are enough and are more accessible for the customer as technical
-	diagrams.
+   Figure 5-2: First draft of the domain.
 
 .. tip::
 
-	You should have noticed that we make a big point of using a common
-	language between developer and domain experts at the begin of the section
-	and now we use permanent english descriptions for classes, methods and
-	properties. Our experience told us that in the life time of an extension
-	also developer get in contact with the source code, which are not potent
-	to understand other languages as their own language and english. To not
-	exclude them without change effort we choose english as lingua franca of
-	the source code. This is especially true for extensions that - like our
-	case - are made public via the extension repository.
+   This figure was created by a drawing program. In the communication
+   with the customer we are aware of using drawing programs or UML tools,
+   which would be constrict the workflow in this phase. Simple hand drafts
+   are enough and are more accessible for the customer as technical
+   diagrams.
+
+.. tip::
+
+   You should have noticed that we make a big point of using a common
+   language between developer and domain experts at the begin of the section
+   and now we use permanent english descriptions for classes, methods and
+   properties. Our experience told us that in the life time of an extension
+   also developer get in contact with the source code, which are not potent
+   to understand other languages as their own language and english. To not
+   exclude them without change effort we choose english as lingua franca of
+   the source code. This is especially true for extensions that - like our
+   case - are made public via the extension repository.
 
 Let us improve the first draft of the domain model. The offer has
 several property pairs, that belong together:
@@ -125,9 +125,9 @@ property pair. We store each property pair in an own domain object:
 (see figure 5-3).
 
 .. figure:: /Images/5-Domain/figure-5-3.png
-	:align: center
+   :align: center
 
-	Figure 5-3: Second draft of the domain.
+   Figure 5-3: Second draft of the domain.
 
 The specific domain objects have a common property, they have a lower
 and upper value. With this we can insert a class hierarchy in which the
@@ -137,9 +137,9 @@ three domain objects succeed these common property from a domain object
 5-4).
 
 .. figure:: /Images/5-Domain/figure-5-4.png
-	:align: center
+   :align: center
 
-	Figure 5-4: Third draft of the domain.
+   Figure 5-4: Third draft of the domain.
 
 Our domain model has reached a certain level of maturity. Of course
 there is certain space for more optimization. The risk exists, that we lose
