@@ -47,8 +47,8 @@ After creation of the controller you need to register it. Add the following line
     <?php
 
     if (TYPO3_MODE === 'BE') {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][$_EXTKEY] =
-            \Vendor\Example\Command\SimpleCommandController::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['ExtensionName-MeaningFullName'] =
+            \Vendor\ExtKey\Command\SimpleCommandController::class;
     }
 
 .. _extbase_command_controller_calling:

@@ -15,7 +15,7 @@ root directory of our extension. Lets look at our blog example how it defines a 
 
     if (TYPO3_MODE === 'BE') {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'Vendor' . $_EXTKEY,
+            'Vendor.ExtensionName',
             'web',          // Main area
             'mod1',         // Name of the module
             '',             // Position of the module
@@ -27,7 +27,7 @@ root directory of our extension. Lets look at our blog example how it defines a 
             array(          // Additional configuration
                 'access'    => 'user,group',
                 'icon'      => 'EXT:blog_example/ext_icon.gif',
-                'labels'    => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+                'labels'    => 'LLL:EXT:ext_key/Resources/Private/Language/locallang_mod.xml',
             )
         );
     }
