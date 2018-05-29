@@ -69,7 +69,7 @@ extension. Find a complete reference in chapter
 
 	<?php
 
-	$EM_CONF['ext_key'] = [
+	$EM_CONF[$_EXTKEY] = [
 		'title' => 'Store Inventory',
 		'description' => 'An extension to manage a stock.',
 		'category' => 'plugin',

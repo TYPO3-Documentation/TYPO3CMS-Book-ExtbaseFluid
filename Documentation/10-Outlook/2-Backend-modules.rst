@@ -15,7 +15,7 @@ root directory of our extension. Lets look at our blog example how it defines a 
 
     if (TYPO3_MODE === 'BE') {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'Vendor.ext_key',
+            'Vendor.ExtensionName',
             'web',          // Main area
             'mod1',         // Name of the module
             '',             // Position of the module

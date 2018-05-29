@@ -50,7 +50,7 @@ backend. Let's have a look at the following two files:
 
     $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ext_key',
+        'Vendor.ExtensionName',
         $pluginName,
         $controllerActionCombinations,
         $uncachedActions
@@ -95,7 +95,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
     $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ext_key',
+        'Vendor.ExtensionName',
         $pluginName,
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
