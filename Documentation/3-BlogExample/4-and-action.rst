@@ -122,7 +122,7 @@ our journey. All files, which are defined in the repository-classes, are
 located in the folder
 :file:`EXT:blog_example/Classes/Domain/Repository/`. This you
 can also derive directly from the Name
-:php:`BlogExample_Domain_Repository_BlogRepository`. This
+:php:`\MyVendor\BlogExample\Domain\Repository\BlogRepository`. This
 naming scheme is a big advantage by the way, if you search a particular
 class file. The name :php:`BlogRepository` results from the
 name of the class, whose instances are managed by the repository, namely by

@@ -6,7 +6,7 @@ Automatic persistence of the domain logic
 Remarkable at this point is, that up to this time no method to save
 the blogs or posts was called. Only the fact that the post is added to the
 blog and thereby was changed is enough to initiate extbase to save the
-changes permanently (to persist). Like on our first route the persistance
+changes permanently (to persist). Like on our first route the persistence
 manager is assigned with it by
 ``$persistenceManager->persistAll()``. This time it collects all
 reconstructed objects (e.g. such, that are restored from the database) that

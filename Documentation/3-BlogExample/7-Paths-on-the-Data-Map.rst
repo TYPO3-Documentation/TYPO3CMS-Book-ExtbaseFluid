@@ -92,8 +92,8 @@ name of the child elements in angle brackets::
 
 
 Extbase gathers the type of the relation from the configuration of the database
-table column. Lets take a look at the definition of the column posts. It can be
-found in the file :file:`tca.php` within the path *Configuration/TCA/*. ::
+table column. Let's take a look at the definition of the column ``posts``. It can be
+found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
     $TCA['tx_blogexample_domain_model_blog'] = array(
         ...
@@ -127,6 +127,6 @@ will be continued recursively over the complete object graph - the blog with all
 its containing posts, comments, tags etc. - starting from the single blog as
 root object.
 
-After our exhausting journey lets get back to the realm of our extension.
+After our exhausting journey let's get back to the realm of our extension.
 Remember that normally you will not need to enter these paths - except the case
 that you are into customised journeys.

@@ -25,7 +25,7 @@ installed extensions are the rule. These are in the folder
 TYPO3-distribution and are in the folder :file:`typo3/sysext/`.
 Extbase or Fluid are examples of system extensions. The two paths are
 below the installation folder of TYPO3, in which also lies the file
-index.php.
+`index.php`.
 
 Then, in the folder for local extensions
 :file:`typo3conf/ext/` we create the folder
@@ -46,7 +46,7 @@ Within the folder
 the entire process of listing creation later. The folder *Domain* again contains the two folders
 :file:`Model` and
 :file:`Repository`. Resulting from all this, the folder structure within the extension folder
-:file:`inventory` should look as in image 4-1.
+:file:`store_inventory` should look as in image 4-1.
 
 .. figure:: /Images/4-FirstExtension/figure-4-1.png
 	:align: center

@@ -62,32 +62,32 @@ corresponding places and files, how they are used in Extbase.
 configuration files ("EXT:" stands for the path to the extension
 directory.)*
 
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|What                        |So far                                   |With extbase                                       |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|Basic configuration files   |Files *ext_** on top level in the        |Location as before; Changes in                     |
-|                            |extension folder                         |the contents (see below)                           |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|Configuration of a plugin   |In *ext_localconf.php*:                  |In *ext_localconf.php*:                            |
-|                            |``t3lib_extMgm::addPItoST43()``          |``Tx_Extbase_Utility_Extension::configurePlugin()``|
-|                            |                                         |(see "Configuring and embedding Frontend Plugins"  |
-|                            |                                         |in chapter 7)                                      |
-|                            |                                         |                                                   |
-|                            |In *ext_tables.php*:                     |In *ext_tables.php*:                               |
-|                            |``t3lib_extMgm::addPlugin()``            |``Tx_Extbase_Utility_Extension::registerPlugin()`` |
-|                            |                                         |(see "Configuring and embedding Frontend Plugins"  |
-|                            |                                         |in chapter 7)                                      |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|Configuration of database   |SQL definition in *ext_tables.sql*       |As before; Pay attention for the naming conventions|
-|tables                      |                                         |of table and field names (see chapter 6)           |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|Configuration of the Backend|Basic configuration in *ext_tables.php*  |As before                                          |
-|                            |TCA default in *EXT:my_ext/tca.php;*     |                                                   |
-|                            |Location configurable in *ext_tables.php*|                                                   |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
-|User configuration          |TypoScript in                            |TypoScript in                                      |
-|                            |*EXT:my_ext/static/constants.txt* and    |*EXT:my_ext/Configuration/TypoScript/constants.txt*|
-|                            |*EXT:my_ext/static/setup.txt;* Location  |and                                                |
-|                            |configurable in *ext_localconf.php*      |*EXT:my_ext/Configuration/TypoScript/setup.txt;*   |
-|                            |                                         |Location configurable in *ext_localconf.php*       |
-+----------------------------+-----------------------------------------+---------------------------------------------------+
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|What                        |So far                                   |With extbase                                                      |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|Basic configuration files   |Files *ext_** on top level in the        |Location as before; Changes in                                    |
+|                            |extension folder                         |the contents (see below)                                          |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|Configuration of a plugin   |In *ext_localconf.php*:                  |In *ext_localconf.php*:                                           |
+|                            |``t3lib_extMgm::addPItoST43()``          |``\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()``|
+|                            |                                         |(see "Configuring and embedding Frontend Plugins"                 |
+|                            |                                         |in chapter 7)                                                     |
+|                            |                                         |                                                                  |
+|                            |In *ext_tables.php*:                     |In *ext_tables.php*:                                              |
+|                            |``t3lib_extMgm::addPlugin()``            |``\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin()`` |
+|                            |                                         |(see "Configuring and embedding Frontend Plugins"                 |
+|                            |                                         |in chapter 7)                                                     |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|Configuration of database   |SQL definition in *ext_tables.sql*       |As before; Pay attention for the naming conventions               |
+|tables                      |                                         |of table and field names (see chapter 6)                          |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|Configuration of the Backend|Basic configuration in *ext_tables.php*  |As before                                                         |
+|                            |TCA default in *EXT:my_ext/tca.php;*     |                                                                  |
+|                            |Location configurable in *ext_tables.php*|                                                                  |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+
+|User configuration          |TypoScript in                            |TypoScript in                                                     |
+|                            |*EXT:my_ext/static/constants.txt* and    |*EXT:my_ext/Configuration/TypoScript/constants.txt*               |
+|                            |*EXT:my_ext/static/setup.txt;* Location  |and                                                               |
+|                            |configurable in *ext_localconf.php*      |*EXT:my_ext/Configuration/TypoScript/setup.txt;*                  |
+|                            |                                         |Location configurable in *ext_localconf.php*                      |
++----------------------------+-----------------------------------------+------------------------------------------------------------------+

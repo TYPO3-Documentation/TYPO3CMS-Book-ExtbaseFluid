@@ -41,7 +41,7 @@ can execute. The array key is the name of the controller (without the suffix ``C
 and the array value is a comma separated list of all actions that are executable by the plugin.
 In our case this is the ``list`` action (also without the suffix ``Action``).
 Thus the array ``array('Inventory' -> 'list')`` allows to execute the method ``listAction()``
-in the ``\MyVendor\Inventory\Controller\InventoryController`` by the plugin.
+in the ``\MyVendor\StoreInventory\Controller\StoreInventoryController`` by the plugin.
 Per default all results of the actions are stored in the cache. If it is not desired for
 individual actions they can be specified by a fourth, optional argument.
 It is an array that has the same format as the previous. Now all actions are listed whose
@@ -90,7 +90,7 @@ The next call of the page, with the plugin on it, shows the inventory as a table
 	Figure 4-5: The output of the inventory in the front end
 
 With this the first little Extbase extension is finished. The example was intentional held simple.
-It illustrate the important steps and the conventions we have to observe.
+It illustrates the important steps and the conventions we have to observe.
 For a full-grown extension there are some ingredients missing:
 
 * Real domain models have a high complexity. (Products for example have different prices and are

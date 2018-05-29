@@ -44,14 +44,14 @@ following:
 		</f:for>
 	</table>
 
-The inventory is rendered as a table. We can access the
+The inventory is rendered as a table. We can access
 the array with the product objects that we assigned to the view in the
 controller via :php:`$this->view->assign('products', $products)` with ``{products}``.
 Tags starting with ``<f:`` are Fluid-ViewHelper tags. The code inside the ``for`` tag is repeated for
 each product object in ``products``. The ViewHelper ``f:crop`` tag shortens the containing text to
 the desired length.
 Within the brackets we can access the objects. If there is a dot after the object name we use the getters of this object.
-So ``{product.description}`` use the getter method ``getDescription()`` from the domain model in file :file:`EXT:store_inventory/Classes/Domain/Model/Product.php`.
+So ``{product.description}`` uses the getter method ``getDescription()`` from the domain model in file :file:`EXT:store_inventory/Classes/Domain/Model/Product.php`.
 
 A more detailed introduction about how to use Fluid-ViewHelper tags can be found in chapter
 8, *Styling the output with Fluid* and also in the reference in appendix c.

@@ -10,7 +10,7 @@ Fluid searches at an place defined by conventions.
 All front end templates can be found in :file:`EXT:blog_example/Resources/Private/Templates`
 by default. There for example are the two subfolders *Blog* and *Post*.
 Since the call was made by the ``indexAction()`` of the ``BlogController`` fluid
-searches in the folder *Blog* for a file named *index* and - if not setup up
+searches in the folder *Blog* for a file named *Index* and - if not setup up
 differently - the suffix *.html*. So every action method has its own template.
 Possible other formats are e.g. *.pdf*, *.json* or *.xml*. In table 3.1 you
 can find some examples for these convention.
@@ -20,20 +20,20 @@ can find some examples for these convention.
 +-----------+------------+------------+--------------------------------------------+
 |Controller |Action      |Format      |Path and filename                           |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |index       |unspecified |Resources/Private/Templates/Blog/index.html |
+|Blog       |index       |unspecified |Resources/Private/Templates/Blog/Index.html |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |index       |txt         |Resources/Private/Templates/Blog/index.txt  |
+|Blog       |index       |txt         |Resources/Private/Templates/Blog/Index.txt  |
 +-----------+------------+------------+--------------------------------------------+
-|Blog       |new         |unspecified |Resources/Private/Templates/Blog/new.html   |
+|Blog       |new         |unspecified |Resources/Private/Templates/Blog/New.html   |
 +-----------+------------+------------+--------------------------------------------+
-|Post       |unspecified |unspecified |Resources/Private/Templates/Post/index.html |
+|Post       |unspecified |unspecified |Resources/Private/Templates/Post/Index.html |
 +-----------+------------+------------+--------------------------------------------+
 
-In our case the file *index.html* will be loaded. The content will be parsed step
+In our case the file *Index.html* will be loaded. The content will be parsed step
 by step, line by line. Here you see an extract of the template file:
 
 .. code-block:: html
-   :caption: index.html
+   :caption: Index.html
    :name: index-html
 
     <p>Welcome to the Blog Example!</p>
@@ -84,7 +84,7 @@ represent different functionalities.
 Let's have a closer look at the latter examaple. In the variable `{blogs}` all
 blogs are "included". The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template before. In our case this was done in the
-:php:`indexActon()` of the `BlogController`. With the attribute `each` the
+:php:`indexAction()` of the `BlogController`. With the attribute `each` the
 `for` ViewHelper gets the `blog` objects over whom is to be iterated. The
 attribute ``as`` holds the name of the variable with which the `blog` object is
 available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
@@ -95,7 +95,7 @@ available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
     attribute since the string is passed as a *name* for the variable and should not be
     parsed by Fluid. An `as="{blog}"` would be parsed as if you would have liked
     to make the name of the variable configurable. Rule of thumb: Curly brackets in
-    each, none in `as`.
+    `each`, none in `as`.
 
 Objects can not be rendered by Fluid directly. An exception make objects that
 have a :php:`__toString()` method. The single properties of such an object can be
@@ -105,7 +105,7 @@ this object it searches for a method named :php:`getTitle()`. The name of the me
 created by extracting the part after the point, capitalizes the first letter and
 prefixes a »get«. With this the call looks something like this:
 :php:`$blog->getTitle()`. The return value will replace `{blog.title}` in the
-template. Analogously `{blog.descripton}` will be replaced with the description.
+template. Analogously `{blog.description}` will be replaced with the description.
 Parsing the point goes recursively. That means Fluid can parse a string
 `{blog.administrator.name}` by calling a method that equals
 :php:`$blog->getAdministrator()->getName()`.
