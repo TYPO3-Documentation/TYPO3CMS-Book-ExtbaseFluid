@@ -71,20 +71,14 @@ same format as above, containing all the non-cached-actions.
 
 .. code-block:: php
 
-    $extensionKey = 'example_extensionkey';
-    $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.' . $extensionKey,
-        $pluginName,
-        $backendTitle,
-        $pluginIcon
+        'Vendor.ExtensionName',
+        'ExamplePlugin',
+        'Title used in Backend'
     );
 
-The extension key (`$extensionKey` or `example_extensionkey`) and `$pluginName`
-must be completely identical to the definition in :file:`ext_localconf.php`.
-`$extensionKey` must be filled with the extension key by
-yourself.`$backendTitle` defines the displayed name of the plugin in the
-Backend.
+The first two arguments must be completely identical to the definition in
+:file:`ext_localconf.php`.
 
 Below there is a complete configuration example for the registration of a
 frontend plugin within the files :file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`.
@@ -93,10 +87,9 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
 .. code-block:: php
 
-    $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ExtensionName',
-        $pluginName,
+        'Vendor.ExampleExtension',
+        'Blog',
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
             'Post' => 'index,show,new,create,delete,edit,update',
@@ -113,22 +106,24 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 
 .. code-block:: php
 
-    $extensionKey = 'example_extensionkey';
-    $pluginName = 'Blog';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.' . $extensionKey,
-        $pluginName,
+        'Vendor.ExampleExtension',
+        'Blog',
         'A Blog Example',
         'EXT:blog/Resources/Public/Icons/Extension.svg'
     );
 
-The plugin name (`$pluginName`) is ``Blog``. It is important that the name is exactly the same in
-:file:`ext_localconf.php` and :file:`Configuration/TCA/Overrides/tt_content.php`. The default action is ``index`` of controller
-``blog`` since it's the first element defined in the array and the first action in the list.
+The plugin name is ``Blog``. It is important that the name is exactly the same
+in :file:`ext_localconf.php` and
+:file:`Configuration/TCA/Overrides/tt_content.php`. The default called method is
+:php:`indexAction()` of controller class
+:php:`Vendor\ExampleExtension\Controller\BlogController` since it's the first
+element defined in the array and the first action in the list.
 
 All actions which change data must not be cacheable. Above, this is for example
-the ``delete`` action in the ``blog`` controller. In the backend you can see "*A Blog
-Example*" in the list of plugins (see Figure B-1).
+the :php:`deleteAction()` action in the
+:php:`Vendor\ExampleExtension\Controller\BlogController` controller. In the
+backend you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
 
 .. figure:: /Images/b-ExtbaseReference/figure-b-1.png
     :align: center
