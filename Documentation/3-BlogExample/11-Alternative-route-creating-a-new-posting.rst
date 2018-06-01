@@ -108,13 +108,13 @@ Here you will see the shortened template *new.html*:
 ::
 
    <f:form method="post" controller="Post" action="create" name="newPost" object="{newPost}" arguments="{blog: blog}">
-      <label for="author">Author</label><br />
+      <label for="author">Author (required)</label><br />
       <f:form.select property="author" options="{authors}" optionLabelField="fullName">
          <select><option>dummy</option></select>
       </f:form.select><br />
-      <label for="title">Title</label><br />
+      <label for="title">Title (required)</label><br />
       <f:form.textbox property="title" /><br />
-      <label for="content">Content</label><br />
+      <label for="content">Content (required)</label><br />
       <f.form.textarea property="content" rows="8" cols="46" /><br />
       <f:form.submit class="submit" value="Submit" />
    </f:form>
@@ -148,14 +148,14 @@ the form looks like this:
 ::
 
    <form method="post" name="newPost" action="index.php?id=99&tx_blogexample_pi1[blog]=2&tx_blogexample_pi1[action]=create&tx_blogexample_pi1[controller]=Post">
-      <label for="author">Author</label><br />
+      <label for="author">Author (required)</label><br />
       <select name="tx_blogexample_pi1[newPost][author]">
          <option value="1">Stephen Smith</option>
          <option value="2">John Doe</option>
       </select><br />
-      <label for="title">Title</label><br />
+      <label for="title">Title (required)</label><br />
       <input type="text" name="tx_blogexample_pi1[newPost][title]" value="" /><br />
-      <label for="content">Content</label><br />
+      <label for="content">Content (required)</label><br />
       <textarea rows="8" cols="46" name="tx_blogexample_pi1[newPost][content]"></textarea><br />
       <input class="submit" type="submit" value="Submit" />
    </form>
