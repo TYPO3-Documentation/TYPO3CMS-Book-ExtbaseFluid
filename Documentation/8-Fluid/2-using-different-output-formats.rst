@@ -30,14 +30,6 @@ the HTML view. However, Fluid doesn't choose the file
 the ``format`` attribute of the ``link.action`` ViewHelper
 changed the format to ``print``, our print view. You notice: The
 format is being reflected in the file ending of the template.
-
-.. tip::
-
-	In the example above we have given the print view the name
-	``print``. All format names are treated equally. There are no
-	technical limitations for format names. Therefore you should choose a
-	semantically, meaningful name.
-
 .. sidebar:: Output other formats with Fluid
 
 	If you want to output JSON, RSS or similar data with Fluid, you
@@ -67,3 +59,11 @@ format is being reflected in the file ending of the template.
 	implicitley set ``plugin.``*[ExtensionKey]*.``persistence.storagePid``
 	to the ID of the page containg the data, to tell Extbase from which page
 	the data should be read.
+
+
+.. tip::
+
+	In the example above we have given the print view the name
+	``print``. All format names are treated equally. There are no
+	technical limitations for format names. Therefore you should choose a
+	semantically, meaningful name.
