@@ -12,12 +12,12 @@ we specify at the same time the name of the extension as
 
 .. tip::
 
-	The name of an extension is always written in
-	*UpperCamelCase* (beginning with a capital letter, then
-	upper and lower letters; no underscore), while the extension key may only
-	contain small letters and underscore (lower_underscore). You will find an
-	overview of the name conventions in appendix A, *Coding
-	Guidelines*.
+   The name of an extension is always written in
+   *UpperCamelCase* (beginning with a capital letter, then
+   upper and lower letters; no underscore), while the extension key may only
+   contain small letters and underscore (lower_underscore). You will find an
+   overview of the name conventions in appendix A, *Coding
+   Guidelines*.
 
 Extensions can be stored at different places in TYPO3. Locally
 installed extensions are the rule. These are in the folder
@@ -49,9 +49,9 @@ the entire process of listing creation later. The folder *Domain* again contains
 :file:`store_inventory` should look as in image 4-1.
 
 .. figure:: /Images/4-FirstExtension/figure-4-1.png
-	:align: center
+   :align: center
 
-	Figure 4-1: The standard directory structure with the important files for the extension manager
+   Figure 4-1: The standard directory structure with the important files for the extension manager
 
 A single configuration file named :file:`ext_emconf.php` is required by TYPO3
 to allow for loading the extension. The file is located in the extension's
@@ -67,29 +67,29 @@ extension. Find a complete reference in chapter
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	$EM_CONF[$_EXTKEY] = [
-		'title' => 'Store Inventory',
-		'description' => 'An extension to manage a stock.',
-		'category' => 'plugin',
-		'author' => 'John Doe',
-		'author_company' => 'John Doe Inc.',
-		'author_email' => 'john.doe@example.com',
-		'state' => 'alpha',
-		'clearCacheOnLoad' => true,
-		'version' => '0.0.0',
-		'constraints' => [
-			'depends' => [
-				'typo3' => '8.7.0-8.9.99',
-			]
-		],
-		'autoload' => [
-			'psr-4' => [
-				'MyVendor\\StoreInventory\\' => 'Classes'
-			]
-		],
-	];
+   $EM_CONF[$_EXTKEY] = [
+      'title' => 'Store Inventory',
+      'description' => 'An extension to manage a stock.',
+      'category' => 'plugin',
+      'author' => 'John Doe',
+      'author_company' => 'John Doe Inc.',
+      'author_email' => 'john.doe@example.com',
+      'state' => 'alpha',
+      'clearCacheOnLoad' => true,
+      'version' => '0.0.0',
+      'constraints' => [
+         'depends' => [
+            'typo3' => '8.7.0-8.9.99',
+         ]
+      ],
+      'autoload' => [
+         'psr-4' => [
+            'MyVendor\\StoreInventory\\' => 'Classes'
+         ]
+      ],
+   ];
 
 In previous versions of TYPO3 the extension icon was named
 :file:`ext_icon.gif`. Starting with TYPO3 8 you can choose between PNG or SVG

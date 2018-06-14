@@ -15,12 +15,12 @@ You can get the extension here:
 `<https://github.com/TYPO3-Documentation-Examples/store_inventory>`_
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 2
 
-	1-the-example-extension
-	2-create-folder-structure-and-configuration-files
-	3-create-the-domain-model
-	4-make-products-persistent
-	5-controlling-the-flow
-	6-adding-the-template
-	7-configuring-the-plugin
+   1-the-example-extension
+   2-create-folder-structure-and-configuration-files
+   3-create-the-domain-model
+   4-make-products-persistent
+   5-controlling-the-flow
+   6-adding-the-template
+   7-configuring-the-plugin

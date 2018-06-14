@@ -20,7 +20,7 @@ against a naming convention which is defined in the
 ``$viewObjectNamePattern``. The default naming convention is
 following::
 
-	\MyVendor\@extension\View\@controller\@action@format
+   \MyVendor\@extension\View\@controller\@action@format
 
 All parts beginning with ``@`` will be replaced accordingly.
 When no class with this name can be found, the ``@format`` will be
@@ -43,28 +43,28 @@ It is often helpful to inherit directly from
 initializing methods and you only have to implement the
 ``render()`` method. A minimal view would like this::
 
-	<?php
-	namespace MyVendor\BlogExample\View\Post;
+   <?php
+   namespace MyVendor\BlogExample\View\Post;
 
-	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-		public function render() {
-			return 'Hello World';
-		}
-	}
+   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+      public function render() {
+         return 'Hello World';
+      }
+   }
 
 Now we have the full expression power of PHP available and we can
 implement our own output logic. For example our JSON view could look like
 this::
 
-	<?php
-	namespace MyVendor\BlogExample\View\Post;
+   <?php
+   namespace MyVendor\BlogExample\View\Post;
 
-	class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-		public function render() {
-			$postList = $this->viewData['posts'];
-			return json_encode($postList);
-		}
-	}
+   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
+      public function render() {
+         $postList = $this->viewData['posts'];
+         return json_encode($postList);
+      }
+   }
 
 Here we can see that the data that is passed to the
 view is available in the array ``$this->viewData``. These are
@@ -73,8 +73,8 @@ returned.
 
 .. tip::
 
-	PHP based views are also helpful for specially complex kind of
-	output like the rendering of PDF files.
+   PHP based views are also helpful for specially complex kind of
+   output like the rendering of PDF files.
 
 View configuration options in the controller
 -------------------------------------------------

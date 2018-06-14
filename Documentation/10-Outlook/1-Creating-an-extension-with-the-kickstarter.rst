@@ -58,8 +58,8 @@ is shown, with it you can model the domain objects.
 
 .. figure:: /Images/10-Outlook/figure-10-1.png
 
-	Figure 10-1: The domain modeller consists of a large workspace and retractable tabs at the
-	left and right side, in wich the meta data can be entered.
+   Figure 10-1: The domain modeller consists of a large workspace and retractable tabs at the
+   left and right side, in wich the meta data can be entered.
 
 To create a new domain object click at the box with the title *New Model Object* and pull it to
 the desired place on the workspace. Now you can enter the name of the model object, in our case
@@ -69,8 +69,8 @@ entry *Properties* can now be made the desired properties for the domain object 
 
 .. figure:: /Images/10-Outlook/figure-10-2.png
 
-	Figure 10-2: The domain object News has the properties title, author and text, and is defined
-	as Aggregate Root.
+   Figure 10-2: The domain object News has the properties title, author and text, and is defined
+   as Aggregate Root.
 
 Now we have done modelling the domain object ``Comment`` and connect it to the just created
 ``News`` object. For this we create, like just described, a second object with the name ``Comment``
@@ -82,7 +82,7 @@ the ``Comment`` object. The screen now looks like figure 10-3.
 
 .. figure:: /Images/10-Outlook/figure-10-3.png
 
-	Figure 10-3: Now the relation between the News and the Comment object is mold.
+   Figure 10-3: Now the relation between the News and the Comment object is mold.
 
 Now some meta data for the extension must be set, like title and extension key. For this we
 open the tab on the left side of the workspace and fill in the needed information. With a

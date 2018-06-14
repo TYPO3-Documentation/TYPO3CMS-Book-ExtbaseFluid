@@ -81,16 +81,16 @@ products are stored, as the starting point (in our case "Inventory") in the plug
 Otherwise your products are not found (see figure 4-4).
 
 .. figure:: /Images/4-FirstExtension/figure-4-4.png
-	:align: center
+   :align: center
 
-	Figure 4-4: Our plugin appears in the selection box of the content element.
+   Figure 4-4: Our plugin appears in the selection box of the content element.
 
 The next call of the page, with the plugin on it, shows the inventory as a table (figure 4-5).
 
 .. figure:: /Images/4-FirstExtension/figure-4-5.png
-	:align: center
+   :align: center
 
-	Figure 4-5: The output of the inventory in the front end
+   Figure 4-5: The output of the inventory in the front end
 
 With this the first little Extbase extension is finished. The example was intentional held simple.
 It illustrates the important steps and the conventions we have to observe.

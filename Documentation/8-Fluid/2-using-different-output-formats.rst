@@ -34,10 +34,10 @@ format is being reflected in the file ending of the template.
 
 .. tip::
 
-	In the example above we have given the print view the name
-	``print``. All format names are treated equally. There are no
-	technical limitations for format names. Therefore you should choose a
-	semantically, meaningful name.
+   In the example above we have given the print view the name
+   ``print``. All format names are treated equally. There are no
+   technical limitations for format names. Therefore you should choose a
+   semantically, meaningful name.
 
 Output other formats with Fluid
 ===============================
@@ -50,18 +50,18 @@ the ``<head>``- and
 
 You can use the following TypoScript::
 
-	rss = PAGE
-	rss {
-		typeNum = 100
-		10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
+   rss = PAGE
+   rss {
+      typeNum = 100
+      10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
 
-		config {
-		disableAllHeaderCode = 1
-		additionalHeaders = Content-type:application/xml
-		xhtml_cleaning = 0
-		admPanel = 0
-		}
-	}
+      config {
+      disableAllHeaderCode = 1
+      additionalHeaders = Content-type:application/xml
+      xhtml_cleaning = 0
+      admPanel = 0
+      }
+   }
 
 You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
 We recommend to search for the path of your Plugin in the

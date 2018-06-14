@@ -20,16 +20,16 @@ can apply the learned technologies with the help of a practical
 sample.
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 2
 
-	1-basic-concepts
-	2-using-different-output-formats
-	3-moving-repeating-snippets-to-partials
-	4-creating-a-consistent-look-and-feel-with-layouts
-	5-using-typoscript-for-rendering-the-cobject-viewhelper
-	6-adding-additional-tag-attributes-with-additionalattributes
-	7-using-boolean-conditions
-	8-developing-a-custom-viewhelper
-	9-using-php-based-views
-	10-template-creation-by-example
-	11-conclusion
+   1-basic-concepts
+   2-using-different-output-formats
+   3-moving-repeating-snippets-to-partials
+   4-creating-a-consistent-look-and-feel-with-layouts
+   5-using-typoscript-for-rendering-the-cobject-viewhelper
+   6-adding-additional-tag-attributes-with-additionalattributes
+   7-using-boolean-conditions
+   8-developing-a-custom-viewhelper
+   9-using-php-based-views
+   10-template-creation-by-example
+   11-conclusion

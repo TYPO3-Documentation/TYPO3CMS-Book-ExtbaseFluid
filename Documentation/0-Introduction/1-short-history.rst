@@ -23,26 +23,26 @@ box "The Berlin Manifesto").
 
 .. sidebar:: The Berlin Manifesto
 
-	We, the participants of the TYPO3 Transition Days 2008 state that
-	…
+   We, the participants of the TYPO3 Transition Days 2008 state that
+   …
 
-	* TYPO3 v4 continues to be actively developed
-	* v4 development will continue after the release of v5
-	* Future releases of v4 will see its features converge with those in TYPO3 v5
-	* TYPO3 v5 will be the successor of TYPO3 v4
-	* Migration of content from TYPO3 v4 to TYPO3 v5 will be easily possible
-	* TYPO3 v5 will introduce many new concepts and ideas. Learning
-	  never stops and we'll help with adequate resources to ensure a smooth
-	  transition.
+   * TYPO3 v4 continues to be actively developed
+   * v4 development will continue after the release of v5
+   * Future releases of v4 will see its features converge with those in TYPO3 v5
+   * TYPO3 v5 will be the successor of TYPO3 v4
+   * Migration of content from TYPO3 v4 to TYPO3 v5 will be easily possible
+   * TYPO3 v5 will introduce many new concepts and ideas. Learning
+     never stops and we'll help with adequate resources to ensure a smooth
+     transition.
 
-	Signed by:
+   Signed by:
 
-	*Patrick Broens, Karsten Dambekalns, Dmitry Dulepov,
-	Andreas Förthner, Oliver Hader, Martin Herr, Christian Jul Jensen,
-	Thorsten Kahler, Steffen Kamper, Christian Kuhn, Sebastian Kurfürst,
-	Martin Kutschker, Robert Lemke, Tobias Liebig, Benjamin Mack, Peter
-	Niederlag, Jochen Rau, Ingo Renner, Ingmar Schlecht, Jeff Segars, Michael
-	Stucki, Bastian Waidelich*
+   *Patrick Broens, Karsten Dambekalns, Dmitry Dulepov,
+   Andreas Förthner, Oliver Hader, Martin Herr, Christian Jul Jensen,
+   Thorsten Kahler, Steffen Kamper, Christian Kuhn, Sebastian Kurfürst,
+   Martin Kutschker, Robert Lemke, Tobias Liebig, Benjamin Mack, Peter
+   Niederlag, Jochen Rau, Ingo Renner, Ingmar Schlecht, Jeff Segars, Michael
+   Stucki, Bastian Waidelich*
 
 With the background of this manifesto, the decision was made to
 re-implement two parts of TYPO3 v4:

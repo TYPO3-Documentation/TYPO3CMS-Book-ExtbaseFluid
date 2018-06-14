@@ -13,7 +13,7 @@ these with a simplified class hierarchie detached from our sample extension (see
 
 .. figure:: /Images/6-Persistence/figure-6-14.png
 
-	Figure 6-14: A simple class hierarchy
+   Figure 6-14: A simple class hierarchy
 
 The classes `Organization` and `Person` are specializations of the class `Party` (not a
 jollification, but a party in not political manner). The class `Organization` is again a

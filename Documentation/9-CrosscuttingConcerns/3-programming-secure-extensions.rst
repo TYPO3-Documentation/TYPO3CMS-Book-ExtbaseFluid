@@ -49,9 +49,9 @@ data to the desired format, for example to a number with the use of
 
 .. tip::
 
-	More hints for safety programming with PHP you find also in the PHP handbook at
-	*http://php.net/security*
-	.
+   More hints for safety programming with PHP you find also in the PHP handbook at
+   *http://php.net/security*
+   .
 
 Now we want to present some concepts that used by extbase and fluid
 to increase the safeness of an extension.First we explain how requests
@@ -76,21 +76,21 @@ changed in our system).
 
 The form looks (shortened) like this::
 
-	<f:form name="user" object="{user}" action="update">
-	<f:form.textbox property="email" />
-	<f:form.textbox property="password" />
-	<f:form.textbox property="description" />
-	</f:form>
+   <f:form name="user" object="{user}" action="update">
+   <f:form.textbox property="email" />
+   <f:form.textbox property="password" />
+   <f:form.textbox property="description" />
+   </f:form>
 
 If the form is sent, the argument mapping for the user object gets
 this array::
 
-	array(
-	__identity => ...
-	email =>  ...
-	password => ...
-	description => ...
-	)
+   array(
+   __identity => ...
+   email =>  ...
+   password => ...
+   description => ...
+   )
 
 Because the ``__identity`` property and further properties
 are set, the argument mapper gets the object from the persistence layer,
@@ -149,7 +149,7 @@ Assume you have programmed a forum. An "evil" user will get access
 to the admin account. For this he posted following harmful looking message
 in the forum to try to embed JavaScript code::
 
-	<script type="text/javascript">alert("XSS");</script>
+   <script type="text/javascript">alert("XSS");</script>
 
 When he let display the forum post he gets, if the programmer of the
 forum has made no additional prevetions, a JavaScript popup "XSS". The
@@ -186,8 +186,8 @@ sure to mask the special caracters correct. Also deactivated is is it for
 object accessors that are used in arguments of a ViewHelper. A short
 example for this::
 
-	{variable1}
-	<f:format.crop append="{variable2}">a very long text</f:format.crop>
+   {variable1}
+   <f:format.crop append="{variable2}">a very long text</f:format.crop>
 
 The content of ``{variable1}`` is send thru
 htmlspecialchars(), instead the content of ``{variable2}`` is not

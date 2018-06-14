@@ -52,13 +52,13 @@ the namespace ``MyVendor\BlogExample\ViewHelpers`` with the token
 ``blog``. Now, all tags starting with ``blog:`` are
 interpreted as ViewHelper::
 
-	{namespace blog=MyVendor\BlogExample\ViewHelpers}
+   {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
 Our ViewHelper should get the name gravatar and only get an email
 address as parameter. We will call the ViewHelper in the template as
 follows::
 
-	<blog:gravatar emailAddress="sebastian@typo3.org" />
+   <blog:gravatar emailAddress="sebastian@typo3.org" />
 
 After this preliminary considerations we will start with the
 implementation.
@@ -85,44 +85,44 @@ Following the naming conventions for Extbase extensions we create
 the ViewHelper skeleton in the PHP file
 *EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php*::
 
-	<?php
-	namespace MyVendor\BlogExample\ViewHelpers;
+   <?php
+   namespace MyVendor\BlogExample\ViewHelpers;
 
-	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	public function render() {
-	}
-	}
+   class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+   public function render() {
+   }
+   }
 
 Every ViewHelper must inherit from the class
 ``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper``.
 
 .. tip::
 
-	A ViewHelper can also inherit from subclasses of
-	``AbstractViewHelper``, e.g. from
-	``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``. Several
-	subclasses are offering additional functionality. We will talk about the
-	just addressed TagBasedViewHelper later on in this chapter in detail in
-	"Creating XML tags using TagBasedViewHelper".
+   A ViewHelper can also inherit from subclasses of
+   ``AbstractViewHelper``, e.g. from
+   ``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``. Several
+   subclasses are offering additional functionality. We will talk about the
+   just addressed TagBasedViewHelper later on in this chapter in detail in
+   "Creating XML tags using TagBasedViewHelper".
 
 In addition every ViewHelper needs a method render(), which is
 called once the ViewHelper is to be displayed in the template. The return
 value of the method is copied directly into the complete output. If we
 enhanced our ViewHelper from above as follows::
 
-	<?php
-	namespace MyVendor\BlogExample\ViewHelpers;
+   <?php
+   namespace MyVendor\BlogExample\ViewHelpers;
 
-	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-		public function render() {
-			return 'World';
-		}
-	}
+   class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+      public function render() {
+         return 'World';
+      }
+   }
 
 and we insert it in the template like this::
 
-	{namespace blog=MyVendor\BlogExample\ViewHelpers}
-	Hello <blog:gravatar />
+   {namespace blog=MyVendor\BlogExample\ViewHelpers}
+   Hello <blog:gravatar />
 
 ``Hello World`` should be displayed.
 
@@ -143,11 +143,11 @@ the ``render()`` method. All method arguments of the
 ``render()`` method are automatically arguments of the
 ViewHelpers. In our example it looks like this::
 
-	/**
-	* @param string $emailAddress
-	*/
-	public function render($emailAddress) {
-	}
+   /**
+   * @param string $emailAddress
+   */
+   public function render($emailAddress) {
+   }
 
 With this the ViewHelper gets the argument
 ``emailAddress``, which is of the type ``string``. You
@@ -155,34 +155,34 @@ see that the annotation of the method in the PHPDoc block is important,
 because the type of the parameter is based on this by Fluid.
 
 .. warning::
-	If you forget to specify the type of a parameter, an error message
-	will be displayed. Check at all times that the PHPDoc block is complete
-	and syntactical correct. For example, if you forget the ``@``
-	in front of the ``param``, the type of the parameter is not
-	identified.
+   If you forget to specify the type of a parameter, an error message
+   will be displayed. Check at all times that the PHPDoc block is complete
+   and syntactical correct. For example, if you forget the ``@``
+   in front of the ``param``, the type of the parameter is not
+   identified.
 
 .. tip::
 
-	Sometimes arguments should get *different*
-	types. In this case you should use the type mixed in the PHPDoc. With
-	the line ``@param mixed $emailAddress`` any type of object can
-	be given as parameter ``emailAddress``, e.g. arrays, strings or
-	integer values.
+   Sometimes arguments should get *different*
+   types. In this case you should use the type mixed in the PHPDoc. With
+   the line ``@param mixed $emailAddress`` any type of object can
+   be given as parameter ``emailAddress``, e.g. arrays, strings or
+   integer values.
 
 At the end we implement the output as img tag::
 
-	<?php
-	namespace MyVendor\BlogExample\ViewHelpers;
+   <?php
+   namespace MyVendor\BlogExample\ViewHelpers;
 
-	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	/**
-	* @param string $emailAddress The email address to resolve the gravatar for
-	* @return string the HTML <img>-Tag of the gravatar
-	*/
-	public function render($emailAddress) {
-	return '<img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" />';
-	}
-	}
+   class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+   /**
+   * @param string $emailAddress The email address to resolve the gravatar for
+   * @return string the HTML <img>-Tag of the gravatar
+   */
+   public function render($emailAddress) {
+   return '<img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" />';
+   }
+   }
 
 Congratulation on creating your first ViewHelper! In the
 following sections we will show you some enhancements and tricks for
@@ -211,26 +211,26 @@ $defaultValue)``. You can access these arguments through the array
 The above example could be changed in the following way and would
 function identical::
 
-	<?php
-	namespace MyVendor\BlogExample\ViewHelpers;
+   <?php
+   namespace MyVendor\BlogExample\ViewHelpers;
 
-	class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-	/**
-	* Arguments Initialization
-	*/
-	public function initializeArguments() {
-	$this->registerArgument('emailAddress', 'string',
-	'The email address to resolve the gravatar for', TRUE);
-	}
+   class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+   /**
+   * Arguments Initialization
+   */
+   public function initializeArguments() {
+   $this->registerArgument('emailAddress', 'string',
+   'The email address to resolve the gravatar for', TRUE);
+   }
 
-	/**
-	* @return string the HTML <img>-Tag of the gravatar
-	*/
-	public function render() {
-	return '<img src="http://www.gravatar.com/avatar/' .
-	md5($this->arguments['emailAddress']) . '" />';
-	}
-	}
+   /**
+   * @return string the HTML <img>-Tag of the gravatar
+   */
+   public function render() {
+   return '<img src="http://www.gravatar.com/avatar/' .
+   md5($this->arguments['emailAddress']) . '" />';
+   }
+   }
 
 In this example the usage of
 ``initializeArguments`` is not particular meaningful, because the
@@ -253,9 +253,9 @@ attributes.
 
 .. tip::
 
-	With the correct escaping of the attributes the system security is
-	enhanced, because it prevents *cross site scripting*
-	attacks that would break out of the attributes of XML tags.
+   With the correct escaping of the attributes the system security is
+   enhanced, because it prevents *cross site scripting*
+   attacks that would break out of the attributes of XML tags.
 
 In the next step we modify the just created
 ``GravatarViewHelper`` a bit and use the
@@ -282,10 +282,10 @@ insert it in the template.
 
 .. tip::
 
-	You may ask why this code is better even though it is much longer.
-	It communicates the meaning much better and therefore it is preferred to
-	the first example, where the gravatar URL and the creating of the
-	``img`` tag was mixed.
+   You may ask why this code is better even though it is much longer.
+   It communicates the meaning much better and therefore it is preferred to
+   the first example, where the gravatar URL and the creating of the
+   ``img`` tag was mixed.
 
 The base class ``TagBasedViewHelper`` allows you to
 implement ViewHelpers which returns a XML tag easier and cleaner and help
@@ -299,9 +299,9 @@ could be registerd in ``initializeArguments()`` with the method
 attribure ``alt`` in our ViewHelper, we can initialize this in
 ``initializeArguments()`` in the following way::
 
-	public function initializeArguments() {
-	$this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
-	}
+   public function initializeArguments() {
+   $this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
+   }
 
 For registering the universal attributes ``id, class,
 dir, style, lang, title, accesskey`` and ``tabindex`` there
@@ -312,11 +312,11 @@ If we want to support the universal attributes and the
 ``alt`` attribute in our ``Gravatar`` ViewHelper we need
 the following ``initializeArguments()`` method::
 
-	public function initializeArguments() {
-	parent::initializeArguments();
-	$this->registerUniversalTagAttributes();
-	$this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
-	}
+   public function initializeArguments() {
+   parent::initializeArguments();
+   $this->registerUniversalTagAttributes();
+   $this->registerTagAttribute('alt', 'string', 'Alternative Text for the image');
+   }
 
 
 Insert optional arguments
@@ -335,17 +335,17 @@ no size is given, an image of 80px is generated.
 
 We can enhance the ``render()`` method like this::
 
-	/**
-	* @param string $emailAddress The email address to resolve the gravatar for
-	* @param string $size The size of the gravatar, ranging from 1 to 512
-	* @return string the HTML <img>-Tag of the gravatar
-	*/
-	public function render($emailAddress, $size = '80') {
-	$gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
-	$this->tag->addAttribute('src', $gravatarUri);
-	return $this->tag->render();
-	}
-	}
+   /**
+   * @param string $emailAddress The email address to resolve the gravatar for
+   * @param string $size The size of the gravatar, ranging from 1 to 512
+   * @return string the HTML <img>-Tag of the gravatar
+   */
+   public function render($emailAddress, $size = '80') {
+   $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
+   $this->tag->addAttribute('src', $gravatarUri);
+   return $this->tag->render();
+   }
+   }
 
 With this setting of a default value we have made the
 ``size`` attribute optional.
@@ -393,21 +393,21 @@ the opening and closing tag.
 Lets have a look at the new code of the ``render()``
 method::
 
-	/**
-	* @param string $emailAddress The email address to resolve the gravatar for
-	* @param string $size The size of the gravatar, ranging from 1 to 512
-	* @return string the HTML <img>-Tag of the gravatar
-	*/
-	public function render($emailAddress = NULL, $size = '80') {
-	if ($emailAddress === NULL) {
-	$emailAddress = $this->renderChildren();
-	}
+   /**
+   * @param string $emailAddress The email address to resolve the gravatar for
+   * @param string $size The size of the gravatar, ranging from 1 to 512
+   * @return string the HTML <img>-Tag of the gravatar
+   */
+   public function render($emailAddress = NULL, $size = '80') {
+   if ($emailAddress === NULL) {
+   $emailAddress = $this->renderChildren();
+   }
 
-	$gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
-	$this->tag->addAttribute('src', $gravatarUri);
-	return $this->tag->render();
-	}
-	}
+   $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
+   $this->tag->addAttribute('src', $gravatarUri);
+   return $this->tag->render();
+   }
+   }
 
 This code section has the following effect: First we have
 made the ViewHelper attribute ``emailAddress`` optional. If no
@@ -416,7 +416,7 @@ the tag as email address. The rest of the code in unchanged.
 
 .. tip::
 
-	This trick was specially used at the format ViewHelpers. Every
-	ViewHelper supports both writings there.
+   This trick was specially used at the format ViewHelpers. Every
+   ViewHelper supports both writings there.
 
 

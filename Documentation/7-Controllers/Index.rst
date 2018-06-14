@@ -71,8 +71,8 @@ administered by a proper Controller. In our case the two classes
 indicated. Now let's start with our first Controller.
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 2
 
-	1-Creating-Controllers-and-Actions
-	2-Configuring-and-embedding-Frontend-Plugins
-	3-Configuring-the-behavior-of-the-extension
+   1-Creating-Controllers-and-Actions
+   2-Configuring-and-embedding-Frontend-Plugins
+   3-Configuring-the-behavior-of-the-extension

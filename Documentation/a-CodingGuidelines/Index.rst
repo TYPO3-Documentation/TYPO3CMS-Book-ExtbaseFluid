@@ -32,74 +32,74 @@ Folder structure
 Every extension based on Extbase contains certain folders in the main directory:
 
 :file:`Classes`
-	Here resides the complete source code for the extension. Only PHP files are
-	allowed, each one containing exacly one class or interface. All classes (or
-	interfaces) are loaded via the autoloader mechanism when needed.
+   Here resides the complete source code for the extension. Only PHP files are
+   allowed, each one containing exacly one class or interface. All classes (or
+   interfaces) are loaded via the autoloader mechanism when needed.
 
 :file:`Configuration`
-	Here is the configuration of the extension located, that means
-	flexform configuration, TCA definitions and TypoScript files. Subfolder can
-	be created when they are needed or helpful.
+   Here is the configuration of the extension located, that means
+   flexform configuration, TCA definitions and TypoScript files. Subfolder can
+   be created when they are needed or helpful.
 
 :file:`Documentation`
-	Contains the documentation of the extension. The subfolders are named according to
-	the following schema: *[name of the document]/[format]/[language]*. Therefore
-	you will find the extension manual normally either in the folder
-	*Manual/DocBook/en* or in *Manual/OpenOffice/en/manual.sxw*.
+   Contains the documentation of the extension. The subfolders are named according to
+   the following schema: *[name of the document]/[format]/[language]*. Therefore
+   you will find the extension manual normally either in the folder
+   *Manual/DocBook/en* or in *Manual/OpenOffice/en/manual.sxw*.
 
 :file:`Resources`
-	Here there are the static resources of the extension. This means all files
-	which are not PHP files but are necessary for the conduction of the
-	extension. This might be code from libraries, template files, images,
-	css files and so on.
+   Here there are the static resources of the extension. This means all files
+   which are not PHP files but are necessary for the conduction of the
+   extension. This might be code from libraries, template files, images,
+   css files and so on.
 
-	It is distinguished between public (:file:`Public/`) and private (:file:`Private/`)
-	resources. In the folder :file:`Private/` there is a :file:`.htaccess` file,
-	which is blocking direct access to non public files.
+   It is distinguished between public (:file:`Public/`) and private (:file:`Private/`)
+   resources. In the folder :file:`Private/` there is a :file:`.htaccess` file,
+   which is blocking direct access to non public files.
 
 :file:`Resources/Private`
-	Contains non public resources of the extension.
+   Contains non public resources of the extension.
 
 :file:`Resources/Public`
-	Contains public resources of the extension.
+   Contains public resources of the extension.
 
-	Within these two folder the authors of the extension can choose the
-	structure freely, but we recommend the following structure:
+   Within these two folder the authors of the extension can choose the
+   structure freely, but we recommend the following structure:
 
 :file:`Resources/Public/Media`
-	This is a good place for images, CSS files or media files, which are delivered directly to the client.
+   This is a good place for images, CSS files or media files, which are delivered directly to the client.
 
 :file:`Resources/Private/Templates`
-	Here are the default Fluid templates for the extension (see also chapter 8).
+   Here are the default Fluid templates for the extension (see also chapter 8).
 
 :file:`Resources/Private/PHP`
-	Contains PHP code, which is not compatible to the naming conventions like
-	external PHP libraries, procedural code and so on. You need to use
-	``require_once`` manually to include the code. You are free to add additional
-	folders as needed.
+   Contains PHP code, which is not compatible to the naming conventions like
+   external PHP libraries, procedural code and so on. You need to use
+   ``require_once`` manually to include the code. You are free to add additional
+   folders as needed.
 
 :file:`Tests`
-	All unit tests are found here. The structure should be the same as in :file:`Classes`.
-	All test classes should end with ``Test``.
+   All unit tests are found here. The structure should be the same as in :file:`Classes`.
+   All test classes should end with ``Test``.
 
 :file:`ext_emconf.php`
-	Contains the configuration for the extension manager of TYPO3 like metadata
-	as the name, the description and the author of the extension.
+   Contains the configuration for the extension manager of TYPO3 like metadata
+   as the name, the description and the author of the extension.
 
 :file:`ext_icon.gif`
-	The icon of the extension, which will be visible in the Extension Manager.
-	It should have a size of 18 x 16 px.
+   The icon of the extension, which will be visible in the Extension Manager.
+   It should have a size of 18 x 16 px.
 
 :file:`ext_localconf.php`
-	In this file there is the configuration of the Frontend Plugins, which are
-	offered by the extension (see appendix B, "Configuration of Frontend Plugins").
+   In this file there is the configuration of the Frontend Plugins, which are
+   offered by the extension (see appendix B, "Configuration of Frontend Plugins").
 
 :file:`ext_tables.php`
-	In this file there is the TCA configuration and the configuration for the
-	backend. For more see appendix B, "Configuration of Frontend Plugins".
+   In this file there is the TCA configuration and the configuration for the
+   backend. For more see appendix B, "Configuration of Frontend Plugins".
 
 :file:`ext_tables.sql`
-	This is a file with SQL commands for the definition of the database tables.
+   This is a file with SQL commands for the definition of the database tables.
 
 File and class names
 --------------------

@@ -14,7 +14,7 @@ first extension, you may struggle with some first-time problems concerning TYPO3
 as many big projects are based on homemade Frameworks. So style and
 architecture of today's extensions are quite heterogeneous. Hence, it is
 often very difficult to extend or modify existing extensions for your own
-projects. Before you can do that, you will have to wrap your head around the 
+projects. Before you can do that, you will have to wrap your head around the
 development style of the respective author or team of authors.
 
 It's one of the aims of Extbase to reduce this inconsistency in
@@ -57,10 +57,10 @@ Development is not absolutely necessary for understanding nor using extbase.
 Nevertheless we would like to warmly recommend this development technique.
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 2
 
-	1-Object-oriented Programming-in-PHP
-	2-Domain-Driven-Design
-	3-Model-View-Controller-in-Extbase
-	4-Test-Driven-Development
-	5-Conclusion
+   1-Object-oriented Programming-in-PHP
+   2-Domain-Driven-Design
+   3-Model-View-Controller-in-Extbase
+   4-Test-Driven-Development
+   5-Conclusion
