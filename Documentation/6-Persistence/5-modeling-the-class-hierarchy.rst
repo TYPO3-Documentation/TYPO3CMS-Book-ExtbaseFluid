@@ -49,7 +49,7 @@ additional configuration efford needed. Furthermore the table must have an addit
 that contains the type of the stored database tupel. The table definition schematicly looks
 like this:
 
-.. code-block:: sql
+.. code-block:: guess
 
    CREATE TABLE tx_myextension_domain_model_party {
       uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
@@ -63,7 +63,7 @@ like this:
       research_focus varchar(255) DEFAULT '' NOT NULL,
 
       PRIMARY KEY (uid),
-      KEY parent (pid),
+      KEY parent (pid)
    }
 
 The name of the field that contains the type can be choosen freely. In our case it is the field
