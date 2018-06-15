@@ -426,3 +426,22 @@ unchanged.
 
    This trick was specially used at the format ViewHelpers. Every ViewHelper
    supports both writings there.
+
+.. _escaping-of-output:
+
+Escaping of Output
+------------------
+
+By default all output is escaped to prevent cross site scripting. In above
+example no :html:`<img>`-Tag will be displayed, instead escaped HTML will be
+displayed.
+
+To allow the raw output, the escaping has to be disabled. This is done by
+setting the class property :php:`$escapeOutput` to `false`::
+
+   protected $escapeOutput = false;
+
+In addition to the output of the ViewHelper itself, there is another property
+defining the escaping of child ViewHelpers if any::
+
+   protected $escapeChildren = false;
