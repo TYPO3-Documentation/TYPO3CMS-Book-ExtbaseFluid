@@ -352,9 +352,10 @@ Both methods expect an integer value. With the method ``setOffset()``, you set t
 object you will start with. With the method ``setLimit()``, you set the maximum count of objects you will
 get.
 
-At first, the usage of a ``Query`` object with ``Constraint`` objects instead of directly written
-SQL statements looks very inefficient. But doing so here in Extbase makes possible a complete abstraction
-of the storage backend. Neos Flow does the same with its ``Query`` object and an identical API, so you can now
+At first sight the usage of a `Query` object with `Constraint` objects instead
+of directly written SQL statements may look inefficient. But doing so here with
+Extbase makes complete abstraction of the storage backend possible. Neos Flow
+does the same with its `Query` object and an identical API, so you can now
 easily port your query code to Neos Flow.
 
 .. note::
@@ -388,8 +389,9 @@ is translated by Extbase to the following query:
     (for example with ``$GLOBALS['TYPO3_DB']->exec_SELECTgetRows([...])``). You have to
     handle the creation and maintenance of the objects by yourself.
 
-    The method ``statement()`` is not part of the Neos Flow API. If you want to port your extension later
-    to Neos Flow you have to assign these calls manually. The same also applies when using the TYPO3 4.x API.
+    The method :php:`statement()` is not part of the Neos Flow API. If you want
+    to port your extension later to Neos Flow you have to account for these
+    calls manually. The same is true for TYPO3 API version 4.x.
 
 The method ``execute()`` per default returns a ready built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
@@ -511,11 +513,12 @@ the remaining three settings are only effective by ``matching()``.
 
 .. warning::
 
-    The ``QuerySettings`` object encapsulates specific settings of TYPO3 4.x.
-    In Neos Flow as well as TYPO3 5.x the concepts of localization, the access rights and the
-    page tree structure are completely different. At the moment of publishing Extbase 1.1,
-    this books deals with it, the concepts are not finally defined. For this, the conducted settings
-    are not compatible with that of TYPO3 5.x.
+    The `QuerySettings` object encapsulates specific settings of TYPO3 4.x. In
+    Neos Flow as well as TYPO3 5.x the concepts of localization, the access
+    rights and the page tree structure are completely different. At the moment
+    of publishing Extbase 1.1, this books deals with it, the concepts are not
+    finally defined. For this, the conducted settings are not compatible with
+    that of TYPO3 5.x.
 
 Beside the method ``execute()``, the ``Query`` object provides the method ``count()`` for disposal.
 It returns only the number of elements of the result set, as an integer value, and can only be used in
