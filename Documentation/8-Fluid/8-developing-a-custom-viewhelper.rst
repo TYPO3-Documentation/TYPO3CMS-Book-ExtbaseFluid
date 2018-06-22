@@ -5,8 +5,8 @@
 Developing a custom ViewHelper
 ==============================
 
-The development of an own ViewHelper is much asked for in practice and is part
-of the base repertoire of extension development. This chapter will provide
+The development of an own ViewHelper is frequently asked for in practice and is
+part of the base repertoire of extension development. This chapter will provide
 step by step guidance for a small example from the blog example and describe
 enhanced techniques afterwards.
 
@@ -24,7 +24,7 @@ available. This online service makes sure that an email address is assigned to a
 certain avatar picture.
 
 A web application that wants to check if an avatar picture exists for a given
-email address has to send a checksum (with the hash function :php:`md5`) of the
+email address has to send a checksum (with the hash function :php:`md5()`) of the
 email address to the service and receives the picture for display.
 
 This section explains how to write a ViewHelper that uses an email address as
