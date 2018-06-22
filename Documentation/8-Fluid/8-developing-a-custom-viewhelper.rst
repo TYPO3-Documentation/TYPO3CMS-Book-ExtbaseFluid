@@ -136,35 +136,28 @@ This is the last needed building block, before the implementation of
 functionality can happen.
 
 All arguments of a ViewHelper must be registered. Every ViewHelper has to
-declare explicitly which parameters are accepted.
+declare explicitly which parameters are accepted. The registration happens
+inside `initializeArguments()`::
 
-One way to register these arguments is to enhance the :php:`render()`
-method. All method arguments of the :php:`render()` method are automatically
-arguments of the ViewHelper. In the example it looks like this::
-
-   /**
-    * @param string $emailAddress
-    */
-   public function render($emailAddress)
+   public function initializeArguments()
    {
+      $this->registerArgument(
+         'emailAddress',
+         'string',
+         'The e-mail address the gravatar is generated for.'
+      );
    }
 
 This way the ViewHelper receives the argument `emailAddress` of type `string`.
-The type is given by the annotation of the method in the PHPDoc block.
-
-.. warning::
-
-   If the type of a parameter is not defined, an error message will be
-   displayed. The PHPDoc block has to be complete and syntactical correct. For
-   example, if `@` is missing in front of the `param`, the type of the
-   parameter cannot be determined.
+The type is given by the second argument of the `registerTagAttribute()`.  The
+arguments are registered via :php:`$this->registerArgument($name, $type,
+$description, $required, $defaultValue)`. These arguments can be accessed
+through the array :php:`$this->arguments`.
 
 .. tip::
 
    Sometimes arguments can take various types. In this case the type `mixed`
-   should be used in the PHPDoc. With the line :php:`@param mixed
-   $emailAddress` any type of object can be passed as parameter `emailAddress`,
-   e.g. arrays, strings or integer values.
+   should be used.
 
 Finally the output of :html:`img`-Tag needs to be implemented::
 
@@ -175,50 +168,14 @@ Finally the output of :html:`img`-Tag needs to be implemented::
 
    class GravatarViewHelper extends AbstractViewHelper
    {
-      /**
-       * @param string $emailAddress The email address to resolve the gravatar for
-       * @return string the HTML <img>-Tag of the gravatar
-       */
-      public function render($emailAddress)
-      {
-         return '<img src="http://www.gravatar.com/avatar/' . md5($emailAddress) . '" />';
-      }
-   }
-
-In the following sections some enhancements and tricks for implementing
-ViewHelpers are shown.
-
-.. _register-arguments-with-initializearguments():
-
-Register Arguments with initializeArguments()
----------------------------------------------
-
-Initializing the ViewHelper arguments directly at the :php:`render()` method is
-extremely handy when there aren't many arguments. But sometimes a complex
-inheritance hierarchy is implemented with the ViewHelper, where different level
-of the inheritance structure should register additional arguments. Fluid itself
-does this for example with the `form` ViewHelpers.
-
-Because method parameters and annotations are not inheritable, there must be an
-additional way to register the arguments of a ViewHelper. Fluid provides the
-method :php:`initializeArguments()` for this. In this method additional
-arguments can be registered by calling :php:`$this->registerArgument($name,
-$type, $description, $required, $defaultValue)`. These arguments can be
-accessed through the array :php:`$this->arguments`.
-
-The above example could be changed in the following way and would function
-identical::
-
-   <?php
-   namespace MyVendor\BlogExample\ViewHelpers;
-
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-   class GravatarViewHelper extends AbstractViewHelper
-   {
       public function initializeArguments()
       {
-         $this->registerArgument('emailAddress', 'string', 'The email address to resolve the gravatar for', true);
+         $this->registerArgument(
+            'emailAddress',
+            'string',
+            'The email address to resolve the gravatar for',
+            true
+         );
       }
 
       /**
@@ -226,15 +183,14 @@ identical::
        */
       public function render()
       {
-         return '<img src="http://www.gravatar.com/avatar/' . md5($this->arguments['emailAddress']) . '" />';
+         return '<img src="http://www.gravatar.com/avatar/' .
+            md5($this->arguments['emailAddress']) .
+            '" />';
       }
    }
 
-In this example the usage of :php:`initializeArguments()` is not particularly
-meaningful, because the method only requires one parameter. When working with
-complex ViewHelpers which have a multilevel inheritance hierarchy, it is
-sometimes more readable to register the arguments with
-:php:`initializeArguments()`.
+In the following sections some enhancements and tricks for implementing
+ViewHelpers are shown.
 
 .. _creating-xml-tags-using-tagbasedviewhelper:
 
@@ -334,9 +290,9 @@ Insert optional arguments
 -------------------------
 
 All ViewHelper arguments so far registered were required. By setting a default
-value for an argument in the method signature, the argument is automatically
-optional. When registering the arguments through :php:`initializeArguments()`
-the according parameter has to be set to :php:`false`.
+value for an argument, the argument becomes optional.  When registering the
+arguments through :php:`initializeArguments()` the according parameter has to be
+set to :php:`false`.
 
 Back to the example: An optional size parameter for the picture in the Gravatar
 ViewHelper can be provided. This size parameter will be used to determine the
@@ -345,14 +301,31 @@ size is given, an image of 80px is generated.
 
 The :php:`render()` method can be improved like this::
 
+   public function initializeArguments()
+   {
+      $this->registerArgument(
+         'emailAddress',
+         'string',
+         'The email address to resolve the gravatar for',
+         true
+      );
+      $this->registerArgument(
+         'size',
+         'integer',
+         'The size of the gravatar, ranging from 1 to 512',
+         false,
+         80
+      );
+   }
+
    /**
-    * @param string $emailAddress The email address to resolve the gravatar for
-    * @param int $size The size of the gravatar, ranging from 1 to 512
     * @return string the HTML <img>-Tag of the gravatar
     */
-   public function render($emailAddress, $size = 80)
+   public function render()
    {
-      $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
+      $gravatarUri = 'http://www.gravatar.com/avatar/' .
+         md5($this->arguments['emailAddress']) .
+         '?s=' . urlencode($this->arguments['size']);
       $this->tag->addAttribute('src', $gravatarUri);
       return $this->tag->render();
    }
@@ -402,17 +375,17 @@ between the opening and closing tag.
 Lets have a look at the new code of the :php:`render()` method::
 
    /**
-    * @param string $emailAddress The email address to resolve the gravatar for
-    * @param int $size The size of the gravatar, ranging from 1 to 512
     * @return string the HTML <img>-Tag of the gravatar
     */
-   public function render($emailAddress = null, $size = 80)
+   public function render()
    {
-      if ($emailAddress === null) {
-         $emailAddress = $this->renderChildren();
+      if ($this->arguments['emailAddress'] === null) {
+         $this->arguments['emailAddress'] = $this->renderChildren();
       }
 
-      $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress) . '?s=' . urlencode($size);
+      $gravatarUri = 'http://www.gravatar.com/avatar/' .
+         md5($this->arguments['emailAddress']) .
+         '?s=' . urlencode($this->arguments['size']);
       $this->tag->addAttribute('src', $gravatarUri);
       return $this->tag->render();
    }
