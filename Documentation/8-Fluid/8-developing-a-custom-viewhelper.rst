@@ -5,14 +5,13 @@
 Developing a custom ViewHelper
 ==============================
 
-The development of an own ViewHelper is frequently asked for in practice and is
-part of the base repertoire of extension development. This chapter will provide
-step by step guidance for a small example from the blog example and describe
-enhanced techniques afterwards.
+Developing a custom ViewHelper is often necessary in extension development.
+This chapter will demonstrate how to write a custom ViewHelper for the blog
+example extension.
 
 .. _the-gravatar-viewhelper:
 
-The Gravatar-ViewHelper
+The Gravatar ViewHelper
 -----------------------
 
 "Avatar" images are pictures or icons that for example are dedicated to the author
@@ -30,45 +29,13 @@ email address to the service and receives the picture for display.
 This section explains how to write a ViewHelper that uses an email address as
 parameter and shows the picture from gravatar.com if it exists.
 
-.. _preliminary-considerations:
-
-Preliminary considerations
---------------------------
-
-The first step should be thinking about how to use the ViewHelper later on in
-the template, in order to get a clear vision about the arguments of the
-ViewHelper.
-
-The ViewHelper is not part of the default distribution, therefore an own
-namespace import is necessary to use the ViewHelper. In the following example
-the namespace :php:`MyVendor\BlogExample\ViewHelpers` is imported with the
-prefix `blog`. Now, all tags starting with `blog:` are interpreted as
-ViewHelper from within the namespace::
-
-   {namespace blog=MyVendor\BlogExample\ViewHelpers}
-
-The ViewHelper should be given the name "gravatar" and only take an email
-address as parameter. The ViewHelper is called in the template as follows:
-
-.. code-block:: html
-
-   <blog:gravatar emailAddress="username@example.com" />
-
 .. _now-implementing:
 
 Now implementing!
 -----------------
 
-Every ViewHelper is a PHP class whose name is derived from the namespace import
-and the name of the XML element. The classname consists of the following three
-parts:
-
-* full namespace (in our example :php:`MyVendor\BlogExample\ViewHelpers`)
-* the name of the ViewHelper in UpperCamelCase writing (in our example `Gravatar`)
-* the ending `ViewHelper`
-
-For the Gravatar ViewHelper the name of the class is
-:php:`MyVendor\BlogExample\ViewHelpers\GravatarViewHelper`.
+Every ViewHelper is a PHP class. For the Gravatar ViewHelper the name of the
+class is :php:`MyVendor\BlogExample\ViewHelpers\GravatarViewHelper`.
 
 Following the naming conventions for Extbase extensions the ViewHelper skeleton
 is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php`::
@@ -89,14 +56,11 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
 Every ViewHelper must inherit from the class
 :php:`TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper`.
 
-.. tip::
-
-   A ViewHelper can also inherit from subclasses of :php:`AbstractViewHelper`,
-   e.g.  from :php:`TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.
-   Several subclasses are offering additional functionality. The
-   :php:`TagBasedViewHelper` will be explained
-   :ref:`later on in this chapter <creating-xml-tags-using-tagbasedviewhelper>`
-   in detail.
+A ViewHelper can also inherit from subclasses of :php:`AbstractViewHelper`, e.g.
+from :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.
+Several subclasses are offering additional functionality. The
+:php:`TagBasedViewHelper` will be explained :ref:`later on in this chapter
+<creating-xml-tags-using-tagbasedviewhelper>` in detail.
 
 In addition every ViewHelper needs a method :php:`render()`, which is called
 once the ViewHelper is to be displayed in the template. The return value of the
@@ -131,9 +95,9 @@ As result `Hello World` is displayed.
 Register arguments of ViewHelpers
 ---------------------------------
 
-The `Gravatar` ViewHelper must hand over the email address it should work on.
-This is the last needed building block, before the implementation of
-functionality can happen.
+The `Gravatar` ViewHelper must hand over the email address on which identifies
+the Gravatar.
+This is the last remaining piece before the implementation can be completed.
 
 All arguments of a ViewHelper must be registered. Every ViewHelper has to
 declare explicitly which parameters are accepted. The registration happens
@@ -144,7 +108,8 @@ inside `initializeArguments()`::
       $this->registerArgument(
          'emailAddress',
          'string',
-         'The e-mail address the gravatar is generated for.'
+         'The e-mail address the gravatar is generated for.',
+         true
       );
    }
 
@@ -159,7 +124,7 @@ through the array :php:`$this->arguments`.
    Sometimes arguments can take various types. In this case the type `mixed`
    should be used.
 
-Finally the output of :html:`img`-Tag needs to be implemented::
+Finally the output of the :html:`img` tag needs to be implemented::
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -179,7 +144,7 @@ Finally the output of :html:`img`-Tag needs to be implemented::
       }
 
       /**
-       * @return string the HTML <img>-Tag of the gravatar
+       * @return string the HTML <img> tag of the gravatar
        */
       public function render()
       {
@@ -193,15 +158,16 @@ In the following sections some enhancements and tricks for implementing
 ViewHelpers are shown.
 
 .. _creating-xml-tags-using-tagbasedviewhelper:
+.. _creating-html-tags-using-tagbasedviewhelper:
 
-Creating XML tags using TagBasedViewHelper
-------------------------------------------
+Creating HTML/XML tags using TagBasedViewHelper
+-----------------------------------------------
 
-For ViewHelper that create XML tags Fluid provides an enhanced baseclass: the
-:php:`TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`. This
-ViewHelper provides a *Tag-Builder* that can be used to create tags. It takes
-care about the syntactical correct creation of the tag and escapes for example
-single and double quote in attributes.
+For ViewHelpers which create HTML/XML tags, Fluid provides an enhanced base
+class: the :php:`TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.
+This ViewHelper provides :php:`TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder` that
+can be used to create tags. It takes care of the syntactically correct creation
+of tags and for example escapes single and double quotes in attribute values.
 
 .. attention::
 
@@ -209,8 +175,9 @@ single and double quote in attributes.
    prevents cross site scripting attacks.
 
 In the next step the example :php:`GravatarViewHelper` is modified a bit to use
-the :php:`TagBasedViewHelper`. Because the Gravatar-ViewHelper creates an
-:html:`img`-Tag the use of the Tag-Builder is advised.
+the :php:`TagBasedViewHelper`. Because the Gravatar ViewHelper creates an
+:html:`img` tag the use of the
+:php:`TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder` is advised.
 
 .. todo:: Add code
 
@@ -218,30 +185,31 @@ What is different in this code?
 
 First of all, the ViewHelper does not inherit directly from
 :php:`AbstractViewHelper` but from :php:`TagBasedViewHelper`, which provides
-and initializes the Tag-Builder. Beyond that there is a class property
+and initializes the tag builder. Beyond that there is a class property
 :php:`$tagName` which stores the name of the tag to be created. Furthermore the
-Tag-Builder is available at :php:`$this->tag`. It offers the method
+tag builder is available at :php:`$this->tag`. It offers the method
 :php:`addAttribute()` to add new tag attributes. In our example the attribute
-`src` is added to the tag, with the value assigned one line above it. Finally
-the Tag-Builder offers a method :php:`render()` which generates and returns the
-tag which than is given back.
+`src` is added to the tag, with the value assigned one line above it. Finally,
+the GravatarViewHelper creates an img tag builder, which has a method named
+:php:`render()`. After configuring the tag builder instance, the rendered tag
+markup is returned.
 
 .. tip::
 
    Why is this code better even though it is much longer? It communicates the
-   meaning in a much better way, and therefore it is preferred to the first
-   example, where the gravatar URL and the creation of the :html:`img`-tag
-   were mixed.
+   meaning in a much better way, therefore it is preferable to the first
+   example, where the gravatar URL and the creation of the :html:`img` tag
+   were mixed together.
 
 The base class :php:`TagBasedViewHelper` allows implementing ViewHelpers which
-return XML tags easier and cleaner and help to concentrate at the essential.
+make creating HTML/XML tags easier.
 
 Furthermore the :php:`TagBasedViewHelper` offers assistance for ViewHelper
 arguments that should recur directly and unchanged as tag attributes. These
-could be registered in :php:`initializeArguments()` with the method
-:php:`$this->registerTagAttribute($name, $type, $description, $required =
-false)`. If support for the :html:`<img>` attribute :html:`alt` should be
-provided in the ViewHelper, this can be done by initializing this in
+should be output directly must be registered in :php:`initializeArguments()`
+with the method :php:`$this->registerTagAttribute($name, $type, $description,
+$required = false)`. If support for the :html:`<img>` attribute :html:`alt`
+should be provided in the ViewHelper, this can be done by initializing this in
 :php:`initializeArguments()` in the following way::
 
    public function initializeArguments()
@@ -253,9 +221,9 @@ For registering the universal attributes id, class, dir, style, lang, title,
 accesskey and tabindex there is a helper method
 :php:`registerUniversalTagAttributes()` available.
 
-If support for the universal attributes should be provided and the `alt`
-attribute in the Gravatar ViewHelper the following :php:`initializeArguments()`
-method will be necessary::
+If support for universal attributes should be provided and in addition to the
+`alt` attribute in the Gravatar ViewHelper the following
+:php:`initializeArguments()` method will be necessary::
 
    public function initializeArguments()
    {
@@ -269,15 +237,10 @@ method will be necessary::
 Insert optional arguments
 -------------------------
 
-All ViewHelper arguments so far registered were required. By setting a default
-value for an argument, the argument becomes optional.  When registering the
-arguments through :php:`initializeArguments()` the according parameter has to be
-set to :php:`false`.
-
-Back to the example: An optional size parameter for the picture in the Gravatar
-ViewHelper can be provided. This size parameter will be used to determine the
-height and width of the image in pixels and can range from 1 to 512. When no
-size is given, an image of 80px is generated.
+An optional size for the image can be provided to the Gravatar ViewHelper. This
+size parameter will be used to determine the height and width in pixels of the
+image and can range from 1 to 512. When no size is given, an image of 80px is
+generated.
 
 The :php:`render()` method can be improved like this::
 
@@ -299,18 +262,23 @@ The :php:`render()` method can be improved like this::
    }
 
    /**
-    * @return string the HTML <img>-Tag of the gravatar
+    * @return string the HTML <img> tag of the gravatar
     */
    public function render()
    {
+      $address = $this->arguments['emailAddress'];
+      $size = $this->arguments['size'];
+
       $gravatarUri = 'http://www.gravatar.com/avatar/' .
-         md5($this->arguments['emailAddress']) .
-         '?s=' . urlencode($this->arguments['size']);
+         md5($address) .
+         '?s=' . urlencode($size);
       $this->tag->addAttribute('src', $gravatarUri);
+
       return $this->tag->render();
    }
 
-With this setting of a default value, the `size` attribute becomes optional.
+With this setting of a default value and setting the fourth argument to `false`,
+the `size` attribute becomes optional.
 
 .. _prepare-viewhelper-for-inline-syntax:
 
@@ -318,32 +286,31 @@ Prepare ViewHelper for inline syntax
 ------------------------------------
 
 So far the Gravatar ViewHelper has focussed on the tag structure of the
-ViewHelper. The ViewHelper was written using tag syntax which seemed obvious
-because it returns a tag itself:
+ViewHelper. The call to render the ViewHelper was written with tag syntax which
+seemed obvious because it itself returns a tag:
 
 .. code-block:: html
 
    <blog:gravatar emailAddress="{post.author.emailAddress}" />
 
-Alternatively this sample can be written using inline notation:
+Alternatively this expression can be written using inline notation:
 
 .. code-block:: html
 
    {blog:gravatar(emailAddress: post.author.emailAddress)}
 
-In this form the tag structure of the ViewHelper is not visible. One should see
-the Gravatar ViewHelper as a kind of post processor for an email address and
-would allow the following syntax:
+One should see the Gravatar ViewHelper as a kind of post processor for an email
+address and would allow the following syntax:
 
 .. code-block:: html
 
    {post.author.emailAddress -> blog:gravatar()}
 
-Here the email address has the focus and the Gravatar ViewHelper is a converting
-step based on the email address.
+This syntax places focus on the variable that is passed to the ViewHelper as it
+comes first.
 
 The syntax `{post.author.emailAddress -> blog:gravatar()}` is an alternative
-writing for `<blog:gravatar>{post.author.emailAddress}</blog:gravatar>`. To
+syntax for `<blog:gravatar>{post.author.emailAddress}</blog:gravatar>`. To
 support this the email address comes either from the argument `emailAddress`
 or, if it is empty, the content of the tag should be interpreted as email
 address.
@@ -355,7 +322,7 @@ between the opening and closing tag.
 Lets have a look at the new code of the :php:`render()` method::
 
    /**
-    * @return string the HTML <img>-Tag of the gravatar
+    * @return string the HTML <img> tag of the gravatar
     */
    public function render()
    {
@@ -370,31 +337,34 @@ Lets have a look at the new code of the :php:`render()` method::
       return $this->tag->render();
    }
 
-This code section has the following effect: First the ViewHelper attribute
-`emailAddress` is made optional. If no `emailAddress` attribute is given,
-the content of the tag is interpreted as email address. The rest of the code is
+If no email address argument is provided, Fluid tries to read the value from tag
+contents or inline passing of child node value. The rest of the code is
 unchanged.
 
 .. tip::
 
-   This trick was specially used at the format ViewHelpers. Every ViewHelper
-   supports both writings there.
+   This trick was in particular used with formatting ViewHelpers. These
+   ViewHelpers all support both tag mode and inline syntax.
 
 .. _escaping-of-output:
 
 Escaping of Output
 ------------------
 
-By default all output is escaped to prevent cross site scripting. In above
-example no :html:`<img>`-Tag will be displayed, instead escaped HTML will be
+By default all output is escaped to prevent cross site scripting. In the example
+above no :html:`<img>` tag will be displayed, instead escaped HTML will be
 displayed.
 
-To allow the raw output, the escaping has to be disabled. This is done by
-setting the class property :php:`$escapeOutput` to `false`::
+To allow unescaped output, escaping has to be explicitly disabled. This is done
+by setting the class property :php:`$escapeOutput` to `false`::
 
    protected $escapeOutput = false;
 
-In addition to the output of the ViewHelper itself, there is another property
-defining the escaping of child ViewHelpers if any::
+If escaping of children is disabled, no nodes that are passed with inline
+syntax or values used as tag content will be escaped. Note that
+:php:`$escapeOutput` takes priority: if it is disabled, escaping of child nodes
+is also disabled unless explicitly enabled.
+
+.. code-block:: php
 
    protected $escapeChildren = false;
