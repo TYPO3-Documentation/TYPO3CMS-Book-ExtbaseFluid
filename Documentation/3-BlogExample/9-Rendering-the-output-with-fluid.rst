@@ -32,9 +32,10 @@ can find some examples for these convention.
 In our case the file *Index.html* will be loaded. The content will be parsed step
 by step, line by line. Here you see an extract of the template file:
 
-.. code-block:: html
+.. code-block:: xml
    :caption: Index.html
    :name: index-html
+   :linenos:
 
     <p>Welcome to the Blog Example!</p>
     <f:if condition="{blogs}">
@@ -73,21 +74,23 @@ by step, line by line. Here you see an extract of the template file:
         </f:else>
     </f:if>
 
-At first all the unknown XML tags with namespace »f« stand out, like `<f:if>`,
-`<f:for>` or `<f:link.action>`. These Tags are provided by Fluid and
-represent different functionalities.
+The elements starting with `<f:` are tags provided by Fluid. Curly brackets
+(`{}`) are used to reference variables.
 
-* `<f:format.nl2br>[…]</f:format.nl2br>` modifies linebreaks (new lines) to `<br />` tags.
-* `<f:link.action action="new">` creates a link tag that links to the :php:`newAction()` of the actual controller.
-* `<f:for each="{blogs}" as="blog">[...]</f:for>` iterates over all Blog-objects found in Blogs.
+**lines [6-20]** `<f:for each="{blogs}" as="blog"></f:for>`
 
-Let's have a closer look at the latter examaple. In the variable `{blogs}` all
-blogs are "included". The curly brackets tell Fluid that it is a variable that
-was "assigned" to the template before. In our case this was done in the
-:php:`indexAction()` of the `BlogController`. With the attribute `each` the
-`for` ViewHelper gets the `blog` objects over whom is to be iterated. The
-attribute ``as`` holds the name of the variable with which the `blog` object is
-available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
+*  iterates over all blog objects in the variable blogs
+* `{blogs}` references the variable blogs
+* the variable blogs was previously assigned to this template in the
+  :php:`indexAction()` of the :php:`BlogController`
+
+**line 8:** `<f:link.action action="new">`
+
+*  creates a link tag that links to the :php:`newAction()` of the actual controller
+
+**line 14:** `<f:format.nl2br>[…]</f:format.nl2br>`:
+
+* converts linebreaks (new lines) to :html:`<br />` tags
 
 .. note::
 
