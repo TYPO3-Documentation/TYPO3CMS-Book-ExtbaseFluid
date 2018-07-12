@@ -746,7 +746,7 @@ Each controller argument is validated by the following rules:
 
 If the arguments of an action can not be validated, then the `errorAction` is executed, which will
 usually jump back to the last screen. It is important that validation is not performed in certain
-cases. Further information for the usage of the annotation `@dontvalidate` see
+cases. Further information for the usage of the annotation `@ignorevalidation` see
 ":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
 Localization
