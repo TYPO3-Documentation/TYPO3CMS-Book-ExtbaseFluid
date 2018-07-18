@@ -253,8 +253,8 @@ needs 3 additional database fields which you should insert in the
     CREATE TABLE tx_blogexample_domain_model_blog {
     ...
     sys_language_uid int(11) DEFAULT '0' NOT NULL,
-    l18n_parent int(11) DEFAULT '0' NOT NULL,
-    l18n_diffsource mediumblob NOT NULL,
+    l10n_parent int(11) DEFAULT '0' NOT NULL,
+    l10n_diffsource mediumblob NOT NULL,
     ...
     };
 
@@ -270,8 +270,8 @@ the corresponding database table.
     'ctrl' => array (
     ...
     'languageField' => 'sys_language_uid',
-    'transOrigPointerField' => 'l18n_parent',
-    'transOrigDiffSourceField' => 'l18n_diffsource',
+    'transOrigPointerField' => 'l10n_parent',
+    'transOrigDiffSourceField' => 'l10n_diffsource',
     ...
     )
     );
@@ -280,9 +280,9 @@ The field ``sys_language_uid`` is used for storing
 the UID of the language in which the blog is written. Based on this UID
 Extbase choose the right translation dependending on the current
 TypoScript setting in ``config.sys_language.uid``. In the field
-``l18n_parent`` the UID of the original blog created in the
+``l10n_parent`` the UID of the original blog created in the
 default language, which the current blog is a translation of. The third
-field ``l18n_diffsource`` contains a snapshot of the source of
+field ``l10n_diffsource`` contains a snapshot of the source of
 the translation. This snapshot is used in the backend for creation of a
 differential view and is not used by Extbase.
 
@@ -333,7 +333,7 @@ this::
     uid:              7 (given by the database)
     title:            "My first Blog"
     sys_language_uid: 0 (selected in backend)
-    l18n_parent:      0 (no tranlation original exists)
+    l10n_parent:      0 (no tranlation original exists)
 
 After a while you create a German translation in the backend. In the
 database the following record is stored::
@@ -341,7 +341,7 @@ database the following record is stored::
     uid:              42 (given by the database)
     title:            "Mein erster Blog"
     sys_language_uid: 1 (selected in backend)
-    l18n_parent:      7 (selected in backend respectively given automaticly)
+    l10n_parent:      7 (selected in backend respectively given automaticly)
 
 A link that references the single view of a blog looks like
 this:
