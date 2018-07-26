@@ -65,7 +65,7 @@ You can use the following TypoScript::
 
 You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
 We recommend to search for the path of your Plugin in the
-TypoScript Object Browser to avoid misspelling. Futher on you have to
-implicitley set ``plugin.``*[ExtensionKey]*.``persistence.storagePid``
-to the ID of the page containg the data, to tell Extbase from which page
+TypoScript Object Browser to avoid misspelling. Further on you have to
+explicitly set :ts:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
+to the number of the page containing the data to tell Extbase from which page
 the data should be read.
