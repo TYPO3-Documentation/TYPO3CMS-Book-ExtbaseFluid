@@ -8,17 +8,12 @@ A journey through the Blog Example
 .. attention::
 
    About the code of the blog example:
-   
-   * The latest version is: 
-     `plobacher/extbasebookexamplev8 <https://github.com/plobacher/extbasebookexamplev8>`__,
-     see the `extbasebook <https://leanpub.com/typo3extbase-en>`__ ,
-     `Extbasebuch(German) <https://leanpub.com/typo3extbase>`__ or
-     `TYPO3 Extbase (Italien) <https://leanpub.com/typo3extbase-it>`__ 
-     
 
-   * This version seems outdated:
-     `ext:blog_example (Last update 2011-03-07) <https://extensions.typo3.org/extension/blog_example/>`__
-     
+   * The latest version is:
+     `plobacher/extbasebookexamplev8 <https://github.com/plobacher/extbasebookexamplev8>`__,
+     see the `Extbase book <https://leanpub.com/typo3extbase-en>`__ ,
+     `Extbase book in German <https://leanpub.com/typo3extbase>`__ or
+     `Extbase book in Italien <https://leanpub.com/typo3extbase-it>`__.
 
 In this chapter we accompany you on a journey through a simple TYPO3 extension.
 While travelling on this round trip, you will get to know more about extension
