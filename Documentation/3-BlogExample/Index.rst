@@ -9,10 +9,12 @@ A journey through the Blog Example
 
    About the code of the blog example:
    
-   * The latest version propably is: 
-     `plobacher/extbasebookexample <https://github.com/plobacher/extbasebookexample>`__,
-     see the `extbasebook <https://leanpub.com/typo3extbase-en>`__ or
-     `(de) Extbasebuch <https://leanpub.com/typo3extbase>`__
+   * The latest version is: 
+     `plobacher/extbasebookexamplev8 <https://github.com/plobacher/extbasebookexamplev8>`__,
+     see the `extbasebook <https://leanpub.com/typo3extbase-en>`__ ,
+     `Extbasebuch(German) <https://leanpub.com/typo3extbase>`__ or
+     `TYPO3 Extbase (Italien) <https://leanpub.com/typo3extbase-it>`__ 
+     
 
    * This version seems outdated:
      `ext:blog_example (Last update 2011-03-07) <https://extensions.typo3.org/extension/blog_example/>`__
