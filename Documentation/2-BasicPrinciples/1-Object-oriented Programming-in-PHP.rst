@@ -152,7 +152,7 @@ desired destination (:php:`moveTo($location)`) and switch
 off the engine again (:php:`stopEnginge()`). Note that all
 Methods are empty, i.e. we have no content at all. We'll change this in
 the following examples, of course. The line containing the Method name and (if
-available) parameters is called the Method signature or method head. Everything
+available) parameters is called the method signature or method head. Everything
 contained by the Method is called the Method body accordingly.
 
 Now we will finally create an Object from our Class. The Class
