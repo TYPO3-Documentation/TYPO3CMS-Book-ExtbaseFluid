@@ -98,8 +98,8 @@ called a *Class*, in this case it is the Class
    the beginning and end. We will spare them in the following examples to
    make the listings a bit shorter.
 
-The key word :php:`class` opens the Class and
-inside the curly brackets Properties and Methods are written. we'll now
+The key word :php:`class` opens the Class.
+Inside the curly brackets Properties and Methods are written. We'll now
 add these Properties and Methods:
 
 .. code-block:: php
