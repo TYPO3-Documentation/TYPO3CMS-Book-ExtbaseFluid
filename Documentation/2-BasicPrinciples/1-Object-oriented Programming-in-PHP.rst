@@ -90,6 +90,7 @@ called a *Class*, in this case it is the Class
    {
       // …
    }
+   ?>
 
 .. tip::
 
