@@ -279,11 +279,25 @@ first two characters are underscores).
 
 The values received from instantiating are now passed on to the
 constructor as Argument and then assigned to the Properties
-:php:`$coaches` and
-:php:`$name` respectively.
+:php:`$name` and
+:php:`$coaches` respectively.
 
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   class Ship
+   {
+      // …
+
+      function __construct($name, $coaches)
+      {
+         $this->name = $name;
+         $this->coaches = $coaches;
+      }
+      
+      // …
+   }
+
 
 
 
