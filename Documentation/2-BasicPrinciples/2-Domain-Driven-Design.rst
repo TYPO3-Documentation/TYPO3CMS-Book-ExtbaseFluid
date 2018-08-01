@@ -484,7 +484,7 @@ repository, by calling the method remove($object). Now the object is not
 findable in the repository anymore and therefore it is deleted from the
 database.
 
-For each aggregate root exactly one repository has to exists, which is
+For each aggregate root exactly one repository has to exist, which is
 responsible for that object type and his sub objects. By using this repository,
 you can then locate the desired aggregate root object by different criteria.
 Conversely, this means: In extbase you define an object type as aggregate root
