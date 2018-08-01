@@ -236,7 +236,7 @@ objects - it depends entirely on the application and the application domain.
    treats the two object types very different in the background. The administration
    of value-objects is more efficient than those of entities. The
    additional expenses for the administration and monitoring of the uniqueness
-   omitted here, for example, completely.
+   omitted here, for example, completely.<remark>TODO: This sentence might be incomplete. At least I don't get it.</remark>
 
 
 **Associations**
