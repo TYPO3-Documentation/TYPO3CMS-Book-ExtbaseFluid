@@ -89,27 +89,27 @@ These modules are implemented in a controller. Inside of this controller there i
 and delete posts. In addition there is a *CommentController*, which
 implements the actions to create and delete comments.
 
-The Listing of Comments is not implemented as separate Action here, as the Comments
-usually should be display directly with the Blog-Post and there is no View showing all
-Comments.
+The listing of comments is not implemented as separate action here as the comments
+usually should be display directly with the blog post. There is no view showing all
+comments.
 
-Both Examples show that a Controller is mainly a Container for associated Actions.
+Both Examples show that a controller is mainly a container for associated actions.
 
-Now we show by example how Model, View and Controller work together. The first request
-we look at should display a list of blog posts (see Figure 2-5):
+Now we show by example how model, view and controller work together. The first request
+we look at should display a list of blog posts (see figure 2-5):
 
-The User sends a request (1). The request Object contains information about the controller
+The user sends a request (1). The request object contains information about the controller
 and action that should be called and optionally additional parameters. In this example the
-Controller is `Post` and the action `list`
+controller is `post` and the action `list`
 
-To respond to the request the action has to query certain data from the Model.(2)
-In return it receives on or several domain Objects. In our example the action queries
-all blog posts and receives a array with all Blog-Post Objects as response.(3)
+To respond to the request the action has to query certain data from the model.(2)
+In return it receives on or several domain objects. In our example the action queries
+all blog posts and receives a array with all blog post objects as response.(3)
 
 Thereafter the action calls the according view and hands over the data for
-presentation (4) - the array with Blog-Posts in our case.
+presentation (4) - the array with blog posts in our case.
 
-The View displays the data and returns the Response to the user.(5)
+The view displays the data and returns the response to the user.(5)
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-5.png
    :align: center
@@ -117,26 +117,26 @@ The View displays the data and returns the Response to the user.(5)
    Figure 2-5: In this request a list of Blog-Post is displayed.
 
 Now as the first request is completely dispatched the user has a list of all
-Blog-Posts displayed in the browser. Now the user clicks on a single Blog-Post and gets
+blog posts displayed in the browser. Now the user clicks on a single blog post and gets
 the complete blog post. In addition the user can add a comment to this post.
-With the help of Figure 2-6 we want to understand how the comment is stored.
+With the help of figure 2-6 we want to understand how the comment is stored.
 
 When submitting the comment form the user creates a new request (1)
 containing the according controller and action. In our example the controller is
 `Comment` and the action is `new`. Furthermore the request
-contains the comment text and a reference to the commented Blog-Post.
+contains the comment text and a reference to the commented blog post.
 
-The called action now has to modify the Model and add the new comment to the
-according Blog-Post. (2)
+The called action now has to modify the model and add the new comment to the
+according blog post. (2)
 
 
 After that the action forwards to another action (3). In our case we forward
-to the `show-Action` in the `PostController`,
-which displays the Blog-Post and the freshly added comment.
+to the `show-action` in the `PostController`,
+which displays the blog post and the freshly added comment.
 
 
-Now the `show`-Action calls the according view and hands
-over the Blog-Post that should be displayed. (4)
+Now the `show`-action calls the according view and hands
+over the blog post that should be displayed. (4)
 
 The view now displays the data and returns the result to the user. (5)
 
@@ -146,16 +146,16 @@ The view now displays the data and returns the result to the user. (5)
    Figure 2-6: In this request a comment is stored.
 
 You will often see that actions can be sorted into two categories:
-Some actions control the display of a Model, while other actions modify the
-Model and usually forward to displaying actions. In the above example we first
+Some actions control the display of a model, while other actions modify the
+model and usually forward to displaying actions. In the above example we first
 saw a displaying action and then a modifying action.
 
-Now we have all the Modules we need for developing our Application.
-You got to know the Object-oriented basics, modeled the application domain
+Now we have all the modules we need for developing our application.
+You got to know the object-oriented basics, modeled the application domain
 with Domain Driven Design and introduced the clean separation between the
 Domain Model and the Presentation Logic
 
-At last we want to introduce you to a development Model that can drastically
+At last we want to introduce you to a development model that can drastically
 improve the stability and quality of the source code: Test-Driven Development.
 This approach can be used independently of the previously introduced concepts, but
 is another helpful Module for the extension development with Extbase and Fluid.
