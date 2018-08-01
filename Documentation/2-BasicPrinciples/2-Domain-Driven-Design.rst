@@ -207,8 +207,8 @@ value. You can only create a new value object and eliminate the old.
    these changed values. It must not change the existing object.
 
 By this simple semantics value objects can easily generated, cloned, transmitted
-to other computers or transfered to other objects. This not only the
-implementation is easier, but it is also clearly communicated that these objects
+to other computers or transfered to other objects. This makes the
+implementation easier and clearly communicates that these objects
 are just simple values​​.
 
 .. sidebar:: Entity or Value Object?
