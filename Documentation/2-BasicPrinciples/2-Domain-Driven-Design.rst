@@ -353,7 +353,6 @@ We can not always keep all existing objects instantiated in memory of our
 program of course - our program would be unusable slow and memory-hungry (not to
 mention the case where the power fails and then the objects are gone).
 
-Chapter 2.2 / page 34
 
 So we need a way to maintain only needed objects in the memory. The active
 state actually consists of several sub-states, which are shown in Figure 2-3.
