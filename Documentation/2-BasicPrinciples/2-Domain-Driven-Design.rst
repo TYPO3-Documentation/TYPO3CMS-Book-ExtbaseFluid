@@ -389,7 +389,7 @@ representation.
 
    The constructor of an object is only called when creating the object. If
    the object is reconstituted from the database, the constructor is not called
-   because the object still exists logical.
+   because the object logically still exists.
 
 You can retransform a persistent object in a transient object by explicitly
 removing it from the repository. This means that the repository for this object
