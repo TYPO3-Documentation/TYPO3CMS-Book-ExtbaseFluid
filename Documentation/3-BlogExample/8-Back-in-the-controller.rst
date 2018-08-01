@@ -18,8 +18,8 @@ template. The method ``render()`` of the TemplateView starts the generation of t
 HTML code.
 
 Before we leave our small, contemplative action island and dig into the deep of
-the Fluid template, let's take a look at the abbreviations and simplifications
-Extbase offers at this point.
+the Fluid template let's take a look at the shortcuts and simplifications
+Extbase is offering at this point.
 
 Since we need the ``BlogRepository`` in all actions, we move the code for it's
 initialization to the method ``initializeAction()``. This method is called by
@@ -34,11 +34,10 @@ instantiated:
    }
 
 This approach offers no performance gain (rather a negligible disadvantage), but
-we avoid duplicate code. In addition to the method ``initializeAction()``, that is
-worked off before the call of _each_ action, Extbase calls, if available, the
-method ``initializeIndexAction()``. The string *IndexAction* needs to be replaced
-by the name of those action, in before that method should be called. In short:
-You can create an own method for initialization of each action.
+we avoid duplicate code. 
+
+Like ``initializeAction()`` is run before any action you can write
+functions which are only run befor a specific action. Let's say you need to run code before the ``indexAction()``. Put this code in a function called ``initializeIndexAction()``. Remember to keep the CamelCase-style for the name.
 
 The second step is the combination of the rows to query the repository and to
 bind the variable name to a row. Finally you waive to explicit call the method
@@ -48,8 +47,8 @@ automatically calls the method ``render()``.
 
 .. note::
 
-   This automatism can be confusing, because you have to specify return '';
-   explicitly vice versa, to suppress the rendering process. Sometimes this might
+   This automatism can be confusing because you have to specify ``return '';``
+   explicitly to suppress the rendering process. Sometimes this might
    be handy to discover errors.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
