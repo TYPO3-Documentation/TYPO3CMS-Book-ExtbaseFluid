@@ -46,20 +46,20 @@ Presentation Logic and everything related with the presentation of data.
 
 .. sidebar:: Firsthand Report
 
-   About 2 years ago I started to deal with the MVC-Paradigm.
-   I consulted various sources and tried to get an idea how i could fit my extensions
+   About 2 years ago I started to deal with the MVC-paradigm.
+   I consulted various sources and tried to get an idea how I could fit my extensions
    to this structure. At this point i failed due to the enormous variations of MVC.
    No source was able to help me structure my usual, plugin oriented code. It was clear
-   to me that Database Queries belong to the Model and the template is part of the View.
-   But where should subject-oriented Source be held? And how can you prevent that
-   Objects of the Model mix SQL-Code, Domain specific Parts and persistence methods again?
+   to me that database queries belong to the model and the template is part of the view.
+   But where should subject-oriented source be held? And how can you prevent that
+   objects of the model mix SQL-code, domain specific parts and persistence methods again?
    All in all, getting started with MVC demanded a high frustration tolerance. Finally,
-   Domain Driven Design ( DDD ) showed me a way to the MVC Paradigm, because DDD enables
-   a clean separation of concerns inside the Model that finally slims the View and
-   Controller
-   With the further separation of the Model Layer into the Domain Model
-   ( the heart of the application ), the Repositories ( as database layer ) and the
-   Validators ( which contain the invariants of the Model ) the MVC Scheme is easier
+   Domain Driven Design ( DDD ) showed me a way to the MVC paradigm, because DDD enables
+   a clean separation of concerns inside the model that finally slims the view and
+   controller.
+   With the further separation of the model layer into the domain model
+   ( the heart of the application ), the repositories ( as database layer ) and the
+   validators ( which contain the invariants of the Model ) the MVC scheme is easier
    to implement and understand.
    - Jochen Rau
 
