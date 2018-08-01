@@ -325,7 +325,7 @@ not really belongs in there. To circumvent this problem, there exist so-called
 services. These are containers for actions that may belong to the domain of
 application but can't be assigned to any particular object.
 
-A service should be stateless, ie should not use or manipulate internal states.
+A service should be stateless. This means it should not use or manipulate internal states.
 A service should be used, without knowing its internal state to be known be
 taken into account. A service often receives entities or value objects as input
 and performs complex operations on them.
