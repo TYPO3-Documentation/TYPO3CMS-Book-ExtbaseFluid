@@ -66,28 +66,28 @@ presentation logic and everything related with the presentation of data.
 The Interaction of Model, View and Controller
 ---------------------------------------------
 
-The Functionality of many Applications can be split into modules. This modules can
-be further differentiated. The Functionality of a Blog e.g. can be split as follows:
+The functionality of many applications can be split into modules. This modules can
+be further differentiated. The functionality of a Blog e.g. can be split as follows:
 
 
-Functionality related to Blog Posts:
+Functionality related to blog posts:
 
-* List View of all Blog-Posts
-* Create a Blog-Post
-* Show a Blog-Post
-* Edit a Blog-Post
-* Delete a Blog-Post
+* List View of all blog posts
+* Create a blog post
+* Show a blog post
+* Edit a blog post
+* Delete a blog post
 
-Functionality related to Comments:
+Functionality related to comments:
 
-* Create Comments
-* Delete Comments
+* Create comments
+* Delete comments
 
-These Modules are implemented in a Controller. Inside of this Controller there is a
+These modules are implemented in a controller. Inside of this controller there is a
 *Action* for every single function. In the above example we have a
-*PostController*, which implements the Actions to create, show, edit
-and delete Posts. In Addition there is a *CommentController*, which
-implements the Actions to create and delete Comments.
+*PostController*, which implements the actions to create, show, edit
+and delete posts. In addition there is a *CommentController*, which
+implements the actions to create and delete comments.
 
 The Listing of Comments is not implemented as separate Action here, as the Comments
 usually should be display directly with the Blog-Post and there is no View showing all
