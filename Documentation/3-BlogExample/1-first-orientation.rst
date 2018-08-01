@@ -48,7 +48,7 @@ needed by TYPO3 are located in the subfolder
    Figure 3-2: folder structure of the example extension
 
 The core of the extension is located in the folder
-:file:`Classes`. There you will all files in which classes or
+:file:`Classes`. There you will be all files in which classes or
 interfaces are defined.
 
 .. note::
