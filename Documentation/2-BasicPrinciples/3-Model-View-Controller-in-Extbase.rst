@@ -4,13 +4,13 @@ Model-View-Controller in Extbase
 ================================
 
 Object-oriented programming and Domain-Driven Design specify a structure
-for our Extension on different levels. Object-oriented programming provides us with
+for our extension on different levels. Object-oriented programming provides us with
 the basic building blocks of software development: Objects as combination of data
-and associated methods. Domain Driven Design provides us tools for creating a Model
-that represents the real world rules in Software. However, we still lack a component
+and associated methods. Domain Driven Design provides us tools for creating a model
+that represents the real world rules in software. However, we still lack a component
 that specifies how to react on user requests and what functionality the application
 will ultimately have. The Model View Controller Paradigm provides us exactly that.
-It ensures a clean separation of the Domain Model from the View. This clean Separation
+It ensures a clean separation of the domain model from the view. This clean separation
 is the foundation of the smooth interaction between Extbase and Fluid.
 
 The Model-View-Controller design pattern is the infrastructure that we build our
@@ -18,20 +18,20 @@ application on. It provides us a rough *roadmap* and the separation
 of the presentation logic from the Model.
 
 The MVC pattern divides our application into three rough layers: the
-*Model*, which implements the Domain Model including the domain logic,
+*Model*, which implements the domain model including the domain logic,
 the *controller*, which controls the flow of the application,
 and the *view*, which prepares and outputs the data to the user
 (see Figure 2-4).
 
-The lowest layer, the *Model* encapsulates the application
+*Model* is the lowest layer. It encapsulates the application
 logic and data as well as the according access and storage logic. Domain Driven Design
 divides this layer even further. In a Extbase extension you can find the classes for this
 layer in the folder *Classes/Domain*.
 
-The Controller presents externally ( that is: directly callable by the user )
-functionality. It coordinates the interaction of Model and View to dispatch the
-actual request. It fetches Data from the Model and hands it to the View for presentation.
-Important: The Controller only *coordinates*, the actual functionality
+The controller presents externally ( that is: directly callable by the user )
+functionality. It coordinates the interaction of model and view to dispatch the
+actual request. It fetches data from the model and hands it to the View for presentation.
+Important: The controller only *coordinates*, the actual functionality
 is usually implemented in the *Model*. Because the Controller is
 difficult to test, it should stay as slim as possible.
 
@@ -42,7 +42,7 @@ difficult to test, it should stay as slim as possible.
 
 
 The top layer, the *View* encapsulates the whole
-Presentation Logic and everything related with the presentation of data.
+presentation logic and everything related with the presentation of data.
 
 .. sidebar:: Firsthand Report
 
