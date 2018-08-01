@@ -135,7 +135,7 @@ changes.
 
 The identity of an object is defined by an immutable property or a combination
 of several immutable properties of the object. At least one property must be
-identity-determining. Normally extbase takes care about automatically and
+identity-determining. Normally Extbase takes care about automatically and
 therefore assigns a unique value to a (hidden) identity property. You can also
 select this by yourself and select which combination of properties should be
 identity-determining.
