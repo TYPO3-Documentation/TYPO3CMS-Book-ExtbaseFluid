@@ -468,7 +468,7 @@ book can be found and borrowed by other users. Conversely, a book will be sorted
 out if it is old and broken. Of course, the entry in the library database have
 to be deleted, so the book can no longer be found.
 
-With a repository, it behaves like a library.With a repository you can find
+With a repository, it behaves like a library. With a repository you can find
 objects of a certain type. If you send a query like findByTitle('Domain-Driven
 Design') to the BookRepository for example, you get all objects back where the
 title is "Domain-driven Design". If you now change a book-object (for example,
