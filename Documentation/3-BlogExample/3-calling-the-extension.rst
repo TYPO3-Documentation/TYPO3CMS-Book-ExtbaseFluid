@@ -59,7 +59,7 @@ this might seem long-winded but the syntax follows a very strict convention
    Be careful, conventions!
 
    The name of a class is separated into individual parts, which
-   themselves are divided by an underscore. All parts of a class name are
+   themselves are divided by an backslash. All parts of a class name are
    spelled with capital camel case, where each initial letter is capitalized.
    This style for notation is commonly known as
    *UpperCamelCase* because each capital letter suggests
