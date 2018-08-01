@@ -84,7 +84,7 @@ Functionality related to comments:
 * Delete comments
 
 These modules are implemented in a controller. Inside of this controller there is a
-*Action* for every single function. In the above example we have a
+*Action* for every single function. In figure 2-5 we have a
 *PostController*, which implements the actions to create, show, edit
 and delete posts. In addition there is a *CommentController*, which
 implements the actions to create and delete comments.
