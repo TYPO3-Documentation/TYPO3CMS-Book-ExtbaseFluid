@@ -409,7 +409,7 @@ Create objects with the help of factories
 Now that you know the life cycle of objects more accurately, we will deal
 initially with the creation of objects. You are allowed to produce only
 self-consistent aggregates. In the car example from earlier, this means that, in
-preparing the car, the wheels and the engine must be created and immediately
+preparing the car, the wheels and the engine must be created immediately
 too, because the car object is in an inconsistent state otherwise.
 
 In simple initializations, it is recommended that you use the constructor of the
