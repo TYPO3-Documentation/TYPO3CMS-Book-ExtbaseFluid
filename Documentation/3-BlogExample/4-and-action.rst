@@ -116,17 +116,16 @@ will get a standard action; in our case the
         return $content;
     }
 
-In the first line a repository is instantiated, which "contains" all
-blogs. How they are saved and managed, is not of interest at this point of
-our journey. All files, which are defined in the repository-classes, are
+In the first line a repository is instantiated which "contains" all
+blogs. How they are saved and managed is not of interest at this point of
+our journey. All files containing repository-classes are
 located in the folder
-:file:`EXT:blog_example/Classes/Domain/Repository/`. This you
-can also derive directly from the Name
-:php:`\MyVendor\BlogExample\Domain\Repository\BlogRepository`. This
+:file:`EXT:blog_example/Classes/Domain/Repository/`. This location can be derived from the Name
+:php:`\MyVendor\BlogExample\Domain\Repository\BlogRepository`. The
 naming scheme is a big advantage by the way, if you search a particular
-class file. The name :php:`BlogRepository` results from the
-name of the class, whose instances are managed by the repository, namely by
-adding :php:`Repository`. A repository can only manage one
+class file. The name :php:`BlogRepository` itself comes from the
+name of the class whose instances are managed by this repository. It adds:php:`Repository` to its name.
+A repository can only manage one
 single class at a time. The second line retrieves all available blogs by
 `findAll()`.
 
