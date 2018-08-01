@@ -11,7 +11,7 @@ that represents the real world rules in Software. However, we still lack a compo
 that specifies how to react on user requests and what functionality the application
 will ultimately have. The Model View Controller Paradigm provides us exactly that.
 It ensures a clean separation of the Domain Model from the View. This clean Separation
-is the foundation of the smooth interaction between Extbase and Fluid
+is the foundation of the smooth interaction between Extbase and Fluid.
 
 The Model-View-Controller design pattern is the infrastructure that we build our
 application on. It provides us a rough *roadmap* and the separation
