@@ -158,7 +158,7 @@ Domain Model and the Presentation Logic
 At last we want to introduce you to a development model that can drastically
 improve the stability and quality of the source code: Test-Driven Development.
 This approach can be used independently of the previously introduced concepts, but
-is another helpful Module for the extension development with Extbase and Fluid.
+is another helpful module for the extension development with Extbase and Fluid.
 
 .. sidebar:: Differences to the classic MVC-Pattern
 
