@@ -15,6 +15,7 @@ this way leads to problem: the tests are not made systematic, but selective. By
 following this way you are implementing failures into some routines by accident.
 Furthermore by a test is not only a little code fragment tested, but often a
 more complex routine.
+<remark>TODO: This paragraph does not seem right to me.</remark>
 
 .. figure:: /Images/2-BasicPrinciples/figure-2-7.png
    :align: center
