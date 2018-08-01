@@ -19,7 +19,7 @@ our little action island.
 The code is not shortened. The ``BlogRepository`` simply does not have any own
 code since all methods which are used very often are already implemented in the
 parent class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. These functions are also
-available in all child classes. We call the method ``findAll()``, to retrieve all
+available in all child classes. We call the method ``findAll()`` to retrieve all
 blog objects.
 
 .. sidebar:: Excursion: The Repository
@@ -47,5 +47,5 @@ blog objects.
 
 .. note::
 
-   Although you don't need to implement your own logic extbase expects an existing
+   Although you don't need to implement your own logic Extbase expects an existing
    class.
