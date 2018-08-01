@@ -478,7 +478,7 @@ automatically, and the next search operation, will return the revised object.
 So how can you make a repository responsible for an object? For this the
 repository has the method add($object). If you want to commit a new object to
 the BookRepository for example, you can create it using $book = new
-Book('Extbase and Fluid'). A new book titled "Extbase and Fluid" can added to
+Book('Extbase and Fluid'). A new book titled "Extbase and Fluid" can be added to
 the BookRepository with add($book). Similarly, you can remove an object from a
 repository, by calling the method remove($object). Now the object is not
 findable in the repository anymore and therefore it is deleted from the
