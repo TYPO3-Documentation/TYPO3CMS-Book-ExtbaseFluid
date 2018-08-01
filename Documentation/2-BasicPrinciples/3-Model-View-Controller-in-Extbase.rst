@@ -163,16 +163,16 @@ is another helpful module for the extension development with Extbase and Fluid.
 .. sidebar:: Differences to the classic MVC-Pattern
 
    If you previously have developed desktop applications with the MVC-Pattern you will
-   notice some differences to the mentioned MVC Variant.
+   notice some differences to the mentioned MVC variant.
    Strictly speaking we have only mentioned the server-side components of the view,
-   but there is a client-side component involved too: The Webbrowser ultimately displays
+   but there is a client-side component involved too: The web browser ultimately displays
    the data from our web application, so it has to be part of the view-layer. Furthermore
    the view can be modified on the client-side with JavaScript. As a consequence, the
    view is even more separated as in the classic MVC Pattern.
 
 
    In the *Desktop*-MVC-Pattern the View listens for changes
-   in the Model ( usually using the *Observer* Design Pattern ).
-   This enables the view to react immediately to changes in the Model. As we only discuss
+   in the model ( usually using the *Observer* Design Pattern ).
+   This enables the view to react immediately to changes in the model. As we only discuss
    the server side of the view and the server and the client don't share a persistent
-   connection changes in the Model can not be visible in the browser immediately.
+   connection changes in the model can not be visible in the browser immediately.
