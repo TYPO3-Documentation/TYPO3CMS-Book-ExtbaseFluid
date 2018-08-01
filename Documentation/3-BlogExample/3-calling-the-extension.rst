@@ -64,7 +64,7 @@ this might seem long-winded but the syntax follows a very strict convention
    This style for notation is commonly known as
    *UpperCamelCase* because each capital letter suggests
    the hump of a camel. For extensions the first part always is
-   ":php:`Tx`". The second part is the name of the extension
+   ":php:`Tx`".<remark>Shouldn't it be the vendor name? How does this reflect in line 53?</remark>The second part is the name of the extension
    - in the underlying case ":php:`BlogExample`". The last
    part is the name of the domain object. The center between those parts
    builds the path to the class file below the folder
