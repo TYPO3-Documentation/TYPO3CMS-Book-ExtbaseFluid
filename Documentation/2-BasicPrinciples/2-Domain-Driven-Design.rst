@@ -281,8 +281,8 @@ and they are better understandable.
 
 If you build a complex domain model, you have to deal with many classes offered
 at the same hierarchical level. Often it is given that certain objects are part
-of a larger object. If you want to model an application for a garage, so maybe
-you have to model not only the car but the engine and the wheels too, because
+of a larger object. If you want to model an application for a garage,
+you may have to model not only the car but the engine and the wheels too, because
 these are of particular importance for the garage. Intuitively, we look at the
 wheels and the engine of a car as part of the car, so this understanding should
 be visible in the model as well. We call such a relationship between closely
