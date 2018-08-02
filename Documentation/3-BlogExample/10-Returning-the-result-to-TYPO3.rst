@@ -19,7 +19,7 @@ return the rendered Content to the TYPO3 framework.
 
    return $response->getContent();
 
-In this section you had learned how the extension is a list of blogs is issued.
+In this section you have learned about the life cycle of an extension and how its data is processed.
 Below we take an alternative route by creating a new post. You will learn about
-the chaining of several actions into a coherent sequence, exploit the
-possibilities of validation and deeper into fluid.
+the chaining of several actions into a coherent sequence, exploiting the
+possibilities of validation and you will get deeper look into fluid.
