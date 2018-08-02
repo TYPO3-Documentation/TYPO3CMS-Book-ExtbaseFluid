@@ -5,11 +5,11 @@ Alternative route: creating a new posting
 
 After our first journey through the blog example, in this chapter we will follow a
 more complex example. As an example we have chosen the creation of a new post. The
-user should be offered a form in the front end, in which he could put in the title
-and the content of a new post entry and select an existing author for this post.
-After clicking the *submit* button, the list of the last posts of the current blog
-should be displayed - now with the just created post at the first place. There are
-multiple steps, each based on the previous step, to be implemented that are
+user should be offered a form in the front end where he can enter the title
+and the content of a new post entry and select an existing author for the new post.
+After clicking the *submit* button a list containing the last posts of the current blog
+will be displayed - lead by the newly created post. There are
+multiple steps, each based on the previous step, to be implemented. Each is
 mirrored in the actions ``new`` and ``create``. The method
 ``newAction()`` displays the form, while the method ``createAction()``
 really creates the post, puts it in the repository and routes the process to the
