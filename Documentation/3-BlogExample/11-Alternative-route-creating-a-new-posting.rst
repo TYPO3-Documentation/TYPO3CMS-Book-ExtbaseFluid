@@ -3,7 +3,7 @@
 Alternative route: creating a new posting
 =========================================
 
-After out first journey through the blog example, in this chapter we will follow a
+After our first journey through the blog example, in this chapter we will follow a
 more complex example. As an example we have chosen the creation of a new post. The
 user should be offered a form in the front end, in which he could put in the title
 and the content of a new post entry and select an existing author for this post.
