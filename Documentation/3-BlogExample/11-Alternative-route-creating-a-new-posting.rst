@@ -213,4 +213,4 @@ in the dispatcher of Extbase.
    outcome of this is an important consequence: At ``redirect()`` the changes are
    persisted before the call of the target action, whereas at ``forward()`` these
    must be done by hand with the call of
-   ``$this->objectManager->get("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager")->persistAll();``.
+   :php:`$this->objectManager->get("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager")->persistAll();`.
