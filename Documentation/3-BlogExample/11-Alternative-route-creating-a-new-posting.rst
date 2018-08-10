@@ -211,6 +211,6 @@ in the dispatcher of Extbase.
    ``redirect()`` starts a complete new page call (new request response cycle),
    while ``forward()`` resides in the processing of the current page call. The
    outcome of this is an important consequence: At ``redirect()`` the changes are
-   persisted before the call of the target action, whereas at ``forward()` these
+   persisted before the call of the target action, whereas at ``forward()`` these
    must be done by hand with the call of
-   ``Tx_Extbase_Dispatcher::getPersistenceManager()->persistAll()``.
+   :php:`$this->objectManager->get("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager")->persistAll();`.
