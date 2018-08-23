@@ -34,7 +34,7 @@ combination: ``tx_blogexample_pi1[controller]=post`` and
 ``tx_blogexample_pi1[action]=new``. Also the current blog is given as an argument
 with ``tx_blogexample_pi1[blog]=6``. Because the blog cannot be sent as an object,
 it must be translated into an unique identifier - the *UID*. In our case this is
-the UID 6. Extbase creates out of these three informations the request and routes
+the UID 6. Extbase creates out of these three information the request and routes
 it to the according ``PostController``. The translation of the UID back to the
 corresponding ``blog`` object is done automatically by Extbase.
 

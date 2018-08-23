@@ -11,7 +11,7 @@ of the extension directory.
 
 .. note::
 
-   One of the main purposes of Extbase and FLOW3 is to abstract the
+   One of the main purposes of Extbase is to abstract the
    access of the underlying persistence solution. Thus, you normally won't
    get in touch with native SQL-Queries in day-to-day development, especially
    when you let the kickstarter auto-generate your database tables (have a
@@ -69,7 +69,7 @@ class names are written in lowercase retaining the underlines.
    extension is installed. Nevertheless, TYPO3 is smart enough not to
    overwrite an existing database table. On the contrary it deduces the
    differences between the new and the existing table and just adds those
-   additional informations.
+   additional information.
 
 The definition of the database table fields `name`,
 `address` etc. follow in round brackets. Some of them should
@@ -333,7 +333,7 @@ Extbase distinguishes between several types as already defined in Chapter
 5, following a short summary of the types:
 
 *1:1-Relationship:* An offer has exactly one
-range of time when it is valid.
+range of time when it is valid (dateRange).
 
 *1:n-Relationship:* An organisation may have
 several contact persons whereas each contact person is in charge for
@@ -394,17 +394,17 @@ child objects are stored as comma-separated values.
 table is stored in a field of the parent table or vice versa.
 
 *Intermediate Table:* For persisting the
-informations of the relationships between two classes a special table is
+information of the relationships between two classes a special table is
 created - the Intermediate Table. The UID of the parent table as well as
 the UID of the child table is stored as an own data set of the
-Intermediate Table. Additionally, there can be stored informations about
-assorting, the visibility and the access control informations. They
+Intermediate Table. Additionally, there can be stored information about
+assorting, the visibility and the access control information. They
 concern the relationship of the related objects and not the objects
 themself.
 
 .. warning::
    Do not store data in the Intermediate Table that concern the
-   Domain. Though TYPO3v4 supports this (especially in combination with
+   Domain. Though TYPO3 supports this (especially in combination with
    *Inline Relational Record Editing (IRRE)* but this is
    always a sign that further improvements can be made to your Domain
    Model. Intermediate Tables are and should always be tools for storing
@@ -443,26 +443,26 @@ Key field of the parent object:
 
    CREATE TABLE tx_sjroffers_domain_model_offer(
       # …
-      contact int(11) NOT NULL,
+      date_range int(11) DEFAULT '0' NOT NULL,
       # …
    );
 
-`NULL` values are explicitly allowed and stands for
-*"The contact partner has not yet been assigned."*
-Later on, Extbase computes the `Contact`-object out of the
-UUID.
+The default values of '0' (or the `NULL` values if they were explicitly allowed)
+stand for *"The dateRange has not yet been assigned."*.
+Later on, Extbase computes the `DateRange`-object out of the
+uid.
 
 In a `1:n` relationship there are two possibilities.
 Either every `uid` value is stored as comma-separated list in a
 field of the parent object. Or every child object contains the parental
 uid in a foreign key field. The further is mostly used by TYPO3 in its
-core but we disencourage that solution because of its drawbacks: For
+core but we discourage that solution because of its drawbacks: For
 example, comma-separated fields complicate the search and hinder the
-indexation in the databse. Furthermore, the creation and deletion of child
+indexation in the database. Furthermore, the creation and deletion of child
 objects is complex and time-consuming. Thus, using comma-separated lists
 for modelling relationships should only be used with database tables that
 cannot be altered in their structure (e.g. external sources, the
-TYPO3-Core). We highly recommend the latter methode which stores a Foreign
+TYPO3-Core). We highly recommend the latter method which stores a Foreign
 Key in the table of the child object. In TYPO3, the parental object's
 table holds a separate value for counting the sum of the corresponding
 child objects. Consecutively, we list the definition of the relationship
@@ -517,10 +517,27 @@ and category are as follows:
 
 .. code-block:: mysql
 
-   CREATE TABLE tx_sjroffers_domain_model_offer(
-      # …
-      contact int(11) NOT NULL,
-      # …
+   CREATE TABLE tx_sjroffers_domain_model_offer (
+        ...
+        categories int(11) NOT NULL,
+        ...
+   );
+
+   CREATE TABLE tx_sjroffers_offer_category_mm (
+        uid int(10) unsigned DEFAULT '0' NOT NULL auto_increment,
+        pid int(11) DEFAULT '0' NOT NULL,
+
+        uid_local int(10) unsigned NOT NULL,
+        uid_foreign int(10) unsigned NOT NULL,
+        sorting int(10) unsigned NOT NULL,
+        sorting_foreign int(10) unsigned NOT NULL,
+
+        tstamp int(10) unsigned NOT NULL,
+        crdate int(10) unsigned NOT NULL,
+        hidden tinyint(3) unsigned DEFAULT '0' NOT NULL,
+
+        PRIMARY KEY (uid),
+        KEY parent (pid)
    );
 
 The table `tx_sjroffers_domain_model_offer` holds a field

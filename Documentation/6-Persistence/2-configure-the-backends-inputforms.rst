@@ -46,7 +46,7 @@ The structure for the other tables like tx_sjroffers_domain_model_offer and tx_s
 These returned arrays in these files will be added to one big array :php:`$GLOBALS['TCA']`. You can debug the configuration
 for the table `tx_sjroffers_domain_model_organization` in the TYPO3 backend module `System -> Configuration -> $GLOBALS['TCA'] (Table configuration array) -> tx_sjroffers_domain_model_organization`
 
-The associative array, that is returned, contains all informations of all the tables of the TYPO3
+The associative array, that is returned, contains all information of all the tables of the TYPO3
 instance. Thus, we use the key `tx_sjroffers_domain_model_organization` and as
 value we use another nested Array holding the configurations of the
 corresponding table. Then again, this Array is separated into several parts
@@ -85,7 +85,7 @@ Subsequently, you will find the names of the parts and their meaning.
 This area contains configuration options that are used overall the scope of the
 table. This covers the naming of the table in the Backend, which table fields
 contain which meta data and the behavior of the table on creation and movement
-of its row sets. Meta data cover informations about Visibility and Access
+of its row sets. Meta data cover information about Visibility and Access
 Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
 `fe_group`), data about the history of changes (e.g. `versioningWS`,
 `crdate`, `tstamp` as well as data for the localization of Datasets (e.g.
@@ -135,7 +135,7 @@ appended behind the fieldname and separated through a semi-colon. On first
 position there is the fieldname; on the second an alternative naming fieldname;
 at third place follows the number of the palette (refer to the next book
 section); the fourth position holds extensive options which are separated
-through colons and the last place contains informations about the appearance
+through colons and the last place contains information about the appearance
 (e.g. color and strucure). The information at the fourth place allow the use of
 the *Richt Text Editore*. For a full list of the options refer to the already
 mentioned TYPO3-Online documentation for the TYPO3-Core API.
@@ -177,7 +177,7 @@ configuration for the input of the name of an organisation would be as follows:
 The field name is *name*. Firstly, we define some options that are independent
 from the field's type. This contains foremostly the fieldlabel (*label*), the
 conditions for the visibility of the field (`exclude`, `displayCond`) as
-well as informations for its localization (`l10n_mode`, `l10n_cat`). The
+well as information for its localization (`l10n_mode`, `l10n_cat`). The
 fieldname is, in our case, localized and will be taken from a language file
 (head to Ch. 9).
 
@@ -732,7 +732,7 @@ already generically implemented in the super-class
 We create a :php:`\MyVendor\SjrOffers\Domain\Repository\OfferRepository` exactly the same
 way but we will later extend it with own methods for accessing offers. It's very
 likely that we have to access the other objects for categories, regions and
-update data of contact informations of certain persons independent of the offers
+update data of contact information of certain persons independent of the offers
 or their organizations. Thus we define some additional Repositories for those
 objects for easier access from the Frontend.
 
@@ -902,7 +902,7 @@ rewritten. This option is normally activated.
 Internally, TYPO3 manages an index of all relationships between two datasets the
 so-called *RefIndex*. Due to this index it's possible to show the number of
 associated datasets in the list module's column *[Ref.]*. By clicking on the
-number you get further informations about the incoming and outgoing references
+number you get further information about the incoming and outgoing references
 of the dataset. This index is automatically updated when any datasets get
 edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex =
 1` effects an update when datasets get edited in the Frontend though it is
