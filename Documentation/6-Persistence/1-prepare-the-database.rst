@@ -443,14 +443,14 @@ Key field of the parent object:
 
    CREATE TABLE tx_sjroffers_domain_model_offer(
       # …
-      contact int(11) NOT NULL,
+      date_range int(11) DEFAULT '0' NOT NULL,
       # …
    );
 
-`NULL` values are explicitly allowed and stands for
-*"The contact partner has not yet been assigned."*
-Later on, Extbase computes the `Contact`-object out of the
-UUID.
+The default values of '0' (or the `NULL` values if they were explicitly allowed)
+stand for *"The dateRange has not yet been assigned."*.
+Later on, Extbase computes the `DateRange`-object out of the
+uid.
 
 In a `1:n` relationship there are two possibilities.
 Either every `uid` value is stored as comma-separated list in a
