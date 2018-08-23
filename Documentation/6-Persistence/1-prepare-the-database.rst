@@ -517,10 +517,27 @@ and category are as follows:
 
 .. code-block:: mysql
 
-   CREATE TABLE tx_sjroffers_domain_model_offer(
-      # …
-      contact int(11) NOT NULL,
-      # …
+   CREATE TABLE tx_sjroffers_domain_model_offer (
+        ...
+        categories int(11) NOT NULL,
+        ...
+   );
+
+   CREATE TABLE tx_sjroffers_offer_category_mm (
+        uid int(10) unsigned DEFAULT '0' NOT NULL auto_increment,
+        pid int(11) DEFAULT '0' NOT NULL,
+
+        uid_local int(10) unsigned NOT NULL,
+        uid_foreign int(10) unsigned NOT NULL,
+        sorting int(10) unsigned NOT NULL,
+        sorting_foreign int(10) unsigned NOT NULL,
+
+        tstamp int(10) unsigned NOT NULL,
+        crdate int(10) unsigned NOT NULL,
+        hidden tinyint(3) unsigned DEFAULT '0' NOT NULL,
+
+        PRIMARY KEY (uid),
+        KEY parent (pid)
    );
 
 The table `tx_sjroffers_domain_model_offer` holds a field
