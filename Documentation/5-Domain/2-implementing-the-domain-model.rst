@@ -60,7 +60,8 @@ First, we create the corresponding test class in the appropriate folder
    recommend you to build the same structure as in classes. With an increasing
    number of unit tests you will be able to remain focused.
 
-Note that our test class :php:`\MyVendor\SjrOffers\Domain\Model\OrganizationTest` extends the class :php:`\TYPO3\CMS\Core\Tests\BaseTestCase` of Extbase.
+Note that our test class :php:`\MyVendor\SjrOffers\Domain\Model\OrganizationTest`
+extends the class :php:`\TYPO3\CMS\Core\Tests\BaseTestCase` of Extbase.
 Among other things, this class initializes the autoloader, which makes the
 inclusion of the class files `require_once()` obsolete.
 
@@ -128,7 +129,8 @@ Only now we add just enough code that the test is successful:
 
 .. sidebar:: Test-Driven Development at a glance
 
-   This approach is typical of the Test-Driven Development (see chapter 2, section »Test-Driven Development«). So once again summarized the essential steps:
+   This approach is typical of the Test-Driven Development (see chapter 2, section »Test-Driven Development«).
+   So once again summarized the essential steps:
 
    #. Create a unit test and possibly a test class.
    #. Implement classes and methods just as much that the script runs through
@@ -579,7 +581,11 @@ separately.
    Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
 
 
-In the class Range Constraint all common properties and methods are gathered. The properties minimumValue and maximumValue are of the type integer by default. But the inherited class DateRange expected as property values not Numbers, but objects of type DateTime. So we »override« the type definition in the class DateRange and set the type DateTime. The class RangeConstraint looks like as follows (Comments were partly removed):
+In the class Range Constraint all common properties and methods are gathered.
+The properties minimumValue and maximumValue are of the type integer by default.
+But the inherited class DateRange expected as property values not Numbers, but objects of type DateTime.
+So we »override« the type definition in the class DateRange and set the type DateTime.
+The class RangeConstraint looks like as follows (Comments were partly removed):
 
 .. code-block:: php
 
@@ -651,12 +657,20 @@ In the class Range Constraint all common properties and methods are gathered. Th
       }
    }
 
-All of this range objects have beyond their properties and methods further things in common. They have no identity other than the whole of their property values. It is not important for the offer, which age range »from 12 till 15 years« the range object is assigned to receive. Of importance isonly the two values 12 and 15. Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact that it assigns a particular age range with the values 12 and 15 to the offer. Value Objects can e.g. occur multiple times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem. The internal handling is much more easier because of this. We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate Extbase class: extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject.
+All of this range objects have beyond their properties and methods further things in common.
+They have no identity other than the whole of their property values. It is not important for the offer,
+which age range »from 12 till 15 years« the range object is assigned to receive. Of importance is only the two values 12 and 15.
+Are two offers designed for the same age range, so Extbase must therefore do not pay attention to the fact
+that it assigns a particular age range with the values 12 and 15 to the offer. Value Objects can e.g. occur multiple
+times in memory, and therefore any be copied while it was driving in the major entities of the ambiguity problem.
+The internal handling is much more easier because of this.
+We thus have to Extbase to treat the object as a Value Object Constraint Range by inheriting from the appropriate
+Extbase class: extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject.
 
 The class rank by the keyword abstract constraint was marked as abstract. Thus we prevent the Range object itself is instantiated.
 
 We have furthermore implement a method :php:`normalizeValue()`.
-The se »adjusted« the value coming from the outside before they are assigned to a property. This is overwritten in the class
+These »adjusted« the value coming from the outside before they are assigned to a property. This is overwritten in the class
 DateRange together with the above mentioned type definitions:
 
 .. code-block:: php
@@ -692,7 +706,11 @@ DateRange together with the above mentioned type definitions:
    }
 
 
-The class :php:`DateRange` implements furthermore the interface :php:`DateRangeInterface`. The interface on is own is empty and is only used for identification. This makes especially sense for the other two Range Objects. These both implement the :php:`NumericRangeInterface`. The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise empty hulls, because they inherit all the properties and methods from the object RangeConstraint.
+The class :php:`DateRange` implements furthermore the interface :php:`DateRangeInterface`.
+The interface on is own is empty and is only used for identification.
+This makes especially sense for the other two Range Objects. These both implement the :php:`NumericRangeInterface`.
+The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise empty hulls,
+because they inherit all the properties and methods from the object RangeConstraint.
 
 .. code-block:: php
 
@@ -720,7 +738,19 @@ The class :php:`DateRange` implements furthermore the interface :php:`DateRangeI
 
 
 
-We have implemented the terms age range, number of participants and offer an adequate period in domain models.Let us now turn to the object administrator. Also here we use another, less obvious class hierarchy. Extbase provides two domain models available: FrontendUser and FrontendUserGroup. They are the equivalents of the website user or user group's website, created in the backend of TYPO3 can be assigned and managed. The two Extbase classes are filled with this data, which are stored in two database tables or fe_users fe_groups. The database fields in these tables each have a corresponding property in the domain model. The names of the properties were indeed subjected to the convention that the field names lower_underscore spelling in the name of the property is converted into lowerCamelCase notation. But they are otherwise taken 1:1 and therefore - in contrast to our previous practice - not so meaningful. Behind the property isOnline we would suspect a value of the type Boolean. But it contains the date on which the website has started the last page user demand. The class hierarchy is shown in Figure 5-9.
+We have implemented the terms age range, number of participants and offer an adequate period in domain models.
+Let us now turn to the object administrator. Also here we use another, less obvious class hierarchy.
+Extbase provides two domain models available: FrontendUser and FrontendUserGroup.
+They are the equivalents of the website user or user group's website, created in the backend of TYPO3
+can be assigned and managed. The two Extbase classes are filled with this data,
+which are stored in two database tables or fe_users fe_groups.
+The database fields in these tables each have a corresponding property in the domain model.
+The names of the properties were indeed subjected to the convention that the field names lower_underscore spelling
+in the name of the property is converted into lowerCamelCase notation.
+But they are otherwise taken 1:1 and therefore - in contrast to our previous practice - not so meaningful.
+Behind the property isOnline we would suspect a value of the type Boolean.
+But it contains the date on which the website has started the last page user demand.
+The class hierarchy is shown in Figure 5-9.
 
 .. figure:: /Images/5-Domain/figure-5-9.png
 
@@ -736,7 +766,8 @@ Extension:
 * The start date of an offer may not be later than the end date.
 * If one partner identifies an e-mail address, it must be valid.
 
-You can implement the check of the details of these invariants directly the domain model. In the setter of the title of an offer would stand the following code:
+You can implement the check of the details of these invariants directly the domain model.
+In the setter of the title of an offer would stand the following code:
 
 .. code-block:: php
 
@@ -749,11 +780,13 @@ You can implement the check of the details of these invariants directly the doma
 
 This has several disadvantages:
 
-* This examination, had to be done at any point, which manipulates the title (risk of failure to examination, and risk of duplicated code by cut-and-paste).
+* This examination, had to be done at any point, which manipulates the title (risk of failure to examination,
+and risk of duplicated code by cut-and-paste).
 * The definition of the rule is more or less far away from the definition of the property (poor readability of the code).
 * A change in an option of a rule ("80 rather than 50 characters") requires an intervention possibly at a difficult to-find places.
 
-Therefore Extbase offers an alternative about Annotations. Let us have a look at the definitions of the properties of the class Offer definition - this time with all the comments:
+Therefore Extbase offers an alternative about Annotations.
+Let us have a look at the definitions of the properties of the class Offer definition - this time with all the comments:
 
 .. code-block:: php
 
@@ -864,8 +897,12 @@ Therefore Extbase offers an alternative about Annotations. Let us have a look at
     */
    protected $regions;
 
-The values of some properties must be checked to control the offer being classified as valid. Which rule will narrow, about the annotation @validate […] is set. The annotation :php:`@validate StringLength (minimum = 3, maximum = 50)` on the property title effected, for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
-The validator StringLength is provided by Extbase of charge. The name of the associated class is :php:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator`.
+The values of some properties must be checked to control the offer being classified as valid.
+Which rule will narrow, about the annotation @validate […] is set.
+The annotation :php:`@validate StringLength (minimum = 3, maximum = 50)` on the property title effected,
+for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
+The validator StringLength is provided by Extbase of charge.
+The name of the associated class is :php:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator`.
 The options minimum and maximum are passed to the Validator and are evaluated there.
 
 With the validation, we conclude the modeling and implementation of the domain at first.
