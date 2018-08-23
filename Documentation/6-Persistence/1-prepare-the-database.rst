@@ -333,7 +333,7 @@ Extbase distinguishes between several types as already defined in Chapter
 5, following a short summary of the types:
 
 *1:1-Relationship:* An offer has exactly one
-range of time when it is valid.
+range of time when it is valid (dateRange).
 
 *1:n-Relationship:* An organisation may have
 several contact persons whereas each contact person is in charge for

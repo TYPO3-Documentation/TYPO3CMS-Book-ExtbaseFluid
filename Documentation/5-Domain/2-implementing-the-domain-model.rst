@@ -299,8 +299,8 @@ Extbase supports three different types of hierarchical relationship between doma
 
 1:1-relationship
 An offer has in our case, exactly one period in which it is valid. The object
-Offer gets therefore a property timePeriod, that is exactly referenced one time
-to the object TimePeriod.
+Offer gets therefore a property `dateRange`, that is exactly referenced one time
+to the object `DateRange`.
 
 1:n-relationship
 An organization can have multiple contacts. The object Organization therefore
