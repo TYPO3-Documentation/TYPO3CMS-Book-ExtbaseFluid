@@ -655,7 +655,9 @@ All of this range objects have beyond their properties and methods further thing
 
 The class rank by the keyword abstract constraint was marked as abstract. Thus we prevent the Range object itself is instantiated.
 
-We have furthermore implement a method :php:`normalizeValue()`. These »adjusted« the values ​​coming from the outside before they are assigned to a property. This is overwritten in the class DateRange together with the above mentioned type definitions:
+We have furthermore implement a method :php:`normalizeValue()`.
+The se »adjusted« the value coming from the outside before they are assigned to a property. This is overwritten in the class
+DateRange together with the above mentioned type definitions:
 
 .. code-block:: php
    :caption: DateRange.php
