@@ -352,9 +352,10 @@ Both methods expect an integer value. With the method ``setOffset()``, you set t
 object you will start with. With the method ``setLimit()``, you set the maximum count of objects you will
 get.
 
-At first, the usage of a ``Query`` object with ``Constraint`` objects instead of directly written
-SQL statements looks very inefficient. But doing so here in Extbase makes possible a complete abstraction
-of the storage backend.
+At first, the usage of a `Query` object with `Constraint` objects instead of
+directly written SQL statements looks very inefficient. But doing so here in
+Extbase makes possible a complete abstraction of the storage backend.
+
 .. note::
 
     The ``Query`` object leans against the *Java Specification Request* (JSR) 283. JSR 283
@@ -507,7 +508,7 @@ the remaining three settings are only effective by ``matching()``.
 
 .. warning::
 
-    The ``QuerySettings`` object encapsulates specific settings of TYPO3 4.x.
+    The `QuerySettings` object encapsulates specific settings of TYPO3 4.x.
 
 Beside the method ``execute()``, the ``Query`` object provides the method ``count()`` for disposal.
 It returns only the number of elements of the result set, as an integer value, and can only be used in
