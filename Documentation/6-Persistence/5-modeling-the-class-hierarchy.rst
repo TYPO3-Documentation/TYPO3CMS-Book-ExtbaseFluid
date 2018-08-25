@@ -1,4 +1,5 @@
 .. include:: ../Includes.txt
+
 .. _modeling-the-class-hierarchy:
 
 Modeling the Class Hierarchy
@@ -9,7 +10,7 @@ A relational database doesn't know about some concepts of object oriented progra
 the concept of class hierarchies. Therefore there is a mismatch between the object oriented
 domain model and the relational model of the database (object-relational impedance mismatch).
 However there are some technical options to represent the class hierarchies. Let us look for
-these with a simplified class hierarchie detached from our sample extension (see figure 6-14).
+these with a simplified class hierarchy detached from our sample extension (see figure 6-14).
 
 .. figure:: /Images/6-Persistence/figure-6-14.png
 
@@ -19,12 +20,12 @@ The classes `Organization` and `Person` are specializations of the class `Party`
 jollification, but a party in not political manner). The class `Organization` is again a
 generalization of the sub classes `Company` and `ScientificInstitution`. Now assume that
 in our extension data from instances of the classes `Organization`, `Company`,
-`ScientificInstitution` and `Person` (the so called *concret classes*) have to be stored.
+`ScientificInstitution` and `Person` (the so called *concrete classes*) have to be stored.
 The class `Party` is initially used as a container for properties and behaviour that should
-be available in the concret classes without mention them also there (to avoid redundancies is
-the whole purpose of a class hierarchie). For saving the data there a some options available:
+be available in the concrete classes without mention them also there (to avoid redundancies is
+the whole purpose of a class hierarchy). For saving the data there a some options available:
 
-* For every concret class an own database table will be created (*Concrete Table Inheritance*).
+* For every concrete class an own database table will be created (*Concrete Table Inheritance*).
   The table contains fields for all own and inherited properties. For the class `Company`
   in this case a table `company` is created, which contains the fields `name`, `number_of_employees`
   and `type_of_business`. The table `person` only contains the fields `name` and
@@ -36,7 +37,7 @@ the whole purpose of a class hierarchie). For saving the data there a some optio
   and `date_of_birth`.
 * For every class of the class hierarchy an own table is created in which only the properties
   are stored which are defined in the class (*Class Table Inheritance*).
-  The table `party` in this case containds the field `name`, the table `organization`
+  The table `party` in this case contains the field `name`, the table `organization`
   only the field `number_of_employees` and the table `company` accordingly the field
   `type_of_business`:
 
@@ -45,8 +46,8 @@ option *Concrete Table Inheritance* you have only to create the tables and confi
 described in the TCA. No additional configuration for the class hierarchy is needed.
 
 For the second case of *Single Table Inheritance* beside creation of the table there is an
-additional configuration efford needed. Furthermore the table must have an additinal field,
-that contains the type of the stored database tupel. The table definition schematicly looks
+additional configuration effort needed. Furthermore the table must have an additional field,
+that contains the type of the stored database tupel. The table definition schematically looks
 like this:
 
 .. code-block:: guess
@@ -81,7 +82,7 @@ The name of the field that contains the type can be choosen freely. In our case 
    ]
    // …
 
-In your TypoScript template you have to tell Extbase for every concret class in which table the
+In your TypoScript template you have to tell Extbase for every concrete class in which table the
 data of the instances are stored and with which type they should be stored.
 
 .. code-block:: typoscript
@@ -181,7 +182,7 @@ including the following configuration to your TCA:
    // …
 
 In the section `ctrl` the type field `record_type` is configured as selection list.
-With this the desired domain object respectively the class name can be choosen. This impacts the
+With this the desired domain object respectively the class name can be chosen. This impacts the
 display of the form fields. In the section `types` for every *Record Type* (in our case the class name)
 the fields to be displayed are defined; when the *Record Type* changes the new set of form fields
 are displayed after a confirmation by TYPO3.
@@ -218,7 +219,7 @@ can look like this:
     }
 
 
-You can also find straightforward all concret classas of a super class:
+You can also find straightforward all concrete classes of a super class:
 
 .. todo remove makeInstance
 
@@ -230,7 +231,7 @@ You can also find straightforward all concret classas of a super class:
 In the result set :php:`$organizationRepository` there are domain objects of the class
 `\MyVendor\MyExtension\Domain\Model\Organization` and all configured subclasses :php:`\MyVendor\MyExtension\Domain\Model\Company`
 and :php:`\MyVendor\MyExtension\Domain\Model\ScientificInstitution` are included. The query of a super class
-is only possible for *Single Table Inheritanca* this time. In the future this should also be possible
+is only possible for *Single Table Inheritance* this time. In the future this should also be possible
 for *Concrete Table Inheritance*.
 
 .. note::
