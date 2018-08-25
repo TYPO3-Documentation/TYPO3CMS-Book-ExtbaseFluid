@@ -13,12 +13,31 @@ the course according to this.
 The configuration options for localization inside TYPO3 are versatile.
 You will find a comprehensive description of all concepts and options in the
 *Frontend Localization Guide
-(http://typo3.org/documentation/document-library/core-documentation/doc_l10nguide/current/)*.
+(https://docs.typo3.org/typo3cms/FrontendLocalizationGuide/)*.
 For the following sections we assume a correct configuration of the
 localization, which is normally done in the TypoScript root template and
 looks like this:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: ts
+
+   config {
+     linkVars = L
+     uniqueLinkVars = 1
+     sys_language_uid = 0
+     language = default
+     locale_all = en_GB
+     htmlTag_langKey = en
+   }
+
+   [globalVar = GP:L = 1]
+   config {
+     sys_language_uid = 1
+     language = de
+     locale_all = de_DE.utf8
+     htmlTag_langKey = de
+   }
+   [global]
+
 
 The selection of the frontend language is carried out with a parameter
 in the URL (``linkVars = L``). Important is the definition of the
@@ -43,7 +62,17 @@ have to localize particular terms or maybe short text in the templates. In
 the following sample template of the blog example which displays a single
 blog post with its comments there are some constant terms:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: html
+
+   <h3>{post.title}</h3>
+   <p>By: {post.author.fullName}</p>
+   <p>{post.content -> f:format.nl2br()}</p>
+
+   <h3>Comments</h3>
+   <f:for each="{post.comments}" as="comment">
+     {comment.content -> f:format.nl2br()}
+     <hr>
+   </f:for>
 
 .. tip::
 
@@ -79,7 +108,26 @@ It should contain all terms that have to be translated, in our example
 terms we create the :file:`locallang.xml` file the following
 way:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: xml
+
+   <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+   <T3locallang>
+      <meta type="array">
+         <type>module</type>
+         <description>Strings for the blog_example extension</description>
+      </meta>
+      <data type="array">
+         <!-- Hier stehen die verschiedenen Übersetzungen der Texte aus dem Template-->
+         <languageKey index="default" type="array">
+            <label index="author_prefix">By: </label>
+            <label index="comment_header">Comments</label>
+         </languageKey>
+         <languageKey index="de" type="array">
+            <label index="author_prefix">Von: </label>
+            <label index="comment_header">Comments</label>
+         </languageKey>
+      </data>
+   </T3locallang>
 
 The framework of the file includes the XML header, the root element
 of the XML file (``<T3locallang>``) and the description
@@ -96,7 +144,7 @@ in this section. In the above file the texts are stored in two languages:
 
     The TYPO3 Core API describes in detail the construction of the
     :file:`locallang.xml` file
-    (*http://typo3.org/documentation/document-library/core-documentation/doc_core_api/4.2.0/view/7/2/*).
+    (*https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/Internationalization/XliffFormat.html*).
 
 Now the placeholder for the translated terms must be inserted into
 the template. To do this, Fluid offers the ViewHelper
@@ -140,15 +188,25 @@ to the currently selected language. Here we have a look at the Fluid
 template for the output of the blog posts, now without the hardcoded
 english terms:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: html
+
+   <h3>{post.title}</h3>
+   <p><f:translate key="author_prefix"> {post.author.fullName}</p>
+   <p>{post.content -> f:format.nl2br()}</p>
+   <h3><f:translate key="comment_header"></h3>
+   <f:for each="{post.comments}" as="comment">
+      {comment.content -> f:format.nl2br()}
+      <hr>
+   </f:for>
+
 
 .. tip::
 
     Sometimes you have to localize a string in the PHP code, for
     example in the controller or inside of a ViewHelper. In that case you
     can use the static method
-    `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key,
-    $extensionName)`. In addition to the key inside the
+    `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
+    In addition to the key inside the
     locallang file also the name of the extension must be given as
     parameter, in order to load the correct locallang file.
 
@@ -174,16 +232,14 @@ If we want to implement the above example, we must assign the
 first name and the last name of the blog author separate to the
 ``translate`` ViewHelper:
 
-``<f:translate key="name" arguments="{1:
-post.author.firstName, 2: post.author.lastName}" />``
+``<f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />``
 
 How should the corresponding string in the
 :file:`locallang.xml` file looks like? It describes on
 which position the placeholder are to be inserted. For English and
 German it looks like this:
 
-``<label index="name">%1$s
-%2$s</label>``
+``<label index="name">%1$s %2$s</label>``
 
 Important are the placeholder strings ``%1$s`` and
 ``%2$s``. These will be replaced with the assigned parameters.
@@ -194,8 +250,7 @@ example it is the data type ``string (s)``. Now we can define
 for Thai, that "Khan" followed by the first name should be
 output:
 
-``<label index="name">Khan
-%1$s</label>``
+``<label index="name">Khan %1$s</label>``
 
 .. tip::
 
@@ -206,7 +261,7 @@ output:
 .. tip::
 
     For a full reference of the formatting options for
-    ``sprintf`` you should have a look at the PHP documantation:
+    ``sprintf`` you should have a look at the PHP documentation:
     *http://php.net/manual/de/function.sprintf.php*.
 
 Changing localized terms using TypoScript
@@ -222,8 +277,7 @@ text "Comments", you have to overwrite the identifier
 ``comment_header`` for the English language. For this you can
 add following line to your TypoScript template:
 
-``plugin.tx_blogexample._LOCAL_LANG.default.comment_header =
-Remarks``
+``plugin.tx_blogexample._LOCAL_LANG.default.comment_header = Remarks``
 
 With this you will overwrite the localization of the term
 ``comment_header`` for the default language in the blog
@@ -278,8 +332,8 @@ the corresponding database table.
 
 The field ``sys_language_uid`` is used for storing
 the UID of the language in which the blog is written. Based on this UID
-Extbase choose the right translation dependending on the current
-TypoScript setting in ``config.sys_language.uid``. In the field
+Extbase choose the right translation depending on the current
+TypoScript setting in ``config.sys_language_uid``. In the field
 ``l10n_parent`` the UID of the original blog created in the
 default language, which the current blog is a translation of. The third
 field ``l10n_diffsource`` contains a snapshot of the source of
@@ -292,7 +346,51 @@ fields to the backend form of the blog: one field for the editor to define
 the language of a data record and one field to select the data record the
 translation relates to.
 
-<remark>TODO: insert code here</remark>
+.. code-block:: php
+
+   $TCA['tx_blogexample_domain_model_blog'] = array(
+     ...
+     'types' => array(
+       '1' => array('showitem' => 'l18n_parent , sys_language_uid, hidden, title,
+                     description, logo, posts, administrator')
+     ),
+     'columns' => array(
+       'sys_language_uid' => array(
+         'exclude' => 1,
+         'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+         'config' => array(
+           'type' => 'select',
+           'foreign_table' => 'sys_language',
+           'foreign_table_where' => 'ORDER BY sys_language.title',
+           'items' => array(
+             array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
+             array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
+           )
+         )
+       ),
+       'l18n_parent' => array(
+         'displayCond' => 'FIELD:sys_language_uid:>:0',
+         'exclude' => 1,
+         'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+         'config' => array(
+           'type' => 'select',
+           'items' => array(
+             array('', 0),
+           ),
+           'foreign_table' => 'tx_blogexample_domain_model_blog',
+           'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
+                 l18n_parent### AND tx_blogexample_domain_model_blog.
+                 sys_language_uid IN (-1,0)',
+         )
+       ),
+       'l18n_diffsource' => array(
+         'config'=>array(
+           'type'=>'passthrough'
+         )
+       ),
+       ...
+     )
+   );
 
 With it, the localization of the domain object is already
 configured. By adding ``&amp;L=1`` to the URL, the language of
@@ -309,13 +407,13 @@ the default language.
     will find in the *Frontend Localization Guide* of the
     *Core Documentation*.
 
-How TYPO3 v4 handles the localization of content offers two
+How TYPO3 handles the localization of content offers two
 important specific features: The first is that all translations of a data
 record respectively a data record that is valid for all languages (UID of
 the language is 0 or -1) will be "added" to the data record in the default
 language. The second special feature is that always the UID of the record
 in the default language is bound for identification although the
-translated data record in the database table has anoher UID. This
+translated data record in the database table has another UID. This
 conception has a serious disadvantage: If you want to create a data record
 for a language that has no data record in the default language, you have
 to create the latter before. But with what content?
@@ -333,7 +431,7 @@ this::
     uid:              7 (given by the database)
     title:            "My first Blog"
     sys_language_uid: 0 (selected in backend)
-    l10n_parent:      0 (no tranlation original exists)
+    l10n_parent:      0 (no translation original exists)
 
 After a while you create a German translation in the backend. In the
 database the following record is stored::
@@ -341,7 +439,7 @@ database the following record is stored::
     uid:              42 (given by the database)
     title:            "Mein erster Blog"
     sys_language_uid: 1 (selected in backend)
-    l10n_parent:      7 (selected in backend respectively given automaticly)
+    l10n_parent:      7 (selected in backend respectively given automatically)
 
 A link that references the single view of a blog looks like
 this:
@@ -357,7 +455,7 @@ Notice that the given UID in tx_blogexample_pi1[blog]=7 is not
 changed. There is not UID of the data record of the german translation
 (42). This has the advantage that only the parameter for the language
 selection is enough. Concurrently it has the disadvantage of a higher
-administration effort during persistance. Extbase will do this for you by
+administration effort during persistence. Extbase will do this for you by
 carrying the UID of the language of the domain model and the UID of the
 data record in which the domain data is effectively stored as "hidden"
 properties of the :php:`AbstractDomainObject` internally.
@@ -410,7 +508,7 @@ Generally the date or time is formatted by the
 
 The date object ``{dateObject}`` is displayed with the date
 format given in the parameter ``format``. This format string must
-be in a format which is readable by the PHP funtion ``date()``
+be in a format which is readable by the PHP function ``date()``
 and declares the format of the output. Table 9-3 shows the some important
 placeholders.
 
@@ -483,7 +581,9 @@ But the ViewHelper has to be configured different. Depending on the
 language area, which is controlled by the language of the user, an other
 format string should be used. Here we combine the ``format.date``
 ViewHelper with the ``translate`` ViewHelper which you got to
-know in the section "Multilanguage templates"::
+know in the section "Multilanguage templates"
+
+::
 
     <f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
 

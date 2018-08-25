@@ -737,8 +737,8 @@ piece by piece.
 One requirement our extension has to realize, is that a visitor of
 the website can define a special demand, which is then used to filter the
 range of offers. We already implemented an appropriate Method
-:php:`findDemanded()` (see chapter 6, <remark>TODO: enter
-correct section name</remark>). To define his demand, the visitor chooses
+:php:`findDemanded()` (see :ref:`chapter 6 <individual_database_queries>`).
+To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
 .. figure:: /Images/7-Controllers/figure-7-2.png
