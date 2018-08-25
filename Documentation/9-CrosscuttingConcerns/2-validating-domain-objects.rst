@@ -1,4 +1,5 @@
 .. include:: ../Includes.txt
+
 .. _validating-domain-objects:
 
 Validating domain objects
@@ -7,8 +8,8 @@ Validating domain objects
 We have learned about Extbase and Fluid in detail, but considered
 terms of consistence of the domain only marginally. Often we estimate that
 domain objects at all times retain consistent according to certain rules.
-This is not done automaticly, so it is rather important to define these
-rules explicitly. In the blog example for example we can make the folowing
+This is not done automatically, so it is rather important to define these
+rules explicitly. In the blog example for example we can make the following
 rules:
 
 * The field ``username`` and ``password`` of the
@@ -48,7 +49,7 @@ the :php:`ValidatorInterface` to make it possible to pass
 settings and poll error messages. We recommend to inherit all validators
 from the
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
-because you get a default implemetation of the helper methods and you only
+because you get a default implementation of the helper methods and you only
 have to implement the `isValid()` method.
 
 .. tip::
@@ -87,7 +88,7 @@ returns ``false``.
     example in bug reports.
 
 As default, extbase will not call your validator if the value to validate is
-empty. This is configued through the property ``$acceptsEmptyValues`` which is
+empty. This is configured through the property ``$acceptsEmptyValues`` which is
 set to ``true`` as default.
 
 In the package
@@ -139,7 +140,7 @@ correct the errors.
 
     You may ask how the `errorAction()` knows
     which form was the last displayed one. This information is created by
-    the ``form`` ViewHelper. He adds automaticly the property
+    the ``form`` ViewHelper. He adds automatically the property
     ``__referrer`` to every generated form, which contains
     information about the current extension, controller and action
     combination. This data can be used by the
@@ -151,7 +152,7 @@ Registering validators
 
 Now we know how validators are working and when they are called.
 However we have to connect our domain model with the validators to define
-which part of the model is has to be checked by which valiator. Therefore
+which part of the model is has to be checked by which validator. Therefore
 there are three possibilities which we define in the following:
 
 * validating in the domain model with annotations
@@ -172,7 +173,7 @@ Annotations are machine readable "annotations" in the source code that
 are placed in comment blocks and start with the character
 ``@``.
 
-For the validaton the ``@validate`` annotation is
+For the validation the ``@validate`` annotation is
 available. With it we can specify which validator is to be used for
 checking the annotated property. Let us take a look at this using a part
 of the domain model ``Post`` of the blog example::
@@ -193,10 +194,10 @@ of the domain model ``Post`` of the blog example::
         protected $content;
     }
 
-With the line ``@validate StringLength(minimum=3,
-maximum=50)`` the validator for the property ``$title`` is
-specified. In paranthesis the parameter for the validator are specified.
-In our case we make shure that a title of a blog post is never shorter
+With the line ``@validate StringLength(minimum=3, maximum=50)``
+the validator for the property ``$title`` is
+specified. In parenthesis the parameter for the validator are specified.
+In our case we make sure that a title of a blog post is never shorter
 than three characters and will never be longer than 50 characters.
 
 Which validator class is to be used? Extbase looks for a validator
@@ -231,10 +232,22 @@ Here we validate the property ``$title`` with the
 :php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
 This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
-blog post is always build-on the scheme *Maintopic:
-Title*:
+blog post is always build-on the scheme *Maintopic: Title*:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: php
+
+   class Tx_BlogExample_Domain_Validator_TitleValidator
+         extends Tx_Extbase_Validation_Validator_AbstractValidator {
+
+      public function isValid($value) {
+         // $value ist also der Titel-String.
+         if (count(explode(':', $value)) >= 2) {
+            return TRUE;
+         }
+         $this->addError('The title was not of the type [Topic]:[Title].', 1221563773);
+         return FALSE;
+      }
+   }
 
 Now you have seen how you can validate particular properties of
 the domain model. The next section shows to you, how complex domain
@@ -245,7 +258,7 @@ Validating in the domain model with an own validator class
 ----------------------------------------------------------
 
 The just introduced possibilities to register validators in the
-model is sepecially practical when individual properties of the model
+model is specially practical when individual properties of the model
 are to be validated. Sometimes it is necessary to validate the
 relationship between two or more properties of a model class. For
 example for a user registration it is reasonable that in the user object
@@ -464,7 +477,7 @@ as parameter.
         $this->blogRepository->update($blog);
     }
 
-<constraintdef>
+
 So the name of the argument is ``$blog`` because the form
 has the name blog. When no validating errors occur, the blog object will
 be persisted with its changes.
@@ -506,7 +519,7 @@ displayed correct.
 
 .. tip::
 
-    If Extbase thows the exception
+    If Extbase throws the exception
     \TYPO3\CMS\Extbase\Mvc\Exception\InfiniteLoopException it signs that the
     ``@ignorevalidation`` annotation is missing.
 
@@ -514,7 +527,7 @@ Fluid automatically adds the CSS class ``f3-form-error``
 to all erroneous fields - so you can frame them in red for example using
 CSS. There is also a ``flashMessages`` ViewHelper which outputs
 the error messages of the validation.
-</constraintdef>
+
 
 
 Case study: Create an object
@@ -688,7 +701,7 @@ object: The changes are stored permanent now.
     objects::
 
         public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
-            // object will be automaticly persisted
+            // object will be automatically persisted
         }
 
     At first this is very in transparent and difficult to understand.

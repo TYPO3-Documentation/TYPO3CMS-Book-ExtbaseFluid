@@ -74,9 +74,7 @@ To execute your command call `typo3/cli_dispatch.phpsh extbase simple:simple`.
     Therefore you cannot directly access TypoScript of frontend pages
     for example.
 
-.. Todo:
-
-    Document how to configure command controller.
+.. Todo: Document how to configure command controller.
 
 .. _extbase_command_controller_arguments:
 
