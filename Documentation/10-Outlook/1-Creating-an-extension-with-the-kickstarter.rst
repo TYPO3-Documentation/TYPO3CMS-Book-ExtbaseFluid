@@ -33,7 +33,7 @@ During this phase of development the focus lies on the functionality of the doma
 controller and view layer are ignored by trend. Often it is anyway preferable yet to see the models
 in action at this stage, and for example to use a list and edit view. The kickstarter attaches at
 this point and approves a lot of work from you: He offers th so called *dynamic Scaffolding*, by
-which the controller actions and Fluid templates for viewing, creating and editing are automaticly
+which the controller actions and Fluid templates for viewing, creating and editing are automatically
 created out of the domain model. This functionality is activated by default for all objects that are
 marked as aggregate root and enables the simple testing of the model, because every change of the
 domain model is directly mirrored in the presentation.

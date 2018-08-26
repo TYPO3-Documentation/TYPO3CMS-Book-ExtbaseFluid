@@ -133,7 +133,7 @@ add these Properties and Methods:
 Our ship now has a name (:php:`$name`), a number of coaches
 (:php:`$coaches`) and a speed (:php:`$speed`). In addition we built in a
 variable containing the status of the engine (:php:`$engineStatus`). A real
-ship, of course, has much more properties all important somehow – for our
+ship, of course, has much more properties all important somehow - for our
 abstraction these few will be sufficient though. We'll focus on why every
 Property is marked with the key word :php:`public` further down.
 
@@ -143,7 +143,7 @@ Property is marked with the key word :php:`public` further down.
    For Methods and Properties we use a notation called
    *lowerCamelCase*: The first letter is lower case
    and all other parts are added without blank or underscore in upper
-   case. This is a convention used in extbase (as well as FLOW3).
+   case. This is a convention used in Extbase (as well as FLOW3).
 
 We can also switch on the engine
 (:php:`startEngine()`), travel with the ship to the
@@ -282,7 +282,25 @@ constructor as Argument and then assigned to the Properties
 :php:`$name` respectively.
 
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   class Ship {
+
+      public $name;
+      public $coaches;
+      public $speed;
+
+      ...
+
+      function __construct($name, $numberOfCoaches) {
+         $this->name = $name;
+         $this->coaches = $numberOfCoaches;
+         echo "Das neue Schiff hat den Namen: ".$this->name;
+         echo "<br />und ". $this->coaches . " Kabinen";
+      }
+   }
+
+   $fidelio = new Ship('Fidelio', 200);
 
 
 
@@ -354,7 +372,29 @@ e.g. for giving a Method of a child class a new functionality. Let's
 have a look at the Method :php:`startEngine()` for
 example:
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   class Ship {
+      ...
+      $engineStatus = 'OFF';
+      ...
+      function startEngine() {
+         $this->engineStatus = 'ON';
+      }
+      ...
+   }
+
+   class Luxusliner extends Ship {
+      ...
+      $additionalEngineStatus = 'OFF';
+      ...
+      function startEngine() {
+         $this->engineStatus = 'ON';
+         $this->additionalEngineStatus = 'ON';
+      }
+      ...
+   }
+
 
 Our luxury liner (of course) has an additional motor so this has
 to be switched on also if the Method
@@ -376,14 +416,32 @@ errors but also kind of inconvenient. It would be better to just call
 the Method of the parent class and then add additional code before or
 after the call. That's exactly what can be done by using the key word
 :php:`parent`. With
-:php:`parent::methodname()` <remark>TODO: "methodname"
-should be "emphasis" in addition to "classname". I did not get it,
-sorry!</remark> the Method of the parent class can be accessed
+:php:`parent::methodname()` the Method of the parent class can be accessed
 comfortably - so our former example can be re-written in a smarter
 way:
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
 
+   class Ship {
+      ...
+      $engineStatus = 'OFF';
+      ...
+      function startEngine() {
+         $this->engineStatus = 'ON';
+      }
+      ...
+   }
+
+   class Luxusliner extends Ship {
+      ...
+      $additionalEngineStatus = 'OFF';
+      ...
+      function startEngine() {
+         parent::startEngine();
+         $this->additionalEngineStatus = 'ON';
+      }
+      ...
+   }
 
 
 Abstract classes
@@ -398,7 +456,24 @@ type of ship is to be handled differently for each has a proper
 configuration. So each ship must have such a Method but the concrete
 implementation is to be done separately for each ship type.
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   abstract class Ship {
+      ...
+      function __construct() {
+         $this->setupCoaches();
+      }
+      abstract function setupCoaches();
+      ...
+   }
+   class Luxusliner extends Ship {
+      ...
+      function setupCoaches() {
+         echo 'Kabinen werden eingerichtet';
+      }
+   }
+
+   $luxusschiff = new Luxusliner();
 
 In the parent class we have defined only the body of the Method
 :php:`setupCoaches()`. The key word
@@ -421,7 +496,24 @@ who don't. The ships who do have the Methods
 :php:`disableTV()`. It is useful to define an interface
 for that:
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   interface SatelliteTV {
+      public function enableTV();
+      public function disableTV();
+   }
+
+   class Luxusliner extends Ship implements SatelliteTV {
+
+      protected $tvEnabled = FALSE;
+
+      public function enableTV() {
+         $this->tvEnabled = TRUE;
+      }
+      public function disableTV() {
+         $this->tvEnabled = FALSE;
+      }
+   }
 
 Using the key word :php:`implements` it is made
 sure that the class implements the given interface. All Methods in the
@@ -461,7 +553,23 @@ Access to Properties
 This small example demonstrates how to work with protected
 properties:
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+
+   abstract class Ship {
+      protected $coaches;
+      ...
+      abstract protected function setupCoaches();
+   }
+
+   class Luxusliner extends Ship {
+      protected function setupCoaches() {
+         $this->coaches = 300;
+      }
+   }
+
+   $luxusliner = new Luxusliner('Fidelio', 100);
+   echo 'Anzahl Kabinen: ' . $luxusliner->coaches; // Funktioniert NICHT!
 
 The :php:`LuxuryLiner` may alter the property
 :php:`coaches`, for this is
@@ -495,7 +603,34 @@ outside. So you'll need special Methods that are able to set or get a
 property. These Methods are called *setter*
 respectively *getter*. See the example.
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   class Ship {
+
+      protected $coaches;
+      protected $classification = 'NORMAL';
+
+      public function getCoaches() {
+         return $this->coaches;
+      }
+
+
+      public function setCoaches($numberOfCoaches) {
+         if ($numberOfCoaches > 500) {
+            $this->classification = 'LARGE';
+         } else {
+            $this->classification = 'NORMAL';
+         }
+         $this->coaches = $numberOfCoaches;
+      }
+
+      public function getClassification() {
+         return $this->classification;
+      }
+
+
+      ...
+   }
 
 We now have a Method :php:`setCoaches()` which
 sets the number of coaches. Furthermore it changes - depending on the
@@ -534,7 +669,37 @@ ships need to know the actual emergency phone number of this shipyard. So
 we save this number in a static Property
 :php:`$shipyardSupportTelephoneNumber`:
 
-<remark>TODO: Enter Code</remark>
+.. code-block:: php
+
+   class Luxusliner extends Ship {
+      protected static $shipyardSupportTelephoneNumber = '+49 30 123456';
+
+      public function reportTechnicalProblem() {
+         echo 'Auf dem Schiff ' . $this->name . ' wurde ein Problem festgestellt.
+               Bitte informieren Sie ' . self::$shipyardSupportTelephoneNumber;
+      }
+
+      public static function setShipyardSupportTelephoneNumber($newNumber) {
+         self::$shipyardSupportTelephoneNumber = $newNumber;
+      }
+   }
+
+   $fidelio = new Luxusliner('Fidelio', 100);
+   $figaro = new Luxusliner('Figaro', 200);
+
+   $fidelio->reportTechnicalProblem();
+   $figaro->reportTechnicalProblem();
+
+   Luxusliner::setShipyardSupportTelephoneNumber('+01 1000');
+
+   $fidelio->reportTechnicalProblem();
+   $figaro->reportTechnicalProblem();
+
+   // Dabei wird folgender Text ausgegeben:
+   Auf dem Schiff Fidelio wurde ein Problem festgestellt. Bitte informieren Sie +49 30 123456
+   Auf dem Schiff Figaro wurde ein Problem festgestellt. Bitte informieren Sie +49 30 123456
+   Auf dem Schiff Fidelio wurde ein Problem festgestellt. Bitte informieren Sie +01 1000
+   Auf dem Schiff Figaro wurde ein Problem festgestellt. Bitte informieren Sie +01 1000
 
 What happens here? We instantiate two different ships which both
 have a problem and do contact the shipyard. Inside the method
@@ -545,9 +710,7 @@ the shipyard has to tell all the ships about the new number. For this is
 uses the *static method*
 :php:`setShipyardSupportTelephoneNumber($newNumber)`. For
 the Method is static, it is called through the scheme
-:php:`classname::methodname() <remark>TODO: "methodname" should be
-"emphasis" in addition to "classname". I did not get it,
-sorry!</remark><remark></remark>`, in our case
+:php:`classname::methodname()`, in our case
 :php:`LuxuryLiner::setShipyardSupportTelephoneNumber(...)`.
 If you check the latter two problem reports you see that all instances of
 the class use the new phone number. So both ship objects have access to the
@@ -596,9 +759,33 @@ are all constructed in the same shipyard. So there is no sense in having
 more than one instance of the shipyard object:
 
 
+.. code-block:: php
+
+
+   class LuxuslinerShipyard implements t3lib_Singleton {
+      protected $numberOfShipsBuilt = 0;
+
+      public function getNumberOfShipsBuilt() {
+         return $this->numberOfShipsBuilt;
+      }
+
+      public function buildShip() {
+         $this->numberOfShipsBuilt++;
+         // Schiff bauen und zurückgeben
+      }
+   }
+
+   $luxuslinerShipyard = t3lib_div::makeInstance('LuxuslinerShipyard');
+   $luxuslinerShipyard->buildShip();
+
+   $theSameLuxuslinerShipyard = t3lib_div::makeInstance('LuxuslinerShipyard');
+   $theSameLuxuslinerShipyard->buildShip();
+
+   echo $luxuslinerShipyard->getNumberOfShipsBuilt(); // 2
+   echo $theSameLuxuslinerShipyard->getNumberOfShipsBuilt(); // 2
 
 In order to have the singletons correctly created you have to use
-the :php:`ObjectManager`
+the :php:`ObjectManager`.
 
 .. todo Code Example for :php:`\TYPO3\CMS\Extbase\Object\ObjectManagerInterface`
 

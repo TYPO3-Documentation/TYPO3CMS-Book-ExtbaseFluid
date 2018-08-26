@@ -28,7 +28,7 @@ the method ``newAction()`` and available offers can be edited using
 the method ``editAction()``. The
 ``OrganizationController`` incorporates the same actions for
 organizations, with exception of the creation of organizations. Within the
-folder *EXT:sjr_offers/Resources/Private/Templates* we
+folder :file:`EXT:sjr_offers/Resources/Private/Templates` we
 have created a folder for each controller, without the suffix
 *Controller* in the name. Each action method has its own
 HTML template. There is also no suffix *Action* allowed
@@ -52,7 +52,9 @@ In most templates we are referencing the layout
 ``default``, that should build the "frame" of our plugin output.
 The actual template resides in a section with the name
 ``content``. The layout definition is stored in the HTML file
-*EXT:sjr_offers/Resources/Private/Layouts/default.html*::
+*EXT:sjr_offers/Resources/Private/Layouts/default.html*
+
+::
 
    <div class="tx-sjroffers">
    <f:render section="content" />
@@ -61,7 +63,7 @@ The actual template resides in a section with the name
 
 A section ``content`` of the respective template is
 rendered and after this a message to the frontend user is shown if
-necessary. The complete conent of the plugin is then "packed" in a
+necessary. The complete content of the plugin is then "packed" in a
 ``div`` container. The message - a so called *flash
 message* - will be created inside our sample extension in the
 controller, e.g. at unauthorized access (see also the sections for edit and delete controller actions in :ref:`chapter 7 <controlling-the-flow-with-controllers>`)::
@@ -94,7 +96,7 @@ the data, like forms, links and icons, should only displayed when an
 authorized administrator of the organization is logged in as frontend user
 (see figure 8-3). In chapter 7 we suggested the
 ``IfAuthenticatedViewHelper`` and the
-``AccessControlService``, that we had implemeted for this
+``AccessControlService``, that we had implemented for this
 purpose.
 
 
@@ -122,9 +124,40 @@ earlier in this chapter):
 
 ``{offer.ageRange->sjr:format.numericRange()}``
 
-The NumericRangeViewHelper is implemented as follows:
+The `NumericRangeViewHelper` is implemented as follows:
 
-<remark>TODO: insert code here</remark>
+.. code-block:: php
+
+   class Tx_SjrOffers_ViewHelpers_Format_NumericRangeViewHelper
+     extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
+     /**
+      * @param Tx_SjrOffers_Domain_Model_NumericRangeInterface $range The range
+      * @return string Formatted range
+      */
+     public function render(Tx_SjrOffers_Domain_Model_NumericRangeInterface $range = NULL) {
+       $output = '';
+       if ($range === NULL) {
+         $range = $this->renderChildren();
+       }
+       if ($range instanceof Tx_SjrOffers_Domain_Model_NumericRangeInterface) {
+         $minimumValue = $range->getMinimumValue();
+         $maximumValue = $range->getMaximumValue();
+         if (empty($minimumValue) && !empty($maximumValue)) {
+           $output = 'bis&nbsp;' . $maximumValue;
+         } elseif (!empty($minimumValue) && empty($maximumValue)) {
+           $output = 'ab&nbsp;' . $minimumValue;
+         } else {
+           if ($minimumValue === $maximumValue) {
+             $output = $minimumValue;
+           } else {
+             $output = $minimumValue . '&nbsp;-&nbsp;' . $maximumValue;
+           }
+         }
+       }
+       return $output;
+     }
+   }
 
 The method render() has the optional argument ``$range``.
 This is important for the inline notation. When this argument is not set
@@ -145,7 +178,38 @@ editing the basic data of an organization. You find the associated
 template *edit.html* in the folder
 *EXT:sjr_offers/Resources/Private/Templates/Organization/*.
 
-<remark>TODO: insert code here</remark>
+.. code-block:: html
+
+   {namespace sjr=Tx_SjrOffers_ViewHelpers}
+   <f:layout name="default" />
+   <f:section name="content">
+     <sjr:security.ifAuthenticated person="{organization.administrator}">
+       <f:then>
+         <f:render partial="formErrors" arguments="{formName: 'organization'}" />
+         <f:form class="tx-sjroffers-form" method="post" action="update" name="organization"
+               object="{organization}">
+           <label for="name">Name</label>
+           <f:form.textbox property="name" size="46" /><br />
+           <label for="address">Adresse</label>
+           <f:form.textarea property="address" rows="6" cols="46" /><br />
+           <label for="telephoneNumber">Telefon</label>
+           <f:form.textbox property="telephoneNumber" size="46" /><br />
+           <label for="telefaxNumber">Telefax</label>
+           <f:form.textbox property="telefaxNumber" size="46" /><br />
+           <label for="emailAddress">E-Mail</label>
+           <f:form.textbox property="emailAddress" size="46" /><br />
+           <label for="url">Homepage</label>
+           <f:form.textbox property="url" size="46" /><br />
+           <label for="description">Beschreibung</label>
+           <f:form.textarea property="description" rows="8" cols="46" /><br />
+           <f:form.submit value="Speichern"/>
+         </f:form>
+       </f:then>
+       <f:else>
+         <f:render partial="accessError" />
+       </f:else>
+     </sjr:security.ifAuthenticated>
+   </f:section>
 
 The form is enclosed in the tags of the
 ``IfAuthenticatedViewHelper``. If the access is granted than the
@@ -196,7 +260,19 @@ given as ``formName``::
    messages yourself by replacing the before described partial
    ``formErrors`` with the following code:
 
-   <remark>TODO: insert code here</remark>
+   .. code-block:: html
+
+      <f:form.errors for="{formName}">
+        <div id="dialog" title="{f:translate(key: '{formName}.{error.propertyName}',
+              default: error.propertyName)}">
+          <f:for each="{error.errors}" as="errorDetail">
+            <p>
+              <f:translate key="{formName}.{error.propertyName}.{errorDetail.code}"
+                    default="{errorDetail.message} (#{errorDetail.code})" />
+            </p>
+          </f:for>
+        </div>
+      </f:form.errors>
 
    In the file
    *EXT:sjr_offers/Resources/Private/Language/locallang.xml*

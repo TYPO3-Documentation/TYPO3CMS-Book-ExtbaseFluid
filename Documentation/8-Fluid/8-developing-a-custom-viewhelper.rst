@@ -69,7 +69,7 @@ Now implementing!
 -------------------------------------------------
 
 Every ViewHelper is a PHP class whose name is derived from the
-namespace import and the name of the XML element. The classname consists
+namespace import and the name of the XML element. The class name consists
 of the following three parts:
 
 * full namespace (in our example
@@ -135,7 +135,7 @@ Our ``Gravatar`` ViewHelper must hand over the email
 address it should work on. This is the last needed building block, before
 we can implement our needed functionality.
 
-All arguments of a ViewHelper must be registerd. Every ViewHelper
+All arguments of a ViewHelper must be registered. Every ViewHelper
 has to declare explicit which parameters are accepted.
 
 The easiest alternative to register these arguments is to enhance
@@ -245,7 +245,7 @@ Creating XML tags using TagBasedViewHelper
 --------------------------------------------------------------------------------------------------
 
 For ViewHelper that create XML tags Fluid provides an enhanced
-baseclass: the ``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``.
+base class: the ``\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper``.
 This ViewHelper provides a *Tag-Builder* that can be used to
 create tags in a simple way. It takes care about the syntactical correct
 creation of the tag and escapes for example single and double quote in
@@ -265,7 +265,23 @@ of the Tag-Builder is advised.
 
 Lets have a look how we change the ViewHelper:
 
-<remark>TODO:code</remark>
+.. code-block:: php
+
+   class Tx_BlogExample_ViewHelpers_GravatarViewHelper
+         extends Tx_Fluid_Core_ViewHelper_TagBasedViewHelper {
+
+     protected $tagName = 'img';
+
+     /**
+      * @param string $emailAddress The email address to resolve the gravatar for
+      * @return string the HTML <img>-Tag of the gravatar
+      */
+     public function render($emailAddress) {
+       $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress);
+       $this->tag->addAttribute('src', $gravatarUri);
+       return $this->tag->render();
+     }
+   }
 
 What has changed? First of all, the ViewHelper inherits not directly
 from ``AbstractViewHelper`` but from
@@ -293,7 +309,7 @@ to concentrate at the essential.
 
 Furthermore the TagBasedViewHelper offers assistance for ViewHelper
 arguments that should recur direct and unchanged as tag attributes. These
-could be registerd in ``initializeArguments()`` with the method
+could be registered in ``initializeArguments()`` with the method
 ``$this->registerTagAttribute($name, $type, $description, $required
 = FALSE)``. If we want to support the ``<img>``
 attribure ``alt`` in our ViewHelper, we can initialize this in
@@ -355,7 +371,7 @@ With this setting of a default value we have made the
 Prepare ViewHelper for inline syntax
 --------------------------------------------------------------------------------------------------
 
-So far with our gravatar ViewHelper we have focussed on the tag
+So far with our gravatar ViewHelper we have focused on the tag
 structure of the ViewHelper. We have used the ViewHelper only with the tag
 syntax (because it returns a tag as well):
 
@@ -411,7 +427,7 @@ method::
 
 This code section has the following effect: First we have
 made the ViewHelper attribute ``emailAddress`` optional. If no
-``emailAddress`` attribuite is given, we interpret the content of
+``emailAddress`` attribute is given, we interpret the content of
 the tag as email address. The rest of the code in unchanged.
 
 .. tip::

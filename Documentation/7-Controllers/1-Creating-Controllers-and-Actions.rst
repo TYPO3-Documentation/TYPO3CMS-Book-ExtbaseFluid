@@ -7,13 +7,13 @@ The Controller classes are stored in the folder :file:`EXT:sjr_offer/Classes/Con
 Controller is composed by the name of the Domain Model and the Suffix
 :php:`Controller`. So the Controller
 :php:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
-to the Aggegate Root Object
+to the Aggregate Root Object
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the name of the
 Class file is :file:`OfferController.php`.
 
 The Controller class must extend the class
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` which is
-part of Extbase. The individual Actions are combined in seperate methods.
+part of Extbase. The individual Actions are combined in separate methods.
 The method names have to end in :php:`Action`. The body of
 :php:`OfferController` thus looks like this:
 
@@ -258,13 +258,24 @@ the form in frontend, using a template, which we focus on in chapter 8 in
 section "Template Creation by example". After the user filled in the data
 of the offer and submitted the form, the Method
 :php:`createAction()` is called. It expects as Arguments
-an :php:`Organization `Object and an Object of the class
+an :php:`Organization` Object and an Object of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the Action
 :php:`createAction()` is called.
 
-.. TODO: Insert Code
+.. code-block:: php
+
+   /**
+    * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization the offer belongs to
+    * @param Tx_SjrOffers_Domain_Model_Offer $newOffer A fresh Offer object which has not yet been added to the repository
+    * @return void
+    */
+   public function createAction(Tx_SjrOffers_Domain_Model_Organization $organization, Tx_SjrOffers_Domain_Model_Offer $newOffer) {
+      $organization->addOffer($newOffer);
+      $newOffer->setOrganization($organization);
+      $this->redirect('show', 'Organization', NULL, array('organization' => $organization));
+   }
 
 The new offer is allocated to the organization and inversly the
 organization is allocated to the offer. Thanks to this allocation Extbase
@@ -281,9 +292,14 @@ passed on as an argument. Inside the
 :php:`ActionController` you have the following Methods for
 redirecting to other Actions at your disposal:
 
-.. TODO: Insert Code
+.. code-block:: php
 
-Using the :php:`redirect(`) Method, you can start a
+   redirect($actionName, $controllerName = NULL, $extensionName = NULL,
+      array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)
+   redirectToURI($uri, $delay = 0, $statusCode = 303)
+   forward($actionName, $controllerName = NULL, $extensionName = NULL,array $arguments = NULL)
+
+Using the :php:`redirect()` Method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
 given Action (specified in :php:`$actionName`) of the
 appropriate controller (specified in
@@ -291,10 +307,8 @@ appropriate controller (specified in
 in :php:`$extensionName`) is called. If you did not
 specify a controller or extension, Extbase assumes, that you stay in the
 same context. In the fourth parameter :php:`$arguments`
-you can pass an Array of arguments. In our example:php:`
-array('organization' => $organization)` <remark>TODO:
-"organization" should be "emphasis" in addition to "classname". I did not
-get it, sorry!</remark> would look like this in the URL:
+you can pass an Array of arguments. In our example :php:`array('organization' => $organization)`
+would look like this in the URL:
 :php:`tx_sjroffers_pi1[organization]=5`. The Array key is
 transcribed to the parameter name, while the organization object in
 :php:`$organization` is transformed into the number 5,
@@ -305,17 +319,21 @@ achieved by using the 6th parameter (:php:`$delay`). By
 default the reason for redirecting is set to status code 303 (which means
 *See Other*).You can use the 7th parameter
 (:php:`$statusCode`) to override this (for example with
-301, which means *Moved Permanentely*).
+301, which means *Moved Permanently*).
 
 In our example, the following code is sent to the Browser. It
-provokes the immedeate reload of the page with the given URL:
+provokes the immediate reload of the page with the given URL:
 
-.. TODO: Insert Code
+.. code-block:: html
+
+   <html><head><meta http-equiv="refresh" content="0;url=http://localhost/
+   index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_
+   pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Organization"/></head></html>
 
 The Method :php:`redirectToURI()` corresponds to the
 Method :php:`redirect()`, but you can directly set a URL
-respectively URI as string, e.g. <remark>TODO: insert Code</remark>. With
-this, you have all the freedom to do what you need. The Method
+respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=http://example.com/foo/bar.html"/></head></html>`.
+With this, you have all the freedom to do what you need. The Method
 :php:`forward()`, at last, does a redirect of the request
 to another Action on the spot, just as the two redirect Methods. In
 contrast to them, no request-response-cycle ist started, though. The
@@ -357,26 +375,37 @@ the origin of the form (:php:`__referrer`) as well as, in
 encrypted form (:php:`__hmac`), the structure of the form
 (shorted in the example below).
 
-.. TODO: Insert Code
+.. code-block:: html
+
+   <input type="hidden" name="tx_sjroffers_list[__referrer][extensionName]"
+         value="SjrOffers" />
+   <input type="hidden" name="tx_sjroffers_list[__referrer][controllerName]" value="Offer" />
+   <input type="hidden" name="tx_sjroffers_list[__referrer][actionName]" value="edit" />
+   <input type="hidden" name="tx_sjroffers_list[__hmac]"
+         value="a:4:{s:5:&quot;offer&quot;;a:12:
+   ...
+         s:10:&quot;__identity&quot;;i:1;}s:12:&quot;organization&quot;;i:1;
+         s:6:&quot;action&quot;;i:1;s:10:&quot;controller&quot;;
+         i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
 
 If now a validation error occurs when calling the Method
 :php:`createAction()`, an error message ist saved and the
 processing is passed back to the previous Action, including all already
-inserted form data. Extbase reads the neccessary information from the
-hidden fields:php:`__referrer`. In our case the Method
+inserted form data. Extbase reads the necessary information from the
+hidden fields :php:`__referrer`. In our case the Method
 :php:`newAction()` is called again. In contrast to the
 first call, Extbase now tries to create an (invalid)
 :php:`Offer` Object from the form data, and to pass it to
 the Method in :php:`$newOffer`. Due to the annotation
-:php:`@dontvalidate $newOffer` Extbase this time acceptes
+:php:`@dontvalidate $newOffer` Extbase this time accepts
 the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again and the previously saved error message is
-displayed if the template is intenting so.
+displayed if the template is intending so.
 
 .. figure:: /Images/7-Controllers/figure-7-1.png
     :align: center
 
-    Figure 7-1: Wrong input in the form of an offer leads to an error mesage
+    Figure 7-1: Wrong input in the form of an offer leads to an error message
     (in this case a modal JavaScript window)
 
 .. tip::
@@ -389,8 +418,8 @@ Using the hidden field :php:`__hmac`, Extbase
 compares in an early stage the structure of a form inbetween delivery to
 the browser and arrival of the form data. If the structure has changed,
 Extbase assumes an evil assault and aborts the request with an error
-message. You can skip this check by annotting the Method with
-@dontverifyrequesthash, though. So you have two annotiations for Action
+message. You can skip this check by annotating the Method with
+@dontverifyrequesthash, though. So you have two annotations for Action
 Methods at your disposal:
 
 * :php:`@dontvalidate*$argumentName*`
@@ -413,7 +442,7 @@ Flow Pattern "Editing an existing Domain Object"
 --------------------------------------------------------------------------------------------------
 
 The flow pattern we will now present is quite similar to the
-previuos one. We again need two action Methods, which this time we call
+previous one. We again need two action Methods, which this time we call
 :php:`editAction()` and
 :php:`updateAction()`. The Method
 :php:`editAction()` provides the form for editing, while
@@ -423,16 +452,37 @@ necessary to pass an organization to the Method
 :php:`editAction()`. It is sufficient to pass the offer to
 be edited as an Argument.
 
-.. TODO: Insert Code
+.. code-block:: php
 
-Note once again the annotation :php:`@donvalidate
-$offer`. The Method :php:`updateAction()`
+   /**
+    * @param Tx_SjrOffers_Domain_Model_Offer $offer The existing, unmodified offer
+    * @return string Form for editing the existing organization
+    * @dontvalidate $offer
+    */
+   public function editAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+      $this->view->assign('offer', $offer);
+      $this->view->assign('regions', $this->regionRepository->findAll());
+   }
+
+Note once again the annotation :php:`@donvalidate $offer`.
+The Method :php:`updateAction()`
 receives the changed offer and updates it in the repository. Afterwards a
 new request is started and the organization is shown with its updated
 offers.
 
+.. code-block:: php
+
+   /**
+    * @param Tx_SjrOffers_Domain_Model_Offer $offer The modified offer
+    * @return void
+    */
+   public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+      $this->offerRepository->update($offer);
+      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
+   }
+
 .. warning::
-    Do not forget to expicitly update the changed Domain Object
+    Do not forget to explicitly update the changed Domain Object
     using :php:`update()`. Extbase will not do this
     automatically for you, for doing so could lead to unexpected results.
     For example if you have to manipulate the incoming Domain Object
@@ -445,7 +495,7 @@ are not to be changed by all visitors after all. So an
 authorized to change the data of that organization. The administrator can
 change the contact data of the organization, create and delete offers and
 contact persons as well as edit existing offers. Securing against
-unauthorized acces can be done on different levels:
+unauthorized access can be done on different levels:
 
 * On the level of TYPO3, access to the page and/or plugin is prohibited.
 * Inside the Action, it is checked, if access is authorized. In
@@ -456,19 +506,31 @@ unauthorized acces can be done on different levels:
 
 Of these three levels, only the first two offer reliable
 protection. We do not take a closer look on the first level in this book.
-You can find detailed information for setting up the rights framework in
-your TYPO3 system in the *Core Documentation*
-"*Inside TYPO3*" at <link
-linkend="???">http://typo3.org/documentation/document-library/core-documentation/doc_core_inside/4.2.0/view/2/4/</link>.
-The second level, we are going to implement in all "critcal" Actions.
+You can find detailed information for setting up permissions in
+your TYPO3 system in the :ref:`Core API <t3coreapi:access>`.
+The second level, we are going to implement in all "critical" Actions.
 Let's look at an example with the Method
 :php:`updateAction()`.
 
-.. TODO: Insert Code
+.. code-block:: php
+
+   public function initializeAction() {
+      $this->accessControlService = t3lib_div::makeInstance('Tx_SjrOffers_Service_AccessControlService');
+   }
+
+   public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+      $administrator = $offer->getOrganization()->getAdministrator();
+      if ($this->accessControlService->isLoggedIn($administrator)) {
+         $this->offerRepository->update($offer);
+      } else {
+         $this->flashMessages->add('Bitte loggen Sie sich ein.');
+      }
+      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
+   }
 
 We ask a previously instantiated
 :php:`AccessControlService` if the administrator of the
-organization reponsible for the offer is logged in the frontend. If yes, we
+organization responsible for the offer is logged in the frontend. If yes, we
 do update the offer. If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
@@ -476,29 +538,63 @@ Extbase does not yet offer an API for access control. We therefore
 implemented an :php:`AccessControlService` on ourselves.
 The description of the class is to be found in the file :file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
 
-.. TODO: Insert Code
+.. code-block:: php
+
+   class Tx_SjrOffers_Service_AccessControlService implements t3lib_Singleton {
+
+      public function isLoggedIn($person = NULL) {
+         if (is_object($person)) {
+            if ($person->getUid() === $this->getFrontendUserUid()) {
+                return TRUE;
+            }
+         }
+         return FALSE;
+      }
+
+      public function getFrontendUserUid() {
+         if($this->hasLoggedInFrontendUser() && !empty($GLOBALS['TSFE']->fe_user->
+                user['uid'])) {
+            return intval($GLOBALS['TSFE']->fe_user->user['uid']);
+         }
+         return NULL;
+      }
+
+      public function hasLoggedInFrontendUser() {
+         return $GLOBALS['TSFE']->loginUser === 1 ? TRUE : FALSE;
+      }
+
+   }
 
 The third level can easily be bypassed by manually typing the link
 or the form data. It therefore only reduces the confusion for honest
 visitors and the stimulus for the bad ones. Let's take a short look on
 this snippet from a template:
 
-.. TODO: Insert Code
+.. code-block:: html
+
+   { namespace sjr=Tx_SjrOffers_ViewHelpers}
+   ...
+   <sjr:security.ifAuthenticated person="{organization.administrator}">
+      <f:link.action controller="Offer" action="edit" arguments="{...}">
+         <f:image src="EXT:sjr_offers/Resources/Public/Icons/edit.gif" alt="edit" />
+      </f:link.action>
+      ...
+   </sjr:security.ifAuthenticated>
 
 .. tip::
 
     A *Service* is often used to implement
-    functionalitites that are needed on mulitple places in your extensions
+    functionalities that are needed on multiple places in your extensions
     and are not related to one Domain Object.
 
     Services are often stateless. In this context that means that
-    their function does not dependend on previous access. This does not
+    their function does not depend on previous access. This does not
     rule out dependency to the "environment". In our example you can be
     sure, that a verification by :php:`isLoggendIn()`
     always leads to the same result, regardless of any earlier
     verification - given that the "environment" has not changed
     (considerably), e.g. by the Administrator logging out or even losing
-    his acces rights.
+    his access rights.
 
     Services usually can be built as *Singleton*
     (:php:`implements t3lib_Singleton`). You can find
@@ -509,14 +605,32 @@ this snippet from a template:
     the Domain of our extension. It "belongs" to the Domain of the Content
     Management System. There are Domain Services also of course, like a
     Service creating a continuous invoice number. They are usually located
-    in <link linkend="???">EXT:my_ext/Classes/Domain/Service/</link>.
+    in `EXT:my_ext/Classes/Domain/Service/`.
 
 We make use of an :php:`IfAuthenticatedViewHelper`
-to acces the :php:`AccessControlService`. The class file
-<link linkend="???">IfAuthenticatedViewHelper.php</link> is in our case
-located in <link linkend="???">EXT:sjr_offers/Classes/ViewHelpers/Security/</link>.
+to access the :php:`AccessControlService`. The class file
+`IfAuthenticatedViewHelper.php` is in our case
+located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
 
-<remark>TODO: Insert Code</remark>
+.. code-block:: php
+
+   class Tx_SjrOffers_ViewHelper_Security_IfAuthenticatedViewHelper
+      extends Tx_Fluid_ViewHelpers_IfViewHelper {
+
+      /**
+       * @param mixed $person The person to be tested for login
+       * @return string The output
+       */
+      public function render($person = NULL) {
+         $accessControlService = t3lib_div::makeInstance('Tx_SjrOffers_Service_AccessControlService'); // Singleton
+         if ($accessControlService->isLoggedIn($person)) {
+            return $this->renderThenChild();
+         } else {
+            return $this->renderElseChild();
+         }
+      }
+
+   }
 
 The :php:`IfAuthenticatedViewHelper` extends the
 :php:`If`-ViewHelper of fluid and therefore provides the
@@ -534,11 +648,26 @@ The last Flow pattern realizes the deletion of an existing Domain
 Object in one single Action. The appropriates Method
 :php:`deleteAction()` is kind of straightforward:
 
-<remark>TODO: Insert Code</remark>
+.. code-block:: php
 
-The importat thing here is that you delete the given Offer from the
+   /**
+    * @param Tx_SjrOffers_Domain_Model_Offer $offer The offer to be deleted
+    * @return void
+    */
+   public function deleteAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+      $administrator = $offer->getOrganization()->getAdministrator();
+      if ($this->accessControlService->isLoggedIn($administrator) {
+         $this->offerRepository->remove($offer);
+      } else {
+         $this->flashMessages->add('Bitte loggen Sie sich ein.');
+      }
+      $this->redirect('show', 'Organization', NULL, array('organization' =>
+         $offer->getOrganization()));
+   }
+
+The important thing here is that you delete the given Offer from the
 Repository using the method :php:`remove()`. After running
-through your extension, Extbase will delete the assosciated record from
+through your extension, Extbase will delete the associated record from
 the Database respectively mark it as deleted.
 
 .. tip::
@@ -555,18 +684,61 @@ Method :php:`indexAction()` of the
 :php:`OfferController` looks like this in it's "final
 stage":
 
-<remark>TODO: Insert Code</remark>
+.. code-block:: php
+
+   /**
+    * @param Tx_SjrOffers_Domain_Model_Demand $demand A demand (filter)
+    * @return string The rendered HTML string
+    */
+   public function indexAction(Tx_SjrOffers_Domain_Model_Demand $demand = NULL) {
+      $allowedStates = (strlen($this->settings['allowedStates']) > 0) ?
+            t3lib_div::intExplode(',', $this->settings['allowedStates']) : array();
+      $listCategories = (strlen($this->settings['listCategories']) > 0) ?
+            t3lib_div::intExplode(',', $this->settings['listCategories']) : array();
+      $selectableCategories = (strlen($this->settings['selectableCategories']) > 0) ?
+            t3lib_div::intExplode(',', $this->settings['selectableCategories']) : array();
+      $propertiesToSearch = (strlen($this->settings['propertiesToSearch']) > 0) ?
+            t3lib_div::trimExplode(',', $this->settings['propertiesToSearch']) : array();
+
+      $this->view->assign('offers',
+         $this->offerRepository->findDemanded(
+            $demand,
+            $propertiesToSearch,
+            $listCategories,
+            $allowedStates
+         )
+      );
+      $this->view->assign('demand', $demand);
+      $this->view->assign('organizations',
+         array_merge(
+            array(0 => 'Alle Organisationen'),
+            $this->organizationRepository->findByStates($allowedStates)
+         )
+      );
+      $this->view->assign('categories',
+         array_merge(
+            array(0 => 'Alle Kategorien'),
+            $this->categoryRepository->findSelectableCategories($selectableCategories)
+         )
+      );
+      $this->view->assign('regions',
+         array_merge(
+            array(0 => 'Alle Stadtteile'),
+            $this->regionRepository->findAll()
+         )
+      );
+   }
 
 In the first few lines of the script, configuration options, set in
-the TypoScript template as comma seperated list, are transcribed to
+the TypoScript template as comma separated list, are transcribed to
 arrays. Then this information is passed to the *View*
 piece by piece.
 
 One requirement our extension has to realize, is that a visitor of
 the website can define a special demand, which is then used to filter the
 range of offers. We already implemented an appropriate Method
-:php:`findDemanded()` (see chaper 6, <remark>TODO: enter
-correct section name</remark>). To define his demand, the visitor chooses
+:php:`findDemanded()` (see :ref:`chapter 6 <individual_database_queries>`).
+To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
 .. figure:: /Images/7-Controllers/figure-7-2.png
