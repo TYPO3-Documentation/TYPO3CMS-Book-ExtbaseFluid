@@ -28,7 +28,7 @@ the method ``newAction()`` and available offers can be edited using
 the method ``editAction()``. The
 ``OrganizationController`` incorporates the same actions for
 organizations, with exception of the creation of organizations. Within the
-folder *EXT:sjr_offers/Resources/Private/Templates* we
+folder :file:`EXT:sjr_offers/Resources/Private/Templates` we
 have created a folder for each controller, without the suffix
 *Controller* in the name. Each action method has its own
 HTML template. There is also no suffix *Action* allowed

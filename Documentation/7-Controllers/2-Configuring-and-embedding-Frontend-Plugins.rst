@@ -48,7 +48,6 @@ specify which content will be stored in cache.
         'List',
         array('Inventory' => 'list')
    );
-   ?>
 
 The method expects 4 arguments. The first argument is, just like the one used in
 the registration process, the extension key. With the second argument, the
@@ -65,6 +64,6 @@ method without the suffix Action.
 The fourth, optional argument is also an array which is composed as the previous
 one. This one however contains the Controller-Action combinations which are
 _not_ stored in cache. These are especially those actions that issue a form. The
-methods  createAction()  or the  updateAction()  shouldn't be explicitly used here,
+methods `createAction()`  or the `updateAction()` shouldn't be explicitly used here,
 because they don't produce any result code that must be stored in cache.
 
