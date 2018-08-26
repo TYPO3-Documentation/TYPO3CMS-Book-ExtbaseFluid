@@ -16,7 +16,7 @@ a content element with TYPO3 using the static method registerPlugin().
 
 .. code-block:: php
 
-   Tx_Extbase_Utility_Extension::registerPlugin(
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         $_EXTKEY,
         'List',
         'The Inventory List'
@@ -43,7 +43,7 @@ specify which content will be stored in cache.
    <?php
    if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
-   Tx_Extbase_Utility_Extension::configurePlugin(
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         $_EXTKEY,
         'List',
         array('Inventory' => 'list')

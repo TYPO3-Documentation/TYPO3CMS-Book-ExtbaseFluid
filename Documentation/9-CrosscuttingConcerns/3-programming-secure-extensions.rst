@@ -74,22 +74,26 @@ properties ``username, email, password`` and
 properties, except the username (because the username should not be
 changed in our system).
 
-The form looks (shortened) like this::
+The form looks (shortened) like this:
+
+.. code-block:: html
 
    <f:form name="user" object="{user}" action="update">
-   <f:form.textbox property="email" />
-   <f:form.textbox property="password" />
-   <f:form.textbox property="description" />
+      <f:form.textbox property="email" />
+      <f:form.textbox property="password" />
+      <f:form.textbox property="description" />
    </f:form>
 
 If the form is sent, the argument mapping for the user object gets
-this array::
+this array:
+
+.. code-block:: raw
 
    array(
-   __identity => ...
-   email =>  ...
-   password => ...
-   description => ...
+      __identity => ...
+      email =>  ...
+      password => ...
+      description => ...
    )
 
 Because the ``__identity`` property and further properties

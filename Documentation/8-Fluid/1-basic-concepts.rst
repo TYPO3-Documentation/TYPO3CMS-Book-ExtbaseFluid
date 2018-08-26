@@ -43,7 +43,7 @@ code::
     namespace ExtbaseTeam\BlogExample\Controller;
 
     class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-        ...
+        // ...
         public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog) {
             $this->view->assign('blogTitle', 'Webdesign-Blog');
             $this->view->assign('blogPosts', $blog->getPosts());
@@ -238,8 +238,8 @@ Inline Notification for View Helpers
     * The ViewHelper contains a lot of content::
 
         <f:section name="main">
-            ....
-       </f:section>
+            <!-- ... -->
+        </f:section>
 
     Inline notation should be used, if:
 

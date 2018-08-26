@@ -26,9 +26,10 @@ property *posts* within the ``Blog`` class. You can find this in the file
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
 
-    class Blog extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
-        ...
+    use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
+    class Blog extends AbstractEntity
+    {
         /**
          * The posts of this blog
          *
@@ -36,8 +37,6 @@ property *posts* within the ``Blog`` class. You can find this in the file
          *
          */
         protected $posts;
-
-        ...
     }
 
 
@@ -96,9 +95,9 @@ table column. Let's take a look at the definition of the column ``posts``. It ca
 found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
     $TCA['tx_blogexample_domain_model_blog'] = array(
-        ...
+        // ...
         'columns' => array(
-            ...
+            // ...
             'posts' => array(
                 'exclude' => 1,
                 'label' => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog.posts',
@@ -115,7 +114,7 @@ found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *
                     ),
                 )
             ),
-            ...
+            // ...
     );
 
 Extbase "reads" from the configuration the table of the child objects

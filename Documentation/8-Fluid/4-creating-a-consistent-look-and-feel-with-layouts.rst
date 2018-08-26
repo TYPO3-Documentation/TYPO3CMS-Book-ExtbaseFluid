@@ -26,15 +26,15 @@ corresponding template within the layout. In the following example you see a
 use case of the ViewHelper ``<f:render section="..." />`` as
 placeholder.
 
-::
+.. code-block:: html
 
    <html>
-   ...
-   <body>
-   <h1>Blogging with Extbase:</h1>
-   <f:render section="main" />
-   <h6>This is the footer section</h6>
-   </body>
+      <!-- ... -->
+      <body>
+         <h1>Blogging with Extbase:</h1>
+         <f:render section="main" />
+         <h6>This is the footer section</h6>
+      </body>
    </html>
 
 .. tip::
@@ -44,13 +44,15 @@ placeholder.
   etc.), since this is usually generated with TYPO3. For the purpose of
   illustration though, we show a complete HTML page.
 
-A template looks like this::
+A template looks like this:
+
+.. code-block:: html
 
    <f:layout name="default" />
 
    <f:section name="main">
-   <h2>Blog List</h2>
-   ...
+      <h2>Blog List</h2>
+      <!-- ... -->
    </f:section>
 
 The first line in the template defines

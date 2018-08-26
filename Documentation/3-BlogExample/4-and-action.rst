@@ -96,11 +96,14 @@ in the BlogController. This does
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
 "inherits" all methods from it, by deriving it form this class::
 
-    <?php
     namespace MyVendor\BlogExample\Controller;
 
-    class BlogController extends
-        \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {...}
+    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+    class BlogController extends ActionController
+    {
+        // ...
+    }
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
@@ -108,8 +111,9 @@ will get a standard action; in our case the
 `indexAction()` contains only one line in our example
 (as shown above), which looks more detailled like this::
 
-    public function indexAction() {
-        $blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
+    public function indexAction()
+    {
+        $blogRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\BlogRepository::class);
         $allAvailableBlogs = $blogRepository->findAll();
         $this->view->assign('blogs', $allAvailableBlogs);
         $content = $this->view->render();

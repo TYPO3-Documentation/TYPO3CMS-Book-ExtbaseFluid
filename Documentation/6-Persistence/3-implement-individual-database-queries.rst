@@ -400,7 +400,7 @@ Since Extbase 1.2, the method ``execute()`` returns a multidimensional array wit
 Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
 look at an object with a single value property.
 
-.. code-block:: php
+.. code-block:: raw
 
     array(
         'identifier' => '<identifier>',
@@ -410,7 +410,8 @@ look at an object with a single value property.
                 'type' => '<type>',
                 'multivalue' => FALSE,
                 'value' => <value>
-            ), ...
+            ),
+            ...
         )
     )
 
@@ -429,7 +430,7 @@ for multivalue properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStora
 like ``array`` or ``splObjectStorage`` may be supported. The property is per definition declared as
 multivalue (``'multivalue' => TRUE``).
 
-::
+.. code-block:: raw
 
     array(
         'identifier' => '<identifier>',
@@ -443,13 +444,16 @@ multivalue (``'multivalue' => TRUE``).
                         'type' => '<type>',
                         'index' => <index>,
                         'value' => <value>
-                    ), ...
+                    ),
+                    ...
                 )
             )
         )
     )
 
-If a property has a NULL value, it is stored in the object array like this::
+If a property has a NULL value, it is stored in the object array like this:
+
+.. code-block:: raw
 
     array(
         'identifier' => '<identifier>',
@@ -459,7 +463,8 @@ If a property has a NULL value, it is stored in the object array like this::
                 'type' => '<type>',
                 'multivalue' => <boolean>,
                 'value' => NULL
-            ), ...
+            ),
+            ...
         )
     )
 

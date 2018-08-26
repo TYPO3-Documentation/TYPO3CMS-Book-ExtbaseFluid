@@ -305,11 +305,11 @@ needs 3 additional database fields which you should insert in the
 :file:`ext_tables.sql` file::
 
     CREATE TABLE tx_blogexample_domain_model_blog {
-    ...
+    // ...
     sys_language_uid int(11) DEFAULT '0' NOT NULL,
     l10n_parent int(11) DEFAULT '0' NOT NULL,
     l10n_diffsource mediumblob NOT NULL,
-    ...
+    // ...
     };
 
 You are free to choose the names of the database fields, but the
@@ -322,11 +322,11 @@ the corresponding database table.
 
     $TCA['tx_blogexample_domain_model_blog'] = array (
     'ctrl' => array (
-    ...
+    // ...
     'languageField' => 'sys_language_uid',
     'transOrigPointerField' => 'l10n_parent',
     'transOrigDiffSourceField' => 'l10n_diffsource',
-    ...
+    // ...
     )
     );
 
@@ -349,7 +349,7 @@ translation relates to.
 .. code-block:: php
 
    $TCA['tx_blogexample_domain_model_blog'] = array(
-     ...
+     // ...
      'types' => array(
        '1' => array('showitem' => 'l18n_parent , sys_language_uid, hidden, title,
                      description, logo, posts, administrator')
@@ -388,7 +388,7 @@ translation relates to.
            'type'=>'passthrough'
          )
        ),
-       ...
+       // ...
      )
    );
 

@@ -84,8 +84,6 @@ called a *Class*, in this case it is the Class
 
 .. code-block:: php
 
-   <?php
-
    class Ship
    {
       // …
@@ -103,7 +101,8 @@ add these Properties and Methods:
 
 .. code-block:: php
 
-   class Ship {
+   class Ship
+   {
 
       public $name;
 
@@ -127,7 +126,6 @@ add these Properties and Methods:
       {
 
       }
-
    }
 
 Our ship now has a name (:php:`$name`), a number of coaches
@@ -171,7 +169,7 @@ process consequentially *Instantiation*. We can use the
 command `var_dump()` to closely examine the object. We'll see
 the following:
 
-.. code-block:: php
+.. code-block:: raw
 
    object(Ship)#1 (3) {
 
@@ -198,7 +196,6 @@ same values.
 
    if ($fidelio1 === $fidelio2) {
       echo 'Objects are identical!'
-
    } else {
       echo 'Objects are not identical!'
    }
@@ -222,7 +219,7 @@ of the ship and call some Methods:
 
    $ship->name = 'FIDELIO';
 
-   echo 'The ship's Name is ' . $ship->name;
+   echo 'The ship\'s Name is ' . $ship->name;
 
    $ship->startEngine();
 
@@ -246,11 +243,7 @@ special variable :php:`$this`.
 
    class Ship
    {
-      // …
-
       public $speed;
-
-      // …
 
       function startEngine()
       {
@@ -284,19 +277,18 @@ constructor as Argument and then assigned to the Properties
 
 .. code-block:: php
 
-   class Ship {
-
+   class Ship
+   {
       public $name;
       public $coaches;
       public $speed;
 
-      ...
-
-      function __construct($name, $numberOfCoaches) {
+      function __construct($name, $numberOfCoaches)
+      {
          $this->name = $name;
          $this->coaches = $numberOfCoaches;
-         echo "Das neue Schiff hat den Namen: ".$this->name;
-         echo "<br />und ". $this->coaches . " Kabinen";
+         echo 'The new ship has the name: ' . $this->name;
+         echo '<br />and has ' . $this->coaches . ' coaches';
       }
    }
 
@@ -326,18 +318,15 @@ extend an "old" Class definition by using the key word
 
    class LuxuryLiner extends Ship
    {
-
       public $luxuryCoaches;
 
       function golfSimulatorStart()
       {
-         echo 'Golf simulator on ship ' . $this->name . '
-         started.';
+         echo 'Golf simulator on ship ' . $this->name . ' started.';
       }
 
       function golfSimulatorStop() {
-         echo 'Golf simulator on ship ' . $this->name . '
-         stopped.';
+         echo 'Golf simulator on ship ' . $this->name . ' stopped.';
       }
    }
 
@@ -374,25 +363,25 @@ example:
 
 .. code-block:: php
 
-   class Ship {
-      ...
+   class Ship
+   {
       $engineStatus = 'OFF';
-      ...
-      function startEngine() {
+
+      function startEngine()
+      {
          $this->engineStatus = 'ON';
       }
-      ...
    }
 
-   class Luxusliner extends Ship {
-      ...
+   class Luxusliner extends Ship
+   {
       $additionalEngineStatus = 'OFF';
-      ...
-      function startEngine() {
+
+      function startEngine()
+      {
          $this->engineStatus = 'ON';
          $this->additionalEngineStatus = 'ON';
       }
-      ...
    }
 
 
@@ -422,25 +411,25 @@ way:
 
 .. code-block:: php
 
-   class Ship {
-      ...
+   class Ship
+   {
       $engineStatus = 'OFF';
-      ...
-      function startEngine() {
+
+      function startEngine()
+      {
          $this->engineStatus = 'ON';
       }
-      ...
    }
 
-   class Luxusliner extends Ship {
-      ...
+   class Luxusliner extends Ship
+   {
       $additionalEngineStatus = 'OFF';
-      ...
-      function startEngine() {
+
+      function startEngine()
+      {
          parent::startEngine();
          $this->additionalEngineStatus = 'ON';
       }
-      ...
    }
 
 
@@ -458,18 +447,21 @@ implementation is to be done separately for each ship type.
 
 .. code-block:: php
 
-   abstract class Ship {
-      ...
-      function __construct() {
+   abstract class Ship
+   {
+      function __construct()
+      {
          $this->setupCoaches();
       }
+
       abstract function setupCoaches();
-      ...
    }
-   class Luxusliner extends Ship {
-      ...
-      function setupCoaches() {
-         echo 'Kabinen werden eingerichtet';
+
+   class Luxusliner extends Ship
+   {
+      function setupCoaches()
+      {
+         echo 'Setting up coaches';
       }
    }
 
@@ -498,19 +490,24 @@ for that:
 
 .. code-block:: php
 
-   interface SatelliteTV {
+   interface SatelliteTV
+   {
       public function enableTV();
       public function disableTV();
    }
 
-   class Luxusliner extends Ship implements SatelliteTV {
+   class Luxusliner extends Ship implements SatelliteTV
+   {
 
       protected $tvEnabled = FALSE;
 
-      public function enableTV() {
+      public function enableTV()
+      {
          $this->tvEnabled = TRUE;
       }
-      public function disableTV() {
+
+      public function disableTV()
+      {
          $this->tvEnabled = FALSE;
       }
    }
@@ -556,14 +553,17 @@ properties:
 .. code-block:: php
 
 
-   abstract class Ship {
+   abstract class Ship
+   {
       protected $coaches;
-      ...
+
       abstract protected function setupCoaches();
    }
 
-   class Luxusliner extends Ship {
-      protected function setupCoaches() {
+   class Luxusliner extends Ship
+   {
+      protected function setupCoaches()
+      {
          $this->coaches = 300;
       }
    }
@@ -605,17 +605,18 @@ respectively *getter*. See the example.
 
 .. code-block:: php
 
-   class Ship {
-
+   class Ship
+   {
       protected $coaches;
       protected $classification = 'NORMAL';
 
-      public function getCoaches() {
+      public function getCoaches()
+      {
          return $this->coaches;
       }
 
-
-      public function setCoaches($numberOfCoaches) {
+      public function setCoaches($numberOfCoaches)
+      {
          if ($numberOfCoaches > 500) {
             $this->classification = 'LARGE';
          } else {
@@ -624,12 +625,10 @@ respectively *getter*. See the example.
          $this->coaches = $numberOfCoaches;
       }
 
-      public function getClassification() {
+      public function getClassification()
+      {
          return $this->classification;
       }
-
-
-      ...
    }
 
 We now have a Method :php:`setCoaches()` which
@@ -646,7 +645,7 @@ inconsistent.
 
 .. tip::
 
-   In extbase you'll find getter and setter Methods all over. No
+   In Extbase you'll find getter and setter Methods all over. No
    Property in extbase is set to :php:`public`.
 
 
@@ -674,12 +673,14 @@ we save this number in a static Property
    class Luxusliner extends Ship {
       protected static $shipyardSupportTelephoneNumber = '+49 30 123456';
 
-      public function reportTechnicalProblem() {
+      public function reportTechnicalProblem()
+      {
          echo 'Auf dem Schiff ' . $this->name . ' wurde ein Problem festgestellt.
                Bitte informieren Sie ' . self::$shipyardSupportTelephoneNumber;
       }
 
-      public static function setShipyardSupportTelephoneNumber($newNumber) {
+      public static function setShipyardSupportTelephoneNumber($newNumber)
+      {
          self::$shipyardSupportTelephoneNumber = $newNumber;
       }
    }
@@ -761,24 +762,28 @@ more than one instance of the shipyard object:
 
 .. code-block:: php
 
+   use TYPO3\CMS\Core\SingletonInterface;
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-   class LuxuslinerShipyard implements t3lib_Singleton {
+   class LuxuslinerShipyard implements SingletonInterface
+   {
       protected $numberOfShipsBuilt = 0;
 
-      public function getNumberOfShipsBuilt() {
+      public function getNumberOfShipsBuilt()
+      {
          return $this->numberOfShipsBuilt;
       }
 
-      public function buildShip() {
+      public function buildShip()
+      {
          $this->numberOfShipsBuilt++;
-         // Schiff bauen und zurückgeben
       }
    }
 
-   $luxuslinerShipyard = t3lib_div::makeInstance('LuxuslinerShipyard');
+   $luxuslinerShipyard = GeneralUtility::makeInstance(LuxuslinerShipyard::class);
    $luxuslinerShipyard->buildShip();
 
-   $theSameLuxuslinerShipyard = t3lib_div::makeInstance('LuxuslinerShipyard');
+   $theSameLuxuslinerShipyard = GeneralUtility::makeInstance(LuxuslinerShipyard::class);
    $theSameLuxuslinerShipyard->buildShip();
 
    echo $luxuslinerShipyard->getNumberOfShipsBuilt(); // 2
@@ -810,9 +815,6 @@ class not implementing the Interface
    of a class.
 
 Now that we refreshed your knowledge of object oriented
-programming we can take a look at the deeper concepts of extbase:
+programming we can take a look at the deeper concepts of Extbase:
 Domain Driven Design, Model View Controller and Test Driven Development.
 You'll spot the basics we just talked about in the following frequently.
-
-
-

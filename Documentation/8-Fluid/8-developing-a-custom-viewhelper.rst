@@ -267,16 +267,20 @@ Lets have a look how we change the ViewHelper:
 
 .. code-block:: php
 
-   class Tx_BlogExample_ViewHelpers_GravatarViewHelper
-         extends Tx_Fluid_Core_ViewHelper_TagBasedViewHelper {
+   namespace MyVendor\BlogExample\ViewHelpers;
 
+   use TYPO3Fluid\Fluid\Core\ViewHelper\TagBasedViewHelper;
+
+   class GravatarViewHelper extends TagBasedViewHelper
+   {
      protected $tagName = 'img';
 
      /**
       * @param string $emailAddress The email address to resolve the gravatar for
       * @return string the HTML <img>-Tag of the gravatar
       */
-     public function render($emailAddress) {
+     public function render($emailAddress)
+     {
        $gravatarUri = 'http://www.gravatar.com/avatar/' . md5($emailAddress);
        $this->tag->addAttribute('src', $gravatarUri);
        return $this->tag->render();

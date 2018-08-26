@@ -236,8 +236,8 @@ blog post is always build-on the scheme *Maintopic: Title*:
 
 .. code-block:: php
 
-   class Tx_BlogExample_Domain_Validator_TitleValidator
-         extends Tx_Extbase_Validation_Validator_AbstractValidator {
+   class MyVendor\BlogExample\Domain\Validator\TitleValidator
+         extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
       public function isValid($value) {
          // $value ist also der Titel-String.
@@ -372,7 +372,7 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
      * @validate $pageName \MyVendor\MyExtension\Domain\Validator\PageNameValidator
      */
     public function createPageAction($pageName) {
-        ...
+        // ...
     }
 
 Here the parameter ``$pageName`` is checked with an own
@@ -407,7 +407,7 @@ example::
      * @validate $user \MyVendor\BlogExample\Domain\Validator\CustomUserValidator
      */
     public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user) {
-        ...
+        // ...
     }
 
 Here the following things are validated: ``$pageName``

@@ -267,11 +267,12 @@ Form data. If all Arguments are valid, the Action
 .. code-block:: php
 
    /**
-    * @param Tx_SjrOffers_Domain_Model_Organization $organization The organization the offer belongs to
-    * @param Tx_SjrOffers_Domain_Model_Offer $newOffer A fresh Offer object which has not yet been added to the repository
+    * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization the offer belongs to
+    * @param \MyVendor\SjrOffers\Domain\Model\Offer $newOffer A fresh Offer object which has not yet been added to the repository
     * @return void
     */
-   public function createAction(Tx_SjrOffers_Domain_Model_Organization $organization, Tx_SjrOffers_Domain_Model_Offer $newOffer) {
+   public function createAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer)
+   {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
       $this->redirect('show', 'Organization', NULL, array('organization' => $organization));
@@ -356,7 +357,7 @@ will not (yet) be persisted to database. This is not done until at the end
 of a request-response-cycle. Therefore no UID has yet been assigned to a
 new Object and the transcription to a URL parameter fails. You can
 manually trigger the action of persisting before the redirection, by using
-:php:`Tx_Extbase_Dispatcher::getPersistenceManager()->persistAll()`,
+:php:`$this->objectManager->get(PersistenceManager::class)->persistAll()`,
 though.
 
 When calling the Method :php:`createAction(),` we
@@ -383,7 +384,7 @@ encrypted form (:php:`__hmac`), the structure of the form
    <input type="hidden" name="tx_sjroffers_list[__referrer][actionName]" value="edit" />
    <input type="hidden" name="tx_sjroffers_list[__hmac]"
          value="a:4:{s:5:&quot;offer&quot;;a:12:
-   ...
+         ...
          s:10:&quot;__identity&quot;;i:1;}s:12:&quot;organization&quot;;i:1;
          s:6:&quot;action&quot;;i:1;s:10:&quot;controller&quot;;
          i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
@@ -455,11 +456,12 @@ be edited as an Argument.
 .. code-block:: php
 
    /**
-    * @param Tx_SjrOffers_Domain_Model_Offer $offer The existing, unmodified offer
+    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
     * @return string Form for editing the existing organization
     * @dontvalidate $offer
     */
-   public function editAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+   public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   {
       $this->view->assign('offer', $offer);
       $this->view->assign('regions', $this->regionRepository->findAll());
    }
@@ -473,10 +475,11 @@ offers.
 .. code-block:: php
 
    /**
-    * @param Tx_SjrOffers_Domain_Model_Offer $offer The modified offer
+    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The modified offer
     * @return void
     */
-   public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+   public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   {
       $this->offerRepository->update($offer);
       $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
    }
@@ -514,11 +517,16 @@ Let's look at an example with the Method
 
 .. code-block:: php
 
-   public function initializeAction() {
-      $this->accessControlService = t3lib_div::makeInstance('Tx_SjrOffers_Service_AccessControlService');
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
+   use \MyVendor\SjrOffers\Service\AccessControlService;
+
+   public function initializeAction()
+   {
+      $this->accessControlService = GeneralUtility::makeInstance(AccessControlService::class);
    }
 
-   public function updateAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+   public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   {
       $administrator = $offer->getOrganization()->getAdministrator();
       if ($this->accessControlService->isLoggedIn($administrator)) {
          $this->offerRepository->update($offer);
@@ -540,9 +548,13 @@ The description of the class is to be found in the file :file:`EXT:sjr_offers/Cl
 
 .. code-block:: php
 
-   class Tx_SjrOffers_Service_AccessControlService implements t3lib_Singleton {
+   use TYPO3\CMS\Core\SingletonInterface
 
-      public function isLoggedIn($person = NULL) {
+   class MyVendor\SjrOffers\Service\AccessControlService implements SingletonInterface
+   {
+
+      public function isLoggedIn($person = NULL)
+      {
          if (is_object($person)) {
             if ($person->getUid() === $this->getFrontendUserUid()) {
                 return TRUE;
@@ -551,7 +563,8 @@ The description of the class is to be found in the file :file:`EXT:sjr_offers/Cl
          return FALSE;
       }
 
-      public function getFrontendUserUid() {
+      public function getFrontendUserUid()
+      {
          if($this->hasLoggedInFrontendUser() && !empty($GLOBALS['TSFE']->fe_user->
                 user['uid'])) {
             return intval($GLOBALS['TSFE']->fe_user->user['uid']);
@@ -559,7 +572,8 @@ The description of the class is to be found in the file :file:`EXT:sjr_offers/Cl
          return NULL;
       }
 
-      public function hasLoggedInFrontendUser() {
+      public function hasLoggedInFrontendUser()
+      {
          return $GLOBALS['TSFE']->loginUser === 1 ? TRUE : FALSE;
       }
 
@@ -572,13 +586,13 @@ this snippet from a template:
 
 .. code-block:: html
 
-   { namespace sjr=Tx_SjrOffers_ViewHelpers}
-   ...
+   {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
+   <!-- ... -->
    <sjr:security.ifAuthenticated person="{organization.administrator}">
       <f:link.action controller="Offer" action="edit" arguments="{...}">
          <f:image src="EXT:sjr_offers/Resources/Public/Icons/edit.gif" alt="edit" />
       </f:link.action>
-      ...
+      <!-- ... -->
    </sjr:security.ifAuthenticated>
 
 .. tip::
@@ -614,15 +628,21 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
 
 .. code-block:: php
 
-   class Tx_SjrOffers_ViewHelper_Security_IfAuthenticatedViewHelper
-      extends Tx_Fluid_ViewHelpers_IfViewHelper {
+   namespace MyVendor\SjrOffers\ViewHelper\Security;
 
+   use MyVendor\SjrOffers\Service\AccessControlService;
+   use TYPO3Fluid\Fluid\ViewHelpers\IfViewHelper;
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+   class IfAuthenticatedViewHelper extends IfViewHelper
+   {
       /**
        * @param mixed $person The person to be tested for login
        * @return string The output
        */
-      public function render($person = NULL) {
-         $accessControlService = t3lib_div::makeInstance('Tx_SjrOffers_Service_AccessControlService'); // Singleton
+      public function render($person = NULL)
+      {
+         $accessControlService = GeneralUtility::makeInstance(AccessControlService::class);
          if ($accessControlService->isLoggedIn($person)) {
             return $this->renderThenChild();
          } else {
@@ -651,18 +671,18 @@ Object in one single Action. The appropriates Method
 .. code-block:: php
 
    /**
-    * @param Tx_SjrOffers_Domain_Model_Offer $offer The offer to be deleted
+    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be deleted
     * @return void
     */
-   public function deleteAction(Tx_SjrOffers_Domain_Model_Offer $offer) {
+   public function deleteAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   {
       $administrator = $offer->getOrganization()->getAdministrator();
       if ($this->accessControlService->isLoggedIn($administrator) {
          $this->offerRepository->remove($offer);
       } else {
          $this->flashMessages->add('Bitte loggen Sie sich ein.');
       }
-      $this->redirect('show', 'Organization', NULL, array('organization' =>
-         $offer->getOrganization()));
+      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
    }
 
 The important thing here is that you delete the given Offer from the
@@ -687,10 +707,11 @@ stage":
 .. code-block:: php
 
    /**
-    * @param Tx_SjrOffers_Domain_Model_Demand $demand A demand (filter)
+    * @param \MyVendor\SjrOffers\Domain\Model\Demand $demand A demand (filter)
     * @return string The rendered HTML string
     */
-   public function indexAction(Tx_SjrOffers_Domain_Model_Demand $demand = NULL) {
+   public function indexAction(\MyVendor\SjrOffers\Domain\Model\Demand $demand = NULL)
+   {
       $allowedStates = (strlen($this->settings['allowedStates']) > 0) ?
             t3lib_div::intExplode(',', $this->settings['allowedStates']) : array();
       $listCategories = (strlen($this->settings['listCategories']) > 0) ?

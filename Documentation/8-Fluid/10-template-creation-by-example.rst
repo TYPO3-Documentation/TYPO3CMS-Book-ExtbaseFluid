@@ -45,7 +45,7 @@ framework of our templates looks as follows::
 
    <f:layout name="default" />
       <f:section name="content">
-      ...
+      <!-- ... -->
    </f:section>
 
 In most templates we are referencing the layout
@@ -71,11 +71,11 @@ controller, e.g. at unauthorized access (see also the sections for edit and dele
    public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer) {
       $administrator = $offer->getOrganization()->getAdministrator();
       if ($this->accessControlService->isLoggedIn($administrator)) {
-         ...
+         // ...
       } else {
          $this->flashMessages->add('Please log in.');
       }
-      ...
+      // ...
    }
 
 
@@ -128,19 +128,23 @@ The `NumericRangeViewHelper` is implemented as follows:
 
 .. code-block:: php
 
-   class Tx_SjrOffers_ViewHelpers_Format_NumericRangeViewHelper
-     extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+   namespace MyVendor\SjrOffers\ViewHelpers\Format;
 
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+   class NumericRangeViewHelper extends AbstractViewHelper
+   {
      /**
-      * @param Tx_SjrOffers_Domain_Model_NumericRangeInterface $range The range
+      * @param \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range The range
       * @return string Formatted range
       */
-     public function render(Tx_SjrOffers_Domain_Model_NumericRangeInterface $range = NULL) {
+     public function render(\MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range = NULL)
+     {
        $output = '';
        if ($range === NULL) {
          $range = $this->renderChildren();
        }
-       if ($range instanceof Tx_SjrOffers_Domain_Model_NumericRangeInterface) {
+       if ($range instanceof \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface) {
          $minimumValue = $range->getMinimumValue();
          $maximumValue = $range->getMaximumValue();
          if (empty($minimumValue) && !empty($maximumValue)) {
@@ -180,7 +184,7 @@ template *edit.html* in the folder
 
 .. code-block:: html
 
-   {namespace sjr=Tx_SjrOffers_ViewHelpers}
+   {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
    <f:layout name="default" />
    <f:section name="content">
      <sjr:security.ifAuthenticated person="{organization.administrator}">
@@ -235,22 +239,21 @@ object is inserted in the form fields during rendering of the page. When
 submitting the form, the data is send as POST parameters to the method
 ``updateAction()``.
 
-When the entered data is not valid, the method
-``editActon()`` is called again and an error message is
-displayed. We have stored the HTML code for the error message in a partial
-``formErrors`` (see
-*EXT:sjr_offers/Resources/Private/Partials/formErrors.html*).
-In this partial, the name of the form that relates to the error message is
-given as ``formName``::
+When the entered data is not valid, the method ``editActon()`` is called again
+and an error message is displayed. We have stored the HTML code for the error
+message in a partial ``formErrors`` (see
+:file:`EXT:sjr_offers/Resources/Private/Partials/formErrors.html`).  In this
+partial, the name of the form that relates to the error message is given as
+``formName``::
 
    <f:form.errors for="formName">
-   <div id="dialog" title="{error.propertyName}">
-   <p>
-   <f:for each="{error.errors}" as="errorDetail">
-   {errorDetail.message}
-   </f:for>
-   </p>
-   </div>
+      <div id="dialog" title="{error.propertyName}">
+         <p>
+            <f:for each="{error.errors}" as="errorDetail">
+               {errorDetail.message}
+            </f:for>
+         </p>
+      </div>
    </f:form.errors>
 
 .. sidebar:: Localize error messages
@@ -275,7 +278,7 @@ given as ``formName``::
       </f:form.errors>
 
    In the file
-   *EXT:sjr_offers/Resources/Private/Language/locallang.xml*
+   :file:`EXT:sjr_offers/Resources/Private/Language/locallang.xml`
    you have to write for example::
 
       <label index="newOffer.title">Title of the offer</label>
