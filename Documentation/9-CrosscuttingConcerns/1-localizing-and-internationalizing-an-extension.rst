@@ -100,50 +100,35 @@ comment_header  Comments      Kommentare
 
 
 In TYPO3 (and also in Extbase) the language file, in which the
-translated terms are stored, is named :file:`locallang.xml`.
+translated terms are stored, is named :file:`locallang.xlf`.
 It should contain all terms that have to be translated, in our example
 "By:" and "Comments", and their translations. Using Extbase the the file
-:file:`locallang.xml` must reside in the folder
+:file:`locallang.xlf` must reside in the folder
 :file:`Resources/Private/Language/`. To localize the above
-terms we create the :file:`locallang.xml` file the following
+terms we create the :file:`locallang.xlf` file the following
 way:
 
-.. code-block:: xml
+.. code-block:: xlf
 
-   <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-   <T3locallang>
-      <meta type="array">
-         <type>module</type>
-         <description>Strings for the blog_example extension</description>
-      </meta>
-      <data type="array">
-         <!-- Hier stehen die verschiedenen Übersetzungen der Texte aus dem Template-->
-         <languageKey index="default" type="array">
-            <label index="author_prefix">By: </label>
-            <label index="comment_header">Comments</label>
-         </languageKey>
-         <languageKey index="de" type="array">
-            <label index="author_prefix">Von: </label>
-            <label index="comment_header">Comments</label>
-         </languageKey>
-      </data>
-   </T3locallang>
-
-The framework of the file includes the XML header, the root element
-of the XML file (``<T3locallang>``) and the description
-(``<description>``). The translations of the strings are in
-the ``<data type="array">`` section. For every language
-there is a section ``<languageKey
-index="*[language]*" type="array">``. For every
-identifier is defined how it should be given out in a particular language
-in this section. In the above file the texts are stored in two languages:
-*default*, which equals to English and
-*de* for German.
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+       <file source-language="en" datatype="plaintext" original="messages" date="2011-10-18T18:20:51Z" product-name="my-ext">
+           <header/>
+           <body>
+               <trans-unit id="author_prefix">
+                   <source>By:</source> 
+               </trans-unit>
+               <trans-unit id="comment_header">
+                   <source>Comments</source>
+               </trans-unit>
+           </body>
+       </file>
+    </xliff>
 
 .. tip::
 
     The TYPO3 Core API describes in detail the construction of the
-    :file:`locallang.xml` file
+    :file:`locallang.xlf` file
     (*https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/Internationalization/XliffFormat.html*).
 
 Now the placeholder for the translated terms must be inserted into
