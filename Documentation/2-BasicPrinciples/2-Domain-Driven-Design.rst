@@ -7,33 +7,32 @@ Software development is a creative process. You do not stand on an assembly
 line, but are increasingly exposed to new challenges. Each software differs
 from each other, and every time you start with a new program you start from
 scratch. You have to find out, what your client wants to achieve and after that
-you want to implement this. Through this creativity you have many freedoms but
-also the amount of misunderstandings between the customer and you as a developer
-can grow. Who has never seen a project in which the requirements were documented
-and the specifications were written and still the client was not satisfied at
-the end or at worst the software hasn't solved his problems at all.
+you want to implement this. Though in general you have great freedom for your development 
+misunderstandings between the customer and you as a developer
+can rise. There is hardly anyone who never has been working a project in which the requirements were documented
+and the specifications were written but still the client was not satisfied at
+the end or in worst case the software hasn't solved his problems at all.
 
 
 If you develop software for a customer, you must first understand his problems,
 so you can offer your customer a tailored solution. This problem area is called
 the application domain within the terms of domain-driven design. By knowing the
-application domain of the customer, understand his problem and have clearly in
-mind, you are in a position to adequately implement these domain in software.
+application domain of the customer, understanding his problems and having them clearly in
+mind, you are in a position to adequately implement this domain in software.
 Extbase supports you in supplying you with the required technical
 infrastructure.
 
 
-Domain-Driven Design is a development paradigm, which includes not only
-technical concepts. Instead, with using different techniques, Extbase tries to
-to direct the creativity in the development of software to structured directions
-and so channel it and make it more effective.
+Domain-Driven Design is a development paradigm that does not include 
+technical concepts. Instead, by using different techniques, extbase tries to
+to direct the creativity of the software development to structured directions
+and thus channel it and make it more effective.
 
-With domain-driven design the understanding for you of the relevant problems and
-of their environment is in the foreground, a problem which the customer wishes
-to see resolved by your program. In close cooperation with the customer the
-problem is collaborative explored. During this process, which proceeds
-iteratively (ie. stepwise), you will develop a model together with the customer,
-that represents the problem adequately. This model is then the basis of the
+In domain-driven design your understanding of the relevant problems and their environment is the focus: a problem which the customer wishes
+to get resolved by your program. In close cooperation with the customer the
+problem is collaboratively explored. During this process, which proceeds
+iteratively (i.e. stepwise), you will develop a model together with the customer
+that represents the problem adequately. This model is the base of the
 generated program. By focusing on the model you are not distracted with the
 actual problem of the customer during prototyping - you can focus on the problem
 domain.
@@ -43,8 +42,8 @@ domain.
    The involvement of customers in the working phase is absolutely essential
    because only he knows the problem well enough.
 
-Domain-Driven Design is a very pragmatic approach. Even at the beginning of a
-software project is trying to write code while getting to know the problem to be
+Domain-Driven Design is a very pragmatic approach. Yet at the beginning of a
+software project you are writing code to explore the problem and its dimensions that shall be
 solved. Often you will need a few prototypes and iterations, until you reach the
 final model. Take this time!
 
@@ -66,11 +65,11 @@ final model. Take this time!
 
 Extbase offers you a variety support of Domain-Driven Design. You do not have to
 care for e.g. storing data in the database. If the domain contains complex
-invariants (e.g. rules that must not be violated) so you can implement this
-elegantly over so-called validators. In addition, you have fluid as a powerful
+invariants (e.g. rules that must not be violated) you can implement these
+elegantly using so-called validators. In addition, you have fluid as a powerful
 templating engine for efficient output of data available. So you can focus on
-the problem domain, rather than have to invest much time in the output of the
-data and the user interaction.
+the problem domain, rather than investing much time in the output of the
+data and user interaction.
 
 We now hope that your appetite is aroused! Below we show you some of the core
 concepts of the Domain-driven design. These include certain approaches such as
@@ -83,24 +82,24 @@ Develop a common language
 --------------------------
 
 In software projects, people are involved in different roles: the customer is an
-expert in his business area and he has a problem he wants to solve through a
-program. As he very well acquainted with the application domain of this program,
+expert in his business area and has a problem he wants to get solved by a
+program. As he is very well acquainted with the application domain of this program,
 we refer to him as a so-called domain expert.
 
 You are usually in the role of the developer: You are familiar with many
-technical possibilities but you do usually not know in the business of the
+technical possibilities but you do usually not know the business of the
 customer. Therefore, misunderstandings are inevitable, because the developer
-uses a language very different from the domain expert.
+uses a very different language from the domain expert.
 
-In Domain-driven design, important core terms should be found which are needed
-for the characterization and solution of the problem. These will be compiled in
-the form a glossary to ensure always, that the domain expert and the developer
-understand each other correct.
+In Domain-driven design, important core terms that are needed
+for the characterization and solution of the problem should be determined. These will be compiled in
+the form a glossary to ensure always that the domain expert and the developer
+understand each other correctly.
 
 This so-called ubiquitous language does not apply only during communication: it
-should be found in the source code (e.g. class or method names) as well. This
-makes it possible to consult experts with problems within the domain and make
-decisions with the domain expert on the basis of the source code, whether the
+should be related in the source code (e.g. class or method names) as well. This
+enables experts to capture the problems within the domain on the one hand and domain expert to take
+decisions on the basis of the source code on the other hand on whether the
 business logic has been implemented correctly.
 
 To model the domain
