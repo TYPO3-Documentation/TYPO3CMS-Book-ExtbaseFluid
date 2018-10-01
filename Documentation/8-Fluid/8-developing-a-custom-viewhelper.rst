@@ -86,7 +86,7 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
    }
 
 Every ViewHelper must inherit from the class
-:php:`\TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper`.
+:php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper`.
 
 A ViewHelper can also inherit from subclasses of :php:`AbstractViewHelper`, e.g.
 from :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.
@@ -429,13 +429,13 @@ Lets have a look at the new code of the :php:`renderStatic()` method::
 
    class GravatarViewHelper extends AbstractViewHelper
    {
-       use CompileWithRenderStatic;
+       use CompileWithContentArgumentAndRenderStatic;
 
        protected $escapeOutput = false;
 
        public function initializeArguments()
        {
-           $this->registerArgument('emailAddress', 'string', 'The email address to resolve the gravatar for', false, null);
+           $this->registerArgument('emailAddress', 'string', 'The email address to resolve the gravatar for');
        }
 
        public static function renderStatic(
@@ -443,7 +443,7 @@ Lets have a look at the new code of the :php:`renderStatic()` method::
            \Closure $renderChildrenClosure,
            RenderingContextInterface $renderingContext
        ) {
-           $emailAddress = $arguments['emailAddress'] ?? $renderChildrenClosure();
+           $emailAddress = $renderChildrenClosure();
 
            return '<img src="http://www.gravatar.com/avatar/' .
                md5($emailAddress) .
@@ -676,6 +676,10 @@ Example implementation::
 
 Most of the time this method is implemented. It's the one that is called by
 default from within the compiled Fluid.
+
+It is however not called on AbstractTagBasedViewHelper implementations - on such classes
+you still need to use the render() method since that is the only way you can access $this->tag
+which contains the tag builder that generates the actual XML tag.
 
 As this method has to be static, there is no access to instance attributes, e.g.
 :php:`$this->tag` within an subclass of :php:`AbstractTagBasedViewHelper`.
