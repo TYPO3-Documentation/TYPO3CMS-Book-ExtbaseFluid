@@ -352,9 +352,10 @@ Both methods expect an integer value. With the method ``setOffset()``, you set t
 object you will start with. With the method ``setLimit()``, you set the maximum count of objects you will
 get.
 
-At first, the usage of a ``Query`` object with ``Constraint`` objects instead of directly written
-SQL statements looks very inefficient. But doing so here in Extbase makes possible a complete abstraction
-of the storage backend.
+At first sight the usage of a `Query` object with `Constraint` objects instead
+of directly written SQL statements may look inefficient. But doing so here with
+Extbase makes complete abstraction of the storage backend possible.
+
 .. note::
 
     The ``Query`` object leans against the *Java Specification Request* (JSR) 283. JSR 283
@@ -385,7 +386,6 @@ is translated by Extbase to the following query:
     Inside of the repositories, you can access the database using the TYPO3 4.x API
     (for example with ``$GLOBALS['TYPO3_DB']->exec_SELECTgetRows([...])``). You have to
     handle the creation and maintenance of the objects by yourself.
-
 
 The method ``execute()`` per default returns a ready built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
@@ -510,9 +510,6 @@ from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all
 While the setting ``setReturnRawQueryResult()`` is active by ``matching()`` and ``statement()``,
 the remaining three settings are only effective by ``matching()``.
 
-.. warning::
-
-    The ``QuerySettings`` object encapsulates specific settings of TYPO3 4.x.
 
 Beside the method ``execute()``, the ``Query`` object provides the method ``count()`` for disposal.
 It returns only the number of elements of the result set, as an integer value, and can only be used in
