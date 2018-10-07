@@ -7,20 +7,20 @@
 Moving Repeating Snippets To Partials
 =====================================
 
-Some parts within different Templates might be the same. To not repeat this part
+Some parts within different Templates might be the same. In order to not repeat this part
 in multiple templates, Fluid offers so called Partials.
-Partials are small pieces of Fluid template within a separate file, that can be
+Partials are small pieces of Fluid template within a separate file that can be
 included in multiple Templates.
 
-For example an extension might display tags inside an
+For example, an extension might display tags inside an
 :file:`Resources/Private/Templates/RecordType/Index.html` template and also in
 :file:`Resources/Private/Templates/RecordType/Show.html`. The snippet to display
 these tags might look like::
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-Once these might change, e.g. an :html:`ul` might be preferred some day, this
-has to be changed within both templates.
+If this is to be changed, e.g. an :html:`ul` is preferred some day, the
+modifications would have to be made in both templates.
 
 That's where Partials are used. Partials are stored, by default, within
 :file:`Resources/Private/Partials/`. One might create a new Partial
@@ -28,7 +28,7 @@ That's where Partials are used. Partials are stored, by default, within
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-Inside the existing template the snippet can now be replaced with a ViewHelper
+Inside the existing Template the snippet can now be replaced with a ViewHelper
 to render the Partial::
 
    {f:render(partial: 'Tags', arguments: {
@@ -40,7 +40,7 @@ The argument "partial" receives the full path within the configured Partial
 folder to the file, excluding the file extension.
 
 It's also possible to create further folders, e.g.:
-:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the partial::
+:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the Partial::
 
    {f:render(partial: 'Blogpost/Tags', arguments: {
        tags: post.tags
@@ -49,18 +49,18 @@ It's also possible to create further folders, e.g.:
 ViewHelper Namespace import
 ---------------------------
 
-Like within Fluid Templates, custom ViewHelpers might be used within Partials.
-As these ViewHelpers are within a different namespace then default ViewHelpers,
-this namespace need to be imported. For information about how to import a
+Like within Fluid Templates, custom ViewHelpers can be used within Partials.
+Because these ViewHelpers are not in the default namespace,
+their namespace needs to be imported. For information about how to import a
 namespace, see :ref:`importing-namespaces`.
 
-Either one uses a :ref:`global-namespace-import`, or :ref:`imports the namespace
-<importing-namespaces>` within the partial, or within the template. The last two
-options can be used consecutive.
+You can use a :ref:`global-namespace-import`, or :ref:`imports the namespace
+<importing-namespaces>` within the Partial, or within the Template. The last two
+options can be used consecutively.
 
 .. note::
 
-   Up to CMS v8 this namespace import has to be within each partial where such a
+   Up to CMS v8 this namespace import has to be within each Partial where such a
    ViewHelper was used. Since CMS v8 there is no need anymore. The namespace has
    to be imported within the Partial or the Templates. It still can be imported
    in both, but the template is enough.
@@ -70,10 +70,10 @@ How to treat Partials
 
 Partials should best be treated as reusable block of Fluid, with no
 dependencies. Therefore the namespace imports should happen within the Partial.
-Also the partial should be self contained.
+Also the Partial should be self contained.
 
 This way the Partial can be reused within different Templates. As each Template
-has do call the partial, each Template can map existing variables to match the
+has do call the Partial, each Template can map existing variables to match the
 used variables within the Partial.
 
 Let's assume the following Partial:
@@ -81,7 +81,7 @@ Let's assume the following Partial:
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-These partial only requires the variable :html:`{tags}` to exist.
+This Partial only requires the variable :html:`{tags}`.
 
 Let's assume the following Template:
 :file:`Resources/Private/Templates/BlogPosts/Index.html`::
@@ -95,12 +95,11 @@ Let's assume the following Template:
        })}
    </f:for>
 
-Then within the Template no variable :html:`{tags}` exist. Instead the variable
+Within the Template, no variable :html:`{tags}` exists. Instead, the variable
 :html:`{blogPost.tags}` is mapped to :html:`{tags}` for the Partial.
 
-This way it can also be reused for the following Template:
+This way, it can also be reused for the following Template:
 
-Let's assume the following Template:
 :file:`Resources/Private/Templates/Blogs/Index.html`::
 
    <f:for each="{blogs}" as="blog">
@@ -112,7 +111,7 @@ Let's assume the following Template:
        })}
    </f:for>
 
-Again there is no variable :html:`{tags}`. This time an index of Blogs is
-displayed instead of Blogposts of a single Blog. Still both have relations to
-tags which should be displayed the same way. With a single Partials and the
+Again, there is no variable :html:`{tags}`. This time, an index of Blogs is
+displayed instead of Blogposts of a single Blog. Both have relations to
+tags which should be displayed the same way. With a single Partial and the
 `arguments`-Argument this is possible.
