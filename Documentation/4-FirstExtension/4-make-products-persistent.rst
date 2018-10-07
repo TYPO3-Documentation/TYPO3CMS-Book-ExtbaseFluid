@@ -112,6 +112,15 @@ hard-coded in the TYPO3 core and you have to use this to define your own text.
    The possibilities to impact the TCA are immense.
    You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
 
+.. attention::
+
+   In TYPO3 7 the configuration was stored in the Array ``$GLOBALS['TCA']``
+   in the file :file:`EXT:store_inventory/ext_tables.php`, but the TCA configuration was
+   moved to a file with the database table name suffixed with the file extension *.php* as filename.
+   So here the *Coding Guidelines* can't be applied, which says filenames has to be in *UpperCamelCase*.
+
+   If you later want to overwrite the TCA from an existing database table, then you must use the file :file:`EXT:store_inventory/Configuration/TCA/Overrides/[tablename].php`.
+   
 .. code-block:: xml
 
    <?xml version="1.0" encoding="UTF-8"?>
@@ -138,16 +147,6 @@ hard-coded in the TYPO3 core and you have to use this to define your own text.
          </body>
       </file>
    </xliff>
-
-.. attention::
-
-   In TYPO3 7 the configuration was stored in the Array ``$GLOBALS['TCA']``
-   in the file :file:`EXT:store_inventory/ext_tables.php`, but the TCA configuration was
-   moved to a file with the database table name suffixed with the file extension *.php* as filename.
-   So here the *Coding Guidelines* can't be applied, which says filenames has to be in *UpperCamelCase*.
-
-   If you later want to overwrite the TCA from an existing database table, then you must use the file :file:`EXT:store_inventory/Configuration/TCA/Overrides/[tablename].php`.
-
 
 After we installed the extension, we can create our first products in the backend.
 
