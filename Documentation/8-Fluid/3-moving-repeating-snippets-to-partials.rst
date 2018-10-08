@@ -54,9 +54,8 @@ Because these ViewHelpers are not in the default namespace,
 their namespace needs to be imported. For information about how to import a
 namespace, see :ref:`importing-namespaces`.
 
-You can use a :ref:`global-namespace-import`, or :ref:`imports the namespace
-<importing-namespaces>` within the Partial, or within the Template. The last two
-options can be used consecutively.
+It's possible to use a :ref:`global-namespace-import`, or :ref:`imports the namespace
+<importing-namespaces>` within the Partial, or within the Template.
 
 .. note::
 
