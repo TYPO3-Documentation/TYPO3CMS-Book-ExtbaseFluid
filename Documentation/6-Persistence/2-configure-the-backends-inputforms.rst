@@ -526,9 +526,9 @@ Editing (IRRE)* which powers the creation, update and deletion of Domain-objects
 of whole Aggregates in a single Input Form. Without *IRRE* the Domain-objects
 must be edited and connected each by itself which would require an intermediate
 save. This technique is a comfortable tool for managing complex Aggregates. All
-the possibilities provided by IRRE are well documented in the TYPO3-Core API
-(refer to *http://typo3.org/documentation/
-document-library/core-documentation/doc_core_api/4.3.0/view/4/2/)*.
+the possibilities provided by IRRE are well documented, refer to :ref:`the TYPO3
+TCA Reference <t3tca:columns-inline>`.
+
 
 .. code-block:: php
 
