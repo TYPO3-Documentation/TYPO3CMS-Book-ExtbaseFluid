@@ -14,10 +14,10 @@ and the specifications were written but still the client was not satisfied at
 the end or in worst case the software hasn't solved his problems at all.
 
 
-If you develop software for a customer, you must first understand their problems,
+If you develop software for customers, you must first understand their problems,
 so you can offer your customer a tailored solution. This problem area is called
 the application domain within the terms of domain-driven design. By knowing the
-application domain of the customer, understanding their problems and having them clearly in
+application domain of customers, understanding their problems and having them clearly in
 mind, you are in a position to adequately implement this domain in software.
 Extbase supports you in supplying you with the required technical
 infrastructure.
