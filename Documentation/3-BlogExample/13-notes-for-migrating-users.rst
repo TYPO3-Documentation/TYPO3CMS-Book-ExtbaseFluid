@@ -3,7 +3,7 @@
 Notes for migrating users
 =========================
 
-This section is for developer which have already get some experience
+This section is for developers who already have some experience
 with the traditional extension development. Should this apply to you, you
 will find tips for the change here. If you are new to get on the programming
 of extensions you confidently skip this section. The previous manner what we
@@ -18,7 +18,7 @@ characterized by:
   as well as
 * the creation of extensions centered to database tables with the kickstarter.
 
-All mentioned points are changing by Extbase on a more or
+All mentioned points are changed by Extbase in a more or
 less radical manner. The complete development of an extension concentrates
 on the domain of the problem - whose terms, sequences, rules and think
 pattern. Objects from the real world, like customer, invoice, member, rental
