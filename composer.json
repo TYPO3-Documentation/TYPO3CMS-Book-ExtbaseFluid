@@ -1,0 +1,5 @@
+{
+    "name": "typo3/book-extbasefluid",
+    "type": "typo3-cms-documentation",
+    "description": "Developing TYPO3 Extensions with Extbase and Fluid"
+}
