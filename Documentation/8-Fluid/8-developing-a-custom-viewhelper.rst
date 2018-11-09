@@ -34,11 +34,11 @@ email address to the service and receives the picture for display.
 This section explains how to write a ViewHelper that uses an email address as
 parameter and shows the picture from gravatar.com if it exists.
 
-The ViewHelper is not part of the default distribution, therefore an own
-namespace import is necessary to use the ViewHelper. In the following example
+The custom ViewHelper is not part of the default distribution, therefore an own
+namespace import is necessary to use this ViewHelper. In the following example
 the namespace :php:`\MyVendor\BlogExample\ViewHelpers` is imported with the
 prefix `blog`. Now, all tags starting with `blog:` are interpreted as
-ViewHelper from within the namespace::
+ViewHelper from within this namespace::
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
@@ -513,7 +513,7 @@ To import a ViewHelper namespace into Fluid, the following Syntax can be used:
        <!-- Content of Fluid Template -->
    </html>
 
-In above example `blog` is the namespace available within Fluid and
+In above example `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
 All ViewHelper which start with `blog:` will be looked up within the PHP
@@ -536,7 +536,7 @@ To import a ViewHelper namespace into Fluid, the following Syntax can be used:
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
-In above example `blog` is the namespace available within Fluid and
+In above example `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
 All ViewHelper which start with `blog:` will be looked up within the PHP
