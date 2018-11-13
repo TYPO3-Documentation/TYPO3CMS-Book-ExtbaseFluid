@@ -3,8 +3,8 @@
 Internationalization, Validation and Security
 ==============================================================
 
-In the previous chapters we have examined all levels of the MVC
-pattern. Thereby we have cosidered every level seperately. This will change
+In the previous chapters we examined all levels of the MVC
+pattern, exploring each aspect in detail. This will change
 in this chapter: Here we will talk about functions on extension programming,
 where the interaction of the different levels is important. First we show
 how to programm Extbase based extensions which can create output in
