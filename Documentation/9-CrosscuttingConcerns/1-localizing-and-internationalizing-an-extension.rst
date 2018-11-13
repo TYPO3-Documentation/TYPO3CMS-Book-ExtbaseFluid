@@ -3,12 +3,10 @@
 Localizing and internationalizing an extension
 ==============================================
 
-Particularly in business relationships there often is the need to
-provide a website in one or multiple languages. Therefore not only the
-translation of the website content has to be done but also the extensions
-which are used must be available in multiple languages. During extension
-development you should think about a possible translation later on and set
-the course according to this.
+Particularly in business relationships there is often the need to
+build a website in more than one language. Therefore not only does the
+translation of the websites content need to be completed, but also the extensions
+which are used must also be available in multiple languages.
 
 The configuration options for localization inside TYPO3 are versatile.
 You will find a comprehensive description of all concepts and options in the
@@ -286,7 +284,7 @@ in the TYPO3 backend. To make your domain objects translateable you have
 to create additional fields in the database and tell TYPO3 about them. The
 class definitions must not be changed. Lets have a look at the required
 steps based on the ``blog`` class of the blog example. TYPO3
-needs 3 additional database fields which you should insert in the
+needs three additional database fields which you should insert in the
 :file:`ext_tables.sql` file::
 
     CREATE TABLE tx_blogexample_domain_model_blog {
