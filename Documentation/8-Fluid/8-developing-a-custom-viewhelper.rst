@@ -216,9 +216,9 @@ Instead the result is:
 
    &lt;img src=&quot;http://www.gravatar.com/avatar/5f0efb20de5ecfedbe0bf5e7c12353fe&quot; /&gt;
 
-By default all output is escaped to prevent cross site scripting.
+By default all output is escaped by :php:`htmlspecialchars` to prevent cross site scripting.
 
-To allow unescaped output, escaping has to be explicitly disabled. This is done
+To allow unescaped HTML output, escaping has to be explicitly disabled. This is done
 by setting the class property :php:`$escapeOutput` to `false`::
 
    protected $escapeOutput = false;
