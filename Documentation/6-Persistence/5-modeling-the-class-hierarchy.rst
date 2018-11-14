@@ -91,7 +91,7 @@ data of the instances are stored and with which type they should be stored.
         MyVendor\MyExtension\Domain\Model\Organization {
             mapping {
                 tableName = tx_myextension_domain_model_party
-                recordType = \MyVendor\MyExtension\Domain\Model\Organization
+                recordType = MyVendor\MyExtension\Domain\Model\Organization
             }
             subclasses {
                 \MyVendor\MyExtension\Domain\Model\Company = MyVendor\MyExtension\Domain\Model\Company
