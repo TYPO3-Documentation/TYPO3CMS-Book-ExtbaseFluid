@@ -186,12 +186,12 @@ english terms:
 .. tip::
 
     Sometimes you have to localize a string in the PHP code, for
-    example in the controller or inside of a ViewHelper. In that case you
+    example inside of a controller or a ViewHelper. In that case you
     can use the static method
     `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
-    In addition to the key inside the
-    locallang file also the name of the extension must be given as
-    parameter, in order to load the correct locallang file.
+    This method requires the localization key as the first and the name of the extension as the second
+    parameter. Then the corresponding text in the current language will be loaded from this extension's
+    :file:`locallang.xlf` file .
 
 
 Output localized strings using ``sprintf``
