@@ -190,7 +190,8 @@ english terms:
     can use the static method
     `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
     This method requires the localization key as the first and the name of the extension as the second
-    parameter. Then the corresponding text in the current language will be loaded from this extension's locallang file .
+    parameter. Then the corresponding text in the current language will be loaded from this extension's
+    :file:`locallang.xlf` file .
 
 
 Output localized strings using ``sprintf``
