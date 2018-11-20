@@ -51,7 +51,7 @@ address as parameter. The ViewHelper is called in the template as follows:
 
    <blog:gravatar emailAddress="username@example.com" />
 
-See :ref:`importing-namespaces-globally` for information how to import
+See :ref:`global-namespace-import` for information how to import
 namespaces globally.
 
 .. _now-implementing:
@@ -84,6 +84,13 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
           // Implementation ...
       }
    }
+
+.. note::
+
+   The method :php:`renderStatic()` requires a :php:`use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;` at 
+   the beginning of the ViewHelper class file and additionally a :php:`use CompileWithRenderStatic;` inside of the ViewHelper class.
+   Otherwise the method :php:`render()` would not be found.
+   In the future, this should no longer be necessary.
 
 Every ViewHelper must inherit from the class
 :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper`.
