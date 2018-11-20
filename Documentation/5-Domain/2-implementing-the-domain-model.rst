@@ -566,7 +566,7 @@ Use inheritance in class hierarchies
 -------------------------------------
 
 The domain objects and their relationships can be mapped generally good in a
-tree hierarchy. Such a hierarchy can be find in figure 5-2. Organisations
+tree hierarchy. Such a hierarchy can be found in figure 5-2. Organisations
 include Offers. In turn, offers "contained" small fees. In our domain model is
 however, a second kind of hierarchy: the class hierarchy. In this hierarchy we
 have set that the objects ageRange, dateRange and attendanceRange are a
