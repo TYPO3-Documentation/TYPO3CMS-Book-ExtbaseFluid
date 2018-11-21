@@ -225,12 +225,12 @@ Repository. We're going to implement these two steps in the methods
 First the method :php:`newAction()` is called by a
 Link in frontend with the following URL:
 
-`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[oranization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
+`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
 
 Extbase instantiates the :php:`Organization `Object
 which is mapped to the Argument :php:`$organization,` just
 as it was the case with the :php:`Offer` object in the
-method :php:`showAction()`. In the URL are no information
+method :php:`showAction()`. In the URL is no information
 (yet) though, which value the Argument :php:`$newOffer` shall have. So the default value
 (:php:`=null`) set in the method signature is used. With
 these Arguments, the controller passes the further processing to the
@@ -257,7 +257,7 @@ This action passes to the view in :php:`organization` the :php:`Organization` ob
 the form in frontend, using a template, which we focus on in chapter 8 in
 section "Template Creation by example". After the user filled in the data
 of the offer and submitted the form, the Method
-:php:`createAction()` is called. It expects as Arguments
+:php:`createAction()` shall be called. It expects as Arguments
 an :php:`Organization` Object and an Object of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
@@ -291,7 +291,7 @@ displayed with all of its offers. We therefore start a new request
 :php:`redirect()`. The actual organization is hereby
 passed on as an argument. Inside the
 :php:`ActionController` you have the following Methods for
-redirecting to other Actions at your disposal:
+redirecting to other Action controllers at your disposal:
 
 .. code-block:: php
 
@@ -356,7 +356,7 @@ redirecting using the Method :php:`forward()`, new objects
 will not (yet) be persisted to database. This is not done until at the end
 of a request-response-cycle. Therefore no UID has yet been assigned to a
 new Object and the transcription to a URL parameter fails. You can
-manually trigger the action of persisting before the redirection, by using
+manually trigger the action of persisting before you execute the redirection, by using
 :php:`$this->objectManager->get(PersistenceManager::class)->persistAll()`,
 though.
 
@@ -390,7 +390,7 @@ encrypted form (:php:`__hmac`), the structure of the form
          i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
 
 If now a validation error occurs when calling the Method
-:php:`createAction()`, an error message ist saved and the
+:php:`createAction()`, an error message is saved and the
 processing is passed back to the previous Action, including all already
 inserted form data. Extbase reads the necessary information from the
 hidden fields :php:`__referrer`. In our case the Method
@@ -442,7 +442,7 @@ yourself.
 Flow Pattern "Editing an existing Domain Object"
 --------------------------------------------------------------------------------------------------
 
-The flow pattern we will now present is quite similar to the
+The flow pattern we now present you, is quite similar to the
 previous one. We again need two action Methods, which this time we call
 :php:`editAction()` and
 :php:`updateAction()`. The Method
@@ -543,7 +543,7 @@ do update the offer. If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
 Extbase does not yet offer an API for access control. We therefore
-implemented an :php:`AccessControlService` on ourselves.
+implement an :php:`AccessControlService` on ourselves.
 The description of the class is to be found in the file :file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
 
 .. code-block:: php
@@ -657,7 +657,7 @@ The :php:`IfAuthenticatedViewHelper` extends the
 opportunity to use if-else branches. It delegates the access check to the
 :php:`AccessControlService`. If the check gives a positive
 result, in our case a link with an edit icon is generated, which leads to
-the Method :php:`editAction()` of the
+the method :php:`editAction()` of the
 :php:`OfferController`.
 
 
@@ -665,7 +665,7 @@ Flow Pattern "Deleting a Domain Object"
 ---------------------------------------
 
 The last Flow pattern realizes the deletion of an existing Domain
-Object in one single Action. The appropriates Method
+Object in one single Action. The appropriate Method
 :php:`deleteAction()` is kind of straightforward:
 
 .. code-block:: php
@@ -688,7 +688,7 @@ Object in one single Action. The appropriates Method
 The important thing here is that you delete the given Offer from the
 Repository using the method :php:`remove()`. After running
 through your extension, Extbase will delete the associated record from
-the Database respectively mark it as deleted.
+the Database by marking it as deleted.
 
 .. tip::
 
@@ -775,15 +775,15 @@ the accordant options in a form (see pic. 7-2).
 .. tip::
 
     In real life you will often need similar functionality in some
-    or even all Controllers, the previously mentioned access control is a
-    good example. In our example extension we sourced it out to a
+    or even all Controllers. The previously mentioned access control is a
+    simple example. In our example extension we sourced it out to a
     *service* object. Another possibility is to create
     a basis Controller which extends the
     :php:`ActionController` of Extbase. Inside you
     implement the shared functionality. Then the concrete controllers with
-    you Actions extend this Basis Controller again.
+    your Actions extend this Basis Controller again.
 
 The Flow inside of a Controller is triggered from outside by
 TYPO3. For extensions which generate content for the frontend, this is
 usually done by a plugin, placed on the appropriate page. How to configure
-such a plugin you'll see in the following section:
+such a plugin you'll see in the following section.
