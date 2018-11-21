@@ -9,26 +9,25 @@ Controlling the flow with controllers
 In the previous chapters we already transcribed the Domain of our
 example extension *SJROffers* to a software based Domain
 Model. This lead to multiple files with class definitions, to be found in
-the subfolder <link
-linkend="???">EXT:sjr_offers/Classes/Domain/Model/</link>. Furthermore we
-set up the persistence layer. As a result we are alredy able to deposit the
+the extension subfolder :file:`sjr_offers/Classes/Domain/Model/`. Furthermore we
+set up the persistence layer. As a result we are already able to deposit the
 data of our Domain in the form of Domain Objects and to retrieve it
 again.
 
-In this chapter you'll see how to control the flow inside your
+In this chapter you'll see how to control the flow inside of your
 extension. The bottom line is to evaluate requests of the website user, in
 order to trigger the appropriate action. Regarding our example extension
 *SJROffers*, it may make sense to show a list of all
 offers or to give out all relevant information to one offer. Further
-examples of such actions are:
+examples of actions are:
 
 * Deleting a specific offer
-* Deleting all offers of one organizatin linkion
+* Deleting all offers of one organization
 * Displaying a form to change the data of an offer
 * Updating an offer
 * Listing the newest offers
 
-The code receiving the request and executing the
+The code for receiving the request and for executing the
 appropriate action is combined in Controllers. A Controller is a component
 of the Model-View-Controller architecture, of which the basics are described
 in chapter 2, section "Model-View-Controller in Extbase". The operation of a
@@ -38,8 +37,8 @@ Controller interconnected with the other components was described in chapter
 A Controller is an object of an extension, which is instantiated and
 called inside of extbase by the :php:`Dispatcher` object.
 The controller takes care of the complete flow inside of the extension. It
-is the link between the Request, the Domain Model and the reaction in form
-of the Response. Inside the *Controller*, the data
+is the link between the :php:`Request`, the Domain Model and the reaction in form
+of the :php:`Response`. Inside of the *Controller*, the data
 necessary for the flow is fetched from the respective Repositories, prepared
 according to the demand from outside and passed to the code responsible for
 the output (*View*). Besides this main task, a Controller
