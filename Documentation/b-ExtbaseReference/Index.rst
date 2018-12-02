@@ -179,7 +179,7 @@ controllers and Templates of your extensions.
 
 .. tip::
 
-    These options are allways available. Integrators can use them to configure the behaviour, even
+    These options are always available. Integrators can use them to configure the behaviour, even
     if not intended or provided by the author of the extension.
 
 **plugin.tx_[lowercasedextensionname]**
