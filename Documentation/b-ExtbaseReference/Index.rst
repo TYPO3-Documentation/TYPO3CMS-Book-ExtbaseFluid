@@ -209,8 +209,6 @@ Activate features for Extbase or a specific plugin.
     Default is `false`.
 
 `features.requireCHashArgumentForActionArguments`
-    Only available below `config.tx_extbase`, not for individual plugins!
-
     Do not force a cHash for arguments used in actions. If this is turned on, all requests with
     arguments but no, or an invalid cHash, are handled as `pageNotFoundOnCHashError`.
     Default is `true`.
