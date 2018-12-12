@@ -211,8 +211,8 @@ functionality.
 
 .. _inline-notation-vs-tag-based-notation:
 
-Inline Notification for View Helpers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Inline Notation for ViewHelpers
+-------------------------------
 
 .. sidebar:: Inline Notation vs. Tag Based Notation
 
