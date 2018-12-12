@@ -44,7 +44,7 @@ Output other formats with Fluid
 
 If you want to output JSON, RSS or similar data with Fluid, you
 have to write the appropriate TypoScript which passes the page rendering
-to Extbase and Fluid respectivly. Otherwise, TYPO3 will always generate
+to Extbase and Fluid respectively. Otherwise, TYPO3 will always generate
 the ``<head>``- and
 ``<body>``-section.
 
