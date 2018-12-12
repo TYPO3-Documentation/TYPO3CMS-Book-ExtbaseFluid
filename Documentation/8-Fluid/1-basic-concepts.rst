@@ -288,7 +288,7 @@ it is a helper function that returns a resource. It is well formed XHTML
 code as well and the syntax highlighting of your editor will work
 correctly again.
 
-We'll illustrate some details of Fluid's syntax, based on formating
+We'll illustrate some details of Fluid's syntax, based on formatting
 a date.
 
 Lets assume we have a blog post object with the name
