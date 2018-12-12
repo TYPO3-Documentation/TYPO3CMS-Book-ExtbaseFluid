@@ -169,7 +169,7 @@ This is important for the inline notation. When this argument is not set
 processed ("normal" notation) by calling the method
 ``renderChildren()``. Is the result an object that implements the
 NumericRangeInterface then the described use cases are checked step by
-step and the resulting string is returned. In similiar manner the
+step and the resulting string is returned. In a similar manner the
 ``DateRangeViewHelper`` was implemented.
 
 
@@ -233,7 +233,7 @@ the ``editAction()``.<remark>TODO: Rewrite sentence</remark> The
 form consists of input fields that are created by Fluid with the
 ``form.textbox`` ViewHelper respectively the
 ``form.textarea`` ViewHelper. Each form field is bound to their
-specific propety of the ``Organization`` object using
+specific property of the ``Organization`` object using
 ``property="telefaxNumber"``. The attribute value of the concrete
 object is inserted in the form fields during rendering of the page. When
 submitting the form, the data is send as POST parameters to the method
