@@ -183,7 +183,7 @@ Here you will see the stripped-down method:
    public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $blog,
         \MyVendor\BlogExample\Domain\Model\Post $newPost) {
       $blog->addPost($newPost);
-      $this->redirect('index', NULL, NULL, array('blog' => $blog));
+      $this->redirect('index', NULL, NULL, ['blog' => $blog]);
    }
 
 The arguments ``$blog`` and ``$post`` are filled and validated equivalent to the

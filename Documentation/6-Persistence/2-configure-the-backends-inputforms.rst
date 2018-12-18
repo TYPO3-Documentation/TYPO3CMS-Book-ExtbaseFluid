@@ -59,7 +59,7 @@ whose names are the key of the nested Array.
       'ctrl' => [
          // …
       ],
-      'interface' => array(
+      'interface' => [
          // …
       ],
       'types' => [

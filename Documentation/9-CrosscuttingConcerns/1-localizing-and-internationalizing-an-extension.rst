@@ -114,7 +114,7 @@ way:
            <header/>
            <body>
                <trans-unit id="author_prefix">
-                   <source>By:</source> 
+                   <source>By:</source>
                </trans-unit>
                <trans-unit id="comment_header">
                    <source>Comments</source>
@@ -331,49 +331,49 @@ translation relates to.
 
 .. code-block:: php
 
-   $TCA['tx_blogexample_domain_model_blog'] = array(
+   $TCA['tx_blogexample_domain_model_blog'] = [
      // ...
-     'types' => array(
-       '1' => array('showitem' => 'l18n_parent , sys_language_uid, hidden, title,
-                     description, logo, posts, administrator')
-     ),
-     'columns' => array(
-       'sys_language_uid' => array(
+     'types' => [
+       '1' => ['showitem' => 'l18n_parent , sys_language_uid, hidden, title,
+                     description, logo, posts, administrator']
+     ],
+     'columns' => [
+       'sys_language_uid' => [
          'exclude' => 1,
          'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
-         'config' => array(
+         'config' => [
            'type' => 'select',
            'foreign_table' => 'sys_language',
            'foreign_table_where' => 'ORDER BY sys_language.title',
-           'items' => array(
-             array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
-             array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
-           )
-         )
-       ),
-       'l18n_parent' => array(
+           'items' => [
+             ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1],
+             ['LLL:EXT:lang/locallang_general.php:LGL.default_value',0]
+           ]
+         ]
+       ],
+       'l18n_parent' => [
          'displayCond' => 'FIELD:sys_language_uid:>:0',
          'exclude' => 1,
          'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
-         'config' => array(
+         'config' => [
            'type' => 'select',
-           'items' => array(
-             array('', 0),
-           ),
+           'items' => [
+             ['', 0],
+           ],
            'foreign_table' => 'tx_blogexample_domain_model_blog',
            'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
                  l18n_parent### AND tx_blogexample_domain_model_blog.
                  sys_language_uid IN (-1,0)',
-         )
-       ),
-       'l18n_diffsource' => array(
-         'config'=>array(
+         ]
+       ],
+       'l18n_diffsource' => [
+         'config'=>[
            'type'=>'passthrough'
-         )
-       ),
+         ]
+       ],
        // ...
-     )
-   );
+     ]
+   ];
 
 With it, the localization of the domain object is already
 configured. By adding ``&amp;L=1`` to the URL, the language of

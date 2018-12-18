@@ -43,7 +43,7 @@ The third argument is an array with all controller action combinations, the plug
 can execute. The array key is the name of the controller (without the suffix ``Controller``)
 and the array value is a comma separated list of all actions that are executable by the plugin.
 In our case this is the ``list`` action (also without the suffix ``Action``).
-Thus the array ``array('Inventory' -> 'list')`` allows to execute the method ``listAction()``
+Thus the array ``['Inventory' -> 'list']`` allows to execute the method ``listAction()``
 in the ``\MyVendor\StoreInventory\Controller\StoreInventoryController`` by the plugin.
 Per default all results of the actions are stored in the cache. If it is not desired for
 individual actions they can be specified by a fourth, optional argument.

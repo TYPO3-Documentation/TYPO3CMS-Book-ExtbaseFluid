@@ -369,7 +369,7 @@ the database.
 .. code-block:: php
 
     $result = $query->statement('SELECT * FROM tx_sjroffers_domain_model_offer
-        WHERE title LIKE ? AND organization IN ?', array('%climbing%', array(33,47)));
+        WHERE title LIKE ? AND organization IN ?', ['%climbing%', [33,47]]);
 
 is translated by Extbase to the following query:
 
@@ -402,18 +402,18 @@ look at an object with a single value property.
 
 .. code-block:: raw
 
-    array(
+    [
         'identifier' => '<identifier>',
         'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
+        'properties' => [
+            '<name>' => [
                 'type' => '<type>',
                 'multivalue' => FALSE,
                 'value' => <value>
-            ),
+            ],
             ...
-        )
-    )
+        ]
+    ]
 
 In Extbase, the value for ``<identifier>`` is always the UID of the data record. The class name
 ``<classname>`` and the identifier together make the element unique across the whole database. The
@@ -432,41 +432,41 @@ multivalue (``'multivalue' => TRUE``).
 
 .. code-block:: raw
 
-    array(
+    [
         'identifier' => '<identifier>',
         'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
+        'properties' => [
+            '<name>' => [
                 'type' => '<type>',  // always '\TYPO3\CMS\Extbase\Persistence\ObjectStorage'
                 'multivalue' => TRUE,
-                'value' => array(
-                    array(
+                'value' => [
+                    [
                         'type' => '<type>',
                         'index' => <index>,
                         'value' => <value>
-                    ),
+                    ],
                     ...
-                )
-            )
-        )
-    )
+                ]
+            ]
+        ]
+    ]
 
 If a property has a NULL value, it is stored in the object array like this:
 
 .. code-block:: raw
 
-    array(
+    [
         'identifier' => '<identifier>',
         'classname' => '<classname>',
-        'properties' => array(
-            '<name>' => array(
+        'properties' => [
+            '<name>' => [
                 'type' => '<type>',
                 'multivalue' => <boolean>,
                 'value' => NULL
-            ),
+            ],
             ...
-        )
-    )
+        ]
+    ]
 
 The debug output of the return value looks like figure 6-13.
 

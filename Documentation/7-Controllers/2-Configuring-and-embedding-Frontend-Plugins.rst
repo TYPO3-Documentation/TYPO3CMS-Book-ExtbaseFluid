@@ -46,7 +46,7 @@ specify which content will be stored in cache.
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         $_EXTKEY,
         'List',
-        array('Inventory' => 'list')
+        ['Inventory' => 'list']
    );
 
 The method expects 4 arguments. The first argument is, just like the one used in
@@ -55,7 +55,7 @@ plugin name, Extbase can assign the configuration to the appropriate plugin.
 
 The third argument is an array which contains all controller-action combinations
 which the plugin is authorized to execute. The specification
-`array('Offer' => 'index')` authorizes the plugin to perform the method `indexAction()`
+`['Offer' => 'index']` authorizes the plugin to perform the method `indexAction()`
  in
 :php:`\MyVendor\SjrOffers\Controller\OfferController`. Be aware that the name of the
 controller is written without the suffix Controller and the name of the action
