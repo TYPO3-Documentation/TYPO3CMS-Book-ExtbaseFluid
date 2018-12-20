@@ -28,7 +28,7 @@ root directory of our extension. Lets look at our blog example how it defines a 
                 'access'    => 'user,group',
                 'icon'      => 'EXT:blog_example/ext_icon.gif',
                 'labels'    => 'LLL:EXT:ext_key/Resources/Private/Language/locallang_mod.xml',
-            ]
+            ],
         );
     }
 

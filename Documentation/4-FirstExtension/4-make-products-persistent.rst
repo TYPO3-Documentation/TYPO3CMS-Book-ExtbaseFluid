@@ -74,14 +74,14 @@ The file returns an array with the all information, that TYPO3 needs to render t
                'type' => 'input',
                'size' => '20',
                'eval' => 'trim'
-            ]
+            ],
          ],
          'description' => [
             'label' => 'LLL:EXT:store_inventory/Resources/Private/Language/locallang_db.xlf:tx_storeinventory_domain_model_product.item_description',
             'config' => [
                'type' => 'text',
                'eval' => 'trim'
-            ]
+            ],
          ],
          'quantity' => [
             'label' => 'LLL:EXT:store_inventory/Resources/Private/Language/locallang_db.xlf:tx_storeinventory_domain_model_product.stock_quantity',
@@ -89,12 +89,12 @@ The file returns an array with the all information, that TYPO3 needs to render t
                'type' => 'input',
                'size' => '4',
                'eval' => 'int'
-            ]
+            ],
          ],
       ],
       'types' => [
-         '0' => ['showitem' => 'name, description, quantity']
-      ]
+         '0' => ['showitem' => 'name, description, quantity'],
+      ],
    ];
 
 
@@ -120,7 +120,7 @@ hard-coded in the TYPO3 core and you have to use this to define your own text.
    So here the *Coding Guidelines* can't be applied, which says filenames has to be in *UpperCamelCase*.
 
    If you later want to overwrite the TCA from an existing database table, then you must use the file :file:`EXT:store_inventory/Configuration/TCA/Overrides/[tablename].php`.
-   
+
 .. code-block:: xml
 
    <?xml version="1.0" encoding="UTF-8"?>

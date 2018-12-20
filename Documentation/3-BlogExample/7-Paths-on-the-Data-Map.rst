@@ -112,7 +112,7 @@ found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *
                         'collapseAll' => 1,
                         'expandSingle' => 1,
                     ],
-                ]
+                ],
             ],
             // ...
     ];

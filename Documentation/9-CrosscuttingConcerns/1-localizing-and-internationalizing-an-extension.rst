@@ -335,7 +335,7 @@ translation relates to.
      // ...
      'types' => [
        '1' => ['showitem' => 'l18n_parent , sys_language_uid, hidden, title,
-                     description, logo, posts, administrator']
+                     description, logo, posts, administrator'],
      ],
      'columns' => [
        'sys_language_uid' => [
@@ -348,8 +348,8 @@ translation relates to.
            'items' => [
              ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1],
              ['LLL:EXT:lang/locallang_general.php:LGL.default_value',0]
-           ]
-         ]
+           ],
+         ],
        ],
        'l18n_parent' => [
          'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -364,15 +364,15 @@ translation relates to.
            'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
                  l18n_parent### AND tx_blogexample_domain_model_blog.
                  sys_language_uid IN (-1,0)',
-         ]
+         ],
        ],
        'l18n_diffsource' => [
          'config' => [
            'type' =>'passthrough'
-         ]
+         ],
        ],
        // ...
-     ]
+     ],
    ];
 
 With it, the localization of the domain object is already

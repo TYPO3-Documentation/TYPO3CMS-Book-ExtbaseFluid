@@ -38,7 +38,7 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php` and ha
        ],
        'types' => [
            // …
-       ]
+       ],
    ];
 
 The structure for the other tables like tx_sjroffers_domain_model_offer and tx_sjroffers_domain_model_person are equal.
@@ -118,7 +118,7 @@ should emerge at the Input Form. An example of the table
 .. code-block:: php
 
    'types' => [
-      '0' => ['showitem' => 'hidden,status,name,address;;1;;description,contacts,offers,administrator']
+      '0' => ['showitem' => 'hidden,status,name,address;;1;;description,contacts,offers,administrator'],
    ],
 
 Even though the behavior and the appearance of the table fields is configured in
@@ -149,7 +149,7 @@ example from the table `tx_sjroffers_domain_model_organization` is:
 .. code-block:: php
 
    'palettes' => [
-      '1' => ['showitem' => 'telephone_number,telefax_number,url,email_address']
+      '1' => ['showitem' => 'telephone_number,telefax_number,url,email_address'],
    ],
 
 The structure is the same as in the section *types* where `address;;1;;`
@@ -171,7 +171,7 @@ configuration for the input of the name of an organisation would be as follows:
          'size' => 20,
          'eval' => 'trim,required',
          'max' => 256
-      ]
+      ],
    ],
 
 The field name is *name*. Firstly, we define some options that are independent
@@ -204,7 +204,7 @@ follows:
          'size' => 20,
          'eval' => 'trim,required',
          'max' => 256
-      ]
+      ],
    ],
 
 The given string will be truncated to 256 signs (`'max' => 256`), ending
@@ -232,7 +232,7 @@ The field type `input` may be used for date and time inputs:
          'size' => 8,
          'checkbox' => '',
          'eval' => 'date'
-      ]
+      ],
    ],
 
 The value then will be tested for being given in a sane date format.
@@ -259,7 +259,7 @@ e.g. product descriptions, addresses or news items. The indication of the lines
          'type' => 'text',
          'cols' => 20,
          'rows' => 3
-      ]
+      ],
    ],
 
 .. figure:: /Images/6-Persistence/figure-6-3.png
@@ -280,7 +280,7 @@ The field type `check` allows the definition of a single option (see Fig. 6-4)
       'label' => 'Hide:',
       'config' => [
          'type' => 'check'
-      ]
+      ],
    ],
 
 .. figure:: /Images/6-Persistence/figure-6-4.png
@@ -308,8 +308,8 @@ or recommended training levels of a certain exercise.
             ['Level 3',''],
             ['Level 4',''],
             ['Level 5',''],
-         ]
-      ]
+         ],
+      ],
    ],
 
 
@@ -342,9 +342,9 @@ Fig. 6-6), e.g. the sex of a person or the color of a product.
          'default' => 'm',
          'items' => [
             ['male', 'm'],
-            ['female', 'f']
-         ]
-      ]
+            ['female', 'f'],
+         ],
+      ],
    ],
 
 The options (*items*) are given in an array and each option is an array itself
@@ -371,7 +371,7 @@ The field type "select" provides a space-saving way to render multiple values
          'type' => 'select',
          'foreign_table' => 'tx_sjroffers_domain_model_status',
          'maxitems' => 1
-      ]
+      ],
    ],
 
 The options are taken from another database table (*foreign_table*) and by
@@ -400,7 +400,7 @@ used for categories, tags or contact persons (see Fig. 6-8).
          'multiple' => 0,
          'foreign_table' => 'tx_sjroffers_domain_model_category',
          'MM' => 'tx_sjroffers_offer_category_mm'
-      ]
+      ],
    ],
 
 Again, this takes the options of another table but it holds the references in a
@@ -434,7 +434,7 @@ references to resources to the filesystem or rowsets of a database (see Fig. 6-9
          'minitems' => 0,
          'maxitems' => 200,
          'autoSizeMax' => 10
-      ]
+      ],
    ],
 
 The combination of `type` and `internal_type` specifies the field's type.
@@ -467,7 +467,7 @@ Fields of this type show up the raw data values which cannot be edited (see Fig.
       'label' => 'Datum (Timestamp)',
       'config' => [
          'type' => 'none'
-      ]
+      ],
    ],
 
 In contrast to the date field with the type `input` there is no evaluation as
@@ -491,7 +491,7 @@ references (foreign keys).
    'organization' => [
       'config' => [
          'type' => 'passthrough'
-      ]
+      ],
    ],
 
 This field configuration in the database table
@@ -539,7 +539,7 @@ TCA Reference <t3tca:columns-inline>`.
          'foreign_table' => 'tx_sjroffers_domain_model_offer',
          'foreign_field' => 'organization',
          'maxitems' => 9999
-      ]
+      ],
    ],
 
 The configuration is almost identical to the field type "select". However, there
@@ -571,7 +571,7 @@ The corresponding *IRRE*-Configuration looks as follows::
          'foreign_table' => 'tx_myext_cd_title_mm',
          'foreign_field' => 'uid_local',
          'foreign_selector' => 'uid_foreign'
-      ]
+      ],
    ],
 
 The *IRRE*-Tutorial describes this configuration as "state-of-the-art" for
@@ -597,7 +597,7 @@ simple 1:n-relationship with `cd` as a foreign key.
          'type' => 'inline',
          'foreign_table' => 'tx_myext_domain_model_track',
          'foreign_field' => 'cd'
-      ]
+      ],
    ],
 
 However, Extbase does not support the persistence of additional Domain data in
@@ -615,7 +615,7 @@ configuration of products with their according categories:
          'type' => 'inline',
          'foreign_table' => 'tx_myext_domain_model_category',
          'MM' => 'tx_myext_product_category_mm'
-      ]
+      ],
    ],
 
 This second option deserves some additional kudos because it does not need a

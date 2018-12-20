@@ -79,7 +79,7 @@ The name of the field that contains the type can be choosen freely. In our case 
       'label' => 'name',
       'type' => 'record_type',
       // …
-   ]
+   ],
    // …
 
 In your TypoScript template you have to tell Extbase for every concrete class in which table the
@@ -175,7 +175,7 @@ including the following configuration to your TCA:
                ['ScientificInstitution', '\MyVendor\MyExtension\Domain\Model\ScientificInstitution']
             ],
             'default' => '\MyVendor\MyExtension\Domain\Model\Person'
-         ]
+         ],
       ],
       // …
    ],

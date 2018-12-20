@@ -25,7 +25,7 @@ create in the top level of our extension directory.
         // non-cacheable actions
         [
             'StoreInventory' => '',
-        ]
+        ],
     );
 
 With the first line we prevent of security reasons, that the PHP code can be

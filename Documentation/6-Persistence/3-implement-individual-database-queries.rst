@@ -412,8 +412,8 @@ look at an object with a single value property.
                 'value' => <value>
             ],
             ...
-        ]
-    ]
+        ],
+    ],
 
 In Extbase, the value for ``<identifier>`` is always the UID of the data record. The class name
 ``<classname>`` and the identifier together make the element unique across the whole database. The
@@ -446,10 +446,10 @@ multivalue (``'multivalue' => TRUE``).
                         'value' => <value>
                     ],
                     ...
-                ]
-            ]
-        ]
-    ]
+                ],
+            ],
+        ],
+    ],
 
 If a property has a NULL value, it is stored in the object array like this:
 
@@ -465,8 +465,8 @@ If a property has a NULL value, it is stored in the object array like this:
                 'value' => NULL
             ],
             ...
-        ]
-    ]
+        ],
+    ],
 
 The debug output of the return value looks like figure 6-13.
 
