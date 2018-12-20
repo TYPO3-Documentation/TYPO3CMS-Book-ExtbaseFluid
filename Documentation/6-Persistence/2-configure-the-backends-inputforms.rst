@@ -591,7 +591,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 .. code-block:: php
 
-   'tracks' =>[
+   'tracks' => [
       'label' => 'Track',
       'config' => [
          'type' => 'inline',

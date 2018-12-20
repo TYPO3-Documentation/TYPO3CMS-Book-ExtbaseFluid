@@ -367,8 +367,8 @@ translation relates to.
          ]
        ],
        'l18n_diffsource' => [
-         'config'=>[
-           'type'=>'passthrough'
+         'config' => [
+           'type' =>'passthrough'
          ]
        ],
        // ...

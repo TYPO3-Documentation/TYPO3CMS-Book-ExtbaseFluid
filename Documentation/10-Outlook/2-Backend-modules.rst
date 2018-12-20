@@ -19,12 +19,12 @@ root directory of our extension. Lets look at our blog example how it defines a 
             'web',          // Main area
             'mod1',         // Name of the module
             '',             // Position of the module
-            [.              // Allowed controller action combinations
+            [               // Allowed controller action combinations
                 'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
                 'Post' => 'index,show,new,create,delete,edit,update',
                 'Comment' => 'create,delete,deleteAll',
             ],
-            [.              // Additional configuration
+            [               // Additional configuration
                 'access'    => 'user,group',
                 'icon'      => 'EXT:blog_example/ext_icon.gif',
                 'labels'    => 'LLL:EXT:ext_key/Resources/Private/Language/locallang_mod.xml',
