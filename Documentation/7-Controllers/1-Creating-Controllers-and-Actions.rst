@@ -275,7 +275,7 @@ Form data. If all Arguments are valid, the Action
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
-      $this->redirect('show', 'Organization', NULL, array('organization' => $organization));
+      $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
 
 The new offer is allocated to the organization and inversly the
@@ -308,7 +308,7 @@ appropriate controller (specified in
 in :php:`$extensionName`) is called. If you did not
 specify a controller or extension, Extbase assumes, that you stay in the
 same context. In the fourth parameter :php:`$arguments`
-you can pass an Array of arguments. In our example :php:`array('organization' => $organization)`
+you can pass an Array of arguments. In our example :php:`['organization' => $organization]`
 would look like this in the URL:
 :php:`tx_sjroffers_pi1[organization]=5`. The Array key is
 transcribed to the parameter name, while the organization object in
@@ -481,7 +481,7 @@ offers.
    public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
       $this->offerRepository->update($offer);
-      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
+      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 .. warning::
@@ -533,7 +533,7 @@ Let's look at an example with the Method
       } else {
          $this->flashMessages->add('Bitte loggen Sie sich ein.');
       }
-      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
+      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 We ask a previously instantiated
@@ -682,7 +682,7 @@ Object in one single Action. The appropriate Method
       } else {
          $this->flashMessages->add('Bitte loggen Sie sich ein.');
       }
-      $this->redirect('show', 'Organization', NULL, array('organization' => $offer->getOrganization()));
+      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 The important thing here is that you delete the given Offer from the
@@ -713,13 +713,13 @@ stage":
    public function indexAction(\MyVendor\SjrOffers\Domain\Model\Demand $demand = NULL)
    {
       $allowedStates = (strlen($this->settings['allowedStates']) > 0) ?
-            t3lib_div::intExplode(',', $this->settings['allowedStates']) : array();
+            t3lib_div::intExplode(',', $this->settings['allowedStates']) : [];
       $listCategories = (strlen($this->settings['listCategories']) > 0) ?
-            t3lib_div::intExplode(',', $this->settings['listCategories']) : array();
+            t3lib_div::intExplode(',', $this->settings['listCategories']) : [];
       $selectableCategories = (strlen($this->settings['selectableCategories']) > 0) ?
-            t3lib_div::intExplode(',', $this->settings['selectableCategories']) : array();
+            t3lib_div::intExplode(',', $this->settings['selectableCategories']) : [];
       $propertiesToSearch = (strlen($this->settings['propertiesToSearch']) > 0) ?
-            t3lib_div::trimExplode(',', $this->settings['propertiesToSearch']) : array();
+            t3lib_div::trimExplode(',', $this->settings['propertiesToSearch']) : [];
 
       $this->view->assign('offers',
          $this->offerRepository->findDemanded(
@@ -732,19 +732,19 @@ stage":
       $this->view->assign('demand', $demand);
       $this->view->assign('organizations',
          array_merge(
-            array(0 => 'Alle Organisationen'),
+            [0 => 'Alle Organisationen'],
             $this->organizationRepository->findByStates($allowedStates)
          )
       );
       $this->view->assign('categories',
          array_merge(
-            array(0 => 'Alle Kategorien'),
+            [0 => 'Alle Kategorien'],
             $this->categoryRepository->findSelectableCategories($selectableCategories)
          )
       );
       $this->view->assign('regions',
          array_merge(
-            array(0 => 'Alle Stadtteile'),
+            [0 => 'Alle Stadtteile'],
             $this->regionRepository->findAll()
          )
       );

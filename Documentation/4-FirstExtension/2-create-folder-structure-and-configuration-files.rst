@@ -82,12 +82,12 @@ extension. Find a complete reference in chapter
        'constraints' => [
            'depends' => [
                'typo3' => '8.7.0-8.9.99',
-           ]
+           ],
        ],
        'autoload' => [
            'psr-4' => [
                'MyVendor\\StoreInventory\\' => 'Classes'
-           ]
+           ],
        ],
    ];
 

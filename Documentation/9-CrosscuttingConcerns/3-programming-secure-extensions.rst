@@ -89,12 +89,12 @@ this array:
 
 .. code-block:: raw
 
-   array(
+   [
       __identity => ...
       email =>  ...
       password => ...
       description => ...
-   )
+   ],
 
 Because the ``__identity`` property and further properties
 are set, the argument mapper gets the object from the persistence layer,
