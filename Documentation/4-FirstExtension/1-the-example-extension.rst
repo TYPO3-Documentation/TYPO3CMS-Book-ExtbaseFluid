@@ -11,9 +11,11 @@ following steps are necessary for implementation:
 #. Create directory tree and the minimal configuration files
 #. Translate the problem domain in an abstract domain model
 #. Configuration of persistence layer
+
    * Definition of database tables
    * Configure the display of backend forms
    * Create repositories for product objects
+
 #. Define the application flow inside the extension (create *controller* and *action* methods)
 #. Realize design with HTML-templates
 #. Configure the plugin for list display
