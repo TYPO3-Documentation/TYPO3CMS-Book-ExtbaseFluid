@@ -562,9 +562,7 @@ Namespaces are registered within
 :php:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']` in the form
 of::
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] => [
-        'MyVendor\BlogExample\ViewHelpers',
-    ];
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] = ['MyVendor\BlogExample\ViewHelpers'];
 
 In above example `blog` is the namespace within Fluid templates, which is
 resolved to the PHP namespace :php:`\MyVendor\BlogExample\ViewHelpers`.
