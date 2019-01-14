@@ -562,7 +562,7 @@ Namespaces are registered within
 :php:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']` in the form
 of::
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] => [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] = [
         'MyVendor\BlogExample\ViewHelpers',
     ];
 
