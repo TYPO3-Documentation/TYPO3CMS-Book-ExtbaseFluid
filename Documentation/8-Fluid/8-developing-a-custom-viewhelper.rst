@@ -563,7 +563,7 @@ Namespaces are registered within
 of::
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] = [
-         'MyVendor\BlogExample\ViewHelpers',
+        'MyVendor\BlogExample\ViewHelpers',
     ];
 
 In above example `blog` is the namespace within Fluid templates, which is
