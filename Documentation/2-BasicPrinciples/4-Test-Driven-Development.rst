@@ -5,7 +5,7 @@ Test-Driven Development
 
 Every Developer has to test his software - for developers a not much liked
 theme, but one you cannot walk by. How work tests in the classic software
-development? Programmers in the first way construct a testcase by putting
+development? Programmers in the first way construct a test case by putting
 certain data into the database, write little programs to test or manipulate the
 url parameter in the browser. A big number of little functions are often
 implemented at one time, before they are tested (look at figure  2-7). After
@@ -20,7 +20,7 @@ more complex routine.
    :align: center
 
    Figure 2-7: in the classic software development exist a strict isolation
-   between the Development- and the Testphase.
+   between the Development- and the Test- phase.
 
 By using Test-Driven Development (TDD) these problems should be solved. Tests
 could be fast completed and reproducible. These increases the developers
@@ -49,7 +49,7 @@ callback, if a failure is implemented into the existing functions.
    seriously would have took me days until all would have worked at the end.
    Especially the feedback I got at once, I really appreciate. You click on a
    button and after a few seconds you got your feedback.
-   After this I am infected, learned about Mock- and Stubobjects, and today I do
+   After this I am infected, learned about Mock- and Stub- objects, and today I do
    not want to miss it. (In this chapter you will get an introduction into these concepts.)
    If you want to learn TDD, you will jump in at the deep end, and to
    try it at the next project. Until the first Unit test is finished, it will take
@@ -64,7 +64,7 @@ repeatable. The workflow is different of the classic programming, separated into
 very small iterations.
 
 Using Test-Driven Development you write your Unit tests for your features before
-you write your features theirselves. Unit tests are automatically repeatable
+you write your features themselves. Unit tests are automatically repeatable
 tests of methods, classes and little program parts. Even during the writing of
 the tests, you should seriously think about the desired functionality. When you
 are running your tests, they naturally will fail, because the tested
@@ -107,26 +107,26 @@ clearly higher than in the conventional Programming.
 Example
 -------
 
-Let us assume we want to model an onlineshop for a customer. These owns a name,
-which is transfered in the constructor. Through these tests we want to make sure
+Let us assume we want to model an online shop for a customer. These owns a name,
+which is transferred in the constructor. Through these tests we want to make sure
 that the name is correctly saved into the object. At first you have to install
 the phpunit-Extension from the TYPO3 Extension Repository (TER), because we will
 run the tests with this. The next step is to go to our own extension and create
 a folder "Tests/Unit/" in the main folder of the extension, if it not exists.
 This will contain later all our unit tests. Our customer object which we have to
 create, will be situated in Classes/Domain/Model/Customer.php because it is part
-of our Domainmodel in our extension.
+of our domain model in our extension.
 
-Similarly we create the testclass in the file
-Tests/Unit/Domain/Model/CustomerTest.php. Now we create a minimal testcase with which we get used with PHPUnit.
+Similarly we create the test class in the file
+Tests/Unit/Domain/Model/CustomerTest.php. Now we create a minimal test case with which we get used with PHPUnit.
 
 //code
 
-All our testcases are named after the same namescheme like normal classes and
-they must be extended with \TYPO3\CMS\Core\Tests\BaseTestCase. One testclass
-can contain many testmethods. These have to be public and have to contain the
+All our test cases are named after the same name scheme like normal classes and
+they must be extended with \TYPO3\CMS\Core\Tests\BaseTestCase. One test class
+can contain many test methods. These have to be public and have to contain the
 annotation @test in their PHPDOC-Block, so they can be performed. Please keep
-in mind that the name of the testmethod should make clear which expectations
+in mind that the name of the test method should make clear which expectations
 the test should fulfill. Now we can run the test for the first time. Therefore
 go to the TYPO3-Backend to the module PHPUnit which is to find under the Admin
 Tools. Then you can choose your extension and click on Run all tests. Now you
@@ -137,8 +137,8 @@ for extbase and fluid and also try the different Display options. For example
 you can let show you all tests or only the failed tests.
 
 
-Now we know that our testcase is running, we can write our first useful
-testcase. This should test, if a name which is specified in the constructor, can
+Now we know that our test case is running, we can write our first useful
+test case. This should test, if a name which is specified in the constructor, can
 be accessed again.
 
 //Code
@@ -149,10 +149,10 @@ be accessed again.
 .. figure:: /Images/2-BasicPrinciples/figure-2-9.png
    :align: center
 
-   Figure 2-9: With the testrunner you are able to run easily the Unit tests
+   Figure 2-9: With the test runner you are able to run easily the Unit tests
    in the TYPO3-Backend.
 
-When we run the testcase, we will be displayed a fatal error from PHP, because
+When we run the test case, we will be displayed a fatal error from PHP, because
 the class we want to test does not exist already. Now we are changing roles: We
 are not the user of the class anymore, but now we are the developer, who should
 implement the class. At first we create in the file
@@ -162,7 +162,7 @@ rid of the fatal error:
 //code
 
 
-When we now let run the testsuite again there should not be a fatal error
+When we now let run the test suite again there should not be a fatal error
 anymore but instead our Unit-Tests will fail because the getName() method returns
 the false value.
 Now we are able, motivated by getting the red bar fast as possible into green,
@@ -204,7 +204,7 @@ the figure 2-10: The email logger class has a reference on the email service.
 
 We now want to test the class EmailLogger without using the EmailService. We do
 not want to send real emails with every test run. To reach that goal we need two
-subelements. Dependency Injection and the use of Mock objects. Both concepts we
+sub elements. Dependency Injection and the use of Mock objects. Both concepts we
 will introduce below.
 
 Dependency Injection
@@ -271,7 +271,7 @@ In line 10 passes through the truly fascinating: We expect that in the
 EmailService an unique method call is sent, with the parameters
 :php:`'logging@domain.local','Message Log', $message`. Once we have specified our
 expectations, we can at line 11 let the EmailLogger log the message. At the end
-of the testcases our expectations are automatically controlled.
+of the test cases our expectations are automatically controlled.
 
 If the the method send was called exactly once or with the false parameter
 values, the test will fail with a detailed error message. What have we achieved?

@@ -280,7 +280,7 @@ Multi language domain objects
 
 With TYPO3 you can localize the data sets in the backend. This also
 applies to domain data, because they are treated like "normal" data sets
-in the TYPO3 backend. To make your domain objects translateable you have
+in the TYPO3 backend. To make your domain objects translatable you have
 to create additional fields in the database and tell TYPO3 about them. The
 class definitions must not be changed. Lets have a look at the required
 steps based on the ``blog`` class of the blog example. TYPO3

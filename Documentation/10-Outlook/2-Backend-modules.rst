@@ -47,12 +47,12 @@ In line 12 till 16 common definitions for the access rights, the icon and the ti
 
 Now the backend module is ready equipped. You can try it out after installing the extension.
 Now you perhaps discover that the design has not the look and feel of a TYPO3 backend. To simplify the
-creation of aligned backend modules there are backend ViewHelper for ajustment of the design, that
+creation of aligned backend modules there are backend ViewHelper for adjustment of the design, that
 you will find below ``f:be.*``. Because these ViewHelper are heavy in enhancement, their documentation
 is not covered in this book. We approve instead to look at the templates of the current blog example.
 There you will find the recommended ViewHelper in action.
 
-Sometimes it is reasonable to configure the extension different in the fontend and backend. So it is
+Sometimes it is reasonable to configure the extension different in the frontend and backend. So it is
 necessary for the blog example to use different templates in frontend and backend.
 
 Backend modules can, like frontend plugins, be configured via TypoScript. While the frontend plugins
@@ -72,6 +72,6 @@ changed like this::
     }
 
 Here are all the settings of ``settings`` and ``persistence`` are copied from the configuration
-of the frontend plugins, only the new pathes for the ``view`` are set.
+of the frontend plugins, only the new paths for the ``view`` are set.
 
 Now you have a good oversight how you can use Extbase also for development of backend modules.

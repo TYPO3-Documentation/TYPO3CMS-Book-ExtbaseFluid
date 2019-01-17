@@ -116,7 +116,7 @@ initializeAction
 
 In old TYPO3 Versions the :php:`initializeAction()` was used to get the repository instance.
 Later we can use this action, to modify the Request, before the property mapper is executed or
-intgrate JavaScript libraries.
+integrate JavaScript libraries.
 
 The :php:`ActionController` not only calls the method :php:`initializeAction()`, which is executed before any
 Action in the Controller, but also a method in the Form of
@@ -278,7 +278,7 @@ Form data. If all Arguments are valid, the Action
       $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
 
-The new offer is allocated to the organization and inversly the
+The new offer is allocated to the organization and inversely the
 organization is allocated to the offer. Thanks to this allocation Extbase
 will cause the persistence of the new offer in the dispatcher before
 returning to TYPO3.
@@ -416,7 +416,7 @@ displayed if the template is intending so.
     describe a possibility to translate them too, though.
 
 Using the hidden field :php:`__hmac`, Extbase
-compares in an early stage the structure of a form inbetween delivery to
+compares in an early stage the structure of a form in between delivery to
 the browser and arrival of the form data. If the structure has changed,
 Extbase assumes an evil assault and aborts the request with an error
 message. You can skip this check by annotating the Method with
@@ -466,7 +466,7 @@ be edited as an Argument.
       $this->view->assign('regions', $this->regionRepository->findAll());
    }
 
-Note once again the annotation :php:`@donvalidate $offer`.
+Note once again the annotation :php:`@dontvalidate $offer`.
 The Method :php:`updateAction()`
 receives the changed offer and updates it in the repository. Afterwards a
 new request is started and the organization is shown with its updated
@@ -604,7 +604,7 @@ this snippet from a template:
     Services are often stateless. In this context that means that
     their function does not depend on previous access. This does not
     rule out dependency to the "environment". In our example you can be
-    sure, that a verification by :php:`isLoggendIn()`
+    sure, that a verification by :php:`isLoggedIn()`
     always leads to the same result, regardless of any earlier
     verification - given that the "environment" has not changed
     (considerably), e.g. by the Administrator logging out or even losing

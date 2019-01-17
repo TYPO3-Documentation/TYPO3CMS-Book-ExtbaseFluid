@@ -21,7 +21,7 @@ This class file is stored in the folder :file:`EXT:store_inventory/Classes/Domai
     Pay attention to the corresponding upper case of the folder names.
 
 Below we have a view into this file, note that the class
-:php:`\MyVendor\StoreInventory\Domain\Model\Product` must be derivated
+:php:`\MyVendor\StoreInventory\Domain\Model\Product` must be derived
 from the extbase class
 :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
 

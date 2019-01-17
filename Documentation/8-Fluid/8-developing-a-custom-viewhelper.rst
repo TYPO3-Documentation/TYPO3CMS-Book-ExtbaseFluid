@@ -557,7 +557,7 @@ Fluid allows for registering namespaces. This is already done for
 `typo3/cms-fluid` and `typo3fluid/fluid` ViewHelpers. Therefore they are always
 available via the `f` namespace.
 
-Custom ViewHelpers, e.g. for a Sitepackages, can be registered the same way.
+Custom ViewHelpers, e.g. for a site package, can be registered the same way.
 Namespaces are registered within
 :php:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']` in the form
 of::
@@ -691,7 +691,7 @@ As this method has to be static, there is no access to instance attributes, e.g.
 
    This method can not be used when access to child nodes is necessary. This is
    the case for ViewHelpers like `if` or `switch` which need to access their
-   childs like `then` or `else`. In that case, :php:`render()` has to be used.
+   children like `then` or `else`. In that case, :php:`render()` has to be used.
 
 .. _render-method:
 

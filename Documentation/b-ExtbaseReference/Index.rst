@@ -185,7 +185,7 @@ controllers and Templates of your extensions.
 **plugin.tx_[lowercasedextensionname]**
 
 The TypoScript configuration of the extension is always located below this
-TypoScript path. The "lowercased extension name" is the extension key with no
+TypoScript path. The "lowercase extension name" is the extension key with no
 underscore (_), as for example in ``blogexample``. The configuration is divided into
 the following sections:
 
@@ -262,7 +262,7 @@ template with `{settings}`.
 
 .. tip::
 
-    The settings allow you to pass orbitary information to a template, even for 3rd party extensions.
+    The settings allow you to pass arbitrary information to a template, even for 3rd party extensions.
     Just make sure you prefix them with a unique vendor to prevent collisions with further updates
     of the extensions.
 
@@ -465,7 +465,7 @@ of the specified method, as shown in Example B-3:
 ::
 
     /**
-      * Displays a form for creating a new blog, optionally prefilled with partial information.
+      * Displays a form for creating a new blog, optionally pre-filled with partial information.
       *
       * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
       *        as a basis for the form if it is set.

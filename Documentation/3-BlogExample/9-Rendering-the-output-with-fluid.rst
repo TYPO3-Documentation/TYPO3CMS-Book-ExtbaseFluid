@@ -81,7 +81,7 @@ represent different functionalities.
 * `<f:link.action action="new">` creates a link tag that links to the :php:`newAction()` of the actual controller.
 * `<f:for each="{blogs}" as="blog">[...]</f:for>` iterates over all Blog-objects found in Blogs.
 
-Let's have a closer look at the latter examaple. In the variable `{blogs}` all
+Let's have a closer look at the latter example. In the variable `{blogs}` all
 blogs are "included". The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template before. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each` the

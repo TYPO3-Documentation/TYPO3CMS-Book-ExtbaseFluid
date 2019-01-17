@@ -80,7 +80,7 @@ from the property's name by prefixing every uppercase letter with an
 underscore and subsequently writing the whole construct in lowercase. The
 value of the property `address` is saved in the field
 `address`. The property `telephoneNumber` transforms
-into the fieldname `telephone_number` etc.
+into the field name `telephone_number` etc.
 
 However, the table definition contains additional fields that have
 no correlating property in the class :php:`Organisation`.
@@ -236,11 +236,11 @@ types that are, however, rather uncommon in the environment of TYPO3.
 Examples for those uncommon types are `date` and
 `datetime` for date values following the pattern
 `YYYY-MM-DD` resp. `YYYY-MM-DD HH:MM:SS` or
-`boolean` datatypes for the values true and false.
+`boolean` data types for the values true and false.
 
 .. note::
 
-   As with fieldnames of `char` and `varchar`
+   As with field names of `char` and `varchar`
    the `integer` types may take ranges as numbers in round
    brackets upon their definition, e.g. `int(11)`. But in
    contrast they do NOT describe the count of digits or Bytes that can be
@@ -329,7 +329,7 @@ There are many relations between the objects in our Domain that have
 to be persisted in the database for being able to resolve them at a later
 time. It depends on the type of relationship how they can be persisted and
 Extbase distinguishes between several types as already defined in Chapter
-5 "Implement Relationships between Domain Objects". In memoriam to Chapter
+5 "Implement Relationships between Domain Objects". In memorial to Chapter
 5, following a short summary of the types:
 
 *1:1-Relationship:* An offer has exactly one
@@ -351,7 +351,7 @@ attached to several offers.
 
    All common Relational Database Management Systems (RDBMS) allow
    NULL as a special value for a field. This usually means that this value
-   is kind of "not defined". However, be clear about the semantical
+   is kind of "not defined". However, be clear about the semantic
    differences of the values `NULL`, `0` and
    `""` (i.e. the NULL value, the number 0 and the empty
    string). The difference gets clear with the value of the participation
@@ -372,7 +372,7 @@ attached to several offers.
      statement like `uid = NULL` and there is an own
      operator introduced for that `IS` which leads to
      expressions like `uid IS NULL`. However, Extbase
-     automagically figures out the right way for you.
+     automatically figures out the right way for you.
    * `NULL` values in queries like
      `DISTINCT`, `ORDER BY` and `GROUP
      BY` are seen the same way and are thus grouped
@@ -400,7 +400,7 @@ the UID of the child table is stored as an own data set of the
 Intermediate Table. Additionally, there can be stored information about
 assorting, the visibility and the access control information. They
 concern the relationship of the related objects and not the objects
-themself.
+themselves.
 
 .. warning::
    Do not store data in the Intermediate Table that concern the

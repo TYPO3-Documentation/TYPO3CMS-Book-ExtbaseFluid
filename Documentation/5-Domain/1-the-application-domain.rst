@@ -38,7 +38,7 @@ following characteristics were defined:
    Figure 5-1: The still incoherent terms of the domain
 
 These terms are the result of a process. Some of them are modified
-many times during the discussions. So the first choosen term of
+many times during the discussions. So the first chosen term of
 *vendor* developed to the term
 *organization*. Thereby a part was that the domain of the
 offer management not exist isolated inside the SJR. It is in fact embedded
@@ -52,10 +52,10 @@ in the whole business. And there the term of member organization (or short
    This development of a common language of developers (also ourselves)
    and domain experts (also the employees of the SJR) maybe is the most
    important part of the Domain Driven Design. In the literature you find the
-   slightly bulky term *Ubiquitos Language*. Requirement
+   slightly bulky term *Ubiquitous Language*. Requirement
    for this process is that the developer take care for contact with the
    domain experts. This is notably in bigger projects in many cases not the
-   case. More about the development of an Ubiquitos Language you can read
+   case. More about the development of an Ubiquitous Language you can read
    about in chapter 2 in the section "Develop a common language".
 
 First of all the located rules and operations are fixed down on paper.
@@ -73,7 +73,7 @@ Here is an excerpt of the list:
 
 The terms and rules are taken in relationship now. From the
 past thoughts a first draft of the domain is made, which you can see in
-figure 5-2. Every rectangle emblematize an object of the domain.The lower
+figure 5-2. Every rectangle emblematise an object of the domain.The lower
 half of the bin shows an extract of its properties. Properties in
 *italic* writing of a parent object are holding
 references to the child objects. The chaining lines with an arrow point to

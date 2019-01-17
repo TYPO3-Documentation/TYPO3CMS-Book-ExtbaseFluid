@@ -15,7 +15,7 @@ extensions is, that you should never trust the user input. All input data
 your extension gets from the user can be potentially malicious. That applies
 for all data that are transferred via GET and POST over from a form. But
 also cookies should be classified as malicious, because they can be
-manipuated by the user.
+manipulated by the user.
 
 In the daily programming, all the data that comes from the user should
 be treated with carefulness - check always if the format of the data
@@ -102,7 +102,7 @@ makes a copy and then applies the changed properties to the object. After
 this normally we call the method ``update($user)`` for the
 corresponding repository to make the changes persistent.
 
-What happend if an attacker manipulates the form data and transfers
+What happened if an attacker manipulates the form data and transfers
 an additional field ``username`` to the server? In this case the
 argument mapping would also change the ``$username`` property of
 the cloned object - although we actual said that this property should not
@@ -126,7 +126,7 @@ exception.
 .. tip::
 
   If you write an API with extbase to change data with other
-  webservices you have to disable the request hash, bacause without the
+  webservices you have to disable the request hash, because without the
   knowledge of the private key of the other server you can not generate a
   valid request hash.
 
@@ -143,8 +143,8 @@ or webservices.
 Prevent Cross Site Scripting
 -------------------------------------------------
 
-Fluid contains some integrated technics to secure web applications
-per default. One of the importand parts for this is the automatic
+Fluid contains some integrated techniques to secure web applications
+per default. One of the important parts for this is the automatic
 prevention against cross site scripting, that counts to the most used
 attack against web applications. In this section we give you a problem
 description and show how you can avoid cross site scripting (XSS).
@@ -156,8 +156,8 @@ in the forum to try to embed JavaScript code::
    <script type="text/javascript">alert("XSS");</script>
 
 When he let display the forum post he gets, if the programmer of the
-forum has made no additional prevetions, a JavaScript popup "XSS". The
-attacke now knows that every JavaScript he write in a post, is executed
+forum has made no additional preventions, a JavaScript popup "XSS". The
+attacker now knows that every JavaScript he write in a post, is executed
 when displaying the post - the forum is vulnerable for cross site
 scripting. Now the attacker can replace the code with a more complex
 JavaScript program, that for example can read the cookies of the visitors
@@ -165,11 +165,11 @@ of the forum and send them to a certain URL.
 
 If an administrator retrieve this prepared forum post, his session
 ID (that is stored in a cookie) is transferred to the attacker. By setting
-the cookie at the attacker himself, in the worsest case he can get
+the cookie at the attacker himself, in the worst case he can get
 administrator privileges.
 
 How can we prevent this now? The forum post don't have to put out
-unchanged - before we have to mask out all special charaters with a call
+unchanged - before we have to mask out all special characters with a call
 of ``htmlspecialchars()``. With this instead of
 ``<script>..</script>`` the safe result is delivered
 to the browser:
@@ -181,12 +181,12 @@ But there is a problem with this: If you miss *only at one
 place* the clean masking of the data, a XSS hole exists in the
 system.
 
-In Fluid the output of every object accessor that occures in a
-template is automaicly processed by ``htmlspecialchars()``. But
+In Fluid the output of every object accessor that occurs in a
+template is automatically processed by ``htmlspecialchars()``. But
 Fluid uses ``htmlspecialchars()`` only for templates with the
 extension *.html*, e.g. if the output format is set to
 HTML. If you use other output formats it is disabled and you have to make
-sure to mask the special caracters correct. Also deactivated is is it for
+sure to mask the special characters correct. Also deactivated is is it for
 object accessors that are used in arguments of a ViewHelper. A short
 example for this::
 
@@ -195,7 +195,7 @@ example for this::
 
 The content of ``{variable1}`` is send thru
 htmlspecialchars(), instead the content of ``{variable2}`` is not
-changed. The ViewHelper must get the unchanged data becaus ewe can not
+changed. The ViewHelper must get the unchanged data because ewe can not
 foresee what he will be done with the data. For this reason ViewHelper
 that output parameter directly have to mask them correct.
 

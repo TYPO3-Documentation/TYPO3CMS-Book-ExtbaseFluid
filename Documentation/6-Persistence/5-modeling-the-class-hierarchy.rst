@@ -33,7 +33,7 @@ the whole purpose of a class hierarchy). For saving the data there a some option
 * For all classes of a class hierarchy only one table is created (*Single Table Inheritance*).
   This table is assigned to the class which contains all sub classes which data has to be stored
   inside. In our case this would be the table `party` with fields for all properties of all
-  sub clases: `name`, `number_of_employees`, `type_of_business`, `research_focus`
+  sub classes: `name`, `number_of_employees`, `type_of_business`, `research_focus`
   and `date_of_birth`.
 * For every class of the class hierarchy an own table is created in which only the properties
   are stored which are defined in the class (*Class Table Inheritance*).
@@ -47,7 +47,7 @@ described in the TCA. No additional configuration for the class hierarchy is nee
 
 For the second case of *Single Table Inheritance* beside creation of the table there is an
 additional configuration effort needed. Furthermore the table must have an additional field,
-that contains the type of the stored database tupel. The table definition schematically looks
+that contains the type of the stored database tuple. The table definition schematically looks
 like this:
 
 .. code-block:: guess
@@ -67,7 +67,7 @@ like this:
       KEY parent (pid)
    }
 
-The name of the field that contains the type can be choosen freely. In our case it is the field
+The name of the field that contains the type can be chosen freely. In our case it is the field
 `record_type`. The field name must be specified in the `ctrl` section of the TCA as `type`:
 
 .. code-block:: php

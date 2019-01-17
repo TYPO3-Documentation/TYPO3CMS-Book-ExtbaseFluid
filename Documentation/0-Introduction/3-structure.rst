@@ -3,7 +3,7 @@
 Structure of this book
 ======================
 
-This chapter is structured into ten subchapters and three appendices. The
+This chapter is structured into ten sub chapters and three appendices. The
 chapters discuss the following topics:
 
 Chapter 1, *Installation*, leads you through the

@@ -74,11 +74,11 @@ change of an existing blog. The job of the
 
 .. tip::
 
-    Who already dealed with the model-view-controller-pattern will
+    Who already dealt with the model-view-controller-pattern will
     notice, that the controller has only a little amount of code. Extbase (and
     FLOW3) aim to the approach to have a slim controller. The controller is
     exclusively responsible for the control of the process flow. Additional
-    logic (especially business or domain logic) needs to be seperated into
+    logic (especially business or domain logic) needs to be separated into
     classes in the subfolder :file:`Domain`.
 
 .. tip::
@@ -109,7 +109,7 @@ At first call of the plugin without additional information the request
 will get a standard action; in our case the
 `indexAction()`. The
 `indexAction()` contains only one line in our example
-(as shown above), which looks more detailled like this::
+(as shown above), which looks more detailed like this::
 
     public function indexAction()
     {

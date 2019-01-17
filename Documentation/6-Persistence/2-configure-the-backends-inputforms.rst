@@ -88,7 +88,7 @@ contain which meta data and the behavior of the table on creation and movement
 of its row sets. Meta data cover information about Visibility and Access
 Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
 `fe_group`), data about the history of changes (e.g. `versioningWS`,
-`crdate`, `tstamp` as well as data for the localization of Datasets (e.g.
+`crdate`, `tstamp` as well as data for the localization of data sets (e.g.
 `languageField`).
 
 
@@ -97,10 +97,10 @@ This part contains information about the representation of the table data in the
 Backend's List Module. The key `showRecordFieldList` contains a
 comma-separated list of field values whose values will be shown in the info
 dialogue of the table. This dialogue may be reached through a right-click on the
-icon of the rowset choosing the `Info` option. Altering the option
-`maxDBListItems` you can set how many rowsets will be shown in the List Module
+icon of the row set choosing the `Info` option. Altering the option
+`maxDBListItems` you can set how many row sets will be shown in the List Module
 without switching to the detail view of the database table. Then again, the
-number of rowsets shown on a page in this perspective may be set via
+number of row sets shown on a page in this perspective may be set via
 `maxSingleDBListItems`. Setting the option `always_description` to *true*
 the corresponding helping texts always show up.
 
@@ -108,10 +108,10 @@ the corresponding helping texts always show up.
 
 `types`
 This section defines the appearance of the Input Form for creation and update of
-a rowset. You can define several layout types by listing several elements in the
+a row set. You can define several layout types by listing several elements in the
 array `types`. The key of all those elements is their type (usually a number)
 and their value is another nested array which itself usually contains one
-element with `showItem` as key and a list of comma-separated fieldnames which
+element with `showItem` as key and a list of comma-separated field names which
 should emerge at the Input Form. An example of the table
 `tx_sjroffers_domain_model_organization` is:
 
@@ -136,8 +136,8 @@ position there is the fieldname; on the second an alternative naming fieldname;
 at third place follows the number of the palette (refer to the next book
 section); the fourth position holds extensive options which are separated
 through colons and the last place contains information about the appearance
-(e.g. color and strucure). The information at the fourth place allow the use of
-the *Richt Text Editore*. For a full list of the options refer to the already
+(e.g. color and structure). The information at the fourth place allow the use of
+the *Rich Text Editor*. For a full list of the options refer to the already
 mentioned TYPO3-Online documentation for the TYPO3-Core API.
 
 `palettes`
@@ -175,7 +175,7 @@ configuration for the input of the name of an organisation would be as follows:
    ],
 
 The field name is *name*. Firstly, we define some options that are independent
-from the field's type. This contains foremostly the fieldlabel (*label*), the
+from the field's type. This contains foremostly the field label (*label*), the
 conditions for the visibility of the field (`exclude`, `displayCond`) as
 well as information for its localization (`l10n_mode`, `l10n_cat`). The
 fieldname is, in our case, localized and will be taken from a language file
@@ -249,7 +249,7 @@ Field type "text"
 
 The `text` field type may contain multi-line formatted or unformatted texts
 e.g. product descriptions, addresses or news items. The indication of the lines
-(`rows`) and the columns (`cols`) specifys the area of the text input field.
+(`rows`) and the columns (`cols`) specifies the area of the text input field.
 
 .. code-block:: php
 
@@ -511,7 +511,7 @@ Field type "flex"
 -----------------
 
 The field type "flex" manages complex inline form fields (*FlexForms*). The
-formular data will be saved as XML data structure in the database fields.
+form data will be saved as XML data structure in the database fields.
 Extbase uses FlexForms for persisting plugin configuration but not to save
 domain data. If your plugin data will be rather complex we encourage you to
 design an own backend module for them (refer to Ch. 10).
@@ -707,11 +707,11 @@ object for every Aggregate-Root object which are, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
 :php:`\MyVendor\SjrOffers\Domain\Model\Organization` is such an Aggregate-Root object. The
 Repository's class name is derived from the class name of the Aggregate-Root
-object concatenated with the suffic *Repository*. The Repository needs to extend
+object concatenated with the suffix *Repository*. The Repository needs to extend
 the class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. The class file :php:`\MyVendor\
 SjrOffers\Domain\Repository\OrganizationRepository` will be saved in the
 directory :file:`EXT:sjr_ offers/Classes/Domain/Repository/`. Thus the directory
-*Repository* is on the same hierarchy-level as the direcory *Model*. In our
+*Repository* is on the same hierarchy-level as the directory *Model*. In our
 case, the class body remains empty because all the important functionalities are
 already generically implemented in the super-class
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
@@ -743,7 +743,7 @@ objects for easier access from the Frontend.
    access methods within the Aggregate-Root objects as `find` methods.
 
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository` serves with the following methods which
-are of course accessable and overwritable in the extending child derivations:
+are of course accessible and overridable in the extending child derivations:
 
 
 :php:`add($object)`
@@ -799,7 +799,7 @@ replaced by the uppercase-written property name of the class that is managed by
 the Repository. The methods then only return the objects as well count the
 objects whose properties *Property* correspond to the given value. Whereas the
 method :php:`findByProperty()` returns an Array of all the matching objects, the
-methode :php:`findOneByProperty()` only returns the first object that was found.
+method :php:`findOneByProperty()` only returns the first object that was found.
 That is, assuming that no certain sorting order was given, the order in which
 the objects were created in the Backend. Last but not least, the method
 :php:`countByProperty()` returns the count of the objects that would be returned if
@@ -845,7 +845,7 @@ When insertion of new Domain objects happens, then the procedure will be as foll
 
 <procedure>
 
-* If there's a TypoScript setup at :typoscript:`plugin.tx_extensionname.persistence.classes.*FullClassName*.newRecordStoragePid` with a single page value, then this is gonne be used.
+* If there's a TypoScript setup at :typoscript:`plugin.tx_extensionname.persistence.classes.*FullClassName*.newRecordStoragePid` with a single page value, then this is gonna be used.
 * If there's a TypoScript setup at :typoscript:`config. tx_extbase.persistence.classes.*FullClassName*.newRecordStoragePid` with a single page value, the this is gonna be used.
 * If none of the cases above apply, then the object will be inserted at the first item in the list of search pages. So to say, in the end the root page (the one with the globe) is gonna be used for insertion.
 
@@ -860,7 +860,7 @@ setting a new `pid`.
 
 .. note::
 
-   Most occuring mistake for seemingly empty Repositories is a mis-configured
+   Most occurring mistake for seemingly empty Repositories is a mis-configured
    *Storage-PID*. Thus, you should firstly evaluate the Template Module whether
    it is set correctly.
 
@@ -889,8 +889,8 @@ rewritten. This option is normally activated.
 
 .. note::
 
-   Usually, datasets will be saved into Folders in the Page Tree though the
-   pages using those datasets will be somewhere else. If their cache should be
+   Usually, data sets will be saved into Folders in the Page Tree though the
+   pages using those data sets will be somewhere else. If their cache should be
    cleared as well then you should set up their PIDs in the field *TSConfig* of
    the page's preferences of the directory. For example, out Offers will be
    shown on the pages with the PIDs 23 and 26 (let's say for a Single and a
@@ -899,13 +899,13 @@ rewritten. This option is normally activated.
    pages will be cleared as well and changes of an offer will show up
    immediately.
 
-Internally, TYPO3 manages an index of all relationships between two datasets the
+Internally, TYPO3 manages an index of all relationships between two data sets the
 so-called *RefIndex*. Due to this index it's possible to show the number of
-associated datasets in the list module's column *[Ref.]*. By clicking on the
+associated data sets in the list module's column *[Ref.]*. By clicking on the
 number you get further information about the incoming and outgoing references
-of the dataset. This index is automatically updated when any datasets get
+of the dataset. This index is automatically updated when any data sets get
 edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex =
-1` effects an update when datasets get edited in the Frontend though it is
+1` effects an update when data sets get edited in the Frontend though it is
 normally deactivated due to its huge effects on performance.
 
 Before calling a Repository's methods they need to be instantiated at first

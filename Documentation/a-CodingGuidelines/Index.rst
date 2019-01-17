@@ -3,7 +3,7 @@ Coding Guidelines
 
 Extbase and Fluid follow the principle of *Convention over Configuration* (as
 also FLOW3). That means that many tasks will work automatically if you respect
-certain naming conventions for classes, files and method names. Furtermore,
+certain naming conventions for classes, files and method names. Furthermore,
 this principle improves the consistency and readability of your code. Thus it is
 much easier for extension developers to understand how unknown extensions (based
 on Extbase) work, because the structure is always the same und common tasks are
@@ -17,7 +17,7 @@ identifier several times during development for having it intuitive for as many
 developers as possible.
 
 You will notice that this is a big difference to the previous TYPO3 v4 (where
-the names are often abbreviated and inconclusive) making the dayly
+the names are often abbreviated and inconclusive) making the daily
 work and understanding of the code much easier.
 
 Generally, classes are written in ``UpperCamelCase`` and methods and variables are
@@ -33,7 +33,7 @@ Every extension based on Extbase contains certain folders in the main directory:
 
 :file:`Classes`
    Here resides the complete source code for the extension. Only PHP files are
-   allowed, each one containing exacly one class or interface. All classes (or
+   allowed, each one containing exactly one class or interface. All classes (or
    interfaces) are loaded via the autoloader mechanism when needed.
 
 :file:`Configuration`

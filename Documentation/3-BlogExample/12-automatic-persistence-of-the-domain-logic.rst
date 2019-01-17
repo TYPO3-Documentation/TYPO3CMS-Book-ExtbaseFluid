@@ -40,7 +40,7 @@ the following order:
    this chapter. The persistence backend is a layer "above" the storage
    backend. It is responsible for the cycle of the persistence (what should
    be stored, deleted or changed in which order?), while the storage backend
-   has the job to translate the abstact requests into the native language of
+   has the job to translate the abstract requests into the native language of
    the "physical" storage option (most the SQL dialect of a database).
 
 In our case the persistence backend (in the following called backend)
@@ -58,7 +58,7 @@ property values.
    defined class of extbase. For the blog class this is
    ``\TYPO3\CMS\Extbase\DomainObject\AbstractEntity``. Inside this parent
    class a property ``$_cleanProperties`` is defined. This property
-   is directly, after the recontruction of the object (restored from the
+   is directly, after the reconstruction of the object (restored from the
    database), initialized with the unchanged property values with a call of
    ``_memorizeCleanState()``; in our case with the title, the
    description, the administrator and all ``post`` objects. With
@@ -70,7 +70,7 @@ property values.
    All methods that starts with an underline (_) are internal methods.
    These methods can be called from "outside" *(public)* in a technical view,
    but they should not called inside an extension - even though it is
-   attractive to do that. In FLOW3 the "observation" of the objects is solced
+   attractive to do that. In FLOW3 the "observation" of the objects is solved
    in an other way and it is not applicable to enhance a parent class of the
    framework. The declaration ``extends
    \TYPO3\CMS\Extbase\DomainObject\AbstractEntity`` can simply be removed when

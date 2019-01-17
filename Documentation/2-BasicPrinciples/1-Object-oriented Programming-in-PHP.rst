@@ -146,7 +146,7 @@ Property is marked with the key word :php:`public` further down.
 We can also switch on the engine
 (:php:`startEngine()`), travel with the ship to the
 desired destination (:php:`moveTo($location)`) and switch
-off the engine again (:php:`stopEnginge()`). Note that all
+off the engine again (:php:`stopEngine()`). Note that all
 Methods are empty, i.e. we have no content at all. We'll change this in
 the following examples, of course. The line containing the Method name and (if
 available) parameters is called the Method signature or method head. Everything

@@ -528,7 +528,7 @@ thus returns the count of offers of a given region.
 Implicit relation cardinality handling
 --------------------------------------
 
-Extbase supports serveral types of cardinalities that describe the relationship
+Extbase supports several types of cardinalities that describe the relationship
 between entities - among these are RELATION_HAS_ONE (1:1),
 RELATION_HAS_MANY (1:n) and RELATION_HAS_AND_BELONGS_TO_MANY (m:n).
 

@@ -66,7 +66,7 @@ Among other things, this class initializes the autoloader, which makes the
 inclusion of the class files `require_once()` obsolete.
 
 Remarkable is the remarkably long method name. Method names of this kind are
-typical for Unit-Tests, because these names could be transormed into readable
+typical for Unit-Tests, because these names could be transformed into readable
 sentences. So please formulate the method name so that it describes, which
 result demonstrates a successful test. It gives you one (always current)
 documentation of the functionality of your extension. The test is not able to
@@ -438,7 +438,7 @@ once in the list.
    offers by a little bit more complex query direct from the database. But we
    follow the important basic rule of the Domain-Driven Design at this place, which
    says that a element of an aggregate (the totality of all the terms contained in
-   the organization) should be accesssed by the root object (Aggregate-Root). The
+   the organization) should be accessed by the root object (Aggregate-Root). The
    alternative we choose only, if the iterating through all the offers causes
    actually a performance problem.
 

@@ -111,6 +111,6 @@ This way, it can also be reused for the following Template:
    </f:for>
 
 Again, there is no variable :html:`{tags}`. This time, an index of Blogs is
-displayed instead of Blogposts of a single Blog. Both have relations to
+displayed instead of blog posts of a single Blog. Both have relations to
 tags which should be displayed the same way. With a single Partial and the
 `arguments`-Argument this is possible.

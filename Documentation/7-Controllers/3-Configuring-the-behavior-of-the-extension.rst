@@ -37,14 +37,14 @@ In the :php:`OrganizationRepository`, we implemented a
 Method :php:`findByStates()`, which we do not further
 investigate here (see more in chapter 6, section "Implement individual
 database queries"). The Method expects an array containing the allowed
-states. We generate it from the comma seperated list using the TYPO3 API
+states. We generate it from the comma separated list using the TYPO3 API
 function :php:`GeneralUtility::intExplode()`. We then pass on the
 returned choice of organizations to the view, just as we are used to
 do.
 
 .. tip::
 
-   Of course we could also have passed the comma seperated list
+   Of course we could also have passed the comma separated list
    directly to the Method :php:`findByStates()`. We do
    recommend, though, to prepare all parameter coming from outside
    (settings, form input) before passing them on to the two other

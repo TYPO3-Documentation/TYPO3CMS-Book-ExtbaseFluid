@@ -36,7 +36,7 @@ at the TER.
 
 .. tip::
 
-   Please note that we, the authors are also in a proceeding learning process. With our todays knowledge, the printed code can be described as
+   Please note that we, the authors are also in a proceeding learning process. With our today's knowledge, the printed code can be described as
 
    *good*
 

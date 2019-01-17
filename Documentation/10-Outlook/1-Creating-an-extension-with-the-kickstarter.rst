@@ -26,7 +26,7 @@ Concept
 -------
 
 The modelling of the domain model of an extension is the core functionality of the Extbase Kickstarter.
-In a graphical user interface the new domian objects are created, with performing properties
+In a graphical user interface the new domain objects are created, with performing properties
 and methods and applying the relations between the domain objects.
 
 During this phase of development the focus lies on the functionality of the domain model, and the
@@ -47,8 +47,8 @@ the templates to disk and can be used as a base for manual customizing.
 Sample modelling
 ----------------
 
-We want to demponstrate the usage of the kickstarter with an example of a little news extension.
-First we create a domian object ``News``, with the properties ``title``, ``author`` and ``text``.
+We want to demonstrate the usage of the kickstarter with an example of a little news extension.
+First we create a domain object ``News``, with the properties ``title``, ``author`` and ``text``.
 Because we additionally want to create a comment function for news, the domain objects needs a
 list of ``Comment`` objects in which the comments are to be stored.
 
@@ -59,7 +59,7 @@ is shown, with it you can model the domain objects.
 .. figure:: /Images/10-Outlook/figure-10-1.png
 
    Figure 10-1: The domain modeller consists of a large workspace and retractable tabs at the
-   left and right side, in wich the meta data can be entered.
+   left and right side, in which the meta data can be entered.
 
 To create a new domain object click at the box with the title *New Model Object* and pull it to
 the desired place on the workspace. Now you can enter the name of the model object, in our case
@@ -89,15 +89,15 @@ open the tab on the left side of the workspace and fill in the needed informatio
 click on *Save* the extension is saved and all files are generated.
 
 The extension can be installed with the extension manager now, and can be added to a page
-in the TYPO3 frontend. If you call this page, you will see that automagically a list, a single
+in the TYPO3 frontend. If you call this page, you will see that automatically a list, a single
 and a edit view for editing of news entries are generated - this is the dynamic Scaffolding.
 To change this to explicit templates the sub module *Convert Dynamic to Static Scaffolding*
 can be used.
 
-Now you have implementd a simple extension with the kickstarter and can further enhance it.
+Now you have implemented a simple extension with the kickstarter and can further enhance it.
 
 The extbase kickstarter resides - like said at the beginning - heavy in the development stage.
-At the moment there are plans of the development team to use a standarized description language
+At the moment there are plans of the development team to use a standardized description language
 for the emerging models. Also the team around the kickstarter will try to implement functions
 to edit existing extensions.
 
