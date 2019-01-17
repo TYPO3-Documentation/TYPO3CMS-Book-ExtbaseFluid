@@ -401,12 +401,6 @@ conception has a serious disadvantage: If you want to create a data record
 for a language that has no data record in the default language, you have
 to create the latter before. But with what content?
 
-.. tip::
-
-    In FLOW3 this is solved better. There only a "structure node"
-    exists to which the content element is added with its different language
-    parts. A default language in this spirit does not exist.
-
 Lets have an example for illustration: You create a blog in the
 default language English (=default). It is stored in the database like
 this::

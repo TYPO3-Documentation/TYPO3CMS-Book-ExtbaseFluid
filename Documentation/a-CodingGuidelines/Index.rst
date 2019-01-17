@@ -1,15 +1,15 @@
 Coding Guidelines
 =================
 
-Extbase and Fluid follow the principle of *Convention over Configuration* (as
-also FLOW3). That means that many tasks will work automatically if you respect
+Extbase and Fluid follow the principle of *Convention over Configuration*.
+That means that many tasks will work automatically if you respect
 certain naming conventions for classes, files and method names. Furthermore,
 this principle improves the consistency and readability of your code. Thus it is
 much easier for extension developers to understand how unknown extensions (based
 on Extbase) work, because the structure is always the same und common tasks are
 solved the same way.
 
-With Extbase, Fluid and FLOW3 we set quite an emphasis on the intuitive and
+With Extbase and Fluid we set quite an emphasis on the intuitive and
 logical naming scheme of classes, methods and variables. Our goal is to provide
 the source code as readable as possible, because the names are already
 reflecting what the code does. It even happens that we change a name or

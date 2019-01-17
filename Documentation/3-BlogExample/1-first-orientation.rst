@@ -22,11 +22,12 @@ amount of comments".
 
 .. note::
 
-   The blog example was originally created by the FLOW3 team and
-   has been backported to TYPO3 version 4.x. When you work more with
-   FLOW3 and TYPO3 5.x in the future, you will find this example in a
+   The blog example was originally created by the team inside the TYPO3
+   community that created the FLOW framework (formerly FLOW3). The blog
+   example has been backported to TYPO3 4.x. When you work more with
+   FLOW or TYPO3 in the future, you will find this example in a
    near identical form. You will find some notes about the relationship
-   between Extbase and FLOW3 in the section "Migration to FLOW3 and TYPO3 v5"
+   between Extbase and FLOW in the section "Migration to FLOW and NEOS"
    in chapter 10.
 
 The complete source code can be found in a folder, which has the same

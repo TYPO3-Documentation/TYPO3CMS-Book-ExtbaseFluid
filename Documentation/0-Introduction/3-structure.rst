@@ -56,10 +56,8 @@ handling of security aspects.
 
 Chapter 10, *Outlook*, gives a glimpse into code which is currently being developed.
 The focus lies on the kickstarter and the use of Extbase in the TYPO3 Backend.
-Additionally, this chapter shows you parts of FLOW3 and explains how Extbase
-Extensions can be ported to TYPO3 v6.
 
-Extbase mostly uses the conventions of FLOW3. In *Appendix A, Coding Guidelines*, they are summarized.
+Extbase mostly uses the conventions of FLOW. In *Appendix A, Coding Guidelines*, they are summarized.
 
 Appendix B, *Reference of Extbase*, contains an overview of important Extbase concepts and an alphabetical listing of the API.
 

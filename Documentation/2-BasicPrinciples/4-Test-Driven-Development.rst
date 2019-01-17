@@ -33,7 +33,7 @@ callback, if a failure is implemented into the existing functions.
    Field report
 
    When Robert Lemke and other Core Developers suggested to make the development for
-   FLOW3 test driven, I was skeptic. Test-Driven Development sounded like a nice
+   FLOW test driven, I was skeptic. Test-Driven Development sounded like a nice
    concept, but I did not know how to test a framework this size reasonable. Also
    in the internet there were often only very simple academic examples to find.
    Until this time I had only a theoretical overview over TDD.
@@ -233,12 +233,6 @@ Injection in respective factories to outsource. A possible Factory looks as
 follows from:
 
 //code
-
-
-.. note::
-
-   FLOW3 offers first class Dependency Injection support. If you migrate your
-   extensions on FLOW3 later, this part is much simpler.
 
 We can now operate in a test case from the outside, which the EmailService the
 EmailLogger gets. We could write a TestEmailService, for example, which simple

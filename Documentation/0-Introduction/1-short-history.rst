@@ -12,12 +12,12 @@ A short history of Extbase and Fluid
 
 
 
-After the implementation of TYPO3 v5 and FLOW3 as the basis framework
-started, the development of TYPO3 v4 and TYPO3 v5 was happening almost
-completely independent from each other. In October 2008, the core developers
+After the implementation of NEOS (formerly TYPO3 v5) and FLOW (formerly FLOW3)
+as the basis framework started, the development of TYPO3 v4 and NEOS was happening
+almost completely independent from each other. In October 2008, the core developers
 of both branches met for the *TYPO3 Transition Days* in
 Berlin. There, the developers wanted to work on a common vision and strategy
-for the transition from the current TYPO3 version 4 to the coming version 5.
+for the transition from TYPO3 version 4 to the coming version 5.
 The core points of this strategy were communicated as a manifesto (see the
 box "The Berlin Manifesto").
 
@@ -59,7 +59,7 @@ how such a new template engine should work and behave. Shortly after, a
 prototype was implemented. The development of Extbase began two months
 later, when a few core members met in Karlsruhe. There, they agreed on
 staying as close as possible to the concepts, the architecture and the APIs
-of FLOW3.
+of FLOW.
 
 After that followed an intensive development phase, where Jochen Rau
 developed the biggest part of Extbase, while Sebastian Kurfürst did code
@@ -76,9 +76,9 @@ before.
 
 In the following days, the Fluid team developed a small program (named
 *Backporter*) which could take the code of Fluid for
-FLOW3, and transform it to code for TYPO3 v4. That's how the first working
+FLOW, and transform it to code for TYPO3 v4. That's how the first working
 version of Fluid for TYPO3 v4 came into being at the end of the T3BOARD09.
-Additionally, it was now pretty easy to keep Fluid for FLOW3 in sync with
+Additionally, it was now pretty easy to keep Fluid for FLOW in sync with
 Fluid for TYPO3 v4.
 
 The first real presentation of Extbase and Fluid happened in April

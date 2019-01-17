@@ -75,8 +75,8 @@ change of an existing blog. The job of the
 .. tip::
 
     Who already dealt with the model-view-controller-pattern will
-    notice, that the controller has only a little amount of code. Extbase (and
-    FLOW3) aim to the approach to have a slim controller. The controller is
+    notice, that the controller has only a little amount of code. Extbase
+    aims for the `slim controller` approach . The controller is
     exclusively responsible for the control of the process flow. Additional
     logic (especially business or domain logic) needs to be separated into
     classes in the subfolder :file:`Domain`.

@@ -141,7 +141,7 @@ Property is marked with the key word :php:`public` further down.
    For Methods and Properties we use a notation called
    *lowerCamelCase*: The first letter is lower case
    and all other parts are added without blank or underscore in upper
-   case. This is a convention used in Extbase (as well as FLOW3).
+   case. This is a convention used in Extbase.
 
 We can also switch on the engine
 (:php:`startEngine()`), travel with the ship to the

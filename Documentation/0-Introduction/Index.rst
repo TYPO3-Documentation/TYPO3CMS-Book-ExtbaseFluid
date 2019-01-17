@@ -10,19 +10,19 @@ the basis of it were the state of the art around the year 2000. That's why
 in the year 2006, after a thorough analysis of the current status, the
 decision was made to rewrite TYPO3 from scratch. A separation into a
 framework part and the real content management system TYPO3 seemed to make
-sense. Today, the framework FLOW3_ is used and TYPO3 CMS v6 has been widely adopted.
+sense. Today, the framework FLOW_ is used and TYPO3 CMS v6 has been widely adopted.
 The birth of Extbase and Fluid also took place in this phase of re-orientation.
 
-.. _FLOW3: http://flow.typo3.org/
+.. _FLOW: https://flow.neos.io/
 
 .. sidebar:: TYPO3 v4 and TYPO3 v6
 
    Because the internal structures of TYPO3 v4 grew organically, they
-   could be quite confusing. When developing the new version 6 of the CMS, the
+   could be quite confusing. When developing NEOS (formerly TYPO3 5), the
    TYPO3 team decided to start from scratch. Special attention was placed on
    clean code and an easy and powerful infrastructure. It quickly emerged that the first
    priority would be a web application framework, before the CMS itself
-   was to be developed. This web application framework is FLOW3, on which TYPO3 v6 is developed.
+   was to be developed. This web application framework is FLOW, on which NEOS is developed.
 
 Extbase is a PHP-based framework which supports developers in creating clean and easily
 maintainable TYPO3 extensions. The template engine Fluid makes sure that the user interface
@@ -46,20 +46,10 @@ programming languages and frameworks, as development paradigms like
 Domain-Driven Design or Model-View-Controller architecture can be used
 universally.
 
-Extensions which are built on Extbase can be ported to TYPO3 and FLOW3
-in a manageable fashion, as the structure of the extension, the naming
-conventions and the used APIs are almost the same. Extbase eases the
-transition to FLOW3 and TYPO3: if you use Extbase, you can switch easily
-to FLOW3 and TYPO3 v6.
-
 We hope that Extbase and Fluid are the introduction to a completely
-new world of programming for you, so that you can start learning the
-concepts of FLOW3. You will learn a lot of new concepts when starting work with FLOW3,
-but over time, you will notice that Extbase and Fluid makes you a lot more productive.
+new world of programming for you. You will learn a lot of new concepts but over time,
+you will notice that Extbase and Fluid makes you a lot more productive.
 With a bit of luck, you'll hopefully get into the "flow" which drove us while we developed Extbase and Fluid.
-
-Not only developers can profit from Extbase: the FLOW3 development team can also test many abstract concepts
-for their real-world applicability and subsequently remove bugs and amend inconsistencies which occur in Extbase and Fluid.
 
 .. toctree::
    :maxdepth: 2

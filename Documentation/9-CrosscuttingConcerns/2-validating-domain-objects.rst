@@ -127,7 +127,7 @@ the given objects for example give it to the view for displaying.
     is not done since the data is stored in the database after sending the
     answer back to the browser. Therefore the user could not be informed in
     case of validating errors. In the meantime a second validating when
-    persisting the objects is built into FLOW3, so this will be expected in
+    persisting the objects is built into FLOW, so this will be expected in
     Extbase in the medium term.
 
 When an error occurs during validation, the method

@@ -69,12 +69,8 @@ property values.
 
    All methods that starts with an underline (_) are internal methods.
    These methods can be called from "outside" *(public)* in a technical view,
-   but they should not called inside an extension - even though it is
-   attractive to do that. In FLOW3 the "observation" of the objects is solved
-   in an other way and it is not applicable to enhance a parent class of the
-   framework. The declaration ``extends
-   \TYPO3\CMS\Extbase\DomainObject\AbstractEntity`` can simply be removed when
-   you port your extension to TYPO3 v5.
+   but they should not be called inside an extension - even though it is
+   attractive to do that.
 
 In our example the backend find the new post while it iterates through
 the post objects. The storage backend is directed to store these post in the

@@ -374,13 +374,6 @@ The annotation @cascade remove causes if the organization is deleted, the offers
 will be also deleted immediately. Extbase leaves usually persist unchanged all
 child objects.
 
-
-.. note::
-
-   In FLOW3 in this behavior is slightly different. Here child objects to which no
-   more can be accessed from a repository, are automatically deleted. In TYPO3 4.x,
-   you can definitely still access the orphaned objects at the backend.
-
 Besides these two there are a few more annotations available, which will be used
 in other contexts (e.g. in the controller). The complete list of all by Extbase
 supported annotations, see the index.
