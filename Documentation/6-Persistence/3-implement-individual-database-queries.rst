@@ -161,7 +161,7 @@ a multi-valued operand (``$organizations``).
 .. note::
 
     The methods ``in()`` and ``contains()`` were introduced in Extbase version
-    1.1. If you pass an empty multi-valued property value or an empty
+    1.1. (TYPO3 4.3) If you pass an empty multi-valued property value or an empty
     multi-valued operand (e.g. an empty Array) to them you always get a *false*
     as return value for the test. Thus you have to prove if the operand
     ``$organizations`` of the method call ``$query->in('organization',
@@ -185,7 +185,7 @@ types (1:1, 1:n, m:n) and all comparison operators are covered by this feature.
 
 .. note::
 
-    The path notation was introduced in Extbase 1.1 and is derived from the
+    The path notation was introduced in Extbase 1.1 (TYPO3 4.3) and is derived from the
     *Object-Accessor* notation of Fluid (see Ch. 8). In Fluid you may access
     object properties with the notation ``{organization.administrator.name}``.
     However, Fluid does not support the notation
@@ -204,7 +204,7 @@ Operators such as::
 The methods above return a ``Constraint`` object. The resulting ``Constraint``
 object of ``logicalAnd()`` is true if both given parameters ``$constraint1`` and
 ``$constraint2`` are true. It's sufficient when using ``logicalOr()`` to
-be true if only one of the given parameters is true. Since Extbase 1.1, both methods
+be true if only one of the given parameters is true. Since Extbase 1.1 (TYPO3 4.3), both methods
 accept an Array of constraints. Last, but not least, the function
 ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
@@ -336,7 +336,7 @@ order. A complete sample for specifying a sort order looks like this:
 
 Multiple orderings are processed in the specified order. In our sample the offers are ordered first
 by the name of the organization, then inside the organization by the title of the offers, both in ascending
-order (thus from A to Z). Since Extbase 1.1, you can use TypoScript-style point notation for
+order (thus from A to Z). Since Extbase 1.1 (TYPO3 4.3), you can use TypoScript-style point notation for
 specifying the property names.
 
 If you need only an extract of the result set, you can do this with the two parameters, ``Limit``
@@ -396,7 +396,7 @@ the settings of the ``Query`` object.
 
     $query->getQuerySettings()->setReturnRawQueryResult(TRUE);
 
-Since Extbase 1.2, the method ``execute()`` returns a multidimensional array with the object data.
+Since Extbase 1.2 (TYPO3 4.4), the method ``execute()`` returns a multidimensional array with the object data.
 Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
 look at an object with a single value property.
 

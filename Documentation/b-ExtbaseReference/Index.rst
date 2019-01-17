@@ -634,17 +634,17 @@ generating a single condition are available:
 `$query->greaterThanOrEqual($propertyName, $operand);`
     Checks if the value of the property `$propertyName` is greater than or equal to the operand.
 
-Since 1.1 `$propertyName` is not necessarily only a simple property-name but also can be a "property path".
+Since 1.1 (TYPO3 4.3) `$propertyName` is not necessarily only a simple property-name but also can be a "property path".
     Example: `$query->equals('categories.title', 'tools')` searches for objects having a category titled
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 `$query->logicalAnd($constraint1, $constraint2);`
     Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
-    1.1 also an array of conditions is allowed.
+    1.1 (TYPO3 4.3) also an array of conditions is allowed.
 
 `$query->logicalOr($constraint1, $constraint2);`
     Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
-    1.1 also an array of conditions is allowed.
+    1.1 (TYPO3 4.3) also an array of conditions is allowed.
 
 `$query->logicalNot($constraint);`
     Returns a condition that inverts the result of the given condition (logical *not*).

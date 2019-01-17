@@ -412,7 +412,7 @@ displayed if the template is intending so.
 .. tip::
 
     Standard error messages of Extbase are not yet localized in
-    Version 1.2. In section "Localize error messages" in chapter 8, we
+    Version 1.2 (TYPO3 4.4). In section "Localize error messages" in chapter 8, we
     describe a possibility to translate them too, though.
 
 Using the hidden field :php:`__trustedProperties`, the Extbase property
