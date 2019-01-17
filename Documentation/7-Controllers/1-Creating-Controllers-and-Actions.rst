@@ -242,7 +242,7 @@ method :php:`newAction()`.
      * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
      * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
      * @return string An HTML form for creating a new offer
-     * @dontvalidate $newOffer
+     * @ignorevalidation $newOffer
      */
     public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null)
     {
@@ -398,7 +398,7 @@ hidden fields :php:`__referrer`. In our case the Method
 first call, Extbase now tries to create an (invalid)
 :php:`Offer` Object from the form data, and to pass it to
 the Method in :php:`$newOffer`. Due to the annotation
-:php:`@dontvalidate $newOffer` Extbase this time accepts
+:php:`@ignorevalidation $newOffer` Extbase this time accepts
 the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again and the previously saved error message is
 displayed if the template is intending so.
@@ -423,10 +423,10 @@ message. You can skip this check by annotating the Method with
 @dontverifyrequesthash, though. So you have two annotations for Action
 Methods at your disposal:
 
-* :php:`@dontvalidate*$argumentName*`
+* :php:`@ignorevalidation*$argumentName*`
 * :php:`@dontverifyrequesthash`
 
-Using the annotation :php:`@dontvalidate
+Using the annotation :php:`@ignorevalidation
 *$argumentName*` you tell Extbase that the
 argument is not to be validated. If the argument is an Object, the
 validation of its properties is also bypassed.
@@ -458,7 +458,7 @@ be edited as an Argument.
    /**
     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
     * @return string Form for editing the existing organization
-    * @dontvalidate $offer
+    * @ignorevalidation $offer
     */
    public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
@@ -466,7 +466,7 @@ be edited as an Argument.
       $this->view->assign('regions', $this->regionRepository->findAll());
    }
 
-Note once again the annotation :php:`@dontvalidate $offer`.
+Note once again the annotation :php:`@ignorevalidation $offer`.
 The Method :php:`updateAction()`
 receives the changed offer and updates it in the repository. Afterwards a
 new request is started and the organization is shown with its updated

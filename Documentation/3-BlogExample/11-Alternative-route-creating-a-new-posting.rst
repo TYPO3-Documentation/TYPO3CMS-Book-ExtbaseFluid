@@ -48,7 +48,7 @@ Lets take a look at the called method ``newAction()``:
     * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
     * @param \MyVendor\BlogExample\Domain\Model\Post $newPost An invalid new post object passed by a rejected createAction()
     * @return string An HTML form for creating a new post
-    * @dontvalidate $newPost
+    * @ignorevalidation $newPost
     */
    public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL) {
       $this->view->assign('authors', $this->authorRepository->findAll();
