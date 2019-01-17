@@ -194,9 +194,9 @@ template *edit.html* in the folder
                object="{organization}">
            <label for="name">Name</label>
            <f:form.textbox property="name" size="46" /><br />
-           <label for="address">Adresse</label>
+           <label for="address">Address</label>
            <f:form.textarea property="address" rows="6" cols="46" /><br />
-           <label for="telephoneNumber">Telefon</label>
+           <label for="telephoneNumber">Telephone</label>
            <f:form.textbox property="telephoneNumber" size="46" /><br />
            <label for="telefaxNumber">Telefax</label>
            <f:form.textbox property="telefaxNumber" size="46" /><br />
@@ -204,9 +204,9 @@ template *edit.html* in the folder
            <f:form.textbox property="emailAddress" size="46" /><br />
            <label for="url">Homepage</label>
            <f:form.textbox property="url" size="46" /><br />
-           <label for="description">Beschreibung</label>
+           <label for="description">Description</label>
            <f:form.textarea property="description" rows="8" cols="46" /><br />
-           <f:form.submit value="Speichern"/>
+           <f:form.submit value="Save"/>
          </f:form>
        </f:then>
        <f:else>

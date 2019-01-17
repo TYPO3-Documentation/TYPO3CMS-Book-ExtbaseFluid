@@ -240,7 +240,7 @@ blog post is always build-on the scheme *Maintopic: Title*:
          extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
       public function isValid($value) {
-         // $value ist also der Titel-String.
+         // $value is the title string
          if (count(explode(':', $value)) >= 2) {
             return TRUE;
          }

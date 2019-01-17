@@ -15,7 +15,7 @@ real life.
 A Program could for example take care of the task of booking a cruise
 in the Indian Ocean. If so we obviously have a problem (a programmer that
 has been working too much and finally decided to go on vacation) and a
-program promising recuperation by booking a coach on one of the luxury
+program promising recuperation by booking a cabin on one of the luxury
 liners for him and his wife.
 
 Object Orientation assumes that a concrete problem is to be solved by
@@ -28,7 +28,7 @@ Objects are "containers" for data and corresponding functionality. The
 data of an object is stored in its *Properties*. The
 functionality is provided by *Methods* which can for
 example alter the Properties of the Object. In regard to the cruise liner we
-can say that it has a certain amount of coaches, a length and width and a
+can say that it has a certain amount of cabins, a length and width and a
 maximum speed. Further it has Methods to start the motor (and hopefully to
 stop it again also), change the direction as well as to increase thrust so
 you can reach your holiday destination a bit faster.
@@ -59,7 +59,7 @@ exist and they all have properties and (most of them) methods. This fact
 is now represented in programming.
 
 In the following we'll talk about the object *Ship*. We'll invoke this
-object, stock it with coaches, a motor and other useful stuff.
+object, stock it with cabins, a motor and other useful stuff.
 Furthermore there will be functions moving the ship thus turning the
 motor on and off. Later we'll even create a luxury liner based on the
 general ship and equip it with a golf simulator and satellite TV.
@@ -106,7 +106,7 @@ add these Properties and Methods:
 
       public $name;
 
-      public $coaches;
+      public $cabins;
 
       public $engineStatus;
 
@@ -128,8 +128,8 @@ add these Properties and Methods:
       }
    }
 
-Our ship now has a name (:php:`$name`), a number of coaches
-(:php:`$coaches`) and a speed (:php:`$speed`). In addition we built in a
+Our ship now has a name (:php:`$name`), a number of cabins
+(:php:`$cabins`) and a speed (:php:`$speed`). In addition we built in a
 variable containing the status of the engine (:php:`$engineStatus`). A real
 ship, of course, has much more properties all important somehow - for our
 abstraction these few will be sufficient though. We'll focus on why every
@@ -175,7 +175,7 @@ the following:
 
       ["name"] => NULL
 
-      ["coaches"] => NULL
+      ["cabins"] => NULL
 
       ["engineStatus"] => NULL
 
@@ -260,10 +260,10 @@ Constructor
 -------------------------------------------------
 
 It can be very useful to initialize an Object at the Moment of instantiating it.
-Surely there will be a certain number of coaches built
+Surely there will be a certain number of cabins built
 in right away when a new cruise liner is created - so that the future
 guest will not be forced to sleep in emergency accommodation. So we can
-define the number of coaches right when instantiating. The processing of
+define the number of cabins right when instantiating. The processing of
 the given value is done in a Method automatically called on creation of
 an Object, the so called *Constructor*. This special
 Method always has the name :php:`__construct()` (the
@@ -271,7 +271,7 @@ first two characters are underscores).
 
 The values received from instantiating are now passed on to the
 constructor as Argument and then assigned to the Properties
-:php:`$coaches` and
+:php:`$cabins` and
 :php:`$name` respectively.
 
 
@@ -280,15 +280,15 @@ constructor as Argument and then assigned to the Properties
    class Ship
    {
       public $name;
-      public $coaches;
+      public $cabins;
       public $speed;
 
-      function __construct($name, $numberOfCoaches)
+      function __construct($name, $numberOfCabins)
       {
          $this->name = $name;
-         $this->coaches = $numberOfCoaches;
+         $this->cabins = $numberOfCabins;
          echo 'The new ship has the name: ' . $this->name;
-         echo '<br />and has ' . $this->coaches . ' coaches';
+         echo '<br />and has ' . $this->cabins . ' cabins';
       }
    }
 
@@ -318,7 +318,7 @@ extend an "old" Class definition by using the key word
 
    class LuxuryLiner extends Ship
    {
-      public $luxuryCoaches;
+      public $luxuryCabins;
 
       function golfSimulatorStart()
       {
@@ -343,8 +343,8 @@ Extension (in our example :php:`LuxuryLiner`) is called the
 The class :php:`LuxuryLiner` now contains the
 complete configuration of the base class :php:`Ship`
 (including all Properties and Methods) and defines additional Properties
-(like the amount of luxury coaches in
-:php:`$luxuryCoaches`) and additional Methods (like
+(like the amount of luxury cabins in
+:php:`$luxuryCabins`) and additional Methods (like
 :php:`golfSimulatorStart()` and
 :php:`golfSimulatorStop()`). Inside these Methods you can
 again access the Properties and Methods of the parent class by using
@@ -373,7 +373,7 @@ example:
       }
    }
 
-   class Luxusliner extends Ship
+   class LuxuryLiner extends Ship
    {
       $additionalEngineStatus = 'OFF';
 
@@ -421,7 +421,7 @@ way:
       }
    }
 
-   class Luxusliner extends Ship
+   class LuxuryLiner extends Ship
    {
       $additionalEngineStatus = 'OFF';
 
@@ -440,7 +440,7 @@ Sometimes it is useful to define "placeholder Methods" in the
 parent class which are filled in the child class. These "placeholders"
 are called *abstract Methods*. A class containing
 abstract Methods is called *abstract Class*. For our
-ship there could be a Method :php:`setupCoaches()`. Each
+ship there could be a Method :php:`setupCabins()`. Each
 type of ship is to be handled differently for each has a proper
 configuration. So each ship must have such a Method but the concrete
 implementation is to be done separately for each ship type.
@@ -451,24 +451,24 @@ implementation is to be done separately for each ship type.
    {
       function __construct()
       {
-         $this->setupCoaches();
+         $this->setupCabins();
       }
 
-      abstract function setupCoaches();
+      abstract function setupCabins();
    }
 
-   class Luxusliner extends Ship
+   class LuxuryLiner extends Ship
    {
-      function setupCoaches()
+      function setupCabins()
       {
-         echo 'Setting up coaches';
+         echo 'Setting up cabins';
       }
    }
 
-   $luxusschiff = new Luxusliner();
+   $luxuryLiner = new LuxuryLiner();
 
 In the parent class we have defined only the body of the Method
-:php:`setupCoaches()`. The key word
+:php:`setupCabins()`. The key word
 :php:`abstract` makes sure that the Method must be
 implemented in the child class. So using abstract classes we can define
 which Methods have to be present later without having to implement them
@@ -496,7 +496,7 @@ for that:
       public function disableTV();
    }
 
-   class Luxusliner extends Ship implements SatelliteTV
+   class LuxuryLiner extends Ship implements SatelliteTV
    {
 
       protected $tvEnabled = FALSE;
@@ -555,24 +555,24 @@ properties:
 
    abstract class Ship
    {
-      protected $coaches;
+      protected $cabins;
 
-      abstract protected function setupCoaches();
+      abstract protected function setupCabins();
    }
 
-   class Luxusliner extends Ship
+   class LuxuryLiner extends Ship
    {
-      protected function setupCoaches()
+      protected function setupCabins()
       {
-         $this->coaches = 300;
+         $this->cabins = 300;
       }
    }
 
-   $luxusliner = new Luxusliner('Fidelio', 100);
-   echo 'Anzahl Kabinen: ' . $luxusliner->coaches; // Funktioniert NICHT!
+   $LuxuryLiner = new LuxuryLiner('Fidelio', 100);
+   echo 'Amount of cabins: ' . $LuxuryLiner->cabins; // Does not work!
 
 The :php:`LuxuryLiner` may alter the property
-:php:`coaches`, for this is
+:php:`cabins`, for this is
 :php:`protected`. If it was
 :php:`private` no access from inside of the child class
 would be possible. Access from outside of the hierarchy of inheritance
@@ -592,7 +592,7 @@ Access to Methods
 
 All Methods the Object makes available to the outside have to be
 defined as :php:`public`. All Methods containing
-implementation details, e.g. :php:`setupCoaches()` in
+implementation details, e.g. :php:`setupCabins()` in
 the above example, should be defined as
 :php:`protected`. The visibility
 :php:`private` should be used most rarely, for it
@@ -607,22 +607,22 @@ respectively *getter*. See the example.
 
    class Ship
    {
-      protected $coaches;
+      protected $cabins;
       protected $classification = 'NORMAL';
 
-      public function getCoaches()
+      public function getCabins()
       {
-         return $this->coaches;
+         return $this->cabins;
       }
 
-      public function setCoaches($numberOfCoaches)
+      public function setCabins($numberOfCabins)
       {
-         if ($numberOfCoaches > 500) {
+         if ($numberOfCabins > 500) {
             $this->classification = 'LARGE';
          } else {
             $this->classification = 'NORMAL';
          }
-         $this->coaches = $numberOfCoaches;
+         $this->cabins = $numberOfCabins;
       }
 
       public function getClassification()
@@ -631,13 +631,13 @@ respectively *getter*. See the example.
       }
    }
 
-We now have a Method :php:`setCoaches()` which
-sets the number of coaches. Furthermore it changes - depending on the
-number of coaches - the ship category. You now see the advantage: When
+We now have a Method :php:`setCabins()` which
+sets the number of cabins. Furthermore it changes - depending on the
+number of cabins - the ship category. You now see the advantage: When
 using Methods to get and set the Properties, you can perform more
 complex operations, as e.g. setting of dependent Properties. This
 preserves consistency of the object. If you set
-:php:`$coaches` and
+:php:`$cabins` and
 :php:`$classification` to :php:`public`,
 we could set the number of cabins to 1000 and classification to
 :php:`NORMAL` - and our ship would end up being
@@ -670,13 +670,13 @@ we save this number in a static Property
 
 .. code-block:: php
 
-   class Luxusliner extends Ship {
+   class LuxuryLiner extends Ship {
       protected static $shipyardSupportTelephoneNumber = '+49 30 123456';
 
       public function reportTechnicalProblem()
       {
-         echo 'Auf dem Schiff ' . $this->name . ' wurde ein Problem festgestellt.
-               Bitte informieren Sie ' . self::$shipyardSupportTelephoneNumber;
+         echo 'There is a problem with the ship ' . $this->name . '.
+               Please call ' . self::$shipyardSupportTelephoneNumber;
       }
 
       public static function setShipyardSupportTelephoneNumber($newNumber)
@@ -685,22 +685,22 @@ we save this number in a static Property
       }
    }
 
-   $fidelio = new Luxusliner('Fidelio', 100);
-   $figaro = new Luxusliner('Figaro', 200);
+   $fidelio = new LuxuryLiner('Fidelio', 100);
+   $figaro = new LuxuryLiner('Figaro', 200);
 
    $fidelio->reportTechnicalProblem();
    $figaro->reportTechnicalProblem();
 
-   Luxusliner::setShipyardSupportTelephoneNumber('+01 1000');
+   LuxuryLiner::setShipyardSupportTelephoneNumber('+01 1000');
 
    $fidelio->reportTechnicalProblem();
    $figaro->reportTechnicalProblem();
 
-   // Dabei wird folgender Text ausgegeben:
-   Auf dem Schiff Fidelio wurde ein Problem festgestellt. Bitte informieren Sie +49 30 123456
-   Auf dem Schiff Figaro wurde ein Problem festgestellt. Bitte informieren Sie +49 30 123456
-   Auf dem Schiff Fidelio wurde ein Problem festgestellt. Bitte informieren Sie +01 1000
-   Auf dem Schiff Figaro wurde ein Problem festgestellt. Bitte informieren Sie +01 1000
+   // The following text will be printed:
+   There is a problem with the ship Fidelio. Please call +49 30 123456
+   There is a problem with the ship Figaro. Please call +49 30 123456
+   There is a problem with the ship Fidelio. Please call +01 1000
+   There is a problem with the ship Figaro. Please call +01 1000
 
 What happens here? We instantiate two different ships which both
 have a problem and do contact the shipyard. Inside the method
@@ -765,7 +765,7 @@ more than one instance of the shipyard object:
    use TYPO3\CMS\Core\SingletonInterface;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-   class LuxuslinerShipyard implements SingletonInterface
+   class LuxuryLinerShipyard implements SingletonInterface
    {
       protected $numberOfShipsBuilt = 0;
 
@@ -780,14 +780,14 @@ more than one instance of the shipyard object:
       }
    }
 
-   $luxuslinerShipyard = GeneralUtility::makeInstance(LuxuslinerShipyard::class);
-   $luxuslinerShipyard->buildShip();
+   $LuxuryLinerShipyard = GeneralUtility::makeInstance(LuxuryLinerShipyard::class);
+   $LuxuryLinerShipyard->buildShip();
 
-   $theSameLuxuslinerShipyard = GeneralUtility::makeInstance(LuxuslinerShipyard::class);
-   $theSameLuxuslinerShipyard->buildShip();
+   $theSameLuxuryLinerShipyard = GeneralUtility::makeInstance(LuxuryLinerShipyard::class);
+   $theSameLuxuryLinerShipyard->buildShip();
 
-   echo $luxuslinerShipyard->getNumberOfShipsBuilt(); // 2
-   echo $theSameLuxuslinerShipyard->getNumberOfShipsBuilt(); // 2
+   echo $LuxuryLinerShipyard->getNumberOfShipsBuilt(); // 2
+   echo $theSameLuxuryLinerShipyard->getNumberOfShipsBuilt(); // 2
 
 In order to have the singletons correctly created you have to use
 the :php:`ObjectManager`.

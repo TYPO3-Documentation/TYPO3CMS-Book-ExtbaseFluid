@@ -531,7 +531,7 @@ Let's look at an example with the Method
       if ($this->accessControlService->isLoggedIn($administrator)) {
          $this->offerRepository->update($offer);
       } else {
-         $this->flashMessages->add('Bitte loggen Sie sich ein.');
+         $this->flashMessages->add('Please sign in.');
       }
       $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
@@ -680,7 +680,7 @@ Object in one single Action. The appropriate Method
       if ($this->accessControlService->isLoggedIn($administrator) {
          $this->offerRepository->remove($offer);
       } else {
-         $this->flashMessages->add('Bitte loggen Sie sich ein.');
+         $this->flashMessages->add('Please sign in.');
       }
       $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
@@ -732,19 +732,19 @@ stage":
       $this->view->assign('demand', $demand);
       $this->view->assign('organizations',
          array_merge(
-            [0 => 'Alle Organisationen'],
+            [0 => 'All Organisations'],
             $this->organizationRepository->findByStates($allowedStates)
          )
       );
       $this->view->assign('categories',
          array_merge(
-            [0 => 'Alle Kategorien'],
+            [0 => 'All Categories'],
             $this->categoryRepository->findSelectableCategories($selectableCategories)
          )
       );
       $this->view->assign('regions',
          array_merge(
-            [0 => 'Alle Stadtteile'],
+            [0 => 'All Districts'],
             $this->regionRepository->findAll()
          )
       );

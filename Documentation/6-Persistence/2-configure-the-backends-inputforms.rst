@@ -422,7 +422,7 @@ references to resources to the filesystem or rowsets of a database (see Fig. 6-9
 .. code-block:: php
 
    'images' => [
-      'label' => 'Bilder',
+      'label' => 'Images',
       'config' => [
          'type' => 'group',
          'internal_type' => 'file',

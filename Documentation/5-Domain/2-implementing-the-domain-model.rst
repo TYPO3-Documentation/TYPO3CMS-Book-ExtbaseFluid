@@ -286,7 +286,7 @@ In this section you could use the procedure for Test-Driven Development to meet.
 If you use in your development practice this procedure, you will be rewarded
 with a good feeling, to write code which is always functional - or at least
 compliant as expected. In English, one can use the expression »green bar
-feeling« (siehe Abbildung 5-6). In the course we will not explicitly deal with
+feeling« (see figure 5-6). In the course we will not explicitly deal with
 the testing. But we use it always in the background.
 
 .. figure:: /Images/5-Domain/figure-5-6.jpg
