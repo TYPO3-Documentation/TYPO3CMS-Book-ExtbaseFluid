@@ -341,13 +341,13 @@ then draw on the methods of the ObjectStorage to individual contacts.
 The property offers, we proceed to the equivalent property contacts. The
 definition of the property offers includes in the comment two special
 annotations:
-@TYPO3\CMS\Extbase\Annotation\ORM\Lazy and @cascade remove.
+@lazy and @cascade remove.
 
 .. code-block:: php
 
    /**
     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Offer> The offers the organization has to offer
-    * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+    * @lazy
     * @cascade remove
     */
    protected $offers;
@@ -358,7 +358,7 @@ annotations:
 
 By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
-The annotation @TYPO3\CMS\Extbase\Annotation\ORM\Lazy causes Extbase to load the objects and build only when they
+The annotation @lazy causes Extbase to load the objects and build only when they
 are actually needed (lazy loading). This can be an appropriate data structure,
 e.g. many organizations, each with very many offers, that lead to a significant
 increase in speed.
@@ -366,7 +366,7 @@ increase in speed.
 .. note::
 
    Beware, however, against all the properties provided by child objects with
-   @TYPO3\CMS\Extbase\Annotation\ORM\Lazy, because this can lead to frequent loading of child objects. The ensuing,
+   @lazy, because this can lead to frequent loading of child objects. The ensuing,
    small-scaled database accesses reduces the performance and cause then the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
