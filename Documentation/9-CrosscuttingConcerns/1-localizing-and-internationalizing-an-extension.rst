@@ -299,21 +299,23 @@ needs three additional database fields which you should insert in the
 
 You are free to choose the names of the database fields, but the
 names we use here are common in the world of TYPO3. In any case you have
-to tell TYPO3 which name you have chosen. This is done in the file
-:file:`ext_tables.php` in the section ``ctrl`` of
-the corresponding database table.
+to tell TYPO3 which name you have chosen. This is done in the ``ctrl``
+section of the TCA configuration file
+:file:`Configuration/TCA/tx_blogexample_domain_model_blog.php`
 
 ::
 
-    $TCA['tx_blogexample_domain_model_blog'] = array (
-    'ctrl' => array (
-    // ...
-    'languageField' => 'sys_language_uid',
-    'transOrigPointerField' => 'l10n_parent',
-    'transOrigDiffSourceField' => 'l10n_diffsource',
-    // ...
-    )
-    );
+   <?php
+
+   return [
+       'ctrl' => [
+           // ...
+           'languageField' => 'sys_language_uid',
+           'transOrigPointerField' => 'l10n_parent',
+           'transOrigDiffSourceField' => 'l10n_diffsource',
+           // ...
+       ]
+   ];
 
 The field ``sys_language_uid`` is used for storing
 the UID of the language in which the blog is written. Based on this UID
@@ -331,50 +333,52 @@ fields to the backend form of the blog: one field for the editor to define
 the language of a data record and one field to select the data record the
 translation relates to.
 
-.. code-block:: php
+::
 
-   $TCA['tx_blogexample_domain_model_blog'] = [
-     // ...
-     'types' => [
-       '1' => ['showitem' => 'l18n_parent , sys_language_uid, hidden, title,
-                     description, logo, posts, administrator'],
-     ],
-     'columns' => [
-       'sys_language_uid' => [
-         'exclude' => 1,
-         'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
-         'config' => [
-           'type' => 'select',
-           'foreign_table' => 'sys_language',
-           'foreign_table_where' => 'ORDER BY sys_language.title',
-           'items' => [
-             ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1],
-             ['LLL:EXT:lang/locallang_general.php:LGL.default_value',0]
-           ],
-         ],
-       ],
-       'l18n_parent' => [
-         'displayCond' => 'FIELD:sys_language_uid:>:0',
-         'exclude' => 1,
-         'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
-         'config' => [
-           'type' => 'select',
-           'items' => [
-             ['', 0],
-           ],
-           'foreign_table' => 'tx_blogexample_domain_model_blog',
-           'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
-                 l18n_parent### AND tx_blogexample_domain_model_blog.
-                 sys_language_uid IN (-1,0)',
-         ],
-       ],
-       'l18n_diffsource' => [
-         'config' => [
-           'type' =>'passthrough'
-         ],
-       ],
+   <?php
+
+   return [
        // ...
-     ],
+       'types' => [
+           '1' => ['showitem' => 'l18n_parent , sys_language_uid, hidden, title,
+                       description, logo, posts, administrator'],
+       ],
+       'columns' => [
+           'sys_language_uid' => [
+               'exclude' => 1,
+               'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+               'config' => [
+                   'type' => 'select',
+                   'foreign_table' => 'sys_language',
+                   'foreign_table_where' => 'ORDER BY sys_language.title',
+                   'items' => [
+                       ['LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1],
+                       ['LLL:EXT:lang/locallang_general.php:LGL.default_value',0]
+                   ],
+               ],
+           ],
+           'l18n_parent' => [
+               'displayCond' => 'FIELD:sys_language_uid:>:0',
+               'exclude' => 1,
+               'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+               'config' => [
+                 'type' => 'select',
+                 'items' => [
+                     ['', 0],
+                 ],
+                 'foreign_table' => 'tx_blogexample_domain_model_blog',
+                 'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
+                       l18n_parent### AND tx_blogexample_domain_model_blog.
+                       sys_language_uid IN (-1,0)',
+               ],
+           ],
+           'l18n_diffsource' => [
+               'config' => [
+                 'type' =>'passthrough'
+               ],
+           ],
+           // ...
+       ],
    ];
 
 With it, the localization of the domain object is already

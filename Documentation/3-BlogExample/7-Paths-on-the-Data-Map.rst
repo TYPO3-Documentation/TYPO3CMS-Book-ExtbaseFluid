@@ -94,28 +94,31 @@ Extbase gathers the type of the relation from the configuration of the database
 table column. Let's take a look at the definition of the column ``posts``. It can be
 found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
-    $TCA['tx_blogexample_domain_model_blog'] = [
-        // ...
-        'columns' => [
-            // ...
-            'posts' => [
-                'exclude' => 1,
-                'label' => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog.posts',
-                'config' => [
-                    'type' => 'inline',
-                    'foreign_table' => 'tx_blogexample_domain_model_post',
-                    'foreign_field' => 'blog',
-                    'foreign_sortby' => 'sorting',
-                    'maxitems' => 999999,
-                    'appearance' => [
-                        'newRecordLinkPosition' => 'bottom',
-                        'collapseAll' => 1,
-                        'expandSingle' => 1,
-                    ],
-                ],
-            ],
-            // ...
-    ];
+   <?php
+
+   return [
+       // ...
+       'columns' => [
+           // ...
+           'posts' => [
+               'exclude' => 1,
+               'label' => 'LLL:EXT:blog_example/Resources/Private/Language/locallang_db.xml:tx_blogexample_domain_model_blog.posts',
+               'config' => [
+                   'type' => 'inline',
+                   'foreign_table' => 'tx_blogexample_domain_model_post',
+                   'foreign_field' => 'blog',
+                   'foreign_sortby' => 'sorting',
+                   'maxitems' => 999999,
+                   'appearance' => [
+                       'newRecordLinkPosition' => 'bottom',
+                       'collapseAll' => 1,
+                       'expandSingle' => 1,
+                   ],
+               ],
+           ],
+           // ...
+       ],
+   ];
 
 Extbase "reads" from the configuration the table of the child objects
 (``foreign_table``) and the key field where the unique identifier (UID) of the
