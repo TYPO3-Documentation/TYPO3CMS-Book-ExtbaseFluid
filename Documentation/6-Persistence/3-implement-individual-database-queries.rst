@@ -400,7 +400,7 @@ Since Extbase 1.2 (TYPO3 4.4), the method ``execute()`` returns a multidimension
 Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
 look at an object with a single value property.
 
-.. code-block:: raw
+::
 
     [
         'identifier' => '<identifier>',
@@ -430,7 +430,7 @@ for multivalue properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStora
 like ``array`` or ``splObjectStorage`` may be supported. The property is per definition declared as
 multivalue (``'multivalue' => TRUE``).
 
-.. code-block:: raw
+::
 
     [
         'identifier' => '<identifier>',
@@ -453,7 +453,7 @@ multivalue (``'multivalue' => TRUE``).
 
 If a property has a NULL value, it is stored in the object array like this:
 
-.. code-block:: raw
+::
 
     [
         'identifier' => '<identifier>',

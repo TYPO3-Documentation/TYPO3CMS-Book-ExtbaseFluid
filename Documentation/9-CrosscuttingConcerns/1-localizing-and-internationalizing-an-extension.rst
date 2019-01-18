@@ -16,7 +16,7 @@ For the following sections we assume a correct configuration of the
 localization, which is normally done in the TypoScript root template and
 looks like this:
 
-.. code-block:: ts
+.. code-block:: typoscript
 
    config {
      linkVars = L
@@ -106,7 +106,7 @@ It should contain all terms that have to be translated, in our example
 terms we create the :file:`locallang.xlf` file the following
 way:
 
-.. code-block:: xlf
+.. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
@@ -149,7 +149,9 @@ current language selection ::
 
     To implement a language selection normally TypoScript conditions
     are used. These are comparable with an ``if/else``
-    block::
+    block
+
+    .. code-block:: typoscript
 
         [globalVar = GP:L = 1]
         config.language = de
@@ -288,11 +290,11 @@ needs three additional database fields which you should insert in the
 :file:`ext_tables.sql` file::
 
     CREATE TABLE tx_blogexample_domain_model_blog {
-    // ...
-    sys_language_uid int(11) DEFAULT '0' NOT NULL,
-    l10n_parent int(11) DEFAULT '0' NOT NULL,
-    l10n_diffsource mediumblob NOT NULL,
-    // ...
+        // ...
+        sys_language_uid int(11) DEFAULT '0' NOT NULL,
+        l10n_parent int(11) DEFAULT '0' NOT NULL,
+        l10n_diffsource mediumblob NOT NULL,
+        // ...
     };
 
 You are free to choose the names of the database fields, but the

@@ -6,41 +6,43 @@ Configuring the behavior of the extension
 Not all organizations are to be displayed in our example extensions,
 but just the ones belonging to a certain status (like e.g. internal,
 external, non-member). In the TypoScript template of our page we therefore
-establish an option :php:`allowedStates` under the path
-:php:`tx_sjroffers.settings`:
+establish an option `allowedStates` under the path
+`tx_sjroffers.settings`:
 
-``plugin.tx_sjroffers {``
+.. code-block:: typoscript
 
-``settings {``
-
-``allowedStates = 1,2``
-
-``}``
-
-``}``
+   plugin.tx_sjroffers {
+       settings {
+           allowedStates = 1,2
+       }
+   }
 
 Extbase makes the settings inside of the path
 :php:`plugin.tx_sjroffers.settings` available as an array in
 the class variable :php:`$this->settings`. Our Action
 thus looks like this:
 
-``public function indexAction() {``
+::
 
-``$this->view->assign('organizations',
-$this->organizationRepository->findByStates(GeneralUtility::intExplode(',',$this->settings['allowedStates'])));``
+   public function indexAction() {
+       $this->view->assign(
+           'organizations',
+           $this->organizationRepository->findByStates(
+               \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->settings['allowedStates'])
+           )
+       );
 
-``...``
-
-``}``
+       // ...
+   }
 
 In the :php:`OrganizationRepository`, we implemented a
 Method :php:`findByStates()`, which we do not further
 investigate here (see more in chapter 6, section "Implement individual
 database queries"). The Method expects an array containing the allowed
 states. We generate it from the comma separated list using the TYPO3 API
-function :php:`GeneralUtility::intExplode()`. We then pass on the
-returned choice of organizations to the view, just as we are used to
-do.
+function :php:`\TYPO3\CMS\Core\Utility\GeneralUtility::intExplode()`.
+We then pass on the returned choice of organizations to the view, just as
+we are used to do.
 
 .. tip::
 
