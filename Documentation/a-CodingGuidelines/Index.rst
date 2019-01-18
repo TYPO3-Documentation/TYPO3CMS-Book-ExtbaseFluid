@@ -74,9 +74,13 @@ Every extension based on Extbase contains certain folders in the main directory:
 
 :file:`Resources/Private/PHP`
    Contains PHP code, which is not compatible to the naming conventions like
-   external PHP libraries, procedural code and so on. You need to use
-   ``require_once`` manually to include the code. You are free to add additional
-   folders as needed.
+   external PHP libraries, procedural code and so on. If you run TYPO3 in
+   composer mode, you should define the autoloading for said folder in the
+   `composer.json` of your extension.
+
+   If you don't run TYPO3 in composer mode, the autoloader of TYPO3 will
+   automatically search for php files in all extensions and you don't
+   need to act yourself.
 
 :file:`Tests`
    All unit tests are found here. The structure should be the same as in :file:`Classes`.
@@ -95,8 +99,8 @@ Every extension based on Extbase contains certain folders in the main directory:
    offered by the extension (see appendix B, "Configuration of Frontend Plugins").
 
 :file:`ext_tables.php`
-   In this file there is the TCA configuration and the configuration for the
-   backend. For more see appendix B, "Configuration of Frontend Plugins".
+   In this file you will put configuration regarding the backend.
+   For more see appendix B, "Configuration of Frontend Plugins".
 
 :file:`ext_tables.sql`
    This is a file with SQL commands for the definition of the database tables.
