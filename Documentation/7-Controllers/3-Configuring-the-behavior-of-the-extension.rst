@@ -24,7 +24,8 @@ thus looks like this:
 
 ::
 
-   public function indexAction() {
+   public function indexAction()
+   {
        $this->view->assign(
            'organizations',
            $this->organizationRepository->findByStates(

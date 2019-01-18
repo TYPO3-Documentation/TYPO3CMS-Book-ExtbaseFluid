@@ -59,7 +59,8 @@ generic Repository method :php:`findAll()` looks as follows:
      * @return QueryResultInterface|array
      * @api
      */
-    public function findAll() {
+    public function findAll()
+    {
         return $this->createQuery()->execute();
     }
 
@@ -114,7 +115,8 @@ corresponding method looks as follows:
 
 .. code-block:: php
 
-    public function findInRegion(\MyVendor\SjrOffers\Domain\Model\Region $region) {
+    public function findInRegion(\MyVendor\SjrOffers\Domain\Model\Region $region)
+    {
         $query = $this->createQuery();
         $query->matching($query->contains('regions', $region));
         return $query->execute();
@@ -152,7 +154,8 @@ a multi-valued operand (``$organizations``).
 
 .. code-block:: php
 
-    public function findOfferedBy(array $organizations) {
+    public function findOfferedBy(array $organizations)
+    {
         $query = $this->createQuery();
         $query->matching($query->in('organization', $organizations));
         return $query->execute();
@@ -212,7 +215,8 @@ complex queries such as:
 
 .. code-block:: php
 
-    public function findMatchingOrganizationAndRegion(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Region $region) {
+    public function findMatchingOrganizationAndRegion(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Region $region)
+    {
         $query = $this->createQuery();
         $query->matching(
             $query->logicalAnd(

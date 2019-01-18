@@ -264,7 +264,8 @@ two methods `addContact()` and implement `getContacts()`:
     *
     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person> The contacts of the organization
     */
-   public function getContacts() {
+   public function getContacts()
+   {
       return clone $this->contacts;
    }
 

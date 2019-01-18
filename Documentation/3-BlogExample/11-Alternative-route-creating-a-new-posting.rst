@@ -50,7 +50,8 @@ Lets take a look at the called method ``newAction()``:
     * @return string An HTML form for creating a new post
     * @ignorevalidation $newPost
     */
-   public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL) {
+   public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL)
+   {
       $this->view->assign('authors', $this->authorRepository->findAll();
       $this->view->assign('blog', $blog);
       $this->view->assign('newPost', $newPost);

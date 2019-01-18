@@ -28,7 +28,8 @@ instantiated:
 
 ::
 
-   public function initializeAction() {
+   public function initializeAction()
+   {
       $this->blogRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\BlogRepository::class);
       $this->administratorRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\AdministratorRepository::class);
    }

@@ -26,33 +26,39 @@ shortened version of the :php:`BlogController`:
     class BlogController
           extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-        public function indexAction() {
+        public function indexAction()
+        {
             $this->view->assign('blogs', $this->blogRepository->findAll());
         }
 
-        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = null) {
+        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = null)
+        {
             $this->view->assign('newBlog', $newBlog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog) {
+        public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
+        {
             $this->blogRepository->add($newBlog);
             $this->redirect('index');
         }
 
-        public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+        public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        {
             $this->view->assign('blog', $blog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        {
             $this->blogRepository->update($blog);
             // this does currently not work, use $this->blogRepository->add($blog); instead
             // see issue: https://forge.typo3.org/issues/76876
             $this->redirect('index');
         }
 
-        public function deleteAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+        public function deleteAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        {
             $this->blogRepository->remove($blog);
             $this->redirect('index');
         }

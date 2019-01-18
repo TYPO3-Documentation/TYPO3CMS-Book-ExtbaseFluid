@@ -46,8 +46,10 @@ initializing methods and you only have to implement the
    <?php
    namespace MyVendor\BlogExample\View\Post;
 
-   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-      public function render() {
+   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
+   {
+      public function render()
+      {
          return 'Hello World';
       }
    }
@@ -59,8 +61,10 @@ this::
    <?php
    namespace MyVendor\BlogExample\View\Post;
 
-   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView {
-      public function render() {
+   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
+   {
+      public function render()
+      {
          $postList = $this->viewData['posts'];
          return json_encode($postList);
       }

@@ -325,7 +325,8 @@ extend an "old" Class definition by using the key word
          echo 'Golf simulator on ship ' . $this->name . ' started.';
       }
 
-      function golfSimulatorStop() {
+      function golfSimulatorStop()
+      {
          echo 'Golf simulator on ship ' . $this->name . ' stopped.';
       }
    }
@@ -670,7 +671,8 @@ we save this number in a static Property
 
 .. code-block:: php
 
-   class LuxuryLiner extends Ship {
+   class LuxuryLiner extends Ship
+   {
       protected static $shipyardSupportTelephoneNumber = '+49 30 123456';
 
       public function reportTechnicalProblem()

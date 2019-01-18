@@ -75,7 +75,8 @@ an email address looks like this:
 
 ::
 
-    public function validate($value) {
+    public function validate($value)
+    {
         if (!is_string($value) || !$this->validEmail($value)) {
             $this->addError(
                 $this->translateErrorMessage(
@@ -85,7 +86,8 @@ an email address looks like this:
         }
     }
 
-    protected function validEmail($emailAddress) {
+    protected function validEmail($emailAddress)
+    {
         return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
     }
 
@@ -194,7 +196,8 @@ of the domain model ``Post`` of the blog example::
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
 
-    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    {
         /**
          * @var string
          * @validate StringLength(minimum=3, maximum=50)
@@ -228,7 +231,8 @@ class name, like shown in the following example::
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
 
-    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+    class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+    {
         /**
          * @var string
          * @validate \MyVendor\BlogExample\Domain\Validator\TitleValidator
@@ -250,9 +254,11 @@ blog post is always build-on the scheme *Maintopic: Title*:
 .. code-block:: php
 
    class MyVendor\BlogExample\Domain\Validator\TitleValidator
-         extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
+         extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+   {
 
-      public function validate($value) {
+      public function validate($value)
+      {
          // $value is the title string
          if (count(explode(':', $value)) >= 2) {
             return;
@@ -305,8 +311,10 @@ case::
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
 
-    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
-        public function validate($user) {
+    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+    {
+        public function validate($user)
+        {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
             }
@@ -332,8 +340,10 @@ passwords. This is made quickly::
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
 
-    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
-        public function validate($user) {
+    class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+    {
+        public function validate($user)
+        {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
                 return;
@@ -378,7 +388,8 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
      * @param string $pageName THe name of the page which should be created.
      * @validate $pageName \MyVendor\MyExtension\Domain\Validator\PageNameValidator
      */
-    public function createPageAction($pageName) {
+    public function createPageAction($pageName)
+    {
         // ...
     }
 
@@ -413,7 +424,8 @@ example::
      * @param \MyVendor\ExtbaseExample\Domain\Model\User $user The user which should be created.
      * @validate $user \MyVendor\BlogExample\Domain\Validator\CustomUserValidator
      */
-    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user) {
+    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user)
+    {
         // ...
     }
 
@@ -454,7 +466,8 @@ validation error. Two actions are involved at editing the blog: The
 
 The ``editAction`` for the blog looks like this::
 
-    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+    {
         $this->view->assign('blog', $blog);
     }
 
@@ -480,7 +493,8 @@ as parameter.
 
 ::
 
-    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+    {
         $this->blogRepository->update($blog);
     }
 
@@ -516,7 +530,8 @@ annotation ``@ignorevalidation ``- the comment block of the
      * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
      * @ignorevalidation $blog
      */
-    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+    {
         $this->view->assign('blog', $blog);
     }
 
@@ -561,7 +576,8 @@ code::
      * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
      * @ignorevalidation $newBlog
      */
-    public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL) {
+    public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL)
+    {
         $this->view->assign('newBlog', $newBlog);
     }
 
@@ -570,7 +586,8 @@ code::
      *
      * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
      */
-    public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog) {
+    public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
+    {
         $this->blogRepository->add($newBlog);
     }
 
@@ -707,7 +724,8 @@ object: The changes are stored permanent now.
     this case an empty controller would be updating persistent
     objects::
 
-        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog) {
+        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        {
             // object will be automatically persisted
         }
 
