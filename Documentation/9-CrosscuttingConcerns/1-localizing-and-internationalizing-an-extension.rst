@@ -493,68 +493,16 @@ placeholders.
 
 *Table 9-3: Some place holder of date.*
 
-<table>
-<thead>
-<tr>
-<th>Format character</th>
-
-<th>Description</th>
-
-<th>Example</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>d</td>
-
-<td>Day of the month as number, double-digit, with leading
-zero</td>
-
-<td>01 ... 31</td>
-</tr>
-
-<tr>
-<td>m</td>
-
-<td>Month as number, with leading zero</td>
-
-<td>01 ... 12</td>
-</tr>
-
-<tr>
-<td>Y</td>
-
-<td>Year as number, with 4 digits</td>
-
-<td>2011</td>
-</tr>
-
-<tr>
-<td>y</td>
-
-<td>Year as number, with 2 digits</td>
-
-<td>11</td>
-</tr>
-
-<tr>
-<td>H</td>
-
-<td>Hour in 24 hour format</td>
-
-<td>00 ... 23</td>
-</tr>
-
-<tr>
-<td>i</td>
-
-<td>Minutes, with leading zero</td>
-
-<td>00 ... 59</td>
-</tr>
-</tbody>
-</table>
+================ =========================================================== =========
+Format character Description                                                 Example
+================ =========================================================== =========
+d                Day of the month as number, double-digit, with leading zero 01 ... 31
+m                Month as number, with leading zero                          01 ... 12
+Y                Year as number, with 4 digits                               2011
+y                Year as number, with 2 digits                               11
+H                Hour in 24 hour format                                      00 ... 23
+i                Minutes, with leading zero                                  00 ... 59
+================ =========================================================== =========
 
 But the ViewHelper has to be configured different. Depending on the
 language area, which is controlled by the language of the user, an other
