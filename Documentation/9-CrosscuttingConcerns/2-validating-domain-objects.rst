@@ -36,21 +36,34 @@ correct an error when an error occurs.
 Validators for checking of Invariants
 -------------------------------------
 
-A validator is a PHP class that has to check a certain invariant. If
-the invariant is fulfilled than the validator returns ``true``
-otherwise ``false``. In Extbase all validators have to implement
-the interface
+A validator is a PHP class that has to check a certain invariant. All
+validators that are used in Extbase extensions have to implement the interface
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
-In this interface some methods are defined. The most important is called
-``isValid($object)``. An object or value is passed over to it and
-it must return ``true`` when the object or value is valid,
-otherwise it returns ``false``. There are some more methods in
-the :php:`ValidatorInterface` to make it possible to pass
-settings and poll error messages. We recommend to inherit all validators
-from the
-:php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`,
-because you get a default implementation of the helper methods and you only
-have to implement the `isValid()` method.
+The interface requires validators to implement two methods:
+
+- :php:`validate($value)`
+- :php:`getOptions()`
+
+Obviously, the main method is `validate`, which is called by the framework.
+The value which is to be validated is passed along said method and it's the
+validator's job to check if that value is valid.
+
+.. note::
+
+    Although the interface states, that the method `validate` should return
+    a :php:`\TYPO3\CMS\Extbase\Error\Result` object, it's not common practice to do
+    so because most people who create custom validators extend the class
+    :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
+
+    This enables you to call the addError()` method and let the abstract
+    validator take care of returning a proper result object to the validation
+    framework.
+
+If the logic of your validator allows for loose/variable validation checks,
+validator options might come in handy. Extbase ships a :php:`StringLength`
+validator for instance which offers the options `minimum` and `maximum` that
+let you define the string length the validator should use to check the incoming
+value against.
 
 .. tip::
 
@@ -58,9 +71,11 @@ have to implement the `isValid()` method.
     :php:`ValidatorInterface` in Appendix B.
 
 For example, a validator which checks whether the passed string is
-an email address looks like this::
+an email address looks like this:
 
-    public function isValid($value) {
+::
+
+    public function validate($value) {
         if (!is_string($value) || !$this->validEmail($value)) {
             $this->addError(
                 $this->translateErrorMessage(
@@ -74,10 +89,8 @@ an email address looks like this::
         return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
     }
 
-When ``$value`` is a string that compares to a (complex)
-regular expression, the validator returns ``true``. Otherwise an
-error message is generated using ``addError()`` and then it
-returns ``false``.
+If ``$value`` is neither a string nor a valid email address, the validator
+adds an error by calling `$this->addError()`.
 
 .. tip::
 
@@ -239,13 +252,12 @@ blog post is always build-on the scheme *Maintopic: Title*:
    class MyVendor\BlogExample\Domain\Validator\TitleValidator
          extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
-      public function isValid($value) {
+      public function validate($value) {
          // $value is the title string
          if (count(explode(':', $value)) >= 2) {
-            return TRUE;
+            return;
          }
          $this->addError('The title was not of the type [Topic]:[Title].', 1221563773);
-         return FALSE;
       }
    }
 
@@ -287,26 +299,23 @@ Equipped with this knowledge we can implement the
 ``UserValidator`` which compares ``$password`` with
 ``$passwordConfirmation``. At first we must check if the given
 object is of the type ``user`` - after all the validator can be
-called with any object and has to return ``false`` in such
+called with any object and has to add an error in such
 case::
 
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
-        public function isValid($user) {
+        public function validate($user) {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
-                return FALSE;
             }
-            return TRUE;
         }
     }
 
 So, if ``$user`` is not an instance of the user object an
 error message is directly created with ``addError()``. The
-validator does not validate the object any further but returns
-``false``.
+validator does not validate the object any further.
 
 .. tip::
 
@@ -324,16 +333,14 @@ passwords. This is made quickly::
     namespace MyVendor\ExtbaseExample\Domain\Validator;
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
-        public function isValid($user) {
+        public function validate($user) {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
-                return FALSE;
+                return;
             }
             if ($user->getPassword() !== $user->getPasswordConfirmation()) {
                 $this->addError('The passwords do not match.', 1262341707);
-                return FALSE;
             }
-            return TRUE;
         }
     }
 

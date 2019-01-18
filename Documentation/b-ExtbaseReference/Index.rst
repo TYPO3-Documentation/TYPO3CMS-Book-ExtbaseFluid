@@ -670,20 +670,13 @@ provides validators for common data types, but you can also write your own valid
 Validator implements the :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`
 that defines the following methods:
 
-.. note::
+`validate($value)`
+    Checks whether the object that was passed to the validator is valid. If not,
+    a :php:`\TYPO3\CMS\Extbase\Validation\Error` object should be returned.
 
-    The API for Validation has changed slightly, we will update the reference accordingly.
-
-`getErrors()`
-    Returns any error messages of the last validation.
-
-`isValid($value)`
-    Checks whether the object that was passed to the validator is valid. If yes,
-    returns true, otherwise false.
-
-`setOptions(array $validationOptions)`
-    Sets specific options for the validator. These options apply to any further call
-    of the method isValid().
+`getOptions()`
+    Enables you to define validator options. These options apply to any further call
+    of the method validate().
 
 You can call Validators in your own code with the method `createValidator($validatorName,
 $validatorOptions)` in :php:`\TYPO3\CMS\Extbase\Validation\ValidatorResolver`. Though in
