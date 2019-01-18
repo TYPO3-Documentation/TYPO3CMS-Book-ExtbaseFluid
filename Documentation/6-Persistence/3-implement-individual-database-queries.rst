@@ -383,9 +383,23 @@ is translated by Extbase to the following query:
     You should always avoid making queries to the persistence layer outside of the domain model.
     Encapsulate these queries always in a repository.
 
-    Inside of the repositories, you can access the database using the TYPO3 4.x API
-    (for example with ``$GLOBALS['TYPO3_DB']->exec_SELECTgetRows([...])``). You have to
-    handle the creation and maintenance of the objects by yourself.
+    Inside of the repositories, you can access the database using a database connection::
+
+       use TYPO3\CMS\Core\Database\ConnectionPool;
+       use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+       $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+           ->getConnectionForTable('tx_sjroffers_domain_model_offer');
+
+       $queryBuilder = $connection->createQueryBuilder();
+       $query = $queryBuilder
+           ->select('*')
+           ->from('tx_sjroffers_domain_model_offer')
+           ->where(...)
+
+       $rows = $query->execute->fetchRows();
+
+    You have to handle the creation and maintenance of the objects by yourself.
 
 The method ``execute()`` per default returns a ready built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
