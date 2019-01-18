@@ -446,7 +446,7 @@ always built a consistent object.
 .. note::
 
    In TYPO3 you can not generate classes with the new operator, but with
-   GeneralUtility::makeInstance (className). In the example above, we wanted to
+   GeneralUtility::makeInstance(className). In the example above, we wanted to
    concentrate on the essentials, so we have used new there.
 
 Reconstitute objects with repositories

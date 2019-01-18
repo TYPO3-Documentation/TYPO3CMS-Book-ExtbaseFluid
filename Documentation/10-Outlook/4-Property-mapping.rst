@@ -10,7 +10,7 @@ Extbase provides a Property Mapper to convert different values, like integers or
 types, like strings or object.
 In this example, we provide a string that will be converted to an integer::
 
-        $output = $this->objectManager->get('TYPO3\CMS\Extbase\Property\PropertyMapper')
+        $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
             ->convert('10', 'integer');
 
 Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper::convert()`
@@ -26,7 +26,7 @@ where some points must be considered. This example will show a simple conversati
         'username' => 'This is the user name',
     ];
 
-    $output = $this->objectManager->get('TYPO3\CMS\Extbase\Property\PropertyMapper')
+    $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
         ->convert(
             $input,
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser'
@@ -60,7 +60,7 @@ you have to configure the mapper as per default he won't map sub properties for 
     $mappingConfiguration->forProperty('usergroup')
         ->allowAllProperties();
 
-    $output = $this->objectManager->get('TYPO3\CMS\Extbase\Property\PropertyMapper')
+    $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
         ->convert(
             $input,
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser',

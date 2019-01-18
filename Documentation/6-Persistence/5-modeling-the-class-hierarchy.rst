@@ -225,7 +225,7 @@ You can also find straightforward all concrete classes of a super class:
 
 .. code-block:: php
 
-    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\MyVendor\MyExtension\Domain\Repository\OrganizationRepository');
+    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\MyExtension\Domain\Repository\OrganizationRepository::class);
     $organizations = $organizationRepository->findAll();
 
 In the result set :php:`$organizationRepository` there are domain objects of the class

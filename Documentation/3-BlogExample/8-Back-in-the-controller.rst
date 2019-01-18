@@ -29,8 +29,8 @@ instantiated:
 ::
 
    public function initializeAction() {
-      $this->blogRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\BlogRepository');
-      $this->administratorRepository = GeneralUtility::makeInstance('\MyVendor\BlogExample\Domain\Repository\AdministratorRepository');
+      $this->blogRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\BlogRepository::class);
+      $this->administratorRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\AdministratorRepository::class);
    }
 
 This approach offers no performance gain (rather a negligible disadvantage), but
