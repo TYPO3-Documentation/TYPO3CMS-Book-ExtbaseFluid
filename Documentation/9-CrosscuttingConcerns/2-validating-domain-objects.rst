@@ -253,10 +253,14 @@ blog post is always build-on the scheme *Maintopic: Title*:
 
 .. code-block:: php
 
-   class MyVendor\BlogExample\Domain\Validator\TitleValidator
-         extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
-   {
+   <?php
 
+   namespace MyVendor\BlogExample\Domain\Validator;
+
+   use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
+
+   class TitleValidator extends AbstractValidator
+   {
       public function validate($value)
       {
          // $value is the title string

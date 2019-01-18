@@ -535,9 +535,13 @@ The description of the class is to be found in the file :file:`EXT:sjr_offers/Cl
 
 .. code-block:: php
 
-   use TYPO3\CMS\Core\SingletonInterface
+   <?php
 
-   class MyVendor\SjrOffers\Service\AccessControlService implements SingletonInterface
+   namespace MyVendor\SjrOffers\Service;
+
+   use TYPO3\CMS\Core\SingletonInterface;
+
+   class AccessControlService implements SingletonInterface
    {
 
       public function isLoggedIn($person = NULL)
