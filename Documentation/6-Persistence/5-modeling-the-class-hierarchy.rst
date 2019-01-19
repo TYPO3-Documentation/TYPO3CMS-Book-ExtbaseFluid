@@ -190,43 +190,79 @@ are displayed after a confirmation by TYPO3.
 You can access the objects via repositories as normal. In your controller the corresponding lines
 can look like this:
 
-.. code-block:: php
+::
 
-    /**
-     * @var CompanyRepository
-     */
-    private $companyRepository;
+   <?php
+   declare(strict_types = 1);
 
-    /**
-     * Inject the company repository
-     *
-     * @param \MyVendor\MyExtension\Domain\Repository\CompanyRepository $companyRepository
-     */
-    public function injectCompanyRepository(CompanyRepository $companyRepository)
-    {
-        $this->companyRepository = $companyRepository;
-    }
+   namespace MyVendor\MyExtension\Controller;
 
-    /**
-     * List Action
-     *
-     * @return void
-     */
-    public function listAction()
-    {
-        $companies = $this->companyRepository->findAll();
-        $this->view->assign('companies', $companies);
-    }
+   use MyVendor\MyExtension\Domain\Repository\CompanyRepository;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class CompanyController extends ActionController
+   {
+       /**
+        * @var CompanyRepository
+        */
+       private $companyRepository;
+
+       /**
+        * Inject the company repository
+        *
+        * @param CompanyRepository $companyRepository
+        */
+       public function injectCompanyRepository(CompanyRepository $companyRepository)
+       {
+           $this->companyRepository = $companyRepository;
+       }
+
+       /**
+        * List Action
+        *
+        * @return void
+        */
+       public function listAction()
+       {
+           $companies = $this->companyRepository->findAll();
+           $this->view->assign('companies', $companies);
+       }
+   }
 
 
 You can also find straightforward all concrete classes of a super class:
 
-.. todo remove makeInstance
+::
 
-.. code-block:: php
+   <?php
+   declare(strict_types = 1);
 
-    $organizationRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\MyVendor\MyExtension\Domain\Repository\OrganizationRepository::class);
-    $organizations = $organizationRepository->findAll();
+   namespace MyVendor\MyExtension\Controller;
+
+   use MyVendor\MyExtension\Domain\Repository\OrganizationRepository;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class OrganizationController extends ActionController
+   {
+       /**
+        * @var OrganizationRepository
+        */
+       private $organizationRepository;
+
+       /**
+        * @param OrganizationRepository $organizationRepository
+        */
+       public function injectOrganizationRepository(OrganizationRepository $organizationRepository)
+       {
+           $this->organizationRepository = $organizationRepository;
+       }
+
+       public function listAction()
+       {
+           $organizations = $this->organizationRepository->findAll();
+           // ...
+       }
+   }
 
 In the result set :php:`$organizationRepository` there are domain objects of the class
 `\MyVendor\MyExtension\Domain\Model\Organization` and all configured subclasses :php:`\MyVendor\MyExtension\Domain\Model\Company`
