@@ -100,34 +100,56 @@ From the request the controller can extract which action has to be
 called. The call is happening without the need to write another line of code
 in the BlogController. This does
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-"inherits" all methods from it, by deriving it form this class::
+"inherits" all methods from it, by deriving it from this class.
 
-    namespace MyVendor\BlogExample\Controller;
+::
 
-    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   <?php
+   declare(strict_types = 1);
 
-    class BlogController extends ActionController
-    {
-        // ...
-    }
+   namespace MyVendor\BlogExample\Controller;
+
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
+   {
+       // ...
+   }
 
 At first call of the plugin without additional information the request
 will get a standard action; in our case the
 `indexAction()`. The
 `indexAction()` contains only one line in our example
-(as shown above), which looks more detailed like this::
+(as shown above), which looks more detailed like this:
 
-    public function indexAction()
-    {
-        $blogRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\BlogRepository::class);
-        $allAvailableBlogs = $blogRepository->findAll();
-        $this->view->assign('blogs', $allAvailableBlogs);
-        $content = $this->view->render();
-        return $content;
-    }
+::
 
-In the first line a repository is instantiated, which "contains" all
-blogs. How they are saved and managed, is not of interest at this point of
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\BlogExample\Controller;
+
+   use MyVendor\BlogExample\Domain\Repository\BlogRepository;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
+   {
+       protected $blogRepository;
+
+       public function __construct(BlogRepository $blogRepository)
+       {
+           $this->blogRepository = $blogRepository;
+       }
+
+       public function indexAction()
+       {
+           $allAvailableBlogs = $this->blogRepository->findAll();
+           $this->view->assign('blogs', $allAvailableBlogs);
+       }
+   }
+
+In the first line of the :php:`indexAction` the repository is asked to fetch
+all available blogs. How they are saved and managed, is not of interest at this point of
 our journey. All files, which are defined in the repository-classes, are
 located in the folder
 :file:`EXT:blog_example/Classes/Domain/Repository/`. This you
