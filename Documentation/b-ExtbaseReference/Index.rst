@@ -273,14 +273,14 @@ view
 
 View and template settings.
 
-`view.layoutRootPath`
-    This can be used to specify the root path for all fluid layouts in this
+`view.layoutRootPaths`
+    This can be used to specify the root paths for all fluid layouts in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Layouts` is used. All layouts that are necessary
     for this extension should reside in this folder.
 
-`view.partialRootPath`
-    This can be used to specify the root path for all fluid partials in this
+`view.partialRootPaths`
+    This can be used to specify the root paths for all fluid partials in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Partials` is used. All partials that are
     necessary for this extension should reside in this folder.
@@ -289,27 +289,79 @@ View and template settings.
     This can be used to specify an alternative namespace for the plugin.
     Use this to shorten the Extbase default plugin namespace or to access
     arguments from other extensions by setting this option to their namespace.
+    .. todo: This is not understandable without an example.
 
-`view.templateRootPath`
-    This can be used to specify the root path for all fluid templates in this
+`view.templateRootPaths`
+    This can be used to specify the root paths for all fluid templates in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
     for this extension should reside in this folder.
 
-There is no fallback to the files that are delivered with an extension!
-Therefore you need to copy all original templates to this folder before you set
-this TypoScript setting.
+All root paths are defined as array which enables you to define multiple root paths that
+will be used by fluid to find the desired template files.
 
-.. Todo: Add feature #66111, multiple paths for fluid.
+The feature is best described by an example.
+Imagine you installed the extension `news`, which provides several plugins for
+rendering news in the frontend.
+
+The default template root path of that extension is the following:
+
+::
+
+   EXT:news/Resources/Private/Templates/
+
+Let's assume you want to change the output of the plugins because you need to use
+different css classes for example. You can simply create your own extension and
+add the following typoscript setup:
+
+::
+
+   plugin.tx_news {
+       view {
+           templateRootPaths.10 = EXT:example_extension/Resources/Private/Templates/
+       }
+   }
+
+As all typoscript will be merged the following configuration will be compiled:
+
+::
+
+   plugin.tx_news {
+       view {
+           templateRootPaths {
+               0 = EXT:news/Resources/Private/Templates/
+               10 = EXT:example_extension/Resources/Private/Templates/
+           }
+           ...
+       }
+   }
+
+Imagine there is a news plugin that lists news entries. In that case, the `listAction` method
+of the `NewsController` will be called and by convention Extbase will look for an html file
+called `List.html` in a folder `News` in all of the configured template root paths.
+
+If there is just one root path configured, that's the one being chosen right away. Once there
+are more than one paths defined, Extbase will check them in reverse order i.e. from highest key
+to lowest. Following our example, Extbase will check the given path with key `10` first and if
+no template file is found, it will proceed with `0`.
 
 .. tip::
 
-    Since TYPO3 CMS 7.3, it's possible to use multiple paths. The feature was introduced by
-    `Feature: #66111 - Add TemplateRootPaths support to cObject FLUIDTEMPLATE
-    <https://docs.typo3.org/typo3cms/extensions/core/latest/Changelog/7.3/Feature-66111-AddTemplaterootpathsSupportToCobjectFluidtemplate.html#feature-66111-add-templaterootpaths-support-to-cobject-fluidtemplate>`_.
-    We will update the documentation in the near future to reflect this new possibilities.
-    In the meantime, just check out the documentation for the feature.
+   You are free to define as many root path for layouts, templates and partials as you like.
+   However, the extension loading order is important as typoscript of multiple extensions is
+   applied sequentially. So, in order to make sure that your extension actually enhances the
+   typoscript setup and therefore the root paths of another extension, your extension needs
+   to set a dependency to the other extension in its :php:`ext_emconf.php`.
 
+.. tip::
+
+   If there is no root path defined at all, a fallback path will be created during runtime.
+   The fallback path consists of the extension key and a fixed directory path.
+
+   Example:
+   * `EXT:extension_key/Resources/Private/Layouts/`
+   * `EXT:extension_key/Resources/Private/Templates/`
+   * `EXT:extension_key/Resources/Private/Partials/`
 
 .. _typoscript_configuration-mvc:
 
