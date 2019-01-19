@@ -62,17 +62,8 @@ The following example explains this mechanism:
        }
    }
 
-The second step is the combination of the rows to query the repository and to
-bind the variable name to a row. Finally you waive to explicit call the method
-``render()``. If the action does not return a result with ``return $content`` by
-itself (either because the call is missing or returns NULL), Extbase
-automatically calls the method ``render()``.
-
-.. note::
-
-   This automatism can be confusing, because you have to specify return '';
-   explicitly vice versa, to suppress the rendering process. Sometimes this might
-   be handy to discover errors.
+.. todo: properly explain that actions may return a result. If no result is returned, the action controller
+.. todo: calls render on the view object instead.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
