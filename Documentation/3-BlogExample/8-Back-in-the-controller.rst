@@ -21,25 +21,46 @@ Before we leave our small, contemplative action island and dig into the deep of
 the Fluid template, let's take a look at the abbreviations and simplifications
 Extbase offers at this point.
 
-Since we need the ``BlogRepository`` in all actions, we move the code for it's
-initialization to the method ``initializeAction()``. This method is called by
-Extbase prior to *each* call of an action. There the necessary repositories are
-instantiated:
+* First of all there is the method `initializeAction()`, which is called before
+  every action if defined in your controller.
+
+* Secondly you can define methods for the initialization of single actions. These
+  methods follow a specific naming convention: `initialize` + `actionMethodName`
+
+The following example explains this mechanism:
 
 ::
 
-   public function initializeAction()
-   {
-      $this->blogRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\BlogRepository::class);
-      $this->administratorRepository = GeneralUtility::makeInstance(\MyVendor\BlogExample\Domain\Repository\AdministratorRepository::class);
-   }
+   <?php
+   declare(strict_types = 1);
 
-This approach offers no performance gain (rather a negligible disadvantage), but
-we avoid duplicate code. In addition to the method ``initializeAction()``, that is
-worked off before the call of _each_ action, Extbase calls, if available, the
-method ``initializeIndexAction()``. The string *IndexAction* needs to be replaced
-by the name of those action, in before that method should be called. In short:
-You can create an own method for initialization of each action.
+   namespace MyVendor\MyExtension\Controller;
+
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class CompanyController extends ActionController
+   {
+       public function initializeAction()
+       {
+           // this method is called before method fooAction and barAction
+       }
+
+       public function initializeFooAction()
+       {
+           // this method is only called before method fooAction
+           // mind the uppercase F in the method name.
+       }
+
+       public function fooAction()
+       {
+           // foo
+       }
+
+       public function barAction()
+       {
+           // bar
+       }
+   }
 
 The second step is the combination of the rows to query the repository and to
 bind the variable name to a row. Finally you waive to explicit call the method
