@@ -342,7 +342,7 @@ then draw on the methods of the ObjectStorage to individual contacts.
 The property offers, we proceed to the equivalent property contacts. The
 definition of the property offers includes in the comment two special
 annotations:
-@TYPO3\CMS\Extbase\Annotation\ORM\Lazy and :php`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade` remove.
+:php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` and :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade` remove.
 
 .. code-block:: php
 
@@ -355,7 +355,7 @@ annotations:
 
 By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
-The annotation @TYPO3\CMS\Extbase\Annotation\ORM\Lazy causes Extbase to load the objects and build only when they
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to load the objects and build only when they
 are actually needed (lazy loading). This can be an appropriate data structure,
 e.g. many organizations, each with very many offers, that lead to a significant
 increase in speed.
@@ -363,11 +363,11 @@ increase in speed.
 .. note::
 
    Beware, however, against all the properties provided by child objects with
-   @TYPO3\CMS\Extbase\Annotation\ORM\Lazy, because this can lead to frequent loading of child objects. The ensuing,
+   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because this can lead to frequent loading of child objects. The ensuing,
    small-scaled database accesses reduces the performance and cause then the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
-The annotation :php`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted, the offers
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted, the offers
 will be also deleted immediately. Extbase leaves usually persist unchanged all
 child objects.
 

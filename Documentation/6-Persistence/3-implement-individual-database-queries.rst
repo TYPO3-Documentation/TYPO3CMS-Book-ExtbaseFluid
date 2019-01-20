@@ -494,7 +494,7 @@ The debug output of the return value looks like figure 6-13.
     Figure 6-13: Debug output of "raw" object data
 
 Maybe in figure 6-13 you have noticed the empty array (``EMPTY!``) of the properties of the organization.
-In the domain model the property ``organization`` of the offer is annotated with ``@lazy``.
+In the domain model the property ``organization`` of the offer is annotated with :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`.
 This annotation instructs Extbase to load the properties of the object only when they are really
 needed (so called *lazy loading*).
 
