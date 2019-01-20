@@ -65,9 +65,12 @@ changed like this::
         persistence < plugin.tx_blogexample.persistence
         view < plugin.tx_blogexample.view
         view {
-            templateRootPath = EXT:blog_example/Resources/Private/Backend/Templates/
-            partialRootPath = EXT:blog_example/Resources/Private/Partials/
-            layoutRootPath = EXT:blog_example/Resources/Private/Backend/Layouts/
+            templateRootPaths {
+                10 = EXT:blog_example/Resources/Private/Backend/Templates/
+            }
+            layoutRootPaths {
+               10 = EXT:blog_example/Resources/Private/Backend/Layouts/
+            }
         }
     }
 
