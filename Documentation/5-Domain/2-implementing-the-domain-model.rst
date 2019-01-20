@@ -353,6 +353,10 @@ annotations:
     */
    protected $offers;
 
+.. note::
+
+   Up to TYPO3v8 the annotation @lazy was used, which is deprecated since TYPO3v9 and will be removed in TYPO3v10.
+
 By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
 The annotation @TYPO3\CMS\Extbase\Annotation\ORM\Lazy causes Extbase to load the objects and build only when they
