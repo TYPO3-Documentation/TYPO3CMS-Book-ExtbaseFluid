@@ -68,9 +68,6 @@ changed like this::
             templateRootPaths {
                 10 = EXT:blog_example/Resources/Private/Backend/Templates/
             }
-            partialRootPaths {
-                10 = EXT:blog_example/Resources/Private/Partials/
-            }
             layoutRootPaths {
                10 = EXT:blog_example/Resources/Private/Backend/Layouts/
             }

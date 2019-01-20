@@ -298,23 +298,23 @@ View and template settings.
     for this extension should reside in this folder.
 
 All root paths are defined as array which enables you to define multiple root paths that
-will be used by fluid to find the desired template files.
+will be used by Extbase to find the desired template files.
 
 The feature is best described by an example.
 Imagine you installed the extension `news`, which provides several plugins for
 rendering news in the frontend.
 
-The default template root path of that extension is the following:
+The default template directory of that extension is the following:
 
-::
+.. code-block:: typoscript
 
    EXT:news/Resources/Private/Templates/
 
 Let's assume you want to change the output of the plugins because you need to use
 different css classes for example. You can simply create your own extension and
-add the following typoscript setup:
+add the following TypoScript setup:
 
-::
+.. code-block:: typoscript
 
    plugin.tx_news {
        view {
@@ -322,9 +322,9 @@ add the following typoscript setup:
        }
    }
 
-As all typoscript will be merged the following configuration will be compiled:
+As all typoscript will be merged, the following configuration will be compiled:
 
-::
+.. code-block:: typoscript
 
    plugin.tx_news {
        view {
@@ -337,31 +337,21 @@ As all typoscript will be merged the following configuration will be compiled:
    }
 
 Imagine there is a news plugin that lists news entries. In that case, the `listAction` method
-of the `NewsController` will be called and by convention Extbase will look for an html file
+of the `NewsController` will be called. By convention, Extbase will look for an html file
 called `List.html` in a folder `News` in all of the configured template root paths.
 
 If there is just one root path configured, that's the one being chosen right away. Once there
-are more than one paths defined, Extbase will check them in reverse order i.e. from highest key
+are more paths defined, Extbase will check them in reverse order i.e. from highest key
 to lowest. Following our example, Extbase will check the given path with key `10` first and if
 no template file is found, it will proceed with `0`.
-
-.. tip::
-
-   You are free to define as many root path for layouts, templates and partials as you like.
-   However, the extension loading order is important as typoscript of multiple extensions is
-   applied sequentially. So, in order to make sure that your extension actually enhances the
-   typoscript setup and therefore the root paths of another extension, your extension needs
-   to set a dependency to the other extension in its :php:`ext_emconf.php`.
 
 .. tip::
 
    If there is no root path defined at all, a fallback path will be created during runtime.
    The fallback path consists of the extension key and a fixed directory path.
 
-   Example:
-   * `EXT:extension_key/Resources/Private/Layouts/`
-   * `EXT:extension_key/Resources/Private/Templates/`
-   * `EXT:extension_key/Resources/Private/Partials/`
+More information on root paths can be found in the TypoScript reference:
+:ref:`t3tsref:cobj-fluidtemplate-properties-templaterootpaths`
 
 .. _typoscript_configuration-mvc:
 
