@@ -188,7 +188,7 @@ Annotations are machine readable "annotations" in the source code that
 are placed in comment blocks and start with the character
 ``@``.
 
-For the validation the ``@validate`` annotation is
+For the validation the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation is
 available. With it we can specify which validator is to be used for
 checking the annotated property. Let us take a look at this using a part
 of the domain model ``Post`` of the blog example::
@@ -200,7 +200,7 @@ of the domain model ``Post`` of the blog example::
     {
         /**
          * @var string
-         * @validate StringLength(minimum=3, maximum=50)
+         * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})
          */
         protected $title;
 
@@ -210,7 +210,7 @@ of the domain model ``Post`` of the blog example::
         protected $content;
     }
 
-With the line ``@validate StringLength(minimum=3, maximum=50)``
+With the line ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})``
 the validator for the property ``$title`` is
 specified. In parenthesis the parameter for the validator are specified.
 In our case we make sure that a title of a blog post is never shorter
@@ -219,13 +219,13 @@ than three characters and will never be longer than 50 characters.
 Which validator class is to be used? Extbase looks for a validator
 class using
 ``\TYPO3\CMS\Extbase\Validation\Validator\*ValidatorName*Validator``.
-Using the above given annotation ``@validate StringLength`` the
+Using the above given annotation ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength")`` the
 validator
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\StringLengthValidator`
 is used.
 
 When you have created your own validator to check the invariants
-you can use it in the ``@validate`` annotation using the full
+you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
 class name, like shown in the following example::
 
     <?php
@@ -235,7 +235,7 @@ class name, like shown in the following example::
     {
         /**
          * @var string
-         * @validate \MyVendor\BlogExample\Domain\Validator\TitleValidator
+         * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\BlogExample\Domain\Validator\TitleValidator")
          */
         protected $title;
 
@@ -364,7 +364,7 @@ for equality of ``$password`` and
 
 Now we have got to know two possibilities how validators can be
 registered for our domain objects: directly in the model via
-``@validate`` annotation for single properties and for complete
+``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties and for complete
 domain objects with an own validator class.
 
 The illustrated validators until now are always executed when a
@@ -380,9 +380,9 @@ Validating of controller arguments
 
 If you want to validate a domain object only when calling a
 special action you have to define validators for individual arguments.
-Therefore a slightly modified form of the ``@validate``
+Therefore a slightly modified form of the ``@TYPO3\CMS\Extbase\Annotation\Validate``
 annotation can be used which is set in the comment block of the
-controller action. It has the format ``@validate
+controller action. It has the format ``@TYPO3\CMS\Extbase\Annotation\Validate
 *[variablename] [validators]*``, in the example
 below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
 
@@ -390,7 +390,7 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
      * Creates a new page with a given name.
      *
      * @param string $pageName THe name of the page which should be created.
-     * @validate $pageName \MyVendor\MyExtension\Domain\Validator\PageNameValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\MyExtension\Domain\Validator\PageNameValidator", param="pageName")
      */
     public function createPageAction($pageName)
     {
@@ -413,10 +413,10 @@ called:
   floating number then the validator checks this. When you want to
   disable the type validation for an argument, you have to declare
   the type as ``mixed``.
-* All ``@validate`` annotations of the domain model are evaluated.
+* All ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the domain model are evaluated.
 * The validator class of the domain object is called when it exists.
 * More validators that are defined in the action with
-  ``@validate`` are called.
+  ``@TYPO3\CMS\Extbase\Annotation\Validate`` are called.
 
 Lets have a look at the interaction once more with an
 example::
@@ -426,7 +426,7 @@ example::
      *
      * @param string $pageName The name of the page where the user should be created.
      * @param \MyVendor\ExtbaseExample\Domain\Model\User $user The user which should be created.
-     * @validate $user \MyVendor\BlogExample\Domain\Validator\CustomUserValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\BlogExample\Domain\Validator\CustomUserValidator", param="user")
      */
     public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user)
     {
@@ -436,7 +436,7 @@ example::
 Here the following things are validated: ``$pageName``
 must be a *string*. The data type of the
 ``@param`` annotation is validated. For ``$user`` all
-``@validate`` annotations of the model are validated. Also the
+``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the model are validated. Also the
 ``\MyVendor\BlogExample\Domain\Validator\UserValidator`` is called if
 it exists. Beyond that the validator
 ``\MyVendor\BlogExample\Domain\Validator\CustomUserValidator`` is used
@@ -447,7 +447,7 @@ domain objects* are gives as arguments. That can be the case
 for multi page forms, because after filling the first page the domain
 object is not complete. In this case you can use the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation("parameter")`. This
-prevents the processing of the ``@validate`` annotations in the
+prevents the processing of the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations in the
 domain model and calling the validator class of the domain
 object.
 

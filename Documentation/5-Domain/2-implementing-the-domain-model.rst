@@ -788,7 +788,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The title of the offer
     *
     * @var string
-    * @validate StringLength(minimum = 3, maximum = 50)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})
     */
    protected $title;
 
@@ -803,7 +803,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The teaser of the offer. A line of text.
     *
     * @var string
-    * @validate StringLength(maximum = 150)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 150})
     */
    protected $teaser;
 
@@ -811,7 +811,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The description of the offer. A longer text.
     *
     * @var string
-    * @validate StringLength(maximum = 2000)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 2000})
     */
    protected $description;
 
@@ -819,7 +819,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The services of the offer.
     *
     * @var string
-    * @validate StringLength(maximum = 1000)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
     */
    protected $services;
 
@@ -827,7 +827,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The textual description of the dates. E.g. "Monday to Friday, 8-12"
     *
     * @var string
-    * @validate StringLength(maximum = 1000)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
     */
    protected $dates;
 
@@ -835,7 +835,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The venue of the offer.
     *
     * @var string
-    * @validate StringLength(maximum = 1000)
+    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
     */
    protected $venue;
 
@@ -843,7 +843,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The age range of the offer.
     *
     * @var \MyVendor\SjrOffers\Domain\Model\AgeRange
-    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
     */
    protected $ageRange;
 
@@ -851,7 +851,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The date range of the offer is valid.
     *
     * @var \MyVendor\SjrOffers\Domain\Model\DateRange
-    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
     */
    protected $dateRange;
 
@@ -859,7 +859,7 @@ Let us have a look at the definitions of the properties of the class Offer defin
     * The attendance range of the offer.
     *
     * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange
-    * @validate \MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator
+    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
     */
    protected $attendanceRange;
 
@@ -892,8 +892,8 @@ Let us have a look at the definitions of the properties of the class Offer defin
    protected $regions;
 
 The values of some properties must be checked to control the offer being classified as valid.
-Which rule will narrow, about the annotation @validate […] is set.
-The annotation :php:`@validate StringLength (minimum = 3, maximum = 50)` on the property title effected,
+Which rule will narrow, about the annotation :php:`@TYPO3\CMS\Extbase\Annotation\Validate("…")` is set.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})` on the property title effected,
 for example, that the title length is not smaller than 3 characters and not longer than 50 characters.
 The validator StringLength is provided by Extbase of charge.
 The name of the associated class is :php:`\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\StringLengthValidator`.

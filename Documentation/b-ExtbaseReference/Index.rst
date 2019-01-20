@@ -741,7 +741,7 @@ Validation of model properties
 ------------------------------
 
 You can define simple validation rules in the domain model by annotation. For
-this, you use the annotation `@validate` with properties of the object. A brief
+this, you use the annotation `@TYPO3\CMS\Extbase\Annotation\Validate` with properties of the object. A brief
 example:
 
 *Example B-4: validation in the domain object*
@@ -759,7 +759,8 @@ example:
          * The blog's title.
          *
          * @var string
-         * @validate Text, StringLength(minimum = 1, maximum = 80)
+         * @TYPO3\CMS\Extbase\Annotation\Validate("Text")
+         * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 1, "maximum": 80})
          */
         protected $title;
 
@@ -780,15 +781,13 @@ Validation of controller arguments
 Each controller argument is validated by the following rules:
 
 * If the argument has a simple type (string, integer, etc.), this type is checked.
-* If the argument is a domain object, the annotations `@validate` in the domain object is taken into
+* If the argument is a domain object, the annotations `@TYPO3\CMS\Extbase\Annotation\Validate` in the domain object is taken into
   account and - if set - the appropriate validator in the folder :file:`Domain/Validator` for the
   existing domain object is run.
 * If there is set an annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` for the argument,
   no validation is done.
-* Additional validation rules can be specified via further `@validate` annotations in the methods
-  PHPDoc block. The syntax is *@validate $variableName Validator1, Validator2, ...* The syntax is
-  almost the same as with validators in the domain model, you only need to set explicitly the
-  variable name.
+* Additional validation rules can be specified via further `@TYPO3\CMS\Extbase\Annotation\Validate` annotations in the methods
+  PHPDoc block.
 
 If the arguments of an action can not be validated, then the `errorAction` is executed, which will
 usually jump back to the last screen. It is important that validation is not performed in certain
