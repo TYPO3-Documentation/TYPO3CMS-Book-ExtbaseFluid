@@ -342,14 +342,14 @@ then draw on the methods of the ObjectStorage to individual contacts.
 The property offers, we proceed to the equivalent property contacts. The
 definition of the property offers includes in the comment two special
 annotations:
-@TYPO3\CMS\Extbase\Annotation\ORM\Lazy and @cascade remove.
+@TYPO3\CMS\Extbase\Annotation\ORM\Lazy and :php`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade` remove.
 
 .. code-block:: php
 
    /**
     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Offer> The offers the organization has to offer
     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-    * @cascade remove
+    * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
     */
    protected $offers;
 
@@ -371,7 +371,7 @@ increase in speed.
    small-scaled database accesses reduces the performance and cause then the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
-The annotation @cascade remove causes if the organization is deleted, the offers
+The annotation :php`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted, the offers
 will be also deleted immediately. Extbase leaves usually persist unchanged all
 child objects.
 
