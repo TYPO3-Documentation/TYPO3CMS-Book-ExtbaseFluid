@@ -506,27 +506,39 @@ of the specified method, as shown in Example B-3:
 
 ::
 
-    /**
-      * Displays a form for creating a new blog, optionally pre-filled with partial information.
-      *
-      * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
-      *        as a basis for the form if it is set.
-      *
-      * @return void
-      *
-      * @ignorevalidation $newBlog
-      */
-    public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
-    {
-        $this->view->assign('newBlog', $newBlog);
-    )
+   <?php
+   declare(strict_types = 1);
+
+   namespace Ex\BlogExample\Controller;
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
+   {
+       /**
+        * Displays a form for creating a new blog, optionally pre-filled with partial information.
+        *
+        * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
+        *        as a basis for the form if it is set.
+        *
+        * @return void
+        *
+        * @Extbase\IgnoreValidation("newBlog")
+        */
+       public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
+       {
+           $this->view->assign('newBlog', $newBlog);
+       }
+   }
 
 It is important to specify the full type in the `@param` annotation as this is used for the validation
 of the object. Note that not only simple data types such as String, Integer or Float can be validated,
 but also complex object types (see also the section ":ref:`validating-domain-objects`" in Chapter 9).
 
 In addition, on actions showing the forms used to create domain objects, the validation of domain
-objects must be explicitly disabled - therefore the annotation `@ignorevalidation` is necessary.
+objects must be explicitly disabled - therefore the annotation
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` is necessary.
 
 Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
 the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
@@ -771,7 +783,8 @@ Each controller argument is validated by the following rules:
 * If the argument is a domain object, the annotations `@validate` in the domain object is taken into
   account and - if set - the appropriate validator in the folder :file:`Domain/Validator` for the
   existing domain object is run.
-* If there is set an annotation `@ignorevalidation` for the argument, no validation is done.
+* If there is set an annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` for the argument,
+  no validation is done.
 * Additional validation rules can be specified via further `@validate` annotations in the methods
   PHPDoc block. The syntax is *@validate $variableName Validator1, Validator2, ...* The syntax is
   almost the same as with validators in the domain model, you only need to set explicitly the
@@ -779,7 +792,7 @@ Each controller argument is validated by the following rules:
 
 If the arguments of an action can not be validated, then the `errorAction` is executed, which will
 usually jump back to the last screen. It is important that validation is not performed in certain
-cases. Further information for the usage of the annotation `@ignorevalidation` see
+cases. Further information for the usage of the annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` see
 ":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
 Localization

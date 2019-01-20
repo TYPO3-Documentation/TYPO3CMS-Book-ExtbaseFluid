@@ -238,18 +238,33 @@ method :php:`newAction()`.
 
 .. code-block:: php
 
-    /**
-     * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
-     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
-     * @return string An HTML form for creating a new offer
-     * @ignorevalidation $newOffer
-     */
-    public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null)
-    {
-        $this->view->assign('organization', $organization);
-        $this->view->assign('newOffer', $newOffer);
-        $this->view->assign('regions', $this->regionRepository->findAll());
-    }
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\SjrOffers\Controller;
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class OfferController extends ActionController
+   {
+       // ...
+
+       /**
+        * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
+        * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
+        * @return string An HTML form for creating a new offer
+        * @Extbase\IgnoreValidation("newOffer")
+        */
+       public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null)
+       {
+           $this->view->assign('organization', $organization);
+           $this->view->assign('newOffer', $newOffer);
+           $this->view->assign('regions', $this->regionRepository->findAll());
+       }
+
+       // ...
+   }
 
 This action passes to the view in :php:`organization` the :php:`Organization` object, in :php:`newOffer`
 :php:`null` (to begin with) the and in :php:`region` all :php:`Region` Objects contained in the
@@ -398,7 +413,7 @@ hidden fields :php:`__referrer`. In our case the Method
 first call, Extbase now tries to create an (invalid)
 :php:`Offer` Object from the form data, and to pass it to
 the Method in :php:`$newOffer`. Due to the annotation
-:php:`@ignorevalidation $newOffer` Extbase this time accepts
+:php:`@Extbase\IgnoreValidation("newOffer")` Extbase this time accepts
 the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again and the previously saved error message is
 displayed if the template is intending so.
@@ -420,9 +435,8 @@ mapper compares the incoming property data with the one that are allowed.
 If the request contains data for non whitelisted properties, the property
 mapper throws an exception.
 
-Using the annotation :php:`@ignorevalidation
-*$argumentName*` you tell Extbase that the
-argument is not to be validated. If the argument is an Object, the
+Using the :php:`\TYPO3\CMS\Extbase\Annotation\IgnoreValidation("parameterName")` annotation,
+you tell Extbase that the argument is not to be validated. If the argument is an Object, the
 validation of its properties is also bypassed.
 
 
@@ -442,18 +456,33 @@ be edited as an Argument.
 
 .. code-block:: php
 
-   /**
-    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
-    * @return string Form for editing the existing organization
-    * @ignorevalidation $offer
-    */
-   public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\SjrOffers\Controller;
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class OfferController extends ActionController
    {
-      $this->view->assign('offer', $offer);
-      $this->view->assign('regions', $this->regionRepository->findAll());
+       // ...
+
+       /**
+        * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
+        * @return string Form for editing the existing organization
+        * @Extbase\IgnoreValidation("offer")
+        */
+       public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+       {
+          $this->view->assign('offer', $offer);
+          $this->view->assign('regions', $this->regionRepository->findAll());
+       }
+
+       // ...
    }
 
-Note once again the annotation :php:`@ignorevalidation $offer`.
+Note once again the annotation :php:`@Extbase\IgnoreValidation("offer")`.
 The Method :php:`updateAction()`
 receives the changed offer and updates it in the repository. Afterwards a
 new request is started and the organization is shown with its updated

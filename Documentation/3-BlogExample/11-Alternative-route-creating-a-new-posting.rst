@@ -42,19 +42,30 @@ Lets take a look at the called method ``newAction()``:
 
 ::
 
-   /**
-    * Displays a form for creating a new post
-    *
-    * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
-    * @param \MyVendor\BlogExample\Domain\Model\Post $newPost An invalid new post object passed by a rejected createAction()
-    * @return string An HTML form for creating a new post
-    * @ignorevalidation $newPost
-    */
-   public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL)
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\BlogExample\Controller;
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
    {
-      $this->view->assign('authors', $this->authorRepository->findAll();
-      $this->view->assign('blog', $blog);
-      $this->view->assign('newPost', $newPost);
+       /**
+        * Displays a form for creating a new post
+        *
+        * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog the post belongs to
+        * @param \MyVendor\BlogExample\Domain\Model\Post $newPost An invalid new post object passed by a rejected createAction()
+        * @return string An HTML form for creating a new post
+        * @Extbase\IgnoreValidation("newPost")
+        */
+       public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $blog, \MyVendor\BlogExample\Domain\Model\Post $newPost = NULL)
+       {
+          $this->view->assign('authors', $this->authorRepository->findAll();
+          $this->view->assign('blog', $blog);
+          $this->view->assign('newPost', $newPost);
+       }
    }
 
 The method ``newAction()`` expected a ``blog`` object and an optional ``post``

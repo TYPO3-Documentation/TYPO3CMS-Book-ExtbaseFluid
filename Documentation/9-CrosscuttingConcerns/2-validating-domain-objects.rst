@@ -446,7 +446,7 @@ In some use cases it is reasonable that *inconsistent
 domain objects* are gives as arguments. That can be the case
 for multi page forms, because after filling the first page the domain
 object is not complete. In this case you can use the annotation
-``@ignorevalidation *$parameter*``. This
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation("parameter")`. This
 prevents the processing of the ``@validate`` annotations in the
 domain model and calling the validator class of the domain
 object.
@@ -526,18 +526,31 @@ same argument names. In our example the argument is called
 Now we get an other problem: Also the ``editAction``
 validates all parameter, but our blog object is not valid - we are
 captured in an endless loop. Therefore we have to suppress the argument
-validation for the ``editAction``. For this we need the
-annotation ``@ignorevalidation ``- the comment block of the
-``editAction`` must be changed like this::
+validation for the ``editAction``. For this we need the annotation
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` – the comment block
+of the ``editAction`` must be changed like this:
 
-    /**
-     * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
-     * @ignorevalidation $blog
-     */
-    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
-    {
-        $this->view->assign('blog', $blog);
-    }
+::
+
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\BlogExample\Controller;
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
+   {
+       /**
+        * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
+        * @Extbase\IgnoreValidation("blog")
+        */
+       public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+       {
+           $this->view->assign('blog', $blog);
+       }
+   }
 
 Now the ``blog`` object is not validated in the
 ``editAction``. So also a non valid ``blog`` object is
@@ -547,7 +560,7 @@ displayed correct.
 
     If Extbase throws the exception
     \TYPO3\CMS\Extbase\Mvc\Exception\InfiniteLoopException it signs that the
-    ``@ignorevalidation`` annotation is missing.
+    :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` annotation is missing.
 
 Fluid automatically adds the CSS class ``f3-form-error``
 to all erroneous fields - so you can frame them in red for example using
@@ -572,28 +585,39 @@ first displaying the form it is logical that there is no object available
 to be displayed. Therefore the argument must be marked as optional.
 
 Here you will see all that we need. At first the controller
-code::
+code:
 
-    /**
-     * This action shows the 'new' form for the blog.
-     *
-     * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
-     * @ignorevalidation $newBlog
-     */
-    public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL)
-    {
-        $this->view->assign('newBlog', $newBlog);
-    }
+::
 
-    /**
-     * This action creates the blog and stores it.
-     *
-     * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
-     */
-    public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
-    {
-        $this->blogRepository->add($newBlog);
-    }
+   <?php
+   declare(strict_types = 1);
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class BlogController extends ActionController
+   {
+       /**
+        * This action shows the 'new' form for the blog.
+        *
+        * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
+        * @Extbase\IgnoreValidation("newBlog")
+        */
+       public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL)
+       {
+           $this->view->assign('newBlog', $newBlog);
+       }
+
+       /**
+        * This action creates the blog and stores it.
+        *
+        * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
+        */
+       public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
+       {
+           $this->blogRepository->add($newBlog);
+       }
+   }
 
 The Fluid template for the `newAction` looks
 like this (in short form)::
@@ -612,9 +636,9 @@ has also to conform with the name of the Fluid template
 (``newBlog`` in the example). Also the parameter for the
 `newAction` must be marked as optional and the
 validation of the parameter must be suppressed with
-``@ignorevalidation``. Finally you can output validation errors in
-the template using the ``flashMessages`` ViewHelper when saving
-the data.
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation`. Finally you can
+output validation errors in the template using the ``flashMessages``
+ViewHelper when saving the data.
 
 In figure 9-2 you find an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
