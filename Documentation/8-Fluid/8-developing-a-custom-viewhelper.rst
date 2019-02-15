@@ -69,7 +69,7 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
    namespace MyVendor\BlogExample\ViewHelpers;
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
@@ -107,7 +107,7 @@ extended like the following::
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
    use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
@@ -173,7 +173,7 @@ Finally the output of the :html:`img` tag needs to be implemented::
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
    use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
@@ -266,7 +266,7 @@ The :php:`GravatarViewHelper` will now make use of the
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
 
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
    class GravatarViewHelper extends AbstractTagBasedViewHelper
    {
@@ -428,7 +428,7 @@ Lets have a look at the new code of the :php:`renderStatic()` method::
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
    use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
@@ -468,7 +468,7 @@ Lets have a look at the new code of the :php:`render()` method::
     <?php
     namespace MyVendor\BlogExample\ViewHelpers;
 
-    use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+    use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
     class GravatarViewHelper extends AbstractTagBasedViewHelper
     {
@@ -642,7 +642,7 @@ Example implementation::
    use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
    use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-   use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class StrtolowerViewHelper extends AbstractViewHelper
    {
