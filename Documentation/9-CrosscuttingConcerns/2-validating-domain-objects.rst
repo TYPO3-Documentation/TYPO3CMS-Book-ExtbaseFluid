@@ -261,7 +261,7 @@ blog post is always build-on the scheme *Maintopic: Title*:
 
    class TitleValidator extends AbstractValidator
    {
-      public function validate($value)
+      protected function isValid($value)
       {
          // $value is the title string
          if (count(explode(':', $value)) >= 2) {
