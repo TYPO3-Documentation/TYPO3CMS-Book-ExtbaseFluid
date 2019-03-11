@@ -41,7 +41,6 @@ In our simple example the controller looks like this:
      */
     class StoreInventoryController extends ActionController
     {
-
         /**
          * @var ProductRepository
          */
