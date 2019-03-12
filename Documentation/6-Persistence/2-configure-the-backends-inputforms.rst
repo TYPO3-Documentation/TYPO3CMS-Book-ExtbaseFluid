@@ -763,15 +763,6 @@ The opponent of :php:`add()`. An object will be removed from the Repository and 
 gonna be deleted from the database after finishing the Extension's loop. The
 method :php:`removeAll()` empties the whole Repository.
 
-
-:php:`replace($existingObject, $newObject)`
--------------------------------------------
-
-Replaces an existing object with a new object. Instead of the combination of
-`add()` and `remove()` this method keeps the existing object in the
-database.
-
-
 :php:`update($modifiedObject)`
 ------------------------------
 
