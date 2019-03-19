@@ -9,7 +9,7 @@ to normalize the access to this data sources and to abstract it from the concret
 These "foreign" data sources could be tables from the same TYPO3 database or a web service.
 
 Extbase building-up strongly of the rule "Convention over Configuration" (see also the appendix A for this).
-Foreign database tables correspond in rare cases the conventions of Extbase. Therefore the assignment
+Foreign database tables rarely correspond with the conventions of Extbase. Therefore the assignment
 of the class to a given table as well as the assignment of field names to property names of the classes
 must be configured via TypoScript. This assignment is also called *mapping*. The following configuration
 enables the storage of the object data of a class :php:`\MyVendor\MyExtension\Domain\Model\Person` in the table
