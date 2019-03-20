@@ -198,7 +198,7 @@ follows:
 .. code-block:: php
 
    'name' => [
-      'label' => 'Organization's name',
+      'label' => 'Organization\'s name',
       'config' => [
          'type' => 'input',
          'size' => 20,
