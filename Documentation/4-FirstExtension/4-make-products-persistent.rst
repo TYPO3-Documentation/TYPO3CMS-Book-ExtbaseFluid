@@ -100,12 +100,8 @@ The file returns an array with the all information, that TYPO3 needs to render t
 
 This file comprises several sections. In the section ``ctrl``, basic characteristics are how the table name or the
 statement which table column the label is supposed to be taken for the entries. In the section ``columns`` is described
-for each table column how this in that is supposed to be shown in the Backend. The section type defines, in
+for each table column how this in that is supposed to be shown in the Backend. The section ``types`` defines, in
 which sequence the table columns are indicated, and like this where appropriate arranged.
-
-To define the group name for the new record wizard for new records of this extension you have to use a language file
-in the directory :file:`EXT:store_inventory/Resources/Private/Language/`. The identifier **extension.title** is
-hard-coded in the TYPO3 core and you have to use this to define your own text.
 
 .. tip::
 
@@ -120,6 +116,10 @@ hard-coded in the TYPO3 core and you have to use this to define your own text.
    So here the *Coding Guidelines* can't be applied, which says filenames has to be in *UpperCamelCase*.
 
    If you later want to overwrite the TCA from an existing database table, then you must use the file :file:`EXT:store_inventory/Configuration/TCA/Overrides/[tablename].php`.
+
+To define the group name for the new record wizard for new records of this extension you have to use a language file
+in the directory :file:`EXT:store_inventory/Resources/Private/Language/`. The identifier **extension.title** is
+hard-coded in the TYPO3 core and you have to use this to define your own text.
 
 .. code-block:: xml
 
