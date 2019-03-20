@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+=========================================
 Automatic persistence of the domain logic
 =========================================
 
@@ -51,20 +52,6 @@ value was changed in the runtime. If the property refer to an object, the
 backend checks in the next step also these objects for changes of the
 property values.
 
-.. sidebar:: Dirty objects
-
-   How does extbase know that a property value has changed? Every
-   object of the domain of your extension (domain object) must enhance a
-   defined class of extbase. For the blog class this is
-   ``\TYPO3\CMS\Extbase\DomainObject\AbstractEntity``. Inside this parent
-   class a property ``$_cleanProperties`` is defined. This property
-   is directly, after the reconstruction of the object (restored from the
-   database), initialized with the unchanged property values with a call of
-   ``_memorizeCleanState()``; in our case with the title, the
-   description, the administrator and all ``post`` objects. With
-   this it is possible later on to check every property for changes with
-   calling of ``_isDirty($propertyName)``.
-
 .. note::
 
    All methods that starts with an underline (_) are internal methods.
@@ -85,3 +72,17 @@ exhausting route. With the holiday destination you are so far familiar that
 you can move around safety in the blog example in the future without us -
 your travel guides. Of course there is a lot more to explore!
 
+Dirty objects
+=============
+
+How does extbase know that a property value has changed? Every
+object of the domain of your extension (domain object) must enhance a
+defined class of extbase. For the blog class this is
+``\TYPO3\CMS\Extbase\DomainObject\AbstractEntity``. Inside this parent
+class a property ``$_cleanProperties`` is defined. This property
+is directly, after the reconstruction of the object (restored from the
+database), initialized with the unchanged property values with a call of
+``_memorizeCleanState()``; in our case with the title, the
+description, the administrator and all ``post`` objects. With
+this it is possible later on to check every property for changes with
+calling of ``_isDirty($propertyName)``.
