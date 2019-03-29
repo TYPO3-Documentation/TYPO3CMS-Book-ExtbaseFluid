@@ -6,7 +6,7 @@ Extension Builder
 Ext-Key: extension_builder
 
 The Extension Builder helps you build and manage your Extbase-based TYPO3 CMS extensions.
-To install this extension open the terminal and go to the directory :file:typo3conf/ext/` and enter:
+To install this extension open the terminal and go to the directory :file:`typo3conf/ext/` and enter:
 
 .. code-block:: bash
 
