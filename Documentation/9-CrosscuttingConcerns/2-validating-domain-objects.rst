@@ -288,7 +288,7 @@ the property ``$password`` and ``$passwordConfirmed``
 exists which should be identical. Therefore the individual validators
 for ``$password`` respectively
 ``$passwordConfirmation`` can not help, because they have no
-access to each other. You need a option to validate a domain object
+access to each other. You need an option to validate a domain object
 *as a whole*.
 
 For this you can implement an own validator class for every object
