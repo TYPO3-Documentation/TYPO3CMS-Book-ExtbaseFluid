@@ -443,7 +443,7 @@ it exists. Beyond that the validator
 to validate ``$user``.
 
 In some use cases it is reasonable that *inconsistent
-domain objects* are gives as arguments. That can be the case
+domain objects* are given as arguments. That can be the case
 for multi page forms, because after filling the first page the domain
 object is not complete. In this case you can use the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation("parameter")`. This
