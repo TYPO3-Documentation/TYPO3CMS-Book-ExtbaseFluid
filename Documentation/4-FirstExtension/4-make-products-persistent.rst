@@ -98,10 +98,13 @@ The file returns an array with the all information, that TYPO3 needs to render t
    ];
 
 
-This file comprises several sections. In the section ``ctrl``, basic characteristics are how the table name or the
-statement which table column the label is supposed to be taken for the entries. In the section ``columns`` is described
-for each table column how this in that is supposed to be shown in the Backend. The section ``types`` defines, in
-which sequence the table columns are indicated, and like this where appropriate arranged.
+This file comprises several sections:
+
+* In the section ``ctrl``, we can set some basic characteristics, like the title
+  or which table column is to be used as label.
+* The section ``columns`` defines how each table field is diplayed and how it behaves
+  in the backend.
+* The section ``types`` defines in which sequence the table columns are displayed.
 
 .. tip::
 
