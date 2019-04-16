@@ -192,8 +192,10 @@ Here you will see the stripped-down method:
     * @param \MyVendor\BlogExample\Domain\Model\Post $newPost A fresh Post object which has not yet been persisted
     * @return void
     */
-   public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $blog,
-        \MyVendor\BlogExample\Domain\Model\Post $newPost) {
+   public function createAction(
+      \MyVendor\BlogExample\Domain\Model\Blog $blog,
+      \MyVendor\BlogExample\Domain\Model\Post $newPost
+   ) {
       $blog->addPost($newPost);
       $this->redirect('index', NULL, NULL, ['blog' => $blog]);
    }
