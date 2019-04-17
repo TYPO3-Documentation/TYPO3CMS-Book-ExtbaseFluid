@@ -91,7 +91,18 @@ The next call of the page, with the plugin on it, shows the inventory as a table
    :align: center
 
    Figure 4-5: The output of the inventory in the front end
+   
+To include the plugin anywhere on your page via typoscript you can use the bootstrap user function:
 
+.. code-block:: typoscript
+page.10 = USER
+page.10 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    vendorName = MyVendor
+    extensionName = StoreInventory
+    pluginName = Pi1
+}
+  
 With this the first little Extbase extension is finished. The example was intentional held simple.
 It illustrates the important steps and the conventions we have to observe.
 For a full-grown extension there are some ingredients missing:
