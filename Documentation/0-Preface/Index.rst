@@ -12,7 +12,6 @@ About This Manual
 This is an extensive introduction into developing TYPO3 extensions with the
 Extbase framework and the Fluid templating engine.
 
-
 .. _target-audience:
 
 Target Audience
@@ -164,13 +163,32 @@ To switch the default highlighting use the 'highlight' directive::
 
 
 
+
+.. _credits:
+
+Credits
+=======
+
+The original version of this manual was a hardcover book in German with
+the title "Zukunftssichere TYPO3-Extensions mit Extbase und Fluid" by
+Jochen Rau and Sebastian Kurfürst.
+This book was translated into English by the TYPO3 community.
+
+The latest version of the book (second edition) targeted TYPO3 6.2.
+
+Meanwhile, the book is no longer an exact translation. Several
+changes were made by the TYPO3 community to reflect
+considerable changes in the TYPO3
+core, some parts were removed, added or moved to other manuals.
+It has - in parts - been completely rewritten.
+
+.. todo: add some thanks to other contributors?
+
 .. _thanks:
 
-Thanks
-======
+Thanks From Jochen and Sebastian
+--------------------------------
 
-from Jochen and Sebastian
--------------------------
 Above all, we want to thank our families and partners for their
 understanding and their support when we spent our afternoons and evenings
 with the book instead of with them. Also, our customers had to be patient
