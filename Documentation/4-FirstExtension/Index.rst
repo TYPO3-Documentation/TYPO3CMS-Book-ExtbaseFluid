@@ -3,6 +3,13 @@
 Creating a first extension
 ===============================================
 
+.. tip::
+
+   In this chapter, you will learn how to build an extension from scratch.
+   You may also want to try out the :ref:`Extension Builder <extension-builder>`
+   which automatically creates some of the necessary source files for you.
+
+
 In this chapter you learn the basics of an extension based on extbase
 and fluid. You build up a minimalistic extension, which is reduced to the
 absolutely necessary structures. So you view clearly the whole, without
