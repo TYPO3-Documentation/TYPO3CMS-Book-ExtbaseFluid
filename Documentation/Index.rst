@@ -30,7 +30,10 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    7-Controllers/Index
    8-Fluid/Index
    9-CrosscuttingConcerns/Index
-   10-Outlook/Index
+   10-Outlook/1-Creating-an-extension-with-the-kickstarter
+   Backend-modules   ➜  <https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/BackendModules/BackendModuleApi/Index.html>
+   10-Outlook/3-Command-controllers
+   10-Outlook/4-Property-mapping
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
    Targets
