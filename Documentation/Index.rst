@@ -20,6 +20,7 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    :hidden:
 
    Sitemap/Index
+   0-Preface/Index
    0-Introduction/Index
    1-Installation/Index
    2-BasicPrinciples/Index

@@ -55,7 +55,4 @@ With a bit of luck, you'll hopefully get into the "flow" which drove us while we
    :maxdepth: 2
 
    1-short-history
-   2-target-audience
-   3-structure
-   4-typographic-conventions
-   5-thanks
+
