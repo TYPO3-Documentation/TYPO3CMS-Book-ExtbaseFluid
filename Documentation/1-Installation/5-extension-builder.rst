@@ -21,8 +21,7 @@ Then you can use the *Extension Manager* to install the Extension Builder.
 You can also install this extension via Composer (if you already used Composer to setup
 your TYPO3 installation)::
 
-   composer req friendsoftypo3/extension-builder
-   composer update
+   composer require friendsoftypo3/extension-builder
    ./vendor/bin/typo3 extension:activate extension_builder
 
 
