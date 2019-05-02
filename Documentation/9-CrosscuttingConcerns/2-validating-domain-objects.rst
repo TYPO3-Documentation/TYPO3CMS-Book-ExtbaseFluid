@@ -17,9 +17,9 @@ rules:
   must not contain special characters.
 * The field ``email`` of the user object must contain a valid email address.
 
-These rules must apply at every point in time for the user object; on
-the other way a user object is only valid if it complies to these rules.
-These rules are called *invariants*, because they must be
+These rules must apply at every point in time for the user object. On
+the other hand is a user object only valid if it complies to these rules.
+These rules are called *invariants* because they must be
 valid during the entire lifetime of the object.
 
 In a first step you have to consider which invariants your domain
@@ -29,7 +29,7 @@ checking the invariants - these are PHP classes in which the invariants are
 implemented in code.
 
 We will show you in the following how you can use a validator for the
-checking of invariants, and how you can give the user the possibility to
+checking of invariants and how you can give the user the possibility to
 correct an error when an error occurs.
 
 
@@ -125,15 +125,15 @@ When they get inserted into a controller action. With the help of figure
 
     Figure 9-1: Data flow of a request before the action is called
 
-When a user sends a request, Extbase first determines which action
+When a user sends a request Extbase first determines which action
 respectively controller is responsible for this request. As Extbase knows
 the names and types of the arguments of the action it can create objects
 from the incoming data. This operation will be described in detail in the
 section "Argument mapping" later on. Now the main step for us is as
-follows: The created objects are to be validated, that is the invariants
-are to be checked. If all arguments are successfully validated, the
+follows: The created objects are to be validated. That is the invariants
+must be checked. If all arguments are successfully validated the
 requested action of the extension is called and it can continue processing
-the given objects for example give it to the view for displaying.
+the given objects. For example give it to the view for displaying.
 
 .. tip::
 
@@ -178,8 +178,8 @@ Validating in the domain model with annotations
 -----------------------------------------------
 In most cases it is sufficient to validate the properties of a
 domain object separately. When all properties are validated with success
-the complete domain object is also successful validated; when a property
-can not be validated the validation of the complete domain object
+the complete domain object is also successful validated. When a property
+can not be validated successfully the validation of the complete domain object
 fails.
 
 To define how a property of our domain object should be validated
@@ -226,7 +226,9 @@ is used.
 
 When you have created your own validator to check the invariants
 you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
-class name, like shown in the following example::
+class name.
+
+Example::
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -247,7 +249,7 @@ class name, like shown in the following example::
 
 Here we validate the property ``$title`` with the
 :php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
-This validator class now can check any invariants. For example, the
+This validator class now can check any invariants. For example the
 validator shown in the following listing checks whether the title of a
 blog post is always build-on the scheme *Maintopic: Title*:
 
@@ -272,7 +274,7 @@ blog post is always build-on the scheme *Maintopic: Title*:
    }
 
 Now you have seen how you can validate particular properties of
-the domain model. The next section shows to you, how complex domain
+the domain model. The next section shows to you how complex domain
 objects are to be validated.
 
 
