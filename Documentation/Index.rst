@@ -14,6 +14,8 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 
 :Copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
 :Translation: Translated to English by the TYPO3 community
+:License:     Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0),
+              https://creativecommons.org/licenses/by-nc-sa/4.0/
 :Rendered:    |today|
 
 .. toctree::
