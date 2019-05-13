@@ -12,6 +12,8 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 
    Jochen Rau <jochen.rau@typoplanet.de>
 
+   TYPO3 community (see :ref:`credits`)
+
 :Copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
 :Translation: Translated to English by the TYPO3 community
 :Rendered:    |today|
