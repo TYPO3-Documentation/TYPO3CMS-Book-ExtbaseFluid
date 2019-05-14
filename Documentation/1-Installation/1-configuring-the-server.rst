@@ -1,14 +1,18 @@
+.. review information:
+   - language: ok (corrected May/14, 2019)
+   - technical: ok (May/14, 2019)
+
 .. include:: ../Includes.txt
 
 Configuring the Server
 ======================
 
-Since TYPO3 is written in the PHP scripting language, you will need a
-web server like Apache with PHP. For the appropriate PHP version, look at "system requirements" at the TYPO3 download page. (*https://get.typo3.org/*) Additionally TYPO3 requires a SQL database for data storage.
+You will need a web server like Apache with PHP and a database. See
+:ref:`t3install:system-requirements` in the "Installation an Upgrade Guide".
+
 If you don't have a local development server yet, we recommend the XAMPP
 package (*http://www.apachefriends.org/xampp.html*). It
 will install Apache, PHP, MySQL and other useful tools on all established
-operating systems (Linux, Windows, Mac OS X). Now you can install TYPO3 on
-your test system.
+operating systems (Linux, Windows, Mac OS X). 
 
-For production systems you are advised to enable the PHP Opcode Cache.
+Now, proceed to install TYPO3 on your development system: :ref:`t3install:quick-installation`.
