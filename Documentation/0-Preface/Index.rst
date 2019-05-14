@@ -1,3 +1,7 @@
+.. review information:
+- language: ok (corrected May/14 2019)
+
+
 .. include:: ../Includes.txt
 
 =======
@@ -9,7 +13,7 @@ Preface
 About This Manual
 =================
 
-This is an extensive introduction into developing TYPO3 extensions with the
+This is an introduction into developing TYPO3 extensions with the
 Extbase framework and the Fluid templating engine.
 
 .. _target-audience:
@@ -19,22 +23,20 @@ Target Audience
 
 This book is for TYPO3 extension developers who have a basic understanding
 of PHP programming and experience working with and administering TYPO3.
-The book gives a compact introduction to the Extbase framework and to
-the Fluid template engine.
 
 We are aiming at the following target audiences.
 
-* Beginners, who want to use Extbase and Fluid right from scratch as a basis for their own extensions.
+* Beginners, who want to use Extbase and Fluid right as a basis for their own extensions.
 * Experienced developers, who want to learn Extbase and Fluid before beginning a new project.
-* Deciders, who want to gain a technical overview of the new framework.
+* Decision makers, who want to gain a technical overview of the new framework.
 
 .. _structure-of-this-book:
 
 Structure of this book
 ======================
 
-This chapter is structured into ten sub chapters and three appendices. The
-chapters discuss the following topics:
+This chapter is structured into ten main chapters, some additional smaller chapters
+and three appendices. The chapters discuss the following topics:
 
 Chapter 1, *Installation*, leads you through the
 installation of Extbase and Fluid. To make extension development as
@@ -52,12 +54,12 @@ chapter explains Test-Driven Development to the reader.
 Chapter 3, *Journey through the Blog Example*,
 should give you a feeling how the concepts from chapter 2 are implemented
 in Extbase. Based on a provided example extension, we explain how a blog post
-is created and progresses through the different system stages until it is
+is created and progresses through various stages until it is
 displayed.
 
 In chapter 4, *Creating a first extension*, we show
 you a minimal extension. With this extension, data is managed through the
-TYPO3 backend and displayed in the Frontend.
+TYPO3 backend and displayed in the frontend.
 
 Chapter 5, *Modeling the Domain*, shows
 Domain-Driven Design with a practical example. It shows how a model can be
@@ -69,13 +71,12 @@ information is explained in chapter 6, *Setting up the persistence
 layer*.
 
 After chapters 5 and 6 have explained the model layer in detail, we
-focus on the application flow of the extension in chapter 7,
-*Controlling the flow with controllers*. These are
-implemented in the controller layer.
+focus on the *controller* layer of the extension in chapter 7,
+*Controlling the flow with controllers*.
 
 Next, the book explains the output layer of the extension: the so-called
-*view*. In chapter 8, *Styling the output with Fluid*, Fluid is explained in
-detail and its function is shown through several examples. At the end of the
+*view*. In chapter 8, *Styling the output with Fluid*, Fluid is explained
+and several examples are given. At the end of the
 chapter, the sample functions are combined and demonstrated within the example
 extension.
 
@@ -84,14 +85,24 @@ security*, deals with advanced topics and tasks. This includes the
 multilingual capabilities of extensions, the validation of data, and the
 handling of security aspects.
 
-Chapter 10, *Outlook*, gives a glimpse into code which is currently being developed.
-The focus lies on the kickstarter and the use of Extbase in the TYPO3 Backend.
+After the main chapters, several smaller chapters give insight into additional
+extbase features:
 
-Extbase mostly uses the conventions of FLOW. In *Appendix A, Coding Guidelines*, they are summarized.
+* :ref:`extension-builder` gives insight into modeling an extension with the
+  extension builder
+* "Backend Modules": This now directly links to the chapter
+  :ref:`t3coreapi:backend-modules-api` in "TYPO3 Explained"
+* :ref:`extbase_command_controller_about`: This chapter also directly links
+  to "TYPO3 Explained", as the information is now maintained there.
+* :ref:`extbase_property_mapping`
 
-Appendix B, *Reference of Extbase*, contains an overview of important Extbase concepts and an alphabetical listing of the API.
+Additional information is contained in several appendices:
 
-In Appendix C, *Reference of Fluid*, you can find a reference of all standard Fluid ViewHelpers and of the API which is needed to create your own ViewHelpers.
+* Extbase mostly uses the conventions of FLOW. In *Appendix A, Coding Guidelines*,
+  they are summarized.
+* Appendix B, *Reference of Extbase*, contains an overview of important Extbase
+  concepts and an alphabetical listing of the API.
+* In Appendix C, *Fluid ViewHelpers*, we link to the ViewHelper reference
 
 .. _typographic-conventions:
 
@@ -114,21 +125,6 @@ This book uses the following typographic conventions:
 
 ``inline code`` or, better: `inline code`
 
-.. comment:
-
-   Explanation of reST Syntax:
-
-   This line:
-      `$s = 'a code snippet';`
-
-   is equivalent to:
-      :code:`$s = 'a code snippet';`
-
-   as we have told Sphinx in the above ../Includes.txt that 'code'
-   is the *default textrole*.
-
-   End of comment.
-
 
 .. |example_substitution_text| replace:: Substituted text here...
 
@@ -146,22 +142,6 @@ This book uses the following typographic conventions:
 
    With this symbol, certain special behavior is explained, which could
    lead to problems or impose a risk.
-
-Each and every reST file of :file:`*.rst` should include :file:`Includes.txt`
-at the very beginning. Specify the relative path.
-
-Headlines in the reST source look nicer when the punctuation lines are
-of the same length as the text.
-
-.. highlight:: rst
-
-To switch the default highlighting use the 'highlight' directive::
-
-   .. highlight:: php
-   .. highlight:: javascript
-   .. highlight:: typoscript
-
-
 
 
 .. _credits:

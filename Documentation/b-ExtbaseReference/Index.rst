@@ -1,8 +1,9 @@
 .. include:: ../Includes.txt
 .. _extbase_reference:
 
-Extbase Reference
-=================
+=============================
+Appendix B: Extbase Reference
+=============================
 
 In this appendix, you can look up how Extbase interacts with the TYPO3
 installation. This includes the registration of plugins and the configuration of
@@ -10,12 +11,14 @@ Extbase extensions.
 
 .. note::
 
-    Under https://docs.typo3.org/typo3cms/CheatSheets.html you find a useful Cheat Sheet for Extbase
-    and Fluid.
+    Under https://docs.typo3.org/typo3cms/CheatSheets.html you will find
+    a useful Cheat Sheet for Extbase and Fluid.
+
+
 
 .. _registration_of_frontend_plugins:
 
-Registration of frontend plugins
+Registration of Frontend Plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. Todo: Add section about backend modules.
