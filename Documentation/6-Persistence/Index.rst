@@ -1,28 +1,32 @@
+.. review information:
+   - language: ok (corrected May/14 2019)
+
 .. include:: ../Includes.txt
 
 Setting up the persistence layer
 ================================
 
-As already mentioned in previous chapters it is the Persistence Layer which
-takes care of conserving Domain Objects durably. In this chapter we
+As discussed in previous chapters, it is the Persistence Layer which
+takes care of conserving Domain Objects. In this chapter we
 will describe the necessary steps for doing that.
 
 It is important to get a grasp of the lifecycle of a Domain Object to fully
 understand the Persistence Layer. When instantiating a Domain Object we essentially
-store it in RAM. At that time, it is in
+store it in memory. At that time, it is in
 a transient, i.e. volatile, state. When TYPO3 delivered the rendered website
-the sector of the RAM is freed by PHP and may be overwritten with
+the the allocated memory is freed up by PHP and may be overwritten with
 other data. Thereby the saved data will be lost together with the Domain Object.
 
 .. note::
 
-   You can read more about the lifecycle of objects in Chapter 2 "Lifecycle of Objects".
+   You can read more about the lifecycle of objects in the chapter "Lifecycle of Objects".
 
 If Domain Objects should be available within several page loads they have to be
 transferred into a persistent state. This is being done in Extbase by putting
-the Domain objects into a Repository. When the script is finished doing its work,
-the Repository takes care of saving the data into a durable storage.
-Usually, this is the database which is used by TYPO3.
+the Domain objects into a Repository. Part of job of the repository is to
+ensure that the integrity of the data is maintained at all times by storing
+the information into persistent data storage. Typically, this is the database
+which is being used by TYPO3.
 
 This chapter deals with the steps that have to be taken to make the data
 enclosed by a Domain Object persistent. Firstly, the Domain Objects
