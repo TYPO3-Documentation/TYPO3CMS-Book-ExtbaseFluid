@@ -1,47 +1,52 @@
+.. review information:
+   - language: ok (corrected May/14 2019)
+
 .. include:: ../Includes.txt
 
 Setting up the persistence layer
 ================================
 
-As already insinuated in previous chapters it is the Persistence Layer which
-takes care about conserving Domain Objects durably. Thus, in this chapter we
-will discuss the steps being important for doing that.
+As discussed in previous chapters, it is the persistence layer which
+takes care of conserving domain objects. In this chapter we
+will describe the necessary steps for doing that.
 
-It is important to get a grasp of the lifecycle of a Domain Object to fully
-understand the Persistence Layer. When instantiating a Domain Object we essentially
-put its data into a certain sector of the Main Memory. At that time, it is in
+It is important to get a grasp of the lifecycle of a domain object to fully
+understand the persistence layer. When instantiating a domain object we essentially
+store it in memory. At that time, it is in
 a transient, i.e. volatile, state. When TYPO3 delivered the rendered website
-the sector of the Main Memory is freed by PHP and may be overwritten with
-other data. Thereby the saved data will be lost together with the Domain Object.
+the the allocated memory is freed up by PHP and may be overwritten with
+other data. Thereby the saved data will be lost together with the domain object.
 
 .. note::
 
-   You can read more about the lifecycle of objects in Chapter 2 "Lifecycle of Objects".
+   You can read more about the lifecycle of objects in the chapter
+   :ref:`object-lifecyle`
 
-If Domain Objects should be available within several page loads they have to be
+If domain objects should be available within several page loads they have to be
 transferred into a persistent state. This is being done in Extbase by putting
-the Domain objects into a Repository. When the script is finished doing its work,
-the Repository takes care about saving the volatile data in a durable saving state.
-Normally this is the database which is used by TYPO3 but may, for example,
-also be a text file.
+the domain objects into a repository. Part of job of the repository is to
+ensure that the integrity of the data is maintained at all times by storing
+the information into persistent data storage. Typically, this is the database
+which is being used by TYPO3.
 
 This chapter deals with the steps that have to be taken to make the data
-enclosed by a Domain Object durably persistent. Firstly, the Domain Objects
+enclosed by a domain object persistent. Firstly, the domain objects
 have to be prepared to make them persistable by the underlying database. Most
-extensions get their input data through the Backend, thus the input forms which
-receive the data have to be configured. Subsequently, the Repositories are
-created which serve as an interface to the Domain Object.
+extensions get their input data through the backend, thus the input forms which
+receive the data have to be configured. Subsequently, the repositories are
+created which serve as an interface to the domain object.
 
 Those steps are sufficient for most of the simple extensions, however,
-bigger projects often need more complex queries to the Persistence Layer as
-you will see with the example extension *SjrOffers*. This exemplary extension
-serves with offers for parents or teenagers for satisfying their certain needs.
+bigger projects often need more complex queries to the persistence layer as
+you will see with the example extension *SjrOffers*. This extension
+handles offers for specific age groups.
 An example would be something like "Please show me all existing offers for a
 5-years child close to the town centre". It should be possible to make such a
 request through the website, which should contain an input form. This form then
-sends the request to the extension. There, the Repository will compile the
-appropriate offers and send them back to the website. Thus, we will implement
+sends the request to the extension. There, the repository will compile the
+appropriate offers and send them back to the website. We will implement
 the method ``findDemanded($demand)`` in a final step to find those offers.
+
 Let's start with the database.
 
 .. toctree::
