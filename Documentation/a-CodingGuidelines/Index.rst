@@ -1,3 +1,7 @@
+.. include:: ../Includes.txt
+
+
+=================
 Coding Guidelines
 =================
 

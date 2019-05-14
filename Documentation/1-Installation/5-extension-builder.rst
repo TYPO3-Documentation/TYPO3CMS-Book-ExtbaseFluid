@@ -25,7 +25,8 @@ your TYPO3 installation)::
    ./vendor/bin/typo3 extension:activate extension_builder
 
 
-See :ref:`t3install:extension-installation` in "TYPO3 Explained" for more information
-about installing extensions and :ref:`extension-builder` for more information about
-the Extension Builder.
+For more information, see:
+
+* :ref:`t3install:extension-installation` in "TYPO3 Explained"
+* `Extension Builder <https://github.com/FriendsOfTYPO3/extension_builder>`__
 
