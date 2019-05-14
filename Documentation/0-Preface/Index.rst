@@ -88,8 +88,6 @@ handling of security aspects.
 After the main chapters, several smaller chapters give insight into additional
 extbase features:
 
-* :ref:`extension-builder` gives insight into modeling an extension with the
-  extension builder
 * "Backend Modules": This now directly links to the chapter
   :ref:`t3coreapi:backend-modules-api` in "TYPO3 Explained"
 * :ref:`extbase_command_controller_about`: This chapter also directly links
