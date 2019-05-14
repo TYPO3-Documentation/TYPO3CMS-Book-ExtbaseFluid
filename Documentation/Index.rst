@@ -39,4 +39,5 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    10-Outlook/4-Property-mapping
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
+   ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
    Targets

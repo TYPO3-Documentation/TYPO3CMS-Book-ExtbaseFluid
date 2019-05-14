@@ -1,9 +1,9 @@
 .. include:: ../Includes.txt
 .. _extbase_reference:
 
-=============================
-Appendix B: Extbase Reference
-=============================
+=================
+Extbase Reference
+=================
 
 In this appendix, you can look up how Extbase interacts with the TYPO3
 installation. This includes the registration of plugins and the configuration of

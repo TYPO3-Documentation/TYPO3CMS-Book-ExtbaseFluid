@@ -1,9 +1,9 @@
 .. include:: ../Includes.txt
 
 
-=============================
-Appendix A: Coding Guidelines
-=============================
+=================
+Coding Guidelines
+=================
 
 Extbase and Fluid follow the principle of *Convention over Configuration*.
 That means that many tasks will work automatically if you respect
