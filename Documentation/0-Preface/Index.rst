@@ -111,22 +111,10 @@ This book uses the following typographic conventions:
 
 :file:`File names and directories`
 
-*emphasized content*
+**emphasized content**
 
-:php:`class names`,
+:php:`inline php code, such as class names, method names`,
 
-`method names`,
-
-.. example of how we set the default textrole:
-
-.. default-role:: code
-
-``inline code`` or, better: `inline code`
-
-
-.. |example_substitution_text| replace:: Substituted text here...
-
-|example_substitution_text| is used to have certain code part automatically replaced.
 
 .. note::
 
