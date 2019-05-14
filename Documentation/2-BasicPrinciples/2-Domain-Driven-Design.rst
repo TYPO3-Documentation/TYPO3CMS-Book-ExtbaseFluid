@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+====================
 Domain-Driven Design
-===============================================
+====================
 
 Software development is a creative process. You do not stand on an assembly
 line, but are increasingly exposed to new challenges. Each software differs
@@ -78,8 +79,8 @@ dealing with associations. Besides these we also show you the technical elements
 such as entities, value objects and repositories.
 
 
-Develop a common language
---------------------------
+Develop a Common Language
+=========================
 
 In software projects, people are involved in different roles: the customer is an
 expert in his business area and has a problem he wants to get solved by a
@@ -102,8 +103,8 @@ enables experts to capture the problems within the domain on the one hand and do
 decisions on the basis of the source code on the other hand on whether the
 business logic has been implemented correctly.
 
-To model the domain
--------------------
+To Model the Domain
+===================
 
 During your meeting with the domain expert you will start to create a model and
 after that you will refine it. Usually during the dialog a UML-Diagram will
@@ -124,7 +125,8 @@ objects - this happens every time you speak of activities during the modeling
 phase. For this purpose the concept of services is introduced.
 
 
-**Entities**
+Entities
+--------
 
 Entities are objects that possess a unique identity. For example, a user has an
 username as an identity, a product has a product number, and a student has a
@@ -171,7 +173,8 @@ indexes and primary keys (in TYPO3, for example, the UID will always added as an
 identifier). Therefore, you may wonder why we now need a different type of
 object at all. In the next section we answer this question.
 
-**Value Objects**
+Value Objects
+-------------
 
 PHP offers several build-in value-types, such as integer, float or string. Often
 you will notice that you need domain specific values-types​​, such as colors or
@@ -238,7 +241,8 @@ objects - it depends entirely on the application and the application domain.
    omitted here, for example, completely.
 
 
-**Associations**
+Associations
+------------
 
 You should never leave the implementation out of sight during the modeling. So
 let us talk briefly about a very complex field of implementation: associations
@@ -276,7 +280,8 @@ refinement of associations you can find help with the following questions:
 So remember to use very simple associations, as it is easier to implement them
 and they are better understandable.
 
-**Aggregates**
+Aggregates
+----------
 
 If you build a complex domain model, you have to deal with many classes offered
 at the same hierarchical level. Often it is given that certain objects are part
@@ -315,7 +320,8 @@ value objects objects. However, there are concepts in the world that do not fit
 into this scheme. To reflect this, we introduce services.
 
 
-**Services**
+Services
+--------
 
 In practice there are actions while modeling an application, which could not
 directly assigned to certain domain objects. In object-oriented programming, you
@@ -329,7 +335,10 @@ A service should be used, without knowing its internal state to be known be
 taken into account. A service often receives entities or value objects as input
 and performs complex operations on them.
 
-Lifecycle of objects
+.. _object-lifecyle:
+
+Lifecycle of Objects
+====================
 
 In the real world objects have a certain life cycle. A car is built, then it
 changes during its lifetime (the mileage increases, brakes are replaced, wear,
@@ -404,7 +413,8 @@ Now - as you have learned many things about the life cycle of objects - we want
 to substantiate two pieces of the life cycle: the creation of objects and the
 reconstitution of objects.
 
-Create objects with the help of factories
+Create Objects With the Help of Factories
+=========================================
 
 Now that you know the life cycle of objects more accurately, we will deal
 initially with the creation of objects. You are allowed to produce only
@@ -449,8 +459,8 @@ always built a consistent object.
    GeneralUtility::makeInstance(className). In the example above, we wanted to
    concentrate on the essentials, so we have used new there.
 
-Reconstitute objects with repositories
---------------------------------------
+Reconstitute Objects with Repositories
+======================================
 
 You can imagine a repository like a library: go to the circulation desk and ask
 for a specific book (based on certain criteria such as the title or author). If
