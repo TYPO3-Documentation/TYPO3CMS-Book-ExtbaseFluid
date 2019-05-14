@@ -11,7 +11,7 @@ You will need a web server like Apache with PHP and a database. See
 :ref:`t3install:system-requirements` in the "Installation an Upgrade Guide".
 
 If you don't have a local development server yet, we recommend the XAMPP
-package (*http://www.apachefriends.org/xampp.html*). It
+package (http://www.apachefriends.org/xampp.html). It
 will install Apache, PHP, MySQL and other useful tools on all established
 operating systems (Linux, Windows, Mac OS X). 
 
