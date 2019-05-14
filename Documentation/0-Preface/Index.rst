@@ -88,11 +88,11 @@ handling of security aspects.
 After the main chapters, several smaller chapters give insight into additional
 extbase features:
 
-* "Backend Modules": This now directly links to the chapter
+* *Backend Modules*: This now directly links to the chapter
   :ref:`t3coreapi:backend-modules-api` in "TYPO3 Explained"
-* :ref:`extbase_command_controller_about`: This chapter also directly links
+* :ref:`extbase_command_controller_about`: This chapter also links
   to "TYPO3 Explained", as the information is now maintained there.
-* :ref:`extbase_property_mapping`
+* :ref:`property-mapper`
 
 Additional information is contained in several appendices:
 
