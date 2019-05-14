@@ -19,7 +19,8 @@ other data. Thereby the saved data will be lost together with the Domain Object.
 
 .. note::
 
-   You can read more about the lifecycle of objects in the chapter "Lifecycle of Objects".
+   You can read more about the lifecycle of objects in the chapter
+   :ref:`object-lifecyle`
 
 If Domain Objects should be available within several page loads they have to be
 transferred into a persistent state. This is being done in Extbase by putting
