@@ -319,9 +319,13 @@ case::
     {
         public function validate($user)
         {
+            $this->result = new \TYPO3\CMS\Extbase\Error\Result();
+
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
             }
+
+            return $this->result;
         }
     }
 
@@ -348,6 +352,8 @@ passwords. This is made quickly::
     {
         public function validate($user)
         {
+            $this->result = new \TYPO3\CMS\Extbase\Error\Result();
+
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
                 return;
@@ -355,6 +361,8 @@ passwords. This is made quickly::
             if ($user->getPassword() !== $user->getPasswordConfirmation()) {
                 $this->addError('The passwords do not match.', 1262341707);
             }
+
+            return $this->result;
         }
     }
 
