@@ -14,7 +14,13 @@ are located in two different files.
 In the file _EXT:sjr_offers/ext_tables.php you have to register every plugin as
 a content element with Typo3 using the static method registerPlugin().
 
-<remark>TODO:code</remark>
+.. code-block:: php
+
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'VendorName.'.$_EXTKEY,
+        'List',
+        'The Inventory List'
+   );
 
 The method registerPlugin() expects three argumets. The first argument is the
 extension key (sjr_offers in our example). This key is the same as the directory
@@ -31,8 +37,15 @@ For the second step we have to configure the behaviour of the plugin in the file
 EXT:sjr_offers/ext_localconf.php  with the static method configurePlugin().
 Beside the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in cache.
+.. code-block:: php
 
-<remark>TODO:code</remark>
+   if (!defined ('TYPO3_MODE')) die ('Access denied.');
+
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'VendorName.'.$_EXTKEY,
+        'List',
+        ['Inventory' => 'list']
+   );
 
 The method expects 4 arguments. The first argument is, just like the one used in
 the registration process, the extension key. With the second argument, the
