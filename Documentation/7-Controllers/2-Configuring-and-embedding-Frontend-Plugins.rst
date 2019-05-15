@@ -37,15 +37,15 @@ For the second step we have to configure the behaviour of the plugin in the file
 EXT:sjr_offers/ext_localconf.php  with the static method configurePlugin().
 Beside the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in cache.
-.. code-block:: php
 
-   if (!defined ('TYPO3_MODE')) die ('Access denied.');
+.. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'VendorName.'.$_EXTKEY,
         'List',
         ['Inventory' => 'list']
    );
+
 
 The method expects 4 arguments. The first argument is, just like the one used in
 the registration process, the extension key. With the second argument, the
