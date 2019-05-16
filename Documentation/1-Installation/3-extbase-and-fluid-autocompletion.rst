@@ -3,6 +3,12 @@
 Extbase and Fluid Autocompletion
 ================================
 
+.. todo:: Review: should be checked
+
+   * Must be reviewed to check if up-to-date
+   * Should be merged with page :ref:`configure-ide`
+   * Add information for PhpStorm
+
 When developing your own Extensions you'll often work with classes of
 Extbase and Fluid. That's why it helps to set up the autocompletion feature.
 It will enable suggestions for complete class names as soon as you press
