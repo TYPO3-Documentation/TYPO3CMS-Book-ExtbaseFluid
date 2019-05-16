@@ -1,21 +1,28 @@
 .. include:: ../Includes.txt
 
+=====================
 Debugging with Xdebug
 =====================
 
-The usage of debuggers in other programming languages is default while
-it is special in PHP: The most PHP developer maintain bug fixing with
-e.g., *echo* and *var_dump* in the source code for understanding the
-routine. Though it's helpful to use a real debugger to comprehend errors
-because you can go through the source code step-by-step and look inside
-variables.
+.. warning::
+
+   **Review information for this page:**
+
+   * Should be reviewed to check if correct and up-to-date
+   * Or, can we just link to identical information elsewhere?
+   * Shorten the text as much as possible!
+
+Debugging with an IDE is a quick and efficient method to find bugs.
+
+
+Install and Configure Xdebug
+============================
 
 For debugging you need the PHP extension *Xdebug* *(http://xdebug.org)*.
-It changes the PHP configuration that you can run it step-by-step and
-you can inspect every variable. The development tools NetBeans and Eclipse
-can connect to Xdebug and enable graphical output.
+The development tools PhpStorm, NetBeans and Eclipse
+can connect to Xdebug.
 
-But back to Xdebug: You can install this PHP extension in different ways.
+You can install this PHP extension in different ways.
 We advise to install it over the packet management (like APT for
 Debian/Ubuntu or MacPorts for Mac OS X) or you install it in PECL
 (PHP Extension Community Library). The last method can be run with
@@ -36,26 +43,48 @@ file :file:`xdebug.so`.
    For Windows you can download an already compiled version of
    Xdebug from the Xdebug website.
 
-After a restart of Apache you can find an xdebug section in
-*phpinfo()*. For the cooperation of *Xdebug* with Eclipse or
-NetBeans you have to configure it. For that you have to set the
-following lines in :file:`php.ini`::
+After a restart of your webserver you can find an xdebug section in
+*phpinfo()*.
+
+Additionally, you have to configue it.
+
+Use the following lines or adjust them according to your setup.
+
+php.ini::
 
    xdebug.remote_enable=on
    xdebug.remote_handler=dbgp
    xdebug.remote_host=localhost
    xdebug.remote_port=9000
 
-Again after a restart of Apache this options can be found in
-*phpinfo()*. Now you also have to configure the development environment
-for a correct start of Xdebug. In NetBeans you have to open the
-properties of a project by clicking with the right mouse button on
-the project and choose *properties*. Now you must change the
-*run configuration*: Declared the base URL as *project URL* in
-which your TYPO3 frontend of your test system is available, eg.
-*http://localhost/typo3v4*. Click to *Advanced...* to set the
-*Debug URL* into the settings to *Ask Every Time*. NetBeans is
-now ready for debugging.
+Again after a restart of your webserver these options can be found in
+*phpinfo()*.
+
+Setup Your IDE
+==============
+
+Now you also have to configure the development environment
+for a correct start of Xdebug.
+
+PhpStorm
+--------
+
+The "Contribution Guide" contains a chapter about :ref:`Debugging With
+PhpStorm <t3contrib:phpstorm-setup-xdebug>`.
+
+Netbeans
+--------
+
+#. Open the properties of a project by clicking with the right mouse button on
+   the project and choose *properties*.
+#. Change the *run configuration*: Declare the base URL as *project URL* in
+   which your TYPO3 frontend of your test system is available, eg.
+   *http://localhost/typo3v4*.
+#. Click on *Advanced...* to set the *Debug URL* into the settings
+   to *Ask Every Time*.
+
+
+NetBeans is now ready for debugging.
 
 You can set so-called *breakpoints* in the source code of projects.
 At these points your program stops and you can check the program
@@ -82,12 +111,15 @@ continue step-by-step and hope to find bug quicker.
    *Stop at First Line* in NetBeans the run stops only at
    the set breakpoint.
 
+Eclipse
+-------
+
 Now let's look how to configure the settings in Eclipse. First you
 have to make sure in the Eclipse setting that in the section
 *PHP*->*PHP Servers* the entry is set for *http://localhost*.
 In *PHP*->*Debug* the entry for *PHP Debugger* must be set to
 *XDebug* and in *Server* the setting is set to the server for
-localhost. We advise here to deactivate *Break at First Line*
+localhost. We advise to deactivate *Break at First Line*
 so that Eclipse/NetBeans stops only at the set breakpoint.
 
 You can set a breakpoint in the source code of your application
@@ -110,6 +142,3 @@ debugging you have to select in the menu *Run*->*Terminate*.
    the URL. If you want to change the URL you can set it new
    in the menu under *Run*->*Debug Configuration*.
 
-Debugging with IDE is a quick and efficient method to find bugs.
-Even if the debugger for PHP is not as sophisticated as their
-counterparts in Java it helps in troubleshooting.
