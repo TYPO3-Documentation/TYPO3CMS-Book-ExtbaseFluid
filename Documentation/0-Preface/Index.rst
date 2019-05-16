@@ -10,9 +10,9 @@ Preface
 
 .. note::
 
-   **Review information:**
+   **Review information for this page:**
 
-   * **Document state:** correct
+   * **State:** correct
    * **Last reviewed:** May 16 2019 for TYPO3 version 9.5.7
 
 
