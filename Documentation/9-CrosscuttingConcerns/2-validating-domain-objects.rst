@@ -18,7 +18,7 @@ rules:
 * The field ``email`` of the user object must contain a valid email address.
 
 These rules must apply at every point in time for the user object. On
-the other hand is a user object only valid if it complies to these rules.
+the other hand a user object is only valid if it complies to these rules.
 These rules are called *invariants* because they must be
 valid during the entire lifetime of the object.
 
@@ -131,9 +131,9 @@ the names and types of the arguments of the action it can create objects
 from the incoming data. This operation will be described in detail in the
 section "Argument mapping" later on. Now the main step for us is as
 follows: The created objects are to be validated. That is the invariants
-must be checked. If all arguments are successfully validated the
+must be checked. If all arguments are successfully validated, the
 requested action of the extension is called and it can continue processing
-the given objects. For example give it to the view for displaying.
+the given objects. For example, it might give it to the view for displaying.
 
 .. tip::
 
@@ -249,7 +249,7 @@ Example::
 
 Here we validate the property ``$title`` with the
 :php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
-This validator class now can check any invariants. For example the
+This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
 blog post is always build-on the scheme *Maintopic: Title*:
 
@@ -274,8 +274,8 @@ blog post is always build-on the scheme *Maintopic: Title*:
    }
 
 Now you have seen how you can validate particular properties of
-the domain model. The next section shows to you how complex domain
-objects are to be validated.
+the domain model. The next section shows how complex domain
+objects are validated.
 
 
 Validating in the domain model with an own validator class
