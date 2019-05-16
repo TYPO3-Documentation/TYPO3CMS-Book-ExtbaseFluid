@@ -17,7 +17,7 @@ a content element with TYPO3 using the static method registerPlugin().
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        $_EXTKEY,
+        'VendorName.'.$_EXTKEY,
         'List',
         'The Inventory List'
    );
@@ -37,14 +37,13 @@ For the second step we have to configure the behaviour of the plugin in the file
 :file:`EXT:sjr_offers/ext_localconf.php`  with the static method `configurePlugin()`.
 Beside the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in cache.
+.. code-block:: php
+
 
 .. code-block:: php
 
-   <?php
-   if (!defined ('TYPO3_MODE')) die ('Access denied.');
-
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        $_EXTKEY,
+        'VendorName.'.$_EXTKEY,
         'List',
         ['Inventory' => 'list']
    );
