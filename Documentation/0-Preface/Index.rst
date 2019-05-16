@@ -8,6 +8,14 @@
 Preface
 =======
 
+.. note::
+
+   **Review information:**
+
+   * **Document state:** correct
+   * **Last reviewed:** May 16 2019 for TYPO3 version 9.5.7
+
+
 .. _about:
 
 About This Manual
