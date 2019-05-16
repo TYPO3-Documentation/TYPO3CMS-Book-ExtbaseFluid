@@ -1,6 +1,6 @@
 :template: sitemap.html
 
-.. _Sitemap:
+.. _sitemap:
 
 ======================
 Sitemap

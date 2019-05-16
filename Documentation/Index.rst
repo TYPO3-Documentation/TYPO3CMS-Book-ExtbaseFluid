@@ -5,7 +5,11 @@
 Developing TYPO3 Extensions with Extbase and Fluid
 ==================================================
 
-TYPO3 is a free enterprise web content management system licensed under the GPL.
+:Version:
+      9.5
+
+:Language:
+      en
 
 :Authors:
    Sebastian Kurfürst <sebastian@typo3.org>
@@ -14,16 +18,52 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 
    TYPO3 community (see :ref:`credits`)
 
-:Copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
-:Translation: Translated to English by the TYPO3 community
-:License:     Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0),
-              https://creativecommons.org/licenses/by-nc-sa/4.0/
-:Rendered:    |today|
+:Copyright:
+   Since 2010, Sebastian Kurfürst, Jochen Rau
+
+:Translation:
+   Translated to English by the TYPO3 community
+
+:License:
+   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+   (`CC BY-NC-SA 4.0 <https://creativecommons.org/licenses/by-nc-sa/4.0/>`__)
+
+:Status:
+      This manual contains some outdated information.
+
+The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework available from typo3.org.
+
+**About this manual:**
+
+   This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
+
+**Official documentation:**
+
+   This document is included as part of the official TYPO3 documentation.
+
+   If you find an error or something is missing, please:
+   `Report a Problem <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues/new>`__
+
+**For Contributors**
+
+   You are welcome to help in improving this guide. Just click on "Edit me on GitHub"
+   on the top right to submit your change request.
+
+   You can find out more about how to do this in :ref:`h2document:docs-contribute`.
+
+   Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:contact-us>`.
+
+   `GitHub repository <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/>`__
+   | `Issues <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues>`__
+   | :ref:`linktargets`
+
+**Sitemap:**
+
+   :ref:`sitemap`
 
 .. toctree::
    :hidden:
 
-   Sitemap/Index
    0-Preface/Index
    0-Introduction/Index
    1-Installation/Index
@@ -41,4 +81,5 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
+   Sitemap/Index
    Targets
