@@ -1,15 +1,14 @@
+.. ---------------------------------------
+.. Review information for this page:
+.. * Review Status: ok
+.. * Last reviewed: May 17 2019 for TYPO3 version 9.5.7
+.. ----------------------------------------
+
 .. include:: ../Includes.txt
 
 ============
 Installation
 ============
-
-.. note::
-
-   **Review information for this page:**
-
-   * **State**: correct
-   * **Last reviewed**: May 16 2019 for TYPO3 version 9.5.7
 
 In this chapter we want to help you to set up an efficient working
 environment. There are some notes how to set up the development server to
