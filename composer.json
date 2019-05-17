@@ -1,5 +1,8 @@
 {
     "name": "typo3/book-extbasefluid",
     "type": "typo3-cms-documentation",
-    "description": "Developing TYPO3 Extensions with Extbase and Fluid"
+    "description": "Developing TYPO3 Extensions with Extbase and Fluid",
+    "require": {
+      "typo3/cms-core": "^8.7"
+    }
 }
