@@ -1,7 +1,7 @@
 
 .. include:: Includes.txt
 
-.. _Linktargets:
+.. _linktargets:
 
 ===========
 Linktargets
