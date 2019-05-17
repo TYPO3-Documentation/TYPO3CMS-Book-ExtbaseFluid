@@ -4,13 +4,13 @@ Controlling The Flow
 ====================
 
 The inventory created in the backend should be shown as a list in the frontend now.
-The creation of the HTML code out of the product objects to be shown is done by the *view*.
-Extbase uses the class :php:`\TYPO3\CMS\Fluid\View\TemplateView` of the extension
-Fluid as default for the view.
+The *view* creates the HTML code out of the product objects to be shown.
+Extbase uses the class :php:`\TYPO3\CMS\Fluid\View\TemplateView` of the Fluid extension
+as a default for the view.
 
 The connection between the *model* and the *view* is the *controller*. It controls the
 sequences inside the extension and is responsible for the ``list`` action in our case.
-This includes locating the products which are to be shown, as well as transmission of the
+This includes locating the products which are to be shown, as well as the transmission of the
 selected products to the responsible view.
 
 The class name of the controller must end with ``Controller``. Because our controller controls
@@ -20,8 +20,8 @@ the display of the inventory we call it ``\MyVendor\StoreInventory\Controller\St
 
     When naming a controller you are free inside the described frame. We advise to name a
     controller by what he "controls". In big projects these are specially the aggregate root
-    objects (see section "aggregates" in chapter 2). For this we had also named our controller
-    ``MyVendor\StoreInventory\Controller\ProductController``.
+    objects (see section "aggregates" in chapter 2). For this we could also name our controller
+    ``MyVendor\StoreInventory\Controller\ProductController``, as it controls the product.
 
 In our simple example the controller looks like this:
 
@@ -72,22 +72,22 @@ In our simple example the controller looks like this:
 
 Our ``\MyVendor\StoreInventory\Controller\StoreInventoryController`` must be derived from the
 ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController``. It contains only the method ``listAction()``.
-Extbase identifies all methods that ends with ``Action`` as actions - so as little plan of procedures.
+Extbase identifies all methods that ends with ``Action`` as actions.
 
-In the method ``injectProductRepository()`` the ``ProductRepository`` is instanced.
+In the method ``injectProductRepository()`` the ``ProductRepository`` is instantiated.
 Now we can access the repository with ``$this->productRepository`` in all actions.
 It is important to get the repository with the injector method, because the repository implements the
-*SingletonInterface* and therefore we are not allowed to use the *new* keyword to get a instance of the repository.
+*SingletonInterface* and therefore we are not allowed to use the *new* keyword to get an instance of the repository.
 There must always be only one repository in memory!
 
-In the listAction we get all products by the method ``findAll()`` of the repository.
+In the listAction we get all products by the repository method ``findAll()``.
 This method is implemented in the class ``\TYPO3\CMS\Extbase\Persistence\Repository``.
 Which methods are also still for disposition you can read in chapter 6.
 
-As result we get a ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`` object with the product objects.
+As result we get a ``\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`` object which holds the product objects.
 We pass these objects to the view with ``$this->view->assign(…)``.
-Without our further assistance, at the end of the action the view is
-invited to return the passed content rendered based on a HTML template back to TYPO3.
+Without further assistance, at the end of the action the view is
+told to return the passed content back to TYPO3, rendered based on an HTML template.
 
 .. code-block:: php
 
