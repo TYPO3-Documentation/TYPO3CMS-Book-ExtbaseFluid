@@ -24,10 +24,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 :Translation:
    Translated to English by the TYPO3 community
 
-:License:
-   Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-   (`CC BY-NC-SA 4.0 <https://creativecommons.org/licenses/by-nc-sa/4.0/>`__)
-
 :Status:
       This manual contains some outdated information.
 
