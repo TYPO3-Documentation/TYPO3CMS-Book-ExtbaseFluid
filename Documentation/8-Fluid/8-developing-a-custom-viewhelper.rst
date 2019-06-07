@@ -354,7 +354,7 @@ The :php:`render()` method can be improved like this::
    public function initializeArguments()
    {
        $this->registerArgument('emailAddress', 'string', 'The email address to resolve the gravatar for', true);
-       $this->registerArgument('size', 'integer', The size of the gravatar, ranging from 1 to 512', false, 80);
+       $this->registerArgument('size', 'integer', 'The size of the gravatar, ranging from 1 to 512', false, 80);
    }
 
    public function render()
