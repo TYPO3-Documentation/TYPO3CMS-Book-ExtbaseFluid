@@ -59,8 +59,14 @@ that changes data are verified by extbase. After that we explain Cross
 Site Scripting in order that you can secure your extension for that
 effect.
 
-**Attention** : be aware the request hashes (HMAC) doesn't protect against **Identity** field manipulation. 
-An attacker can modify the identify field value and then can update value of an other record, even if he doesn't have usually access to it. You have to implement your own validation for the Identity field value (verify ownership of the record, add an other hidden field wich validate the identity field value, etc..).
+.. danger::
+
+   Be aware the request hashes (HMAC) doesn't protect against **Identity** field manipulation.
+   An attacker can modify the identify field value and then can update value of
+   an other record, even if he doesn't have usually access to it. You have to
+   implement your own validation for the Identity field value (verify ownership
+   of the record, add an other hidden field wich validate the identity field
+   value, etc..).
 
 Trusted Properties
 -------------------------------------------------
