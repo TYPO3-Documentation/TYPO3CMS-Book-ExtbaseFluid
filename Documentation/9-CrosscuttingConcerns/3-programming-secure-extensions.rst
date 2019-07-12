@@ -1,6 +1,8 @@
 .. include:: ../Includes.txt
 
-programming secure extensions
+.. _programming-secure-extensions:
+
+Programming secure extensions
 =============================
 
 While mostly the functionality of an extension is set of great value,
@@ -33,8 +35,10 @@ Next we addict to the Cross Site Scripting and illustrate how to secure your
 own extensions.
 
 
-create own database queries
--------------------------------------------------
+.. _create-own-database-queries:
+
+Create own database queries
+---------------------------
 
 Even though you will mostly use the query language of extbase (see
 section "implementing custom queries" in chapter 6) to formulate database
@@ -68,8 +72,10 @@ effect.
    of the record, add an other hidden field wich validate the identity field
    value, etc..).
 
+.. _trusted-properties:
+
 Trusted Properties
--------------------------------------------------
+------------------
 
 In the section "mapping arguments" above in this chapter we have
 explained the transparent argument mapping. For this all properties that
@@ -138,8 +144,10 @@ or webservices.
 
 
 
+.. _prevent-cross-site-scripting:
+
 Prevent Cross Site Scripting
--------------------------------------------------
+----------------------------
 
 Fluid contains some integrated techniques to secure web applications
 per default. One of the important parts for this is the automatic
