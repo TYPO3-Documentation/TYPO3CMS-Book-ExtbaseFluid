@@ -6,7 +6,7 @@ Creating a first extension
 .. tip::
 
    In this chapter, you will learn how to build an extension from scratch.
-   You may also want to try out the `Extension Builder <https://github.com/FriendsOfTYPO3/extension_builder>`
+   You may also want to try out the `Extension Builder <https://github.com/FriendsOfTYPO3/extension_builder>`__
    which automatically creates some of the necessary source files for you.
 
 
