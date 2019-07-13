@@ -19,10 +19,10 @@ You will need a web server like Apache with PHP and a database. See
 If you do not have a system available, that meets these requirements, there
 are several alternatives:
 
-* You can use the XAMPP package (http://www.apachefriends.org/xampp.html). It
+* You can use the **XAMPP** package (http://www.apachefriends.org/xampp.html). It
   will install Apache, PHP, MySQL and other useful tools on all established
   operating systems (Linux, Windows, Mac OS X).
-* You can setup TYPO3 with DDEV, which provides several pre-configured environments
+* You can **setup TYPO3 with DDEV**, which provides several pre-configured environments
   based on Docker, including TYPO3. :ref:`t3contrib:ddev` in the contribution
   guide contains some information about how to setup TYPO3 with DDEV, but
   instead of `git clone` in the first
