@@ -2,8 +2,16 @@
 
 .. _basic-principles:
 
-Basic Principles
+Basic Design Principles
 ===============================
+
+.. tip::
+
+   None of the design principles here are specific to TYPO3 or
+   Extbase / Fluid. If you are familiar with Object Oriented
+   Programming in PHP, Model-View-Controller, Domain Driven Design
+   and Test-Driven Development, you can safely skip to the
+   next chapter :ref:`The-Blog-Example`.
 
 TYPO3 comes with an impressive variety of available extensions. As
 usual with Open Source projects, these extensions have been written by
@@ -57,7 +65,7 @@ Development is not absolutely necessary for understanding nor using extbase.
 Nevertheless we would like to warmly recommend this development technique.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-Object-oriented Programming-in-PHP
    2-Domain-Driven-Design

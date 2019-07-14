@@ -6,17 +6,18 @@
 
 .. include:: ../Includes.txt
 
-============
-Installation
-============
+====================
+Installation & Setup
+====================
 
 In this chapter we want to help you to set up an efficient working
 environment. There are some notes how to set up the development server to
 start with. After that there will be an explanation how to install the two
 TYPO3 extensions *extbase* and *fluid* which this book is about. Furthermore we
 will give you some recommendations how set up your development environment
-(IDE), to have code completion and the IDE integrated Debugger right at your
-hand. A list of some more TYPO3 Extensions that might be helpful to you,
+(IDE), to make full use of code completion and the IDE integrated Debugger.
+
+A list of some more TYPO3 Extensions that might be helpful to you,
 will round up this chapter - including information from which sources to get
 them.
 
@@ -28,10 +29,9 @@ them.
    information about creating a working TYPO3 installation.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-configuring-the-server
    2-configuring-your-ide
-   3-extbase-and-fluid-autocompletion
    4-debugging-with-xdebug
    5-extension-builder

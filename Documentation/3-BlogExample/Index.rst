@@ -2,7 +2,7 @@
 
 .. _The-Blog-Example:
 
-A journey through the Blog Example
+A journey Through the Blog Example
 ==================================
 
 .. attention::
@@ -47,7 +47,7 @@ traditional way to code an extension and an approach with Extbase and
 Fluid.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-first-orientation
    2-the-stations-of-the-journey

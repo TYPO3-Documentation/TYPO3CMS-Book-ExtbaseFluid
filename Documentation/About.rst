@@ -1,25 +1,11 @@
-.. review information:
-   - language: ok (corrected May/14 2019)
-
-
-.. include:: ../Includes.txt
-
-=======
-Preface
-=======
-
-.. note::
-
-   **Review information for this page:**
-
-   * **State:** correct
-   * **Last reviewed:** May 16 2019 for TYPO3 version 9.5.7
-
+.. include:: Includes.txt
 
 .. _about:
 
+=================
 About This Manual
 =================
+
 
 This is an introduction into developing TYPO3 extensions with the
 Extbase framework and the Fluid templating engine.
@@ -46,55 +32,78 @@ Structure of this book
 This chapter is structured into ten main chapters, some additional smaller chapters
 and three appendices. The chapters discuss the following topics:
 
-Chapter 1, *Installation*, leads you through the
-installation of Extbase and Fluid. To make extension development as
-effective as possible, we give suggestions for development environments as well as tips and
-tricks for debugging.
+.. **Introduction**
 
-Chapter 2, *Basic principles*, begins with an
-overview of the concepts of object oriented programming, which
-are essential for working with Extbase. After that, we dive into
-Domain-Driven Design, a programming paradigm which is a core principle of
-Extbase. After that, you'll learn the design pattern Model-View-Controller,
-which is the technical basis of every Extbase Extension. Finally, the
-chapter explains Test-Driven Development to the reader.
+* :ref:`introduction` is a very brief introduction to the topic Extbae and Fluid.
 
-Chapter 3, *Journey through the Blog Example*,
-should give you a feeling how the concepts from chapter 2 are implemented
-in Extbase. Based on a provided example extension, we explain how a blog post
-is created and progresses through various stages until it is
-displayed.
+.. **Basic principles**
 
-In chapter 4, *Creating a first extension*, we show
-you a minimal extension. With this extension, data is managed through the
-TYPO3 backend and displayed in the frontend.
+* :ref:`basic-principles` begins with an
+  overview of the concepts of object oriented programming, which
+  are essential for working with Extbase. After that, we dive into
+  Domain-Driven Design, a programming paradigm which is a core principle of
+  Extbase. After that, you'll learn the design pattern Model-View-Controller,
+  which is the technical basis of every Extbase Extension. Finally, the
+  chapter explains Test-Driven Development to the reader.
 
-Chapter 5, *Modeling the Domain*, shows
-Domain-Driven Design with a practical example. It shows how a model can be
-planned and implemented.
+.. **Journey through the Blog Example**
 
-Once the domain model is finished, the necessary TYPO3 infrastructure
-must be created: database tables and backend editing forms. The relevant
-information is explained in chapter 6, *Setting up the persistence
-layer*.
+* :ref:`The-Blog-Example`
+  should give you a feeling how the concepts from chapter 2 are implemented
+  in Extbase. Based on a provided example extension, we explain how a blog post
+  is created and progresses through various stages until it is
+  displayed.
 
-After chapters 5 and 6 have explained the model layer in detail, we
-focus on the *controller* layer of the extension in chapter 7,
-*Controlling the flow with controllers*.
+.. getting started
 
-Next, the book explains the output layer of the extension: the so-called
-*view*. In chapter 8, *Styling the output with Fluid*, Fluid is explained
-and several examples are given. At the end of the
-chapter, the sample functions are combined and demonstrated within the example
-extension.
+.. **Installation**
 
-Chapter 9, *Internationalization, validation and
-security*, deals with advanced topics and tasks. This includes the
-multilingual capabilities of extensions, the validation of data, and the
-handling of security aspects.
+* :ref:`installation` leads you through the
+  installation of Extbase and Fluid. To make extension development as
+  effective as possible, we give suggestions for development environments as well as tips and
+  tricks for debugging.
+
+.. In chapter 4, **Creating a first extension**
+
+* In :ref:`creating-a-first-extension`, we show
+  you a minimal extension. With this extension, data is managed through the
+  TYPO3 backend and displayed in the frontend.
+
+.. Chapter 5, **Modeling the Domain**,
+
+* :ref:`modeling-the-domain` shows
+  Domain-Driven Design with a practical example. It shows how a model can be
+  planned and implemented.
+
+.. Chapter 6, **Setting up the persistence layer**
+
+* :ref:`persistence`
+  Once the domain model is finished, the necessary TYPO3 infrastructure
+  must be created: database tables and backend editing forms.
+
+.. Chapter 7, **Controlling the flow with controllers**
+
+* :ref:`controllers`
+  After chapters 5 and 6 have explained the model layer in detail, we
+  focus on the *controller* layer of the extension.
+
+.. Chapter 8, **Styling the output with Fluid**
+
+* :ref:`fluid-start`
+  Next, this book explains the output layer of the extension: the so-called
+  *view*. Fluid is explained
+  and several examples are given. At the end of the
+  chapter, the sample functions are combined and demonstrated within the example
+  extension.
+
+.. Chapter 9, **Internationalization, validation and security**,
+
+* :ref:`internationalization` deals with advanced topics and tasks. This includes the
+  multilingual capabilities of extensions, the validation of data, and the
+  handling of security aspects.
 
 After the main chapters, several smaller chapters give insight into additional
-extbase features:
+Extbase features:
 
 * *Backend Modules*: This now directly links to the chapter
   :ref:`t3coreapi:backend-modules-api` in "TYPO3 Explained"
@@ -104,11 +113,10 @@ extbase features:
 
 Additional information is contained in several appendices:
 
-* Extbase mostly uses the conventions of FLOW. In *Appendix A, Coding Guidelines*,
-  they are summarized.
-* Appendix B, *Reference of Extbase*, contains an overview of important Extbase
+* Appendix A, **Coding Guidelines**: Extbase mostly uses the conventions of FLOW.
+* Appendix B, **Reference of Extbase**, contains an overview of important Extbase
   concepts and an alphabetical listing of the API.
-* In Appendix C, *Fluid ViewHelpers*, we link to the ViewHelper reference
+* Appendix C, **Fluid ViewHelpers**, links to the ViewHelper reference
 
 .. _typographic-conventions:
 

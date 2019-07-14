@@ -22,7 +22,7 @@ can apply the learned technologies with the help of a practical
 sample.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-basic-concepts
    2-using-different-output-formats
