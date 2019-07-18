@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-Creating a first extension
+.. _creating-a-first-extension:
+
+===============================================
+Creating a First Extension
 ===============================================
 
 .. tip::
@@ -10,8 +13,8 @@ Creating a first extension
    which automatically creates some of the necessary source files for you.
 
 
-In this chapter you learn the basics of an extension based on extbase
-and fluid. You build up a minimalistic extension, which is reduced to the
+In this chapter you learn the basics of an extension based on Extbase
+and Fluid. You build up a minimalistic extension, which is reduced to the
 absolutely necessary structures. So you view clearly the whole, without
 hassles with details. In the following chapters we will turn to a more
 complex example, to cover exhaustively all fundamental attributes of extbase
@@ -22,7 +25,7 @@ You can get the extension here:
 `<https://github.com/TYPO3-Documentation-Examples/store_inventory>`_
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-the-example-extension
    2-create-folder-structure-and-configuration-files

@@ -20,16 +20,6 @@ amount of comments".
 
    Figure 3-1: Domain of the blog example
 
-.. note::
-
-   The blog example was originally created by the team inside the TYPO3
-   community that created the FLOW framework (formerly FLOW3). The blog
-   example has been backported to TYPO3 4.x. When you work more with
-   FLOW or TYPO3 in the future, you will find this example in a
-   near identical form. You will find some notes about the relationship
-   between Extbase and FLOW in the section "Migration to FLOW and NEOS"
-   in chapter 10.
-
 The complete source code can be found in a folder, which has the same
 name as the extension key. In our case the folder is called
 *blog_example*. Usually, the folder is located in the path

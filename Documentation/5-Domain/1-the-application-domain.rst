@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-The application domain
+======================
+The Application Domain
 ======================
 
 The main difference to the common approach to develop an extension is
@@ -12,7 +13,6 @@ management system (e.g. "list view" or "search") are not playing roles by
 this. After a first project meeting with the contact persons of the SJR
 following characteristics were defined:
 
-.. TODO: check for a translation of Stadtjugendring
 
 * Every member organization can edit their contact data via the front end.
 * Every member organization can add, edit and delete their offers.
@@ -28,6 +28,7 @@ following characteristics were defined:
 
   - a free selectable category to which the offer is counted among
     (e.g. "sport offer" or "spare time")
+
 * The offers are output in list form and single view in the front end.
 * A single organization can be shown with its offers in a view.
 * The offers can be collected to a flyer which contains all information to the offers.
@@ -52,14 +53,11 @@ in the whole business. And there the term of member organization (or short
    This development of a common language of developers (also ourselves)
    and domain experts (also the employees of the SJR) maybe is the most
    important part of the Domain Driven Design. In the literature you find the
-   slightly bulky term *Ubiquitous Language*. Requirement
-   for this process is that the developer take care for contact with the
-   domain experts. This is notably in bigger projects in many cases not the
-   case. More about the development of an Ubiquitous Language you can read
-   about in chapter 2 in the section "Develop a common language".
+   slightly bulky term **Ubiquitous Language**. Requirement
+   for this process is that the developers communicate with the
+   domain experts.
 
-First of all the located rules and operations are fixed down on paper.
-Here is an excerpt of the list:
+First of all the located rules and operations are written down:
 
 * "An offer can be assigned to multiple townships if they are
   located in whose catchment area."

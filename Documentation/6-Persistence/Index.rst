@@ -3,7 +3,9 @@
 
 .. include:: ../Includes.txt
 
-Setting up the persistence layer
+.. _persistence:
+
+Setting up the Persistence Layer
 ================================
 
 As discussed in previous chapters, it is the persistence layer which
@@ -50,7 +52,7 @@ the method ``findDemanded($demand)`` in a final step to find those offers.
 Let's start with the database.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-prepare-the-database
    2-configure-the-backends-inputforms

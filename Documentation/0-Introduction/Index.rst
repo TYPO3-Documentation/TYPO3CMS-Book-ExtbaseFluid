@@ -9,7 +9,7 @@
 Introduction
 ============
 
-Extbase is a PHP-based framework for TYPO3. The templating engine Fluid makes sure that the user interface
+**Extbase** is a PHP-based framework for TYPO3. The templating engine **Fluid** makes sure that the user interface
 of the extension can be created easily and separately from the functionality (MVC).
 
 Extbase ensures a clear separation between different concerns which simplifies maintenance.
@@ -24,12 +24,7 @@ Because of the modern architecture and the usage of up-to-date software
 development paradigms, using Extbase requires specific knowledge.
 Extension programmers must understand
 some concepts like Domain-Driven Design, whilst planning and modeling the extension
-more thoroughly before implementation. In return, the source code
+more thoroughly before implementation. This has the advantage that the source code
 of the extension becomes better readable, more flexible and
 extensible.
-
-.. toctree::
-   :maxdepth: 2
-
-   1-short-history
 

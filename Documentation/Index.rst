@@ -6,7 +6,7 @@ Developing TYPO3 Extensions with Extbase and Fluid
 ==================================================
 
 :Version:
-      9.5
+      10.0 (development)
 
 :Language:
       en
@@ -19,10 +19,7 @@ Developing TYPO3 Extensions with Extbase and Fluid
    TYPO3 community (see :ref:`credits`)
 
 :Copyright:
-   Since 2010, Sebastian Kurfürst, Jochen Rau
-
-:Translation:
-   Translated to English by the TYPO3 community
+   Since 2010, Sebastian Kurfürst, Jochen Rau, TYPO3 community
 
 :Status:
       This manual contains some outdated information.
@@ -59,23 +56,45 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
 
 .. toctree::
    :hidden:
+   :caption: INTRODUCTION
 
-   0-Preface/Index
+   About
    0-Introduction/Index
-   1-Installation/Index
    2-BasicPrinciples/Index
    3-BlogExample/Index
+
+.. toctree::
+   :hidden:
+   :caption: GETTING STARTED
+
+   1-Installation/Index
    4-FirstExtension/Index
    5-Domain/Index
    6-Persistence/Index
    7-Controllers/Index
    8-Fluid/Index
+
+.. toctree::
+   :hidden:
+   :caption: ADVANCED
+
    9-CrosscuttingConcerns/Index
    Backend-modules   ➜  <https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/BackendModules/BackendModuleApi/Index.html>
    10-Outlook/3-Command-controllers
    10-Outlook/4-Property-mapping
+
+.. toctree::
+   :hidden:
+   :caption: REFERENCES
+
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
    Sitemap/Index
+
+.. toctree::
+   :hidden:
+   :caption: EDITING
+
+   AboutEditingThisManual
    Targets

@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _internationalization:
+
 Internationalization, Validation and Security
 ==============================================================
 
@@ -16,7 +18,7 @@ security of the extension.
 
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    1-localizing-and-internationalizing-an-extension
    2-validating-domain-objects
