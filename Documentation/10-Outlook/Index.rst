@@ -15,3 +15,4 @@ your accumulated knowledge on Extbase and Fluid immediately.
     2-Backend-modules
     3-Command-controllers
     4-Property-mapping
+    5-error-action
