@@ -82,6 +82,7 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
    Backend-modules   ➜  <https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/BackendModules/BackendModuleApi/Index.html>
    10-Outlook/3-Command-controllers
    10-Outlook/4-Property-mapping
+   10-Outlook/5-error-action
 
 .. toctree::
    :hidden:
