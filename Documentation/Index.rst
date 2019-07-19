@@ -78,6 +78,7 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
    :hidden:
    :caption: ADVANCED
 
+   9a-Configuration/Index
    9-CrosscuttingConcerns/Index
    Backend-modules   ➜  <https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/BackendModules/BackendModuleApi/Index.html>
    10-Outlook/3-Command-controllers
