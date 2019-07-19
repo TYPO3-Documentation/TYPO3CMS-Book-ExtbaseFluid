@@ -25,7 +25,8 @@ How it works
    #. Clear cache in case :ts:`persistence.enableAutomaticCacheClearing` is
       activated and current Scope is Frontend.
 
-   #. Add an error FlashMessage by calling :php:`addErrorFlashMessage()`.
+   #. Add an error :ref:`Flash Message <t3coreapi:flash-messages>`
+      by calling :php:`addErrorFlashMessage()`.
       Which in turn will call :php:`getErrorFlashMessage()` to retrieve the
       message to show.
 
@@ -37,7 +38,7 @@ Overloading behaviour
 ---------------------
 
 Each of the above steps can be adjusted by implementing custom methods or
-replacing values within properties. All of above if `protected` and therefore
+replacing values within properties. All of above is `protected` and therefore
 can be replaced.
 
 :php:`errorMethodName` property
@@ -49,8 +50,8 @@ be called in case of an error.
 :php:`errorAction()` method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Replacing the default implementation can be used to define a custom error
-handling. E.g. the requested format could be checked and an prepared JSON result
+Replacing the default implementation can be used to define custom error
+handling. E.g. the requested format could be checked and a prepared JSON result
 could be returned.
 
 :php:`getErrorFlashMessage()` method
