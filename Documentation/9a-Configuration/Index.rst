@@ -22,6 +22,8 @@ The changes apply to the current page and all subpages.
 
 .. seealso::
 
+   * :ref:`typoscript_configuration`
+
    * :ref:`t3tsref:typoscript-syntax-what-are-constants`
 
 Extension Configuration
@@ -57,9 +59,9 @@ Access Settings
 
 .. important::
 
-    If you wish to access a setting from your controller via
-    :php:`$this->settings`, the name of the setting must begin with
-    **settings** directly followed by a dot (`.`).
+    If you wish to access a setting set via FlexForm from your controller via
+    :php:`$this->settings`, the name of the setting must begin with **settings**
+    directly followed by a dot (`.`).
 
 .. code-block:: xml
 
@@ -79,7 +81,7 @@ Access Settings
     </settings.includeCategories>
 
 The settings can be read using :php:`$this->settings` in an
-Extbase controller action.
+Extbase controller action. And via :html:`{settings}` within Fluid.
 
 .. code-block:: php
 
