@@ -20,25 +20,25 @@ How it works
 #. If an error occurred, the class will call the :php:`$this->errorMethodName`
    instead of determined :php:`$this->actionMethodName`.
 
-#. The default configured is to call :php:`errorAction()` which will:
+#. The default is to call :php:`errorAction()` which will:
 
    #. Clear cache in case :ts:`persistence.enableAutomaticCacheClearing` is
-      activated and current Scope is Frontend.
+      activated and current scope is frontend.
 
    #. Add an error :ref:`Flash Message <t3coreapi:flash-messages>`
       by calling :php:`addErrorFlashMessage()`.
       Which in turn will call :php:`getErrorFlashMessage()` to retrieve the
       message to show.
 
-   #. Forward back to referring request. If no referrer exists, an plain text
+   #. Forward back to referring request. If no referrer exists, a plain text
       message will be displayed, fetched from
       :php:`getFlattenedValidationErrorMessage()`.
 
-Overloading behaviour
+Overloading Behaviour
 ---------------------
 
 Each of the above steps can be adjusted by implementing custom methods or
-replacing values within properties. All of above is `protected` and therefore
+replacing values within properties. All of the above is `protected` and therefore
 can be replaced.
 
 :php:`errorMethodName` property
