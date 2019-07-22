@@ -660,6 +660,8 @@ frontend.
     Figure 9-2: Data flow of the form display and saving. When a validating
     error occurs it is displayed again.
 
+.. _mapping-arguments:
+
 Mapping arguments
 -----------------
 
