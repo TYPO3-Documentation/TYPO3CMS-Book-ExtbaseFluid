@@ -16,3 +16,4 @@ your accumulated knowledge on Extbase and Fluid immediately.
     3-Command-controllers
     4-Property-mapping
     5-error-action
+    6-dispatching
