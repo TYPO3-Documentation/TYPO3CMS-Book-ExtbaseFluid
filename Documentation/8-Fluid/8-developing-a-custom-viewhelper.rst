@@ -685,7 +685,7 @@ you still need to use the render() method since that is the only way you can acc
 which contains the tag builder that generates the actual XML tag.
 
 As this method has to be static, there is no access to instance attributes, e.g.
-:php:`$this->tag` within an subclass of :php:`AbstractTagBasedViewHelper`.
+:php:`$this->tag` within a subclass of :php:`AbstractTagBasedViewHelper`.
 
 .. note::
 
