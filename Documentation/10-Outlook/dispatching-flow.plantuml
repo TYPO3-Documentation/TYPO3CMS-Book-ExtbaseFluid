@@ -1,0 +1,34 @@
+@startuml
+
+activate Bootstrap
+Bootstrap -> Bootstrap: handleRequest()
+
+Bootstrap -> RequestHandlerResolver: resolveRequestHandler()
+activate RequestHandlerResolver
+Bootstrap <-- RequestHandlerResolver: RequestHandler
+deactivate RequestHandlerResolver
+activate RequestHandler
+Bootstrap -> RequestHandler: handleRequest()
+
+activate RequestBuilder
+RequestHandler -> RequestBuilder: build()
+activate Request
+RequestHandler <-- RequestBuilder: Request
+deactivate RequestBuilder
+
+RequestHandler -> Request: setIsCached()
+activate Response
+activate Dispatcher
+RequestHandler -> Dispatcher: dispatch(Request, Response)
+activate Controller
+Dispatcher -> Dispatcher: resolveController(Request)
+Dispatcher -> Controller: processRequest(Request, Response)
+
+Bootstrap <-- RequestHandler: Response
+deactivate RequestHandler
+Bootstrap -> Response: shutdown()
+deactivate Response
+Bootstrap <-- Response: content
+deactivate Bootstrap
+
+@enduml

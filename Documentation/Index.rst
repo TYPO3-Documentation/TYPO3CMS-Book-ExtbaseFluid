@@ -84,6 +84,7 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
    10-Outlook/3-Command-controllers
    10-Outlook/4-Property-mapping
    10-Outlook/5-error-action
+   10-Outlook/6-dispatching
 
 .. toctree::
    :hidden:
