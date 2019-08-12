@@ -20,7 +20,7 @@ How to use property mapper
 --------------------------
 
 The above example was a really simple one. Most of the time you will convert from an array to an
-where some points must be considered. This example will show a simple conversation::
+where some points must be considered. This example will show a simple conversion::
 
     $input = [
         'username' => 'This is the user name',
