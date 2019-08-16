@@ -545,7 +545,7 @@ Changes in the rendering:
    Users who used to set :php:`Typo3QuerySettings->languageMode` to `strict` should use
    :php:`Typo3QuerySettings->setLanguageOverlayMode('hideNonTranslated')` to get translated records only.
 
-   The old behavior was confusing, because `languageMode` had different meaning and accepted different
+   The old behavior was confusing, because `languageMode` had a different meaning and accepted different
    values in TS context and in Extbase context.
 
 2) Setting :php:`Typo3QuerySettings->languageOverlayMode` to :php:`true` makes Extbase fetch records
@@ -585,15 +585,15 @@ Setting :php:`setLanguageOverlayMode()` on a query influences **only** fetching 
 fetched with :php:`setLanguageOverlayMode(true)`.
 
 When querying data in translated language, and having :php:`setLanguageOverlayMode(true)`, the relations
-(child objects) are overlaid even if aggregate root is not translated.
+(child objects) are overlaid even if the aggregate root is not translated.
 See :php:`QueryLocalizedDataTest->queryFirst5Posts()`.
 
-Following examples show how to query data in Extbase in different scenarios, independent of the global TS settings:
+The following examples show how to query data in Extbase in different scenarios, independent of the global TS settings:
 
 1) Fetch records from the language uid=1 only, with no overlays.
    Previously (:ts:`consistentTranslationOverlayHandling = 0`):
 
-   It was not possible.
+   This was not possible.
 
 
    Now (:ts:`consistentTranslationOverlayHandling = 1`):
@@ -696,36 +696,35 @@ translated content independently from language set in global context.
 Filtering & sorting
 -------------------
 
-When filtering by aggregate root property like `Post->title`,
-both filtering and sorting takes translated values into account and you will get correct results, also with pagination.
+When filtering by an aggregate root property like `Post->title`,
+both filtering and sorting take translated values into account and you will get correct results, same with pagination.
 
-When filtering or ordering by child object property, then Extbase does a left join between aggregate root
-table and child record table.
-Then the filter is applied as where clause. This means that filtering or ordering by child record property
-only takes values from child records which uids are stored in db (in most cases its default language record).
+When filtering or ordering by a child object property, Extbase does a left join between the aggregate root
+table and the child record table.
+Then the filter is applied as where clause. This means filtering or ordering by a child record property
+only takes values from child records whose uids are stored in the database (in most cases its default language record).
 See :php:`TranslationTest::fetchingTranslatedPostByBlogTitle()`
 
-This limitation also applies to Extbase with feature flag being disabled.
+This limitation also applies to Extbase with the feature flag being disabled.
 
 Summary of the important code changes compared to previous versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1) :php:`DataMapper` gets a :php:`Query` as a constructor parameter. This allows to use aggregate root :php:`QuerySettings` (language)
-   when fetching child records/relations. Later, in a separate patch we can pass other settings too e.g. :php:`setIgnoreEnableFields`
-   to fix issue around this setting. See :php:`DataMapper->getPreparedQuery` method.
+1) :php:`DataMapper` gets a :php:`Query` as a constructor parameter. This allows to use the aggregate root's :php:`QuerySettings` (language)
+   when fetching child records/relations. See :php:`DataMapper->getPreparedQuery` method.
 2) :php:`DataMapper` is passed to  :php:`LazyLoadingProxy` and  :php:`LazyObjectStorage`, so the settings don't get lost when fetching data lazily.
-3) :php:`Query` object gets a new property `parentQuery` which is useful to detect whether we're fetching aggregate root or child object.
+3) :php:`Query` object gets a new property `parentQuery` which is useful to detect whether we're fetching the aggregate root or a child object.
 4) Extbase model for  :php:`FileReference` uses `_localizedUid` for fetching `OriginalResource`
 5) :php:`DataMapper` forces child records to be fetched using  :php:`setLanguageOverlayMode(true)`.
-6) When getRespectSysLanguage is set,  :php:`DataMapper` uses aggregate root language to overlay child records to correct language.
-7) The `where` clause used for finding translated records in overlay mode (`true`, `hideNonTranslated`) has been fixed.
-   It filters out the non translated records on db side in case `hideNonTranslated` is set.
+6) When getRespectSysLanguage is set,  :php:`DataMapper` uses aggregate root's language to overlay child records to the correct language.
+7) The `where` clause used for finding translated records in overlay mode (`true`, `hideNonTranslated`) has been fixed in version 9.
+   It filters out the non translated records on the database side in case `hideNonTranslated` is set.
    It allows for filtering and sorting by translated values. See :php:`Typo3DbQueryParser->getLanguageStatement()`
 
 
 Most important known issues
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Persistence session uses the same key for default language record and the translation - https://forge.typo3.org/issues/59992
+- The persistence session uses the same key for the default language record and the translation - https://forge.typo3.org/issues/59992
 - Extbase allows to fetch deleted/hidden records - https://forge.typo3.org/issues/86307
 
 
