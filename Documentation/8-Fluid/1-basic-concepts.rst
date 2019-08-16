@@ -177,7 +177,7 @@ Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
 ``<f:for>`` will be interpreted as a ViewHelper since it
 starts with the prefix ``f:``. This is implemented in the class
-:php:`\TYPO3\CMS\Fluid\ViewHelpers\ForViewHelper`.
+:php:`\TYPO3Fluid\Fluid\ViewHelpers\ForViewHelper`.
 
 The first part of the class name is the complete Namespace like it
 was defined earlier with ``{namespace f=TYPO3\CMS\Fluid\ViewHelpers}``.

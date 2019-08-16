@@ -414,47 +414,24 @@ temporary table *tx_sjroffers_offer_category_mm*.
 Field type "group"
 ------------------
 
-.. Todo: Replace with FAL solution
-
 The "group" field type is very flexible in its use. It can be used to manage
 references to resources to the filesystem or rowsets of a database (see Fig. 6-9).
 
 .. code-block:: php
 
-   'images' => [
-      'label' => 'Images',
+   'pages' => [
+      'label' => 'Pages',
       'config' => [
-         'type' => 'group',
-         'internal_type' => 'file',
-         'allowed' => 'gif,jpg',
-         'max_size' => 1000,
-         'uploadfolder' => 'uploads/pics/',
-         'show_thumbs' => 1,
-         'size' => 3,
-         'minitems' => 0,
-         'maxitems' => 200,
-         'autoSizeMax' => 10
-      ],
+            'type' => 'group',
+            'internal_type' => 'db',
+            'allowed' => 'pages',
+            'size' => 3,
+            'maxitems' => 50,
+            'minitems' => 0
+      ] 
    ],
 
 The combination of `type` and `internal_type` specifies the field's type.
-Besides of `file` there exist several other types like `file_reference`,
-`folder` and `db`. While `file` leads to a copy of the original file which
-is then being referenced the type `file_reference` leads to a direct reference
-to the original file. `db` leads to a direct reference to a database rowset.
-
-.. note::
-
-   Extbase currently does not resolve relations to other rowsets since the
-   relations are currently persisted as comma-separated values in the database
-   field (pic1.jpg,pic2.jpg,pic3.jpg). However, this can be resolved in a
-   *ViewHelper* in Fluid when the data shows up (see the entry *f:image* in
-   Appendix C)
-
-.. figure:: /Images/6-Persistence/figure-6-9.png
-   :align: center
-
-   Figure 6-9: An example for the field type "group".
 
 Field type "none"
 -----------------
