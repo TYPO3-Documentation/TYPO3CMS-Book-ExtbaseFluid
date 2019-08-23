@@ -627,15 +627,14 @@ The following annotations are available out of the box within Extbase:
       /**
        * Custom validator identified by FQCN.
        *
-       * @Extbase\Validate("\TYPO3\CMS\Extbase\Tests\Functional\Validation\Fixture\Validation\Validator\CustomValidator")
+       * @Extbase\Validate("\Vendor\ExtensionName\Validation\Validator\CustomValidator")
        */
       protected $bar;
 
       /**
-       * Custom Validator identified by FQCN using dot syntax, with additional
-         parameters.
+       * Custom Validator identified by dot syntax, with additional parameters.
        *
-       * @Extbase\Validate("TYPO3.CMS.Extbase.Tests.Functional.Mvc.Controller.Fixture:CustomValidator", param="barParam")
+       * @Extbase\Validate("Vendor.ExtensionName:CustomValidator", param="barParam")
        */
       public function barAction(string $barParam)
       {
