@@ -56,10 +56,10 @@ You can use the following TypoScript::
       10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
 
       config {
-      disableAllHeaderCode = 1
-      additionalHeaders = Content-type:application/xml
-      xhtml_cleaning = 0
-      admPanel = 0
+         disableAllHeaderCode = 1
+         additionalHeaders = Content-type:application/xml
+         xhtml_cleaning = 0
+         admPanel = 0
       }
    }
 
@@ -69,3 +69,194 @@ TypoScript Object Browser to avoid misspelling. Further on you have to
 explicitly set :ts:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
 to the number of the page containing the data to tell Extbase from which page
 the data should be read.
+
+.. _using-built-in-jsonview:
+
+Using built in :php:`JsonView`
+==============================
+
+Extbase provides the :php:`\TYPO3\CMS\Extbase\Mvc\View\JsonView` as an
+alternative to :php:`\TYPO3\CMS\Fluid\View\TemplateView` which is used by
+default. 
+
+The intention is to provide the same public API, e.g. assign variables to the
+view, but replace the rendering. The View itself needs further configuration
+about how to convert assigned variables to JSON format.
+
+.. _switching-php-class-of-view:
+
+Switching php class of view
+---------------------------
+
+In order to use this view, these are multiple possible ways within controller:
+
+.. rst-class:: bignums
+
+#. Replace default view by changing property :php:`$defaultViewObjectName`::
+
+       protected $defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+
+#. Switch property values within an :php:`initialize*Action()` method::
+
+      public function initializeSpecialAction()
+      {
+          $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+      }
+
+.. _configuring-jsonview:
+
+Configuring :php:`JsonView`
+---------------------------
+
+Once the view is in use, it needs to be configured::
+
+     $this->view->setConfiguration([
+         'customVariable' => [
+             '_only' => [
+                 'key1',
+                 'key3',
+             ],
+         ],
+     ]);
+
+     $this->view->setVariablesToRender(['customVariable']);
+
+     $this->view->assignMultiple([
+         'anotherVariable' => 'value',
+         'customVariable' => [
+             'key1' => 'value1',
+             'key2' => 'value2',
+             'key3' => [
+                 'key3.1' => 'value3.1',
+                 'key3.2' => 'value3.2',
+             ],
+         ],
+     ]);
+
+The above example will result in the following output:
+
+.. code-block:: json
+
+   {
+       "key1": "value1",
+       "key3": {
+           "key3.1": "value3.1",
+           "key3.2": "value3.2"
+       }
+   }
+
+The following is happening during rendering:
+
+.. rst-class:: bignums
+
+#. Only allowed variables are rendered.
+   In above example only `customVariable` is allowed due to
+   :php:`setVariablesToRender(['customVariable'])` call.
+   Therefore variable `anotherVariable` is ignored during rendering.
+
+#. Only allowed properties of variables are rendered.
+   In above example only `key1` and `key3` are allowed, due to :php:`setConfiguration()` call.
+   Therefore `key2` is ignored.
+
+.. _further-examples:
+
+Further examples
+----------------
+
+Example 1 for :php:`setConfiguration()` call::
+
+   $this->view->setConfiguration([
+      'variable1' => [
+         '_only' => [
+            'property1',
+            'property2',
+            // ...
+         ],
+      ],
+      'variable2' => [
+         '_exclude' => [
+            'property3',
+            'property4',
+            //...
+         ],
+      ],
+      'variable3' => [
+         '_exclude' => ['secretTitle'],
+         '_descend' => [
+            'customer' => [
+               '_only' => ['firstName', 'lastName'],
+            ],
+         ],
+      ],
+      'somearrayvalue' => [
+         '_descendAll' => [
+            '_only' => ['property1'],
+         ],
+      ],
+   ]);
+
+Of variable1 only property1 and property2 will be included.
+Of variable2 all properties except property3 and property4
+are used.
+Of variable3 all properties except secretTitle are included.
+
+If a property value is an array or object, it is not included
+by default. If, however, such a property is listed in a "_descend"
+section, the renderer will descend into this sub structure and
+include all its properties (of the next level).
+
+The configuration of each property in "_descend" has the same syntax
+like at the top level. Therefore - theoretically - infinitely nested
+structures can be configured.
+
+To export indexed arrays the ``_descendAll`` section can be used to
+include all array keys for the output. The configuration inside a
+``_descendAll`` will be applied to each array element.
+
+
+Example 2 for :php:`setConfiguration()` call: exposing object identifier::
+
+   $this->view->setConfiguration([
+      'variableFoo' => [
+         '_exclude' => ['secretTitle'],
+         '_descend' => [
+            'customer' => [    // consider 'customer' being a persisted entity
+               '_only' => ['firstName'],
+               '_exposeObjectIdentifier' => TRUE,
+               '_exposedObjectIdentifierKey' => 'guid',
+            ],
+         ],
+      ],
+   ]);
+
+Note for entity objects you are able to expose the object's identifier
+also, just add an "_exposeObjectIdentifier" directive set to TRUE and
+an additional property ``__identity`` will appear keeping the persistence
+identifier. Renaming that property name instead of '__identity' is also
+possible with the directive ``_exposedObjectIdentifierKey``.
+Example 2 above would output (summarized):
+``{"customer":{"firstName":"John","guid":"892693e4-b570-46fe-af71-1ad32918fb64"}}``
+
+
+Example 3 for :php:`setConfiguration()` call: exposing object's class name::
+
+   $this->view->setConfiguration([
+      'variableFoo' => [
+         '_exclude' => ['secretTitle'],
+         '_descend' => [
+            'customer' => [    // consider 'customer' being an object
+               '_only' => ['firstName'],
+               '_exposeClassName' => TYPO3\CMS\Extbase\Mvc\View\JsonView::EXPOSE_CLASSNAME_FULLY_QUALIFIED,
+            ],
+         ],
+      ],
+   ]);
+
+The ``_exposeClassName`` is similar to the objectIdentifier one, but the class name is added to the
+JSON object output, for example (summarized):
+``{"customer":{"firstName":"John","__class":"Acme\Foo\Domain\Model\Customer"}}``
+
+The other option is ``EXPOSE_CLASSNAME_UNQUALIFIED`` which only will give the last part of the class
+without the namespace, for example (summarized):
+``{"customer":{"firstName":"John","__class":"Customer"}}``
+This might be of interest to not provide information about the package or domain structure behind.
