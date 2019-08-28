@@ -575,6 +575,131 @@ in `$this->argumentsMappingResults` you have a list of occurred warnings and err
 mappings available. This default `errorAction` refers back to the referrer, if the referrer
 was sent with it.
 
+.. _available-annotations:
+
+Available annotations
+^^^^^^^^^^^^^^^^^^^^^
+
+All available annotations for Extbase are placed within namespace :php:`TYPO3\CMS\Extbase\Annotation`.
+They can be imported into the current namespace, e.g.::
+
+   use TYPO3\CMS\Extbase\Annotation\Inject;
+
+   /**
+    * @Inject
+    * @var Foo
+    */
+   public $property;
+
+Is completely valid and will be parsed. It's considered to be best practice to
+use the following instead, in order to make source of annotation more
+transparent::
+
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+
+   /**
+    * @Extbase\Inject
+    * @var Foo
+    */
+   public $property;
+
+The following annotations are available out of the box within Extbase:
+
+:php:`@TYPO3\CMS\Extbase\Annotation\Validate`
+   Allows to configure validators for properties and method arguments:
+
+   .. code-block:: php
+
+      /**
+       * Existing TYPO3 validator.
+       *
+       * @Extbase\Validate("EmailAddress")
+       */
+      protected $email = '';
+
+      /**
+       * Existing TYPO3 validator with options.
+       *
+       * @Extbase\Validate("StringLength", options={"minimum": 1, "maximum": 80})
+       */
+      protected $title = '';
+
+      /**
+       * Custom validator identified by FQCN.
+       *
+       * @Extbase\Validate("\Vendor\ExtensionName\Validation\Validator\CustomValidator")
+       */
+      protected $bar;
+
+      /**
+       * Custom Validator identified by dot syntax, with additional parameters.
+       *
+       * @Extbase\Validate("Vendor.ExtensionName:CustomValidator", param="barParam")
+       */
+      public function barAction(string $barParam)
+      {
+          return '';
+      }
+
+   The above list provides all possible references to an validator. Available
+   validators shipped with Extbase can be found within
+   :file:`EXT:extbase/Classes/Validation/Validator/`.
+
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation()`
+   Allows to ignore Extbase default validation for a given argument, in context
+   of an controller.
+
+   .. code-block:: php
+
+      /**
+       * @Extbase\IgnoreValidation("param")
+       */
+      public function method($param)
+      {
+      }
+
+:php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")`
+   Allows to remove child entities during deletion of aggregate root.
+
+   .. code-block:: php
+
+      /**
+       * @Extbase\ORM\Cascade("remove")
+       */
+      public $property;
+
+:php:`@TYPO3\CMS\Extbase\Annotation\ORM\Transient`
+   Marks property as transient (not persisted).
+
+   .. code-block:: php
+
+      /**
+       * @Extbase\ORM\Transient
+       */
+      public $property;
+
+:php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`
+   Marks property to be lazy loaded, on first access.
+
+   .. code-block:: php
+
+      /**
+       * @Extbase\ORM\Lazy
+       */
+      public $property;
+
+:php:`@TYPO3\CMS\Extbase\Annotation\Inject`
+   Configures dependency injection (DI) to inject given property.
+   In the following example a class :php:`ServiceClassName` should be injected.
+
+   .. code-block:: php
+
+      /**
+       * @Extbase\Inject
+       * @var ServiceClassName
+       */
+      public $property;
+
 Application domain of the extension
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
