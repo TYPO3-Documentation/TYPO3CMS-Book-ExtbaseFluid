@@ -1,0 +1,61 @@
+# ConfigurationOverview for rendering documentation with docker-compose
+#
+# Examples:
+#  - make html output:
+#    docker-compose run --rm html
+#  - make all output (html, singlehtml, ...):
+#    docker-compose run --rm all
+#  - show howto
+#    docker-compose run --rm howto
+#
+# More information:
+#   https://github.com/t3docs/docker-render-documentation/blob/master/README.rst
+#
+version: '2'
+services:
+  # generate documentation: html only
+  html:
+    image: t3docs/render-documentation:latest
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+    command: makehtml
+    environment:
+      - HOST_CWD=$PWD
+
+  # generate documentation: all output (html, singlehtml, ...)
+  all:
+    image: t3docs/render-documentation:latest
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+    command: makeall
+    environment:
+      - HOST_CWD=$PWD
+
+  # show howto
+  howto:
+    image: t3docs/render-documentation:latest
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+    command: show-howto
+
+  # show help
+  help:
+    image: t3docs/render-documentation:latest
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+    command: --help
+
+
+  # use local Docker image
+  html-local:
+    image: render-documentation-local
+    volumes:
+      - ./:/PROJECT:ro
+      - ./Documentation-GENERATED-temp:/RESULT
+    command: makehtml
+    environment:
+      - HOST_CWD=$PWD
