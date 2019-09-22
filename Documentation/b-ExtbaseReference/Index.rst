@@ -953,32 +953,31 @@ does all the translation. The method can be called like this:
     The extension name. It can be fetched from the request.
 
 `$arguments`
-    Allows you to specify an array of arguments passed to the function `vsprintf`. Allows you to
-    fill wildcards in localized strings with values.
+    Allows you to specify an array of arguments. In the location utility this arguments will be passed to the function `vsprintf`. So you can insert dynamic values in every translation.
 
-*Example language file with inserted wildcards*
+    *Example language file with inserted wildcards*
 
-.. code-block:: xml
+    .. code-block:: xml
 
-   <?xml version="1.0" encoding="UTF-8"?>
-   <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
-       <file source-language="en" datatype="plaintext" original="messages" date="2011-10-18T18:20:51Z" product-name="blog-example">
-           <header/>
-           <body>
-               <trans-unit id="count_posts">
-                   <source>You have %d posts with %d comments written.</source>
-               </trans-unit>
-               <trans-unit id="greeting">
-                   <source>Hello %s!</source>
-               </trans-unit>
-           </body>
-       </file>
-   </xliff>
+       <?xml version="1.0" encoding="UTF-8"?>
+       <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+           <file source-language="en" datatype="plaintext" original="messages" date="..." product-name="...">
+               <header/>
+               <body>
+                   <trans-unit id="count_posts">
+                       <source>You have %d posts with %d comments written.</source>
+                   </trans-unit>
+                   <trans-unit id="greeting">
+                       <source>Hello %s!</source>
+                   </trans-unit>
+               </body>
+           </file>
+       </xliff>
 
-*Called translations with arguments to fill data in wildcards*
+    *Called translations with arguments to fill data in wildcards*
 
-.. code-block:: php
+    .. code-block:: php
 
-    \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('count_posts', 'BlogExample', [$countPosts, $countComments])
+        \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('count_posts', 'BlogExample', [$countPosts, $countComments])
 
-    \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('greeting', 'BlogExample', [$userName])
+        \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('greeting', 'BlogExample', [$userName])
