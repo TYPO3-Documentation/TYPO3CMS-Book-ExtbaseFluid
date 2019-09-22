@@ -955,3 +955,30 @@ does all the translation. The method can be called like this:
 `$arguments`
     Allows you to specify an array of arguments passed to the function `vsprintf`. Allows you to
     fill wildcards in localized strings with values.
+
+*Example language file with inserted wildcards*
+
+.. code-block:: xml
+
+   <?xml version="1.0" encoding="UTF-8"?>
+   <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+       <file source-language="en" datatype="plaintext" original="messages" date="2011-10-18T18:20:51Z" product-name="blog-example">
+           <header/>
+           <body>
+               <trans-unit id="count_posts">
+                   <source>You have %d posts with %d comments written.</source>
+               </trans-unit>
+               <trans-unit id="greeting">
+                   <source>Hello %s!</source>
+               </trans-unit>
+           </body>
+       </file>
+   </xliff>
+
+*Called translations with arguments to fill data in wildcards*
+
+.. code-block:: php
+
+    \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('count_posts', 'BlogExample', [$countPosts, $countComments])
+
+    \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('greeting', 'BlogExample', [$userName])
