@@ -953,7 +953,7 @@ does all the translation. The method can be called like this:
     The extension name. It can be fetched from the request.
 
 `$arguments`
-    Allows you to specify an array of arguments. In the `LocalizationUtility` this arguments will be passed to the function `vsprintf`. So you can insert dynamic values in every translation. You can find the possible wildcard specifiers under `https://www.php.net/manual/en/function.sprintf.php#parameter <https://www.php.net/manual/en/function.sprintf.php#parameter>`__.
+    Allows you to specify an array of arguments. In the `LocalizationUtility` this arguments will be passed to the function `vsprintf`. So you can insert dynamic values in every translation. You can find the possible wildcard specifiers under `<https://www.php.net/manual/function.sprintf.php#refsect1-function.sprintf-parameters>`__.
 
     *Example language file with inserted wildcards*
 
