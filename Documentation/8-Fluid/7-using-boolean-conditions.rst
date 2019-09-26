@@ -77,38 +77,10 @@ The compare operators ``>``, ``>=``,
 ``<``, ``<=``, ``==``, ``!=``
 and ``%`` are available. The parameter left and right of the
 operators could be numbers, object accessors, arrays and ViewHelpers in
-inline notation, but not strings.
+inline notation, or quoted strings.
+
 
 .. tip::
 
-  Comparisons with strings, like ``<f:if condition="{gender}
-  == 'male'">....</f:if>``, are not possible with Fluid yet
-  because of the complex implementation. If you need such a condition, you
-  have to write a ViewHelper that returns the needed string. Then you can
-  compare the object accessor with the output of the ViewHelper:
-
-  ``<f:if condition="{gender} ==
-  {my:male()}">...</f:if>``
-
-The just shown detailed notation for comparisons and modulo
-operations is not only available for the ``if`` ViewHelper but
-for all ViewHelpers which have a parameter of the type
-``boolean``.
-
-.. tip::
-
-  Once you develop an own ViewHelper - like described in the section
-  "<xref linkend="Fluid_custom_viewHelper" />" later on in this chapter -
-  you can use boolean expressions as arguments. Therefore the ViewHelper
-  has to mark all arguments where those expressions are to be used as
-  ``boolean``. The just explained functionality is not only
-  available in the ``if`` ViewHelper, but rather available in
-  self developed ViewHelper.<remark> ??? Sentence is not very
-  clear</remark>
-
-Upon engaged with many functionalities for the author of templates
-in this section, we would show you now how to develop your own
-ViewHelper.<remark>??? Does anyone understand the first part of the
-sentence?</remark>
-
-
+  Any ViewHelper argument declared as ``boolean`` supports boolean
+  expression syntax, including in your own self-written ViewHelpers.
