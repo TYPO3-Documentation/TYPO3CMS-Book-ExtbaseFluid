@@ -93,5 +93,5 @@ told to return the passed content back to TYPO3, rendered based on an HTML templ
 
     return $this->view->render();
 
-This line is declined by Extbase for us, if we not initiate the rendering process ourselves.
+This line is defined by Extbase for us, if we not initiate the rendering process ourselves.
 So we can omit the line in our case.
