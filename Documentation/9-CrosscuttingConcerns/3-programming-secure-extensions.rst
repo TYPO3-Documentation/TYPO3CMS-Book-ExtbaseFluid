@@ -5,12 +5,11 @@
 Programming Secure Extensions
 =============================
 
-If you are not
-familiar with basic security best practices, we recommend that you
-take same time to lookup basic principles. Insecure extensions can seriously
+If you are not familiar with basic security best practices, we recommend that you
+take some time to lookup basic principles. Insecure extensions can seriously
 compromise the integrity of the database, lead to leaking of private
 information and other problems, which may be just annoying or have serious
-repercussions.
+consequences.
 
 .. tip::
 
@@ -27,22 +26,23 @@ that increase the security of an extension.
    Basic principle #1: Never trust user input.
 
 All input data your extension gets from the user can be potentially malicious.
-That applies for all data that is transferred via GET and POST from a form. But
-also cookies should be classified as malicious, because they can be
-manipulated by the user.
+That applies to all data being transmitted via GET and POST. You can never trust
+that the data really came from your form as it could have been manipulated.
+Cookies should be classified as potentially malicious as well, because they may
+have been manipulated.
 
-All data that comes from the user should be checked:
+Always check if the format of the data corresponds
+with the format you expected. For example, for a
+field that contains an email address, you should check that a valid email address was entered
+and not any other text. For this, the :ref:`validating framework <validating-domain-objects>`
+of Extbase (which we covered in the previous chapter), may be helpful.
 
-* always check if the format of the data corresponds
-  with the format you expected. For example, for a
-  field that contains an email address, you should check that a valid email address was entered
-  and not any other text. For this, the validating framework of Extbase
-  (which we covered in the previos chapter), may be helpful.
+All data that comes from the user should be validated. This is especially critical
+where data is written to the database.
 
-Especially critical are the situation, where data is written to the
-database. In the next section we will show what you can do to handle this.
+In the next section we will show what you can do to handle this.
 We also present some concepts that
-Extbase and Fluid uses internally to increase the security of an extension.
+Extbase and Fluid use internally to increase the security of an extension.
 We will show you how queries that change data are secured by Extbase.
 Next we cover Cross Site Scripting and illustrate how to secure your
 extensions.
@@ -71,8 +71,8 @@ Trusted Properties
 
 .. danger::
 
-   Be aware that request hashes (HMAC) doesn't protect against **Identity** field manipulation.
-   An attacker can modify the identify field value and then can update the value of
+   Be aware that request hashes (HMAC) don't protect against **Identity** field manipulation.
+   An attacker can modify the identity field value and then can update the value of
    another record, even if he doesn't usually have access to it. You have to
    implement your own validation for the Identity field value (verify ownership
    of the record, add another hidden field which validates the identity field
@@ -203,7 +203,7 @@ example for this::
 
 The content of ``{variable1}`` is sent to
 htmlspecialchars(), the content of ``{variable2}`` is not
-changed. The ViewHelper must get the unchanged data because we can not
+changed. The ViewHelper must retrieve the unchanged data because we can not
 foresee what should be done with the data. For this reason ViewHelpers
 that output parameter directly have to handle special characters correctly.
 
