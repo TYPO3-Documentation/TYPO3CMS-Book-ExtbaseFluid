@@ -319,7 +319,7 @@ case::
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
     {
-        public function validate($user)
+        protected function isValid($user)
         {
             $this->result = new \TYPO3\CMS\Extbase\Error\Result();
 
@@ -352,7 +352,7 @@ passwords. This is made quickly::
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
     {
-        public function validate($user)
+        protected function isValid($user)
         {
             $this->result = new \TYPO3\CMS\Extbase\Error\Result();
 
