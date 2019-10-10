@@ -46,7 +46,7 @@ can execute. The array key is the name of the controller (without the suffix ``C
 and the array value is a comma separated list of all actions that are executable by the plugin.
 In our case this is the ``list`` action (also without the suffix ``Action``).
 Thus the array ``['Inventory' -> 'list']`` allows the plugin to execute the method ``listAction()``
-in the ``\MyVendor\StoreInventory\Controller\StoreInventoryController` class.
+in the ``\MyVendor\StoreInventory\Controller\StoreInventoryController`` class.
 By default all results of the actions are stored in the cache. If it is not desired for
 individual actions, they can be specified by a fourth, optional argument.
 It is an array that has the same format as the previous. There are all actions listed whose
