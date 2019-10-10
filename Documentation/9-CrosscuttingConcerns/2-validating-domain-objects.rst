@@ -317,7 +317,7 @@ case::
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
     {
-        public function validate($user)
+        protected function isValid($user)
         {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
@@ -346,7 +346,7 @@ passwords. This is made quickly::
 
     class UserValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
     {
-        public function validate($user)
+        protected function isValid($user)
         {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
                 $this->addError('The given Object is not a User.', 1262341470);
