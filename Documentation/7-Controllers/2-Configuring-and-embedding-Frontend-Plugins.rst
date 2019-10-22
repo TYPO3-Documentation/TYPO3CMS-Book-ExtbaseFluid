@@ -12,17 +12,17 @@ be configured. Both steps are resolved by two Extbase API-methods. These calls
 are located in two different files.
 
 In the file :file:`EXT:sjr_offers/ext_tables.php` you have to register every plugin as
-a content element with TYPO3 using the static method registerPlugin().
+a content element with TYPO3 using the static method :php:`registerPlugin()`.
 
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'VendorName.'.$_EXTKEY,
+        'extension_key',
         'List',
         'The Inventory List'
    );
 
-The method `registerPlugin()` expects three arguments. The first argument is the
+The method :php:`registerPlugin()` expects three arguments. The first argument is the
 extension key (sjr_offers in our example). This key is the same as the directory
 name of the extension.
 The second parameter is a freely selectable name of the plugin (a short,
@@ -37,13 +37,11 @@ For the second step we have to configure the behaviour of the plugin in the file
 :file:`EXT:sjr_offers/ext_localconf.php`  with the static method `configurePlugin()`.
 Beside the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in cache.
-.. code-block:: php
-
 
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'VendorName.'.$_EXTKEY,
+        'example_extension',
         'List',
         ['Inventory' => 'list']
    );

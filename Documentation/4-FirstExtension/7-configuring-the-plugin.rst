@@ -13,13 +13,14 @@ In our example there is only one controller action combination, namely ``StoreIn
 This combination is registered in the file :file:`ext_localconf.php`, that we
 create in the top level of our extension directory.
 
+
 .. code-block:: php
 
     <?php
     defined('TYPO3_MODE') || die('Access denied.');
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'MyVendor.StoreInventory',
+        'store_inventory',
         'Pi1',
         [
             'StoreInventory' => 'list',
@@ -33,9 +34,9 @@ create in the top level of our extension directory.
 With the first line we ensure, that the PHP code can not be
 called directly outside of TYPO3, for security reasons.  The static method
 :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
-offers several arguments.  With the first one we assign the extension key (it
-derives from the name of the extension directory), prefixed by the vendor
-namespace, followed by a dot. This indicates, that we use namespaces for our php
+offers several arguments.
+With the first one we assign the extension key (it derives from the name of the extension directory).
+This indicates, that we use namespaces for our php
 classes.  With the second argument we give a unique name for the plugin (in
 UpperCamelCase notation).  Because of historical reasons there is often used
 ``Pi1``, but maybe it is better to use more meaningful names like
@@ -67,7 +68,7 @@ of the content element *Plugin*. For this we insert the following line into a ne
     <?php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'MyVendor.StoreInventory',
+        'store_inventory',
         'Pi1',
         'The Store Inventory List',
         'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
