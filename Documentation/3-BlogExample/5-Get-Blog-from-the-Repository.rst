@@ -10,18 +10,18 @@ our little action island.
 .. code-block:: php
 
     <?php
-    namespace MyVendor\BlogExample\Domain\Repository;
+    namespace FriendsOfTYPO3\BlogExample\Domain\Repository;
 
     class BlogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
 
     }
 
-The code is not shortened. The ``BlogRepository`` simply does not have any own
-code since all methods which are used very often are already implemented in the
-parent class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. These functions are also
-available in all child classes. We call the method ``findAll()``, to retrieve all
-blog objects.
+The ``BlogRepository`` does not need any own code since all methods which are
+most commonly used are already implemented in the parent class
+:php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
+In the controller, you saw the call to ``findAll()``, to retrieve all
+blog objects which is one of the methods available by default.
 
 .. note::
 
