@@ -14,16 +14,8 @@ are managed by a repository. These "managed" objects represent the root
 objects of an object graph (aggregate). These are so called
 *aggregate root* objects.
 
-.. note::
-
-   More about the object life cycle you will find out in "Domain Driven
-   Design" in chapter 2. The states *transient* and
-   *persistent* are also elucidated in detail there. For
-   the topic aggregate root you will find in the section "aggregates" in
-   chapter 2 a detailed introduction.
-
 The collection of new and deleted objects as well as the root objects
-(in our case the ``Blog`` objects) are hand over from the
+(in our case the ``Blog`` objects) are handed over from the
 persistence manager to the persistence backend. The backend has the task to
 manage the complete process in a controlled manner. The course is done in
 the following order:
@@ -45,11 +37,10 @@ the following order:
 
 In our case the persistence backend (in the following called backend)
 checks for every ``Blog`` object whose properties (``title,
-description, posts`` and so on) if the property values have to be
+description, posts`` and so on) have to be
 stored. This is the case if the corresponding objects is new or the property
-value was changed in the runtime. If the property refer to an object, the
-backend checks in the next step also these objects for changes of the
-property values.
+value was changed in the runtime. If the property refers to an object, the
+backend checks these objects for changes of property values in the next step.
 
 .. sidebar:: Dirty objects
 
@@ -67,21 +58,17 @@ property values.
 
 .. note::
 
-   All methods that starts with an underline (_) are internal methods.
+   All methods that start with an underline (_) are internal methods.
    These methods can be called from "outside" *(public)* in a technical view,
    but they should not be called inside an extension - even though it is
-   attractive to do that.
+   attractive to do that. No methods or classes marked as `@internal` should 
+   be used in your extension.
 
-In our example the backend find the new post while it iterates through
+In our example the backend finds the new post while it iterates through
 the post objects. The storage backend is directed to store these post in the
 database - and with it also all of its relations to other objects. Because
 the post has a 1:n relation to the blog (a blog has many posts, every post
 is part of just one blog) the UID of the blog is stored inside the property
 ``blog`` of the post. With this the post refers to its blog and can
 be assigned when the method ``indexAction()`` is called.
-
-We are glad that you followed us also on this second, much more
-exhausting route. With the holiday destination you are so far familiar that
-you can move around safety in the blog example in the future without us -
-your travel guides. Of course there is a lot more to explore!
 

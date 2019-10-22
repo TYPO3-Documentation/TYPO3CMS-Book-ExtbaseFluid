@@ -17,7 +17,7 @@ happens behind the scenes:
 TYPO3 digs into the page content and discovers the content element of
 the extension (plugin) on the page. It does not call the extension directly,
 but hands over the control to the Extbase *Dispatcher*
-(1).<remark>TODO: Add callouts</remark>
+(1).
 
 The *Dispatcher* bundles all information of the
 request in a *Request* and sends it to the appropriate

@@ -1,7 +1,7 @@
 First orientation
 =================
 
-The so called *blog example* is an example
+The *blog example* is an example
 extension, which mainly focuses on showing the process of extension
 development and shows the possibilities of an extension based on Extbase.
 This extension is a common blog, which can be administrated either through the
@@ -19,16 +19,6 @@ amount of comments".
    :align: center
 
    Figure 3-1: Domain of the blog example
-
-.. note::
-
-   The blog example was originally created by the team inside the TYPO3
-   community that created the FLOW framework (formerly FLOW3). The blog
-   example has been backported to TYPO3 4.x. When you work more with
-   FLOW or TYPO3 in the future, you will find this example in a
-   near identical form. You will find some notes about the relationship
-   between Extbase and FLOW in the section "Migration to FLOW and NEOS"
-   in chapter 10.
 
 The complete source code can be found in a folder, which has the same
 name as the extension key. In our case the folder is called
@@ -55,8 +45,7 @@ interfaces are defined.
 .. note::
 
    If you are not familiar with the terms classes and interfaces, you
-   should look into the section "Object oriented programming with PHP" in
-   chapter 2, *Basic principles*.
+   should look into "Object oriented programming with PHP".
 
 In the folder :file:`Resources` you will find all files
 which are included at runtime, but no classes or interfaces. In particular,
