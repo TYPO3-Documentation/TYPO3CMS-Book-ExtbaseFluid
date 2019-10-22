@@ -53,7 +53,7 @@ backend. Let's have a look at the following two files:
 
     $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ExtensionName',
+        'extension_key',
         $pluginName,
         $controllerActionCombinations,
         $uncachedActions
@@ -75,7 +75,7 @@ same format as above, containing all the non-cached-actions.
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.ExtensionName',
+        'extension_key',
         'ExamplePlugin',
         'Title used in Backend'
     );
@@ -91,7 +91,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Vendor.ExampleExtension',
+        'example_extension',
         'Blog',
         [
             'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
@@ -110,7 +110,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'Vendor.ExampleExtension',
+        'example_extension',
         'Blog',
         'A Blog Example',
         'EXT:blog/Resources/Public/Icons/Extension.svg'
