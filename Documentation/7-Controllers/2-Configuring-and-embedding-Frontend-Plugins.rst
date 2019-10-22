@@ -43,7 +43,7 @@ specify which content will be stored in cache.
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'example_extension',
         'List',
-        ['Inventory' => 'list']
+        [\Vendor\ExampleExtension\Controller\InventoryController::class => 'list']
    );
 
 The method expects 4 arguments. The first argument is, just like the one used in
