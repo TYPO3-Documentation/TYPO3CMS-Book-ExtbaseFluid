@@ -23,27 +23,31 @@ definitions (or *properties*). Let's for example look at the definition of the
 property *posts* within the ``Blog`` class. You can find this in the file
 :file:`EXT:blog_example/Classes/Domain/Model/blog.php`. ::
 
-    <?php
-    namespace MyVendor\BlogExample\Domain\Model;
+   <?php
+   declare(strict_types=1);
 
-    use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   namespace MyVendor\BlogExample\Domain\Model;
 
-    class Blog extends AbstractEntity
-    {
-        /**
-         * The posts of this blog
-         *
-         * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\BlogExample\Domain\Model\post>
-         *
-         */
-        protected $posts;
-    }
+   use MyVendor\BlogExample\Domain\Model\Post;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
+   class Blog extends AbstractEntity
+   {
+       /**
+        * The posts of this blog
+        *
+        * @var ObjectStorage<Post>
+        *
+        */
+       protected $posts;
+   }
 
 
 The property ``$posts`` contains within the PHP comment above some so called
 annotations which start with the @ character. The annotation::
 
-    @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\BlogExample\Domain\Model\Post>
+   @var ObjectStorage<Post>
 
 
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the

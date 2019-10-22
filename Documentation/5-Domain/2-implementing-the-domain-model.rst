@@ -241,32 +241,44 @@ two methods `addContact()` and implement `getContacts()`:
 
 .. code-block:: php
 
-   /**
-    * The contacts of the organization
-    *
-    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person>
-    */
-   protected $contacts;
+   <?php
+   declare(strict_types = 1);
 
-   /**
-    * Adds a contact to the organization
-    *
-    * @param \MyVendor\SjrOffers\Domain\Model\Person The contact to be added
-    * @return void
-    */
-   public function addContact(\MyVendor\SjrOffers\Domain\Model\Person $contact)
-   {
-      $this->contacts->attach($contact);
-   }
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-   /**
-    * Returns the contacts of the organization
-    *
-    * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Person> The contacts of the organization
-    */
-   public function getContacts()
+   use MyVendor\SjrOffers\Domain\Model\Person;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
+   class Organization extends AbstractEntity
    {
-      return clone $this->contacts;
+       /**
+        * The contacts of the organization
+        *
+        * @var ObjectStorage<Person>
+        */
+       protected $contacts;
+
+       /**
+        * Adds a contact to the organization
+        *
+        * @param Person The contact to be added
+        * @return void
+        */
+       public function addContact(Person $contact)
+       {
+          $this->contacts->attach($contact);
+       }
+
+       /**
+        * Returns the contacts of the organization
+        *
+        * @return ObjectStorage The contacts of the organization
+        */
+       public function getContacts()
+       {
+          return clone $this->contacts;
+       }
    }
 
 The comment about the definition of property is ``$contacts`` of crucial importance.
@@ -346,12 +358,24 @@ annotations:
 
 .. code-block:: php
 
-   /**
-    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Offer> The offers the organization has to offer
-    * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-    * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-    */
-   protected $offers;
+   <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\SjrOffers\Domain\Model;
+
+   use MyVendor\SjrOffers\Domain\Model\Offer;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
+   class Organization extends AbstractEntity
+   {
+       /**
+        * @var ObjectStorage<Offer> The offers the organization has to offer
+        * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+        * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+        */
+       protected $offers;
+   }
 
 By default Extbase invites all child objects with the parent object (so for
 example all offers of an organization). This behavior is called Eager-Loading.
@@ -441,82 +465,93 @@ emphasizes some peculiarities.
 .. code-block:: php
 
    <?php
+   declare(strict_types = 1);
+
    namespace MyVendor\SjrOffers\Domain\Model;
 
+   use MyVendor\SjrOffers\Domain\Model\AgeRange;
+   use MyVendor\SjrOffers\Domain\Model\AttendanceFee;
+   use MyVendor\SjrOffers\Domain\Model\AttendanceRange;
+   use MyVendor\SjrOffers\Domain\Model\Category;
+   use MyVendor\SjrOffers\Domain\Model\DateRange;
+   use MyVendor\SjrOffers\Domain\Model\Organization;
+   use MyVendor\SjrOffers\Domain\Model\Person;
+   use MyVendor\SjrOffers\Domain\Model\Region;
    use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
    class Offer extends AbstractEntity
    {
 
-      /**
-       * The organization of the offer
-       *
-       * @var \MyVendor\SjrOffers\Domain\Model\Organization
-       */
-      protected $organization;
+       /**
+        * The organization of the offer
+        *
+        * @var Organization
+        */
+       protected $organization;
 
-      protected $title;
-      protected $image;
-      protected $teaser;
-      protected $description;
-      protected $services;
-      protected $dates;
-      protected $venue;
+       protected $title;
+       protected $image;
+       protected $teaser;
+       protected $description;
+       protected $services;
+       protected $dates;
+       protected $venue;
 
-      /**
-       * @var \MyVendor\SjrOffers\Domain\Model\AgeRange The age range of the offer.
-       */
-      protected $ageRange;
+       /**
+        * @var AgeRange The age range of the offer.
+        */
+       protected $ageRange;
 
-      /**
-       * @var \MyVendor\SjrOffers\Domain\Model\DateRange The date range of the offer.
-       */
-      protected $dateRange;
+       /**
+        * @var DateRange The date range of the offer.
+        */
+       protected $dateRange;
 
-      /**
-       * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange The attendance range.
-       */
-      protected $attendanceRange;
+       /**
+        * @var AttendanceRange The attendance range.
+        */
+       protected $attendanceRange;
 
-      /**
-       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee>
-       */
-      protected $attendanceFees;
+       /**
+        * @var ObjectStorage<AttendanceFee>
+        */
+       protected $attendanceFees;
 
-      /**
-       * The contact of the offer
-       *
-       * @var \MyVendor\SjrOffers\Domain\Model\Person
-       */
-      protected $contact;
+       /**
+        * The contact of the offer
+        *
+        * @var Person
+        */
+       protected $contact;
 
-      /**
-       * The categories the offer is assigned to
-       *
-       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category>
-       */
-      protected $categories;
+       /**
+        * The categories the offer is assigned to
+        *
+        * @var ObjectStorage<Category>
+        */
+       protected $categories;
 
-      /**
-       * The regions the offer is available
-       *
-       * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region>
-       */
-      protected $regions;
+       /**
+        * The regions the offer is available
+        *
+        * @var ObjectStorage<Region>
+        */
+       protected $regions;
 
-      /**
-       * The title of the offer
-       *
-       * @param string $title
-       */
-      public function __construct($title)
-      {
-         $this->setTitle($title);
-         $this->setAttendanceFees(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-         $this->setCategories(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-         $this->setRegions(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
-      }
-      // Getter and Setter
+       /**
+        * The title of the offer
+        *
+        * @param string $title
+        */
+       public function __construct($title)
+       {
+           $this->setTitle($title);
+           $this->setAttendanceFees(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+           $this->setCategories(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+           $this->setRegions(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
+       }
+       // Getter and Setter
    }
 
 The property organization of the object Offer includes a back reference of the
@@ -784,112 +819,131 @@ Let us have a look at the definitions of the properties of the class Offer defin
 
 .. code-block:: php
 
-    /**
-    * The title of the offer
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})
-    */
-   protected $title;
+   <?php
+   declare(strict_types=1);
 
-   /**
-    * A single image of the offer
-    *
-    * @var string
-    */
-   protected $image;
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-   /**
-    * The teaser of the offer. A line of text.
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 150})
-    */
-   protected $teaser;
+   use MyVendor\SjrOffers\Domain\Model\AgeRange;
+   use MyVendor\SjrOffers\Domain\Model\AttendanceFee;
+   use MyVendor\SjrOffers\Domain\Model\AttendanceRange;
+   use MyVendor\SjrOffers\Domain\Model\Category;
+   use MyVendor\SjrOffers\Domain\Model\DateRange;
+   use MyVendor\SjrOffers\Domain\Model\Organization;
+   use MyVendor\SjrOffers\Domain\Model\Person;
+   use MyVendor\SjrOffers\Domain\Model\Region;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-   /**
-    * The description of the offer. A longer text.
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 2000})
-    */
-   protected $description;
+   class Offer extends AbstractEntity
+   {
+       /**
+        * The title of the offer
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})
+        */
+       protected $title;
 
-   /**
-    * The services of the offer.
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
-    */
-   protected $services;
+       /**
+        * A single image of the offer
+        *
+        * @var string
+        */
+       protected $image;
 
-   /**
-    * The textual description of the dates. E.g. "Monday to Friday, 8-12"
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
-    */
-   protected $dates;
+       /**
+        * The teaser of the offer. A line of text.
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 150})
+        */
+       protected $teaser;
 
-   /**
-    * The venue of the offer.
-    *
-    * @var string
-    * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
-    */
-   protected $venue;
+       /**
+        * The description of the offer. A longer text.
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 2000})
+        */
+       protected $description;
 
-   /**
-    * The age range of the offer.
-    *
-    * @var \MyVendor\SjrOffers\Domain\Model\AgeRange
-    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
-    */
-   protected $ageRange;
+       /**
+        * The services of the offer.
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
+        */
+       protected $services;
 
-   /**
-    * The date range of the offer is valid.
-    *
-    * @var \MyVendor\SjrOffers\Domain\Model\DateRange
-    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
-    */
-   protected $dateRange;
+       /**
+        * The textual description of the dates. E.g. "Monday to Friday, 8-12"
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
+        */
+       protected $dates;
 
-   /**
-    * The attendance range of the offer.
-    *
-    * @var \MyVendor\SjrOffers\Domain\Model\AttendanceRange
-    * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
-    */
-   protected $attendanceRange;
+       /**
+        * The venue of the offer.
+        *
+        * @var string
+        * @TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"maximum": 1000})
+        */
+       protected $venue;
 
-   /**
-    * The attendance fees of the offer
-    *
-    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\AttendanceFee>
-    */
-   protected $attendanceFees;
+       /**
+        * The age range of the offer.
+        *
+        * @var AgeRange
+        * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
+        */
+       protected $ageRange;
 
-   /**
-    * The contact of the offer
-    *
-    * @var \MyVendor\SjrOffers\Domain\Model\Person
-    */
-   protected $contact;
+       /**
+        * The date range of the offer is valid.
+        *
+        * @var DateRange
+        * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
+        */
+       protected $dateRange;
 
-   /**
-    * The categories the offer is assigned to
-    *
-    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Category>
-    */
-   protected $categories;
+       /**
+        * The attendance range of the offer.
+        *
+        * @var AttendanceRange
+        * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\SjrOffers\Domain\Validator\RangeConstraintValidator")
+        */
+       protected $attendanceRange;
 
-   /**
-    * The regions the offer is available
-    *
-    * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\MyVendor\SjrOffers\Domain\Model\Region>
-    */
-   protected $regions;
+       /**
+        * The attendance fees of the offer
+        *
+        * @var ObjectStorage<AttendanceFee>
+        */
+       protected $attendanceFees;
+
+       /**
+        * The contact of the offer
+        *
+        * @var Person
+        */
+       protected $contact;
+
+       /**
+        * The categories the offer is assigned to
+        *
+        * @var ObjectStorage<Category>
+        */
+       protected $categories;
+
+       /**
+        * The regions the offer is available
+        *
+        * @var ObjectStorage<Region>
+        */
+       protected $regions;
+   }
 
 The values of some properties must be checked to control the offer being classified as valid.
 Which rule will narrow, about the annotation :php:`@TYPO3\CMS\Extbase\Annotation\Validate("…")` is set.
