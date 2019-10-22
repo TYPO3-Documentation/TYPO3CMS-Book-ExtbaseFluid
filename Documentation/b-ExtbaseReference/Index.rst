@@ -62,7 +62,7 @@ backend. Let's have a look at the following two files:
 In addition to the extension key and a unique name of the plugin (line 2 and 3),
 the allowed combinations of the controller and actions are determined.
 `$controllerActionCombinations` is an associative array. The Keys of this array
-are the allowed controllers, and the values are a comma-separated list of
+are the allowed controller classes, and the values are a comma-separated list of
 allowed actions per controller. The first action of the first controller is the
 default action.
 
@@ -94,14 +94,14 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
         'example_extension',
         'Blog',
         [
-            'Blog' => 'index,show,new,create,delete,deleteAll,edit,update,populate',
-            'Post' => 'index,show,new,create,delete,edit,update',
-            'Comment' => 'create',
+            \Vendor\ExampleExtension\Controller\BlogController::class => 'index,show,new,create,delete,deleteAll,edit,update,populate',
+            \Vendor\ExampleExtension\Controller\PostController::class => 'index,show,new,create,delete,edit,update',
+            \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
         ],
         [
-            'Blog' => 'delete,deleteAll,edit,update,populate',
-            'Post' => 'show,delete,edit,update',
-            'Comment' => 'create',
+            \Vendor\ExampleExtension\Controller\BlogController::class => 'delete,deleteAll,edit,update,populate',
+            \Vendor\ExampleExtension\Controller\PostController::class => 'show,delete,edit,update',
+            \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
         ]
     );
 

@@ -23,11 +23,11 @@ create in the top level of our extension directory.
         'store_inventory',
         'Pi1',
         [
-            'StoreInventory' => 'list',
+            \Vendor\StoreInventory\Controller\StoreInventoryController::class => 'list',
         ],
         // non-cacheable actions
         [
-            'StoreInventory' => '',
+            \Vendor\StoreInventory\Controller\StoreInventoryController::class => '',
         ]
     );
 
