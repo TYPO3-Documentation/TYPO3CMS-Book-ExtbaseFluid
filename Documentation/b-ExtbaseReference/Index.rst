@@ -229,27 +229,6 @@ persistence
 
 Settings relevant to the persistence layer of Extbase.
 
-`persistence.classes`
-    This settings are used with individual classes. That includes in particular the
-    mapping of classes and property names to tables and field names.
-
-`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.columns`
-    Configure fields which differ from the regular naming conventions.
-    Use the form `field_name.mapOnProperty = propertyName`.
-
-`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.recordType`
-    Specify a string literal, which - if set - should be stored in the
-    type field of the table.
-
-`persistence.classes.Vendor\MyExt\Domain\Model\Foo.mapping.tableName`
-    Set a table name which differs from the regular naming conventions.
-
-`persistence.classes.Vendor\MyExt\Domain\Model\Foo.newRecordStoragePid`
-    Page-ID in which new records of the given class should be saved.
-
-`persistence.classes.Vendor\MyExt\Domain\Model\Foo.subclasses`
-    List all subclasses of the class given in the form `Identifier = ClassName`.
-
 `persistence.enableAutomaticCacheClearing`
     Enables the automatic cache clearing when changing data sets (see also the
     section ":ref:`caching_of_actions_and_records`" above in this chapter).
