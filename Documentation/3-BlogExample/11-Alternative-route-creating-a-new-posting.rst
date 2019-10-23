@@ -173,24 +173,24 @@ the form looks like this:
 
    <form method="post" action="/?tx_blogexample_pi1%5Baction%5D=create&amp;tx_blogexample_pi1%5Bblog%5D=12&amp;tx_blogexample_pi1%5Bcontroller%5D=Post&amp;cHash=4218364112cecc7a3cc9de3428c36c46">
        <dl>
-        <dt><label for="tx-blogexample-author">author:</label></dt>
-        <dd>
-            <select id="tx-blogexample-author" name="tx_blogexample_pi1[newPost][author]">
-                  <option value="9">Stephen Smith</option>
-                  <option value="10">Stephen Smith</option>
-                  <option value="11">Stephen Smith</option>
-                  <option value="12">Stephen Smith</option>
-            </select>
-        </dd>
-        <dt><label for="tx-blogexample-title">title:</label></dt>
-        <dd><input id="tx-blogexample-title" type="text" name="tx_blogexample_pi1[newPost][title]"></dd>
-        <dt><label for="tx-blogexample-content">content:</label></dt>
-        <dd><textarea rows="8" cols="46" id="tx-blogexample-content" name="tx_blogexample_pi1[newPost][content]"></textarea></dd>
-        <dt><label for="tx-blogexample-relatedposts">related posts:</label></dt>
+         <dt><label for="tx-blogexample-author">author:</label></dt>
+         <dd>
+               <select id="tx-blogexample-author" name="tx_blogexample_pi1[newPost][author]">
+                     <option value="9">Stephen Smith</option>
+                     <option value="10">Stephen Smith</option>
+                     <option value="11">Stephen Smith</option>
+                     <option value="12">Stephen Smith</option>
+               </select>
+         </dd>
+         <dt><label for="tx-blogexample-title">title:</label></dt>
+         <dd><input id="tx-blogexample-title" type="text" name="tx_blogexample_pi1[newPost][title]"></dd>
+         <dt><label for="tx-blogexample-content">content:</label></dt>
+         <dd><textarea rows="8" cols="46" id="tx-blogexample-content" name="tx_blogexample_pi1[newPost][content]"></textarea></dd>
+         <dt><label for="tx-blogexample-relatedposts">related posts:</label></dt>
 
-        <dd><input class="button" type="submit" value="submit"></dd>
-    </dl>
-</form>
+         <dd><input class="button" type="submit" value="submit"></dd>
+      </dl>
+   </form>
 
 TYPO3 takes the rendered form and includes it at the appropriate place in the HTML page
 (see figure 3-5).

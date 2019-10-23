@@ -129,10 +129,10 @@ over the blog post that should be displayed. (4)
 
 The view now displays the data and returns the result to the user. (5)
 
-.. figure:: /Images/2-BasicPrinciples/figure-2-6.png
+.. figure:: /Images/2-BasicPrinciples/figure-2-3.png
    :align: center
 
-   Figure 2-6: In this request a comment is stored.
+   Figure 2-3: In this request a comment is stored.
 
 You will often see that actions can be sorted into two categories:
 Some actions control the display of a model, while other actions modify the
