@@ -10,10 +10,8 @@ A journey through the Blog Example
    About the code of the blog example:
 
    * The latest version is:
-     `plobacher/extbasebookexamplev8 <https://github.com/plobacher/extbasebookexamplev8>`__,
-     see the `Extbase book <https://leanpub.com/typo3extbase-en>`__ ,
-     `Extbase book in German <https://leanpub.com/typo3extbase>`__ or
-     `Extbase book in Italian <https://leanpub.com/typo3extbase-it>`__.
+     `Blog Example on TER <https://extensions.typo3.org/extension/blog_example/>`__,
+     `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__ 
 
 In this chapter we accompany you on a journey through a simple TYPO3 extension.
 While travelling on this round trip, you will get to know more about extension
