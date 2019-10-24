@@ -6,19 +6,11 @@
 Creating a First Extension
 ===============================================
 
-.. tip::
-
-   In this chapter, you will learn how to build an extension from scratch.
-   You may also want to try out the `Extension Builder <https://github.com/FriendsOfTYPO3/extension_builder>`__
-   which automatically creates some of the necessary source files for you.
-
-
-In this chapter you learn the basics of an extension based on Extbase
-and Fluid. You build up a minimalistic extension, which is reduced to the
-absolutely necessary structures. So you view clearly the whole, without
-hassles with details. In the following chapters we will turn to a more
-complex example, to cover exhaustively all fundamental attributes of extbase
-and fluid.
+In this chapter you learn the basics of an extension based on Extbase and fluid.
+You build a minimalistic extension, which is reduced to the absolutely necessary structures.
+So you can get a first overview without being confused by details.
+In the following chapters we will turn to a more complex example,
+to cover exhaustively all fundamental attributes of Extbase and Fluid.
 
 You can get the extension here:
 
