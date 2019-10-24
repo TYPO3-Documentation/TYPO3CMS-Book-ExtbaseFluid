@@ -62,8 +62,9 @@ The following example explains this mechanism:
        }
    }
 
-.. todo: properly explain that actions may return a result. If no result is returned, the action controller
-.. todo: calls render on the view object instead.
+Action methods can either return a response (`string`) themselves or not return at all.
+If an action method does not return anything, Extbase calls `$this->view->render()` and
+returns the rendered view automatically.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
