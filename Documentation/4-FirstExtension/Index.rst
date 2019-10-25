@@ -3,12 +3,11 @@
 Creating a first extension
 ===============================================
 
-In this chapter you learn the basics of an extension based on extbase
-and fluid. You build up a minimalistic extension, which is reduced to the
-absolutely necessary structures. So you view clearly the whole, without
-hassles with details. In the following chapters we will turn to a more
-complex example, to cover exhaustively all fundamental attributes of extbase
-and fluid.
+In this chapter you learn the basics of an extension based on Extbase and fluid.
+You build a minimalistic extension, which is reduced to the absolutely necessary structures.
+So you can get a first overview without being confused by details.
+In the following chapters we will turn to a more complex example,
+to cover exhaustively all fundamental attributes of Extbase and Fluid.
 
 You can get the extension here:
 
