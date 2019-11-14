@@ -23,13 +23,13 @@ enables the storage of the object data of a class :php:`\MyVendor\MyExtension\Do
    return [
        \MyVendor\MyExtension\Domain\Model\Person::class => [
            'tableName' => 'tt_address',
-           'recordType' => \MyVendor\MyExtension\Domain\Model\Person::class
+           'recordType' => \MyVendor\MyExtension\Domain\Model\Person::class,
            'properties' => [
                'dateOfBirth' => [
-                   'fieldName' => 'birthday'
+                   'fieldName' => 'birthday',
                ],
                'thoroughfare' => [
-                   'fieldName' => 'street'
+                   'fieldName' => 'street',
                ],
            ],
        ],
