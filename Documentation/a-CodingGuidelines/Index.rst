@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+.. _extbase-cgl:
 
 =================
 Coding Guidelines
