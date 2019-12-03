@@ -124,4 +124,4 @@ In table A-1 you see some naming examples for file and class names.
 
 Interfaces end with ``Interface``, for example ``TYPO3\CMS\Extbase\Mvc\RequestInterface``.
 With abstract classes the last part of the name always begins with ``Abstract``,
-for example ``TYPO3\CMSExtbase\Mvc\Controller\AbstractController``.
+for example ``\TYPO3\CMS\Extbase\Property\TypeConverter\AbstractTypeConverter``.

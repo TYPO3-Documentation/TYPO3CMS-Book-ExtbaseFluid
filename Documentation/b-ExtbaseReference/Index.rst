@@ -379,14 +379,11 @@ have special requirements that can not be realized with the `ActionController`,
 you should have a look at the controllers below.
 
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface`
-    This basic interface that must be implemented by all controllers.
-
-:php:`TYPO3\CMS\Extbase\Mvc\Controller\AbstractController`
-    Abstract controller with the basic functionality of the ControllerInterface.
+    The basic interface that must be implemented by all controllers.
 
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\ActionController`
-    The most widely used controller in Extbase. It extends the AbstractController. An overview of its API is given in
-    the following section.
+    The most widely used controller in Extbase with the basic functionality of the ControllerInterface.
+    An overview of its API is given in the following section.
 
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\CommandController`
     Extend this controller if you want to provide commands to the scheduler or command line
