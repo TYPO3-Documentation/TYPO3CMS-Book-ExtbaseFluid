@@ -17,5 +17,35 @@ a TYPO3 installation with Composer <t3install:install-via-composer>`
 
 The System extension **extbase** and **fluid** are required.
 
+Extension Builder
+=================
+
+Extension Key: extension_builder
+
+The Extension Builder helps you build and manage your Extbase
+based TYPO3 CMS extensions - it provides a GUI to kickstart
+your extension - however, note that you should still familiarize
+yourself with the files generated and their uses.
+
+The extension can be installed via composer, traditionally or
+by cloning the source.
+
+Via composer:
+
+.. code-block:: bash
+
+   composer require friendsoftypo3/extension-builder
+
+To install the extension in the "traditional" way, go to the
+extension manager and get the extension "extension_builder" from TER.
+
+To install this extension by cloning the source open the terminal
+and go to the directory :file:`typo3conf/ext/` and enter:
+
+.. code-block:: bash
+
+   git clone https://github.com/FriendsOfTYPO3/extension_builder.git
+
+Then you can use the *Extension Manager* to install the Extension Builder.
 
 

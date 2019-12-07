@@ -1,17 +1,12 @@
-.. ---------------------------------------
-.. Review information for this page:
-.. * Review Status: ok
-.. * Last reviewed: May 17 2019 for TYPO3 version 9.5.7
-.. ----------------------------------------
-
 .. include:: ../Includes.txt
 
+============
 Introduction
 ============
 
-TYPO3 is a powerful and mature content management system containing many features and a large degree of flexibility.
+**TYPO3** is a powerful and mature content management system containing many features and a large degree of flexibility.
 
-Extbase is a PHP-based framework which supports developers in creating clean and easily maintainable TYPO3 extensions.
+**Extbase** is a PHP-based framework which supports developers in creating clean and easily maintainable TYPO3 extensions.
 The template engine Fluid makes sure that the user interface of the extension can easily be created individually.
 
 Extbase ensures a clear separation between different concerns, which makes maintenance a lot more simple thanks to
@@ -23,3 +18,14 @@ FlexForm settings. Developers can therefore focus on solving the problems of the
 Using Extbase needs a basic understanding of concepts like domain driven design, whilst planning and modeling the
 extension thoroughly before implementation. In return, the source code of the extension becomes a lot more readable,
 more flexible and more extensible.
+
+Target Audience
+===============
+
+This book is for TYPO3 extension developers who have a basic
+understanding of PHP programming and experience working with
+and administering TYPO3. The book gives a compact introduction
+to the Extbase framework and to the Fluid template engine.
+
+Read more about the target audience and how this manual is
+structured in :ref:`about`.
