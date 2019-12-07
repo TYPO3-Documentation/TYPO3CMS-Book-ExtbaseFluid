@@ -88,7 +88,7 @@ The property values can be set and/or read only by the corresponding getters and
 
 .. tip::
 
-    At a first view, the methods appear to be cumbersome for accessing
+    At first glance, the methods may appear to be cumbersome for accessing
     the class variables. However, they have several advantages:
     The internals of processing can be added or changed at a later time,
     without needing to make changes to the calling object.
