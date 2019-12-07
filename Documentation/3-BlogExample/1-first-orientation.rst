@@ -1,7 +1,7 @@
 First orientation
 =================
 
-The so called *blog example* is an example
+The *blog example* is an example
 extension, which mainly focuses on showing the process of extension
 development and shows the possibilities of an extension based on Extbase.
 This extension is a common blog, which can be administrated either through the
@@ -45,8 +45,7 @@ interfaces are defined.
 .. note::
 
    If you are not familiar with the terms classes and interfaces, you
-   should look into the section "Object oriented programming with PHP" in
-   chapter 2, *Basic principles*.
+   should look into "Object oriented programming with PHP".
 
 In the folder :file:`Resources` you will find all files
 which are included at runtime, but no classes or interfaces. In particular,

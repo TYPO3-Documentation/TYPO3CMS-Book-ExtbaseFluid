@@ -58,7 +58,6 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
    :hidden:
    :caption: INTRODUCTION
 
-   About
    0-Introduction/Index
    2-BasicPrinciples/Index
    3-BlogExample/Index
@@ -93,11 +92,11 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
-   Sitemap/Index
 
 .. toctree::
    :hidden:
-   :caption: EDITING
+   :caption: ABOUT
 
-   AboutEditingThisManual
+   Sitemap/Index
+   About
    Targets

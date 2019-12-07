@@ -3,9 +3,9 @@
 And... action!
 ==============
 
-Our journey through the blog example is not only an educational, but
-also an activity holiday. We now turn to the activities. We are already in
-the :php:`BlogController`. You can find the class file under
+Our journey through the blog example is not only an educational journey, but
+also an active one. We now turn to the activities. We are already in
+the :php:`BlogController`. You can find the class file at
 :file:`EXT:blog_example/Classes/BlogController.php`.
 
 In software development, there are different variants of controllers.
@@ -21,35 +21,36 @@ shortened version of the :php:`BlogController`:
 
     <?php
 
-    namespace MyVendor\BlogExample\Controller;
+    namespace FriendsOfTYPO3\BlogExample\Controller;
+    use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
 
     class BlogController
           extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-        public function indexAction()
+        public function indexAction(): void
         {
             $this->view->assign('blogs', $this->blogRepository->findAll());
         }
 
-        public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = null)
+        public function newAction(Blog $newBlog = null): void
         {
             $this->view->assign('newBlog', $newBlog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
+        public function createAction(Blog $newBlog): void
         {
             $this->blogRepository->add($newBlog);
             $this->redirect('index');
         }
 
-        public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        public function editAction(Blog $blog): void
         {
             $this->view->assign('blog', $blog);
             $this->view->assign('administrators', $this->administratorRepository->findAll());
         }
 
-        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        public function updateAction(Blog $blog): void
         {
             $this->blogRepository->update($blog);
             // this does currently not work, use $this->blogRepository->add($blog); instead
@@ -57,7 +58,7 @@ shortened version of the :php:`BlogController`:
             $this->redirect('index');
         }
 
-        public function deleteAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+        public function deleteAction(Blog $blog): void
         {
             $this->blogRepository->remove($blog);
             $this->redirect('index');
@@ -80,34 +81,24 @@ change of an existing blog. The job of the
 
 .. tip::
 
-    Who already dealt with the model-view-controller-pattern will
+    Those who already worked with the model view controller pattern will
     notice, that the controller has only a little amount of code. Extbase
     aims for the `slim controller` approach . The controller is
     exclusively responsible for the control of the process flow. Additional
     logic (especially business or domain logic) needs to be separated into
     classes in the subfolder :file:`Domain`.
 
-.. tip::
-
-    The name of the action is strictly spoken only the part without the
-    suffix `Action`, e.g.
-    `list`, `show` or
-    `edit`. With the suffix
-    `Action` the name of the action-method is marked.
-    But we use the action itself and its method mostly synonymous.
-
-From the request the controller can extract which action has to be
-called. The call is happening without the need to write another line of code
-in the BlogController. This does
+The request determines which controller action combination will be called.
+The dispatching and matching of actions happens in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-"inherits" all methods from it, by deriving it from this class.
+inherits all methods from it, by deriving it from this class.
 
 ::
 
    <?php
    declare(strict_types = 1);
 
-   namespace MyVendor\BlogExample\Controller;
+   namespace FriendsOfTYPO3\BlogExample\Controller;
 
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -116,20 +107,19 @@ in the BlogController. This does
        // ...
    }
 
-At first call of the plugin without additional information the request
-will get a standard action; in our case the
-`indexAction()`. The
-`indexAction()` contains only one line in our example
-(as shown above), which looks more detailed like this:
+If no specific action information is given, the default action will
+be called; in our case the `indexAction()`. The `indexAction()` contains 
+only one line in our example (as shown above), 
+which looks like this:
 
 ::
 
    <?php
    declare(strict_types = 1);
 
-   namespace MyVendor\BlogExample\Controller;
+   namespace FriendsOfTYPO3\BlogExample\Controller;
 
-   use MyVendor\BlogExample\Domain\Repository\BlogRepository;
+   use FriendsOfTYPO3\BlogExample\Domain\Repository\BlogRepository;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class BlogController extends ActionController
@@ -149,16 +139,7 @@ will get a standard action; in our case the
    }
 
 In the first line of the :php:`indexAction` the repository is asked to fetch
-all available blogs. How they are saved and managed, is not of interest at this point of
-our journey. All files, which are defined in the repository-classes, are
-located in the folder
-:file:`EXT:blog_example/Classes/Domain/Repository/`. This you
-can also derive directly from the Name
-:php:`\MyVendor\BlogExample\Domain\Repository\BlogRepository`. This
-naming scheme is a big advantage by the way, if you search a particular
-class file. The name :php:`BlogRepository` results from the
-name of the class, whose instances are managed by the repository, namely by
-adding :php:`Repository`. A repository can only manage one
-single class at a time. The second line retrieves all available blogs by
-`findAll()`.
-
+all available blogs. In the second line those blogs are assigned to the view
+to be displayed. So the repository is responsible for fetching the data,
+the view is responsible for displaying it and the controller connects and
+"controls" these parts.
