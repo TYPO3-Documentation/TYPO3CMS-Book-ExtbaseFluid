@@ -1,5 +1,8 @@
 .. include:: ../Includes.txt
 
+.. _extension-builder:
+
+=================
 Extension Builder
 =================
 

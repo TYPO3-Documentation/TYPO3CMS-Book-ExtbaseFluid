@@ -44,8 +44,14 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    :caption: ADVANCED
 
    9a-Configuration/Index
-   9-CrosscuttingConcerns/Index
-   10-Outlook/Index
+   9-CrosscuttingConcerns/1-localizing-and-internationalizing-an-extension
+   9-CrosscuttingConcerns/2-validating-domain-objects
+   9-CrosscuttingConcerns/3-programming-secure-extensions
+   Backend-modules   ➜  <https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/BackendModules/BackendModuleApi/Index.html>
+   10-Outlook/3-Command-controllers
+   10-Outlook/4-Property-mapping
+   10-Outlook/5-error-action
+   10-Outlook/6-dispatching
 
 .. toctree::
    :hidden:

@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-Localizing and internationalizing an extension
+.. _internationalization:
+
+==============================================
+Localizing and Internationalizing an Extension
 ==============================================
 
 Particularly in business relationships there is often the need to
@@ -30,8 +33,8 @@ you can adjust the date formats in accordance with the date conventions in
 the particular country.
 
 
-Multi language Templates
-------------------------
+Multi Language Templates
+========================
 
 When you style the output of your extension using Fluid, you often
 have to localize particular terms or maybe short text in the templates. In
@@ -174,8 +177,8 @@ english terms:
     :file:`locallang.xlf` file .
 
 
-Output localized strings using ``sprintf``
-------------------------------------------
+Output Localized Strings Using ``sprintf``
+==========================================
 
 In the above example we have outputted the name of the blog post
 author simply by using ``{blog.author.fullName}``. Many
@@ -227,8 +230,9 @@ output:
     ``sprintf`` you should have a look at the PHP documentation:
     *http://php.net/manual/de/function.sprintf.php*.
 
-Changing localized terms using TypoScript
---------------------------------------------------------------------------------------------------
+Changing Localized Terms Using TypoScript
+=========================================
+
 If you use an existing extension for a customer project, you
 sometimes find out that the extension is insufficient translated or that
 the translations have to be adjusted. TYPO3 offers the possibility to
@@ -255,8 +259,8 @@ next section.
 
 
 
-Multi language domain objects
------------------------------
+Multi Language Domain Objects
+=============================
 
 With TYPO3 you can localize the data sets in the backend. This also
 applies to domain data, because they are treated like "normal" data sets
@@ -450,8 +454,8 @@ the default language.
 
 
 
-Localization of date output
----------------------------
+Localization of Date Output
+===========================
 
 It often occurs that a date or time must be displayed in a template.
 Every language area has its own convention on how the date is to be
@@ -517,7 +521,7 @@ where explained. In the next section you will see how constraints of the
 domain objects can be preserved.
 
 
-TYPO3 v9 and higher
+TYPO3 v9 and Higher
 ===================
 
 Starting with version 9 extbase renders the translated records in the same way TypoScript rendering does.
@@ -708,7 +712,7 @@ See :php:`TranslationTest::fetchingTranslatedPostByBlogTitle()`
 This limitation also applies to Extbase with the feature flag being disabled.
 
 Summary of the important code changes compared to previous versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------
 
 1) :php:`DataMapper` gets a :php:`Query` as a constructor parameter. This allows to use the aggregate root's :php:`QuerySettings` (language)
    when fetching child records/relations. See :php:`DataMapper->getPreparedQuery` method.
@@ -723,7 +727,8 @@ Summary of the important code changes compared to previous versions
 
 
 Most important known issues
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
+
 - The persistence session uses the same key for the default language record and the translation - https://forge.typo3.org/issues/59992
 - Extbase allows to fetch deleted/hidden records - https://forge.typo3.org/issues/86307
 

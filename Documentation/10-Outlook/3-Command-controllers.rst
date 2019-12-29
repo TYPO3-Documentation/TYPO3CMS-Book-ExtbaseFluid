@@ -1,10 +1,12 @@
 .. include:: ../Includes.txt
-.. _extbase_command_controller_about:
 
-Command controllers
+.. _command_controllers:
+
+===================
+Command Controllers
 ===================
 
-Command controllers make logic available at the command line and in the scheduler backend module.
+Command controllers make functionality available at the command line and in the scheduler backend module.
 
 They can provide functionality for recurring tasks like mail queues, cleanups, imports and
 more, which is then available for administrators and regular backend users.

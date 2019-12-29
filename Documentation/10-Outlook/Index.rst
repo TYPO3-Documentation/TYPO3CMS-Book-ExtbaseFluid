@@ -1,19 +1,14 @@
+:orphan:
+
 .. include:: ../Includes.txt
 
 Outlook
 =======
 
-In this chapter we would like to show an outlook of further features. In the first section we will
-introduce the new Kickstarter for Extbase-Extensions, which will speed up the initial setup of an
-extension massively. In the second section we will show you, not only how to write Fronted-Plugins
-with Extbase, but also how to write Backend-Modules and Commands with it. You can now make use of
-your accumulated knowledge on Extbase and Fluid immediately.
+This page will be removed. You can find the previous content on:
 
-.. toctree:: :maxdepth: 2
-
-    1-Creating-an-extension-with-the-kickstarter
-    2-Backend-modules
-    3-Command-controllers
-    4-Property-mapping
-    5-error-action
-    6-dispatching
+* :ref:`t3coreapi:backend-modules-api` (in "TYPO3 Explained")
+* :ref:`command_controllers`
+* :ref:`property-mapper`
+* :ref:`error_action`
+*

@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-programming secure extensions
+.. _security:
+
+=============================
+Programming Secure Extensions
 =============================
 
 While mostly the functionality of an extension is set of great value,

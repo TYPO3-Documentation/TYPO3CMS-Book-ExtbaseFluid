@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
-.. _extbase_error_action:
+.. _error_action:
 
+============
 Error Action
 ============
 
