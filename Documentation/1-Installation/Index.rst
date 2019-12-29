@@ -12,8 +12,8 @@ Installation & Setup
 
 To follow this documentation, we assume you have TYPO3 up-and-running.
 
-Check out the "Installation & Upgrade Guide" for how to :ref:setup
-a TYPO3 installation with Composer <t3install:install-via-composer>`
+Check out the "Installation & Upgrade Guide" for how to
+:ref:`setup a TYPO3 installation with Composer <t3install:install-via-composer>`
 
 The System extension **extbase** and **fluid** are required.
 
