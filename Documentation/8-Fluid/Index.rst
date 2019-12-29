@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-Styling the output with Fluid
+.. _fluid:
+
+=============================
+Styling the Output With Fluid
 =============================
 
 Up to now you have learned how to represent the business logic of an

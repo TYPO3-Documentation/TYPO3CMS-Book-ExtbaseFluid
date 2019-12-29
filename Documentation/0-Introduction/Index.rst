@@ -27,7 +27,7 @@ implementation.
 In return, the source code of the extension becomes a lot more readable,
 more flexible and more extensible.
 
-.. toctree::
-   :maxdepth: 2
+.. seealso::
 
-   1-target-audience
+   * :ref:`target-audience`
+   * :ref:`structure-of-this-book`

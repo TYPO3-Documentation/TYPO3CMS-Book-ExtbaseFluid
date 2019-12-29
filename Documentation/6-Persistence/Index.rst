@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-Setting up the persistence layer
+.. _persistence:
+
+================================
+Setting up the Persistence Layer
 ================================
 
 As already insinuated in previous chapters it is the Persistence Layer which

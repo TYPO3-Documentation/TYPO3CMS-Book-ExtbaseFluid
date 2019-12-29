@@ -1,7 +1,10 @@
 .. include:: ../Includes.txt
 
-Creating a first extension
-===============================================
+.. _creating-a-first-extension:
+
+==========================
+Creating a First Extension
+==========================
 
 In this chapter you learn the basics of an extension based on Extbase and fluid.
 You build a minimalistic extension, which is reduced to the absolutely necessary structures.

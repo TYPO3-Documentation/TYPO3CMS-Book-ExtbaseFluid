@@ -1,9 +1,11 @@
 .. include:: ../Includes.txt
 
+.. _controllers:
 .. _controlling-the-flow-with-controllers:
 
-Controlling the flow with controllers
-=====================================================
+=====================================
+Controlling the Flow with Controllers
+=====================================
 
 
 In the previous chapters we already transcribed the Domain of our

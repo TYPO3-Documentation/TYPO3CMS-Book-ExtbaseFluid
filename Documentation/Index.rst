@@ -14,9 +14,9 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 
 :Copyright:   Since 2010, Sebastian Kurfürst, Jochen Rau
 :Translation: Translated to English by the TYPO3 community
-:Rendered:    |today|
 
-**Sitemap:**
+
+**Table of Contents**
 
    :ref:`sitemap`
 
@@ -24,7 +24,6 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
    :hidden:
    :caption: INTRODUCTION
 
-   About
    0-Introduction/Index
    2-BasicPrinciples/Index
    3-BlogExample/Index
@@ -54,5 +53,11 @@ TYPO3 is a free enterprise web content management system licensed under the GPL.
 
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
+
+.. toctree::
+   :hidden:
+   :caption: ABOUT
+
+   About
    Sitemap/Index
    Targets
