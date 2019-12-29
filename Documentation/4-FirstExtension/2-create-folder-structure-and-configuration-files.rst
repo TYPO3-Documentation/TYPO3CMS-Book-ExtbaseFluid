@@ -13,13 +13,11 @@ Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3c
 
    The extension key may only contain small letters and underscores (lower_underscore).
 
-.. info::
-
-    Extensions can be stored at different places in TYPO3.
-    Locally installed extensions are the rule.
-    These are in the folder :file:`typo3conf/ext/`.
-    System extensions are in the folder :file:`typo3/sysext/`.
-    Extbase or Fluid are examples of system extensions.
+Extensions can be stored at different places in TYPO3.
+Locally installed extensions are the rule.
+These are in the folder :file:`typo3conf/ext/`.
+System extensions are in the folder :file:`typo3/sysext/`.
+Extbase or Fluid are examples of system extensions.
 
 In our folder `store_inventory` we create the sub folders :file:`Classes` and :file:`Resources`.
 The folder :file:`Classes` will contain all of our PHP classes.
