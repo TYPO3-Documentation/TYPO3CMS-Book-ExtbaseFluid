@@ -22,7 +22,8 @@ Extension Builder
 
 Extension Key: extension_builder
 
-The Extension Builder helps you build and manage your Extbase
+The `Extension Builder <https://extensions.typo3.org/extension/extension_builder>`__
+helps you build and manage your Extbase
 based TYPO3 CMS extensions - it provides a GUI to kickstart
 your extension - however, note that you should still familiarize
 yourself with the files generated and their uses.
