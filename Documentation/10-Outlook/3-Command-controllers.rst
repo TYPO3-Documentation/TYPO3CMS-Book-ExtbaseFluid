@@ -6,6 +6,14 @@
 Command Controllers
 ===================
 
+.. note::
+
+   Since TYPO3 8, it is possible to use Symfony commands in TYPO3. This is the preferred method
+   and is documented in "TYPO3 Explained" :ref:`t3coreapi:cli-mode-command-controllers`.
+   You can still use Extbase Command Controllers, but they have been
+   `deprecated in 9.4 <https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/9.4/Deprecation-85977-ExtbaseCommandControllersAndCliAnnotation.html>`__
+   and will trigger a PHP :php:`E_USER_DEPRECATED` error if used from the command line.
+
 Command controllers make functionality available at the command line and in the scheduler backend module.
 
 They can provide functionality for recurring tasks like mail queues, cleanups, imports and
