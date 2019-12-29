@@ -496,8 +496,7 @@ unauthorized access can be done on different levels:
 
 Of these three levels, only the first two offer reliable
 protection. We do not take a closer look on the first level in this book.
-You can find detailed information for setting up permissions in
-your TYPO3 system in the :ref:`Core API <t3coreapi:access>`.
+
 The second level, we are going to implement in all "critical" Actions.
 Let's look at an example with the Method
 :php:`updateAction()`.

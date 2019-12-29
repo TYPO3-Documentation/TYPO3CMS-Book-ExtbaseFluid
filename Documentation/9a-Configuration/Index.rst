@@ -24,8 +24,6 @@ The changes apply to the current page and all subpages.
 
    * :ref:`typoscript_configuration`
 
-   * :ref:`t3tsref:typoscript-syntax-what-are-constants`
-
 Extension Configuration
 =======================
 
