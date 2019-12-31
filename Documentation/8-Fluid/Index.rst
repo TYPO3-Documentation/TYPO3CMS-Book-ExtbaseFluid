@@ -1,5 +1,7 @@
 .. include:: ../Includes.txt
 
+.. _fluid:
+
 Styling the output with Fluid
 =============================
 
