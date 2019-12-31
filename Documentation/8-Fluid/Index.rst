@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
+.. use the label fluid and deprecate fluid-start
+
 .. _fluid-start:
+.. _fluid:
 
 Styling the output with Fluid
 =============================
