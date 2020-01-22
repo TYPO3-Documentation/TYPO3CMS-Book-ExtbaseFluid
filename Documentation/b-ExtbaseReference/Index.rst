@@ -366,6 +366,19 @@ If you specify for example `plugin.tx_blogexample._LOCAL_LANG.default.read_more 
 More>>` then the standard translation for the key `read_more` is overwritten by the
 string *More>>*.
 
+.. _format:
+
+format
+------
+
+Output of Extbase plugins can be provided in different formats, e.g. HTML, CSV,
+JSON, …. The required format can be requested via request parameter. The default
+format if nothing is requested, can be set via TypoScript. This can be combined
+with conditions.
+
+`format`
+   Defines the default format for the plugin.
+
 .. _class_hierarchy:
 
 Class Hierarchy
