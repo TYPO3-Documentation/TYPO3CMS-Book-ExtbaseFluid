@@ -5,11 +5,11 @@
 Validating domain objects
 =========================
 
-We have learned about Extbase and Fluid in detail, but considered
-terms of consistence of the domain only marginally. Often we estimate that
-domain objects at all times retain consistent according to certain rules.
-This is not done automatically, so it is rather important to define these
-rules explicitly. In the blog example for example we can make the following
+We have discussed both Extbase and Fluid in some detail, but have spent 
+very little time discussing the domain and how we go about ensuring its consistency. We often assume that
+domain objects are consistent and adhere to our rules at all times.
+Unfortunately, this is not achieved automatically. So it is important to define these
+rules explicitly. In the blog example for example we can create the following
 rules:
 
 * The field ``username`` and ``password`` of the
@@ -17,21 +17,20 @@ rules:
   must not contain special characters.
 * The field ``email`` of the user object must contain a valid email address.
 
-These rules must apply at every point in time for the user object; on
-the other way a user object is only valid if it complies to these rules.
-These rules are called *invariants*, because they must be
+These rules must apply at all times for the user object. A user object is only valid if 
+it complies to these validation rules.
+These rules are called *invariants* because they must be
 valid during the entire lifetime of the object.
 
-In a first step you have to consider which invariants your domain
-objects have to offer. The next point is to put these invariants to Extbase
-in an appropriate form. Extbase provides *validators* for
+At the beginning of your project, it is important to consider which invariants your domain
+objects will consist of. The next stage is to add these invariants to Extbase
+in an appropriate way. Extbase provides *validators* for
 checking the invariants - these are PHP classes in which the invariants are
 implemented in code.
 
-We will show you in the following how you can use a validator for the
-checking of invariants, and how you can give the user the possibility to
-correct an error when an error occurs.
-
+We will show you in the following example how you can use a validator for the
+checking of invariants and how you can give the user the ability to
+correct an error if and when it occurs.
 
 Validators for checking of Invariants
 -------------------------------------
@@ -44,8 +43,8 @@ The interface requires validators to implement two methods:
 - :php:`validate($value)`
 - :php:`getOptions()`
 
-Obviously, the main method is `validate`, which is called by the framework.
-The value which is to be validated is passed along said method and it's the
+The main method is `validate`, which is called by the framework.
+The value which is to be validated is passed along to said method and it's the
 validator's job to check if that value is valid.
 
 .. note::
@@ -60,8 +59,8 @@ validator's job to check if that value is valid.
     framework.
 
 If the logic of your validator allows for loose/variable validation checks,
-validator options might come in handy. Extbase ships a :php:`StringLength`
-validator for instance which offers the options `minimum` and `maximum` that
+validator options might come in handy. Extbase ships with a :php:`StringLength`
+validator which offers the options `minimum` and `maximum` that
 let you define the string length the validator should use to check the incoming
 value against.
 
@@ -102,14 +101,14 @@ adds an error by calling `$this->addError()`.
     help of the error code the error can be definitely identified, for
     example in bug reports.
 
-As default, extbase will not call your validator if the value to validate is
+By default, Extbase will not call your validator if the value to validate is
 empty. This is configured through the property ``$acceptsEmptyValues`` which is
-set to ``true`` as default.
+set to ``true`` by default.
 
 In the package
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\*` Extbase offers
 many validators for default requirements like the validation of emails,
-numbers or strings.
+numbers and strings.
 
 
 
@@ -126,14 +125,14 @@ When they get inserted into a controller action. With the help of figure
     Figure 9-1: Data flow of a request before the action is called
 
 When a user sends a request, Extbase first determines which action
-respectively controller is responsible for this request. As Extbase knows
+within the controller is responsible for this request. As Extbase knows
 the names and types of the arguments of the action it can create objects
 from the incoming data. This operation will be described in detail in the
 section "Argument mapping" later on. Now the main step for us is as
 follows: The created objects are to be validated, that is the invariants
 are to be checked. If all arguments are successfully validated, the
 requested action of the extension is called and it can continue processing
-the given objects for example give it to the view for displaying.
+the given objects. For example, it might pass it to the view ready for displaying.
 
 .. tip::
 
@@ -147,8 +146,8 @@ the given objects for example give it to the view for displaying.
 
 When an error occurs during validation, the method
 `errorAction()` of the current controller is
-called. The provided default ``errorAction()`` redirects the user
-to the last used form when possible, in order to give him a chance to
+called. The default ``errorAction()`` redirects the user
+to the last used form when possible, in order to give them a chance to
 correct the errors.
 
 .. tip::
@@ -171,27 +170,27 @@ which part of the model is has to be checked by which validator. Therefore
 there are three possibilities which we define in the following:
 
 * validating in the domain model with annotations
-* validating in the domain model with an own validator class
+* validating in the domain model with our own validator class
 * validating of controller arguments
 
 Validating in the domain model with annotations
 -----------------------------------------------
 In most cases it is sufficient to validate the properties of a
 domain object separately. When all properties are validated with success
-the complete domain object is also successful validated; when a property
-can not be validated the validation of the complete domain object
+the complete domain object is also successfully validated. When a property
+can not be validated, the overall validation of the domain object
 fails.
 
 To define how a property of our domain object should be validated
-we use so called *annotations* of our source code.
+we use *annotations* inside our source code.
 Annotations are machine readable "annotations" in the source code that
 are placed in comment blocks and start with the character
 ``@``.
 
 For the validation the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation is
 available. With it we can specify which validator is to be used for
-checking the annotated property. Let us take a look at this using a part
-of the domain model ``Post`` of the blog example::
+checking the annotated property. Let us take a look at this using part
+of the domain model ``Post`` inside the blog example::
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -212,7 +211,7 @@ of the domain model ``Post`` of the blog example::
 
 With the line ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})``
 the validator for the property ``$title`` is
-specified. In parenthesis the parameter for the validator are specified.
+specified. In parenthesis the parameters for the validator are also specified.
 In our case we make sure that a title of a blog post is never shorter
 than three characters and will never be longer than 50 characters.
 
@@ -249,7 +248,7 @@ Here we validate the property ``$title`` with the
 :php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
 This validator class now can check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
-blog post is always build-on the scheme *Maintopic: Title*:
+blog post is always built using the convention *Maintopic: Title*:
 
 .. code-block:: php
 
@@ -276,12 +275,12 @@ the domain model. The next section shows to you, how complex domain
 objects are to be validated.
 
 
-Validating in the domain model with an own validator class
+Validating in the domain model with your own validator class
 ----------------------------------------------------------
 
-The just introduced possibilities to register validators in the
-model is specially practical when individual properties of the model
-are to be validated. Sometimes it is necessary to validate the
+The ability to register validators in the
+model are especially useful when individual properties of the model
+need to be validated. However, sometimes it is necessary to validate the
 relationship between two or more properties of a model class. For
 example for a user registration it is reasonable that in the user object
 the property ``$password`` and ``$passwordConfirmed``
@@ -291,11 +290,11 @@ for ``$password`` respectively
 access to each other. You need a option to validate a domain object
 *as a whole*.
 
-For this you can implement an own validator class for every object
+For this you can create your own validator class for every object
 in the domain model which validates the object as a whole and with it
-access to all object properties is possible.
+has access to all object properties where possible.
 
-Important hereby is the correct naming convention. If you need a
+This is the correct naming convention. If you need a
 validator for the class
 :php:`\MyVendor\ExtbaseExample\Domain\Model\User` it must be
 implemented in the class
@@ -325,7 +324,7 @@ case::
         }
     }
 
-So, if ``$user`` is not an instance of the user object an
+If ``$user`` is not an instance of the user object an
 error message is directly created with ``addError()``. The
 validator does not validate the object any further.
 
@@ -338,7 +337,7 @@ validator does not validate the object any further.
     validation errors can be unique identified.
 
 Now we have created the foundation of our validator and can start
-with the proper implementation - the check for equality of the
+with the proper implementation of it - the check for equality between the
 passwords. This is made quickly::
 
     <?php
@@ -360,7 +359,7 @@ passwords. This is made quickly::
 
 Because we have access to the complete object the checking
 for equality of ``$password`` and
-``$passwordConfirmation`` is very simple now.
+``$passwordConfirmation`` is very straightforward.
 
 Now we have got to know two possibilities how validators can be
 registered for our domain objects: directly in the model via
@@ -397,7 +396,7 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
         // ...
     }
 
-Here the parameter ``$pageName`` is checked with an own
+Here the parameter ``$pageName`` is checked with its own
 validator.
 
 
@@ -433,7 +432,7 @@ example::
         // ...
     }
 
-Here the following things are validated: ``$pageName``
+Here the following properties are validated: ``$pageName``
 must be a *string*. The data type of the
 ``@param`` annotation is validated. For ``$user`` all
 ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the model are validated. Also the
@@ -442,8 +441,8 @@ it exists. Beyond that the validator
 ``\MyVendor\BlogExample\Domain\Validator\CustomUserValidator`` is used
 to validate ``$user``.
 
-In some use cases it is reasonable that *inconsistent
-domain objects* are gives as arguments. That can be the case
+In some use cases it is reasonable that *incomplete
+domain objects* are given as arguments. That can be the case
 for multi page forms, because after filling the first page the domain
 object is not complete. In this case you can use the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation("parameter")`. This
@@ -456,8 +455,8 @@ object.
 Case study: Edit an existing object
 -----------------------------------
 
-Now you know all building blocks you need to edit a blog object with
-a form. Hereby the edit form should be displayed again in case of a
+Now you know all the building blocks you need to edit a blog object with
+a form. As of now, the edit form should be displayed again in case of a
 validation error. Two actions are involved at editing the blog: The
 ``editAction`` shows the form with the blog to be edited and the
 ``updateAction`` saves the changes.
@@ -491,7 +490,7 @@ property of the linked object with help of the ``property``
 attribute of the form elements.
 
 Also the name of the form (name="blog") is important because it is
-used as variable name for the object to be send. When submitting the form
+used as a variable name for the object to be sent. When submitting the form
 the ``updateAction`` is called with the ``blog`` object
 as parameter.
 
@@ -504,16 +503,16 @@ as parameter.
 
 
 So the name of the argument is ``$blog`` because the form
-has the name blog. When no validating errors occur, the blog object will
+has the name blog. When no validation errors occur, the blog object will
 be persisted with its changes.
 
 Now have a look what happens when the user inserts erroneous data
-in the form. In this case an error occurs when validating the
+into the form. In this case an error occurs when validating the
 ``$blog`` arguments. Therefore instead of the
 `updateAction`, the
-`errorAction` is called. These action routes the
+`errorAction` is called. This action routes the
 request with ``forward()`` to the last used action because in
-case of an error the form should be displayed again. Additional an error
+case of an error the form should be displayed again. Additionally, an error
 message is generated and given to the controller. Ergo: In case of a
 validation error the `editAction` is displayed
 again.
@@ -523,9 +522,9 @@ that the ``updateAction`` and ``editAction`` use the
 same argument names. In our example the argument is called
 ``$blog`` in both cases, so we are on the safe side.
 
-Now we get an other problem: Also the ``editAction``
-validates all parameter, but our blog object is not valid - we are
-captured in an endless loop. Therefore we have to suppress the argument
+Now we have another problem: The ``editAction``
+validates all parameters, but our blog object is not valid - we are
+trapped in an endless loop. Therefore we have to suppress the argument
 validation for the ``editAction``. For this we need the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` – the comment block
 of the ``editAction`` must be changed like this:
@@ -629,10 +628,10 @@ like this (in short form)::
         <f:form.submit />
     </f:form>
 
-What is the summary of what we have we done? Again it is important
+What is the summary of what we have done? Again it is important
 that the `newAction` and the
 `createAction` have the same argument name. This
-has also to conform with the name of the Fluid template
+also has to conform with the name of the Fluid template
 (``newBlog`` in the example). Also the parameter for the
 `newAction` must be marked as optional and the
 validation of the parameter must be suppressed with
@@ -640,7 +639,7 @@ validation of the parameter must be suppressed with
 output validation errors in the template using the ``flashMessages``
 ViewHelper when saving the data.
 
-In figure 9-2 you find an overview of the behavior of Extbase when
+In figure 9-2 you can find an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
 frontend.
 
@@ -653,14 +652,13 @@ frontend.
 Mapping arguments
 -----------------
 
-In this section we would describe in detail what happens during a
-request before the accordingly action is called. Particular interesting is
-this process when sending a form. Because the HTTP protocol (and PHP) only
-can transfer arrays and strings, a big array with data is transferred when
+In this section we will describe in detail what happens during a
+request before the respective action is called, especially when sending a form.
+Because the HTTP protocol (and PHP) can only transfer arrays and strings, a large array with data is transferred when
 sending a form. In the action, domain objects are often expected as input
 parameter, so somehow the array must become an object. That is done by
-Extbase during the so called *Argument Mappings*. It
-makes it possible that as an user of Extbase you not only work with
+Extbase during the *Argument Mappings*. It
+makes it possible that as a user of Extbase you not only work with
 arrays, but you can change objects in forms or give over a complete object
 as *parameter* in links.
 
@@ -695,21 +693,21 @@ property for the ``blog`` object and fills it with the UID of the
 blog.
 
 Now on the server side a ``blog`` object must be created
-out of this information. This is the job of the property mapper. His
+out of this information. This is the job of the property mapper. Its
 operation method is shown in figure 9-3.
 
 For every argument it must be decided first whether a new object has
 to be created or if the work is based on an existing object. This will be
 decided based on the identity property ``__identity``. If this is
 not in the input data a new object is created. Otherwise the framework
-knows the object identity and can go on work with it.
+knows the object identity and can continue working with it.
 
 .. tip::
 
     When you take a look at what is transferred to the server by the
     new action of the blog example, you will find that no identity
     properties are transferred - in this case a new object is created as
-    desired.
+    intended.
 
 In the blog example from above the __identity property is available,
 therefore the object with the corresponding UID is fetched from the
@@ -725,7 +723,7 @@ clear</remark>
 
     Figure 9-3: The internal control flow of the property mapper.
 
-In our case not only the ``__identity`` property is sent,
+In our case not only is the ``__identity`` property sent,
 but also a new ``title`` and ``description`` for our
 blog. For safety reasons a *copy* of the persistent
 object is applied. The properties of the copy are changed as given in the
@@ -735,20 +733,20 @@ cycle of objects" in chapter 2), that is changes on the object are
 *not* automatically persisted. The changed copy is
 given to the action as argument.
 
-Now we have to code in our controller explicit that we want to
-replace the existing persistent ``blog`` object with our changed
-``blog`` object. For this the repository offers a method
+Now we have to explicitly tell our controller that we want to
+replace the existing persistent ``blog`` object with our modified
+``blog`` object. For this, the repository provides the method
 update()::
 
     $this->blogRepository->update($blog);
 
 With this the changed object will be made into the persistent
-object: The changes are stored permanent now.
+object: The changes are now permanently stored.
 
 .. sidebar:: Copies of objects
 
     Why a copy of an object is created when it is to be changed? Lets
-    have assume that the persistent object would be directly changed. In
+    assume that the persistent object would be directly changed. In
     this case an empty controller would be updating persistent
     objects::
 
@@ -757,8 +755,8 @@ object: The changes are stored permanent now.
             // object will be automatically persisted
         }
 
-    At first this is very in transparent and difficult to understand.
-    Besides of that, this procedure implies a big safety issue: When the
+    This is not transparent and difficult to understand.
+    Besides that, this procedure introduces a big safety issue: When the
     original object is changed it would be impossible to cancel the
     persisting of the changes. For this reason a copy of the object is
     returned for changed objects, so the developer of the extension has to
@@ -779,8 +777,8 @@ The generated URL contains the identity of the blog object:
 property mapper gets the blog object with the identity 47 from the
 repository and returns it directly without copying before.
 
-Now you know the argument mapping in detail an can use it in
-specific in your own projects.
+Now you know about argument mapping in grater detail an can begin to use 
+it in your own projects.
 
 After you have learned how you can make sure any invariants of
 domain objects, the focus will be directed to the secure programming of
