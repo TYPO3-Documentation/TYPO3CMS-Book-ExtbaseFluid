@@ -777,7 +777,7 @@ The generated URL contains the identity of the blog object:
 property mapper gets the blog object with the identity 47 from the
 repository and returns it directly without copying before.
 
-Now you know about argument mapping in grater detail an can begin to use 
+Now that you know about argument mapping in greater detail an can begin to use 
 it in your own projects.
 
 After you have learned how you can make sure any invariants of
