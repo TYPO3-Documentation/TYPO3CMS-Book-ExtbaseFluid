@@ -276,7 +276,7 @@ objects are to be validated.
 
 
 Validating in the domain model with your own validator class
-----------------------------------------------------------
+------------------------------------------------------------
 
 The ability to register validators in the
 model are especially useful when individual properties of the model
