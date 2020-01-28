@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
 .. _fluid:
+.. _fluid-start:
 
 =============================
 Styling the Output With Fluid
