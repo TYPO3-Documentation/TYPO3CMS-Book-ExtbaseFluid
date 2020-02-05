@@ -1,6 +1,9 @@
 .. include:: ../Includes.txt
 
-Configuring The Plugin
+.. _configuring-the-plugin:
+
+======================
+Configuring the Plugin
 ======================
 
 An extension normally offers a so called *Plugin* for the output of the data.
