@@ -28,31 +28,27 @@ The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework av
 
 **About this manual:**
 
-   This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
+This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
 
 **Official documentation:**
 
-   This document is included as part of the official TYPO3 documentation.
+This document is included as part of the official TYPO3 documentation.
 
-   If you find an error or something is missing, please:
-   `Report a Problem <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues/new>`__
+If you find an error or something is missing, please:
+`Report a Problem <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues/new>`__
 
 **For Contributors**
 
-   You are welcome to help in improving this guide. Just click on "Edit me on GitHub"
-   on the top right to submit your change request.
+You are welcome to help in improving this guide. Just click on "Edit me on GitHub"
+on the top right to submit your change request.
 
-   You can find out more about how to do this in :ref:`h2document:docs-contribute`.
+You can find out more about how to do this in :ref:`h2document:docs-contribute`.
 
-   Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:contact-us>`.
+Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:contact-us>`.
 
-   `GitHub repository <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/>`__
-   | `Issues <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues>`__
-   | :ref:`linktargets`
-
-**Sitemap:**
-
-   :ref:`sitemap`
+`GitHub repository <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/>`__
+| `Issues <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues>`__
+| :ref:`linktargets`
 
 .. toctree::
    :hidden:
