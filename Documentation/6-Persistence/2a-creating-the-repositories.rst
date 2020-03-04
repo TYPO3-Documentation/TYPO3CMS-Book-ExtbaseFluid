@@ -6,7 +6,7 @@ Creating the Repositories
 
 We have already introduced the Repositories in Chapter 3. They serve with
 capabilities to save and reaccess our objects. We set up such a Repository
-object for every Aggregate-Root object which are, then again, used for accessing
+object for every Aggregate-Root object which is, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
 :php:`\MyVendor\SjrOffers\Domain\Model\Organization` is such an Aggregate-Root object. The
 Repository's class name is derived from the class name of the Aggregate-Root
@@ -53,9 +53,9 @@ are of course accessible and overridable in the extending child derivations:
 -------------------
 
 Adds an object to the Repository which is then persistent in the sense of
-Domain-Driven Design. But be careful, it will not written (and enhanced with an
+Domain-Driven Design. But be careful, it will not be written (and assigned a
 `UID`) to the database before finishing the loop through the Extension, to be
-precise after the call of the method :php:`persistAll()` of the
+precise, after the call of the method :php:`persistAll()` of the
 `PersistenceManager`.
 
 
@@ -87,10 +87,10 @@ executes the query `SELECT COUNT`) and returns an Integer number.
 :php:`findByProperty($value)`, :php:`findOneByProperty($value)` and :php:`countByProperty($value)`
 --------------------------------------------------------------------------------------------------
 
-Those three methods help by finding one or several objects and by counting all
+Those three methods help to find one or several objects and to count all
 the objects that correspond to the given value. The substring *Property* must be
 replaced by the uppercase-written property name of the class that is managed by
-the Repository. The methods then only return the objects as well count the
+the Repository. The methods then only return the objects or count the
 objects whose properties *Property* correspond to the given value. Whereas the
 method :php:`findByProperty()` returns an Array of all the matching objects, the
 method :php:`findOneByProperty()` only returns the first object that was found.
@@ -109,7 +109,7 @@ Repository. Instead, it returns a Query object which can be helpful to assemble
 own queries to the Storage-Backend. The details for this procedure will be given
 in the following chapter.
 
-Before accessing the defined objects on the Repository you need to tell Extbase
+Before accessing the defined objects from the Repository you need to tell Extbase
 on which pages on TYPO3's page tree (see below for TYPO3's concept of the page
 tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
@@ -131,7 +131,7 @@ destination pages in the following rule hierarchy:
 * If the TypoScript-Setup of the page contains the definition of :typoscript:`config.tx_extbase.persistence.storagePid` with a comma-separated list of PIDs then those pages will be consulted.
 * If none of the cases from above applies, then the root page will be consulted for the objects.
 
-When insertion of new Domain objects happens, then the procedure will be as follows:
+When new Domain objects are inserted, then the procedure will be as follows:
 
 * If there's a TypoScript setup at :typoscript:`plugin.tx_extensionname.persistence.classes.*FullClassName*.newRecordStoragePid` with a single page value, then this is gonna be used.
 * If there's a TypoScript setup at :typoscript:`config. tx_extbase.persistence.classes.*FullClassName*.newRecordStoragePid` with a single page value, the this is gonna be used.
@@ -147,12 +147,11 @@ setting a new `pid`.
 .. note::
 
    Most occurring mistake for seemingly empty Repositories is a mis-configured
-   *Storage-PID*. Thus, you should firstly evaluate the Template Module whether
+   *Storage-PID*. Thus, you should first evaluate the Template Module whether
    it is set correctly.
 
 
-Besides of the options for setting the Page UID there exist two other
-possibilities for configuring the Persistence Layer:
+Besides the option for setting the Page UID, two other possibilities for configuring the Persistence Layer exist:
 *enableAutomaticCacheClearing* and *updateReferenceIndex*. The option
 :typoscript:`config.tx_extbase.persistence.enableAutomaticCacheClearing = 1` within the
 TypoScript setup leads to a deletion of the cache whenever the data is
@@ -163,7 +162,7 @@ rewritten. This option is normally activated.
 
    In TYPO3 each Content Element and Dataset which should be rendered in the
    Backend corresponds to a certain Page. Technically, a page is nothing more
-   than a a Node Element or a leaf in the virtual Page Tree. Every page is
+   than a Node Element or a leaf in the virtual Page Tree. Every page is
    associated with a unique Page ID (PID). Some of the pages are reachable via
    a URL and TYPO3 renders and delivers them (usually in HTML). For example,
    the URL *http://www.example.com/index.php?id=123* requests the Page with the
@@ -178,24 +177,25 @@ rewritten. This option is normally activated.
    Usually, data sets will be saved into Folders in the Page Tree though the
    pages using those data sets will be somewhere else. If their cache should be
    cleared as well then you should set up their PIDs in the field *TSConfig* of
-   the page's preferences of the directory. For example, out Offers will be
+   the page's preferences of the directory. For example, our Offers will be
    shown on the pages with the PIDs 23 and 26 (let's say for a Single and a
-   List View). Then we will configure the variable `TCEMAIN.clearCacheCmd =
-   23,26` in the page preferences of the SysFolder. Then the cache of these
+   List View). Then we will configure the variable 
+   `TCEMAIN.clearCacheCmd=23,26` 
+   in the page preferences of the SysFolder. Then the cache of these
    pages will be cleared as well and changes of an offer will show up
    immediately.
 
-Internally, TYPO3 manages an index of all relationships between two data sets the
+Internally, TYPO3 manages an index of all relationships between two data sets, the
 so-called *RefIndex*. Due to this index it's possible to show the number of
 associated data sets in the list module's column *[Ref.]*. By clicking on the
 number you get further information about the incoming and outgoing references
-of the dataset. This index is automatically updated when any data sets get
-edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex =
-1` effects an update when data sets get edited in the Frontend though it is
+of the dataset. This index is automatically updated when any data sets are
+edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex = 1` 
+causes an immediate update when data sets are edited in the Frontend though it is
 normally deactivated due to its huge effects on performance.
 
-Before calling a Repository's methods they need to be instantiated at first
-with use of the ObjectManager or via dependency injection.
+Before calling a Repository's methods, they need to be instantiated 
+by the ObjectManager or via dependency injection first.
 
 .. code-block:: php
    :caption: Dependency injection example from chapter 2
@@ -220,14 +220,14 @@ with use of the ObjectManager or via dependency injection.
 .. warning::
 
    Repositories are *Singletons* therefore there may only exist one instance of
-   each class at one time of script-execution. If a new instance is requested,
-   the system will prove whether an instance of the requested object exists and
-   will instead of creating a new object return the existing one. This is
+   each class at one point in time during script-execution. If a new instance is requested,
+   the system will check whether an instance of the requested object exists already. In that case, 
+   the system will return the existing object instead of creating a new one. This is
    ensured by using the dependency injection. Thus, never ever use the PHP syntax
-   keyword :php:`new` for creating a repository object because the objects that
-   are placed there will not be automatically persisted.
+   keyword :php:`new` for creating a repository object because the new objects
+   will not automatically be persisted.
 
-Now you know all the basic tools for durable persistation and recovering of your
+Now you know all the basic tools for persisting and recovering your
 objects. Extbase offers a lot more sophisticated functionalities for special
 needs because it happens quite frequently that the standard methods of saving
 and seeking data in a repository are not sufficient for the individual case.
