@@ -13,7 +13,9 @@ In Extbase the controllers mostly exist as
 :php:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
-shortened version of the :php:`BlogController`:
+shortened version of the :php:`BlogController`. Please note that for brevity
+the doc comments and some methods have been removed. Find the full example at 
+:file:`EXT:blog_example/Classes/BlogController.php`:
 
 .. code-block:: php
    :caption: Classes/BlogController.php
@@ -52,8 +54,6 @@ shortened version of the :php:`BlogController`:
         public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
         {
             $this->blogRepository->update($blog);
-            // this does currently not work, use $this->blogRepository->add($blog); instead
-            // see issue: https://forge.typo3.org/issues/76876
             $this->redirect('index');
         }
 
