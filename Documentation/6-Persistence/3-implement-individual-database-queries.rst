@@ -141,6 +141,7 @@ respectively negate a result. The following Comparing operations are acceptable:
     lessThanOrEqual($propertyName, $operand)
     greaterThan($propertyName, $operand)
     greaterThanOrEqual($propertyName, $operand)
+    between($propertyName, $operandLower, $operandUpper)
 
 The method ``equals()`` executes a simple comparison between the property's
 value and the operand which may be a simple PHP data type or a Domain object.
