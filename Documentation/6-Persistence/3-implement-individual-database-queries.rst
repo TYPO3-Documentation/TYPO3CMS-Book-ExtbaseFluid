@@ -141,7 +141,7 @@ respectively negate a result. The following Comparing operations are acceptable:
     lessThanOrEqual($propertyName, $operand)
     greaterThan($propertyName, $operand)
     greaterThanOrEqual($propertyName, $operand)
-    between($propertyName, $operandLower, $operandUpper)
+    between($propertyName, $operandLower, $operandUpper) // inclusive comparison
 
 The method ``equals()`` executes a simple comparison between the property's
 value and the operand which may be a simple PHP data type or a Domain object.
@@ -164,12 +164,11 @@ a multi-valued operand (``$organizations``).
 
 .. note::
 
-    The methods ``in()`` and ``contains()`` were introduced in Extbase version
-    1.1. (TYPO3 4.3) If you pass an empty multi-valued property value or an empty
-    multi-valued operand (e.g. an empty Array) to them you always get a *false*
-    as return value for the test. Thus you have to prove if the operand
+    If you pass an empty multi-valued property value or an empty
+    multi-valued operand (e.g. an empty Array) to ``in()``, you always get *false*
+    as return value. Thus you have to prove if the operand
     ``$organizations`` of the method call ``$query->in('organization',
-    $organizations)`` contains sane values or if it is just an empty Array. This
+    $organizations)`` contains sane values or if it is just an empty Array first. This
     is dependent on your domain logic. In the last example the method
     ``findOfferedBy()`` would return an empty set of values.
 
@@ -187,17 +186,6 @@ equal to 16. Assuming that a Relational Database System is used in the Persisten
 Backend, this is internally solved by a so-called *INNER JOIN*. All relational
 types (1:1, 1:n, m:n) and all comparison operators are covered by this feature.
 
-.. note::
-
-    The path notation was introduced in Extbase 1.1 (TYPO3 4.3) and is derived from the
-    *Object-Accessor* notation of Fluid (see Ch. 8). In Fluid you may access
-    object properties with the notation ``{organization.administrator.name}``.
-    However, Fluid does not support the notation
-    ``{organization.offers.categories.title}``, so that in
-    ``$query->equals('offers.categories.title', 'foo')`` it is possible to die,
-    due to Fluid's limitation that property access is not possible in a
-    "concatenated way".
-
 Besides comparison operators, the ``Query`` object supports Boolean
 Operators such as::
 
@@ -208,7 +196,7 @@ Operators such as::
 The methods above return a ``Constraint`` object. The resulting ``Constraint``
 object of ``logicalAnd()`` is true if both given parameters ``$constraint1`` and
 ``$constraint2`` are true. It's sufficient when using ``logicalOr()`` to
-be true if only one of the given parameters is true. Since Extbase 1.1 (TYPO3 4.3), both methods
+be true if only one of the given parameters is true. Both methods
 accept an Array of constraints. Last, but not least, the function
 ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
@@ -341,8 +329,7 @@ order. A complete sample for specifying a sort order looks like this:
 
 Multiple orderings are processed in the specified order. In our sample the offers are ordered first
 by the name of the organization, then inside the organization by the title of the offers, both in ascending
-order (thus from A to Z). Since Extbase 1.1 (TYPO3 4.3), you can use TypoScript-style point notation for
-specifying the property names.
+order (thus from A to Z). You can use point notation for specifying the property names.
 
 If you need only an extract of the result set, you can do this with the two parameters, ``Limit``
 and ``Offset``. Assuming you want to get the tenth up to thirtieth offers from the overall query result
@@ -408,14 +395,14 @@ is translated by Extbase to the following query:
 
 The method ``execute()`` per default returns a ready built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
-e.g. if you want to manipulate them before you build objects out of them. For this, you have to change
-the settings of the ``Query`` object.
+e.g. if you want to manipulate them before you build objects out of them. For this, you have to execute the
+method with its parameter ``$returnRawQueryResult`` set to true.
 
 .. code-block:: php
 
-    $query->getQuerySettings()->setReturnRawQueryResult(TRUE);
+    $query->execute(true);
 
-Since Extbase 1.2 (TYPO3 4.4), the method ``execute()`` returns a multidimensional array with the object data.
+The method ``execute()`` will then return a multidimensional array with the object data.
 Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
 look at an object with a single value property.
 
@@ -499,7 +486,7 @@ In the domain model the property ``organization`` of the offer is annotated with
 This annotation instructs Extbase to load the properties of the object only when they are really
 needed (so called *lazy loading*).
 
-Beside ``setReturnRawQueryResult()``, there are three additional settings for the execution of a query.
+There are three additional settings for the execution of a query.
 All settings are occupied with default values that are set when the ``Query`` object was created by
 ``$this->createQuery()``. The settings are enclosed in an own ``QuerySettings`` object that you can get
 from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all settings in summary.
@@ -509,9 +496,6 @@ from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all
 +-------------------------------+-------------------------------------------------------------+---------+
 | Setting                       | If this attribute is set (=true), ...                       | Default |
 +===============================+=============================================================+=========+
-| ``setReturnRawQueryResult()`` | ... instead of the ready built object graphs, the database  | false   |
-|                               | tuples are returned as an array                             |         |
-+-------------------------------+-------------------------------------------------------------+---------+
 | ``setRespectStoragePage()``   | ... the result set is limited to these tuples/objects that  | true    |
 |                               | are assigned to a given page or directory in the backend    |         |
 |                               | (e.g. ``pid IN (42,99)``)                                   |         |
@@ -521,13 +505,10 @@ from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all
 |                               | or for all languages (e.g. ``sys_language_uid IN (-1,0)``)  |         |
 |                               | This setting is mostly used for internal purposes.          |         |
 +-------------------------------+-------------------------------------------------------------+---------+
-| ``setRespectEnableFields()``  | ... the result set is limited to these tuples/objects that  | true    |
+| ``setIgnoreEnableFields()``  | ... the result set is limited to these tuples/objects that  | false    |
 |                               | at the present moment can be viewed by the current user     |         |
 |                               | (e.g. ``deleted=0 AND hidden=0``)                           |         |
 +-------------------------------+-------------------------------------------------------------+---------+
-
-While the setting ``setReturnRawQueryResult()`` is active by ``matching()`` and ``statement()``,
-the remaining three settings are only effective by ``matching()``.
 
 
 Beside the method ``execute()``, the ``Query`` object provides the method ``count()`` for disposal.
