@@ -435,15 +435,6 @@ you see the most important properties of the action controller:
 `$view`
     The view used of type :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface`.
 
-`$viewObjectNamePattern`
-    If no fluid template is found for the current action, Extbase attempts to find a
-    PHP-View-Class for the action. The naming scheme of the PHP-View-Class can be
-    changed here. By default names are used according to the scheme
-    *@vendor\@extension\View\@controller\@action@format*. All string-parts marked with @
-    are replaced by the corresponding values. If no view class with this name is
-    found, @format is removed from the pattern and again tried to find a view class
-    with that name.
-
 
 .. _class_hierarchy-most_important_api_methods_of_action_controller:
 
