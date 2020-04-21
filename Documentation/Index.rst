@@ -6,7 +6,7 @@ Developing TYPO3 Extensions with Extbase and Fluid
 ==================================================
 
 :Version:
-      10.0 (development)
+      |release|
 
 :Language:
       en
