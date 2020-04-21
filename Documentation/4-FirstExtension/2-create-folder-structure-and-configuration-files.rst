@@ -71,7 +71,7 @@ of the *Core Api Reference* manual.
        'version' => '0.0.0',
        'constraints' => [
            'depends' => [
-               'typo3' => '9.5.0-9.5.99',
+               'typo3' => '10.4.0-10.4.99',
            ],
        ],
    ];
@@ -103,7 +103,7 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
             }
         },
         "require": {
-            "typo3/cms-core": ">=9.5 <10.0.0"
+            "typo3/cms-core": ">=10.4 <11.0.0"
         }
     }
 
