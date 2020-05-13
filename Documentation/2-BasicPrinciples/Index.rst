@@ -19,7 +19,7 @@ various programmers. Extensions are used in all sorts of projects: some are
 written for use in small organizations or even in private,
 others are developed in big teams in the context of major projects.
 As a newbie writing your first extension, you may struggle with some
-first-time problems concerning TYPO3, as many big projects are base
+first-time problems concerning TYPO3, as many big projects are based
 on homemade Frameworks. So style and architecture of today's extensions
 are quite heterogeneous. Hence, it is often very difficult to extend or
 modify existing extensions for your own projects. Before you can do that,
