@@ -105,7 +105,7 @@ way:
 
     The TYPO3 Core API describes in detail the construction of the
     :file:`locallang.xlf` file
-    (*https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/Internationalization/XliffFormat.html*).
+    (*https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Internationalization/XliffFormat.html*).
 
 Now the placeholder for the translated terms must be inserted into
 the template. To do this, Fluid offers the ViewHelper
