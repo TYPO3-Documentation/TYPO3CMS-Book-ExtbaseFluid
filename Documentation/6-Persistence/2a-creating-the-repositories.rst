@@ -4,7 +4,7 @@ Creating the Repositories
 =========================
 
 
-We have already introduced the Repositories in Chapter 3. They serve with
+We have already introduced the Repositories in :ref:`the-blog-example`. They serve with
 capabilities to save and reaccess our objects. We set up such a Repository
 object for every Aggregate-Root object which are, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
