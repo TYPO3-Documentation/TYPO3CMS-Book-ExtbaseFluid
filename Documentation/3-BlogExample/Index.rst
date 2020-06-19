@@ -23,7 +23,7 @@ background. This knowledge will then help you in the creation of your own
 extension.
 
 If you are looking for a manual specifically on creating an extension,
-chapter 4 will show you the right set of tools. However, we recommend to
+:ref:`creating-a-first-extension` will show you the right set of tools. However, we recommend to
 work on the fundamentals in this chapter. The journey that lies ahead
 of us could also have the title "Europe in five days." If you discover nice
 places, you should visit them later without the travel group.
