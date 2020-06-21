@@ -230,7 +230,7 @@ method ``newAction()``.
    object, the above-mentioned ``PropertyManager`` checks if any errors are encountered
    during the validation. The validation effected on the base of the property
    definitions of the target object. More about the subject validating you will find
-   in the section "Validating domain objects" in chapter 9.
+   in the section :ref:`validating-domain-objects`.
 
 The post is added to the blog with ``$blog->addPost($newPost)``. After that the
 following processing is forwarded by ``$this->redirect([...])`` to the method
