@@ -5,7 +5,7 @@ An excursion to the database
 
 During our trip to the database bear in mind that we are in the brush of the
 Extbase Framework - an area you wouldn't enter without travelling experience or
-a travel guide. Later you will use the Query Object to create your own requests.
+a travel guide. Later on you will use the Query Object to create your own requests.
 If you are not interested in the background of the data storage, but trust
 that extbase will take care about this, you can skip this chapter.
 
