@@ -11,7 +11,7 @@ Extbase extensions.
 
 .. note::
 
-    Under https://docs.typo3.org/typo3cms/CheatSheets.html you will find
+    Under https://docs.typo3.org/m/typo3/docs-cheatsheets/master/en-us/CheatSheets.html#cheat-sheets you will find
     a useful Cheat Sheet for Extbase and Fluid.
 
 
