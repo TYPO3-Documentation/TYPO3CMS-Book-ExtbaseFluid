@@ -980,7 +980,7 @@ does all the translation. The method can be called like this:
 `\TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)`
 
 `$key`
-    The identifier to be translated. If then format *LLL:path:key* is given, then this
+    The identifier to be translated. If the format *LLL:path:key* is given, then this
     identifier is used and the parameter `$extensionName` is ignored. Otherwise, the
     file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded
     and the resulting text for the given key in the current language returned.
