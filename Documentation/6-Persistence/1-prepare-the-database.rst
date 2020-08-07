@@ -105,11 +105,11 @@ changed the last time. Most often this relates to the timestamp the Domain
 Model was changed the last time.
 
 `deleted` When this fields' value differs from 0, TYPO3
-handles its corresponding record as physically deleted. Thus it won't show
+handles its corresponding record as if it was physically deleted. Thus it won't show
 off neither in the Backend nor in the Frontend. It can be restored by
 either setting the field to 0 or much more easily be dug out by using the
 system extension *Recycler*. Extbase will set this
-field whenever a record is deleted if the field is existing. Additionally,
+field whenever a record is deleted in case that this field exists. Additionally,
 it holds all the references to other records so that whole
 *Aggregates* may be restored.
 
@@ -117,13 +117,13 @@ it holds all the references to other records so that whole
 this field's value differs from 0.
 
 `starttime` UNIX timestamp when the record first showed
-up in the Frontend. Extbase respects that when it reads the values from
-the database thus it creates the Domain Objects not before that
+up in the Frontend. Extbase uses this timestamp when it reads the record values from
+the database so that it does not create the Domain Objects before that
 time.
 
 `endtime` UNIX timestamp when the record got "invisible"
 in the Frontend (i.e. when its hidden value got non-zero). As well as with
-the *starttime* field, Extbase respects this value when
+the *starttime* field, Extbase uses this value when
 it reads from the database.
 
 `cruser_id` The UID of the Backend user who created the
@@ -153,10 +153,10 @@ language and its translation in the Backend.
 used by TYPO3 for the management of the Versioning and the Workspaces. If
 they are not needed, they may be omitted.
 
-All fields but `uid` and `pid` are optional.
-However, we highly recommend creating the fields `deleted`,
+All fields except `uid` and `pid` are optional.
+However, we highly recommend to create the fields `deleted`,
 `hidden`, `fe_group`, `starttime` and
-`endtime` additionally to ensure the access control. If the
+`endtime` to enable proper access control. If the
 Domain Objects are multi-lingual the fields `sys_language_uid`,
 `l18n_parent`, `l18n_diffsource` are
 essential.
@@ -181,8 +181,7 @@ case the field `tstamp` takes an unsigned Integer number
 (`unsigned`). The default value that is used if no value is
 given when the record is created is the number 0 (`DEFAULT 0`).
 The field value mustn't be NULL (`NOT NULL`) and the field
-definitions are separated by a comma.`tstamp int(11) unsigned DEFAULT
-'0' NOT NULL,`
+definitions are separated by a comma. `tstamp int(11) unsigned DEFAULT '0' NOT NULL,`
 
 .. note::
 
@@ -301,7 +300,7 @@ types.
 |Floating-point                |`decimal(p[,s])`    |(saved as string of characters)                  |
 +------------------------------+--------------------+-------------------------------------------------+
 |(amounts of money, measurement|`float(p[,s])`      |-1.79E+308 to +1.79E+308 (eventually limited     |
-|values etc.)                  |                    |through the precision)                           |
+|values etc.)                  |                    |by the precision)                           |
 |                              |                    |                                                 |
 +------------------------------+--------------------+-------------------------------------------------+
 
@@ -329,8 +328,8 @@ There are many relations between the objects in our Domain that have
 to be persisted in the database for being able to resolve them at a later
 time. It depends on the type of relationship how they can be persisted and
 Extbase distinguishes between several types as already defined in Chapter
-5 "Implement Relationships between Domain Objects". In memorial to Chapter
-5, following a short summary of the types:
+5 "Implement Relationships between Domain Objects". As a reference to Chapter
+5, find here a short summary of the types of relationships:
 
 *1:1-Relationship:* An offer has exactly one
 range of time when it is valid (dateRange).
@@ -374,9 +373,8 @@ attached to several offers.
      expressions like `uid IS NULL`. However, Extbase
      automatically figures out the right way for you.
    * `NULL` values in queries like
-     `DISTINCT`, `ORDER BY` and `GROUP
-     BY` are seen the same way and are thus grouped
-     together.
+     `DISTINCT`, `ORDER BY` and `GROUP BY` are seen 
+     the same way and are thus grouped together.
    * Fields permitting `NULL` values take more memory,
      because it is harder to improve the database engine for those SQL
      queries.
@@ -396,10 +394,10 @@ table is stored in a field of the parent table or vice versa.
 *Intermediate Table:* For persisting the
 information of the relationships between two classes a special table is
 created - the Intermediate Table. The UID of the parent table as well as
-the UID of the child table is stored as an own data set of the
-Intermediate Table. Additionally, there can be stored information about
-assorting, the visibility and the access control information. They
-concern the relationship of the related objects and not the objects
+the UID of the child table is stored as a data set in the
+Intermediate Table. Additionally, information about
+assorting, visibility and access control can be stored. They
+define the objects' relationships and not the objects
 themselves.
 
 .. warning::
@@ -432,7 +430,7 @@ supported.
 |Intermediate Table     |n    |n    |y    |y    |
 +-----------------------+-----+-----+-----+-----+
 
-   Combination of reference type and technical storage
+   Combination of relationship type and technical storage
 
 Thus, every type of relationship has its own recommended form of
 persistence that will be explained subsequently. In case of a
@@ -449,13 +447,13 @@ Key field of the parent object:
 
 The default values of '0' (or the `NULL` values if they were explicitly allowed)
 stand for *"The dateRange has not yet been assigned."*.
-Later on, Extbase computes the `DateRange`-object out of the
+Later on, Extbase computes the `DateRange`-object from the
 uid.
 
 In a `1:n` relationship there are two possibilities.
 Either every `uid` value is stored as comma-separated list in a
 field of the parent object. Or every child object contains the parental
-uid in a foreign key field. The further is mostly used by TYPO3 in its
+uid in a foreign key field. The comma-separated list is mostly used by TYPO3 in its
 core but we discourage that solution because of its drawbacks: For
 example, comma-separated fields complicate the search and hinder the
 indexation in the database. Furthermore, the creation and deletion of child

@@ -6,10 +6,10 @@ Configure the Backend Input Forms
 
 In our sample application the data of our extension should be editable in the
 Backend by the editors of the youth club organisation and - within certain
-limitations - in the Frontend as well providing functionalities for creation,
-update and deletion of the organisation's data. In this chapter we firstly
+limitations - in the Frontend as well to provide functionalities for creation,
+update and deletion of the organisation's data. In this chapter, we first
 configure the Backend's form inputs for easy access to the database's contents.
-The forms providing the management functionalities are stored in a certain
+The forms that provide the management functionalities are stored in a 
 PHP-Array called `Table Configuration Array (TCA)`.
 The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`
 Example: The TCA for the database table tx_sjroffers_domain_model_organization is therefore in the
@@ -18,11 +18,11 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
 .. note::
 
    The configuration options that can be set in the TCA are very extensive and
-   a broad description of them would cause the book being bursting at its
+   a broad description of them would cause the book to burst at its
    seams. However, each and every option is well documented in the
    Online-documentation :ref:`TCA Reference <t3tca:start>`
 
-Firstly, you should dip into the top layer of the TCA hierarchy. The TCA
+First, you should dip into the top layer of the TCA hierarchy. The TCA
 for table *tx_sjroffers_domain_model_organization* is in the
 file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php` and has this structure:
 
@@ -41,16 +41,16 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php` and ha
        ],
    ];
 
-The structure for the other tables like tx_sjroffers_domain_model_offer and tx_sjroffers_domain_model_person are equal.
+The structure for the other tables like tx_sjroffers_domain_model_offer and tx_sjroffers_domain_model_person are the same.
 
-These returned arrays in these files will be added to one big array :php:`$GLOBALS['TCA']`. You can debug the configuration
+The returned arrays will be added to one big array :php:`$GLOBALS['TCA']`. You can debug the configuration
 for the table `tx_sjroffers_domain_model_organization` in the TYPO3 backend module `System -> Configuration -> $GLOBALS['TCA'] (Table configuration array) -> tx_sjroffers_domain_model_organization`
 
-The associative array, that is returned, contains all information of all the tables of the TYPO3
+The associative array that is returned contains all information of all the tables of the TYPO3
 instance. Thus, we use the key `tx_sjroffers_domain_model_organization` and as
-value we use another nested Array holding the configurations of the
+value we use another nested Array that holds the configurations of the
 corresponding table. Then again, this Array is separated into several parts
-whose names are the key of the nested Array.
+with names that are the keys of the nested Array.
 
 .. code-block:: php
 
@@ -79,11 +79,11 @@ whose names are the key of the nested Array.
    ];
 
 
-Subsequently, you will find the names of the parts and their meaning.
+Below, you find the names of the parts and their meaning.
 
 `ctrl`
-This area contains configuration options that are used overall the scope of the
-table. This covers the naming of the table in the Backend, which table fields
+This part contains configuration options that are used in the scope of the
+table. This covers the name of the table in the Backend, which table fields
 contain which meta data and the behavior of the table on creation and movement
 of its row sets. Meta data cover information about Visibility and Access
 Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
@@ -95,14 +95,14 @@ Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
 `interface`
 This part contains information about the representation of the table data in the
 Backend's List Module. The key `showRecordFieldList` contains a
-comma-separated list of field values whose values will be shown in the info
+comma-separated list of field values that will be shown in the info
 dialogue of the table. This dialogue may be reached through a right-click on the
-icon of the row set choosing the `Info` option. Altering the option
-`maxDBListItems` you can set how many row sets will be shown in the List Module
+icon of the row set through the `Info` option. The option
+`maxDBListItems` allows you to set how many row sets will be shown in the List Module
 without switching to the detail view of the database table. Then again, the
 number of row sets shown on a page in this perspective may be set via
-`maxSingleDBListItems`. Setting the option `always_description` to *true*
-the corresponding helping texts always show up.
+`maxSingleDBListItems`. If the option `always_description` is set to *true*,
+the corresponding help texts always show up .
 
 
 
@@ -121,29 +121,29 @@ should emerge at the Input Form. An example of the table
       '0' => ['showitem' => 'hidden,status,name,address;;1;;description,contacts,offers,administrator'],
    ],
 
-Even though the behavior and the appearance of the table fields is configured in
-the section `columns` they must be explicitly listed in here so that they show
-up in the input form. This spares the trouble you would have when commenting out
-or moving away code that is already configured and a corresponding field should
+Even though the behavior and the appearance of the table fields are configured in
+the section `columns`, it is required to list them explicitly here so that they show
+up in the input form. This prevents trouble when commenting out
+or moving code that is already configured and a corresponding field should
 just be hidden or the overall order of the Input Form's table fields should be
 changed.
 
 The behaviour and the appearance of a field may be altered through several
 additional parameters - as well as with the field `address`. The notion
 convention of those additional params may seem a bit unfamiliar since they are
-appended behind the fieldname and separated through a semi-colon. On first
-position there is the fieldname; on the second an alternative naming fieldname;
+appended behind the fieldname and separated through a semi-colon. At the first
+position there is the fieldname; at the second an alternative name of the fieldname;
 at third place follows the number of the palette (refer to the next book
 section); the fourth position holds extensive options which are separated
 through colons and the last place contains information about the appearance
 (e.g. color and structure). The information at the fourth place allow the use of
 the *Rich Text Editor*. For a full list of the options refer to the already
-mentioned TYPO3-Online documentation for the TYPO3-Core API.
+mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi>`.
 
 `palettes`
 Palettes are used to collect occasionally used fields and show them up on
-demand. The Backend user therefore has to choose the Extended View in the
-Backend's List module. Palettes are connected to a durable visible field. An
+demand. The Backend user has to choose the Extended View in the
+Backend's List module to view these. Palettes are connected to a durable visible field. An
 example from the table `tx_sjroffers_domain_model_organization` is:
 
 .. code-block:: php
@@ -174,7 +174,7 @@ configuration for the input of the name of an organisation would be as follows:
       ],
    ],
 
-The field name is *name*. Firstly, we define some options that are independent
+The field name is *name*. First, we define some options that are independent
 from the field's type. This contains foremostly the field label (*label*), the
 conditions for the visibility of the field (`exclude`, `displayCond`) as
 well as information for its localization (`l10n_mode`, `l10n_cat`). The
@@ -182,16 +182,16 @@ fieldname is, in our case, localized and will be taken from a language file
 (head to Ch. 9).
 
 The array connected to `config` contains the field type and its corresponding
-configuration. TYPO3 serves with a great range of pre-defined field types, e.g.
+configuration. TYPO3 provides a great range of pre-defined field types, e.g.
 text fields, date fields or selection fields. Each and every type has its own
 presentation and procession options. Consecutively, you will find a list of all
-the field types with their usual configurations:
+the field types with their usual configuration:
 
 
 Field type "input"
 ------------------
 
-The *input* field type accepts one-line character strings like names and
+The *input* field type accepts a one-line character string like names and
 telephone numbers. The configuration of a name field (see Fig. 6-1) looks as
 follows:
 
@@ -207,8 +207,8 @@ follows:
       ],
    ],
 
-The given string will be truncated to 256 signs (`'max' => 256`), ending
-spaces will be dropped (`trim`) and the persistence of an empty field will be
+The given string will be truncated to 256 characters (`'max' => 256`), ending
+spaces will be dropped (`trim`) and the status of this field being empty will be
 prevented (`required`).
 
 .. note::
@@ -235,9 +235,9 @@ The field type `input` may be used for date and time inputs:
       ],
    ],
 
-The value then will be tested for being given in a sane date format.
-Simultaneously, this leads to the rendering of a collapsable calendar page in
-shape of an icon right to the input field which is shown in Fig. 6-2:
+The value then will be tested for being given in an appropriate date format.
+Simultaneously, this leads to the rendering of a collapsible calendar page with 
+an icon right to the input field which is shown in Fig. 6-2:
 
 .. figure:: /Images/6-Persistence/figure-6-2.png
    :align: center
@@ -312,8 +312,8 @@ or recommended training levels of a certain exercise.
       ],
    ],
 
+.. <!-- TODO: look, how math is being processed for the coming exp-value -->
 
-<!-- TODO: look, how math is being processed for the coming exp-value -->
 The value that is written to the database is of type Integer. This will be
 computed by bitwise addition of the checkboxes states (which can be 1 or 0). The
 first element (Level 1) is the least significant Bit (= 2^0 = 1). The second
@@ -348,7 +348,7 @@ Fig. 6-6), e.g. the sex of a person or the color of a product.
    ],
 
 The options (*items*) are given in an array and each option is an array itself
-containing the label and the key used for persist the selected option in the
+containing the label and the key used to persist the selected option in the
 database.
 
 .. figure:: /Images/6-Persistence/figure-6-6.png
@@ -415,7 +415,7 @@ Field type "group"
 ------------------
 
 The "group" field type is very flexible in its use. It can be used to manage
-references to resources to the filesystem or rowsets of a database (see Fig. 6-9).
+references to resources of the filesystem or rowsets of a database (see Fig. 6-9).
 
 .. code-block:: php
 
@@ -436,7 +436,7 @@ The combination of `type` and `internal_type` specifies the field's type.
 Field type "none"
 -----------------
 
-Fields of this type show up the raw data values which cannot be edited (see Fig. 6-10).
+Fields of this type show the raw data values which cannot be edited (see Fig. 6-10).
 
 .. code-block:: php
 
@@ -459,7 +459,7 @@ shown as a raw number.
 Field type "passthrough"
 ------------------------
 
-The field type "passthrough" is for data which are processed internally but cannot
+The field type "passthrough" is for data that is processed internally but cannot
 be edited or viewed in the form. An example for that would be information to
 references (foreign keys).
 
@@ -481,7 +481,7 @@ Field type "user"
 
 User generates free definable form fields which can be processed by any PHP
 function. For further information, refer to the documentation which is available
-online and to the TYPO3-Code API.
+online and to the :ref:`TYPO3-Core API <t3coreapi>`.
 
 
 Field type "flex"
@@ -491,7 +491,7 @@ The field type "flex" manages complex inline form fields (*FlexForms*). The
 form data will be saved as XML data structure in the database fields.
 Extbase uses FlexForms for persisting plugin configuration but not to save
 domain data. If your plugin data will be rather complex we encourage you to
-design an own backend module for them (refer to Ch. 10).
+design your own backend module for them (refer to Ch. 10).
 
 
 Field type "inline"
@@ -526,7 +526,7 @@ representation of the connected objects.
 .. figure:: /Images/6-Persistence/figure-6-11.png
    :align: center
 
-   Figure 6-11: An example for the field type "irre".
+   Figure 6-11: An example for the field type "inline".
 
 Extbase supports the most important aspects of *IRRE* with only one exception:
 *IRRE* allows a temporary table of an `m:n-relationship` to be enhanced by
@@ -557,11 +557,10 @@ the music titles. Currently, *IRRE* only supports this option for
 m:n-relationships.
 
 Every music track on the CD is given a unique track number. However, the track
-number is a neither a property of the CD nor that of a track. It's semantically
-corresponding to the relationship *between* them. Thus, IRRE provides the option
+number is neither a property of the CD nor that of a track. It semantically
+corresponds to the relationship *between* them. Thus, IRRE provides the option
 to persist them within the temporary table and this can always be modelled into
-the Domain model which gets the following structure: `CD --1:n-- Track --n:1--
-Title`.
+the Domain model which gets the following structure: `CD --1:n-- Track --n:1--Title`.
 
 Let's change the configuration of the table `tx_myext_domain_model_track` to a
 simple 1:n-relationship with `cd` as a foreign key.
@@ -579,7 +578,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the Online documentation of the *TYPO3-Core API* describes the
+Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
@@ -596,12 +595,12 @@ configuration of products with their according categories:
    ],
 
 This second option deserves some additional kudos because it does not need a
-TCA-configuration for the temporary table *tx_myext_product_category_mm* because
-you don't need to show up or edit the whole table or parts of it in the Backend;
-the SQL definition is sufficiently.
+TCA-configuration for the temporary table *tx_myext_product_category_mm*. 
+You don't need to show up or edit the whole table or parts of it in the Backend -
+the SQL definition is sufficient.
 
 Those are the summarized configuration possibilities within the TCA. As you see,
-the huge count of options can be overwhelming for the novice. But in future,
+the huge count of options can be overwhelming for the novice. But in the future,
 they can be auto-generated by the Extension Builder (refer to Ch. 10).
 
 
@@ -628,7 +627,7 @@ As already mentioned, the TCA is stored in a file with the database table name a
          'enablecolumns' => [
             'disabled' => 'hidden'
          ],
-         'iconfile' => 'EXT:sj_roffers/Resources/Public/Icons/Icon_tx_sjroffers_domain_model_organization.svg'
+         'iconfile' => 'EXT:sjr_offers/Resources/Public/Icons/Icon_tx_sjroffers_domain_model_organization.svg'
       ],
       'interface' => [
          'showRecordFieldList' => 'status,name,address,telephone_number,telefax_number,url,email_address,description,contacts,offers,administrator'

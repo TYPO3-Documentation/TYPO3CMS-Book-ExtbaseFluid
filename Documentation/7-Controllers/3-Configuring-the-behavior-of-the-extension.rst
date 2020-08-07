@@ -52,10 +52,12 @@ we are used to do.
    recommend, though, to prepare all parameter coming from outside
    (settings, form input) before passing them on to the two other
    components Model and View.
-   </tip>In this chapter you've learned how to set the Objects of your domain
-   in motion and how to control the flow of a page visit. You now are able to
-   realize the two components *Model* and
-   *Controller* of the MVC paradigm inside your extension.
-   In the following chapter, we will address the third component, the
-   *View*. We'll present the substantial scope of the
-   template engine Fluid.
+   
+
+In this chapter you've learned how to set the Objects of your domain
+in motion and how to control the flow of a page visit. You now are able to
+realize the two components *Model* and
+*Controller* of the MVC paradigm inside your extension.
+In the following chapter, we will address the third component, the
+*View*. We'll present the substantial scope of the
+template engine Fluid.
