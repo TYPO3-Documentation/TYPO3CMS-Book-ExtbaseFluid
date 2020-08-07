@@ -14,6 +14,8 @@ are located in two different files.
 In the file :file:`EXT:sjr_offers/ext_tables.php` you have to register every plugin as
 a content element with TYPO3 using the static method registerPlugin().
 
+.. this isn't text for the srj example - correct?
+
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

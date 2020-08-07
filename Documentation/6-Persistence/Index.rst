@@ -10,12 +10,11 @@ As already insinuated in previous chapters it is the Persistence Layer which
 takes care about conserving Domain Objects durably. Thus, in this chapter we
 will discuss the steps being important for doing that.
 
-It is important to get a grasp of the lifecycle of a Domain Object to fully
-understand the Persistence Layer. When instantiating a Domain Object we essentially
-put its data into a certain sector of the Main Memory. At that time, it is in
-a transient, i.e. volatile, state. When TYPO3 delivered the rendered website
-the sector of the Main Memory is freed by PHP and may be overwritten with
-other data. Thereby the saved data will be lost together with the Domain Object.
+It is important to understand  the lifecycle of a domain object to fully
+understand the persistence layer. When we instantiate a domain object, we essentially
+store it in memory. It is then in a transient (or volatile) state. 
+When TYPO3 delivers the rendered website, PHP frees up this allocated memory. 
+This means that the saved data will be lost and thus also the domain object.
 
 .. note::
 

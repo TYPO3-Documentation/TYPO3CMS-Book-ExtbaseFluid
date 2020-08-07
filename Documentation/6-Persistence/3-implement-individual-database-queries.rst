@@ -29,7 +29,7 @@ positively affects the performance of your application.
     You may start developing your application using the first method and then,
     seeing your application growing, veer to the second method. Luckily, all
     the changes are encapsulated in the Repository, so you don't have
-    to change any code out of the Persistence Backend.
+    to change any code of the Persistence Backend.
 
 
 You can use Extbase's *Query*-object for implementing individual queries by
