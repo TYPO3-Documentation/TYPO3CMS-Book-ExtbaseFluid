@@ -52,7 +52,7 @@ aggregate the objects of the class
       sys_language_uid int(11) DEFAULT 0 NOT NULL,
       l18n_parent int(11) DEFAULT 0 NOT NULL,
       l18n_diffsource mediumblob NOT NULL,
-      access_group int(11) DEFAULT 0 NOT NULL,
+      fe_group int(11) DEFAULT 0 NOT NULL,
 
       PRIMARY KEY (uid),
       KEY parent (pid),
