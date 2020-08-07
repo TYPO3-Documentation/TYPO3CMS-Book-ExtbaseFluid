@@ -482,8 +482,8 @@ view. The Fluid template than looks like this (slightly shortened and
 reduced to the important)::
 
     <f:form name="blog" object="{blog}" action="update">
-        <f:form.textbox property="title" />
-        <f:form.textbox property="description" />
+        <f:form.textfield property="title" />
+        <f:form.textarea property="description" />
         <f:form.submit />
     </f:form>
 
@@ -626,8 +626,8 @@ like this (in short form)::
 
     <f:flashMessages />
     <f:form name="newBlog" object="{newBlog}" action="create">
-        <f:form.textbox property="title" />
-        <f:form.textbox property="description" />
+        <f:form.textfield property="title" />
+        <f:form.textarea property="description" />
         <f:form.submit />
     </f:form>
 
@@ -676,8 +676,8 @@ our case ``title`` and ``description``.
 The Fluid form looks like this (shortened to the essential)::
 
     <f:form method="post" action="update" name="blog" object="{blog}">
-        <f:form.textbox property="title" />
-        <f:form.textbox property="description" />
+        <f:form.textfield property="title" />
+        <f:form.textarea property="description" />
     </f:form>
 
 If the form is submitted the data will be sent in the following
