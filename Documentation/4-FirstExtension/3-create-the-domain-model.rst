@@ -92,7 +92,7 @@ The property values can be set and/or read only by the corresponding getters and
     the class variables. However, they have several advantages:
     The internals of processing can be added or changed at a later time,
     without needing to make changes to the calling object.
-    Additionally, fire-grained access control is possible as for example the reading can be permitted,
+    Additionally, fine-grained access control is possible as for example the reading can be permitted,
     without simultaneously allowing writing access.
     Most modern IDEs are able to create getters and setters automatically.
 
