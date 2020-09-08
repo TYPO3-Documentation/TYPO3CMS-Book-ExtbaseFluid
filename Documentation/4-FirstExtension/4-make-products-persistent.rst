@@ -94,7 +94,7 @@ The section ``types`` defines in which sequence the table columns are rendered.
 
 TYPO3 is able to group all records of an extension in the new record wizard.
 To define the name of this group, create a language file in the directory
-:file:`EXT:store_inventory/Resources/Private/Language/`
+:file:`EXT:store_inventory/Resources/Private/Language/locallang_db.xlf`
 and add the key **extension.title**.
 
 .. code-block:: xml
