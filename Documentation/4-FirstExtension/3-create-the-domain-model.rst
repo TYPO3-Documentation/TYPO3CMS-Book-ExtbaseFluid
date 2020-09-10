@@ -19,7 +19,7 @@ The file itself is stored in the folder
     :file:`my_extension/Classes/FirstFolder/SecondFolder/File.php`.
     Pay attention to the corresponding upper casing of the folder names.
 
-Let's take a deeper look at the model :php:`\MyVendor\StoreInventory\Domain\Model\Product`.
+Let's take a deeper look at the model :php:`\MyVendor\StoreInventory\Classes\Domain\Model\Product`.
 
 The model :php:`Product` in our extension denotes the aggregate root and
 represents an entity (as opposed to a :php:`ValueObject`) and
@@ -31,7 +31,7 @@ should extend :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
 
     <?php
 
-    namespace MyVendor\StoreInventory\Domain\Model;
+    namespace MyVendor\StoreInventory\Classes\Domain\Model;
 
     use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
