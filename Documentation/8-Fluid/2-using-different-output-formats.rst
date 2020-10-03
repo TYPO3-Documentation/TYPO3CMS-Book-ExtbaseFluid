@@ -57,7 +57,7 @@ You can use the following TypoScript::
 
       config {
          disableAllHeaderCode = 1
-         additionalHeaders = Content-type:application/xml
+         additionalHeaders.10.header = Content-type:application/xml
          xhtml_cleaning = 0
          admPanel = 0
       }
