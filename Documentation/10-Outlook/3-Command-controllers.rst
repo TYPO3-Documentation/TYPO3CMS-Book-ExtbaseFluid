@@ -120,7 +120,8 @@ simple:arguments`. The result will be something like:
       example:simple:arguments
 
     USAGE:
-      /typo3/cli_dispatch.phpsh typo3/cli_dispatch.phpsh extbase simple:arguments [<options>] <required>
+      /typo3/sysext/core/bin/typo3h extbase simple:arguments [<options>] <required>
+      /vendor/bin/typo3 extbase simple:arguments [<options>] <required> (composer)
 
     ARGUMENTS:
       --required
@@ -162,7 +163,8 @@ simple:arguments`:
       example:simple:arguments
 
     USAGE:
-      /typo3/cli_dispatch.phpsh typo3/cli_dispatch.phpsh extbase simple:arguments [<options>] <required>
+      /typo3/sysext/core/bin/typo3 extbase simple:arguments [<options>] <required> (non-composer)
+      /vendor/bin/typo3 extbase simple:arguments [<options>] <required> (composer)
 
     ARGUMENTS:
       --required           This is an required argument.
