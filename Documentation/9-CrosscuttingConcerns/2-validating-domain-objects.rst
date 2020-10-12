@@ -5,7 +5,7 @@
 Validating domain objects
 =========================
 
-We have discussed both Extbase and Fluid in some detail, but have spent 
+We have discussed both Extbase and Fluid in some detail, but have spent
 very little time discussing the domain and how we go about ensuring its consistency. We often assume that
 domain objects are consistent and adhere to our rules at all times.
 Unfortunately, this is not achieved automatically. So it is important to define these
@@ -17,7 +17,7 @@ rules:
   must not contain special characters.
 * The field ``email`` of the user object must contain a valid email address.
 
-These rules must apply at all times for the user object. A user object is only valid if 
+These rules must apply at all times for the user object. A user object is only valid if
 it complies to these validation rules.
 These rules are called *invariants* because they must be
 valid during the entire lifetime of the object.
@@ -297,17 +297,7 @@ For this you can create your own validator class for every object
 in the domain model which validates the object as a whole and with it
 has access to all object properties where possible.
 
-This is the correct naming convention. If you need a
-validator for the class
-:php:`\MyVendor\ExtbaseExample\Domain\Model\User` it must be
-implemented in the class
-:php:`\MyVendor\ExtbaseExample\Domain\Validator\UserValidator`.
-The name of the validator for a model object is incidental by replacing
-the namespace ``Model`` with ``Validator`` and also
-append ``Validator``. When following the naming convention the
-validator is automatically called when it exists.
-
-Equipped with this knowledge we can implement the
+Equipped with this knowledge we can implement a
 ``UserValidator`` which compares ``$password`` with
 ``$passwordConfirmation``. At first we must check if the given
 object is of the type ``user`` - after all the validator can be
@@ -364,10 +354,39 @@ Because we have access to the complete object the checking
 for equality of ``$password`` and
 ``$passwordConfirmation`` is very straightforward.
 
+Use the newly created validator by annotating the corresponding controller,
+for example:
+
+::
+
+   <?php
+   namespace MyVendor\ExtbaseExample\Controller;
+
+   use MyVendor\ExtbaseExample\Domain\Model\User;
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+
+   class UserController extends ActionController
+   {
+      /**
+       * @Extbase\Validate(param="user", validator="MyVendor\ExtbaseExample\Domain\Validator\UserValidator")
+       */
+      public function showAction(User $user)
+      {
+         // ...
+      }
+   }
+
 Now we have got to know two possibilities how validators can be
 registered for our domain objects: directly in the model via
 ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties and for complete
 domain objects with an own validator class.
+
+.. important::
+
+   Up until version 10, extbase "magically" applied validators based on a naming
+   convention. Starting with TYPO3 v10 all validators need to be explicitly registered.
+
 
 The illustrated validators until now are always executed when a
 domain model is given as parameter to a controller action - that is for
@@ -406,19 +425,12 @@ validator.
 Interaction of validators
 -------------------------
 
-Now you know three possibilities how validators are to be
+Now you know the possibilities how validators are to be
 registered. For an argument of an action the following validators are
 called:
 
-* The data types of the (primitive) arguments are checked.
-  When a parameter is defined with ``@param float`` as a
-  floating number then the validator checks this. When you want to
-  disable the type validation for an argument, you have to declare
-  the type as ``mixed``.
 * All ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the domain model are evaluated.
-* The validator class of the domain object is called when it exists.
-* More validators that are defined in the action with
-  ``@TYPO3\CMS\Extbase\Annotation\Validate`` are called.
+* Validators defined in the action with ``@TYPO3\CMS\Extbase\Annotation\Validate`` are called.
 
 Lets have a look at the interaction once more with an
 example::
@@ -428,6 +440,7 @@ example::
      *
      * @param string $pageName The name of the page where the user should be created.
      * @param \MyVendor\ExtbaseExample\Domain\Model\User $user The user which should be created.
+     * @TYPO3\CMS\Extbase\Annotation\Validate(param="pageName", validator="TYPO3\CMS\Extbase\Validation\Validator\StringValidator")
      * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\BlogExample\Domain\Validator\CustomUserValidator", param="user")
      */
     public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user)
@@ -435,12 +448,7 @@ example::
         // ...
     }
 
-Here the following properties are validated: ``$pageName``
-must be a *string*. The data type of the
-``@param`` annotation is validated. For ``$user`` all
-``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the model are validated. Also the
-``\MyVendor\BlogExample\Domain\Validator\UserValidator`` is called if
-it exists. Beyond that the validator
+For ``$user`` all ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the model are validated. Beyond that the validator
 ``\MyVendor\BlogExample\Domain\Validator\CustomUserValidator`` is used
 to validate ``$user``.
 
@@ -782,7 +790,7 @@ The generated URL contains the identity of the blog object:
 property mapper gets the blog object with the identity 47 from the
 repository and returns it directly without copying before.
 
-Now that you know about argument mapping in greater detail an can begin to use 
+Now that you know about argument mapping in greater detail an can begin to use
 it in your own projects.
 
 After you have learned how you can make sure any invariants of
