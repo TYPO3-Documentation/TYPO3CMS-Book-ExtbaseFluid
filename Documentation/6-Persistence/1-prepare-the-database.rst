@@ -145,13 +145,10 @@ record set of the original language *(default)*.
 source. This is useful for showing the differences between the original
 language and its translation in the Backend.
 
-`t3ver_oid`, `t3ver_id`,
-`t3ver_wsid`, `t3ver_label`,
-`t3ver_state`, `t3ver_stage`,
-`t3ver_count`, `t3ver_tstamp`,
-`t3ver_move_id`, `t3ver_origuid` Those fields are
-used by TYPO3 for the management of the Versioning and the Workspaces. If
-they are not needed, they may be omitted.
+`t3ver_oid`, `t3ver_wsid`, `t3ver_label`, `t3ver_state`, `t3ver_stage`,
+`t3ver_count`, `t3ver_tstamp`, `t3ver_move_id`, `t3ver_origuid` Those
+fields are used by TYPO3 for management of Versioning and
+Workspaces. If they are not needed, they may be omitted.
 
 All fields except `uid` and `pid` are optional.
 However, we highly recommend to create the fields `deleted`,
@@ -373,7 +370,7 @@ attached to several offers.
      expressions like `uid IS NULL`. However, Extbase
      automatically figures out the right way for you.
    * `NULL` values in queries like
-     `DISTINCT`, `ORDER BY` and `GROUP BY` are seen 
+     `DISTINCT`, `ORDER BY` and `GROUP BY` are seen
      the same way and are thus grouped together.
    * Fields permitting `NULL` values take more memory,
      because it is harder to improve the database engine for those SQL
