@@ -205,11 +205,6 @@ Activate features for Extbase or a specific plugin.
     Ignore the enable fields in backend.
     Default is `false`.
 
-`features.requireCHashArgumentForActionArguments`
-    Do not force a cHash for arguments used in actions. If this is turned on, all requests with
-    arguments but no, or an invalid cHash, are handled as `pageNotFoundOnCHashError`.
-    Default is `true`.
-
 `features.consistentTranslationOverlayHandling`
     Use the same translation handling in extbase as in TypoScript. Used via `config.tx_extbase.features.consistentTranslationOverlayHandling`.
     The feature switch will be removed in TYPO3 v10 and the behaviour will become the only way translations are handled.
