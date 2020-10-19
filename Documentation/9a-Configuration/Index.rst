@@ -86,33 +86,3 @@ Extbase controller action. And via :html:`{settings}` within Fluid.
 .. code-block:: php
 
    $includeCategories = (bool) ($this->settings['includeCategories'] ?? false);
-
-
-switchableControllerActions
----------------------------
-
-With **switchableControllerActions** you can define which controller action
-will be used as default action for the plugin.
-
-.. code-block:: xml
-
-    <switchableControllerActions>
-        <TCEforms>
-            <label>LLL:EXT:EXTKEY/Resources/Private/Language/Backend.xlf:settings.registration.action.title</label>
-            <config>
-                <type>select</type>
-                <items type="array">
-                    <numIndex index="0">
-                        <numIndex index="0">LLL:EXT:EXTKEY/Resources/Private/Language/Backend.xlf:settings.registration.action.list</numIndex>
-                        <!-- Controller -> action -->
-                        <numIndex index="1">Registration->list</numIndex>
-                    </numIndex>
-                    <numIndex index="1">
-                        <numIndex index="0">LLL:EXT:EXTKEY/Resources/Private/Language/Backend.xlf:settings.registration.action.register</numIndex>
-                        <numIndex index="1">Registration->register</numIndex>
-                    </numIndex>
-                </items>
-                <size>1</size>
-            </config>
-        </TCEforms>
-    </switchableControllerActions>
