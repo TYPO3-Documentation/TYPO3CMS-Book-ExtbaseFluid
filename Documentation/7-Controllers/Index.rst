@@ -45,9 +45,8 @@ according to the demand from outside and passed to the code responsible for
 the output (*View*). Besides this main task, a Controller
 is responsible for:
 
-* accepting the :php:`Request` and
-  :php:`Response` object, respectively rejecting them,
-  in case they can not be processed.
+* accepting the :php:`Request` object, respectively rejecting it,
+  in case it cannot be processed.
 * inducing a check of the data coming in from the URL (especially
   from links) or forms of the Frontend. This data has to be checked for
   type and validity.
@@ -56,8 +55,7 @@ is responsible for:
 * preparing the incoming data, so it can be passed to the method
   in charge (*Argument Mapping*)
 * initiating the rendering process.
-* passing the output of the rendering process to the
-  :php:`Response` object.
+* creating the :php:`Response` object.
 
 In the following section, we'll create the necessary
 Controller Classes of our extension and and therein implement the adequate

@@ -23,15 +23,13 @@ of the page.
 
 The process of eradication is first forwarded to the *dispatcher*
 of Extbase by TYPO3.
-Before the execution is handed to our own controller code, the 
-dispatcher and the parent `ActionController` complete several 
-preliminary tasks before they hand the further processing on 
+Before the execution is handed to our own controller code, the
+dispatcher and the parent `ActionController` complete several
+preliminary tasks before they hand the further processing on
 to the according position within the code of our blog example:
 
 * It interprets the incoming request and bundles all relevant
   information into a ``Request`` object.
-* It prepares the ``Response`` object as a
-  container for the result of the request.
 * It loads the configuration of our extension from the different
   sources and makes it available.
 * It determines whether or not the request was manipulated in an
@@ -46,8 +44,7 @@ to the according position within the code of our blog example:
 When these preparations are fulfilled, we
 are able to travel to the first stop of our destination: the controller. In
 our example all further processing is assigned to the
-:php:`BlogController`. A reference to the `request` and the
-`response` is handed over.
+:php:`BlogController`. A reference to the `request` is handed over.
 
 The class :php:`BlogController` can be found in the
 file

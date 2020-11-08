@@ -69,7 +69,7 @@ by step, line by line. Here you see an extract of the template file:
     </f:widget.paginate>
 
 
-At first all the unknown XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`. 
+At first all the unknown XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`.
 These tags are provided by Fluid and represent different functionalities.
 
 * `<f:format.nl2br>[…]</f:format.nl2br>` modifies linebreaks (new lines) to `<br />` tags.
@@ -77,7 +77,7 @@ These tags are provided by Fluid and represent different functionalities.
 * `<f:for each="{paginatedBlogs}" as="blog">[...]</f:for>` iterates over all Blog objects found in Blogs.
 
 Let's have a closer look at the latter example. In the variable `{blogs}` all
-blogs are "included" and then split into "blogs per page" (paginatedBlogs) by 
+blogs are "included" and then split into "blogs per page" (paginatedBlogs) by
 the pagination widget. The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each` the
@@ -113,10 +113,10 @@ Parsing the point goes recursively. That means Fluid can parse a string
     The return value is "tidied up" by :php:`htmlspecialchars()`. That protects from
     Cross Site Scripting-Attacks (XSS).
 
-As soon as Fluid is done with the whole template the result is appended to the
+As soon as Fluid is done with the whole template the result is added to the
 `Response` object. This is done in the
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` by the call
-:php:`$this->response->appendContent($this->view->render())`.
+:php:`$body->write($this->view->render())`.
 
 Our journey slowly comes to an end. The *Request* has been fully answered by a
 corresponding action. The `Response` object carries the completely generated

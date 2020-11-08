@@ -35,7 +35,7 @@ them available via :file:`Configuration/Extbase/RequestHandlers.php`::
 This is how Extbase provides a :php:`RequestHandler` for requests in frontend or
 backend context.
 
-Thanks to this configuration, one can registering custom :php:`RequestHandler`.
+Thanks to this configuration, one can register custom :php:`RequestHandler`.
 For example, a handler for AJAX requests can be registered here.
 
 The class-specific method :php:`canHandleRequest()` decides whether the request
@@ -65,18 +65,8 @@ or an alternative action should be loaded instead of the entries from
 
 .. note::
 
-   Extbase does not use PSR-7 implementation for Request and Response, but
+   Extbase does not use PSR-7 implementation for Requests, but
    custom implementations.
-
-.. _response:
-
-Response
-========
-
-A Response object is now created, which contains the header data and content.
-These include status codes (like *Error 404*), as well as the necessary
-JavaScript and CSS files. This object is empty at this point, ready to be filled
-by the :php:`Dispatcher`.
 
 .. _the-dispatcher:
 
@@ -86,9 +76,9 @@ The Dispatcher
 The Dispatcher fetches the Controller name from the Request object and creates
 the Controller.
 
-The object :php:`Request` and the currently empty object :php:`Response` are
-passed to the the Controller, and the role of the Dispatcher is complete. The
-Controller now modifies the response, which is handed back all the way to the
+The object :php:`Request` and is passed to the the Controller,
+and the role of the Dispatcher is complete. The
+Controller now returns the response, which is handed back all the way to the
 :php:`Bootstrap` which calls :php:`shutdown()`. It's now up to the response to
 handle further stuff, e.g. send headers and return rendered content.
 
@@ -101,8 +91,8 @@ used at this place.
 The Controller
 ==============
 
-The Controller generates output and appends it to the :php:`Response`. The
-Controller also can set further response headers and access arguments from the
+The Controller generates a :php:`\Psr\Http\Message\ResponseInterface` object. The
+Controller can also set further response headers and access arguments from the
 :php:`Request`.
 
 .. _accessing-the-request:
@@ -130,31 +120,42 @@ adjusted via TypoScript option :ts:`view.pluginNamespace`, see
 
 .. _using-the-response:
 
-Using the response
-------------------
+Creating a response
+-------------------
 
-Useful API calls include:
+Extending the :php:`ActionController` usually makes it unnecessary to
+manually create a response, as the :php:`callActionMethod()` already takes
+care of it. However, to gain better control over the returned response, a
+PSR-7 response can be created and returned, for example if headers should
+be set explicitly.
 
-:php:`setStatus()`
-   Allows to define the return status, e.g. 200 or 404. E.g.::
+Responses need to implement :php:`\Psr\Http\Message\ResponseInterface`, see for
+example the TYPO3 internal `HtmlResponse`::
 
-      $this->response->setStatus(404);
+   class HtmlResponse extends Response
+   {
+       /**
+        * Creates a HTML response object with a default 200 response code
+        *
+        * @param string $content HTML content written to the response
+        * @param int $status status code for the response; defaults to 200.
+        * @param array $headers Additional headers to be set.
+        */
+       public function __construct($content, $status = 200, array $headers = [])
+       {
+           $body = new Stream('php://temp', 'wb+');
+           $body->write($content);
+           $body->rewind();
+           parent::__construct($body, $status, $headers);
 
-:php:`setHeader()`
-   Allows to set a specific response header. E.g.::
+           // Ensure that text/html header is set, if Content-Type was not set before
+           if (!$this->hasHeader('Content-Type')) {
+               $this->headers['Content-Type'][] = 'text/html; charset=utf-8';
+               $this->lowercasedHeaderNames['content-type'] = 'Content-Type';
+           }
+       }
+   }
 
-      $this->response->setHeader('Content-Type', 'application/json; charset=utf-8');
-
-:php:`setContent()`
-   Allows to replace the whole content. E.g.::
-
-      $this->response->setContent('Replaces existing content');
-
-:php:`appendContent()`
-   Allows to add further content. E.g.::
-
-      $this->response->appendContent('Add this content');
-      $this->response->appendContent('Add more content');
 
 .. _returning-content:
 

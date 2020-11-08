@@ -356,8 +356,7 @@ contrast to them, no request-response-cycle ist started, though. The
 request Object is only updated with the details concerning Action,
 Controller and Extension, and then passed back to the dispatcher for
 processing. The dispatcher then passes on the actual
-:php:`Request-` and
-:php:`Response-` Objects to the appropriate Controller.
+:php:`Request` Object to the appropriate Controller.
 Here, too, applies: If no Controller or Extension is set, the actual
 context is kept.
 

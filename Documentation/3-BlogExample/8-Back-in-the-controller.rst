@@ -62,7 +62,8 @@ The following example explains this mechanism:
        }
    }
 
-Action methods can either return a response (`string`) themselves or not return at all.
+Action methods can either return a response (`string` or object of type `\Psr\Http\Message\ResponseInterface`)
+themselves or not return at all.
 If an action method does not return anything, Extbase calls `$this->view->render()` and
 returns the rendered view automatically.
 
