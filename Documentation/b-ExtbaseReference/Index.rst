@@ -657,7 +657,8 @@ The following annotations are available out of the box within Extbase:
       public $property;
 
 :php:`@TYPO3\CMS\Extbase\Annotation\Inject`
-   Configures dependency injection (DI) to inject given property.
+   Configures dependency injection (DI) to inject given property. Properties to be injected
+   have to be `public`.
    In the following example a class :php:`ServiceClassName` should be injected.
 
    .. code-block:: php
