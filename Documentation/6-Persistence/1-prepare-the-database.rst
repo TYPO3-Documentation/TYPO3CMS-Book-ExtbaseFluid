@@ -146,7 +146,7 @@ source. This is useful for showing the differences between the original
 language and its translation in the Backend.
 
 `t3ver_oid`, `t3ver_wsid`, `t3ver_label`, `t3ver_state`, `t3ver_stage`,
-`t3ver_count`, `t3ver_tstamp`, `t3ver_move_id`, `t3ver_origuid` Those
+`t3ver_origuid` Those
 fields are used by TYPO3 for management of Versioning and
 Workspaces. If they are not needed, they may be omitted.
 
