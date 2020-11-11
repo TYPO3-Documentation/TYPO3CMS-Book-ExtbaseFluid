@@ -34,7 +34,7 @@ naming convention must be implemented in the file
 *EXT:blog_example/Classes/View/Post/ListJSON.php*.
 
 Each view must implement the interface
-``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. This consists off some
+``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. This consists of some
 initializing methods and the ``render()`` method, which is called
 by the controller for displaying the view.
 
