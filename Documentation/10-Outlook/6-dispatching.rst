@@ -35,7 +35,7 @@ them available via :file:`Configuration/Extbase/RequestHandlers.php`::
 This is how Extbase provides a :php:`RequestHandler` for requests in frontend or
 backend context.
 
-Thanks to this configuration, one can register custom :php:`RequestHandler`.
+Thanks to this configuration, one can register a custom :php:`RequestHandler`.
 For example, a handler for AJAX requests can be registered here.
 
 The class-specific method :php:`canHandleRequest()` decides whether the request
@@ -65,7 +65,7 @@ or an alternative action should be loaded instead of the entries from
 
 .. note::
 
-   Extbase does not use PSR-7 implementation for Requests, but
+   Extbase does not use PSR-7 for requests, but
    custom implementations.
 
 .. _the-dispatcher:
@@ -76,7 +76,7 @@ The Dispatcher
 The Dispatcher fetches the Controller name from the Request object and creates
 the Controller.
 
-The object :php:`Request` and is passed to the the Controller,
+The object :php:`Request` is passed to the the Controller,
 and the role of the Dispatcher is complete. The
 Controller now returns the response, which is handed back all the way to the
 :php:`Bootstrap` which calls :php:`shutdown()`. It's now up to the response to
