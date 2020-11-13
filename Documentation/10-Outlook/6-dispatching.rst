@@ -129,31 +129,26 @@ care of it. However, to gain better control over the returned response, a
 PSR-7 response can be created and returned, for example if headers should
 be set explicitly.
 
-Responses need to implement :php:`\Psr\Http\Message\ResponseInterface`, see for
-example the TYPO3 internal `HtmlResponse`::
+Responses need to implement :php:`\Psr\Http\Message\ResponseInterface`.
+To create a response, it is recommended to use the :ref:`PSR-17 response factory <t3coreapi:request-handling-psr-17>`::
 
-   class HtmlResponse extends Response
+   use Psr\Http\Message\ResponseFactoryInterface;
+   use Psr\Http\Message\ResponseInterface;
+
+   // ...
+
+   public function __construct(ResponseFactoryInterface $responseFactory)
    {
-       /**
-        * Creates a HTML response object with a default 200 response code
-        *
-        * @param string $content HTML content written to the response
-        * @param int $status status code for the response; defaults to 200.
-        * @param array $headers Additional headers to be set.
-        */
-       public function __construct($content, $status = 200, array $headers = [])
-       {
-           $body = new Stream('php://temp', 'wb+');
-           $body->write($content);
-           $body->rewind();
-           parent::__construct($body, $status, $headers);
+      $this->responseFactory = $responseFactory;
+   }
 
-           // Ensure that text/html header is set, if Content-Type was not set before
-           if (!$this->hasHeader('Content-Type')) {
-               $this->headers['Content-Type'][] = 'text/html; charset=utf-8';
-               $this->lowercasedHeaderNames['content-type'] = 'Content-Type';
-           }
-       }
+   public function yourAction(): ResponseInterface
+   {
+       $response = $this->responseFactory
+           ->createResponse()
+           ->withHeader('Content-Type', 'application/json; charset=utf-8');
+       $response->getBody()->write(json_encode($data));
+       return $response;
    }
 
 
