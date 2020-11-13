@@ -414,9 +414,6 @@ you see the most important properties of the action controller:
 `$request`
     Request object of type :php:`\TYPO3\CMS\Extbase\Mvc\RequestInterface`.
 
-`$response`
-    Response object of type :php:`\TYPO3\CMS\Extbase\Mvc\ResponseInterface`.
-
 `$settings`
     Domain-specific extension settings from TypoScript (as array), see :ref:`typoscript_configuration-settings`.
 
