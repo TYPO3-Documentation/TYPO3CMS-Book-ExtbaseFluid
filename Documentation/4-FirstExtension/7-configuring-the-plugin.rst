@@ -20,7 +20,7 @@ our extension directory.
     defined('TYPO3_MODE') || die('Access denied.');
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'MyVendor.StoreInventory',
+        'StoreInventory',
         'InventoryList',
         [
             \Vendor\StoreInventory\Controller\StoreInventoryController::class => 'list',
@@ -35,14 +35,15 @@ With the first line we prevent calling the PHP code in this file without TYPO3 c
 (this is basically a small security measure).
 The static method :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
 is used to configure the plugin for use in TYPO3.
-The first parameter denotes the extension key and vendor name (MyVendor.ExtensionKey).
-With the second argument we give an unique name for the plugin (in UpperCamelCase notation).
+The first parameter denotes the extension key in UpperCamelCase (ExtensionKey).
+With the second argument we give an unique name for the plugin (also in UpperCamelCase notation).
 This is later used to clearly identify the plugin.
 The third argument is an array with all allowed controller action combinations.
-The array key is the controller name (without the suffix ``Controller``)
+The array key is the fully-qualified controller class name
 and the array value is a comma separated list of all allowed actions.
 In our case this is the ``list`` action (also without the suffix ``Action``).
-Thus the array :php:`['Inventory' -> 'list']` allows to execute the method :php:`listAction()`
+Thus the array :php:`[\Vendor\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
+allows to execute the method :php:`listAction()`
 in the :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
 All actions are cached by default. If you need to have an uncached action,
 specify the controller/action combination as fourth parameter.
@@ -58,15 +59,15 @@ To achieve this insert the following line into a new file :file:`Configuration/T
     <?php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'MyVendor.StoreInventory',
+        'StoreInventory',
         'InventoryList',
         'The Store Inventory List',
         'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
     );
 
 
-The first argument is like the method :php:`configurePlugin()` again the vendor namespace
-and extension key and the second is the name of the plugin.
+The first argument is like the method :php:`configurePlugin()` again the
+extension key and the second is the name of the plugin.
 The third argument is the title of the plugin used in the select box of the content element.
 After installing the extension (and clearing the cache) we can insert the plugin on a page.
 Don't forget to set the sys_folder, where the products are stored as the starting point
