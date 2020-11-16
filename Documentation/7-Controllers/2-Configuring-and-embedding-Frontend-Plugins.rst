@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
 
 Configuring and embedding Frontend Plugins
-================================================================================================
+==========================================
 
 The action should be called on by a frontend-plugin. We've already addressed the
 configuration of a simple frontend-plugin in chapter 4 in the section
@@ -19,13 +19,13 @@ a content element with TYPO3 using the static method :php:`registerPlugin()`.
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'extension_key',
+        'ExtensionKey',
         'List',
         'The Inventory List'
    );
 
 The method :php:`registerPlugin()` expects three arguments. The first argument is the
-extension key (`extension_key` in our example). This key is the same as the directory
+extension key in UpperCamelCase notation (`ExtensionKey` in our example). This key is the same as the directory
 name of the extension.
 The second parameter is a freely selectable name of the plugin (a short,
 meaningful name in UpperCamelCase). The plugin name plays a significant role in
@@ -43,14 +43,14 @@ specify which content will be stored in cache.
 .. code-block:: php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-       'example_extension',
+       'ExampleExtension',
        'List',
        [\Vendor\ExampleExtension\Controller\InventoryController::class => 'list,detail'],
        [\Vendor\ExampleExtension\Controller\InventoryController::class => 'detail']
    );
 
 The method expects 4 arguments. The first argument is, just like the one used in
-the registration process, the extension key. With the second argument, the
+the registration process, the extension key in UpperCamelCase notation. With the second argument, the
 plugin name, Extbase can assign the configuration to the appropriate plugin.
 
 The third argument is an array which contains all controller-action combinations
