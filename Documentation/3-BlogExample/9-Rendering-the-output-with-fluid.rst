@@ -43,30 +43,28 @@ by step, line by line. Here you see an extract of the template file:
         <f:translate key="blog.introduction">[introduction]</f:translate>
     </p>
 
-    <f:widget.paginate objects="{blogs}" as="paginatedBlogs" configuration="{itemsPerPage: 3}">
-        <ol class="tx-blogexample-blog-list">
-            <f:for each="{paginatedBlogs}" as="blog">
-                <li>
-                    <h3>
-                        <f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>
-                    </h3>
-                    <f:security.ifHasRole role="{settings.editorUsergroupUid}">
-                        <div class="tx-blogexample-options">
-                            <f:link.action action="edit" class="icon edit" arguments="{blog : blog}" title="{f:translate(key: 'blog.edit')}">
-                                <f:translate key="blog.edit" />
-                            </f:link.action>
-                            <f:link.action action="delete" class="icon delete" arguments="{blog : blog}" title="{f:translate(key: 'blog.delete')}">
-                                <f:translate key="blog.delete" />
-                            </f:link.action>
-                        </div>
-                    </f:security.ifHasRole>
-                    <p class="tx-blogexample-description">
-                        <f:format.nl2br>{blog.description}</f:format.nl2br>
-                    </p>
-                </li>
-            </f:for>
-        </ol>
-    </f:widget.paginate>
+   <ol class="tx-blogexample-blog-list">
+       <f:for each="{paginator.paginatedItems}" as="blog">
+           <li>
+               <h3>
+                   <f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>
+               </h3>
+               <f:security.ifHasRole role="{settings.editorUsergroupUid}">
+                   <div class="tx-blogexample-options">
+                       <f:link.action action="edit" class="icon edit" arguments="{blog : blog}" title="{f:translate(key: 'blog.edit')}">
+                           <f:translate key="blog.edit" />
+                       </f:link.action>
+                       <f:link.action action="delete" class="icon delete" arguments="{blog : blog}" title="{f:translate(key: 'blog.delete')}">
+                           <f:translate key="blog.delete" />
+                       </f:link.action>
+                   </div>
+               </f:security.ifHasRole>
+               <p class="tx-blogexample-description">
+                   <f:format.nl2br>{blog.description}</f:format.nl2br>
+               </p>
+           </li>
+       </f:for>
+   </ol>
 
 
 At first all the unknown XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`.
@@ -74,11 +72,11 @@ These tags are provided by Fluid and represent different functionalities.
 
 * `<f:format.nl2br>[…]</f:format.nl2br>` modifies linebreaks (new lines) to `<br />` tags.
 * `<f:link.action action="new">` creates a link tag that links to the :php:`newAction()` of the current controller.
-* `<f:for each="{paginatedBlogs}" as="blog">[...]</f:for>` iterates over all Blog objects found in Blogs.
+* `<f:for each="{paginator.paginatedItems}" as="blog">[...]</f:for>` iterates over the paginated Blog objects found in Blogs.
 
 Let's have a closer look at the latter example. In the variable `{blogs}` all
-blogs are "included" and then split into "blogs per page" (paginatedBlogs) by
-the pagination widget. The curly brackets tell Fluid that it is a variable that
+blogs are "included" and then split into "blogs per page" (paginatedItems) by
+the :ref:`paginator <t3coreapi:pagination>`. The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each` the
 `for` ViewHelper gets the `blog` objects over whom to iterate. The
