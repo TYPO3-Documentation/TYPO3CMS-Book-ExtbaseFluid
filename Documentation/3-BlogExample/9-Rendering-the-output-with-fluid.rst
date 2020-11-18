@@ -76,7 +76,10 @@ These tags are provided by Fluid and represent different functionalities.
 
 Let's have a closer look at the latter example. In the variable `{blogs}` all
 blogs are "included" and then split into "blogs per page" (paginatedItems) by
-the :ref:`paginator <t3coreapi:pagination>`. The curly brackets tell Fluid that it is a variable that
+the :ref:`paginator <t3coreapi:pagination>`. The paginator has to be set up in the
+controller, see the :ref:`documentation on pagination <t3coreapi:pagination>` for a
+guide on how to achieve that.
+The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each` the
 `for` ViewHelper gets the `blog` objects over whom to iterate. The
