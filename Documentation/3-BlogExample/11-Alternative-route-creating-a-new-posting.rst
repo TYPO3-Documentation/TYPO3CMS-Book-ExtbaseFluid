@@ -46,10 +46,11 @@ Lets take a look at the called method ``newAction()``:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -63,12 +64,16 @@ Lets take a look at the called method ``newAction()``:
       * @return void
       * @IgnoreValidation $newPost
       */
-      public function newAction(Blog $blog, Post $newPost = null)
+      public function newAction(Blog $blog, Post $newPost = null): ResponseInterface
       {
-         $this->view->assign('authors', $this->personRepository->findAll());
-         $this->view->assign('blog', $blog);
-         $this->view->assign('newPost', $newPost);
-         $this->view->assign('remainingPosts', $this->postRepository->findByBlog($blog));
+         $this->view->assignMultiple([
+            'authors' => $this->personRepository->findAll(),
+            'blog' => $blog,
+            'newPost' => $newPost,
+            'remainingPosts' => $this->postRepository->findByBlog($blog),
+         });
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
       }
    }
 

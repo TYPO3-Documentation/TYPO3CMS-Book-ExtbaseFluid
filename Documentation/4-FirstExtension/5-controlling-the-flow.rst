@@ -19,33 +19,37 @@ In our simple example the controller looks like this:
 
 .. code-block:: php
 
-    <?php
+   <?php
+   declare(strict_types=1);
 
-    namespace MyVendor\StoreInventory\Controller;
+   namespace MyVendor\StoreInventory\Controller;
 
-    use MyVendor\StoreInventory\Domain\Repository\ProductRepository;
-    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use MyVendor\StoreInventory\Domain\Repository\ProductRepository;
+   use Psr\Http\Message\ResponseInterface;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-    class StoreInventoryController extends ActionController
-    {
-        private $productRepository;
+   class StoreInventoryController extends ActionController
+   {
+      private $productRepository;
 
-        /**
-         * Inject the product repository
-         *
-         * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
-         */
-        public function injectProductRepository(ProductRepository $productRepository)
-        {
-            $this->productRepository = $productRepository;
-        }
+      /**
+      * Inject the product repository
+      *
+      * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
+      */
+      public function injectProductRepository(ProductRepository $productRepository)
+      {
+         $this->productRepository = $productRepository;
+      }
 
-        public function listAction()
-        {
-            $products = $this->productRepository->findAll();
-            $this->view->assign('products', $products);
-        }
-    }
+      public function listAction(): ResponseInterface
+      {
+         $products = $this->productRepository->findAll();
+         $this->view->assign('products', $products);
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
+   }
 
 
 Our :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController` is derived from
@@ -65,10 +69,6 @@ we can use the method :php:`findAll()` of the repository to fetch them.
 
 The repository returns a :php:`\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`
 object with all product objects (that are not hidden or deleted).
-We pass these objects to the view with :php:`$this->view->assign(…)`.
-The view will automatically call :php:`render()` and return the rendered template.
-
-.. code-block:: php
-
-   return $this->view->render();
-
+We pass these objects to the view with :php:`$this->view->assign(…)` and
+finally return a :php:`Response` object (created with the :php:`ResponseFactory`)
+with the rendered content of the view.

@@ -14,64 +14,83 @@ In Extbase the controllers mostly exist as
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
 shortened version of the :php:`BlogController`. Please note that for brevity
-the doc comments and some methods have been removed. Find the full example at 
+the doc comments and some methods have been removed. Find the full example at
 :file:`EXT:blog_example/Classes/BlogController.php`:
 
 .. code-block:: php
    :caption: Classes/BlogController.php
    :name: blogcontroller-php
 
-    <?php
+   <?php
+   declare(strict_types=1);
 
-    namespace FriendsOfTYPO3\BlogExample\Controller;
-    use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
+   namespace FriendsOfTYPO3\BlogExample\Controller;
 
-    class BlogController
-          extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
+   use Psr\Http\Message\ResponseInterface;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-        public function indexAction(): void
-        {
-            $this->view->assign('blogs', $this->blogRepository->findAll());
-        }
+   class BlogController extends ActionController {
+      protected $blogRepository;
 
-        public function newAction(Blog $newBlog = null): void
-        {
-            $this->view->assign('newBlog', $newBlog);
-            $this->view->assign('administrators', $this->administratorRepository->findAll());
-        }
+      public function __construct(BlogRepository $blogRepository)
+      {
+         $this->blogRepository = $blogRepository;
+      }
 
-        public function createAction(Blog $newBlog): void
-        {
-            $this->blogRepository->add($newBlog);
-            $this->redirect('index');
-        }
+      public function indexAction(): ResponseInterface
+      {
+         $this->view->assign('blogs', $this->blogRepository->findAll());
 
-        public function editAction(Blog $blog): void
-        {
-            $this->view->assign('blog', $blog);
-            $this->view->assign('administrators', $this->administratorRepository->findAll());
-        }
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
 
-        public function updateAction(Blog $blog): void
-        {
-            $this->blogRepository->update($blog);
-            $this->redirect('index');
-        }
+      public function newAction(Blog $newBlog = null): ResponseInterface
+      {
+         $this->view->assignMultiple([
+            'newBlog' => $newBlog,
+            'administrators' => $this->administratorRepository->findAll(),
+         });
 
-        public function deleteAction(Blog $blog): void
-        {
-            $this->blogRepository->remove($blog);
-            $this->redirect('index');
-        }
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
 
-    }
+      public function createAction(Blog $newBlog): void
+      {
+         $this->blogRepository->add($newBlog);
+         $this->redirect('index');
+      }
+
+      public function editAction(Blog $blog): ResponseInterface
+      {
+         $this->view->assignMultiple([
+            'blog' => $blog,
+            'administrators' => $this->administratorRepository->findAll()
+         ]);
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
+
+      public function updateAction(Blog $blog): void
+      {
+         $this->blogRepository->update($blog);
+         $this->redirect('index');
+      }
+
+      public function deleteAction(Blog $blog): void
+      {
+         $this->blogRepository->remove($blog);
+         $this->redirect('index');
+      }
+   }
 
 The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
 `showMeTheListAction()`. The only important point is,
 that it ends with `Action` in order to help Extbase
-to recognize it as an action. `newAction()` shows a
+to recognize it as an action and returns an implementation of the
+:php:\Psr\Http\Message\ResponseInterface`. `newAction()` shows a
 form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
 `editAction()` and
@@ -81,12 +100,12 @@ change of an existing blog. The job of the
 
 .. tip::
 
-    Those who already worked with the model view controller pattern will
-    notice, that the controller has only a little amount of code. Extbase
-    aims for the `slim controller` approach . The controller is
-    exclusively responsible for the control of the process flow. Additional
-    logic (especially business or domain logic) needs to be separated into
-    classes in the subfolder :file:`Domain`.
+   Those who already worked with the model view controller pattern will
+   notice, that the controller has only a little amount of code. Extbase
+   aims for the `slim controller` approach . The controller is
+   exclusively responsible for the control of the process flow. Additional
+   logic (especially business or domain logic) needs to be separated into
+   classes in the subfolder :file:`Domain`.
 
 The request determines which controller action combination will be called.
 The dispatching and matching of actions happens in the `Dispatcher` and in
@@ -96,7 +115,7 @@ inherits all methods from it, by deriving it from this class.
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
 
@@ -108,14 +127,14 @@ inherits all methods from it, by deriving it from this class.
    }
 
 If no specific action information is given, the default action will
-be called; in our case the `indexAction()`. The `indexAction()` contains 
-only one line in our example (as shown above), 
+be called; in our case the `indexAction()`. The `indexAction()` contains
+only one line in our example (as shown above),
 which looks like this:
 
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
 
@@ -124,22 +143,25 @@ which looks like this:
 
    class BlogController extends ActionController
    {
-       protected $blogRepository;
+      protected $blogRepository;
 
-       public function __construct(BlogRepository $blogRepository)
-       {
-           $this->blogRepository = $blogRepository;
-       }
+      public function __construct(BlogRepository $blogRepository)
+      {
+         $this->blogRepository = $blogRepository;
+      }
 
-       public function indexAction()
-       {
-           $allAvailableBlogs = $this->blogRepository->findAll();
-           $this->view->assign('blogs', $allAvailableBlogs);
-       }
+      public function indexAction(): ResponseInterface
+      {
+         $allAvailableBlogs = $this->blogRepository->findAll();
+         $this->view->assign('blogs', $allAvailableBlogs);
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
    }
 
 In the first line of the :php:`indexAction` the repository is asked to fetch
 all available blogs. In the second line those blogs are assigned to the view
-to be displayed. So the repository is responsible for fetching the data,
+to be displayed. The last line returns a :php:`Response` object with the
+HTML code from the view. So the repository is responsible for fetching the data,
 the view is responsible for displaying it and the controller connects and
 "controls" these parts.

@@ -32,41 +32,39 @@ The following example explains this mechanism:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\MyExtension\Controller;
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class CompanyController extends ActionController
    {
-       public function initializeAction()
-       {
-           // this method is called before method fooAction and barAction
-       }
+      public function initializeAction()
+      {
+         // this method is called before method fooAction and barAction
+      }
 
-       public function initializeFooAction()
-       {
-           // this method is only called before method fooAction
-           // mind the uppercase F in the method name.
-       }
+      public function initializeFooAction()
+      {
+         // this method is only called before method fooAction
+         // mind the uppercase F in the method name.
+      }
 
-       public function fooAction()
-       {
-           // foo
-       }
+      public function fooAction(): ResponseInterface
+      {
+         // foo
+      }
 
-       public function barAction()
-       {
-           // bar
-       }
+      public function barAction(): ResponseInterface
+      {
+         // bar
+      }
    }
 
-Action methods can either return a response (`string` or object of type `\Psr\Http\Message\ResponseInterface`)
-themselves or not return at all.
-If an action method does not return anything, Extbase calls `$this->view->render()` and
-returns the rendered view automatically.
+Action methods return a response object of type `\Psr\Http\Message\ResponseInterface`.
 
-Come with us on another tour: dive into Fluid - the new template engine of TYPO3
+Come with us on another tour: dive into Fluid - the template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
 and ViewHelper.

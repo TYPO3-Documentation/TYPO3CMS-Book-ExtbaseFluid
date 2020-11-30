@@ -22,6 +22,7 @@ The method names have to end in :php:`Action`. The body of
    :name: offer-controller
 
    <?php
+   declare(strict_types=1);
 
    namespace MyVendor\SjrOffers\Controller;
 
@@ -83,33 +84,15 @@ name of the method:
 
    /**
     * Index Action
-    *
-    * @return string
     */
-   public function indexAction()
+   public function indexAction(): ResponseInterface
    {
-       $offers = $this->offerRepository->findAll();
-       $this->view->assign('offers', $offers);
-       return $this->view->render();
+      $offers = $this->offerRepository->findAll();
+      $this->view->assign('offers', $offers);
+
+      return $this->responseFactory->createHtmlResponse($this->view->render());
    }
 
-
-This can be simplified even more. As described in chapter 4 in
-section "controlling the flow", it is not necessary to return the rendered
-content. Furthermore we avoid initializing the variable
-:php:`$offers`, which we only use once. So we get:
-
-.. code-block:: php
-
-   /**
-    * Index Action
-    *
-    * @return void
-    */
-   public function indexAction()
-   {
-       $this->view->assign('offers', $this->offerRepository->findAll());
-   }
 
 initializeAction
 ----------------
@@ -239,28 +222,31 @@ method :php:`newAction()`.
 .. code-block:: php
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\SjrOffers\Controller;
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class OfferController extends ActionController
    {
-       // ...
+      // ...
 
-       /**
-        * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
-        * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
-        * @return string An HTML form for creating a new offer
-        * @Extbase\IgnoreValidation("newOffer")
-        */
-       public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null)
-       {
-           $this->view->assign('organization', $organization);
-           $this->view->assign('newOffer', $newOffer);
-           $this->view->assign('regions', $this->regionRepository->findAll());
+      /**
+       * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
+       * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
+       * @return ResponseInterface An HTML form for creating a new offer
+       * @Extbase\IgnoreValidation("newOffer")
+       */
+      public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null): ResponseInterface
+      {
+         $this->view->assign('organization', $organization);
+         $this->view->assign('newOffer', $newOffer);
+         $this->view->assign('regions', $this->regionRepository->findAll());
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
        }
 
        // ...
@@ -315,7 +301,7 @@ redirecting to other Action controllers at your disposal:
    redirectToURI($uri, $delay = 0, $statusCode = 303)
    forward($actionName, $controllerName = NULL, $extensionName = NULL,array $arguments = NULL)
 
-Using the :php:`redirect()` Method, you can start a
+Using the :php:`redirect()` method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
 given Action (specified in :php:`$actionName`) of the
 appropriate controller (specified in
@@ -456,29 +442,32 @@ be edited as an Argument.
 .. code-block:: php
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\SjrOffers\Controller;
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class OfferController extends ActionController
    {
-       // ...
+      // ...
 
-       /**
-        * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
-        * @return string Form for editing the existing organization
-        * @Extbase\IgnoreValidation("offer")
-        */
-       public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
-       {
-          $this->view->assign('offer', $offer);
-          $this->view->assign('regions', $this->regionRepository->findAll());
-       }
+      /**
+       * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
+       * @return string Form for editing the existing organization
+       * @Extbase\IgnoreValidation("offer")
+       */
+      public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer): ResponseInterface
+      {
+         $this->view->assign('offer', $offer);
+         $this->view->assign('regions', $this->regionRepository->findAll());
 
-       // ...
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
+
+      // ...
    }
 
 Note once again the annotation :php:`@Extbase\IgnoreValidation("offer")`.
@@ -729,7 +718,7 @@ stage":
     * @param \MyVendor\SjrOffers\Domain\Model\Demand $demand A demand (filter)
     * @return string The rendered HTML string
     */
-   public function indexAction(\MyVendor\SjrOffers\Domain\Model\Demand $demand = NULL)
+   public function indexAction(\MyVendor\SjrOffers\Domain\Model\Demand $demand = NULL): ResponseInterface
    {
       $allowedStates = (strlen($this->settings['allowedStates']) > 0) ?
             t3lib_div::intExplode(',', $this->settings['allowedStates']) : [];
@@ -767,6 +756,8 @@ stage":
             $this->regionRepository->findAll()
          )
       );
+
+      return $this->responseFactory->createHtmlResponse($this->view->render());
    }
 
 In the first few lines of the script, configuration options, set in

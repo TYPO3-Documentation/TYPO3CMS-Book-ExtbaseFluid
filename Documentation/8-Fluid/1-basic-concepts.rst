@@ -40,17 +40,20 @@ Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
 code::
 
-    namespace ExtbaseTeam\BlogExample\Controller;
+   namespace ExtbaseTeam\BlogExample\Controller;
+   use Psr\Http\Message\ResponseInterface;
 
-    class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
-    {
-        // ...
-        public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog)
-        {
-            $this->view->assign('blogTitle', 'Webdesign-Blog');
-            $this->view->assign('blogPosts', $blog->getPosts());
-        }
-    }
+   class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+   {
+      // ...
+      public function indexAction(\ExtbaseTeam\BlogExample\Domain\Model\Blog $blog): ResponseInterface
+      {
+         $this->view->assign('blogTitle', 'Webdesign-Blog');
+         $this->view->assign('blogPosts', $blog->getPosts());
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
+   }
 
 Now we can insert the string »Webdesign-Blog« into the
 template with the Object Accessor ``{blogTitle}``. Let us take a
