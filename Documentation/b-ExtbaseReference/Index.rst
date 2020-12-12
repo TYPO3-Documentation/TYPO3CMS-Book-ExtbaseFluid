@@ -398,9 +398,6 @@ ActionController API
 The action controller is usually the base class for your own controller. Below
 you see the most important properties of the action controller:
 
-`$actionMethodName`
-    Name of the executed action.
-
 `$argumentMappingResults`
     Results of the argument mapping. Is used especially in the errorAction.
 
