@@ -169,13 +169,27 @@ implementation.
 Forwarding a request
 --------------------
 
-Within an action the current request can be forwarded to another action::
+Within an action the current request can be forwarded to another action by
+returning a `ForwardResponse`::
 
-   $this->forward('newAction', 'ForeignController', 'ForeignExtension');
+   use Psr\Http\Message\ResponseInterface;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
-Extbase will modify the current request and mark it as not dispatched. An
-exception is thrown which stops current execution and starts dispatching the
-request again.
+   class FooController extends ActionController
+   {
+      public function listAction(): ResponseInterface
+      {
+           // do something
+
+           return (new ForwardResponse('show'))
+               ->withControllerName('ForeignController')
+               ->withExtensionName('ForeignExtension')
+               ->withArguments(['foo' => 'bar'])
+          ;
+      }
+   }
+
 
 .. _redirecting-a-request:
 

@@ -242,11 +242,11 @@ in the dispatcher of Extbase.
 
 .. note::
 
-   What's ``redirect()``? Extbase knows the methods ``forward()`` and ``redirect()``.
-   They both forward the further processing. The difference is that
-   ``redirect()`` starts a complete new page call (new request response cycle),
-   while ``forward()`` resides in the processing of the current page call. The
-   outcome of this is an important consequence: At ``redirect()`` the changes are
-   persisted before the call of the target action, whereas at ``forward()`` these
-   must be done by hand with the call of
+   What's :php:`redirect()`? With Extbase, requests can be further dispatched either
+   by returning a `ForwardResponse` or by using :php:`redirect()`.
+   The difference is: ``redirect()`` starts a completely new page call
+   (new request response cycle), while a :php:`ForwardResponse` is handled as part of the
+   current request cycle. This has an important consequence: When using ``redirect()`` the
+   changes are persisted before the call of the target action, whereas when returning a
+   :php:`ForwardResponse` changes need to be persisted manually by calling
    :php:`$persistenceManager->persistAll();`.
