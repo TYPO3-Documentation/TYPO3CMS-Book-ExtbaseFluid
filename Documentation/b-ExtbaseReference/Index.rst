@@ -430,9 +430,6 @@ Most important API methods of action controller
     Standard error action. Needs to be adjusted only in very rare cases. The name of
     this method is defined by the property $errorMethodName.
 
-`forward($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL)`
-    Issues an immediate internal forwarding of the request to another controller.
-
 `initializeAction()`
     Initialization method for all actions. Can be used to e.g. register arguments.
 

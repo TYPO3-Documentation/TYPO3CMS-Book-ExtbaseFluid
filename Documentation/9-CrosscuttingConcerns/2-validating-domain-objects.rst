@@ -520,9 +520,8 @@ be persisted with its changes.
 Now have a look what happens when the user inserts erroneous data
 into the form. In this case an error occurs when validating the
 ``$blog`` arguments. Therefore instead of the
-`updateAction`, the
-`errorAction` is called. This action routes the
-request with ``forward()`` to the last used action because in
+`updateAction`, the `errorAction` is called. This action routes the
+request by returning a :php:`ForwardResponse` to the last used action because in
 case of an error the form should be displayed again. Additionally, an error
 message is generated and given to the controller. Ergo: In case of a
 validation error the `editAction` is displayed

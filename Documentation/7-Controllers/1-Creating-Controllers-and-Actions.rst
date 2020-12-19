@@ -313,7 +313,7 @@ redirecting to other Action controllers at your disposal:
    redirect($actionName, $controllerName = NULL, $extensionName = NULL,
       array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)
    redirectToURI($uri, $delay = 0, $statusCode = 303)
-   forward($actionName, $controllerName = NULL, $extensionName = NULL,array $arguments = NULL)
+   return new :php:`ForwardResponse('actionName')`;
 
 Using the :php:`redirect()` Method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
@@ -346,18 +346,18 @@ provokes the immediate reload of the page with the given URL:
    index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_
    pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Organization"/></head></html>
 
-The Method :php:`redirectToURI()` corresponds to the
-Method :php:`redirect()`, but you can directly set a URL
+The method :php:`redirectToURI()` corresponds to the
+method :php:`redirect()`, but you can directly set a URL
 respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=http://example.com/foo/bar.html"/></head></html>`.
-With this, you have all the freedom to do what you need. The Method
-:php:`forward()`, at last, does a redirect of the request
-to another Action on the spot, just as the two redirect Methods. In
-contrast to them, no request-response-cycle ist started, though. The
-request Object is only updated with the details concerning Action,
-Controller and Extension, and then passed back to the dispatcher for
-processing. The dispatcher then passes on the actual
+With this, you have all the freedom to do what you need. Returning
+a :php:`ForwardResponse` object redirects the request
+to another action, just as the other two redirect methods do. In
+contrast to them, no new request-response cycle is started, though. The
+request object is updated with the details concerning the action,
+controller and extension. It is then being passed back to the dispatcher for
+processing. Then the dispatcher passes on the actual
 :php:`Request` object to the appropriate controller.
-Here, too, applies: If no Controller or Extension is set, the actual
+Here, too, applies: If no controller or extension is set, the actual
 context is kept.
 
 This procedure can be done multiple times when calling a page. There
@@ -365,18 +365,18 @@ is the risk, though, that the process runs into an infinite loop (A
 redirects to B, B redirects to A again). In this case, Extbase stops the
 processing after some steps.
 
-There is another important difference to the redirect Methods. When
-redirecting using the Method :php:`forward()`, new objects
-will not (yet) be persisted to database. This is not done until at the end
-of a request-response-cycle. Therefore no UID has yet been assigned to a
-new Object and the transcription to a URL parameter fails. You can
-manually trigger the action of persisting before you execute the redirection, by using
-:php:`$this->objectManager->get(PersistenceManager::class)->persistAll()`,
+There is another important difference between the redirect methods. Using 
+the :php:`ForwardResponse()` to redirect, new objects
+will not (yet) be persisted to database. They will be persisted on the end
+of the request-response-cycle. Therefore no UID has been assigned to a
+new object yet and therefore the transcription to a URL parameter fails. You can
+manually trigger the persisting before you return the :php:`ForwardResponse`,
+by using :php:`$persistenceManager->persistAll()`,
 though.
 
-When calling the Method :php:`createAction(),` we
+When calling the method :php:`createAction(),` we
 already described the case of all Arguments being valid. But what happens,
-if a Frontend user inserts invalid data - or even manipulates the form to
+if a frontend user inserts invalid data - or even manipulates the form to
 deliberately attack the website?
 
 .. tip::
