@@ -350,12 +350,12 @@ The method :php:`redirectToURI()` corresponds to the
 method :php:`redirect()`, but you can directly set a URL
 respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=http://example.com/foo/bar.html"/></head></html>`.
 With this, you have all the freedom to do what you need. Returning
-a :php:`ForwardResponse()` does a redirect of the request
-to another action on the spot, just as the other two redirect methods. In
-contrast to them, no new request-response-cycle ist started, though. The
-request object is only updated with the details concerning action,
-controller and extension, and then passed back to the dispatcher for
-processing. The dispatcher then passes on the actual
+a :php:`ForwardResponse` object redirects the request
+to another action, just as the other two redirect methods do. In
+contrast to them, no new request-response cycle is started, though. The
+request object is updated with the details concerning the action,
+controller and extension. It is then being passed back to the dispatcher for
+processing. Then the dispatcher passes on the actual
 :php:`Request` object to the appropriate controller.
 Here, too, applies: If no controller or extension is set, the actual
 context is kept.
