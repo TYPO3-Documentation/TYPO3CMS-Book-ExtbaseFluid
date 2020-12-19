@@ -365,18 +365,18 @@ is the risk, though, that the process runs into an infinite loop (A
 redirects to B, B redirects to A again). In this case, Extbase stops the
 processing after some steps.
 
-There is another important difference to the redirect Methods. When
-redirecting using the :php:`ForwardResponse()`, new objects
-will not (yet) be persisted to database. This is not done until the end
-of a request-response-cycle. Therefore no UID has yet been assigned to a
-new object and the transcription to a URL parameter fails. You can
-manually trigger the action of persisting before you return the :php:`ForwardResponse`,
+There is another important difference between the redirect methods. Using 
+the :php:`ForwardResponse()` to redirect, new objects
+will not (yet) be persisted to database. They will be persisted on the end
+of the request-response-cycle. Therefore no UID has been assigned to a
+new object yet and therefore the transcription to a URL parameter fails. You can
+manually trigger the persisting before you return the :php:`ForwardResponse`,
 by using :php:`$persistenceManager->persistAll()`,
 though.
 
-When calling the Method :php:`createAction(),` we
+When calling the method :php:`createAction(),` we
 already described the case of all Arguments being valid. But what happens,
-if a Frontend user inserts invalid data - or even manipulates the form to
+if a frontend user inserts invalid data - or even manipulates the form to
 deliberately attack the website?
 
 .. tip::
