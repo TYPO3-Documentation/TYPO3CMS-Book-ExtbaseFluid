@@ -1,7 +1,7 @@
 .. ---------------------------------------
 .. Review information for this page:
 .. * Review Status: ok
-.. * Last reviewed: May 17 2019 for TYPO3 version 9.5.7
+.. * Last reviewed: May 17th, 2019 for TYPO3 version 9.5.7
 .. ----------------------------------------
 
 .. include:: ../Includes.txt
@@ -40,7 +40,7 @@ Via composer:
 To install the extension in the "traditional" way, go to the
 extension manager and get the extension "extension_builder" from TER.
 
-To install this extension by cloning the source open the terminal
+To install this extension by cloning the source, open the terminal
 and go to the directory :file:`typo3conf/ext/` and enter:
 
 .. code-block:: bash

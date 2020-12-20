@@ -6,15 +6,15 @@ Using Different Output Formats
 
 The Model-View-Controller-Paradigm (MVC), as described in chapter 2,
 has many decisive advantages: It separates the model from the user
-interaction and it allows different output formats for the same data. We
-want to discuss the later.
+interaction and allows different output formats for the same data. We
+want to discuss them later.
 
 Often different output formats are useful when generating content for
-CSV files, RSS feeds or print views. On the example of the blog we will show
-you, how you can extend your Extension with a print view.
+CSV files, RSS feeds, or print views. On the blog example, we will show
+you how you can extend your Extension with a print view.
 
-Lets assume you have programed a HTML view for a list of blog posts.
-The Fluid template of this view is
+Let's assume you have programed an HTML view for a list of blog posts.
+This view's Fluid template is
 :file:`Resources/Private/Templates/Post/list.html`. Now you
 want to add a print view, which is formatted differently. Create a new
 template :file:`Resources/Private/Templates/Post/list.print`
@@ -34,17 +34,17 @@ format is being reflected in the file ending of the template.
 
 .. tip::
 
-   In the example above we have given the print view the name
+   In the example above, we have given the print view the name
    ``print``. All format names are treated equally. There are no
    technical limitations for format names. Therefore you should choose a
-   semantically, meaningful name.
+   semantically meaningful name.
 
 Output other formats with Fluid
 ===============================
 
-If you want to output JSON, RSS or similar data with Fluid, you
-have to write the appropriate TypoScript which passes the page rendering
-to Extbase and Fluid respectively. Otherwise, TYPO3 will always generate
+If you want to output JSON, RSS, or similar data with Fluid, you
+have to write the appropriate TypoScript, which passes the page rendering
+to Extbase and Fluid, respectively. Otherwise, TYPO3 will always generate
 the ``<head>``- and
 ``<body>``-section.
 
@@ -63,8 +63,8 @@ You can use the following TypoScript::
       }
    }
 
-You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
-We recommend to search for the path of your Plugin in the
+You still have to exchange *[ExtensionKey]* and *[PluginName]* with the Extension and Plugin name.
+We recommend searching for the path of your Plugin in the
 TypoScript Object Browser to avoid misspelling. Further on you have to
 explicitly set :ts:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
 to the number of the page containing the data to tell Extbase from which page
@@ -77,9 +77,9 @@ Using built in :php:`JsonView`
 
 Extbase provides the :php:`\TYPO3\CMS\Extbase\Mvc\View\JsonView` as an
 alternative to :php:`\TYPO3\CMS\Fluid\View\TemplateView` which is used by
-default. 
+default.
 
-The intention is to provide the same public API, e.g. assign variables to the
+The intention is to provide the same public API, e.g., assign variables to the
 view, but replace the rendering. The View itself needs further configuration
 about how to convert assigned variables to JSON format.
 
@@ -88,7 +88,7 @@ about how to convert assigned variables to JSON format.
 Switching php class of view
 ---------------------------
 
-In order to use this view, these are multiple possible ways within controller:
+To use this view, these are multiple possible ways within the controller:
 
 .. rst-class:: bignums
 
@@ -195,22 +195,22 @@ Example 1 for :php:`setConfiguration()` call::
       ],
    ]);
 
-Of variable1 only property1 and property2 will be included.
+Of variable1, only property1 and property2 will be included.
 Of variable2 all properties except property3 and property4
 are used.
-Of variable3 all properties except secretTitle are included.
+Of variable3, all properties except `secretTitle` are included.
 
 If a property value is an array or object, it is not included
 by default. If, however, such a property is listed in a "_descend"
-section, the renderer will descend into this sub structure and
+section, the renderer will descend into this substructure and
 include all its properties (of the next level).
 
-The configuration of each property in "_descend" has the same syntax
-like at the top level. Therefore - theoretically - infinitely nested
+Each property's configuration in "_descend" has the same syntax
+as at the top level. Therefore - theoretically - infinitely nested
 structures can be configured.
 
-To export indexed arrays the ``_descendAll`` section can be used to
-include all array keys for the output. The configuration inside a
+The ``_descendAll`` section can be used to
+include all array keys for the output to export indexed arrays. The configuration inside a
 ``_descendAll`` will be applied to each array element.
 
 
@@ -229,9 +229,9 @@ Example 2 for :php:`setConfiguration()` call: exposing object identifier::
       ],
    ]);
 
-Note for entity objects you are able to expose the object's identifier
-also, just add an "_exposeObjectIdentifier" directive set to TRUE and
-an additional property ``__identity`` will appear keeping the persistence
+Note for entity objects, you can expose the object's identifier
+also, add an "_exposeObjectIdentifier" directive set to TRUE and
+an additional property ``__identity`` will appear, keeping the persistence
 identifier. Renaming that property name instead of '__identity' is also
 possible with the directive ``_exposedObjectIdentifierKey``.
 Example 2 above would output (summarized):
@@ -252,11 +252,11 @@ Example 3 for :php:`setConfiguration()` call: exposing object's class name::
       ],
    ]);
 
-The ``_exposeClassName`` is similar to the objectIdentifier one, but the class name is added to the
+The ``_exposeClassName`` is similar to the `objectIdentifier` one, but the class name is added to the
 JSON object output, for example (summarized):
 ``{"customer":{"firstName":"John","__class":"Acme\Foo\Domain\Model\Customer"}}``
 
 The other option is ``EXPOSE_CLASSNAME_UNQUALIFIED`` which only will give the last part of the class
 without the namespace, for example (summarized):
 ``{"customer":{"firstName":"John","__class":"Customer"}}``
-This might be of interest to not provide information about the package or domain structure behind.
+This might be of interest to not provide information about the package or domain structure behind it.

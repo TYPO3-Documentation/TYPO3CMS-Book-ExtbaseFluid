@@ -4,11 +4,11 @@ Back in the controller
 ==============================
 
 You get the ready ``Blog`` objects delivered in an array. "Ready" means in this
-context, that every ``Blog`` object already has all it's ``Post`` objects and their
+context that every ``Blog`` object already has all it's ``Post`` objects and their
 ``Comment`` and ``Tag`` objects.
 
-These blogs are delivered to the object, which is responsible for the output for
-further processing: the so called *View*. If we make no own choice, like in our
+These blogs are delivered to the object responsible for the output for
+further processing: the so-called *View*. If we make no own choice, like in our
 example, the TemplateView of Fluid is automatically available under the class
 variable ``$this->view``.
 
@@ -21,10 +21,10 @@ Before we leave our small, contemplative action island and dig into the deep of
 the Fluid template, let's take a look at the abbreviations and simplifications
 Extbase offers at this point.
 
-* First of all there is the method `initializeAction()`, which is called before
-  every action if defined in your controller.
+* First of all, there is the method `initializeAction()`, which is called before
+  every action, if defined in your controller.
 
-* Secondly you can define methods for the initialization of single actions. These
+* Secondly, you can define methods for the initialization of single actions. These
   methods follow a specific naming convention: `initialize` + `actionMethodName`
 
 The following example explains this mechanism:

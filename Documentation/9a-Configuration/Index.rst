@@ -7,7 +7,7 @@ Configuration
 =============
 
 There are several possibilities to make your extension configurable. The
-various options described here each differ in:
+various options described here each differs in:
 
 * the scope to what the configuration applies (extension, pages,
   plugin)
@@ -44,7 +44,7 @@ Use this for general options that should be globally applied to the extension.
 FlexForms
 =========
 
-FlexForms can be configured in the backend by editors. With FlexForms you can
+FlexForms can be configured in the backend by editors. With FlexForms, you can
 configure each plugin or content element individually.
 
 .. seealso::

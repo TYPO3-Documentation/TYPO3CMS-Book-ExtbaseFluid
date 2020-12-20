@@ -9,7 +9,7 @@ The previous descriptions about generic methods of queries to a Repository are
 sufficient for simple use-cases. However, there are many cases where they are
 not adequate and require more flexible solutions. On the requirements list of
 our application is the functionality to print a list of all the offers. In
-natural language this would sound as follows:
+natural language, this would sound as follows:
 
 * "Find all the offers for a certain region."
 * "Find all the offers corresponding to a certain category."
@@ -21,7 +21,7 @@ could request all the offers from the Backend and filter them manually. This is
 flexible and easy to implement. On the other hand, you could write a request
 matching your criteria exactly and execute it. Contrary to the first case,
 this method would only build the objects that are really needed, which
-positively affects the performance of your application.
+positively affects your application's performance.
 
 
 .. note::
@@ -38,15 +38,15 @@ database backend. This information contains:
 
 * The request's class (*Type*) to which the request applies.
 * An (optional) *Constraint* which restricts the result set.
-* (Optional) Parameters which configure a section of the result set by a *limit* or an *offset*.
+* (Optional) Parameters that configure a section of the result set by a *limit* or an *offset*.
 * (Optional) Parameters concerning the *Orderings* of the result set.
 
-Within a Repository you can create a Query object by using the command
+Within a Repository, you can create a Query object by using the command
 :php:`$this->createQuery().` The Query object is already customized to the class
 which is managed by the Repository. Thus, the result set only consists of
 objects of that class, i.e. it consists of Offer objects within the
-:php:`OfferRepository`. After giving all needed information to the Query object
-(detailed information will be given later on) you execute the request by using
+:php:`OfferRepository`. After giving all the needed information to the Query object
+(detailed information will be given later on), you execute the request by using
 :php:`execute()` which returns a sorted Array with the properly instantiated
 objects (or a via limit and offset customized section of it). For example, the
 generic Repository method :php:`findAll()` looks as follows:
@@ -94,10 +94,10 @@ More Repository search methods are available:
         return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
     }
 
-You must set the storagePid to the allowed pages before a query will find any records.
-By default a query only searches on the root page with id=0
+You must set the `storagePid` to the allowed pages before a query finds any records.
+By default, a query only searches on the root page with `id=0`.
 
-Typoscript example of an extension for the page ids 12 and 22
+TypoScript example of an extension for the page id's 12 and 22
 
 ::
 
@@ -108,7 +108,7 @@ Typoscript example of an extension for the page ids 12 and 22
     }
 
 
-In the first simple use-case we don't apply any constraining parameter to the Query
+In the first simple use-case, we don't apply any constraining parameter to the Query
 object. However, we have to define such a parameter to implement the first
 specified request, "Find all the offers for a certain region". Thus, the
 corresponding method looks as follows:
@@ -144,7 +144,7 @@ respectively negate a result. The following Comparing operations are acceptable:
     between($propertyName, $operandLower, $operandUpper) // inclusive comparison
 
 The method ``equals()`` executes a simple comparison between the property's
-value and the operand which may be a simple PHP data type or a Domain object.
+value and the operand, which may be a simple PHP data type or a Domain object.
 
 Contrarily, the methods ``in()`` and ``contains()`` accept multi-value data types
 as arguments (e.g. Array, ObjectStorage). As ``in()`` checks if a single-valued
@@ -165,11 +165,11 @@ a multi-valued operand (``$organizations``).
 .. note::
 
     If you pass an empty multi-valued property value or an empty
-    multi-valued operand (e.g. an empty Array) to ``in()``, you always get *false*
-    as return value. Thus you have to prove if the operand
+    multi-valued operand (e.g., an empty Array) to ``in()``, you always get *false*
+    as the return value. Thus you have to prove if the operand
     ``$organizations`` of the method call ``$query->in('organization',
     $organizations)`` contains sane values or if it is just an empty Array first. This
-    is dependent on your domain logic. In the last example the method
+    is dependent on your domain logic. In the last example, the method
     ``findOfferedBy()`` would return an empty set of values.
 
 
@@ -181,10 +181,10 @@ they have offers for youngsters older than 16. You may define the request in the
     $query->lessThanOrEqual('offers.ageRange.minimalValue', 16)
 
 Extbase solves the path ``offers.ageRange.minimalValue`` by seeking every
-organization having offers whose age values have a minimum less than or
+organization having offers whose age values have a minimum of less than or
 equal to 16. Assuming that a Relational Database System is used in the Persistence
-Backend, this is internally solved by a so-called *INNER JOIN*. All relational
-types (1:1, 1:n, m:n) and all comparison operators are covered by this feature.
+Backend, this is internally solved by a so-called *INNER JOIN*. This feature covers all relational
+types (1:1, 1:n, m:n) and all comparison operators.
 
 Besides comparison operators, the ``Query`` object supports Boolean
 Operators such as::
@@ -197,7 +197,7 @@ The methods above return a ``Constraint`` object. The resulting ``Constraint``
 object of ``logicalAnd()`` is true if both given parameters ``$constraint1`` and
 ``$constraint2`` are true. It's sufficient when using ``logicalOr()`` to
 be true if only one of the given parameters is true. Both methods
-accept an Array of constraints. Last, but not least, the function
+accept an Array of constraints. Last but not least, the function
 ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
 complex queries such as:
@@ -221,13 +221,13 @@ complex queries such as:
 The method :php:`findMatchingOrganizationAndRegion()` returns those offers that
 match both the given organization and the given region.
 
-For our example extension we have the complex specification to find all offers
-that comply with the requirements of the user. The requirements are given
-via information about the age, the organization, the city district, and the category,
-as well as a freely defined search term in the front end. We encapsulate the requirements
-in their own ``Demand`` object that basically consists of the properties ``age``, ``organisation``,
+For our example extension, we have the complex specification to find all offers
+that comply with the user's requirements. The requirements are given
+via information about the age, the organization, the city district, the category,
+and a freely defined search term in the front end. We encapsulate the requirements
+in their own ``Demand`` object that basically consists of the properties ``age``, ``organization``,
 ``region``, ``category`` and ``searchWord``, plus their getters and setters.
-In addition to the restrictions for the needs of the user, there comes the request
+In addition to the restrictions for the user's needs, there comes a request
 to show the current offers. This example request denotes a date constraint at most one week ago.
 In the method ``findDemanded()`` of the ``offerRepository``, the request is implemented:
 
@@ -282,7 +282,7 @@ The ``Demand`` object is passed as an argument. In the first line, the ``Query``
 All single constraint terms are then collected in the array ``$constraints``. The
 ``$query->logicalAnd($constraints)`` instruction brings together these constraint terms, and
 they are assigned to the ``Query`` object via ``matching()``. With ``return $query->execute();``, the
-query is executed and the located ``Offer`` objects are returned to the caller.
+query is executed, and the located ``Offer`` objects are returned to the caller.
 
 The example's offer age range requirement is interesting.
 
@@ -315,7 +315,7 @@ You can sort the result of a query by assigning one or more rules ``$query->setO
 to the ``Query`` object. These rules are collected in an associative array. Each array element has the
 property name on which the sort is based as its key, and the search order constant as its value.
 There are two constants for the search order: ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING``
-for an ascending order, and ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING`` for a descending
+for ascending order, and ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING`` for descending
 order. A complete sample for specifying a sort order looks like this:
 
 .. code-block:: php
@@ -327,8 +327,8 @@ order. A complete sample for specifying a sort order looks like this:
         ]
     );
 
-Multiple orderings are processed in the specified order. In our sample the offers are ordered first
-by the name of the organization, then inside the organization by the title of the offers, both in ascending
+Multiple orderings are processed in the specified order. In our sample, the offers are ordered first
+by the organization's name, then inside the organization by the title of the offers, both in ascending
 order (thus from A to Z). You can use point notation for specifying the property names.
 
 If you need only an extract of the result set, you can do this with the two parameters, ``Limit``
@@ -344,14 +344,14 @@ Both methods expect an integer value. With the method ``setOffset()``, you set t
 object you will start with. With the method ``setLimit()``, you set the maximum count of objects you will
 get.
 
-At first sight the usage of a `Query` object with `Constraint` objects instead
+At first sight, using a `Query` object with `Constraint` objects instead
 of directly written SQL statements may look inefficient. But doing so here with
 Extbase makes complete abstraction of the storage backend possible.
 
 .. note::
 
     The ``Query`` object leans against the *Java Specification Request* (JSR) 283. JSR 283
-    describes a standardised content repository for Java, The FLOW team ported this idea to PHP. You can
+    describes a standardized content repository for Java; the FLOW team ported this idea to PHP. You can
     find more information about this at
     :file:`http://jcp.org/en/jsr/detail?id=283`.
 
@@ -393,9 +393,9 @@ is translated by Extbase to the following query:
 
     You have to handle the creation and maintenance of the objects by yourself.
 
-The method ``execute()`` per default returns a ready built object and the related objects
+The method ``execute()`` per default returns a ready-built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
-e.g. if you want to manipulate them before you build objects out of them. For this, you have to execute the
+e.g., if you want to manipulate them before building objects out of them. For this, you have to execute the
 method with its parameter ``$returnRawQueryResult`` set to true.
 
 .. code-block:: php
@@ -403,7 +403,7 @@ method with its parameter ``$returnRawQueryResult`` set to true.
     $query->execute(true);
 
 The method ``execute()`` will then return a multidimensional array with the object data.
-Inside an object, one finds single value properties, multi value properties and NULL values. Let's have a
+Inside an object, one finds single value properties, multi-value properties, and NULL values. Let's have a
 look at an object with a single value property.
 
 ::
@@ -421,20 +421,19 @@ look at an object with a single value property.
         ],
     ],
 
-In Extbase, the value for ``<identifier>`` is always the UID of the data record. The class name
+In Extbase, the value for ``<identifier>`` is always the data record's UID. The class name
 ``<classname>`` and the identifier together make the element unique across the whole database. The
-properties are stored in an own associative array. The name of the property is the key and the
-corresponding information of the properties are the value. The property is signed with the property
+properties are stored in an own associative array. The property's name is the key, and the
+corresponding information of the properties isis the value. The property is signed with the property
 type ``<type>`` and the property value ``<value>`` itself. The property type could be ``string``, ``integer``,
 ``DateTime``, or a class name like ``\MyVendor\SjrOffers\Domain\Model\Organization``, for example. The property
-is declared as single value per default (``'multivalue' => FALSE``).
+is declared as a single value per default (``' multi-value' => FALSE``).
 
-The array of an object with a multivalue property is basically composed the same way. The actual value of the
-property is not a simple data type (like a string or a single object), but an array of data types.
+The array of an object with a multi-value property is basically composed the same way. The property's actual value is not a simple data type (like a string or a single object) but an array of data types.
 This array could also be empty, and instead of the array, a NULL value is possible. The property type
-for multivalue properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStorage``. In the future, other containers
+for multi-value properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStorage``. In the future, other containers
 like ``array`` or ``splObjectStorage`` may be supported. The property is per definition declared as
-multivalue (``'multivalue' => TRUE``).
+multi-value (``' multi-value' => TRUE``).
 
 ::
 
@@ -481,15 +480,15 @@ The debug output of the return value looks like figure 6-13.
 
     Figure 6-13: Debug output of "raw" object data
 
-Maybe in figure 6-13 you have noticed the empty array (``EMPTY!``) of the properties of the organization.
-In the domain model the property ``organization`` of the offer is annotated with :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`.
-This annotation instructs Extbase to load the properties of the object only when they are really
-needed (so called *lazy loading*).
+Maybe in figure 6-13, you have noticed the empty array (``EMPTY!``) of the organization's properties.
+In the domain model, the property ``organization`` of the offer is annotated with :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`.
+This annotation instructs Extbase to load the object's properties only when they are really
+needed (so-called *lazy loading*).
 
 There are three additional settings for the execution of a query.
 All settings are occupied with default values that are set when the ``Query`` object was created by
 ``$this->createQuery()``. The settings are enclosed in an own ``QuerySettings`` object that you can get
-from the ``Query`` object with ``getQuerySettings()``. In table 6-3 you find all settings in summary.
+from the ``Query`` object with ``getQuerySettings()``. In table 6-3, you find all settings in summary.
 
 *Table 6-3: Settings for the execution of a query* (``QuerySetting``)
 
@@ -547,7 +546,7 @@ queries. The used entities are the following:
     The table names in the following SQL-like examples have been shortened for
     better readability. Instead of `tx_blogexample_post` the real table name
     used in the **Blog Example** would be `tx_blogexample_domain_model_post`.
-    Besides that, only the relevant query parts as mentioned, not all of them.
+    Besides that, only the relevant query parts, as mentioned, not all of them.
 
 1:1 (RELATION_HAS_ONE)
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -648,7 +647,7 @@ Distinct entity handling in query result set
 |                                         |     | entity will lead to left-sided duplicates  |
 +-----------------------------------------+-----+--------------------------------------------+
 
-For each of the above mentioned scenarios, when having distinct entity handling
+For each of the above-mentioned scenarios, when having distinct entity handling
 is suggested, an implicit `SELECT DISTINCT` statement is used instead of the
 regular plain `SELECT` statement. This does also apply to counting result
 sets where `COUNT(DISTINCT <table-name>.uid)` is used instead of a plain

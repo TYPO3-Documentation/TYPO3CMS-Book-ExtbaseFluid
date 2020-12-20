@@ -24,7 +24,7 @@ Developing TYPO3 Extensions with Extbase and Fluid
 :Status:
       This manual contains some outdated information.
 
-The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework available from typo3.org.
+This document's content is related to TYPO3 CMS, a GNU/GPL CMS/Framework available from typo3.org.
 
 **About this manual:**
 

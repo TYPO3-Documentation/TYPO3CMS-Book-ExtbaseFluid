@@ -5,17 +5,17 @@ Controlling The Flow
 
 We now want to show a list of products in our inventory in the frontend.
 The component responsible for rendering that list is the *view*.
-The default view and templating engine in Extbase is Fluid.
+The default view and templating engine used in Extbase is Fluid.
 
 The connection between the *model* and the *view* is the *controller*.
-The controller is responsible for fetching the data from the model and handing it
+The controller is responsible for fetching the model's data and handing it
 to the view to be rendered. The controller uses `*Action` methods as entry points.
-In our case we want to display a list of products, so we should implement a `listAction`.
+In our case, we want to display a list of products, so we should implement a `listAction`.
 
 The class name of the controller must end with ``Controller``. Because our controller controls
 the display of the inventory we call it :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
 
-In our simple example the controller looks like this:
+In our simple example, the controller looks like this:
 
 .. code-block:: php
 
@@ -56,7 +56,7 @@ Extbase identifies all methods ending with ``Action`` as actions
 
 The method :php:`injectProductRepository()` shows how dependency injection looks like in Extbase
 - Extbase automatically injects the product repository via this method.
-Afterwards, we can access the repository with :php:`$this->productRepository` in all actions.
+Afterward, we can access the repository with :php:`$this->productRepository` in all actions.
 Use dependency injection for getting all your class dependencies if possible.
 
 As we want to display a list of all products in our inventory,

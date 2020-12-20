@@ -2,8 +2,7 @@ The stations of the journey
 ===========================================
 
 Now that you have had a look at your journey destination and hopefully
-don't feel disoriented when we stop at the several steps, you are able
-to start. Figure 3-3 gives you an overview of the stations on the journey,
+don't feel disoriented when we stop at the several steps, you can start. Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know in more detail during the upcoming sections.
 
 .. figure:: /Images/3-BlogExample/figure-3-3.png
@@ -14,17 +13,16 @@ which you will get to know in more detail during the upcoming sections.
 When an extension like the blog example is called, the following
 happens behind the scenes:
 
-TYPO3 digs into the page content and discovers the content element of
-the extension (plugin) on the page. It does not call the extension directly,
+TYPO3 digs into the page content and discovers the extension's content elements (plugins) on the page. It does not call the extension directly,
 but hands over the control to the Extbase *Dispatcher*
 (1).
 
 The *Dispatcher* bundles all information of the
 request in a *Request* and sends it to the appropriate
-part of the extension, which takes over the flow control — the so called
+part of the extension, which takes over the flow control — the so-called
 *Controller* (2).
 
-Within the controller the appropriate storage facility which is in charge
+Within the controller, the appropriate storage facility which is in charge
 of the blogs — the *Repository* — is instructed to
 return all the stored blog posts using the method :php:`findAll()`
 (3).

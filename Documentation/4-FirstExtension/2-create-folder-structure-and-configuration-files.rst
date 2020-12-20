@@ -4,8 +4,8 @@ Create Folder Structure and Configuration Files
 ===============================================
 
 
-Before we write the first line of code, we need to create the basic infrastructure of the extension.
-To allow TYPO3 to load the extension we need some default configuration files.
+Before we write the first line of code, we need to create the extension's basic infrastructure.
+To allow TYPO3 to load the extension, we need some default configuration files.
 Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3conf/ext/`
 - the folder name `store_inventory` corresponds to the unique identifier of our extension
 (also known as "extension key").
@@ -27,7 +27,7 @@ The folder :file:`Classes` will contain all of our PHP classes.
 In the folder :file:`Resources` we create two directories named :file:`Private` and :file:`Public`.
 The folder :file:`Resources/Private/` will contain subfolders like
 :file:`Templates`, :file:`Layouts`, :file:`Partials` and :file:`Language`.
-These files are not accessible via the web browser, they are mostly used via PHP.
+These files are not accessible via the web browser. They are mostly used via PHP.
 The folder :file:`Resources/Public/` contains subfolders like :file:`Icons`,
 :file:`Css`, :file:`Js`. These files can be accessed through the web browser.
 
@@ -46,11 +46,11 @@ Resulting from all this, the folder structure within the extension folder
 
 A single configuration file named :file:`ext_emconf.php` is required by TYPO3
 to allow loading the extension. The file is located in the extension's
-top level folder (:file:`store_inventory/`). You can copy and adapt this file
+top-level folder (:file:`store_inventory/`). You can copy and adapt this file
 from an existing extension.
 
-The file :file:`ext_emconf.php` contains the meta information for the
-extension like title, description, status, name of the author and more.
+The file :file:`ext_emconf.php` contains the meta-information for the
+extension like title, description, status, name of the author, and more.
 It is not special in any way and does not differ from the one of any other
 extension. Find a complete reference in chapter :ref:`t3coreapi:extension-declaration`
 of the *Core Api Reference* manual.
@@ -76,15 +76,15 @@ of the *Core Api Reference* manual.
        ],
    ];
 
-In previous versions of TYPO3 the extension icon was named :file:`ext_icon.gif`.
-Starting with TYPO3 8 you can choose between PNG or SVG format.
+In previous versions of TYPO3, the extension icon was named :file:`ext_icon.gif`.
+Starting with TYPO3 8, you can choose between PNG or SVG format.
 It is recommended to call the file :file:`Extension.png` or
 :file:`Extension.svg` and store it in the directory :file:`Resources/Public/Icons/`.
 The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
 
 Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 
-.. code-block:: php 
+.. code-block:: php
 
     {
         "name": "myvendor/store-inventory",
@@ -109,6 +109,6 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 
 The :file:`composer.json` allows loading the extension with the PHP package manager composer.
 
-After the basic structure has been created the extension can now
-be installed in the extension manager. But first we turn to our domain.
+After the basic structure has been created, the extension can now
+be installed in the extension manager. But first, we turn to our domain.
 

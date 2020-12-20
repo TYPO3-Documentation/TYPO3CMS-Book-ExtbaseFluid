@@ -8,7 +8,7 @@ Since there is none specified by ``this->view->setTemplatePathAndFilename($templ
 Fluid searches at a place defined by conventions.
 
 All frontend templates can be found in :file:`EXT:blog_example/Resources/Private/Templates`
-by default. For example there are the two subfolders *Blog* and *Post*.
+by default. For example, there are the two subfolders *Blog* and *Post*.
 Since the call was made by the ``indexAction()`` of the ``BlogController`` Fluid
 searches in the folder *Blog* for a file named *Index* and - if not set up
 differently - the suffix *.html*. So every action method has its own template.
@@ -29,7 +29,7 @@ can find some examples for these convention.
 |Post       |unspecified |unspecified |Resources/Private/Templates/Post/Index.html |
 +-----------+------------+------------+--------------------------------------------+
 
-In our case the file *Index.html* will be loaded. The content will be parsed step
+In our case, the file *Index.html* will be loaded. The content will be parsed step
 by step, line by line. Here you see an extract of the template file:
 
 .. code-block:: html
@@ -81,7 +81,7 @@ controller, see the :ref:`documentation on pagination <t3coreapi:pagination>` fo
 guide on how to achieve that.
 The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
-:php:`indexAction()` of the `BlogController`. With the attribute `each` the
+:php:`indexAction()` of the `BlogController`. With the attribute `each`, the
 `for` ViewHelper gets the `blog` objects over whom to iterate. The
 attribute ``as`` holds the name of the variable with which the `blog` object is
 available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
@@ -97,13 +97,13 @@ available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
 Objects cannot be rendered by Fluid directly if they do not have a
 :php:`__toString()` method. The single properties of an object can be accessed
 with point-notation.
-If Fluid crosses a string like `{blog.title}` it tries to parse it. Fluid
+If Fluid crosses a string like `{blog.title}`, it tries to parse it. Fluid
 expects the variable `blog` to be an object. Inside of this object it searches
-for a method named :php:`getTitle()`. The name of the method is
+for a method named :php:`getTitle()`. The method's name is
 created by extracting the part after the point, capitalizing the first letter
-and prefixing it with "get". With this the call looks something like this:
+, and prefixing it with "get". With this, the call looks something like this:
 :php:`$blog->getTitle()`. The return value will replace `{blog.title}` in the
-template. In the same way `{blog.description}` will be replaced with the
+template. In the same way, `{blog.description}` will be replaced with the
 description.
 Parsing the point goes recursively. That means Fluid can parse a string
 `{blog.administrator.name}` by calling a method that equals

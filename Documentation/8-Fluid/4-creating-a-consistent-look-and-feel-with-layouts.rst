@@ -6,7 +6,7 @@ Creating A Consistent Look And Feel With Layouts
 ================================================================================================
 
 While partials are suitable for small recurring elements, layouts
-build the frame of the templates (see Figure 8-1). They should create a
+build the templates' frame (see Figure 8-1). They should create a
 consistent look and feel of a web application and decorate an existing
 template. In a layout, areas are marked as variable and replaced with the
 current template. Note that the template has the focus and controls the
@@ -21,10 +21,10 @@ template.
 
 Now we look at how to create and use a layout. A layout is a Fluid
 file in the folder :file:`Resources/Private/Layouts/`. It
-contains placeholders which should be replaced by content of the
-corresponding template within the layout. In the following example you see a
+contains placeholders that should be replaced by the content of the
+corresponding template within the layout. In the following example, you see a
 use case of the ViewHelper ``<f:render section="..." />`` as
-placeholder.
+a placeholder.
 
 .. code-block:: html
 
@@ -39,10 +39,10 @@ placeholder.
 
 .. tip::
 
-  Layouts in Extbase usually don't contain the basic structure of a
+  Layouts in Extbase usually do not contain the basic structure of a
   HTML document (``<html>``, ``<head>``
-  etc.), since this is usually generated with TYPO3. For the purpose of
-  illustration though, we show a complete HTML page.
+  etc.), since this is usually generated with TYPO3. For
+  illustration, though, we show a complete HTML page.
 
 A template looks like this:
 
@@ -69,19 +69,19 @@ template, which uses this layout, must define the section
 ``<f:section name="main">...</f:section>``, whose
 content then is being inserted in the layout. Layouts can reference any number of
 sections. Different sections are often used for multi-column layouts.
-Besides, you can use all features of Fluid in layouts, which you'll get to
-know in the course of this chapter, for building templates. So layouts offer
+Besides, you can use all Fluid features in layouts, which you will get to
+know in this chapter, for building templates. So layouts offer
 various possibilities for efficiently templating a web application.
 
 .. tip::
 
-  You'll find a practical example for building layouts in the
+  You will find a practical example for building layouts in the
   section ":ref:`template-creation-by-example`" later on in this
   chapter.
 
-Now that you got to know how you can structure templates with
+Now that you know how you can structure templates with
 layouts and partials, we want to explore some options ViewHelpers offer. In
-the following segment we'll introduce a powerful tool for template building.
+the following segment, we will introduce a powerful tool for template building.
 A ViewHelper which combines the possibilities of Fluid and the classic
 TYPO3-templating.
 
