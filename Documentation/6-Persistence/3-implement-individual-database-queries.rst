@@ -427,13 +427,13 @@ properties are stored in an own associative array. The property's name is the ke
 corresponding information of the properties isis the value. The property is signed with the property
 type ``<type>`` and the property value ``<value>`` itself. The property type could be ``string``, ``integer``,
 ``DateTime``, or a class name like ``\MyVendor\SjrOffers\Domain\Model\Organization``, for example. The property
-is declared as a single value per default (``' multi-value' => FALSE``).
+is declared as a single value per default (``'multivalue' => FALSE``).
 
 The array of an object with a multi-value property is basically composed the same way. The property's actual value is not a simple data type (like a string or a single object) but an array of data types.
 This array could also be empty, and instead of the array, a NULL value is possible. The property type
 for multi-value properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStorage``. In the future, other containers
 like ``array`` or ``splObjectStorage`` may be supported. The property is per definition declared as
-multi-value (``' multi-value' => TRUE``).
+multi-value (``'multivalue' => TRUE``).
 
 ::
 

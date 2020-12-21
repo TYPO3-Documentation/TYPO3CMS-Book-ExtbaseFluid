@@ -14,7 +14,8 @@ as well. It provides the foundation for all following stages of development.
 Don't worry: You'll only need common sense and a few tools to model a
 domain. The latter we are going to introduce in this chapter.
 
-The central theme is provided by a complex example, which exhausts Extbase's and Fluid's essential characteristics. We will use this central
+The central theme is provided by a complex example, which exhausts
+Extbase's and Fluid's essential characteristics. We will use this central
 theme constantly in the following chapters. The example is based on a real
 project, which was worked on simultaneously as writing the text on behalf
 of *SJR (Stadtjugendring Stuttgart e.V.)*. The SJR is an

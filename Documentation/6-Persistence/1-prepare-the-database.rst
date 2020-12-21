@@ -105,7 +105,8 @@ changed the last time. Most often, this relates to the timestamp the Domain
 Model was changed the last time.
 
 `deleted` When this fields' value differs from 0, TYPO3
-handles its corresponding record as if it was physically deleted. Thus it will show off neither in the Backend nor in the Frontend. It can be restored by
+handles its corresponding record as if it was physically deleted. Thus it will show
+off neither in the Backend nor in the Frontend. It can be restored by
 either setting the field to 0 or more easily be dug out using the
 system extension *Recycler*. Extbase will set this
 field whenever a record is deleted in case that this field exists. Additionally,
@@ -447,9 +448,11 @@ Later on, Extbase computes the `DateRange`-object from the
 uid.
 
 In a `1:n` relationship, there are two possibilities.
-Either every `uid` value is stored as a comma-separated list in the parent object field. Or every child object contains the parental
+Either every `uid` value is stored as a comma-separated list in
+the parent object field. Or every child object contains the parental
 uid in a foreign key field. TYPO3 mostly uses the comma-separated list in its
-core. Still, we discourage that solution because of its drawbacks: Comma-separated fields complicate the search and hinder the
+core. Still, we discourage that solution because of its drawbacks:
+Comma-separated fields complicate the search and hinder the
 indexation in the database. Furthermore, the creation and deletion of child
 objects are complex and time-consuming. Thus, using comma-separated lists
 for modeling relationships should only be used with database tables that

@@ -1,6 +1,6 @@
 .. include:: ../Includes.txt
 
-Returning the result to TYPO3.
+Returning the result to TYPO3
 =============================
 
 At the end of the request, all changes to objects that were previously

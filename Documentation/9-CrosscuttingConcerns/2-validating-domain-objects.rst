@@ -98,7 +98,8 @@ adds an error by calling `$this->addError()`.
 
     The method ``addError()`` expects an error message and an
     error code. The latter should be unique; therefore, we recommend using
-    the UNIX timestamp of the source code's creation time. With the error code's help, the error can be definitely identified, for
+    the UNIX timestamp of the source code's creation time. With the
+    error code's help, the error can be definitely identified, for
     example, in bug reports.
 
 By default, Extbase will not call your validator if the value to validate is
@@ -520,7 +521,8 @@ Now have a look at what happens when the user inserts erroneous data
 into the form. In this case, an error occurs when validating the
 ``$blog`` arguments. Therefore instead of the
 `updateAction`, the `errorAction` is called. This action routes the
-request by returning a :php:`ForwardResponse` to the last used action because the form should be displayed again in case of an error. Additionally, an error
+request by returning a :php:`ForwardResponse` to the last used action because
+the form should be displayed again in case of an error. Additionally, an error
 message is generated and given to the controller. Ergo: In case of a
 validation error, the `editAction` is displayed
 again.

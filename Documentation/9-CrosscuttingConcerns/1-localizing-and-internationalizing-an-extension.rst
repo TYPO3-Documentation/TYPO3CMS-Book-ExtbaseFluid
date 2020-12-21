@@ -15,10 +15,12 @@ You will find a comprehensive description of all concepts and options in the
 For the following sections, we assume a correct configuration of the
 localization, which is normally done in the site configuration.
 
-The frontend language selection is carried out with a URL parameter (``linkVars = L``). Important is the definition of the
+The frontend language selection is carried out with a URL parameter
+(``linkVars = L``). Important is the definition of the
 UID of the language (``sys_language_uid = 0``) and the language key
 of the language (``language = default``). When the URL of the
-website contains the parameter ``L=1``, the output occurs in german; if the parameter is not set, the output of the website occurs in the default
+website contains the parameter ``L=1``, the output occurs in German;
+if the parameter is not set, the output of the website occurs in the default
 language (in our example in English).
 
 In the next section, we start with the translation of static text like
@@ -376,8 +378,8 @@ How TYPO3 handles the localization of content offers two
 important specific features: The first is that all translations of a data
 record respectively a data record that is valid for all languages (UID of
 the language is 0 or -1) will be "added" to the data record in the default
-language. The second special feature is that the record
-in the default language is always bound for identification. However, the
+language. The second special feature is that always the UID of the record
+in the default language is bound for identification although the
 translated data record in the database table has another UID. This
 conception has a serious disadvantage: If you want to create a data record
 for a language with no data record in the default language, you have
@@ -437,7 +439,7 @@ objects in the frontend.*
 |Editing (edit,   |Like displaying an object. The domain data is stored in the "translated"|
 |update)          |data record, in the above example in the record with the UID 42.        |
 +-----------------+------------------------------------------------------------------------+
-| creation (new,   |Independent of the selected frontend language the data is stored in a   |
+|Creation (new,   |Independent of the selected frontend language the data is stored in a   |
 |create)          |new record in whose field ``sys_language_uid`` the number 0 is inserted.|
 +-----------------+-----------------------------------+------------------------------------+
 
@@ -621,7 +623,7 @@ The following examples show how to query data in Extbase in different scenarios,
 
 
 +------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| QuerySettings property | old behavior | new behavior | default value (TSFE|Extbase) |
+| QuerySettings property | old behavior                                                                                    | new behavior                                 | default value (TSFE|Extbase) |
 +========================+=================================================================================================+==============================================+==============================+
 | languageUid            |                                                                                                 | same                                         | 0                            |
 +------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+

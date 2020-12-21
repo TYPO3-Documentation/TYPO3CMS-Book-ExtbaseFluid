@@ -52,7 +52,8 @@ backend. Let's have a look at the following two files:
         $uncachedActions
     );
 
-The allowed combinations of the controller and actions are determined in addition to the extension key and the plugin's unique name (lines 3 and 4).
+The allowed combinations of the controller and actions are determined in
+addition to the extension key and the plugin's unique name (lines 3 and 4).
 `$controllerActionCombinations` is an associative array. This array's keys
 are the allowed controller classes, and the values are a comma-separated list of
 allowed actions per controller. The first action of the first controller is the
@@ -236,7 +237,7 @@ template with `{settings}`.
 
 .. tip::
 
-    The settings allow you to pass arbitrary information to a template, even for third party extensions.
+    The settings allow you to pass arbitrary information to a template, even for 3rd-party extensions.
     Just make sure you prefix them with a unique vendor to prevent collisions with further updates
     of the extensions.
 
@@ -426,7 +427,8 @@ Most important API methods of action controller
     Defines an action.
 
 `errorAction()`
-    Standard error action. It needs to be adjusted only in sporadic cases. The property `$errorMethodName` defines the name of this method.
+    Standard error action. It needs to be adjusted only in sporadic cases. The property
+    `$errorMethodName` defines the name of this method.
 
 `initializeAction()`
     Initialization method for all actions. Can be used to e.g. register arguments.
@@ -497,7 +499,8 @@ of the specified method, as shown in Example B-3:
        }
    }
 
-It is important to specify the full type in the `@param` annotation as this is used to validate the object. Note that not only simple data types such as String, Integer, or Float can be validated,
+It is important to specify the full type in the `@param` annotation as this is used to validate
+the object. Note that not only simple data types such as String, Integer, or Float can be validated,
 but also complex object types (see also the section ":ref:`validating-domain-objects`" in Chapter 9).
 
 Besides, on actions showing the forms used to create domain objects, the validation of domain
@@ -859,7 +862,8 @@ example:
 
 In this code section, the validators for the `$title` attribute of the Blog object is defined. `$title`
 must be a text (i.e., no HTML is allowed), and also the length of the string is checked with the
-`StringLength`-Validator (it must be between 1 and 80 characters). Commas can separate several validators for a property. Parameters of the validators are set in parentheses. You can omit the
+`StringLength`-Validator (it must be between 1 and 80 characters). Commas can separate several validators
+for a property.Parameters of the validators are set in parentheses. You can omit the
 quotes for validator options if they are superfluous, as in the example above. If complex validation
 rules are necessary (for example, multiple fields to be checked for equality), you must implement
 your own validator.
@@ -902,7 +906,8 @@ does all the translation. The method can be called like this:
 `$key`
     The identifier to be translated. If the format *LLL:path:key* is given, then this
     identifier is used, and the parameter `$extensionName` is ignored. Otherwise, the
-    file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded, and the resulting text for the given key in the current language returned.
+    file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded,
+    and the resulting text for the given key in the current language returned.
 
 `$extensionName`
     The extension name. It can be fetched from the request.

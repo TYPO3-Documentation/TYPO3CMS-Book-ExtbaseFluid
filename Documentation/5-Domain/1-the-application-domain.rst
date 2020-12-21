@@ -115,7 +115,8 @@ several property pairs that belong together:
 These property pairs are subject to own rules that are not
 part of a single property. The minimal age limit (`minimumAge`)
 for example, should not be greater than the maximum age limit
-(`maximumAge`). The offer itself can do the observation of this rule by a corresponding validation. But it rather belongs to the
+(`maximumAge`). The offer itself can do the observation of this rule
+by a corresponding validation. But it rather belongs to the
 property pair. We store each property pair in an own domain object:
 `AgeRange`, `AttendanceRange` and
 `DateRange`. The outcome of this is the optimized second draft

@@ -13,8 +13,8 @@ create a JSON based output for the ``list`` action in the
 ``post`` controller of the BlogExample. To be able to do so, we need
 a PHP based view.
 
-A PHP-based view will be used when no Fluid template is found for a controller/action/format
-combination. This PHP class is resolved
+A PHP-based view will be used when no Fluid template is found
+for a controller/action/format combination. This PHP class is resolved
 against a naming convention which is defined in the
 ``ActionController`` in the class variable
 ``$viewObjectNamePattern``. The default naming convention is
@@ -88,13 +88,14 @@ control the resolution of the view. In most cases, the customization of
 ``$viewObjectNamePattern`` should be flexible enough, but
 sometimes you have to put more logic into it.
 
-For example, you might have to initialize your view specially before it can be used. For this, there is the template method
+For example, you might have to initialize your view specially
+before it can be used. For this, there is the template method
 ``initializeView($view)`` inside the
 ``ActionContoller``, which gets the view as a parameter. In this
 method, you should write your own initializing routine for your
 view.
 
-If you want to control the resolving and initialize the view
+If you want to control the resolving and initializing of the view
 completely, you have to rewrite the method ``resolveView()``.
 This method has to return a view that implements
 ``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. Sometimes it is enough to

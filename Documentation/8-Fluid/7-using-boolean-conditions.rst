@@ -63,7 +63,7 @@ This is also possible in the inline notation::
 Realize complex comparisons
 -------------------------------------------------
 
-Until now, we have been employed with the simplest boolean evaluations. With
+Until now we have employed with simplest boolean evaluations. With
 the syntax you have learned until now, no comparisons or modulo operations
 are possible. Fluid supports these conditions as well. Here is a short
 example::

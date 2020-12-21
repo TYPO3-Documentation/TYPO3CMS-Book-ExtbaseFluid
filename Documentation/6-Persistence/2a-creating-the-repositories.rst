@@ -33,7 +33,8 @@ already generically implemented in the super-class
    }
 
 We create a : php:'\MyVendor\SjrOffers\Domain\Repository\OfferRepository'the same
-way, but we will later extend it with our own methods for accessing offers. We likely have to access the other objects for categories, regions and
+way, but we will later extend it with our own methods for accessing offers. We
+likely have to access the other objects for categories, regions and
 update data of certain persons' contact information independent of the offers
 or their organizations. Thus we define some additional Repositories for those
 objects for easier access from the Frontend.

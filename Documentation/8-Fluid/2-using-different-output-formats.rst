@@ -209,8 +209,8 @@ Each property's configuration in "_descend" has the same syntax
 as at the top level. Therefore - theoretically - infinitely nested
 structures can be configured.
 
-The ``_descendAll`` section can be used to
-include all array keys for the output to export indexed arrays. The configuration inside a
+The ``_descendAll`` section can be used to include all array keys
+for the output to export indexed arrays. The configuration inside a
 ``_descendAll`` will be applied to each array element.
 
 

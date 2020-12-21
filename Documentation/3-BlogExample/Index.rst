@@ -23,7 +23,8 @@ background. This knowledge will then help you in the creation of your own
 extension.
 
 If you are looking for a manual specifically on creating an extension,
-:ref:`creating-a-first-extension` will show you the right set of tools. However, we recommend working on the fundamentals in this chapter. The journey that lies ahead
+:ref:`creating-a-first-extension` will show you the right set of tools. However, we recommend
+working on the fundamentals in this chapter. The journey that lies ahead
 of us could also have the title "Europe in five days." If you discover nice
 places, you should visit them later without the travel group.
 
@@ -39,8 +40,9 @@ own extension later.
    every other class of Extbase - in the folder
    :file:`typo3/sysext/extbase/Classes/`.
 
-At the end of this chapter, you will find a short comparison of the traditional
-way to code an extension and an approach with Extbase and Fluid.
+At the end of this chapter, you will find a short comparison of the
+traditional way to code an extension and an approach with Extbase and
+Fluid.
 
 .. toctree::
    :hidden:

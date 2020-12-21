@@ -29,7 +29,8 @@ We are aiming at the following target audiences.
 Structure of this book
 ======================
 
-This chapter is structured into ten main chapters, some additional smaller chapters, and three appendices. The chapters discuss the following topics:
+This chapter is structured into ten main chapters, some additional smaller chapters,
+and three appendices. The chapters discuss the following topics:
 
 .. **Introduction**
 

@@ -260,7 +260,8 @@ Inline Notation for View Helpers
 
 It is intuitive and natural for most of the ViewHelpers to be called
 with the tag-based syntax. Especially with control structures or form
-elements, this syntax is easily understood. But there are also ViewHelpers, which can lead to difficult to understand and invalid template code when
+elements, this syntax is easily understood. But there are also ViewHelpers,
+which can lead to difficult to understand and invalid template code when
 used as a tag. An example of this is the ``f:uri.resource``
 ViewHelper, which returns the path to a resource in the
 *Public/* folder of an Extension. It is being used
@@ -310,7 +311,8 @@ In Fluid there is a ViewHelper ``f:format.date`` to output
 ``<f:format.date format="Y-m-d">{post.date}</f:format.date>``
 
 This ViewHelper formats the date as defined in the
-*format* property. In this case, there must be no whitespaces or newlines before or after
+*format* property. In this case, there must be
+no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
 and the string representation of ``{post.date}`` together as
 string. Because the DateTime object has no method
@@ -337,7 +339,8 @@ An alternative would be to use the following syntax::
     {post.date -> f:format.date(format: 'Y-m-d')}
 
 Inside the Object Accessor, we can use a ViewHelper to process the
-value. The above example is easily readable, intuitive, and less error-prone than the tag-based variation.
+value. The above example is easily readable, intuitive, and less
+error-prone than the tag-based variation.
 
 .. tip::
 
@@ -393,8 +396,8 @@ post</f:link.action>``
 
 The array ``{post: currentPost}`` consists of a single
 element with the name ``post``. The value of the element is the
-object ``currentPost``. A comma separates multiple elements: ``{post: currentPost, blogTitle:
-'Webdesign-Blog'}``.
+object ``currentPost``. A comma separates multiple elements:
+``{post: currentPost, blogTitle: 'Webdesign-Blog'}``.
 
 Fluid only supports named arrays, which means that you always have
 to specify the key of the array element. Let's look at what options you

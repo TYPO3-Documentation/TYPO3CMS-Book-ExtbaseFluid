@@ -113,7 +113,7 @@ In table A-1, you see some naming examples for file and class names.
 *Table A-1: Examples for class names*
 
 +--------------------------------------------------------+---------------+-----------------------------------------------------+
-| class name                                              | extension key | folder                                              |
+| class name                                             | extension key | folder                                              |
 +========================================================+===============+=====================================================+
 | TYPO3\\CMS\\Extbase\\Exception                         | extbase       | extbase/Classes/Exception.php                       |
 +--------------------------------------------------------+---------------+-----------------------------------------------------+

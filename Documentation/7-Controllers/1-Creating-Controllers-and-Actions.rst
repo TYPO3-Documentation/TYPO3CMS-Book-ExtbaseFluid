@@ -55,8 +55,8 @@ generate your own flows.
     their way through your code.
 
 
-Flow Pattern "display a list of Domain Objects".
-------------------------------------------------
+Flow Pattern "display a list of Domain Objects"
+-----------------------------------------------
 
 The first pattern in our example fits the action "*display
 a list of all offers*". One action method usually will be enough
@@ -131,7 +131,7 @@ Action in the Controller, but also a method in the Form of
 
 
 
-Flow Pattern "display a single Domain Object"-
+Flow Pattern "display a single Domain Object"
 ---------------------------------------------
 
 The second pattern is best put into action by a single method as
@@ -270,7 +270,8 @@ This action passes to the view in :php:`organization` the :php:`Organization` ob
 :php:`null` (to begin with) the and in :php:`region` all :php:`Region` Objects contained in the
 :php:`RegionRepository`. The view creates the output of
 the form in the frontend, using a template, which we focus on in chapter 8 in
-section "Template Creation by example". After the user filled in the offer's data and submitted the form, the Method
+section "Template Creation by example". After the user filled in the offer's data
+and submitted the form, the Method
 :php:`createAction()` shall be called. It expects as Arguments
 an :php:`Organization` Object and an Object of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
@@ -359,7 +360,8 @@ processing. Then the dispatcher passes on the actual
 Here, too, applies: If no controller or extension is set, the actual
 context is kept.
 
-This procedure can be done multiple times when calling a page. The risk, though, is that the process runs into an infinite loop (A
+This procedure can be done multiple times when calling a page. The
+risk, though, is that the process runs into an infinite loop (A
 redirects to B, B redirects to A again). In this case, Extbase stops the
 processing after some steps.
 
@@ -374,7 +376,8 @@ though.
 
 When calling the method :php:`createAction(),` we
 already described the case of all Arguments being valid. But what happens
-if a frontend user inserts invalid data or even manipulates the form to attack the website deliberately?
+if a frontend user inserts invalid data or even manipulates the form to
+attack the website deliberately?
 
 .. tip::
 
@@ -549,7 +552,8 @@ Let's look at an example with the Method
    }
 
 We ask a previously instantiated
-:php:`AccessControlService` if the organization's administrator is responsible for the offer is logged in the frontend. If yes, we
+:php:`AccessControlService` if the organization's administrator is
+responsible for the offer is logged in the frontend. If yes, we
 do update the offer. If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
@@ -770,7 +774,8 @@ the TypoScript template as a comma-separated list, are transcribed to
 arrays. Then this information is passed to the *View*
 piece by piece.
 
-One requirement our extension has to realize is that a website visitor can define a special demand, which is then used to filter the
+One requirement our extension has to realize is that a website visitor
+can define a special demand, which is then used to filter the
 range of offers. We already implemented an appropriate Method
 :php:`findDemanded()` (see :ref:`chapter 6 <individual_database_queries>`).
 To define his demand, the visitor chooses

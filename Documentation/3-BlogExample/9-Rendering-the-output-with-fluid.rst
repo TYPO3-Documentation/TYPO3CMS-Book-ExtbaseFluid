@@ -100,8 +100,8 @@ with point-notation.
 If Fluid crosses a string like `{blog.title}`, it tries to parse it. Fluid
 expects the variable `blog` to be an object. Inside of this object it searches
 for a method named :php:`getTitle()`. The method's name is
-created by extracting the part after the point, capitalizing the first letter
-, and prefixing it with "get". With this, the call looks something like this:
+created by extracting the part after the point, capitalizing the first letter,
+and prefixing it with "get". With this, the call looks something like this:
 :php:`$blog->getTitle()`. The return value will replace `{blog.title}` in the
 template. In the same way, `{blog.description}` will be replaced with the
 description.

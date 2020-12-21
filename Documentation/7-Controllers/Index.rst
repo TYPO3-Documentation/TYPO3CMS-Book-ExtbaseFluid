@@ -11,7 +11,8 @@ In the previous chapters, we already transcribed the Domain of our
 example extension *SJROffers* to a software-based Domain
 Model. This leads to multiple files with class definitions in
 the extension subfolder :file:`sjr_offers/Classes/Domain/Model/`. Furthermore, we
-set up the persistence layer. As a result, we are already able to deposit our Domain's data in the form of Domain Objects and retrieve it
+set up the persistence layer. As a result, we are already able to deposit
+our Domain's data in the form of Domain Objects and retrieve it
 again.
 
 In this chapter, you'll see how to control the flow inside of your
@@ -37,7 +38,8 @@ Controller interconnected with the other components is described in chapter
 A Controller is an object of an extension, which is instantiated and
 called inside of Extbase by the :php:`Dispatcher` object.
 The controller takes care of the complete flow inside of the extension. It
-is the link between the :php:`Request`, the Domain Model, and the reaction in the form of the :php:`Response`. Inside of the *Controller*, the data
+is the link between the :php:`Request`, the Domain Model, and the reaction in the form
+of the :php:`Response`. Inside of the *Controller*, the data
 necessary for the flow is fetched from the respective Repositories, prepared
 according to the demand from outside, and passed to the code responsible for
 the output (*View*). Besides this main task, a Controller

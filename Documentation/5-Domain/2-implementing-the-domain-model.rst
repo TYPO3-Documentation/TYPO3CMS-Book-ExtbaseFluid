@@ -771,7 +771,8 @@ We have implemented the terms age range, number of participants and offer an ade
 Let us now turn to the object administrator. Also, here we use another, less obvious class hierarchy.
 Extbase provides two domain models available: FrontendUser and FrontendUserGroup.
 They are the equivalents of the website user or user group's website, created in the backend of TYPO3
-can be assigned and managed. The two Extbase classes are filled with this data stored in two database tables or fe_users fe_groups.
+can be assigned and managed. The two Extbase classes are filled with this data
+stored in two database tables or fe_users fe_groups.
 The database fields in these tables each have a corresponding property in the domain model.
 The properties' names were indeed subjected to the convention that the field names lower_underscore spelling
 in the name of the property is converted into lowerCamelCase notation.

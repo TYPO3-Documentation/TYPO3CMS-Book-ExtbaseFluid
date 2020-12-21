@@ -141,7 +141,8 @@ The :php:`Gravatar` ViewHelper must hand over the email address on which identif
 the Gravatar.
 This is the last remaining piece before the implementation can be completed.
 
-All arguments of a ViewHelper must be registered. Every ViewHelper has to declare which parameters are accepted explicitly. The registration happens
+All arguments of a ViewHelper must be registered. Every ViewHelper has to
+declare which parameters are accepted explicitly. The registration happens
 inside :php:`initializeArguments()`::
 
    public function initializeArguments()
@@ -515,7 +516,7 @@ To import a ViewHelper namespace into Fluid, the following syntax can be used:
        <!-- Content of Fluid Template -->
    </html>
 
-In the above example, `blog` is the namespace available within the Fluid template and
+In the example above, `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
 All ViewHelper which start with `blog:` will be looked up within the PHP
@@ -538,7 +539,7 @@ To import a ViewHelper namespace into Fluid, the following syntax can be used:
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
-In the above example, `blog` is the namespace available within the Fluid template and
+In the example above, `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
 All ViewHelper which start with `blog:` will be looked up within the PHP
@@ -565,7 +566,7 @@ of::
         'MyVendor\BlogExample\ViewHelpers',
     ];
 
-In the above example, `blog` is the namespace within Fluid templates, which is
+In the example above, `blog` is the namespace within Fluid templates, which is
 resolved to the PHP namespace :php:`\MyVendor\BlogExample\ViewHelpers`.
 
 .. _handle-additional-arguments:

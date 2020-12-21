@@ -113,8 +113,8 @@ Arguments can be accessed through::
    $this->request->getArgument('argumentName');
 
 In order to make arguments available within the request or for mapping, they
-need to conform to Extbase naming standard in order to be mapped to the
-extension. The default is to prefix arguments with a plugin signature. This can be
+need to conform to Extbase's naming standard in order to be mapped to the
+extension. The default is to prefix arguments with the plugin signature. This can be
 adjusted via TypoScript option :ts:`view.pluginNamespace`, see
 :ref:`typoscript_configuration-view`.
 

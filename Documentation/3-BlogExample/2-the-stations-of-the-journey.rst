@@ -2,7 +2,8 @@ The stations of the journey
 ===========================================
 
 Now that you have had a look at your journey destination and hopefully
-don't feel disoriented when we stop at the several steps, you can start. Figure 3-3 gives you an overview of the stations on the journey,
+don't feel disoriented when we stop at the several steps, you can start.
+Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know in more detail during the upcoming sections.
 
 .. figure:: /Images/3-BlogExample/figure-3-3.png
@@ -13,7 +14,8 @@ which you will get to know in more detail during the upcoming sections.
 When an extension like the blog example is called, the following
 happens behind the scenes:
 
-TYPO3 digs into the page content and discovers the extension's content elements (plugins) on the page. It does not call the extension directly,
+TYPO3 digs into the page content and discovers the extension's content
+elements (plugins) on the page. It does not call the extension directly,
 but hands over the control to the Extbase *Dispatcher*
 (1).
 
