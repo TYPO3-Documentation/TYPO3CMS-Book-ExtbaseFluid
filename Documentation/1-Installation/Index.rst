@@ -7,20 +7,20 @@
 .. include:: ../Includes.txt
 
 ====================
-Installation & Setup
+Installation & setup
 ====================
 
 To follow this documentation, we assume you have TYPO3 up-and-running.
 
-Check out the "Installation & Upgrade Guide" for how to
+Check out the "Installation & upgrade guide" for how to
 :ref:`setup a TYPO3 installation with Composer <t3install:install-via-composer>`
 
-The System extension **extbase** and **fluid** are required.
+The system extension **extbase** and **fluid** are required.
 
-Extension Builder
+Extension builder
 =================
 
-Extension Key: extension_builder
+Extension key: extension_builder
 
 The `Extension Builder <https://extensions.typo3.org/extension/extension_builder>`__
 helps you build and manage your Extbase
