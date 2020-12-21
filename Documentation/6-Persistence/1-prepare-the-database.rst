@@ -298,7 +298,7 @@ types.
 |Floating-point                |`decimal(p[,s])`    |(saved as string of characters)                  |
 +------------------------------+--------------------+-------------------------------------------------+
 |(amounts of money, measurement|`float(p[,s])`      |-1.79E+308 to +1.79E+308 (eventually limited     |
-|values etc.)                  |                    |by the precision)                           |
+|values etc.)                  |                    |by the precision)                                |
 |                              |                    |                                                 |
 +------------------------------+--------------------+-------------------------------------------------+
 
@@ -316,7 +316,6 @@ types.
    differ from the number of Bytes. E.g., Using text-encoding ISO-8859-1
    one Byte contains exactly one character, whereas, in UTF-8, one
    character is saved in up to 3 Bytes (Multibyte Encoding).
-
 
 
 Configure relationships between objects
@@ -444,7 +443,7 @@ Key field of the parent object:
    );
 
 The default values of '0' (or the `NULL` values if they were explicitly allowed)
-stand for * "The dateRange has not yet been assigned."*.
+stand for "The dateRange has not yet been assigned.".
 Later on, Extbase computes the `DateRange`-object from the
 uid.
 

@@ -15,7 +15,7 @@ Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3c
 
    The extension key may only contain small letters and underscores (lower_underscore).
 
-.. info::
+.. hint::
 
     Extensions can be stored at different places in TYPO3.
     Locally installed extensions are the rule.

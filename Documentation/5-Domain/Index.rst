@@ -6,7 +6,7 @@ Modeling the domain
 ===================
 
 In this chapter, you are going to learn how to create an abstraction
-(the **domain model**) as described in :ref:`ddd`.
+(the **domain model**) as described in :ref:`the-application-domain`.
 
 This first step of extension development is the most important
 as well. It provides the foundation for all following stages of development.
@@ -27,14 +27,12 @@ the youth organizations via the Internet. At the same time parents, children
 and teenagers should find suitable offers and display them easily.
 You can download the extension with the extension-key
 *sjr_offers* at the extension repository
-(`http://typo3.org/extensions/repository/view/sjr_offers/current/ <http://typo3.org/extensions/repository/view/sjr_offers/current/>`_).
+(`sjr_offers  <https://extensions.typo3.org/extension/sjr_offers/>`_).
 
 The example is also being used to demonstrate the approach of
-Test-driven development close to reality. We manage those Unit-Tests with
+test-driven development close to reality. We manage those unit tests with the
 extension *phpunit*, which is also available for download
 at the TER.
-
-
 
 .. toctree::
    :hidden:

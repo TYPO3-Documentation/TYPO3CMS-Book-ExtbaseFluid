@@ -15,11 +15,6 @@ store it in memory. It is then in a transient (or volatile) state.
 When TYPO3 delivers the rendered website, PHP frees up this allocated memory.
 This means that the saved data will be lost and thus also the domain object.
 
-.. note::
-
-   You can read more about the lifecycle of objects in the chapter
-   :ref:`object-lifecycle`
-
 Domain objects need to be transferred into a persistent state if the need to be available
 across several page loads. This is done in Extbase by putting
 the domain objects into a repository. When the script finished its work,

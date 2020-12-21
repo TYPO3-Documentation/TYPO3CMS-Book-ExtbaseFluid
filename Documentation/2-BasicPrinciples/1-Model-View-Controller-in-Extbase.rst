@@ -47,7 +47,7 @@ The top layer, the *view* encapsulates the whole
 presentation logic and everything related to the presentation of data.
 
 The interaction of model, view, and controller
----------------------------------------------
+==============================================
 
 The functionality of many applications can be split into modules.
 These modules can be further differentiated.

@@ -394,15 +394,15 @@ encrypted form (:php:`__trustedProperties`), the structure of the form
 .. code-block:: html
 
    <input type="hidden" name="tx_sjroffers_list[__referrer][extensionName]"
-         value="SjrOffers" />
+       value="SjrOffers" />
    <input type="hidden" name="tx_sjroffers_list[__referrer][controllerName]" value="Offer" />
    <input type="hidden" name="tx_sjroffers_list[__referrer][actionName]" value="edit" />
    <input type="hidden" name="tx_sjroffers_list[__trustedProperties]"
-         value="a:4:{s:5:\"offer\";a:12:
-         ...
-         s:10:\"__identity\";i:1;}s:12:\"organization\";i:1;
-         s:6:\"action\";i:1;s:10:\"controller\";
-         i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
+          value="a:4:{s:5:&quot;offer&quot;;a:12:
+   ...
+   s:10:&quot;__identity&quot;;i:1;}s:12:&quot;organization&quot;;i:1;
+   s:6:&quot;action&quot;;i:1;s:10:&quot;controller&quot;;
+   i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
 
 If now a validation error occurs when calling the Method
 :php:`createAction()`, an error message is saved and the

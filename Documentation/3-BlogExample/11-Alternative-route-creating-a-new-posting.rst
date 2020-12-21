@@ -84,7 +84,7 @@ instance of the class :php:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
-``$newPost``is an instance of the class
+``$newPost`` is an instance of the class
 :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
 
 How does Extbase know what the target of the conversion is? It takes this

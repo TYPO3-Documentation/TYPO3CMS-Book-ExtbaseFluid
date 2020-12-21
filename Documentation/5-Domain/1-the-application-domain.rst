@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
+.. _the-application-domain:
 
 ======================
-The application somain
+The application domain
 ======================
 
 The main difference to the common approach to developing an extension is
