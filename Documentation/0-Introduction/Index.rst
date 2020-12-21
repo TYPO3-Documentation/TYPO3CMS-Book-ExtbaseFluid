@@ -15,16 +15,16 @@ development and adjustments. Extbase also lessens the burden on the developer wh
 and repetitive tasks: for example, the validation of arguments, the persistence of data, and access to TypoScript and
 FlexForm settings. Developers can therefore focus on solving the problems of their clients much more efficiently.
 
-Using Extbase needs a basic understanding of concepts like Domain-Driven-Design whilst planning and modeling the
+Using Extbase needs a basic understanding of concepts like domain-driven design whilst planning and modeling the
 extension thoroughly before implementation. The source code of the extension becomes a lot more readable,
 more flexible, and more extensible in return.
 
-Target Audience
+Target audience
 ===============
 
 This book is for TYPO3 extension developers who have a basic
 understanding of PHP programming and experience working with
-and administering TYPO3. The book gives a compact introduction
+and administering TYPO3. This book gives a compact introduction
 to the Extbase framework and the Fluid template engine.
 
 Read more about the target audience and how this manual is
