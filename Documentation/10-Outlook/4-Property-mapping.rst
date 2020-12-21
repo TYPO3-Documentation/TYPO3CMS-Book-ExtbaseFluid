@@ -5,10 +5,10 @@ Last Update 01 Feb 2016.
 
 .. _property-mapper:
 
-Property Mapper
+Property mapper
 ===============
 
-Extbase provides a Property Mapper to convert different values, like integers or arrays, to other
+Extbase provides a property mapper to convert different values, like integers or arrays, to other
 types, like strings or objects.
 In this example, we provide a string that will be converted to an integer::
 
