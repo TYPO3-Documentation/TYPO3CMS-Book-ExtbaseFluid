@@ -1,8 +1,8 @@
 .. include:: ../Includes.txt
 
-Configure the Backend Input Forms
 =================================
-
+Configure the backend input forms
+=================================
 
 In our sample application, the data of our extension should be editable in the
 Backend by the editors of the youth club organization and - within certain
@@ -189,7 +189,7 @@ the field types with their usual configuration:
 
 
 Field type "input"
-------------------
+==================
 
 The *input* field type accepts a one-line character string like names and
 telephone numbers. The configuration of a name field (see Fig. 6-1) looks as
@@ -245,7 +245,7 @@ an icon right to the input field, which is shown in Fig. 6-2:
    Figure 6-2: An example of the field type "input" used as a date field.
 
 Field type "text"
------------------
+=================
 
 The `text` field type may contain multi-line formatted or unformatted texts
 , e.g., product descriptions, addresses, or news items. The indication of the lines
@@ -269,7 +269,7 @@ The `text` field type may contain multi-line formatted or unformatted texts
 
 
 Field type "check"
-------------------
+==================
 
 The field type `check` allows the definition of a single option (see Fig. 6-4)
  e.g., you can define whether a rowset should be hidden or not.
@@ -328,7 +328,7 @@ equivalent to the integer value 5.
    Figure 6-5: An example of the field type "check" for several options that are grouped together.
 
 Field type "radio"
-------------------
+==================
 
 The field type radio is for choosing one unique value for a given property (see
 Fig. 6-6), e.g., the sex of a person or the color of a product.
@@ -357,7 +357,7 @@ database.
    Figure 6-6: An example of the field type "radio".
 
 Field type "select"
--------------------
+===================
 
 The field type "select" provides a space-saving way to render multiple values
 (see Fig. 6-7). Examples could be a member status, a product color, or a region.
@@ -412,7 +412,7 @@ temporary table *tx_sjroffers_offer_category_mm*.
    Figure 6-8: An example for the field type "select".
 
 Field type "group"
-------------------
+==================
 
 The "group" field type is very flexible in its use. It can be used to manage
 references to resources of the filesystem or rowsets of a database (see Fig. 6-9).
@@ -434,7 +434,7 @@ references to resources of the filesystem or rowsets of a database (see Fig. 6-9
 The combination of `type` and `internal_type` specifies the field's type.
 
 Field type "none"
------------------
+=================
 
 Fields of this type show the raw data values which cannot be edited (see Fig. 6-10).
 
@@ -457,7 +457,7 @@ shown as a raw number.
    Figure 6-10: An example for the field type "none" for a date field.
 
 Field type "passthrough"
-------------------------
+========================
 
 The field type "passthrough" is for data that is processed internally but cannot
 be edited or viewed in the form. An example of that would be information to
@@ -477,7 +477,7 @@ This field configuration in the database table
 
 
 Field type "user"
------------------
+=================
 
 A user generates free definable form fields that can be processed by any PHP
 function. For further information, refer to the documentation which is available
@@ -485,7 +485,7 @@ online and to the :ref:`TYPO3-Core API <t3coreapi>`.
 
 
 Field type "flex"
------------------
+=================
 
 The field type "flex" manages complex inline form fields (*FlexForms*). The
 form data will be saved as an XML data structure in the database fields.
@@ -495,7 +495,7 @@ design your own backend module for them (refer to Ch. 10).
 
 
 Field type "inline"
--------------------
+===================
 
 The field type "inline" is for saving complex Aggregates of the Domain (see Fig.
 6-11). The basis of this field type is the so-called *Inline Relational Record
@@ -670,6 +670,6 @@ sets. Let's create our first organization (see Fig. 6-12).
 Now you can set up the whole data structure. In our project, this allows the
 offer-provider to set up some example data, and thus we could do some early
 integration tests. However, we can not access the given data because we still
-miss the Repositories that will be defined in the following section.
+miss the repositories that will be defined in the following section.
 
 

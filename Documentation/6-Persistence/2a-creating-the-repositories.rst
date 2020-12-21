@@ -1,20 +1,21 @@
 .. include:: ../Includes.txt
 
-Creating the Repositories
+=========================
+Creating the repositories
 =========================
 
 
-We have already introduced the Repositories in :ref:`the-blog-example`. They serve with
-capabilities to save and reaccess our objects. We set up such a Repository
+We have already introduced the repositories in :ref:`the-blog-example`. They serve with
+capabilities to save and reaccess our objects. We set up such a repository
 object for every Aggregate-Root object which is, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
 :php:`\MyVendor\SjrOffers\Domain\Model\Organization` is such an Aggregate-Root object. The
-Repository's class name is derived from the class name of the Aggregate-Root
-object concatenated with the suffix *Repository*. The Repository needs to extend
+repository's class name is derived from the class name of the Aggregate-Root
+object concatenated with the suffix *repository*. The repository needs to extend
 the class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. The class file :php:`\MyVendor\
 SjrOffers\Domain\Repository\OrganizationRepository` will be saved in the
 directory :file:`EXT:sjr_ offers/Classes/Domain/Repository/`. Thus the directory
-*Repository* is on the same hierarchy-level as the directory *Model*. In our
+*repository* is on the same hierarchy-level as the directory *Model*. In our
 case, the class body remains empty because all the important functionalities are
 already generically implemented in the super-class
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
@@ -36,13 +37,13 @@ We create a : php:'\MyVendor\SjrOffers\Domain\Repository\OfferRepository'the sam
 way, but we will later extend it with our own methods for accessing offers. We
 likely have to access the other objects for categories, regions and
 update data of certain persons' contact information independent of the offers
-or their organizations. Thus we define some additional Repositories for those
+or their organizations. Thus we define some additional repositories for those
 objects for easier access from the Frontend.
 
 .. note::
 
-   You have to resist the urge to define Repositories for each object and limit
-   yourself to a minimal number of Repositories. Instead, you should define the
+   You have to resist the urge to define repositories for each object and limit
+   yourself to a minimal number of repositories. Instead, you should define the
    access methods within the Aggregate-Root objects as `find` methods.
 
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository` serves with the following methods which
@@ -50,34 +51,35 @@ are of course accessible and overridable in the extending child derivations:
 
 
 :php:`add($object)`
--------------------
+===================
 
-Adds an object to the Repository, which is then persistent in the sense of
-Domain-Driven Design. But be careful; it will not be written (and assigned a
+Adds an object to the repository, which is then persistent in the sense of
+domain-driven design. But be careful; it will not be written (and assigned a
 `UID`) to the database before finishing the loop through the Extension, to be
 precise, after the call of the method :php:`persistAll()` of the
 `PersistenceManager`.
 
 
 :php:`remove($object)` and :php:`removeAll()`
----------------------------------------------
+=============================================
 
-The opponent of :php:`add()`. An object will be removed from the Repository and is
+The opponent of :php:`add()`. An object will be removed from the repository and is
 gonna be deleted from the database after finishing the Extension's loop. The
-method :php:`removeAll()` empties the whole Repository.
+method :php:`removeAll()` empties the whole repository.
+
 
 :php:`update($modifiedObject)`
-------------------------------
+==============================
 
-An existing object in the Repository will be updated with the properties of the
+An existing object in the repository will be updated with the properties of the
 given object. Extbase finds the to-be-updated object by the uid of the given
 object and throws an exception if it does not exist.
 
 
 :php:`findAll()` and :php:`countAll()`
---------------------------------------
+======================================
 
-Returns all the Repository's objects that are currently persisted in the
+Returns all the repository's objects that are currently persisted in the
 database. However, this slightly confusing behavior is intended. Whereas
 :php:`findAll()` returns an Array of objects the method :php:`countAll()` only counts
 the currently persisted objects (if the database backend is of type SQL, it just
@@ -85,12 +87,12 @@ executes the query `SELECT COUNT`) and returns an Integer number.
 
 
 :php:`findByProperty($value)`, :php:`findOneByProperty($value)` and :php:`countByProperty($value)`
---------------------------------------------------------------------------------------------------
+==================================================================================================
 
 Those three methods help find one or several objects and count all
 the objects that correspond to the given value. The substring *Property* must be
 replaced by the uppercase-written property name of the class managed by
-the Repository. The methods then only return the objects or count the
+the repository. The methods then only return the objects or count the
 objects whose properties *Property* correspond to the given value. Whereas the
 method :php:`findByProperty()` returns an Array of all the matching objects, the
 method :php:`findOneByProperty()` only returns the first object that was found.
@@ -102,14 +104,14 @@ number.
 
 
 :php:`createQuery()`
---------------------
+====================
 
 In opposite to the methods above, this function does not manage objects in the
-Repository. Instead, it returns a Query object, which can be helpful to assemble
+repository. Instead, it returns a Query object, which can be helpful to assemble
 your own queries to the Storage-Backend. The details for this procedure will be given
 in the following chapter.
 
-Before accessing the defined objects from the Repository, you need to tell Extbase
+Before accessing the defined objects from the repository, you need to tell Extbase
 on which pages on TYPO3's page tree (see below for TYPO3's concept of the page
 tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
@@ -146,7 +148,7 @@ setting a new `pid`.
 
 .. note::
 
-   The most occurring mistake for seemingly empty Repositories is a misconfigured
+   The most occurring mistake for seemingly empty repositories is a misconfigured
    *Storage-PID*. Thus, you should first evaluate the Template Module, whether
    it is set correctly.
 
@@ -194,7 +196,7 @@ edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex = 
 causes an immediate update when data sets are edited in the Frontend though it is
 normally deactivated due to its huge effects on performance.
 
-Before calling a Repository's methods, they need to be instantiated
+Before calling a repository's methods, they need to be instantiated
 by the ObjectManager or via dependency injection first.
 
 .. code-block:: php
@@ -219,7 +221,7 @@ by the ObjectManager or via dependency injection first.
 
 .. warning::
 
-   Repositories are *Singletons* therefore, there may only exist one instance of
+   repositories are *Singletons* therefore, there may only exist one instance of
    each class at one point in time during script-execution. If a new instance is requested,
    the system will check whether an instance of the requested object exists already. In that case,
    the system will return the existing object instead of creating a new one. This is

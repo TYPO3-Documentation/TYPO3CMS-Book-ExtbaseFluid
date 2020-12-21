@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Rendering the output with fluid
+===============================
+Rendering the output with Fluid
 ===============================
 
 The TemplateView of Fluid now tries to load the corresponding HTML template.
@@ -82,7 +83,7 @@ guide on how to achieve that.
 The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each`, the
-`for` ViewHelper gets the `blog` objects over whom to iterate. The
+`for` Viewhelper gets the `blog` objects over whom to iterate. The
 attribute ``as`` holds the name of the variable with which the `blog` object is
 available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
 
@@ -119,6 +120,6 @@ As soon as Fluid is done with the whole template the result is added to the
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` by the call
 :php:`$body->write($this->view->render())`.
 
-Our journey slowly comes to an end. The *Request* has been fully answered by a
+Our journey slowly comes to an end. The *request* has been fully answered by a
 corresponding action. The `Response` object carries the completely generated
 content.

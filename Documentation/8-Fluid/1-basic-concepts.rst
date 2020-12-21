@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
-
 .. _basic-concepts:
 
+==============
 Basic Concepts
 ==============
 
@@ -14,11 +14,11 @@ Fluid is based on three conceptual pillars which build the backbone of
 the template engine and provide for scalability and flexibility:
 
 * *Object Accessors* output the content of variables assigned to the View to be displayed.
-* *ViewHelpers* are special tags in the template which provide more complex functionality such as loops or generating links.
-* *Arrays* make it possible to assign hierarchical values to ViewHelpers.
+* *Viewhelpers* are special tags in the template which provide more complex functionality such as loops or generating links.
+* *Arrays* make it possible to assign hierarchical values to Viewhelpers.
 
-Outputting Data with Object Accessors
--------------------------------------
+Outputting data with object accessors
+=====================================
 
 A template engine uses a placeholder to fill content in specified
 areas in a template, and the result is then returned to the user. In Fluid,
@@ -74,8 +74,6 @@ like this::
     <b>Fluid as template-engine</b><br />
     <b>TypoScript to configure TYPO3</b><br />
 
-
-
 .. tip::
 
     If you want to output an object instead of a String, the object
@@ -125,20 +123,20 @@ PHP, but focused on the essential.
 
 Only the get-method, and not just any object method, can be
 called with Object Accessors. This ensures that there is no PHP code in
-the template. It is better to place PHP code in your own ViewHelper if
+the template. It is better to place PHP code in your own Viewhelper if
 needed. The following describes how to do this.
 
 
 
-Implementing more complex functionalities with ViewHelpers
-----------------------------------------------------------
+Implementing more complex functionalities with Viewhelpers
+==========================================================
 
 Functionalities that exceed the simple output of values have to be
-implemented with ViewHelpers. Every ViewHelper has its own PHP class. Now,
-we're going to see how we can use ViewHelpers. Later, you'll also learn
-how to write your own ViewHelper.
+implemented with Viewhelpers. Every Viewhelper has its own PHP class. Now,
+we're going to see how we can use Viewhelpers. Later, you'll also learn
+how to write your own Viewhelper.
 
-To use an existing ViewHelper, you have to import the
+To use an existing Viewhelper, you have to import the
 *namespace* and assign a shortcut to it. You can do
 this with the declaration ``{namespace ...=...}``.
 
@@ -147,21 +145,19 @@ might seem redundant, but because all important information is embedded in
 the template, readability increases immensely for other template editors
 who work on the same templates.
 
-The standard ViewHelper of Fluid will be imported and assigned to
+The standard Viewhelper of Fluid will be imported and assigned to
 the shortcut ``f`` with the following declaration::
 
     {namespace f=TYPO3\CMS\Fluid\ViewHelpers}
 
 
 This namespace will be imported automatically by Fluid. All
-ViewHelpers that come with Fluid are prefixed with ``f``. Your
+Viewhelpers that come with Fluid are prefixed with ``f``. Your
 own namespaces have to be imported into the template like previously
 mentioned.
 
 All tags, which begin with a registered prefix, will be evaluated.
 Here's a small example:
-
-
 
 .. code-block:: xml
 
@@ -175,48 +171,48 @@ Here's a small example:
 
 Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
-``<f:for>`` will be interpreted as a ViewHelper since it
+``<f:for>`` will be interpreted as a Viewhelper since it
 starts with the prefix ``f:``. This is implemented in the class
 :php:`\TYPO3Fluid\Fluid\ViewHelpers\ForViewHelper`.
 
 The first part of the class name is the complete namespace like it
 was defined earlier with ``{namespace f=TYPO3\CMS\Fluid\ViewHelpers}``.
-Followed by the name of the ViewHelper and the ending
-*ViewHelper*.
+Followed by the name of the Viewhelper and the ending
+*Viewhelper*.
 
-Fluid will interpret every argument of a ViewHelper. The
-ViewHelper ``<f:for>`` from the previous example therefore
+Fluid will interpret every argument of a Viewhelper. The
+Viewhelper ``<f:for>`` from the previous example therefore
 receives the array of all blog posts with the argument
 *each*.
 
 .. tip::
 
-    If the name of the ViewHelper contains a single or multiple
+    If the name of the Viewhelper contains a single or multiple
     periods, it will be resolved as a subpackage. For example, the
-    ViewHelper ``f:form.textfield`` is implemented in the class
+    Viewhelper ``f:form.textfield`` is implemented in the class
     :php:`\TYPO3\CMS\Fluid\ViewHelpers\Form\TextfieldViewHelper`.
-    Therefore ViewHelpers can be divided further and structured even
+    Therefore Viewhelpers can be divided further and structured even
     more.
 
-ViewHelpers are the main tools of template editors. They make it
+Viewhelpers are the main tools of template editors. They make it
 possible to have a clear separation of the template and embedded
 functionality.
 
 .. tip::
 
     All control structures like ``if/else`` or
-    ``for`` are individual ViewHelpers in Fluid and not a core
+    ``for`` are individual Viewhelpers in Fluid and not a core
     language feature. This is one of the main reasons for the flexibility
-    of Fluid. You'll find a detailed reference of the ViewHelpers in
+    of Fluid. You'll find a detailed reference of the Viewhelpers in
     Appendix C.
 
 
 .. _inline-notation-vs-tag-based-notation:
 
-Inline Notation for View Helpers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Inline notation for Viewhelpers
+-------------------------------
 
-.. sidebar:: Inline Notation vs. Tag-Based Notation
+.. sidebar:: Inline notation vs. tag-based notation
 
     Once again, a comparison between inline notation and tag-based syntax:
 
@@ -226,18 +222,18 @@ Inline Notation for View Helpers
 
         <f:for each="{posts}" as="post">...</f:for>
 
-    * The ViewHelper returns a tag::
+    * The Viewhelper returns a tag::
 
         <f:form.textfield />
 
-    * The hierarchical structure of ViewHelpers is
+    * The hierarchical structure of Viewhelpers is
       important::
 
         <f:form>
             <f:form.textfield />
         </f:form>
 
-    * The ViewHelper contains a lot of content::
+    * The Viewhelper contains a lot of content::
 
         <f:section name="main">
             <!-- ... -->
@@ -249,21 +245,21 @@ Inline Notation for View Helpers
 
         {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
 
-    * The ViewHelper is being used inside of XML tags::
+    * The Viewhelper is being used inside of XML tags::
 
         <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
 
-    * The nature of the ViewHelper is rather a helper function::
+    * The nature of the Viewhelper is rather a helper function::
 
         {f:translate(key: '...')}
 
 
-It is intuitive and natural for most of the ViewHelpers to be called
+It is intuitive and natural for most of the Viewhelpers to be called
 with the tag-based syntax. Especially with control structures or form
-elements, this syntax is easily understood. But there are also ViewHelpers,
+elements, this syntax is easily understood. But there are also Viewhelpers,
 which can lead to difficult to understand and invalid template code when
 used as a tag. An example of this is the ``f:uri.resource``
-ViewHelper, which returns the path to a resource in the
+Viewhelper, which returns the path to a resource in the
 *Public/* folder of an Extension. It is being used
 inside of ``<link rel="stylesheet" href="..." />`` for
 example. Using the normal, tag-based syntax, it looks like this::
@@ -271,21 +267,21 @@ example. Using the normal, tag-based syntax, it looks like this::
     <link rel="stylesheet" href="<f:uri.resource path='myCss.css' />" />
 
 That isn't easy to read and doesn't adequately communicate
-the meaning of the ViewHelper. Also, the above code is not valid XHTML, and
+the meaning of the Viewhelper. Also, the above code is not valid XHTML, and
 therefore most text editors can't display the code with correct syntax
 highlighting anymore.
 
-For that reason, it is also possible to call the ViewHelper
+For that reason, it is also possible to call the Viewhelper
 differently, with the help of the *inline notation*.
 The inline notation is function-oriented, which is more suitable for this
-ViewHelper: Instead of ``<f:uri.resource />`` you can also
+Viewhelper: Instead of ``<f:uri.resource />`` you can also
 write ``{f:uri.resource()}``.
 
 So the example above can be changed to::
 
     <link rel="stylesheet" href="{f:uri.resource(path: 'myCss.css')}" />
 
-The purpose of the ViewHelper is easily understandable and visible -
+The purpose of the Viewhelper is easily understandable and visible -
 it is a helper function that returns a resource. It is well-formed XHTML
 code as well, and the syntax highlighting of your editor will work
 correctly again.
@@ -304,13 +300,13 @@ can, therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message if you simple write
 ``{post.date}`` in your template.
 
-In Fluid there is a ViewHelper ``f:format.date`` to output
+In Fluid there is a Viewhelper ``f:format.date`` to output
 *DateTime* objects, which (as you can see on the prefix
 ``f:``) is already part of Fluid:
 
 ``<f:format.date format="Y-m-d">{post.date}</f:format.date>``
 
-This ViewHelper formats the date as defined in the
+This Viewhelper formats the date as defined in the
 *format* property. In this case, there must be
 no whitespaces or newlines before or after
 ``{post.date}``. If there is, Fluid tries to chain the whitespace
@@ -321,7 +317,7 @@ again.
 
 .. tip::
 
-    To avoid this problem, all ``f:format``-ViewHelpers
+    To avoid this problem, all ``f:format``-Viewhelpers
     have a property to specify the object to be formatted.
 
 Instead of writing
@@ -338,7 +334,7 @@ An alternative would be to use the following syntax::
 
     {post.date -> f:format.date(format: 'Y-m-d')}
 
-Inside the Object Accessor, we can use a ViewHelper to process the
+Inside the Object Accessor, we can use a Viewhelper to process the
 value. The above example is easily readable, intuitive, and less
 error-prone than the tag-based variation.
 
@@ -349,7 +345,7 @@ error-prone than the tag-based variation.
     chaining operator. The arrow shows the direction of the data flow
     better though.
 
-You can also chain multiple ViewHelpers together. Lets assume we
+You can also chain multiple Viewhelpers together. Lets assume we
 want to pad the processed string to the length of 40 characters (e.g.
 because we output code). This can be simply written as::
 
@@ -360,14 +356,14 @@ Which is functionally equal to::
     <f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
 
 The data flow is also easier to read with an inline syntax like
-this, and it is easier to see on which values the ViewHelper is working
+this, and it is easier to see on which values the Viewhelper is working
 on. We can thus confirm that you can process the value of every Object
-Accessor by inserting it into the ViewHelper with the help of the chaining
+Accessor by inserting it into the Viewhelper with the help of the chaining
 operator (->). This can also be done multiple times.
 
 
-Flexible Arrays Data Structures
--------------------------------
+Flexible array data structures
+==============================
 
 Arrays round off the concept of Fluid and build another core concept
 of the template engine. Arrays in Fluid can be somewhat compared to
@@ -375,10 +371,10 @@ associative arrays in PHP. Every value in a Fluid array needs a
 key.
 
 Arrays are used to pass a variable number of arguments to View
-Helpers. The best example is the ``link.action``-ViewHelper. With
-this, you can create a link to other Controllers and Actions in your
-Extension. The following link refers to the ``index`` Action of
-the ``Post`` Controller:
+Helpers. The best example is the ``link.action``-Viewhelper. With
+this, you can create a link to other controllers and Actions in your
+Extension. The following link refers to the ``index`` action of
+the ``Post`` controller:
 
 ``<f:link.action controller="Post" action="index">Show
 list of all posts</f:link.action>``
@@ -418,7 +414,7 @@ and key5: Object Accessors are being specified as array values. You can
 also access sub-objects like you are used to with Object Accessors. All
 strings in arrays are interpreted as Fluid markup as well. So that you can
 combine strings from individual strings, for example. This way, it is also
-possible to call ViewHelpers with the inline notation.
+possible to call Viewhelpers with the inline notation.
 
 These are the basic concepts of Fluid. Now we move on to more
 advanced concepts, which increase the effectiveness of template creation.

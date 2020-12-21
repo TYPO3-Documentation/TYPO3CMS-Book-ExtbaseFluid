@@ -1,11 +1,11 @@
 .. include:: ../Includes.txt
-
 .. _individual_database_queries:
 
-Individual Database Queries
+===========================
+Individual database queries
 ===========================
 
-The previous descriptions about generic methods of queries to a Repository are
+The previous descriptions about generic methods of queries to a repository are
 sufficient for simple use-cases. However, there are many cases where they are
 not adequate and require more flexible solutions. On the requirements list of
 our application is the functionality to print a list of all the offers. In
@@ -28,7 +28,7 @@ positively affects your application's performance.
 
     You may start developing your application using the first method and then,
     seeing your application growing, veer to the second method. Luckily, all
-    the changes are encapsulated in the Repository, so you don't have
+    the changes are encapsulated in the repository, so you don't have
     to change any code of the Persistence Backend.
 
 
@@ -41,15 +41,15 @@ database backend. This information contains:
 * (Optional) Parameters that configure a section of the result set by a *limit* or an *offset*.
 * (Optional) Parameters concerning the *Orderings* of the result set.
 
-Within a Repository, you can create a Query object by using the command
+Within a repository, you can create a Query object by using the command
 :php:`$this->createQuery().` The Query object is already customized to the class
-which is managed by the Repository. Thus, the result set only consists of
+which is managed by the repository. Thus, the result set only consists of
 objects of that class, i.e. it consists of Offer objects within the
 :php:`OfferRepository`. After giving all the needed information to the Query object
 (detailed information will be given later on), you execute the request by using
 :php:`execute()` which returns a sorted Array with the properly instantiated
 objects (or a via limit and offset customized section of it). For example, the
-generic Repository method :php:`findAll()` looks as follows:
+generic repository method :php:`findAll()` looks as follows:
 
 .. code-block:: php
 
@@ -64,7 +64,7 @@ generic Repository method :php:`findAll()` looks as follows:
         return $this->createQuery()->execute();
     }
 
-More Repository search methods are available:
+More repository search methods are available:
 
 .. code-block:: php
 
@@ -123,7 +123,7 @@ corresponding method looks as follows:
     }
 
 Using the method ``matching()`` we give the Query the following condition: The
-property *regions* of the object *Offer* (which is managed by the Repository)
+property *regions* of the object *Offer* (which is managed by the repository)
 should contain the region that is referenced by the variable ``$region``. The
 method ``contains()`` returns a *Constraint* object. The Query object has some
 other methods each of which returns a *Constraint* object. Those methods may be
@@ -525,7 +525,7 @@ thus returns the count of offers of a given region.
 
 
 Implicit relation cardinality handling
---------------------------------------
+======================================
 
 Extbase supports several types of cardinalities that describe the relationship
 between entities - among these are RELATION_HAS_ONE (1:1),
@@ -549,7 +549,7 @@ queries. The used entities are the following:
     Besides that, only the relevant query parts, as mentioned, not all of them.
 
 1:1 (RELATION_HAS_ONE)
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 .. code-block:: php
 
@@ -571,7 +571,7 @@ Even if the SQL-like query contains a ``LEFT JOIN``, due to the 1:1 cardinality
 this won't lead to duplicate results for ``Post`` entities.
 
 1:n (RELATION_HAS_MANY)
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 .. code-block:: php
 
@@ -595,7 +595,7 @@ entity it could happen that the ``LEFT JOIN`` results in having many duplicate
 
 
 m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 .. code-block:: php
 
@@ -632,7 +632,7 @@ this will also lead to lots of duplicated `Post` entities in the result set in
 this rather complex query example.
 
 Distinct entity handling in query result set
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 +-----------------------------------------+--------------------------------------------------+
 | Cardinality                             | distinct entity handling suggested               |

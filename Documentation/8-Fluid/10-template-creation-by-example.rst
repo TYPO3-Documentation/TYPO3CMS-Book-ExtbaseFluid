@@ -1,8 +1,8 @@
 .. include:: ../Includes.txt
-
 .. _template-creation-by-example:
 
-Template Creation by example
+============================
+Template creation by example
 ============================
 
 This section will show you some of the techniques you got to
@@ -31,12 +31,12 @@ organizations, except for the creation of organizations. Within the
 folder :file:`EXT:sjr_offers/Resources/Private/Templates` we
 have created a folder for each controller, without the suffix
 *Controller* in the name. Each action method has its own
-HTML template. There is also no suffix *Action* allowed
+HTML template. There is also no suffix *action* allowed
 in the name.
 
 
 Setting up the HTML basic framework
-----------------------------------------------------
+===================================
 
 The various templates have many common elements. First we define the
 basic framework by a common layout (see the section :ref:`creating-a-consistent-look-and-feel-with-layouts` earlier in this chapter) and store
@@ -80,13 +80,12 @@ controller, e.g., at unauthorized access (see also the sections for edit and del
    }
 
 
-
-Store functions in ViewHelper
--------------------------------------------------
+Store functions in Viewhelper
+=============================
 
 With this, the base framework of our plugin output is ready. In the
 templates of our sample extension there still exist some repeating jobs,
-which can be stored in ViewHelper classes.
+which can be stored in Viewhelper classes.
 
 One requirement for the extension is that the organizations can
 edit their (and only their) offers in the frontend. We have to control the
@@ -176,7 +175,7 @@ step, and the resulting string is returned. In a similar manner the
 
 
 Design a form
--------------------------------------------------
+=============
 
 In the end, we show you another sample for designing a form for
 editing the basic data of an organization. You find the associated
@@ -232,8 +231,8 @@ With the declaration of ``object="{organization}"`` the
 proper form is bound to the assigned ``Organization`` object in
 the ``editAction()``.<remark>TODO: Rewrite sentence</remark> The
 form consists of input fields that are created by Fluid with the
-``form.textbox`` ViewHelper respectively the
-``form.textarea`` ViewHelper. Each form field is bound to their
+``form.textbox`` Viewhelper respectively the
+``form.textarea`` Viewhelper. Each form field is bound to their
 specific property of the ``Organization`` object using
 ``property="telefaxNumber"``. The attribute value of the concrete
 object is inserted in the form fields during the page's rendering. When

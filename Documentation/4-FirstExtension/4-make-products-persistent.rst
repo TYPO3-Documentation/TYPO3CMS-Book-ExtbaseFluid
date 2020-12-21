@@ -2,7 +2,8 @@
 
 .. _persisting_products:
 
-Make Products Persistent
+========================
+Make products persistent
 ========================
 
 The model :php:`\MyVendor\StoreInventory\Domain\Model\Product` allows us

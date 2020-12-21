@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+=====================
 Using PHP based views
-================================================
+=====================
 
 So far, we have used Fluid as a template engine. Most textual output
 formats are well representable with Fluid. For some use cases, it is
@@ -80,8 +81,9 @@ returned.
    PHP based views are also helpful for especially complex kind of
    output, like the rendering of PDF files.
 
+
 View configuration options in the controller
--------------------------------------------------
+============================================
 
 You have some methods in the controller that you can overwrite to
 control the resolution of the view. In most cases, the customization of

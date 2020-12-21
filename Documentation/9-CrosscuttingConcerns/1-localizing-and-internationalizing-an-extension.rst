@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+==============================================
 Localizing and internationalizing an extension
 ==============================================
 
@@ -30,8 +31,8 @@ you can adjust the date formats following the date conventions in
 a particular country.
 
 
-Multi-language Templates
-------------------------
+Multi-language templates
+========================
 
 When you style the output of your extension using Fluid, you often
 have to localize particular terms or maybe short text in the templates. In
@@ -108,9 +109,9 @@ way:
     (*https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Internationalization/XliffFormat.html*).
 
 Now the placeholder for the translated terms must be inserted into
-the template. To do this, Fluid offers the ViewHelper
-``f:translate``. In this ViewHelper, you give the identifier of
-the term to be inserted as argument ``key`` and the ViewHelper
+the template. To do this, Fluid offers the Viewhelper
+``f:translate``. In this Viewhelper, you give the identifier of
+the term to be inserted as argument ``key`` and the Viewhelper
 inserts either the German or the English translation according to the
 current language selection ::
 
@@ -146,7 +147,7 @@ current language selection ::
     browser.
 
 By replacing all terms of the template with the
-``translate`` ViewHelper we could fit the output of the extension
+``translate`` Viewhelper we could fit the output of the extension
 to the currently selected language. Here we have a look at the Fluid
 template for the output of the blog posts, now without the hardcoded
 English terms:
@@ -166,7 +167,7 @@ English terms:
 .. tip::
 
     Sometimes you have to localize a string in the PHP code, for
-    example inside of a controller or a ViewHelper. In that case you
+    example inside of a controller or a Viewhelper. In that case you
     can use the static method
     `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
     This method requires the localization key as the first and the extension's name as the second
@@ -175,7 +176,7 @@ English terms:
 
 
 Output localized strings using ``sprintf``
-------------------------------------------
+==========================================
 
 In the above example, we have outputted the blog post
 author's name simply by using ``{blog.author.fullName}``. Many
@@ -186,14 +187,14 @@ template now as far as it can to output the blog author's name
 according to the current language. In German and English, this is the
 form "first name last name" and in Thai "Khan first name".
 
-Also, for these use cases, the ``translate`` ViewHelper can
+Also, for these use cases, the ``translate`` Viewhelper can
 be used. With the aid of the array ``arguments,`` values can be
 embedded into the translated string. To do this, the syntax of the PHP
 function ``sprintf`` is used.
 
 If we want to implement the above example, we must assign the
 first name and the last name of the blog author separate to the
-``translate`` ViewHelper:
+``translate`` Viewhelper:
 
 ``<f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />``
 
@@ -217,7 +218,7 @@ output:
 
 .. tip::
 
-    The keys in the argument array of the ViewHelper have no
+    The keys in the argument array of the Viewhelper have no
     relevance. We recommend to give them numbers like the positions
     (starting with 1), because it is easily understandable.
 
@@ -227,8 +228,10 @@ output:
     ``sprintf`` you should have a look at the PHP documentation:
     *http://php.net/manual/de/function.sprintf.php*.
 
+
 Changing localized terms using TypoScript
---------------------------------------------------------------------------------------------------
+=========================================
+
 If you use an existing extension for a customer project, you
 sometimes find out that the extension is insufficient translated or that
 the translations have to be adjusted. TYPO3 offers the possibility to
@@ -253,10 +256,8 @@ translated according to the national language. We will show this in the
 next section.
 
 
-
-
 Multi-language domain objects
------------------------------
+=============================
 
 With TYPO3, you can localize the data sets in the backend. This also
 applies to domain data because they are treated as "normal" data sets
@@ -451,7 +452,7 @@ the default language.
 
 
 Localization of date output
----------------------------
+===========================
 
 It often occurs that a date or time must be displayed in a template.
 Every language area has its own convention on how the date is to be
@@ -461,7 +462,7 @@ displayed: While in Germany, the date is displayed in the form
 must be formatted different.
 
 Generally the date or time is formatted by the
-``format.date`` ViewHelper::
+``format.date`` Viewhelper::
 
     <f:format.date date="{dateObject}" format="d.m.Y" />
     <!-- or -->
@@ -486,10 +487,10 @@ H                Hour in 24 hour format                                      00 
 i                Minutes, with leading zero                                  00 ... 59
 ================ =========================================================== =========
 
-But the ViewHelper has to be configured differently. Depending on the
+But the Viewhelper has to be configured differently. Depending on the
 language area, which is controlled by the language of the user, another
 format string should be used. Here we combine the ``format.date``
-ViewHelper with the ``translate`` ViewHelper which you got to
+Viewhelper with the ``translate`` Viewhelper which you got to
 know in the section "Multi-language templates".
 
 ::
@@ -503,11 +504,11 @@ to know in the section "Multi-language templates".
 
 .. tip::
 
-    There are other formatting ViewHelpers for adjusting the output of
-    currencies or big numbers. These ViewHelpers all starts with
-    ``format``. You can find an overview of these ViewHelpers in
-    Appendix C. These ViewHelpers can be used like the
-    ``f:format.date`` ViewHelper you have just learned.
+    There are other formatting Viewhelpers for adjusting the output of
+    currencies or big numbers. These Viewhelpers all starts with
+    ``format``. You can find an overview of these Viewhelpers in
+    Appendix C. These Viewhelpers can be used like the
+    ``f:format.date`` Viewhelper you have just learned.
 
 In this section, you have learned how you can translate and localize
 an extension. First, we have worked on the localization of single terms in
@@ -640,7 +641,7 @@ The following examples show how to query data in Extbase in different scenarios,
 
 
 Identifiers
------------
+===========
 
 Domain models have a main identifier `uid` and two additional properties `_localizedUid` and `_versionedUid`.
 Depending on whether the `languageOverlayMode` mode is enabled (`true` or `'hideNonTranslated'`) or disabled (`false`),
@@ -653,9 +654,9 @@ the `uid` of the translated record is kept in the `_localizedUid`.
 +==========================================================+=========================+===========================+
 | Database                                                 | uid:2                   | uid:11, l10n_parent:2     |
 +----------------------------------------------------------+-------------------------+---------------------------+
-| Domain Object values with `languageOverlayMode` enabled  | uid:2, _localizedUid:2  | uid:2, _localizedUid:11   |
+| Domain object values with `languageOverlayMode` enabled  | uid:2, _localizedUid:2  | uid:2, _localizedUid:11   |
 +----------------------------------------------------------+-------------------------+---------------------------+
-| Domain Object values with `languageOverlayMode` disabled | uid:2, _localizedUid:2  | uid:11, _localizedUid:11  |
+| Domain object values with `languageOverlayMode` disabled | uid:2, _localizedUid:2  | uid:11, _localizedUid:11  |
 +----------------------------------------------------------+-------------------------+---------------------------+
 
 See tests in :file:`extbase/Tests/Functional/Persistence/QueryLocalizedDataTest.php`.
@@ -694,7 +695,7 @@ translated content independently from language set in the global context.
    the language set in the :php:`$querySettings->setLanguageUid()` method.
 
 Filtering & sorting
--------------------
+===================
 
 When filtering by an aggregate root property like `Post->title`,
 both filtering and sorting take translated values into account, and you will get correct results, same with pagination.
@@ -707,8 +708,9 @@ See :php:`TranslationTest::fetchingTranslatedPostByBlogTitle()`
 
 This limitation also applies to Extbase, with the feature flag being disabled.
 
-Summary of the important code changes compared to previous versions.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Summary of the important code changes compared to previous versions
+-------------------------------------------------------------------
 
 1) :php:`DataMapper` gets a :php:`Query` as a constructor parameter. This allows to use the aggregate root's :php:`QuerySettings` (language)
    when fetching child records/relations. See :php:`DataMapper->getPreparedQuery` method.
@@ -723,7 +725,7 @@ Summary of the important code changes compared to previous versions.
 
 
 Most important known issues
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 - The persistence session uses the same key for the default language record and the translation - https://forge.typo3.org/issues/59992
 - Extbase allows fetching deleted/hidden records - https://forge.typo3.org/issues/86307
 

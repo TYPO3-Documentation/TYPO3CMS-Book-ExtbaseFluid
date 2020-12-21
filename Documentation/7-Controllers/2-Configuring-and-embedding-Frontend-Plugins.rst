@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Configuring and embedding Frontend Plugins
+==========================================
+Configuring and embedding frontend plugins
 ==========================================
 
 A frontend-plugin should call the action. We've already addressed the
@@ -65,7 +66,7 @@ in :php:`\MyVendor\ExampleExtension\Controller\InventoryController`.
    defined with :php:`configurePlugin`, do not.
 
 The fourth, optional argument is also an array that is composed as the previous
-one. However, this one contains the Controller-Action combinations, which are
+one. However, this one contains the controller-action combinations, which are
 _not_ stored in the cache. These are especially those actions that issue a form. The
 methods :php:`createAction()` or the :php:`updateAction()` shouldn't be explicitly used here
 because they don't produce any result code that must be stored in the cache.

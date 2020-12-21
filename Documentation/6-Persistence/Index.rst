@@ -1,11 +1,8 @@
-.. review information:
-   - language: ok (corrected May/14 2019)
-
 .. include:: ../Includes.txt
-
 .. _persistence:
 
-Setting up the Persistence Layer
+================================
+Setting up the persistence layer
 ================================
 
 As discussed in previous chapters, it is the persistence layer that
@@ -23,19 +20,19 @@ This means that the saved data will be lost and thus also the domain object.
    You can read more about the lifecycle of objects in the chapter
    :ref:`object-lifecycle`
 
-Domain Objects need to be transferred into a persistent state if the need to be available
+Domain objects need to be transferred into a persistent state if the need to be available
 across several page loads. This is done in Extbase by putting
-the Domain objects into a Repository. When the script finished its work,
-the Repository saves the volatile data in a persistent state.
+the domain objects into a repository. When the script finished its work,
+the repository saves the volatile data in a persistent state.
 Normally, this is the database that is used by TYPO3 but may, for example,
 also, be a text file.
 
 This chapter deals with the necessary steps to persist the data
-of a Domain Object. First, the Domain Objects
+of a domain object. First, the domain objects
 have to be prepared to make them persistable in the underlying database. Most
 extensions get their input data from the Backend; thus, the input forms that
-receive the data must be configured. Subsequently, the Repositories which serve
-as an interface to the Domain Object are created.
+receive the data must be configured. Subsequently, the repositories which serve
+as an interface to the domain object are created.
 
 Those steps are sufficient for most of the simple extensions. However,
 bigger projects often need more complex queries to the persistence layer, as

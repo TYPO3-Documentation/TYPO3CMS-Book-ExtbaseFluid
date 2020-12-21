@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
-
 .. _validating-domain-objects:
 
+=========================
 Validating domain objects
 =========================
 
@@ -33,8 +33,8 @@ checking of invariants and how you can give the user the ability to
 correct an error if and when it occurs.
 
 
-Validators for checking of Invariants
--------------------------------------
+Validators for checking of invariants
+=====================================
 
 A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
@@ -112,9 +112,8 @@ many validators for default requirements like the validation of emails,
 numbers and strings.
 
 
-
 When does validation take place?
---------------------------------
+================================
 
 Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. With the help of figure
@@ -155,15 +154,16 @@ correct the errors.
 
     You may ask how the `errorAction()` knows
     which form was the last displayed one. This information is created by
-    the ``form`` ViewHelper. It automatically adds the property
+    the ``form`` Viewhelper. It automatically adds the property
     ``__referrer`` to every generated form, which contains
     information about the current extension, controller, and action
     combination. This data can be used by the
     `errorAction()` to display the erroneous form
     again.
 
+
 Registering validators
-----------------------
+======================
 
 Now we know how validators are working and when they are called.
 However, we have to connect our domain model with the validators to define
@@ -174,8 +174,9 @@ there are three possibilities which we define in the following:
 * validating in the domain model with our own validator class
 * validating of controller arguments
 
+
 Validating in the domain model with annotations
------------------------------------------------
+===============================================
 In most cases, it is sufficient to validate the properties of a
 domain object separately. When all properties are validated with success,
 the complete domain object is also successfully validated. When a property
@@ -279,7 +280,7 @@ objects are validated.
 
 
 Validating in the domain model with your own validator class
-------------------------------------------------------------
+============================================================
 
 The ability to register validators in the
 model is handy when the model's individual properties
@@ -312,7 +313,7 @@ case::
         protected function isValid($user)
         {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
-                $this->addError('The given Object is not a User.', 1262341470);
+                $this->addError('The given object is not a User.', 1262341470);
             }
         }
     }
@@ -341,7 +342,7 @@ passwords. This is made quickly::
         protected function isValid($user)
         {
             if (! $user instanceof \MyVendor\ExtbaseExample\Domain\Model\User) {
-                $this->addError('The given Object is not a User.', 1262341470);
+                $this->addError('The given object is not a User.', 1262341470);
                 return;
             }
             if ($user->getPassword() !== $user->getPasswordConfirmation()) {
@@ -396,8 +397,8 @@ next section.
 
 
 
-Validating of controller arguments
-----------------------------------
+Validation of controller arguments
+==================================
 
 If you want to validate a domain object only when calling a
 special action, you have to define validators for individual arguments.
@@ -461,10 +462,11 @@ prevents the processing of the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annota
 domain model and calling the validator class of the domain
 object.
 
+
 .. _case_study-edit_an_existing_object:
 
 Case study: Edit an existing object
------------------------------------
+===================================
 
 Now you know all the building blocks you need to edit a blog object with
 a form. As of now, the edit form should be displayed again in case of a
@@ -573,13 +575,12 @@ displayed correctly.
 
 Fluid automatically adds the CSS class ``f3-form-error``
 to all erroneous fields - so you can frame them in red, for example, using
-CSS. There is also a ``flashMessages`` ViewHelper, which outputs
+CSS. There is also a ``flashMessages`` Viewhelper, which outputs
 the error messages of the validation.
 
 
-
 Case study: Create an object
-----------------------------
+============================
 
 In the last section, you have seen how to edit a blog object with a
 form. Now we will show you how to create a new blog object with a form.
@@ -647,7 +648,7 @@ also has to conform with the name of the Fluid template
 validation of the parameter must be suppressed with
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation`. Finally, you can
 output validation errors in the template using the ``flashMessages``
-ViewHelper when saving the data.
+Viewhelper when saving the data.
 
 In figure 9-2, you can find an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
@@ -659,10 +660,11 @@ frontend.
     Figure 9-2: Data flow of the form display and saving. When a validating
     error occurs, it is displayed again.
 
+
 .. _mapping-arguments:
 
 Mapping arguments
------------------
+=================
 
 In this section, we will describe what happens during a
 request before the respective action is called, especially when sending a form.

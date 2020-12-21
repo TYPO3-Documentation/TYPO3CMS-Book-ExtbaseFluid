@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 .. _using-foreign-data-sources:
 
+==========================
 Using Foreign Data Sources
 ==========================
 
@@ -43,7 +44,7 @@ defines a set of class properties that should be mapped onto fields that don't c
 .. note::
 
     Regard in each case that the field type fits the data type of your property. You will find
-    additional information in "Preparing the tables of the Domain Objects" above in this chapter.
+    additional information in "Preparing the tables of the domain objects" above in this chapter.
 
 This configuration causes Extbase to use the table ``tt_address`` when reconstructing or persisting of
 objects of the class :php:`\MyVendor\MyExtension\Domain\Model\Person`. Thereby the values of the properties

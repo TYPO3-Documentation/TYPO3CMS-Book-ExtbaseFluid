@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Create The Domain Model
+=======================
+Create the domain model
 =======================
 
 The domain of our first extension is straightforward. The essential

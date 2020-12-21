@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+=============================
 Returning the result to TYPO3
 =============================
 
@@ -11,7 +12,7 @@ and the deleted objects. In our case, the persistence manager asks the blog
 repository about such objects. Since we only displayed blogs but made no
 changes, the persistence manager will not change anything at this time.
 
-We have now finally reached the end of our trip. The Dispatcher returns
+We have now finally reached the end of our trip. The dispatcher returns
 the response to the Bootstrap, which will return the rendered content to
 the TYPO3 framework so TYPO3 can render it in
 the main page context.

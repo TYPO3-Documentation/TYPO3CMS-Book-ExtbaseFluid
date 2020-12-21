@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+======================
 Preparing the database
-================================================
+======================
 
 The preparation of the database primarily covers the creation of the
 database tables. The commands for the creation are done in
@@ -18,8 +19,9 @@ of the extension directory.
    look at Chapter 10). However, you should fully understand all the
    peculiarities of your database.
 
-Preparing the tables of the Domain Objects
---------------------------------------------------------------------------------------------------
+
+Preparing the tables of the domain objects
+==========================================
 
 Let's have a look at the definition of the database table which will
 aggregate the objects of the class
@@ -98,7 +100,7 @@ page of a Content Element.
 
 `crdate` The UNIX timestamp of the date the record was
 created *(creation date)*. This date may differ from
-the creation date of the Domain Object.
+the creation date of the domain object.
 
 `tstamp` The UNIX timestamp of the date the record was
 changed the last time. Most often, this relates to the timestamp the Domain
@@ -118,7 +120,7 @@ this field's value differs from 0.
 
 `starttime` UNIX timestamp when the record first showed
 up in the Frontend. Extbase uses this timestamp when it reads the record values from
-the database not to create the Domain Objects before that
+the database not to create the domain objects before that
 time.
 
 `endtime` UNIX timestamp when the record got "invisible"
@@ -128,7 +130,7 @@ it reads from the database.
 
 `cruser_id` The UID of the Backend user who created the
 record. Currently, Extbase neither sets nor reads this value. Whenever a
-Domain Object is created in the Frontend, this field is set to 0.
+domain object is created in the Frontend, this field is set to 0.
 
 `fe_group` A list of Frontend-Usergroups that can access
 the recordset. The logged-in Frontend-User must at least belong to this
@@ -154,10 +156,9 @@ All fields except `uid` and `pid` are optional.
 However, we highly recommend creating the fields `deleted`,
 `hidden`, `fe_group`, `starttime`, and
 `endtime` to enable proper access control. If the
-Domain Objects are multi-lingual the fields `sys_language_uid`,
+domain objects are multi-lingual the fields `sys_language_uid`,
 `l18n_parent`, `l18n_diffsource` are
 essential.
-
 
 .. note::
 
@@ -186,7 +187,7 @@ definitions. `tstamp int(11) unsigned DEFAULT '0' NOT NULL,`
    definition is chosen somewhat awkwardly by TYPO3 since the value 0
    corresponds to the UNIX timestamp of the date 1.1.1970 00:00. It would
    be better to use the value NULL for the meaning of 'undefined' instead
-   of 0. However, this inconsistency draws through the whole TYPO3 core.
+   of 0. However, this inconsistency draws through the whole TYPO3 Core.
    Thus, it is complicated to correct this weakness.
 
 SQL databases provide various field types. Which type is
@@ -318,14 +319,14 @@ types.
 
 
 
-Configure Relationships between Objects
----------------------------------------
+Configure relationships between objects
+=======================================
 
 There are many relations between the objects in our Domain that have
 to be persisted in the database for being able to resolve them at a later
 time. It depends on the type of relationship how they can be persisted and
 Extbase distinguishes between several types as already defined in Chapter
-5 "Implement Relationships between Domain Objects". As a reference to Chapter
+5 "Implement Relationships between domain objects". As a reference to Chapter
 5, find here a short summary of the types of relationships:
 
 *1:1-Relationship:* An offer has exactly one
@@ -408,7 +409,7 @@ themselves.
    Let's say you want to store a CD with its containing music tracks:
    `CD -- m:n (Intermediate Table) -- Song`. The track number
    may be stored in a field of the Intermediate Table. However, the
-   track should be stored as a separate Domain Object, and the connection be
+   track should be stored as a separate domain object, and the connection be
    realized as `CD -- 1:n -- Track -- n:1 -- Song`.
 
 Not all combinations of relationship types and their technical persistence are sane.
@@ -451,7 +452,7 @@ In a `1:n` relationship, there are two possibilities.
 Either every `uid` value is stored as a comma-separated list in
 the parent object field. Or every child object contains the parental
 uid in a foreign key field. TYPO3 mostly uses the comma-separated list in its
-core. Still, we discourage that solution because of its drawbacks:
+Core. Still, we discourage that solution because of its drawbacks:
 Comma-separated fields complicate the search and hinder the
 indexation in the database. Furthermore, the creation and deletion of child
 objects are complex and time-consuming. Thus, using comma-separated lists

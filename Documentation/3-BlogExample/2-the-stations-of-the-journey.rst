@@ -1,5 +1,8 @@
+.. include:: ../Includes.txt
+
+===========================
 The stations of the journey
-===========================================
+===========================
 
 Now that you have had a look at your journey destination and hopefully
 don't feel disoriented when we stop at the several steps, you can start.
@@ -20,16 +23,16 @@ but hands over the control to the Extbase *Dispatcher*
 (1).
 
 The *Dispatcher* bundles all information of the
-request in a *Request* and sends it to the appropriate
+request in a *request* and sends it to the appropriate
 part of the extension, which takes over the flow control — the so-called
 *Controller* (2).
 
 Within the controller, the appropriate storage facility which is in charge
-of the blogs — the *Repository* — is instructed to
+of the blogs — the *repository* — is instructed to
 return all the stored blog posts using the method :php:`findAll()`
 (3).
 
-The *Repository* returns a collection of the
+The *repository* returns a collection of the
 already present ``Blog`` objects with all of their posts, comments and
 tags (4).
 

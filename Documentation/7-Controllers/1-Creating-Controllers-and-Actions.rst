@@ -1,19 +1,20 @@
 .. include:: ../Includes.txt
 
-Creating Controllers and Actions
+================================
+Creating controllers and actions
 ================================
 
-The Controller classes are stored in the folder :file:`EXT:sjr_offer/Classes/Controller/`. The name of the
-Controller is composed by the name of the Domain Model and the Suffix
-:php:`Controller`. So the Controller
+The controller classes are stored in the folder :file:`EXT:sjr_offer/Classes/Controller/`. The name of the
+controller is composed by the name of the domain model and the suffix
+:php:`Controller`. So the controller
 :php:`\MyVendor\SjrOffers\Controller\OfferController` is assigned
 to the Aggregate Root Object
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. And the name of the
 Class file is :file:`OfferController.php`.
 
-The Controller class must extend the class
+The controller class must extend the class
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`, which is
-part of Extbase. The individual Actions are combined in separate methods.
+part of Extbase. The individual actions are combined in separate methods.
 The method names have to end in :php:`Action`. The body of
 :php:`OfferController` thus looks like this:
 
@@ -29,19 +30,19 @@ The method names have to end in :php:`Action`. The body of
 
    class OfferController extends ActionController
    {
-      // Action methods will be following here
+      // action methods will be following here
    }
 
-When realizing the desired tasks through *Action*
+When realizing the desired tasks through *action*
 methods you will often stumble upon very similar flows and patterns. Each
-task will be carried out by a single *Action* or a chain
+task will be carried out by a single *action* or a chain
 of *Actions*:
 
-#. A list of Domain Objects is to be displayed.
-#. A single Domain Object is to be displayed.
-#. A new Domain Object is to be created.
-#. An existing Domain Object is to be edited.
-#. A Domain Object is to be deleted.
+#. A list of domain objects is to be displayed.
+#. A single domain object is to be displayed.
+#. A new domain object is to be created.
+#. An existing domain object is to be edited.
+#. A domain object is to be deleted.
 
 We will shed some light on these recurring patterns in the following
 sections. Together with the schedule model, you will learn the background to
@@ -55,8 +56,8 @@ generate your own flows.
     their way through your code.
 
 
-Flow Pattern "display a list of Domain Objects"
------------------------------------------------
+Flow pattern "display a list of domain objects"
+===============================================
 
 The first pattern in our example fits the action "*display
 a list of all offers*". One action method usually will be enough
@@ -82,7 +83,7 @@ the name of the method:
    }
 
    /**
-    * Index Action
+    * Index action
     *
     * @return string
     */
@@ -102,7 +103,7 @@ content. Furthermore, we avoid initializing the variable
 .. code-block:: php
 
    /**
-    * Index Action
+    * Index action
     *
     * @return void
     */
@@ -112,14 +113,14 @@ content. Furthermore, we avoid initializing the variable
    }
 
 initializeAction
-----------------
+================
 
-In old TYPO3 Versions the :php:`initializeAction()` was used to get the repository instance.
-Later we can use this action to modify the Request before the property mapper is executed or
+In old TYPO3 versions the :php:`initializeAction()` was used to get the repository instance.
+Later we can use this action to modify the request before the property mapper is executed or
 integrate JavaScript libraries.
 
 The :php:`ActionController` not only calls the method :php:`initializeAction()`, which is executed before any
-Action in the Controller, but also a method in the Form of
+action in the controller, but also a method in the Form of
 :php:`initialize*Foo*Action()`, which is called only before the method
 :php:`*foo*Action()`.
 
@@ -131,13 +132,13 @@ Action in the Controller, but also a method in the Form of
 
 
 
-Flow Pattern "display a single Domain Object"
----------------------------------------------
+Flow pattern "display a single domain object"
+=============================================
 
 The second pattern is best put into action by a single method as
 well. We call it :php:`showAction()`. In contrast to
 :php:`indexAction`, we have to tell this method from
-outside which Domain Object is displayed. In our case, the offer to
+outside which domain object is displayed. In our case, the offer to
 be shown is passed to the method as Argument:
 
 .. code-block:: php
@@ -163,8 +164,8 @@ Due to the 2 Arguments
 `tx_sjroffers_pi1[controller]=Offer` and
 `tx_sjroffers_pi1[action]=show`, the dispatcher of Extbase
 passes the request to the :php:`OfferController`. In the
-request we find the information that the Action *show* is to be called. Before passing on the further processing to
-the method :php:`showAction()`, the Controller tries to
+request we find the information that the action *show* is to be called. Before passing on the further processing to
+the method :php:`showAction()`, the controller tries to
 map the Arguments received by the URL on the method's arguments.
 Extbase maps the arguments by their names. In our example Extbase detects,
 that the GET Argument `tx_sjroffers_pi1[offer]=3` corresponds to the method argument
@@ -178,7 +179,7 @@ Extbase reads the type from the annotation written above the method:
 
 After successfully assigning, the incoming argument's value has
 to be cast in the target type and checked for validity (read more
-about validation in chapter 9 in the section "Validating Domain Objects"). In
+about validation in chapter 9 in the section "Validating domain objects"). In
 our case, the incoming value is "3". Target type is the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. So Extbase
 interprets the incoming value as uid of the object to be created and sends
@@ -191,7 +192,7 @@ to the view, taking care of the HTML output.
 .. tip::
 
     Inside of the template, you can access all properties of the
-    Domain Object, including all existing child objects. Thus this Flow
+    domain object, including all existing child objects. Thus this Flow
     Pattern does not only cover single domain objects but, in the event,
     also a complex aggregate.
 
@@ -199,19 +200,19 @@ If an Argument is identified as invalid, the already implemented
 method :php:`errorAction()` of
 :php:`ActionController` is called instead of the method
 :php:`showAction()`. The method then generates a message
-for the frontend user and passes the processing to the previous Action, in
+for the frontend user and passes the processing to the previous action, in
 case it is given. The latter is handy with invalid form field
 input, as you'll see in the following.
 
 
-Flow Pattern "creating a new Domain Object".
--------------------------------------------
+Flow pattern "creating a new domain object"
+===========================================
 
 For the third Flow Pattern, the one for creating a new Domain
 Object, two steps are required: First, a form for inputting the Domain
-Data has to be shown in Frontend. Second, a new Domain Object has to be
+Data has to be shown in Frontend. Second, a new domain object has to be
 created (using the incoming form data) and put in the appropriate
-Repository. We're going to implement these two steps in the methods
+repository. We're going to implement these two steps in the methods
 :php:`newAction() `and
 :php:`createAction()`.
 
@@ -276,7 +277,7 @@ and submitted the form, the Method
 an :php:`Organization` Object and an Object of the class
 :php:`\MyVendor\SjrOffers\Domain\Model\Offer`. Therefore Extbase
 instantiates the Object and "fills" its Properties with the appropriate
-Form data. If all Arguments are valid, the Action
+Form data. If all Arguments are valid, the action
 :php:`createAction()` is called.
 
 .. code-block:: php
@@ -306,7 +307,7 @@ displayed with all of its offers. We, therefore, start a new request
 :php:`redirect()`. The actual organization is hereby
 passed on as an argument. Inside the
 :php:`ActionController` you have the following Methods for
-redirecting to other Action controllers at your disposal:
+redirecting to other action controllers at your disposal:
 
 .. code-block:: php
 
@@ -317,7 +318,7 @@ redirecting to other Action controllers at your disposal:
 
 Using the :php:`redirect()` Method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: The
-given Action (specified in :php:`$actionName`) of the
+given action (specified in :php:`$actionName`) of the
 appropriate controller (specified in
 :php:`$controllerName`) in the given extension (specified
 in :php:`$extensionName`) is called. If you did not
@@ -405,7 +406,7 @@ encrypted form (:php:`__trustedProperties`), the structure of the form
 
 If now a validation error occurs when calling the Method
 :php:`createAction()`, an error message is saved and the
-processing is passed back to the previous Action, including all already
+processing is passed back to the previous action, including all already
 inserted form data. Extbase reads the necessary information from the
 hidden fields :php:`__referrer`. In our case the Method
 :php:`newAction()` is called again. In contrast to the
@@ -439,8 +440,8 @@ you tell Extbase that the argument is not to be validated. If the argument is an
 validation of its properties is also bypassed.
 
 
-Flow Pattern "Editing an existing Domain Object".
---------------------------------------------------------------------------------------------------
+Flow pattern "editing an existing domain object"
+================================================
 
 The flow pattern we now present you is quite similar to the
 previous one. We again need two action Methods, which this time we call
@@ -448,7 +449,7 @@ previous one. We again need two action Methods, which this time we call
 :php:`updateAction()`. The Method
 :php:`editAction()` provides the form for editing, while
 :php:`updateAction()` updates the Object in the
-Repository. In contrast to :php:`newAction()` it is not
+repository. In contrast to :php:`newAction()` it is not
 necessary to pass an organization to the Method
 :php:`editAction()`. It is sufficient to pass the offer to
 be edited as an Argument.
@@ -500,11 +501,11 @@ offers.
    }
 
 .. warning::
-    Do not forget to explicitly update the changed Domain Object
+    Do not forget to explicitly update the changed domain object
     using :php:`update()`. Extbase will not do this
     automatically for you, for doing so could lead to unexpected results.
-    For example, if you have to manipulate the incoming Domain Object
-    inside your Action Method.
+    For example, if you have to manipulate the incoming domain object
+    inside your action method.
 
 At this point, we have to ask ourselves how to prevent
 unauthorized changes in our Domain data. The organization and offer data
@@ -516,7 +517,7 @@ contact persons as well as edit existing offers. Securing against
 unauthorized access can be done on different levels:
 
 * On the level of TYPO3, access to the page and/or plugin is prohibited.
-* Inside the Action, it is checked if access is authorized. In
+* Inside the action, it is checked if access is authorized. In
   our case, it has to be checked if the administrator of the
   organization is logged in.
 * In the template, links to Actions, to which the frontend user
@@ -605,7 +606,7 @@ this snippet from a template:
 
 .. code-block:: html
 
-   {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
+   {namespace sjr=MyVendor\SjrOffers\Viewhelpers}
    <!-- ... -->
    <sjr:security.ifAuthenticated person="{organization.administrator}">
       <f:link.action controller="Offer" action="edit" arguments="{...}">
@@ -618,7 +619,7 @@ this snippet from a template:
 
     A *Service* is often used to implement
     functionalities that are needed in multiple places in your extensions
-    and are not related to one Domain Object.
+    and are not related to one domain object.
 
     Services are often stateless. In this context, that means that
     their function does not depend on previous access. This does not
@@ -647,7 +648,7 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
 
 .. code-block:: php
 
-   namespace MyVendor\SjrOffers\ViewHelper\Security;
+   namespace MyVendor\SjrOffers\Viewhelper\Security;
 
    use MyVendor\SjrOffers\Service\AccessControlService;
    use TYPO3Fluid\Fluid\ViewHelpers\IfViewHelper;
@@ -672,7 +673,7 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
    }
 
 The :php:`IfAuthenticatedViewHelper` extends the
-:php:`If`-ViewHelper of fluid and therefore provides the
+:php:`If`-Viewhelper of Fluid and therefore provides the
 opportunity to use if-else branches. It delegates the access check to the
 :php:`AccessControlService`. If the check gives a positive
 result, in our case, a link with an edit icon is generated, which leads to
@@ -680,11 +681,11 @@ the method :php:`editAction()` of the
 :php:`OfferController`.
 
 
-Flow Pattern "Deleting a Domain Object"
----------------------------------------
+Flow pattern "deleting a domain object"
+=======================================
 
-The last Flow pattern realizes the deletion of an existing Domain
-Object in one single Action. The appropriate Method
+The last flow pattern realizes the deletion of an existing domain
+Object in one single action. The appropriate Method
 :php:`deleteAction()` is kind of straightforward:
 
 .. code-block:: php
@@ -705,15 +706,15 @@ Object in one single Action. The appropriate Method
    }
 
 The important thing here is that you delete the given Offer from the
-Repository using the method :php:`remove()`. After running
+repository using the method :php:`remove()`. After running
 through your extension, Extbase will delete the associated record from
 the Database by marking it as deleted.
 
 .. tip::
 
     In principle, it doesn't matter how you generate the result
-    (usually HTML code) inside the Action. You can even decide to use the
-    traditional way of building extensions in your Action - with SQL
+    (usually HTML code) inside the action. You can even decide to use the
+    traditional way of building extensions in your action - with SQL
     Queries and maker-based Templating. We invite you to pursue the path
     we chose up till now, though.
 
@@ -788,21 +789,21 @@ the accordant options in a form (see pic. 7-2).
 
 .. warning::
     Watch out that you do not implement logic, which
-    belongs in the Controller domain. Concentrate on the
+    belongs in the controller domain. Concentrate on the
     mere Flow.
 
 .. tip::
 
     In real life, you will often need similar functionality in some
-    or even all Controllers. The previously mentioned access control is a
+    or even all controllers. The previously mentioned access control is a
     simple example. In our example extension, we sourced it out to a
     *service* object. Another possibility is to create
-    a basis Controller which extends the
+    a basis controller which extends the
     :php:`ActionController` of Extbase. Inside, you
     implement the shared functionality. Then the concrete controllers with
-    your Actions extend this Basis Controller again.
+    your Actions extend this Basis controller again.
 
-The Flow inside of a Controller is triggered from outside by
+The Flow inside of a controller is triggered from outside by
 TYPO3. For extensions that generate content for the frontend, this is
 usually done by a plugin placed on the appropriate page. How to configure
 such a plugin you'll see in the following section.

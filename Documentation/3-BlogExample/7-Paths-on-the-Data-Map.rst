@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Paths on the Data-Map
+=====================
+Paths on the data map
 =====================
 
 The `DataMapper` object has the task to create an instance of the blog class

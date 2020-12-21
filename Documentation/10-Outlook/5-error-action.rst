@@ -1,7 +1,7 @@
 .. include:: ../Includes.txt
-
 .. _extbase_error_action:
 
+============
 Error action
 ============
 
@@ -10,7 +10,7 @@ the mapping of incoming action arguments. E.g., an argument can not be mapped or
 validation did not pass.
 
 How it works
-------------
+============
 
 .. rst-class:: bignums-xxl
 
@@ -34,8 +34,9 @@ How it works
       message will be displayed, fetched from
       :php:`getFlattenedValidationErrorMessage()`.
 
+
 Overloading behaviour
----------------------
+=====================
 
 Each of the above steps can be adjusted by implementing custom methods or
 replacing values within properties. All of the above is `protected` and, therefore,

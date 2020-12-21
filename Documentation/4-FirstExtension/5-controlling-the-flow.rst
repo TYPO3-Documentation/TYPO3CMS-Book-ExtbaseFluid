@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Controlling The Flow
+====================
+Controlling the flow
 ====================
 
 We now want to show a list of products in our inventory in the frontend.

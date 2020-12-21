@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+=================
 Adding a template
 =================
 
@@ -19,7 +20,7 @@ The action name, without the action suffix.
 
 .. code-block:: html
 
-   <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+   <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/Viewhelpers">
    <table border="1" cellspacing="1" cellpadding="5">
        <tr>
            <td>Product name</td>
@@ -41,9 +42,9 @@ The action name, without the action suffix.
 The inventory is rendered as a table.
 We can access the array of products we assigned to the view
 (:php:`$this->view->assign('products', $products)`) with :html:`{products}`.
-Tags starting with :html:`<f:` are Fluid ViewHelper tags.
+Tags starting with :html:`<f:` are Fluid Viewhelper tags.
 The code inside the :html:`for` tag is repeated for each product in :html:`products`.
-The ViewHelper :html:`f:crop` shortens the containing text to at max 100 characters length.
+The Viewhelper :html:`f:crop` shortens the containing text to at max 100 characters length.
 Within the brackets, we can access the products and their properties.
 If there is a dot after the object name, the getters are automatically called.
 So :html:`{product.description}` uses the getter method :php:`getDescription()` from the

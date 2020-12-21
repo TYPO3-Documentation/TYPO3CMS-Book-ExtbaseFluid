@@ -1,14 +1,13 @@
 .. include:: ../Includes.txt
 .. highlight:: php
-
 .. _dispatching:
 
 ===========
 Dispatching
 ===========
 
-The Dispatcher's job is to find a class that can handle the current page
-request. Once found, the Dispatcher executes the method *handleRequest* in the
+The dispatcher's job is to find a class that can handle the current page
+request. Once found, the dispatcher executes the method *handleRequest* in the
 matching class and receives the result. This result is then passed out as
 website content.
 
@@ -19,7 +18,8 @@ Here's the dispatcher path, step by step:
 
    Figure 1-1: Extbase dispatching process
 
-.. requesthandlerresolver:
+
+.. _requesthandlerresolver:
 
 RequestHandlerResolver
 ======================
@@ -58,8 +58,8 @@ Once the definitive RequestHandler has been identified, its method
 :php:`handleRequest()` is executed. This method creates an object containing all
 of the necessary data for the page request, using the :php:`RequestBuilder`. It
 searches through the plugin configuration in :file:`ext_localconf.php` in order
-to find out which Controller and Action should be used as standard. The
-RequestBuilder also checks the Uri, to check whether an alternative Controller
+to find out which controller and action should be used as standard. The
+RequestBuilder also checks the Uri, to check whether an alternative controller
 or an alternative action should be loaded instead of the entries from
 :file:`ext_localconf.php`.
 
@@ -68,16 +68,17 @@ or an alternative action should be loaded instead of the entries from
    Extbase does not use PSR-7 for requests, but
    custom implementations.
 
+
 .. _the-dispatcher:
 
-The Dispatcher
+The dispatcher
 ==============
 
-The Dispatcher fetches the Controller name from the Request object and creates
-the Controller.
+The dispatcher fetches the controller name from the request object and creates
+the controller.
 
-The object :php:`Request` is passed to the Controller,
-and the role of the Dispatcher is complete. The
+The object :php:`Request` is passed to the controller,
+and the role of the dispatcher is complete. The
 Controller now returns the response, which is handed back all the way to the
 :php:`Bootstrap` which calls :php:`shutdown()`. It is now up to the response to
 handle further stuff, e.g., send headers and return rendered content.
@@ -86,14 +87,16 @@ That is the point when TYPO3 receives the content and integrates it into the
 rendering. The response itself will already send headers, and no TYPO3 API will be
 used at this place.
 
+
 .. _the-controller:
 
-The Controller
+The controller
 ==============
 
-The Controller generates a :php:`\Psr\Http\Message\ResponseInterface` object. The
-Controller can also set further response headers and access arguments from the
+The controller generates a :php:`\Psr\Http\Message\ResponseInterface` object. The
+controller can also set further response headers and access arguments from the
 :php:`Request`.
+
 
 .. _accessing-the-request:
 
@@ -101,7 +104,7 @@ Accessing the request
 ---------------------
 
 Within the controller, :php:`$this->request` allows to access the incoming
-Request. This way, it is possible to access all arguments provided to the
+request. This way, it is possible to access all arguments provided to the
 request directly. Still, it is better to use argument mapping instead.
 
 In case of a forward, the request also enables access to the original request.
@@ -117,6 +120,7 @@ need to conform to Extbase's naming standard in order to be mapped to the
 extension. The default is to prefix arguments with the plugin signature. This can be
 adjusted via TypoScript option :ts:`view.pluginNamespace`, see
 :ref:`typoscript_configuration-view`.
+
 
 .. _using-the-response:
 
@@ -157,12 +161,13 @@ To create a response, it is recommended to use the :ref:`PSR-17 response factory
 Returning content
 -----------------
 
-Each action within the Controller can optionally return content. If nothing is
+Each action within the controller can optionally return content. If nothing is
 returned, the default implementation will render :php:`$this->view` and return
 the rendering result.
 
 Content can be returned as string or object with :php:`__toString()`
 implementation.
+
 
 .. _forwarding-a-request:
 

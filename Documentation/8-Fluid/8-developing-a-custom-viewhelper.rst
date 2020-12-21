@@ -1,23 +1,23 @@
 .. include:: ../Includes.txt
-
 .. _developing-a-custom-viewhelper:
 
-Developing a custom ViewHelper
+==============================
+Developing a custom Viewhelper
 ==============================
 
-Developing a custom ViewHelper is often necessary for extension development.
-This chapter will demonstrate how to write a custom ViewHelper for the blog
+Developing a custom Viewhelper is often necessary for extension development.
+This chapter will demonstrate how to write a custom Viewhelper for the blog
 example extension.
 
-The official documentation of Fluid for writing custom ViewHelpers can be found
+The official documentation of Fluid for writing custom Viewhelpers can be found
 within Fluid documentation at
 https://github.com/TYPO3/Fluid/blob/master/doc/FLUID_CREATING_VIEWHELPERS.md.
 
 .. _the-gravatar-viewhelper:
 .. _the-example-viewhelper:
 
-The Example ViewHelper
-----------------------
+The example Viewhelper
+======================
 
 "Avatar" images are pictures or icons that, for example, are dedicated to the author
 of an article in blogs or on forums. The photos of blog authors and forum
@@ -31,21 +31,21 @@ A web application that wants to check if an avatar picture exists for a given
 the email address has to send a checksum (with the hash function :php:`md5()`) of the
 email address to the service and receives the picture for display.
 
-This section explains how to write a ViewHelper that uses an email address as
+This section explains how to write a Viewhelper that uses an email address as
 parameter and shows the picture from gravatar.com if it exists.
 
-The custom ViewHelper is not part of the default distribution. Therefore an own
-namespace import is necessary to use this ViewHelper. In the following example,
+The custom Viewhelper is not part of the default distribution. Therefore an own
+namespace import is necessary to use this Viewhelper. In the following example,
 the namespace :php:`\MyVendor\BlogExample\ViewHelpers` is imported with the
 prefix `blog`. Now, all tags starting with `blog:` are interpreted as
-ViewHelper from within this namespace::
+Viewhelper from within this namespace::
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
 For further information about namespace import, see :ref:`importing-namespaces`.
 
-The ViewHelper should be given the name "gravatar" and only take an email
-address as a parameter. The ViewHelper is called in the template as follows:
+The Viewhelper should be given the name "gravatar" and only take an email
+address as a parameter. The Viewhelper is called in the template as follows:
 
 .. code-block:: html
 
@@ -57,19 +57,19 @@ namespaces globally.
 .. _now-implementing:
 
 The implementation
-------------------
+==================
 
-Every ViewHelper is a PHP class. For the Gravatar ViewHelper, the name of the
+Every Viewhelper is a PHP class. For the Gravatar Viewhelper, the name of the
 class is :php:`\MyVendor\BlogExample\ViewHelpers\GravatarViewHelper`.
 
-Following the naming conventions for Extbase extensions the ViewHelper skeleton
+Following the naming conventions for Extbase extensions the Viewhelper skeleton
 is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php`::
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\Viewhelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
@@ -85,20 +85,20 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
 .. note::
 
    Prior to Fluid 2.4, the method :php:`renderStatic()` required a :php:`use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;` at
-   the beginning of the ViewHelper class file and additionally a :php:`use CompileWithRenderStatic;` inside of the ViewHelper class.
+   the beginning of the Viewhelper class file and additionally a :php:`use CompileWithRenderStatic;` inside of the Viewhelper class.
    Otherwise, the method :php:`render()` would not be found. If you use the latest TYPO3 9 or higher, this should no longer be necessary.
 
-Every ViewHelper must inherit from the class
+Every Viewhelper must inherit from the class
 :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper`.
 
-A ViewHelper can also inherit from subclasses of :php:`AbstractViewHelper`, e.g.
+A Viewhelper can also inherit from subclasses of :php:`AbstractViewHelper`, e.g.
 from :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.
 Several subclasses are offering additional functionality. The
 :php:`TagBasedViewHelper` will be explained :ref:`later on in this chapter
 <creating-xml-tags-using-tagbasedviewhelper>` in detail.
 
-Also, every ViewHelper needs a method :php:`renderStatic()`, which is called
-once the ViewHelper will be displayed in the template. The return value of the
+Also, every Viewhelper needs a method :php:`renderStatic()`, which is called
+once the Viewhelper will be displayed in the template. The return value of the
 method is copied directly into the complete output. If the above example is
 extended like the following::
 
@@ -134,14 +134,14 @@ The displayed result will be `Hello World`.
 
 .. _register-arguments-of-viewhelpers:
 
-Register arguments of ViewHelpers
----------------------------------
+Register arguments of Viewhelpers
+=================================
 
-The :php:`Gravatar` ViewHelper must hand over the email address on which identifies
+The :php:`Gravatar` Viewhelper must hand over the email address on which identifies
 the Gravatar.
 This is the last remaining piece before the implementation can be completed.
 
-All arguments of a ViewHelper must be registered. Every ViewHelper has to
+All arguments of a Viewhelper must be registered. Every Viewhelper has to
 declare which parameters are accepted explicitly. The registration happens
 inside :php:`initializeArguments()`::
 
@@ -155,7 +155,7 @@ prefix should be allowed, e.g., `data-` arguments. Therefore it's possible to
 handle additional arguments. For further information see
 :ref:`handle-additional-arguments`.
 
-This way the ViewHelper receives the argument `emailAddress` of type `string`.
+This way the Viewhelper receives the argument `emailAddress` of type `string`.
 The type is given by the second argument of the :php:`registerTagAttribute()`.
 The arguments are registered via :php:`$this->registerArgument($name, $type,
 $description, $required, $defaultValue)`. These arguments can be accessed
@@ -197,8 +197,8 @@ Finally the output of the :html:`img` tag needs to be implemented::
 
 .. _escaping-of-output:
 
-Escaping of Output
-------------------
+Escaping of output
+==================
 
 The above implementation still does not provide the expected result. The output
 for the following usage:
@@ -243,10 +243,10 @@ Passing in children is explained in :ref:`prepare-viewhelper-for-inline-syntax`.
 .. _creating-xml-tags-using-tagbasedviewhelper:
 .. _creating-html-tags-using-tagbasedviewhelper:
 
-Creating HTML/XML tags using TagBasedViewHelper
------------------------------------------------
+Creating HTML/XML tags using the `TagBasedViewHelper`
+=====================================================
 
-For ViewHelpers which create HTML/XML tags, Fluid provides an enhanced base
+For Viewhelpers which create HTML/XML tags, Fluid provides an enhanced base
 class: :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper`.  This
 base class provides an instance of
 :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder` that can be used to create
@@ -292,7 +292,7 @@ The :php:`GravatarViewHelper` will now make use of the
 
 What is different in this code?
 
-First of all, the ViewHelper does not inherit directly from
+First of all, the Viewhelper does not inherit directly from
 :php:`AbstractViewHelper` but from :php:`TagBasedViewHelper`, which provides
 and initializes the tag builder. Beyond that, there is a class property
 :php:`$tagName` which stores the name of the tag to be created. Furthermore the
@@ -311,12 +311,12 @@ markup is returned.
 
 Notice that the attribute :php:`$escapeOutput` is no longer necessary.
 
-Furthermore the :php:`TagBasedViewHelper` offers assistance for ViewHelper
+Furthermore the :php:`TagBasedViewHelper` offers assistance for Viewhelper
 arguments that should recur directly and unchanged as tag attributes. These
 should be output directly must be registered in :php:`initializeArguments()`
 with the method :php:`$this->registerTagAttribute($name, $type, $description, $required = false)`.
 If support for the :html:`<img>` attribute :html:`alt`
-should be provided in the ViewHelper, this can be done by initializing this in
+should be provided in the Viewhelper, this can be done by initializing this in
 :php:`initializeArguments()` in the following way::
 
    public function initializeArguments()
@@ -329,7 +329,7 @@ accesskey and tabindex there is a helper method
 :php:`registerUniversalTagAttributes()` available.
 
 If support for universal attributes should be provided and in addition to the
-`alt` attribute in the Gravatar ViewHelper the following
+`alt` attribute in the Gravatar Viewhelper the following
 :php:`initializeArguments()` method will be necessary::
 
    public function initializeArguments()
@@ -342,9 +342,9 @@ If support for universal attributes should be provided and in addition to the
 .. _insert-optional-arguments:
 
 Insert optional arguments
--------------------------
+=========================
 
-An optional size for the image can be provided to the Gravatar ViewHelper. This
+An optional size for the image can be provided to the Gravatar Viewhelper. This
 size parameter will determine the height and width in pixels of the
 image and can range from 1 to 512. When no size is given, an image of 80px is
 generated.
@@ -373,11 +373,11 @@ the `size` attribute becomes optional.
 
 .. _prepare-viewhelper-for-inline-syntax:
 
-Prepare ViewHelper for inline syntax
-------------------------------------
+Prepare Viewhelper for inline syntax
+====================================
 
-So far, the Gravatar ViewHelper has focused on the tag structure of the
-ViewHelper. The call to render the ViewHelper was written with tag syntax, which
+So far, the Gravatar Viewhelper has focused on the tag structure of the
+Viewhelper. The call to render the Viewhelper was written with tag syntax, which
 seemed obvious because it itself returns a tag:
 
 .. code-block:: html
@@ -390,14 +390,14 @@ Alternatively, this expression can be written using the inline notation:
 
    {blog:gravatar(emailAddress: post.author.emailAddress)}
 
-One should see the Gravatar ViewHelper as a kind of post-processor for an email
+One should see the Gravatar Viewhelper as a kind of post-processor for an email
 address and would allow the following syntax:
 
 .. code-block:: html
 
    {post.author.emailAddress -> blog:gravatar()}
 
-This syntax places focus on the variable that is passed to the ViewHelper as it
+This syntax places focus on the variable that is passed to the Viewhelper as it
 comes first.
 
 The syntax `{post.author.emailAddress -> blog:gravatar()}` is an alternative
@@ -406,7 +406,7 @@ support this the email address comes either from the argument `emailAddress`
 or, if it is empty, the content of the tag should be interpreted as email
 address.
 
-This was, in particular, used with formatting ViewHelpers. These ViewHelpers all
+This was, in particular, used with formatting Viewhelpers. These Viewhelpers all
 support both tag mode and inline syntax.
 
 Depending on the implemented method for rendering, the implementation is
@@ -415,9 +415,9 @@ different:
 .. _with-renderstatic:
 
 With :php:`renderStatic()`
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
-To fetch the content of the ViewHelper, the argument
+To fetch the content of the Viewhelper, the argument
 :php:`$renderChildrenClosure` is available.  This returns the evaluated object
 between the opening and closing tag.
 
@@ -457,9 +457,9 @@ Lets have a look at the new code of the :php:`renderStatic()` method::
 .. _with-render:
 
 With :php:`render()`
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
-To fetch the content of the ViewHelper the method :php:`renderChildren()` is
+To fetch the content of the Viewhelper the method :php:`renderChildren()` is
 available in the :php:`AbstractViewHelper`. This returns the evaluated object
 between the opening and closing tag.
 
@@ -495,17 +495,17 @@ Lets have a look at the new code of the :php:`render()` method::
 .. _importing-namespaces:
 
 Importing namespaces
---------------------
+====================
 
-Three different ways exist to import a ViewHelper namespace into Fluid. These
+Three different ways exist to import a Viewhelper namespace into Fluid. These
 three ways are explained in the following section.
 
 .. _local-namespace-import-via-<>-syntax:
 
-Local namespace import via <>-Syntax
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Local namespace import via <>-syntax
+------------------------------------
 
-To import a ViewHelper namespace into Fluid, the following syntax can be used:
+To import a Viewhelper namespace into Fluid, the following syntax can be used:
 
 .. code-block:: html
 
@@ -519,7 +519,7 @@ To import a ViewHelper namespace into Fluid, the following syntax can be used:
 In the example above, `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
-All ViewHelper which start with `blog:` will be looked up within the PHP
+All Viewhelper which start with `blog:` will be looked up within the PHP
 namespace.
 
 The :html:`<html>`-Tags will not be part of the output, due to
@@ -530,10 +530,10 @@ possibility to lint the Fluid files.
 
 .. _local-namespace-import-via-{}-syntax:
 
-Local namespace import via {}-Syntax
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Local namespace import via {}-syntax
+------------------------------------
 
-To import a ViewHelper namespace into Fluid, the following syntax can be used:
+To import a Viewhelper namespace into Fluid, the following syntax can be used:
 
 .. code-block:: html
 
@@ -542,7 +542,7 @@ To import a ViewHelper namespace into Fluid, the following syntax can be used:
 In the example above, `blog` is the namespace available within the Fluid template and
 `MyVendor\BlogExample\ViewHelpers` is the PHP namespace to import into Fluid.
 
-All ViewHelper which start with `blog:` will be looked up within the PHP
+All Viewhelper which start with `blog:` will be looked up within the PHP
 namespace.
 
 Each of the rows will result in a blank line. Multiple import statements can go
@@ -551,13 +551,13 @@ into a single or multiple lines.
 .. _global-namespace-import:
 
 Global namespace import
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Fluid allows for registering namespaces. This is already done for
-`typo3/cms-fluid` and `typo3fluid/fluid` ViewHelpers. Therefore they are always
+`typo3/cms-fluid` and `typo3fluid/fluid` Viewhelpers. Therefore they are always
 available via the `v` namespace.
 
-Custom ViewHelpers, e.g. for a site package, can be registered the same way.
+Custom Viewhelpers, e.g. for a site package, can be registered the same way.
 Namespaces are registered within
 :php:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']` in the form
 of::
@@ -572,9 +572,9 @@ resolved to the PHP namespace :php:`\MyVendor\BlogExample\ViewHelpers`.
 .. _handle-additional-arguments:
 
 Handle additional arguments
----------------------------
+===========================
 
-If a ViewHelper allows further arguments then the configured one, see
+If a Viewhelper allows further arguments then the configured one, see
 :ref:`register-arguments-of-viewhelpers`, the :php:`handleAdditionalArguments()`
 method can be implemented.
 
@@ -607,30 +607,30 @@ throw exceptions accordingly.
 .. _the-different-render-methods:
 
 The different render methods
-----------------------------
+============================
 
-ViewHelper can have one or multiple of the following three methods for
+Viewhelper can have one or multiple of the following three methods for
 implementing the rendering. The following section will describe the differences
 between all three implementations.
 
 .. _compile-method:
 
 :php:`compile()`-Method
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
-This method can be overwritten to define how the ViewHelper should be compiled.
-That can make sense if the ViewHelper itself is a wrapper for another native PHP
+This method can be overwritten to define how the Viewhelper should be compiled.
+That can make sense if the Viewhelper itself is a wrapper for another native PHP
 function or TYPO3 function. In that case, the method can return the call to this
-function and remove the need to call the ViewHelper as a wrapper at all.
+function and remove the need to call the Viewhelper as a wrapper at all.
 
-The :php:`compile()` has to return the compiled PHP code for the ViewHelper.
+The :php:`compile()` has to return the compiled PHP code for the Viewhelper.
 Also the argument :php:`$initializationPhpCode` can be used to add further PHP
 code before the execution.
 
 .. note::
 
    The :php:`renderStatic()` method has still to be implemented for the non
-   compiled version of the ViewHelper. In the future, this should no longer be
+   compiled version of the Viewhelper. In the future, this should no longer be
    necessary.
 
 Example implementation::
@@ -675,7 +675,7 @@ Example implementation::
 .. _renderstatic-method:
 
 :php:`renderStatic()`-Method
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 Most of the time, this method is implemented. It's the one that is called by
 default from within the compiled Fluid.
@@ -690,13 +690,13 @@ As this method has to be static, there is no access to instance attributes, e.g.
 .. note::
 
    This method can not be used when access to child nodes is necessary. This is
-   the case for ViewHelpers like `if` or `switch` which need to access their
+   the case for Viewhelpers like `if` or `switch` which need to access their
    children like `then` or `else`. In that case, :php:`render()` has to be used.
 
 .. _render-method:
 
 :php:`render()`-Method
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 This method is the slowest one. As the compiled version always calls
 the :php:`renderStatic()` method, this will call further PHP code which, in the

@@ -1,8 +1,8 @@
 .. include:: ../Includes.txt
 
-============================
-Get Blog from the Repository
-============================
+================================
+Get the blog from the repository
+================================
 
 Let's take a look into the ``BlogRepository`` and travel into the inner core of
 our little action island.
@@ -28,7 +28,7 @@ blog objects, which is one of the methods available by default.
    Although you don't need to implement your own logic, Extbase expects an existing
    class.
 
-How Repositories Work
+How repositories work
 =====================
 
 The way a repository works is much like a library of a university, which works

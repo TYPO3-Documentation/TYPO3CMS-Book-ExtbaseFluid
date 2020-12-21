@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+========================
 Using boolean conditions
-================================================
+========================
 
 *Boolean conditions* are queries that compare two
 values with each other (e.g., with ``==`` or ``>=``) and
@@ -61,7 +62,7 @@ This is also possible in the inline notation::
 
 
 Realize complex comparisons
--------------------------------------------------
+===========================
 
 Until now we have employed with simplest boolean evaluations. With
 the syntax you have learned until now, no comparisons or modulo operations
@@ -76,11 +77,11 @@ Note the enhanced syntax inside the condition.
 The compare operators ``>``, ``>=``,
 ``<``, ``<=``, ``==``, ``!=``
 and ``%`` are available. The parameter left and right of the
-operators could be numbers, object accessors, arrays, and ViewHelpers in
+operators could be numbers, object accessors, arrays, and Viewhelpers in
 inline notation, or quoted strings.
 
 
 .. tip::
 
-  Any ViewHelper argument declared as ``boolean`` supports boolean
-  expression syntax, including in your own self-written ViewHelpers.
+  Any Viewhelper argument declared as ``boolean`` supports boolean
+  expression syntax, including in your own self-written Viewhelpers.

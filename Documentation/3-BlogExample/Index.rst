@@ -2,7 +2,7 @@
 
 .. _The-Blog-Example:
 
-A journey Through the Blog Example
+A journey through the blog example
 ==================================
 
 .. attention::

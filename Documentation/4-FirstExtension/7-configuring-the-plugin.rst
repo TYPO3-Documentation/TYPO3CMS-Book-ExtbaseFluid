@@ -2,7 +2,8 @@
 
 .. _configuring-the-plugin:
 
-Configuring The Plugin
+======================
+Configuring the plugin
 ======================
 
 A plugin is a content element, that can be placed on a page

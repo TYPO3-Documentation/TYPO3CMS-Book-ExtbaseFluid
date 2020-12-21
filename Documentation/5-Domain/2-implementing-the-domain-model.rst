@@ -1,5 +1,6 @@
 .. include:: ../Includes.txt
 
+=============================
 Implementing the domain model
 =============================
 
@@ -31,7 +32,7 @@ rename it according to the last part of the class name: :file:`Organization.php`
    is worthwhile to take the step because you will notice that you can increase
    your efficiency with TDD and save yourself a lot of frustrating experiences (eg
    in the painful search for an error). More information about the test-driven
-   development, see chapter Chapter 2 in the section "Test-Driven Development". If
+   development, see chapter Chapter 2 in the section "test-driven development". If
    you still decide to test only at the end, you can create the cycles of test
    development and skip the class in a train. We have cautioned, however.
 
@@ -127,9 +128,9 @@ Only now we add just enough code that the test is successful:
       }
    }
 
-.. sidebar:: Test-Driven Development at a glance
+.. sidebar:: Test-driven development at a glance
 
-   This approach is typical of Test-Driven Development (see chapter 2, section »Test-Driven Development«).
+   This approach is typical of test-driven development (see chapter 2, section »test-driven development«).
    So once again summarized the essential steps:
 
    #. Create a unit test and possibly a test class.
@@ -295,7 +296,7 @@ know that it gets delivered an ObjectStorage instead of a PHP array. Would the
 caller manipulate the containing objects without using the keyword clone, he
 would change the original data by accident.
 
-In this section, you could use the procedure for Test-Driven Development to meet.
+In this section, you could use the procedure for test-driven development to meet.
 If you use this procedure in your development practice, you will be rewarded
 with a good feeling to write code that is always functional - or at least
 compliant as expected. In English, one can use the expression »green bar
@@ -308,7 +309,7 @@ the testing. But we use it always in the background.
 
 
 Implementing relationships between domain objects
--------------------------------------------------
+=================================================
 
 Extbase supports three different types of hierarchical relationships between domain objects.
 
@@ -406,7 +407,7 @@ logic. In the following section, we add to our class
 
 
 Adding business logic to the domain objects
---------------------------------------------
+===========================================
 
 Part in deciding which part of the business logic belongs to a particular domain
 model, you can be guided by what questions we can ask the domain object in the
@@ -450,7 +451,7 @@ once in the list.
    you could have also implemented a method in an OfferRepository
    ``findAllContacts($organization)``. It would have been possible to get the
    offers by a bit more complex query directly from the database. But we
-   follow the important basic rule of the Domain-Driven Design at this place, which
+   follow the important basic rule of the domain-driven design at this place, which
    says that an element of an aggregate (the totality of all the terms contained in
    the organization) should be accessed by the root object (Aggregate-Root). The
    alternative we choose only if iterating through all the offers causes
@@ -557,7 +558,7 @@ emphasizes some peculiarities.
 The property organization of the object Offer includes a backreference of the
 offering organization. We have introduced them to have later quick access to
 the collection of all the offers on the organization. Thus, we deviate slightly
-from the pure "doctrine" from the Domain-Driven Design. This means, among other
+from the pure "doctrine" from the domain-driven design. This means, among other
 things, that you access the child object Offer only on the root object
 Organization (Aggregate Root) should.
 
@@ -588,7 +589,7 @@ initialize an empty ObjectStorage each in the constructor.
 
 
 Use inheritance in class hierarchies
--------------------------------------
+====================================
 
 The domain objects and their relationships can generally be mapped well in a
 tree hierarchy. Such a hierarchy can be found in figure 5-2. Organizations
@@ -766,7 +767,6 @@ because they inherit all the properties and methods from the object RangeConstra
     }
 
 
-
 We have implemented the terms age range, number of participants and offer an adequate period in domain models.
 Let us now turn to the object administrator. Also, here we use another, less obvious class hierarchy.
 Extbase provides two domain models available: FrontendUser and FrontendUserGroup.
@@ -785,8 +785,10 @@ The class hierarchy is shown in Figure 5-9.
 
    Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 
+
 Validate the domain objects
----------------------------
+===========================
+
 The business logic often looks for rules as to the properties of the data domain objects
 needs to be. Here are some examples of such so-called invariants in our
 Extension:

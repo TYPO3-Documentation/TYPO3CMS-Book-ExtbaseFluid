@@ -5,6 +5,7 @@
 .. _fluid-start:
 .. _fluid:
 
+=============================
 Styling the output with Fluid
 =============================
 
@@ -20,7 +21,7 @@ but easy to learn.
 In this chapter, you will start with learning the basic concepts of
 Fluid. After that, we will show you some helpful functions while
 templating with the help of various examples. Besides this, we show you the
-development of a ViewHelper using an example. Finally, we show you how you
+development of a Viewhelper using an example. Finally, we show you how you
 can apply the learned technologies with a practical
 sample.
 

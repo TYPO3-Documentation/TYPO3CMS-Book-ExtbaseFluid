@@ -1,5 +1,4 @@
 .. include:: ../Includes.txt
-
 .. _extbase-cgl:
 
 =================
@@ -23,8 +22,9 @@ Generally, classes are written in ``UpperCamelCase``, and methods and variables 
 written in ``lowerCamelCase``. Besides, the name must be detailed and meaningful.
 Abbreviations are to be avoided.
 
+
 Folder structure
-----------------
+================
 
 Every extension based on Extbase contains certain folders in the main directory:
 
@@ -96,8 +96,9 @@ Every extension based on Extbase contains certain folders in the main directory:
 :file:`ext_tables.sql`
    This is a file with SQL commands for the definition of the database tables.
 
+
 File and class names
---------------------
+====================
 
 Class names in Extbase are composed of the following parts:
 

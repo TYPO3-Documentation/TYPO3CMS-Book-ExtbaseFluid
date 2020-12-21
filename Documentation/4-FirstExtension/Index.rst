@@ -2,11 +2,11 @@
 
 .. _creating-a-first-extension:
 
-===============================================
+============================
 Creating the First Extension
-===============================================
+============================
 
-In this chapter, you learn the basics of an extension based on Extbase and fluid.
+In this chapter, you learn the basics of an extension based on Extbase and Fluid.
 You build a minimalistic extension, which is reduced to the necessary structures.
 So you can get a first overview without being confused by details.
 In the following chapters, we will turn to a more complex example,

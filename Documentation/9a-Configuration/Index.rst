@@ -1,5 +1,4 @@
 .. include:: ../Includes.txt
-
 .. _configuration:
 
 =============
@@ -13,7 +12,8 @@ various options described here each differs in:
   plugin)
 * the access level required to make the change (editor, admin)
 
-TypoScript and Constants
+
+TypoScript and constants
 ========================
 
 You can define configuration options using TypoScript.
@@ -26,7 +26,8 @@ The changes apply to the current page and all subpages.
 
    * :ref:`t3tsref:typoscript-syntax-what-are-constants`
 
-Extension Configuration
+
+Extension configuration
 =======================
 
 Extension Configuration is defined in the file :file:`ext_conf_template.txt`
@@ -41,6 +42,7 @@ Use this for general options that should be globally applied to the extension.
 
    * :ref:`t3coreapi:extension-options`
 
+
 FlexForms
 =========
 
@@ -54,7 +56,8 @@ configure each plugin or content element individually.
 FlexForms are handled in "TYPO3 Explained".
 Here, we only cover options that are specific to Extbase.
 
-Access Settings
+
+Access settings
 ---------------
 
 .. important::

@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+=========================================
 Configuring the behavior of the extension
-================================================================================================
+=========================================
 
 Not all organizations are to be displayed in our example extensions,
 but just the ones belonging to a certain status (like, e.g., internal,
@@ -19,7 +20,7 @@ establish an option `allowedStates` under the path
 
 Extbase makes the settings inside of the path
 :php:`plugin.tx_sjroffers.settings` available as an array in
-the class variable :php:`$this->settings`. Our Action
+the class variable :php:`$this->settings`. Our action
 thus looks like this:
 
 ::
@@ -56,7 +57,7 @@ we are used to doing.
 
 In this chapter, you've learned how to set the Objects of your domain
 in motion and how to control the flow of a page visit. You now can
-realize the two components *Model* and
+realize the two components *model* and
 *Controller* of the MVC paradigm inside your extension.
 In the following chapter, we will address the third component, the
 *View*. We'll present the substantial scope of the

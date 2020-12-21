@@ -7,7 +7,7 @@
 .. _extbase_command_controller_documentation:
 
 ===================
-Command Controllers
+Command controllers
 ===================
 
 Command controllers make functionality available on the command line

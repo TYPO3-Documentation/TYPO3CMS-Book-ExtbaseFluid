@@ -9,10 +9,11 @@ In this appendix, you can look up how Extbase interacts with the TYPO3
 installation. This includes the registration of plugins and the configuration of
 Extbase extensions.
 
+
 .. _registration_of_frontend_plugins:
 
-Registration of Frontend Plugins
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Registration of frontend plugins
+================================
 
 .. Todo: Add section about backend modules.
 
@@ -127,10 +128,11 @@ backend, you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
     Figure B-1: In the selection field for frontend plugins, the name which was defined in the
     file :file:`Configuration/TCA/Overrides/tt_content.php` will be displayed
 
+
 .. _caching_of_actions_and_records:
 
 Caching of actions and records
-------------------------------
+==============================
 
 Furthermore, Extbase is clearing the TYPO3 cache automatically for update processes. This is called
 *Automatic cache clearing*. This functionality is activated by default. If a domain object is
@@ -163,10 +165,11 @@ The automatic cache clearing is enabled by default, you can use the TypoScript c
 :ref:`persistence.enableAutomaticCacheClearing <persistence-enableAutomaticCacheClearing>` to disable
 it.
 
+
 .. _typoscript_configuration:
 
 TypoScript Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^
+========================
 
 Each Extbase extension has some settings which can be modified using TypoScript. Many of these
 settings affect aspects of the internal Configuration of Extbase and Fluid. There is also a block
@@ -185,13 +188,14 @@ TypoScript path. The "lowercase extension name" is the extension key with no
 underscore (_), as for example in ``blogexample``. The configuration is divided into
 the following sections:
 
+
 .. _typoscript_configuration-features:
 .. _features-skipDefaultArguments:
 .. _features-ignoreAllEnableFieldsInBe:
 .. _features-requireCHashArgumentForActionArguments:
 .. _features-consistentTranslationHandling:
 
-features
+Features
 --------
 
 Activate features for Extbase or a specific plugin.
@@ -206,13 +210,14 @@ Activate features for Extbase or a specific plugin.
     Default is `false`.
 
 `features.consistentTranslationOverlayHandling`
-    Use the same translation handling in extbase as in TypoScript. Used via `config.tx_extbase.features.consistentTranslationOverlayHandling`.
+    Use the same translation handling in Extbase as in TypoScript. Used via `config.tx_extbase.features.consistentTranslationOverlayHandling`.
     The feature switch will be removed in TYPO3 v10, and the behavior will become the only way translations are handled.
+
 
 .. _typoscript_configuration-persistence:
 .. _persistence-enableAutomaticCacheClearing:
 
-persistence
+Persistence
 -----------
 
 Settings, relevant to the persistence layer of Extbase.
@@ -226,9 +231,10 @@ Settings, relevant to the persistence layer of Extbase.
     List of Page-IDs, from which all records are read (see the section
     ":ref:`Procedure to fetch objects <procedure_to_fetch_objects>`" in Chapter 6).
 
+
 .. _typoscript_configuration-settings:
 
-settings
+Settings
 --------
 
 Here reside are all the domain-specific extension settings. These settings are
@@ -243,19 +249,19 @@ template with `{settings}`.
 
 .. _typoscript_configuration-view:
 
-view
+View
 ----
 
 View and template settings.
 
 `view.layoutRootPaths`
-    This can be used to specify the root paths for all fluid layouts in this
+    This can be used to specify the root paths for all Fluid layouts in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Layouts` is used. All layouts that are necessary
     for this extension should reside in this folder.
 
 `view.partialRootPaths`
-    This can be used to specify the root paths for all fluid partials in this
+    This can be used to specify the root paths for all Fluid partials in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Partials` is used. All partials that are
     necessary for this extension should reside in this folder.
@@ -267,7 +273,7 @@ View and template settings.
     .. todo: This is not understandable without an example.
 
 `view.templateRootPaths`
-    This can be used to specify the root paths for all fluid templates in this
+    This can be used to specify the root paths for all Fluid templates in this
     extension. If nothing is specified, the path
     :file:`extensionName/Resources/Private/Templates` is used. All layouts that are necessary
     for this extension should reside in this folder.
@@ -328,9 +334,10 @@ no template file is found, it will proceed with `0`.
 More information on root paths can be found in the TypoScript reference:
 :ref:`t3tsref:cobj-fluidtemplate-properties-templaterootpaths`
 
+
 .. _typoscript_configuration-mvc:
 
-mvc
+MVC
 ---
 
 These are useful MVC settings about error handling:
@@ -354,9 +361,10 @@ If you specify, for example, `plugin.tx_blogexample._LOCAL_LANG.default.read_mor
 More>>` then the standard translation for the key `read_more` is overwritten by the
 string *More>>*.
 
+
 .. _format:
 
-format
+Format
 ------
 
 The output of Extbase plugins can be provided in different formats, e.g., HTML, CSV,
@@ -367,10 +375,11 @@ with conditions.
 `format`
    Defines the default format for the plugin.
 
+
 .. _class_hierarchy:
 
 Class Hierarchy
-^^^^^^^^^^^^^^^
+===============
 
 The MVC Framework is the heart of Extbase. Below we will give you an overview of
 the class hierarchy for the controllers and the API of the `ActionControllers`.
@@ -390,6 +399,7 @@ you should have a look at the controllers below.
     Extend this controller if you want to provide commands to the scheduler or command line
     interface.
 
+
 .. _class_hierarchy-action_controller_api:
 
 ActionController API
@@ -402,7 +412,7 @@ you see the most important properties of the action controller:
     Results of the argument mapping. Those are especially used in the `errorAction`.
 
 `$defaultViewObjectName`
-    Name of the default view, if no fluid-view or an action-specific view was found.
+    Name of the default view, if no Fluid-view or an action-specific view was found.
 
 `$errorMethodName`
     The name of the action that is performed when generating the arguments of actions
@@ -452,11 +462,12 @@ Most important API methods of action controller
     however, it is sufficient to overwrite resolveViewObjectName().
 
 `resolveViewObjectName()`
-    Resolves the name of the view object, if no suitable fluid template could be
+    Resolves the name of the view object, if no suitable Fluid template could be
     found.
 
 `throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
     The specified HTTP status code is sent immediately.
+
 
 .. _class_hierarchy-actions:
 
@@ -510,6 +521,7 @@ objects must be explicitly disabled - therefore, the annotation
 Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
 the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
 then automatically `$this->view->render()` is called, and thus the view is rendered.
+
 
 .. _class_hierarchy-define_initialization_code:
 
@@ -660,8 +672,9 @@ The following annotations are available out of the box within Extbase:
        */
       public $property;
 
+
 Application domain of the extension
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===================================
 
 The domain of the extension is always located below :file:`Classes/Domain`. This folder is structured
 as follows:
@@ -675,6 +688,7 @@ as follows:
 :file:`Validator/`
     Contains specific validators for the domain models.
 
+
 Domain model
 ------------
 
@@ -687,6 +701,7 @@ All classes of the domain model must inherit from one of the following two class
     Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
     ValueObjects are immutable.
 
+
 Repositories
 ------------
 
@@ -696,8 +711,9 @@ If the domain object is, for example, *Blog* (with full name `\\Ex\\BlogExample\
 then the corresponding repository is named *BlogRepository* (with the full name
 `\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
 
+
 Public Repository API
-~~~~~~~~~~~~~~~~~~~~~
+=====================
 
 Each repository provides the following public methods:
 
@@ -727,8 +743,9 @@ Each repository provides the following public methods:
 `update($object)`
     Updates the persisted object.
 
+
 Custom find methods in repositories
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 A repository can be extended with own finder methods. Within this methods, you can use the ``Query`` object,
 to formulate a request:
@@ -798,14 +815,16 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
 
 In the section ":ref:`individual_database_queries`" in Chapter 6, you can find a comprehensive example for building queries.
 
+
 Validation
-^^^^^^^^^^
+==========
 
 You can write your own validators for domain models. These must be located in
 the folder :file:`Domain/Validator/`, they must be named exactly as the corresponding
-Domain model, but with the suffix Validator and implement the interface
+domain model, but with the suffix Validator and implement the interface
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`. For more details, see the
 following section.
+
 
 Validation API
 --------------
@@ -829,6 +848,7 @@ You can call Validators in your own code with the method `createValidator($valid
 $validatorOptions)` in :php:`\TYPO3\CMS\Extbase\Validation\ValidatorResolver`. Though in
 general, this is not necessary. Validators are often used in conjunction with domain objects and
 controller actions.
+
 
 Validation of model properties
 ------------------------------
@@ -868,6 +888,7 @@ quotes for validator options if they are superfluous, as in the example above. I
 rules are necessary (for example, multiple fields to be checked for equality), you must implement
 your own validator.
 
+
 Validation of controller arguments
 ----------------------------------
 
@@ -887,15 +908,16 @@ usually jump back to the last screen. Validation mustn't be performed in certain
 cases. Further information for the usage of the annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` see
 ":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
+
 Localization
-^^^^^^^^^^^^
+============
 
 .. todo: Link to core documentation of language files.
 
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
 :php:`\TYPO3\CMS\Extbase\Utility\LocalizationUtility` for the translation of the labels. Besides,
-there is the Fluid ViewHelper `<f:translate>`, with the help of whom you can use that
+there is the Fluid Viewhelper `<f:translate>`, with the help of whom you can use that
 functionality in templates.
 
 The localization class has only one public static method called `translate`, which

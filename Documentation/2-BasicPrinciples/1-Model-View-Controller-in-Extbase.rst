@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
-Model-view-controller(MVC) in Extbase
-=====================================
+======================================
+Model-view-controller (MVC) in Extbase
+======================================
 
 Object-oriented programming and domain-driven design specify a structure
 for our Extension on different levels. Object-oriented programming provides
@@ -18,7 +19,7 @@ application on. It provides us a rough *roadmap* and the separation
 of the presentation logic from the model.
 
 The MVC pattern divides our application into three rough layers: the
-*Model*, which implements the domain model including the domain logic,
+*model*, which implements the domain model including the domain logic,
 the *controller*, which controls the flow of the application,
 and the *view*, which prepares and outputs the data to the user
 (see Figure 2-1).

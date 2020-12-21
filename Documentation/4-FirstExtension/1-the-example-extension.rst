@@ -4,7 +4,7 @@
 .. include:: ../Includes.txt
 
 =====================
-The Example Extension
+The example extension
 =====================
 
 Our first extension will show an inventory list of products,

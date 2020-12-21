@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Create Folder Structure and Configuration Files
+===============================================
+Create folder structure and configuration files
 ===============================================
 
 
@@ -34,7 +35,7 @@ The folder :file:`Resources/Public/` contains subfolders like :file:`Icons`,
 Within the folder :file:`Classes` we create the folders :file:`Controller` and :file:`Domain`.
 In our example, the folder :file:`Controller` contains only one class
 that will control the entire process of listing creation later.
-The folder *Domain* contains the two folders :file:`Model` and :file:`Repository`.
+The folder *domain* contains the two folders :file:`Model` and :file:`Repository`.
 Resulting from all this, the folder structure within the extension folder
 :file:`store_inventory` should look as in image 4-1.
 

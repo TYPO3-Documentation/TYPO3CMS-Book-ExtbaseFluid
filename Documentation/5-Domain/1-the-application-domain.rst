@@ -1,13 +1,13 @@
 .. include:: ../Includes.txt
 
 ======================
-The Application Domain
+The application somain
 ======================
 
 The main difference to the common approach to developing an extension is
 the concentration to the client's domain - in our case, to the domain of
 the offer management inside the Stadtjugendrings Stuttgart. First, the
-essential core terms are to be extracted with which the Stadtjugendring's employees
+essential Core terms are to be extracted with which the Stadtjugendring's employees
 interact daily. Terms of the domain of the content
 management system (e.g., "list view" or "search") are not playing roles by
 this. After a first project meeting with the contact persons of the SJR
@@ -52,7 +52,7 @@ in the whole business. And there, the term of member organization (or short
 
    This development of a common language of developers (also ourselves)
    and domain experts (also the employees of the SJR) maybe is the most
-   important part of the Domain-Driven-Design. In the literature, you find the
+   important part of the domain-driven design. In the literature, you find the
    slightly bulky term **Ubiquitous Language**. Requirement
    for this process is that the developers communicate with the
    domain experts.

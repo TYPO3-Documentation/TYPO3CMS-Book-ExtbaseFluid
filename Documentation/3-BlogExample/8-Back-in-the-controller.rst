@@ -1,7 +1,8 @@
 .. include:: ../Includes.txt
 
+======================
 Back in the controller
-==============================
+======================
 
 You get the ready ``Blog`` objects delivered in an array. "Ready" means in this
 context that every ``Blog`` object already has all it's ``Post`` objects and their
@@ -69,4 +70,4 @@ returns the rendered view automatically.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
-and ViewHelper.
+and Viewhelper.

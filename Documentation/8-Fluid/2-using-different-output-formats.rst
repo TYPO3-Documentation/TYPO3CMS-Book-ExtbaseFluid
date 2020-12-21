@@ -1,10 +1,10 @@
 .. include:: ../Includes.txt
 
 ==============================
-Using Different Output Formats
+Using different output formats
 ==============================
 
-The Model-View-Controller-Paradigm (MVC), as described in chapter 2,
+The model-view-controller-Paradigm (MVC), as described in chapter 2,
 has many decisive advantages: It separates the model from the user
 interaction and allows different output formats for the same data. We
 want to discuss them later.
@@ -19,7 +19,7 @@ This view's Fluid template is
 want to add a print view, which is formatted differently. Create a new
 template :file:`Resources/Private/Templates/Post/list.print`
 and write the appropriate Fluid markup to generate the print view. You can
-use the ``format`` attribute of the link ViewHelper to generate a
+use the ``format`` attribute of the link Viewhelper to generate a
 link to the print view:
 
 ``<f:link.action action="list" format="print">Print
@@ -28,7 +28,7 @@ View</f:link.action>``
 The same ``list`` action is being called that was used for
 the HTML view. However, Fluid doesn't choose the file
 *list.html* but *list.print*, because
-the ``format`` attribute of the ``link.action`` ViewHelper
+the ``format`` attribute of the ``link.action`` Viewhelper
 changed the format to ``print``, our print view. You notice: The
 format is being reflected in the file ending of the template.
 
@@ -38,6 +38,7 @@ format is being reflected in the file ending of the template.
    ``print``. All format names are treated equally. There are no
    technical limitations for format names. Therefore you should choose a
    semantically meaningful name.
+
 
 Output other formats with Fluid
 ===============================
@@ -70,6 +71,7 @@ explicitly set :ts:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
 to the number of the page containing the data to tell Extbase from which page
 the data should be read.
 
+
 .. _using-built-in-jsonview:
 
 Using built in :php:`JsonView`
@@ -82,6 +84,7 @@ default.
 The intention is to provide the same public API, e.g., assign variables to the
 view, but replace the rendering. The View itself needs further configuration
 about how to convert assigned variables to JSON format.
+
 
 .. _switching-php-class-of-view:
 
@@ -102,6 +105,7 @@ To use this view, these are multiple possible ways within the controller:
       {
           $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
       }
+
 
 .. _configuring-jsonview:
 
@@ -157,6 +161,7 @@ The following is happening during rendering:
 #. Only allowed properties of variables are rendered.
    In above example only `key1` and `key3` are allowed, due to :php:`setConfiguration()` call.
    Therefore `key2` is ignored.
+
 
 .. _further-examples:
 

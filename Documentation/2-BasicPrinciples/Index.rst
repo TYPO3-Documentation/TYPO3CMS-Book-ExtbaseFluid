@@ -2,6 +2,7 @@
 
 .. _basic-principles:
 
+=======================
 Basic design principles
 =======================
 
@@ -37,15 +38,15 @@ Extbase is based on four interconnected and complementary paradigms.
 You'll encounter these during the whole project cycle, from planning to
 realization and maintenance of your extension:
 
-* Object-Oriented Programming (OOP): describes how to encapsulate
+* Object-oriented programming (OOP): describes how to encapsulate
   associated real-world aspects to abstract objects in a software
-* Domain-Driven Design (DDD): The goal of this approach
+* Domain-driven design (DDD): The goal of this approach
   is to transcribe terms, rules, and actions of the problem at hand in an
   adequate way.
-* Model-View-Controller (MVC): This programming paradigm leads to
+* Model-view-controller (MVC): This programming paradigm leads to
   clear isolation of data, control of actions, and logic of
   interaction.
-* Test-Driven Development (TDD): This approach is a basic
+* Test-driven development (TDD): This approach is a basic
   technique for generating code that is stable, resilient to errors and
   legible - and therefore maintainable.
 
@@ -54,7 +55,7 @@ software development and more or less widespread. This results in a big
 advantage when using Extbase as knowledge on these paradigms is easy to
 find and accessible to everyone.
 
-Knowledge in object-oriented programming, Domain-Driven-Design and the
+Knowledge in object-oriented programming, domain-driven design and the
 MVC paradigm is essential for working with Extbase. Knowledge of test-driven
 development is not necessary for understanding nor using Extbase.
 Nevertheless, we would like to recommend this development technique warmly.

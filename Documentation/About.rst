@@ -41,10 +41,10 @@ and three appendices. The chapters discuss the following topics:
 * :ref:`basic-principles` begins with an
   overview of object-oriented programming concepts, which
   are essential for working with Extbase. After that, we dive into
-  Domain-Driven Design, a programming paradigm that is a core principle of
-  Extbase. After that, you'll learn the design pattern Model-View-Controller,
+  domain-driven design, a programming paradigm that is a core principle of
+  Extbase. After that, you'll learn the design pattern model-view-controller,
   which is the technical basis of every Extbase Extension. Finally, the
-  chapter explains Test-Driven Development to the reader.
+  chapter explains test-driven development to the reader.
 
 .. **Journey through the Blog Example**
 
@@ -72,7 +72,7 @@ and three appendices. The chapters discuss the following topics:
 .. Chapter 5, **Modeling the Domain**,
 
 * :ref:`modeling-the-domain` shows
-  Domain-Driven Design with a practical example. It shows how a model can be
+  domain-driven design with a practical example. It shows how a model can be
   planned and implemented.
 
 .. Chapter 6, **Setting up the persistence layer**
@@ -115,7 +115,7 @@ Additional information is contained in several appendices:
 * Appendix A, **Coding Guidelines**: Extbase mostly uses the conventions of FLOW.
 * Appendix B, **Reference of Extbase**, contains an overview of important Extbase
   concepts and an API's alphabetical listing.
-* Appendix C, **Fluid ViewHelpers**, links to the ViewHelper reference
+* Appendix C, **Fluid Viewhelpers**, links to the ViewHelper reference
 
 .. _typographic-conventions:
 
@@ -160,7 +160,7 @@ The latest version of the book (second edition) targeted TYPO3 6.2.
 Meanwhile, the book is no longer an exact translation. Several
 the TYPO3 community made changes to reflect
 considerable changes in the TYPO3
-core, some parts were removed, added, or moved to other manuals.
+Core, some parts were removed, added, or moved to other manuals.
 It has - in parts - been completely rewritten.
 
 .. todo: add some thanks to other contributors?
@@ -178,7 +178,7 @@ of working on their project.
 
 TYPO3 would not exist without the dedication and vision of Kasper
 Skårhøj and without the tireless work of all community members, especially
-the TYPO3 core team. Here, we specifically want to thank the members who
+the TYPO3 Core Team. Here, we specifically want to thank the members who
 discovered and implemented many future-proof technologies for TYPO3 v6.
 Extbase would not be possible without this inspiration and
 these guidelines.

@@ -1,13 +1,12 @@
 .. include:: ../Includes.txt
-
 .. _modeling-the-domain:
 
 ===================
-Modeling the Domain
+Modeling the domain
 ===================
 
 In this chapter, you are going to learn how to create an abstraction
-(the **Domain Model**) as described in :ref:`ddd`.
+(the **domain model**) as described in :ref:`ddd`.
 
 This first step of extension development is the most important
 as well. It provides the foundation for all following stages of development.
@@ -31,7 +30,7 @@ You can download the extension with the extension-key
 (`http://typo3.org/extensions/repository/view/sjr_offers/current/ <http://typo3.org/extensions/repository/view/sjr_offers/current/>`_).
 
 The example is also being used to demonstrate the approach of
-Test-Driven Development close to reality. We manage those Unit-Tests with
+Test-driven development close to reality. We manage those Unit-Tests with
 extension *phpunit*, which is also available for download
 at the TER.
 

@@ -1,3 +1,6 @@
+.. include:: ../Includes.txt
+
+=====================
 Calling the extension
 =====================
 

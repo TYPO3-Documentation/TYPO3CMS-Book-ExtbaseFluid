@@ -1,8 +1,8 @@
 .. include:: ../Includes.txt
-
 .. _modeling-the-class-hierarchy:
 
-Modeling the Class Hierarchy
+============================
+Modeling the class hierarchy
 ============================
 
 In chapter 5 in "Use inheritance in class hierarchies", we have already used class hierarchies.
@@ -218,7 +218,7 @@ can look like this:
        }
 
        /**
-        * List Action
+        * List action
         *
         * @return void
         */
