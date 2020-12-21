@@ -2,15 +2,15 @@
 
 .. _basic-principles:
 
-Basic Design Principles
-===============================
+Basic design principles
+=======================
 
 .. tip::
 
    None of the design principles here are specific to TYPO3 or
-   Extbase / Fluid. If you are familiar with Object-Oriented
-   Programming in PHP, Model-View-Controller, Domain-Driven-Design
-   and Test-Driven Development, you can safely skip to the
+   Extbase / Fluid. If you are familiar with object-oriented
+   programming in PHP, model-view-controller, domain-driven design
+   and test-driven development, you can safely skip to the
    next chapter :ref:`The-Blog-Example`.
 
 TYPO3 comes with an impressive variety of available extensions. As
