@@ -2,7 +2,7 @@
 
 .. _extbase_error_action:
 
-Error Action
+Error action
 ============
 
 Extbase offers an out of the box handling for errors. Errors might occur during
@@ -34,7 +34,7 @@ How it works
       message will be displayed, fetched from
       :php:`getFlattenedValidationErrorMessage()`.
 
-Overloading Behaviour
+Overloading behaviour
 ---------------------
 
 Each of the above steps can be adjusted by implementing custom methods or
