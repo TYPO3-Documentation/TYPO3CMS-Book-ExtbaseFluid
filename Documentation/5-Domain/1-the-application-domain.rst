@@ -8,7 +8,7 @@ The application domain
 The main difference to the common approach to developing an extension is
 the concentration to the client's domain - in our case, to the domain of
 the offer management inside the Stadtjugendrings Stuttgart. First, the
-essential Core terms are to be extracted with which the Stadtjugendring's employees
+essential core terms are to be extracted with which the Stadtjugendring's employees
 interact daily. Terms of the domain of the content
 management system (e.g., "list view" or "search") are not playing roles by
 this. After a first project meeting with the contact persons of the SJR
