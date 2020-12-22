@@ -412,7 +412,7 @@ you see the most important properties of the action controller:
     Results of the argument mapping. Those are especially used in the `errorAction`.
 
 `$defaultViewObjectName`
-    Name of the default view, if no Fluid-view or an action-specific view was found.
+    Name of the default view, if no Fluid view or an action-specific view was found.
 
 `$errorMethodName`
     The name of the action that is performed when generating the arguments of actions
