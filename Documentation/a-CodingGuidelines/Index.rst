@@ -33,10 +33,22 @@ Every extension based on Extbase contains certain folders in the main directory:
    allowed, each one containing exactly one class or interface. All classes (or
    interfaces) are loaded via the autoloader mechanism when needed.
 
+.. todo: While this is still best practice, this is not a convention that affects anything.
+         This was different in older versions when Extbase had its own autoloader which
+         enforced classes to reside in this folder. It's still encouraged but as composer
+         allows classes to be whereever the users wants to, classes don't need to be in this
+         folder. We should mentiond that it's recommended to follow PSR-4 and that using the
+         Classes folder is common practice in TYPO3.
+
 :file:`Configuration`
    The configuration of the extension is located here:
    FlexForm configuration, TCA definitions, TSconfig, and TypoScript files. Subfolders can
    be created when they are needed or helpful.
+
+.. todo: This should be explained better. There is a strict folder hierarchy and naming pattern
+         for some configuration files but not for all. Either we reference another chapter of
+         the core docs here and only explain the Extbase configuration files or explain it all
+         from scratch.
 
 :file:`Documentation`
    Contains the documentation of the extension.
@@ -50,6 +62,11 @@ Every extension based on Extbase contains certain folders in the main directory:
    It is distinguished between public (:file:`Public/`) and private (:file:`Private/`)
    resources. In the folder :file:`Private/` there should be a :file:`.htaccess` file,
    blocking direct access to non-public files.
+
+.. todo: The emphasis should be on blocking direct access here. Using a .htaccess file is
+         only one option that only works with apache. As long as we recommend a specific
+         solution we should state that it makes sense to add those rules to the vhost/server
+         config.
 
 :file:`Resources/Private`
    Contains non-public resources of the extension.
@@ -66,6 +83,11 @@ Every extension based on Extbase contains certain folders in the main directory:
 :file:`Resources/Private/Templates`
    Here are the default Fluid templates for the extension.
 
+.. todo: Templates, Partials and Layouts are an actual example for convention over configuration
+         because Fluid defines those paths as default paths with constants. To be more clear:
+         `Resources/Public/Media` is not a convention, just a recommendation. `Resources/Private/Templates`
+         is a convention which can be overridden with configuration.
+
 :file:`Resources/Private/PHP`
    Contains PHP code, which is not compatible with the naming conventions like
    external PHP libraries, procedural code, and so on. If you run TYPO3 in
@@ -75,9 +97,15 @@ Every extension based on Extbase contains certain folders in the main directory:
    If you do not run TYPO3 in composer mode, the autoloader of TYPO3 will
    automatically search for php files in all extensions.
 
+.. todo: I would love to get rid of this, stating that shipping 3rd-party code potentially
+         breaks your application. If an extension has a dependency, it has to rely on
+         composer and only that.
+
 :file:`Tests`
    All unit tests are found here. The structure should be the same as in :file:`Classes`.
    All test classes should end with ``Test``.
+
+.. todo: We should mention the usually used sub folder `Tests/Unit`.
 
 :file:`ext_emconf.php`
    Contains the configuration for the extension manager of TYPO3 like metadata
@@ -86,6 +114,10 @@ Every extension based on Extbase contains certain folders in the main directory:
 :file:`ext_icon.gif`
    The icon of the extension, which will be visible in the Extension Manager.
    It should have a size of 18 x 16 px.
+
+.. todo: We should refer to the core docs, explaining the possibilities (gif/svg/etc) or
+         simply mention that people should use svg files which should no longer be stored
+         in the extension root folder but in `Resources/Public/Icons`
 
 :file:`ext_localconf.php`
    This file contains the configuration of the Frontend Plugins.
@@ -96,6 +128,8 @@ Every extension based on Extbase contains certain folders in the main directory:
 :file:`ext_tables.sql`
    This is a file with SQL commands for the definition of the database tables.
 
+.. todo: Nope, there are no SQL commands, those files contain a TYPO3 specific SQL schema
+         which is parsed and converted to actual SQL.
 
 File and class names
 ====================
@@ -123,6 +157,10 @@ In table A-1, you see some naming examples for file and class names.
 | Ex\\BlogExample\\Domain\\Model\\Post                   | blog_example  | blog_example/Classes/Domain/Model/Post.php          |
 +--------------------------------------------------------+---------------+-----------------------------------------------------+
 
+.. todo: Rather just mention PSR-4 and this example table as reference.
+
 Interfaces end with ``Interface``, for example ``TYPO3\CMS\Extbase\Mvc\RequestInterface``.
 With abstract classes the last part of the name always begins with ``Abstract``,
 for example ``\TYPO3\CMS\Extbase\Property\TypeConverter\AbstractTypeConverter``.
+
+.. todo: Again, good practice, but no convention.
