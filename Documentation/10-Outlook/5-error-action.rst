@@ -35,8 +35,8 @@ How it works
       :php:`getFlattenedValidationErrorMessage()`.
 
 
-Overloading behaviour
-=====================
+Overloading behavior
+====================
 
 Each of the above steps can be adjusted by implementing custom methods or
 replacing values within properties. All of the above is `protected` and, therefore,
