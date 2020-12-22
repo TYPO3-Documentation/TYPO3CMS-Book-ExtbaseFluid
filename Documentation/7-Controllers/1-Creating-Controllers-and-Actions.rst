@@ -648,7 +648,7 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
 
 .. code-block:: php
 
-   namespace MyVendor\SjrOffers\Viewhelper\Security;
+   namespace MyVendor\SjrOffers\ViewHelper\Security;
 
    use MyVendor\SjrOffers\Service\AccessControlService;
    use TYPO3Fluid\Fluid\ViewHelpers\IfViewHelper;
