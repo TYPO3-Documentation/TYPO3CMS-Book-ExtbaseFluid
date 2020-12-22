@@ -162,13 +162,13 @@ rewritten. This option is normally activated.
 
 .. sidebar:: TYPO3's Page Tree
 
-   In TYPO3, each Content Element and Dataset which should be rendered in the
-   Backend corresponds to a certain Page. Technically, a page is nothing more
-   than a Node Element or a leaf in the virtual Page Tree. Every page is
-   associated with a unique Page ID (PID). Some of the pages are reachable via
+   In TYPO3, each content element and dataset which should be rendered in the
+   backend corresponds to a certain page. Technically, a page is nothing more
+   than a node element or a leaf in the virtual page tree. Every page is
+   associated with a unique page id (PID). Some of the pages are reachable via
    a URL and TYPO3 renders and delivers them (usually in HTML). For example,
-   the URL *http://www.example.com/index.php?id=123* requests the Page with the
-   PID 123. In this case, the term Page has the meaning of being a Webpage. But
+   the URL *http://www.example.com/index.php?id=123* requests the page with the
+   PID 123. In this case, the term page has the meaning of being a web page. But
    there are other cases, e.g., a directory (*SysFolder*) or a separator, which
    are used to save data in a clear and structured way. A special already
    existing PID is 0, which is used to refer to the root page (the one with the
@@ -176,12 +176,12 @@ rewritten. This option is normally activated.
 
 .. note::
 
-   Usually, data sets will be saved into Folders in the Page Tree though the
+   Usually, data sets will be saved into folders in the page tree though the
    pages using those data sets will be somewhere else. If their cache should be
-   cleared as well, then you should set up their PIDs in the field *TSConfig* of
-   the page's preferences of the directory. For example, our Offers will be
-   shown on the pages with the PIDs 23 and 26 (let's say for a Single and a
-   ListView). Then we will configure the variable
+   cleared as well, then you should set up their PIDs in the field *TSconfig* of
+   the page's preferences of the directory. For example, our offers will be
+   shown on the pages with the PIDs 23 and 26 (let's say for a `SingleView` and a
+   `ListView`). Then we will configure the variable
    `TCEMAIN.clearCacheCmd=23,26`
    in the page preferences of the SysFolder. Then the cache of these
    pages will be cleared as well, and changes of an offer will show up
