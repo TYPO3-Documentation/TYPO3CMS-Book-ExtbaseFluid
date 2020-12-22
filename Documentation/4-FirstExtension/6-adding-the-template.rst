@@ -20,7 +20,7 @@ The action name, without the action suffix.
 
 .. code-block:: html
 
-   <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/Viewhelpers">
+   <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
    <table border="1" cellspacing="1" cellpadding="5">
        <tr>
            <td>Product name</td>
