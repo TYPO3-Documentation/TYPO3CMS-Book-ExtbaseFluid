@@ -83,7 +83,7 @@ guide on how to achieve that.
 The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each`, the
-`for` Viewhelper gets the `blog` objects over whom to iterate. The
+`for` ViewHelper gets the `blog` objects over whom to iterate. The
 attribute ``as`` holds the name of the variable with which the `blog` object is
 available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
 

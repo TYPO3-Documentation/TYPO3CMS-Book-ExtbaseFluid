@@ -917,7 +917,7 @@ Localization
 Multilingual websites are widespread nowadays, which means that the
 web-available texts have to be localized. Extbase provides the helper class
 :php:`\TYPO3\CMS\Extbase\Utility\LocalizationUtility` for the translation of the labels. Besides,
-there is the Fluid Viewhelper `<f:translate>`, with the help of whom you can use that
+there is the Fluid ViewHelper `<f:translate>`, with the help of whom you can use that
 functionality in templates.
 
 The localization class has only one public static method called `translate`, which

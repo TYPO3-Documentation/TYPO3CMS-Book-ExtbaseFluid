@@ -1,10 +1,10 @@
 .. include:: ../Includes.txt
 
 ======================================================
-Using TypoScript for rendering: The cObject Viewhelper
+Using TypoScript for rendering: The cObject ViewHelper
 ======================================================
 
-The cObject Viewhelper is a very powerful Viewhelper. It connects
+The cObject ViewHelper is a very powerful ViewHelper. It connects
 Fluid with the options that TypoScript offers. The following line in the
 HTML template will be replaced with the referenced TypoScript object.
 
@@ -95,7 +95,7 @@ At the moment, we're only passing a single value to the TypoScript.
 It's more versatile, though, to pass multiple values to the TypoScript object
 because then you can select which value to use in the TypoScript, and the
 values can be concatenated. You can also pass whole objects to the
-Viewhelper in the template:
+ViewHelper in the template:
 
 ``{post -> f:cObject(typoscriptObjectPath:
 'lib.myCounter')}``
@@ -118,7 +118,7 @@ page visits in parenthesis in the example above.
 
 You can also combine the ``field`` based approach with
 ``current``: If you set the property ``currentValueKey``
-in the ``cObject`` Viewhelper, this value will be available in
+in the ``cObject`` ViewHelper, this value will be available in
 the TypoScript template with ``current``. That is especially useful
 when you want to emphasize that the value is very
 *important* for the TypoScript template. For example, the
@@ -142,11 +142,11 @@ information as the previous example::
       wrap = (<strong>|</strong>)
    }
 
-The ``cObject`` Viewhelper is a powerful option to use the
+The ``cObject`` ViewHelper is a powerful option to use the
 best advantages of both worlds by making it possible to embed TypoScript
 expressions in Fluid templates
 
 In the next chapter, we'll turn our attention to a function which most
-Viewhelper have. This function makes it possible to modify the HTML output
-of a Viewhelper by adding your own tag attributes.
+ViewHelper have. This function makes it possible to modify the HTML output
+of a ViewHelper by adding your own tag attributes.
 

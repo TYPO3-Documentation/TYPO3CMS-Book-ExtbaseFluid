@@ -154,7 +154,7 @@ correct the errors.
 
     You may ask how the `errorAction()` knows
     which form was the last displayed one. This information is created by
-    the ``form`` Viewhelper. It automatically adds the property
+    the ``form`` ViewHelper. It automatically adds the property
     ``__referrer`` to every generated form, which contains
     information about the current extension, controller, and action
     combination. This data can be used by the
@@ -575,7 +575,7 @@ displayed correctly.
 
 Fluid automatically adds the CSS class ``f3-form-error``
 to all erroneous fields - so you can frame them in red, for example, using
-CSS. There is also a ``flashMessages`` Viewhelper, which outputs
+CSS. There is also a ``flashMessages`` ViewHelper, which outputs
 the error messages of the validation.
 
 
@@ -648,7 +648,7 @@ also has to conform with the name of the Fluid template
 validation of the parameter must be suppressed with
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation`. Finally, you can
 output validation errors in the template using the ``flashMessages``
-Viewhelper when saving the data.
+ViewHelper when saving the data.
 
 In figure 9-2, you can find an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the

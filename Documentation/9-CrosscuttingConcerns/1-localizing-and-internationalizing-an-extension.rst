@@ -109,9 +109,9 @@ way:
     (*https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Internationalization/XliffFormat.html*).
 
 Now the placeholder for the translated terms must be inserted into
-the template. To do this, Fluid offers the Viewhelper
-``f:translate``. In this Viewhelper, you give the identifier of
-the term to be inserted as argument ``key`` and the Viewhelper
+the template. To do this, Fluid offers the ViewHelper
+``f:translate``. In this ViewHelper, you give the identifier of
+the term to be inserted as argument ``key`` and the ViewHelper
 inserts either the German or the English translation according to the
 current language selection ::
 
@@ -147,7 +147,7 @@ current language selection ::
     browser.
 
 By replacing all terms of the template with the
-``translate`` Viewhelper we could fit the output of the extension
+``translate`` ViewHelper we could fit the output of the extension
 to the currently selected language. Here we have a look at the Fluid
 template for the output of the blog posts, now without the hardcoded
 English terms:
@@ -167,7 +167,7 @@ English terms:
 .. tip::
 
     Sometimes you have to localize a string in the PHP code, for
-    example inside of a controller or a Viewhelper. In that case you
+    example inside of a controller or a ViewHelper. In that case you
     can use the static method
     `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
     This method requires the localization key as the first and the extension's name as the second
@@ -187,14 +187,14 @@ template now as far as it can to output the blog author's name
 according to the current language. In German and English, this is the
 form "first name last name" and in Thai "Khan first name".
 
-Also, for these use cases, the ``translate`` Viewhelper can
+Also, for these use cases, the ``translate`` ViewHelper can
 be used. With the aid of the array ``arguments,`` values can be
 embedded into the translated string. To do this, the syntax of the PHP
 function ``sprintf`` is used.
 
 If we want to implement the above example, we must assign the
 first name and the last name of the blog author separate to the
-``translate`` Viewhelper:
+``translate`` ViewHelper:
 
 ``<f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />``
 
@@ -218,7 +218,7 @@ output:
 
 .. tip::
 
-    The keys in the argument array of the Viewhelper have no
+    The keys in the argument array of the ViewHelper have no
     relevance. We recommend to give them numbers like the positions
     (starting with 1), because it is easily understandable.
 
@@ -462,7 +462,7 @@ displayed: While in Germany, the date is displayed in the form
 must be formatted different.
 
 Generally the date or time is formatted by the
-``format.date`` Viewhelper::
+``format.date`` ViewHelper::
 
     <f:format.date date="{dateObject}" format="d.m.Y" />
     <!-- or -->
@@ -487,10 +487,10 @@ H                Hour in 24 hour format                                      00 
 i                Minutes, with leading zero                                  00 ... 59
 ================ =========================================================== =========
 
-But the Viewhelper has to be configured differently. Depending on the
+But the ViewHelper has to be configured differently. Depending on the
 language area, which is controlled by the language of the user, another
 format string should be used. Here we combine the ``format.date``
-Viewhelper with the ``translate`` Viewhelper which you got to
+ViewHelper with the ``translate`` ViewHelper which you got to
 know in the section "Multi-language templates".
 
 ::
@@ -504,11 +504,11 @@ to know in the section "Multi-language templates".
 
 .. tip::
 
-    There are other formatting Viewhelpers for adjusting the output of
-    currencies or big numbers. These Viewhelpers all starts with
-    ``format``. You can find an overview of these Viewhelpers in
-    Appendix C. These Viewhelpers can be used like the
-    ``f:format.date`` Viewhelper you have just learned.
+    There are other formatting ViewHelpers for adjusting the output of
+    currencies or big numbers. These ViewHelpers all starts with
+    ``format``. You can find an overview of these ViewHelpers in
+    Appendix C. These ViewHelpers can be used like the
+    ``f:format.date`` ViewHelper you have just learned.
 
 In this section, you have learned how you can translate and localize
 an extension. First, we have worked on the localization of single terms in

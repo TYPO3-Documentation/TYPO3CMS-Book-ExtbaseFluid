@@ -27,14 +27,14 @@ That's where partials are used. Partials are stored, by default, within
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-Inside the existing template the snippet can now be replaced with a Viewhelper
+Inside the existing template the snippet can now be replaced with a ViewHelper
 to render the partial::
 
    {f:render(partial: 'Tags', arguments: {
        tags: post.tags
    })}
 
-Fluid will replace the Viewhelper call with the result of the rendered partial.
+Fluid will replace the ViewHelper call with the result of the rendered partial.
 The argument "partial" receives the full path within the configured partial
 folder to the file, excluding the file extension.
 
@@ -45,11 +45,11 @@ It's also possible to create further folders, e.g.:
        tags: post.tags
    })}
 
-Viewhelper namespace import
+ViewHelper namespace import
 ===========================
 
-Like within Fluid templates, custom Viewhelpers can be used within partials.
-Because these Viewhelpers are not in the default namespace,
+Like within Fluid templates, custom ViewHelpers can be used within partials.
+Because these ViewHelpers are not in the default namespace,
 their namespace needs to be imported. For information about how to import a
 namespace, see :ref:`importing-namespaces`.
 
@@ -59,7 +59,7 @@ It's possible to use a :ref:`global-namespace-import`, or :ref:`imports the name
 .. note::
 
    Up to CMS v8, this namespace import has to be within each partial where such a
-   Viewhelper was used. Since CMS v8, there is no need anymore. The namespace has
+   ViewHelper was used. Since CMS v8, there is no need anymore. The namespace has
    to be imported within the partial or the templates. It still can be imported
    in both, but the template is enough.
 

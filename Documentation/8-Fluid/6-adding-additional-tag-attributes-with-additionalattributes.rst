@@ -4,8 +4,8 @@
 Adding additional tag attributes with additionalAttributes
 ==========================================================
 
-Most of the Viewhelpers can be split into two types: One
-group of Viewhelpers is somewhat functional oriented. For example,
+Most of the ViewHelpers can be split into two types: One
+group of ViewHelpers is somewhat functional oriented. For example,
 that applies to the `format` Viewhelpers, which can format data or currencies.
 The other group is mostly output-oriented because these Viewhelpers output
 mostly an HTML tag. Samples of this are the form Viewhelpers. All of them

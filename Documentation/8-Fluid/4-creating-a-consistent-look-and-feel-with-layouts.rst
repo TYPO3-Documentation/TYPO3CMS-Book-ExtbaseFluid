@@ -23,7 +23,7 @@ Now we look at how to create and use a layout. A layout is a Fluid
 file in the folder :file:`Resources/Private/Layouts/`. It
 contains placeholders that should be replaced by the content of the
 corresponding template within the layout. In the following example, you see a
-use case of the Viewhelper ``<f:render section="..." />`` as
+use case of the ViewHelper ``<f:render section="..." />`` as
 a placeholder.
 
 .. code-block:: html
@@ -80,8 +80,8 @@ various possibilities for efficiently templating a web application.
   chapter.
 
 Now that you know how you can structure templates with
-layouts and partials, we want to explore some options Viewhelpers offer. In
+layouts and partials, we want to explore some options ViewHelpers offer. In
 the following segment, we will introduce a powerful tool for template building.
-A Viewhelper which combines the possibilities of Fluid and the classic
+A ViewHelper which combines the possibilities of Fluid and the classic
 TYPO3-templating.
 

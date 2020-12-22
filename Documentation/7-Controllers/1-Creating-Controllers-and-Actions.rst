@@ -673,7 +673,7 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
    }
 
 The :php:`IfAuthenticatedViewHelper` extends the
-:php:`If`-Viewhelper of Fluid and therefore provides the
+:php:`If`-ViewHelper of Fluid and therefore provides the
 opportunity to use if-else branches. It delegates the access check to the
 :php:`AccessControlService`. If the check gives a positive
 result, in our case, a link with an edit icon is generated, which leads to

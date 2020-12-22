@@ -77,11 +77,11 @@ Note the enhanced syntax inside the condition.
 The compare operators ``>``, ``>=``,
 ``<``, ``<=``, ``==``, ``!=``
 and ``%`` are available. The parameter left and right of the
-operators could be numbers, object accessors, arrays, and Viewhelpers in
+operators could be numbers, object accessors, arrays, and ViewHelpers in
 inline notation, or quoted strings.
 
 
 .. tip::
 
-  Any Viewhelper argument declared as ``boolean`` supports boolean
-  expression syntax, including in your own self-written Viewhelpers.
+  Any ViewHelper argument declared as ``boolean`` supports boolean
+  expression syntax, including in your own self-written ViewHelpers.
