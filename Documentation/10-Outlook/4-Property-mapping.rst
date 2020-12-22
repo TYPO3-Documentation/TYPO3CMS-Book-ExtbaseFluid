@@ -16,6 +16,7 @@ In this example, we provide a string that will be converted to an integer::
 Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper::convert()`
 method.
 
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
 How to use property mapper
 ==========================
@@ -39,6 +40,8 @@ with defined property `username`.
 .. note::
     The property mapper will not check the validation rules. The result will be whatever the input is.
 
+
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
 Allow mapping of sub-properties
 ===============================
@@ -68,3 +71,5 @@ you have to configure the mapper as per default he won't map sub properties for 
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser',
             $mappingConfiguration
         );
+
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
