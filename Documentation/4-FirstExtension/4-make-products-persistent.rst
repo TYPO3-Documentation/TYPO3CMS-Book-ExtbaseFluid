@@ -2,15 +2,16 @@
 
 .. _persisting_products:
 
-Make Products Persistent
+========================
+Make products persistent
 ========================
 
 The model :php:`\MyVendor\StoreInventory\Domain\Model\Product` allows us
-to use "Products" in our application, however we do not have any way to store them yet,
+to use "Products" in our application. However, we do not have any way to store them yet,
 meaning they are stored in memory and are deleted by PHP after the page request was completed.
 To make our products available across requests, we must "persist" it.
 The most common way to persist objects is to store them in the database.
-To be able to do that, we need to define a database scheme in the file
+To be able to do that, we need to define a database schema in the file
 :file:`EXT:store_inventory/ext_tables.sql`:
 
 .. code-block:: mysql
@@ -21,14 +22,14 @@ To be able to do that, we need to define a database scheme in the file
       quantity int(11) DEFAULT '0' NOT NULL
    );
 
-This file gets read by the TYPO3 database analyzer which then takes care
+This file gets read by the TYPO3 database analyzer, which then takes care
 of creating the table. If you inspect your database, you may notice more
 columns (like `pid` or `uid`) - these are necessary for administrative
 purposes and will be created automatically.
 Your product's characteristics ``name``, ``description`` and ``quantity``
 appear as columns, too.
 
-To make your products editable / creatable by the backend of TYPO3,
+To make your products editable/creatable by the backend of TYPO3,
 you need a configuration file specifying how your editing form should look like.
 The configuration is stored in a PHP array, the *Table-Configuration-Array* (in short: *TCA*).
 
@@ -83,7 +84,7 @@ TYPO3 needs to render the list and detail view for the records of this extension
 
 
 This file consists of several sections.
-In the section ``ctrl`` basic characteristics of the table are configured, like the title or the icon.
+In the section ``ctrl``, the table's basic characteristics are configured, like the title or the icon.
 The section ``columns`` describes how each table column is rendered in the backend forms.
 The section ``types`` defines in which sequence the table columns are rendered.
 
@@ -92,7 +93,7 @@ The section ``types`` defines in which sequence the table columns are rendered.
    You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
 
 TYPO3 is able to group all records of an extension in the new record wizard.
-To define the name of this group, create a language file 
+To define the name of this group, create a language file
 :file:`EXT:store_inventory/Resources/Private/Language/locallang_db.xlf`
 and add the key **extension.title**.
 
@@ -125,7 +126,7 @@ and add the key **extension.title**.
 
 After installing the extension, we can create our first products in the backend.
 
-Like shown in image 4-2, we create a sys folder to store the products (see 1 in figure 4-2).
+As shown in image 4-2, we create a sys folder to store the products (see 1 in figure 4-2).
 Let's create some items: (see 2 in figure 4-2 and 3 in 4-3).
 
 .. figure:: /Images/4-FirstExtension/figure-4-2.png
@@ -138,9 +139,9 @@ Let's create some items: (see 2 in figure 4-2 and 3 in 4-3).
 
    Figure 4-3: The new record wizard.
 
-In this section we created a copy (or a model) of the reality.
+In this section, we created a copy (or a model) of the reality.
 We did not model the full set of properties a product might have,
-but restricted the model to those we need in order to build our application
+but restricted the model to those we need to build our application
 (these are the properties relevant to our current domain).
 
 After creating the items in the backend, we now want to display them in the frontend.

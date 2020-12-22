@@ -22,7 +22,7 @@ Action	= Action
 Aggregate = Aggregate
 	im Sinne von Domain-Driven Design
 Allgegenwärtige Sprache	= Ubiquitous Language
-	Feststehender Begriff in Domain Driven Design
+	Feststehender Begriff in Domain-Driven-Design
 Anmerkung = Annotation
 Annotation = Ein konfigurations-relevanter "Doc Comment", z.B. @scope
 Ausnahme = Exception

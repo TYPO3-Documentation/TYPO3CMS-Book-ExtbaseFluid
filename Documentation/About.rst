@@ -7,7 +7,7 @@ About This Manual
 =================
 
 
-This is an introduction into developing TYPO3 extensions with the
+This is an introduction to developing TYPO3 extensions with the
 Extbase framework and the Fluid templating engine.
 
 .. _target-audience:
@@ -20,16 +20,16 @@ of PHP programming and experience working with and administering TYPO3.
 
 We are aiming at the following target audiences.
 
-* Beginners, who want to use Extbase and Fluid right as a basis for their own extensions.
-* Experienced developers, who want to learn Extbase and Fluid before beginning a new project.
-* Decision makers, who want to gain a technical overview of the new framework.
+* Beginners who want to use Extbase and Fluid right as a basis for their extensions.
+* Experienced developers who want to learn Extbase and Fluid before beginning a new project.
+* Decision makers who want to gain a technical overview of the new framework.
 
 .. _structure-of-this-book:
 
 Structure of this book
 ======================
 
-This chapter is structured into ten main chapters, some additional smaller chapters
+This chapter is structured into ten main chapters, some additional smaller chapters,
 and three appendices. The chapters discuss the following topics:
 
 .. **Introduction**
@@ -39,17 +39,17 @@ and three appendices. The chapters discuss the following topics:
 .. **Basic principles**
 
 * :ref:`basic-principles` begins with an
-  overview of the concepts of object oriented programming, which
+  overview of object-oriented programming concepts, which
   are essential for working with Extbase. After that, we dive into
-  Domain-Driven Design, a programming paradigm which is a core principle of
-  Extbase. After that, you'll learn the design pattern Model-View-Controller,
+  domain-driven design, a programming paradigm that is a core principle of
+  Extbase. After that, you'll learn the design pattern model-view-controller,
   which is the technical basis of every Extbase Extension. Finally, the
-  chapter explains Test-Driven Development to the reader.
+  chapter explains test-driven development to the reader.
 
 .. **Journey through the Blog Example**
 
 * :ref:`The-Blog-Example`
-  should give you a feeling how the concepts from chapter 2 are implemented
+  should give you a feeling of how the concepts from chapter 2 are implemented
   in Extbase. Based on a provided example extension, we explain how a blog post
   is created and progresses through various stages until it is
   displayed.
@@ -60,7 +60,7 @@ and three appendices. The chapters discuss the following topics:
 
 * :ref:`installation` leads you through the
   installation of Extbase and Fluid. To make extension development as
-  effective as possible, we give suggestions for development environments as well as tips and
+  effective as possible, we give suggestions for development environments and tips and
   tricks for debugging.
 
 .. In chapter 4, **Creating a first extension**
@@ -72,7 +72,7 @@ and three appendices. The chapters discuss the following topics:
 .. Chapter 5, **Modeling the Domain**,
 
 * :ref:`modeling-the-domain` shows
-  Domain-Driven Design with a practical example. It shows how a model can be
+  domain-driven design with a practical example. It shows how a model can be
   planned and implemented.
 
 .. Chapter 6, **Setting up the persistence layer**
@@ -91,15 +91,14 @@ and three appendices. The chapters discuss the following topics:
 
 * :ref:`fluid-start`
   Next, this book explains the output layer of the extension: the so-called
-  *view*. Fluid is explained
-  and several examples are given. At the end of the
+  *view*. Fluid is explained, and several examples are given. At the end of the
   chapter, the sample functions are combined and demonstrated within the example
   extension.
 
 .. Chapter 9, **Internationalization, validation and security**,
 
 * :ref:`internationalization` deals with advanced topics and tasks. This includes the
-  multilingual capabilities of extensions, the validation of data, and the
+  multilingual capabilities of extensions, data validation, and the
   handling of security aspects.
 
 After the main chapters, several smaller chapters give insight into additional
@@ -115,8 +114,8 @@ Additional information is contained in several appendices:
 
 * Appendix A, **Coding Guidelines**: Extbase mostly uses the conventions of FLOW.
 * Appendix B, **Reference of Extbase**, contains an overview of important Extbase
-  concepts and an alphabetical listing of the API.
-* Appendix C, **Fluid ViewHelpers**, links to the ViewHelper reference
+  concepts and an API's alphabetical listing.
+* Appendix C, **Fluid Viewhelpers**, links to the ViewHelper reference
 
 .. _typographic-conventions:
 
@@ -134,7 +133,7 @@ This book uses the following typographic conventions:
 
 .. note::
 
-   This stands for a general advice or hint.
+   This stands for a piece of general advice or hint.
 
 .. tip::
 
@@ -159,9 +158,9 @@ This book was translated into English by the TYPO3 community.
 The latest version of the book (second edition) targeted TYPO3 6.2.
 
 Meanwhile, the book is no longer an exact translation. Several
-changes were made by the TYPO3 community to reflect
+the TYPO3 community made changes to reflect
 considerable changes in the TYPO3
-core, some parts were removed, added or moved to other manuals.
+Core, some parts were removed, added, or moved to other manuals.
 It has - in parts - been completely rewritten.
 
 .. todo: add some thanks to other contributors?
@@ -179,18 +178,18 @@ of working on their project.
 
 TYPO3 would not exist without the dedication and vision of Kasper
 Skårhøj and without the tireless work of all community members, especially
-the TYPO3 core team. Here, we specifically want to thank the members who
+the TYPO3 Core Team. Here, we specifically want to thank the members who
 discovered and implemented many future-proof technologies for TYPO3 v6.
 Extbase would not be possible without this inspiration and
 these guidelines.
 
-Also when creating the book, we had generous support: a thank you
+Also, when creating the book, we had generous support: a thank you
 goes to Patrick Lobacher, as he wrote the section about Object
 Oriented Programming.
 
-Our special thanks goes to our editors, Alexandra Follenius and
-Inken Kiupel, who gave us a lot of feedback and comments to our texts, and
-thus had a great impact on the creating of this book. Also we want to
+Our special thanks go to our editors, Alexandra Follenius and
+Inken Kiupel, who gave us a lot of feedback and comments on our texts, and
+thus had a significant impact on the creating of this book. Also, we want to
 thank the many unknown helping hands at O'Reilly, who ultimately created
 this book.
 

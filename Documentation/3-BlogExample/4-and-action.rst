@@ -1,20 +1,21 @@
 .. include:: ../Includes.txt
 
+==============
 And... action!
 ==============
 
-Our journey through the blog example is not only an educational journey, but
+Our journey through the blog example is not only an educational journey but
 also an active one. We now turn to the activities. We are already in
 the :php:`BlogController`. You can find the class file at
 :file:`EXT:blog_example/Classes/BlogController.php`.
 
 In software development, there are different variants of controllers.
-In Extbase the controllers mostly exist as
+In Extbase, the controllers mostly exist as
 :php:`ActionController`. This variant is characterized by
-short methods, which are responsible for the control of a single action, the
-so called `Actions`. Let's have a deeper look at a
-shortened version of the :php:`BlogController`. Please note that for brevity
-the doc comments and some methods have been removed. Find the full example at 
+short methods for controlling a single action, the
+so-called `Actions`. Let's have a deeper look at a
+shortened version of the :php:`BlogController`. Please note that for brevity,
+the doc comments and some methods have been removed. Find the full example at
 :file:`EXT:blog_example/Classes/BlogController.php`:
 
 .. code-block:: php
@@ -69,29 +70,29 @@ the doc comments and some methods have been removed. Find the full example at
 The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
-`showMeTheListAction()`. The only important point is,
-that it ends with `Action` in order to help Extbase
-to recognize it as an action. `newAction()` shows a
+`showMeTheListAction()`. The only important point is
+that it ends with `Action` to help Extbase
+recognize it as an action. `newAction()` shows a
 form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
 `editAction()` and
-`updateAction()` have a similar functionality for the
+`updateAction()` has similar functionality for the
 change of an existing blog. The job of the
 `deleteAction()` should be self explaining.
 
 .. tip::
 
-    Those who already worked with the model view controller pattern will
-    notice, that the controller has only a little amount of code. Extbase
-    aims for the `slim controller` approach . The controller is
-    exclusively responsible for the control of the process flow. Additional
-    logic (especially business or domain logic) needs to be separated into
-    classes in the subfolder :file:`Domain`.
+   Those who already worked with the model view controller pattern will
+   notice that the controller has very little code. Extbase
+   aims for the `slim controller` approach. The controller is
+   exclusively responsible for the control of the process flow. Additional
+   logic (especially business or domain logic) needs to be separated into
+   classes in the subfolder :file:`Domain`.
 
 The request determines which controller action combination will be called.
-The dispatching and matching of actions happens in the `Dispatcher` and in
+The dispatching and matching of actions happen in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-inherits all methods from it, by deriving it from this class.
+inherits all methods from it by deriving it from this class.
 
 ::
 
@@ -108,8 +109,8 @@ inherits all methods from it, by deriving it from this class.
    }
 
 If no specific action information is given, the default action will
-be called; in our case the `indexAction()`. The `indexAction()` contains 
-only one line in our example (as shown above), 
+be called; in our case the `indexAction()`. The `indexAction()` contains
+only one line in our example (as shown above),
 which looks like this:
 
 ::
@@ -138,8 +139,8 @@ which looks like this:
        }
    }
 
-In the first line of the :php:`indexAction` the repository is asked to fetch
-all available blogs. In the second line those blogs are assigned to the view
+In the first line of the :php:`indexAction`, the repository is asked to fetch
+all available blogs. In the second line, those blogs are assigned to the view
 to be displayed. So the repository is responsible for fetching the data,
-the view is responsible for displaying it and the controller connects and
+the view is responsible for displaying it, and the controller connects and
 "controls" these parts.

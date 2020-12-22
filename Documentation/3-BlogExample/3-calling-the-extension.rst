@@ -1,3 +1,6 @@
+.. include:: ../Includes.txt
+
+=====================
 Calling the extension
 =====================
 
@@ -5,14 +8,14 @@ When a user opens the web page containing our blog in their browser,
 this request (`Request`) will be forwarded to the remote TYPO3 Server. Then
 TYPO3 starts the processing of this request straight away.
 
-A request generally contains the identifier of the page
-(the so called page slug) that should be generated (e. g. ``/blog``). Using
+A request generally contains the page's identifier
+(the so-called page slug) that should be generated (e. g. ``/blog``). Using
 this page identifier, TYPO3 searches all relevant content elements on the
 specific page and converts these to HTML code one after another. While
 processing this page request, TYPO3 discovers the content element for our
-example extension, the so called *plugin*. This plugin should display a list
-of all blogs. Each with an individual title, a short description and the
-amount of all enclosed posts. In figure 3-4 you can see the output of the
+example extension, the so-called *plugin*. This plugin should display a list
+of all blogs. Each with an individual title, a short description, and the
+amount of all enclosed posts. In figure 3-4, you can see the output of the
 plugin in the frontend. This output is embedded within the greater overview
 of the page.
 
@@ -33,22 +36,22 @@ to the according position within the code of our blog example:
 * It loads the configuration of our extension from the different
   sources and makes it available.
 * It determines whether or not the request was manipulated in an
-  illegal manner and when this is the case deflects it (e.g. in of case
+  illegal manner and when this is the case deflects it (e.g., in of case
   maliciously added form input field).
-* It sets up the persistence layer which performs the persisting of
+* It sets up the persistence layer, which performs the persisting of
   new or changed objects.
 * It prepares the cache in which the content is stored for faster reuse.
 * It instantiates and configures the controller of our extension
   which controls further processing within the extension.
 
 When these preparations are fulfilled, we
-are able to travel to the first stop of our destination: the controller. In
-our example all further processing is assigned to the
+can travel to our destination's first stop: the controller. In
+our example, all further processing is assigned to the
 :php:`BlogController`. A reference to the `request` is handed over.
 
 The class :php:`BlogController` can be found in the
 file
 :file:`EXT:blog_example/Classes/Controller/BlogController.php`.
 The complete name of the controller is
-:php:`\MyVendor\BlogExample\Controller\BlogController`. At first
-this might seem long-winded but the syntax follows a very strict convention.
+:php:`\MyVendor\BlogExample\Controller\BlogController`. At first,
+this might seem long-winded, but the syntax follows a very strict convention.

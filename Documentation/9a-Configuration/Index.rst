@@ -1,5 +1,4 @@
 .. include:: ../Includes.txt
-
 .. _configuration:
 
 =============
@@ -7,13 +6,14 @@ Configuration
 =============
 
 There are several possibilities to make your extension configurable. The
-various options described here each differ in:
+various options described here each differs in:
 
 * the scope to what the configuration applies (extension, pages,
   plugin)
 * the access level required to make the change (editor, admin)
 
-TypoScript and Constants
+
+TypoScript and constants
 ========================
 
 You can define configuration options using TypoScript.
@@ -26,7 +26,8 @@ The changes apply to the current page and all subpages.
 
    * :ref:`t3tsref:typoscript-syntax-what-are-constants`
 
-Extension Configuration
+
+Extension configuration
 =======================
 
 Extension Configuration is defined in the file :file:`ext_conf_template.txt`
@@ -41,10 +42,11 @@ Use this for general options that should be globally applied to the extension.
 
    * :ref:`t3coreapi:extension-options`
 
+
 FlexForms
 =========
 
-FlexForms can be configured in the backend by editors. With FlexForms you can
+FlexForms can be configured in the backend by editors. With FlexForms, you can
 configure each plugin or content element individually.
 
 .. seealso::
@@ -54,7 +56,8 @@ configure each plugin or content element individually.
 FlexForms are handled in "TYPO3 Explained".
 Here, we only cover options that are specific to Extbase.
 
-Access Settings
+
+Access settings
 ---------------
 
 .. important::

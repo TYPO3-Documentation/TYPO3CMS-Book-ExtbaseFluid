@@ -1,6 +1,7 @@
 .. include:: ../Includes.txt
 
-Paths on the Data-Map
+=====================
+Paths on the data map
 =====================
 
 The `DataMapper` object has the task to create an instance of the blog class
@@ -11,15 +12,15 @@ following Lines::
     $this->dataMapper->map($this->getType(), $rows);
 
 The ``DataMapper`` object also resolves all relations. This means that it starts
-requests for the posts and builds the objects with all included sub objects
+requests for the posts and builds the objects with all included sub-objects
 before they are written into the attribute *posts* of the corresponding ``Blog``
 object.
 
 When resolving the relations, the ``DataMapper`` object gets its information from
-different sources. First of all it knows the configuration of the database
+different sources. First of all, it knows the configuration of the database
 tables (stored in the *Table Configuration Array*, short: TCA), furthermore it
 "reads" the PHP comments inside the class definition standing above the
-definitions (or *properties*). Let's for example look at the definition of the
+definitions (or *properties*). For example, let's look at the definition of the
 property *posts* within the ``Blog`` class. You can find this in the file
 :file:`EXT:blog_example/Classes/Domain/Model/Blog.php`. ::
 
@@ -62,13 +63,13 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
     methods ``attach()``, ``detach()`` and ``contains()`` amongst others. The
     ``ObjectStorage`` also implements the interfaces ``Iterator``, ``Countable``,
     ``ArrayAccess``. So it is usable in ``foreach``.
-    Furthermore the ``ObjectStorage`` behaves like an array. The ``ObjectStorage``
+    Furthermore, the ``ObjectStorage`` behaves like an array. The ``ObjectStorage``
     of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error
     free since PHP-Version 5.3.1.
 
 
-The notation at first seems unusual. It is based on the so called *Generics* of
-the programming language Java. In the definition of your property you have to
+The notation at first seems unusual. It is based on the so-called *Generics* of
+the programming language Java. In the definition of your property, you have to
 enter the type in the annotation above the method definition. Properties of a
 PHP type will look like this::
 
@@ -126,9 +127,9 @@ parent object (``foreign_field``) is stored. With the help of this information a
 the data given in the PHP documentation above the property definition Extbase
 can read the database records and map them onto the Post class. This process
 will be continued recursively over the complete object graph - the blog with all
-its containing posts, comments, tags etc. - starting from the single blog as
+its containing posts, comments, tags, etc. - starting from the single blog as
 root object.
 
-After our exhausting journey let's get back to the realm of our extension.
-Remember that normally you will not need to enter these paths - except the case
-that you are into customised journeys.
+After our exhausting journey, let's get back to the realm of our extension.
+Remember that normally you will not need to enter these paths -
+except that you are into customized journeys.
