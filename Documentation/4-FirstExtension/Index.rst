@@ -1,9 +1,8 @@
 .. include:: ../Includes.txt
-
 .. _creating-a-first-extension:
 
 ============================
-Creating the First Extension
+Creating the first extension
 ============================
 
 In this chapter, you learn the basics of an extension based on Extbase and Fluid.
