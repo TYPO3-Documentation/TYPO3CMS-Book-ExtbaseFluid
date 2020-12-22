@@ -606,7 +606,7 @@ this snippet from a template:
 
 .. code-block:: html
 
-   {namespace sjr=MyVendor\SjrOffers\Viewhelpers}
+   {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
    <!-- ... -->
    <sjr:security.ifAuthenticated person="{organization.administrator}">
       <f:link.action controller="Offer" action="edit" arguments="{...}">
