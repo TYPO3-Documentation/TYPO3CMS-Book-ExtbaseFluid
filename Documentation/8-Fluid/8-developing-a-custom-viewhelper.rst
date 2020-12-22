@@ -69,7 +69,7 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
    namespace MyVendor\BlogExample\ViewHelpers;
 
    use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-   use TYPO3Fluid\Fluid\Core\Viewhelper\AbstractViewHelper;
+   use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
    class GravatarViewHelper extends AbstractViewHelper
    {
