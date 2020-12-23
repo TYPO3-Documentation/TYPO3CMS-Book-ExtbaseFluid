@@ -11,6 +11,8 @@ the :php:`BlogController`. You can find the class file at
 
 In software development, there are different variants of controllers.
 In Extbase, the controllers mostly exist as
+.. todo: mostly -> only, will change in the future when ActionController will be optional or replaced by traits.
+
 :php:`ActionController`. This variant is characterized by
 short methods for controlling a single action, the
 so-called `Actions`. Let's have a deeper look at a
@@ -72,6 +74,11 @@ The method `indexAction()` within the
 blogs. We also could have called it
 `showMeTheListAction()`. The only important point is
 that it ends with `Action` to help Extbase
+.. todo: This sounds like Extbase is a human being that does non-deterministic
+         things to find possible actions. It's pretty clear though. Only methods
+         ending with `Action` are interpreted as actions. We can rephrase it to
+         Action methods MUST end with Action to be recognized as such by Extbase.
+
 recognize it as an action. `newAction()` shows a
 form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
@@ -88,11 +95,15 @@ change of an existing blog. The job of the
    exclusively responsible for the control of the process flow. Additional
    logic (especially business or domain logic) needs to be separated into
    classes in the subfolder :file:`Domain`.
+   .. todo: We should also mention Services here. The domain only holds the
+            business logic, not all the application logic.
 
 The request determines which controller action combination will be called.
 The dispatching and matching of actions happen in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
 inherits all methods from it by deriving it from this class.
+
+.. todo: Again, nope. The Dispatcher doesn't do it. The RequestBuilder does.
 
 ::
 
@@ -112,6 +123,11 @@ If no specific action information is given, the default action will
 be called; in our case the `indexAction()`. The `indexAction()` contains
 only one line in our example (as shown above),
 which looks like this:
+
+.. todo: To a first time reader it's not clear what information is meant here.
+         We should explicitly mention url params and the plugin configuration
+         which defines the default method. First time readers could get the
+         impression that the default action always is `indexAction()`.
 
 ::
 

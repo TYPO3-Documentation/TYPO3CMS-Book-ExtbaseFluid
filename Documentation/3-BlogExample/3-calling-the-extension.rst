@@ -33,16 +33,33 @@ to the according position within the code of our blog example:
 
 * It interprets the incoming request and bundles all relevant
   information into a ``Request`` object.
+.. todo: That's done in the RequestBuilder
+
 * It loads the configuration of our extension from the different
   sources and makes it available.
+.. todo: That's done in the Bootstrap
+
 * It determines whether or not the request was manipulated in an
   illegal manner and when this is the case deflects it (e.g., in of case
   maliciously added form input field).
+.. todo: That's done in the ActionController
+
 * It sets up the persistence layer, which performs the persisting of
   new or changed objects.
+.. todo: Nope, there is nothing to set up. But in the Bootstrap there
+         is a mechanism that automatically saves pending domain objects.
+
 * It prepares the cache in which the content is stored for faster reuse.
+.. todo: This is not true. Extbase does not cache independently from the core,
+         at least no content. The caching topic is important enough to be
+         explained separately but mentioning it here as part of the dispatchers
+         job is just misleadin.
+
 * It instantiates and configures the controller of our extension
   which controls further processing within the extension.
+.. todo: As in 2-the-stations-of-the-journey:
+         All those steps aren't done by the dispatcher, expect the last,
+         creating the controller.
 
 When these preparations are fulfilled, we
 can travel to our destination's first stop: the controller. In

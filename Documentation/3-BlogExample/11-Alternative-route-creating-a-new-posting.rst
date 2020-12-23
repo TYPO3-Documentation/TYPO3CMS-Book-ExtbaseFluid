@@ -17,6 +17,8 @@ step, to be implemented that are mirrored in the actions ``new`` and
 method ``createAction()`` really creates the post, puts it in the
 repository, and routes the process to the method ``indexAction()``.
 
+.. todo: routes the process? Maybe just say "redirects"?
+
 Calling the method ``newAction()`` is done in our case with a link in the
 front end, that looks - a bit purged - like this:
 
@@ -32,6 +34,9 @@ This was created with the following Fluid code in the template
    <f:link.action action="new" class="icon new" arguments="{blog: blog}" title="{f:translate(key: 'post.createAnother')}">
          <f:translate key="post.createAnother">[create another post]</f:translate>
    </f:link.action>
+
+.. todo: Either remove the class attribute here or add it above. There are people (like me) that
+         are confused by code examples where things are not 100% correct. Same for the title attribute.
 
 The tag ``<f:link.action>`` creates a link to a special controller action
 combination: ``tx_blogexample_pi1[controller]=post`` and
@@ -96,6 +101,9 @@ the line:
 
    * @param Blog $blog The blog the post belongs to
 
+.. todo: This needs to be checked. Might be that this fallback is dropped already.
+         If not, it should be with 13, forcing people to use native type hints.
+
 The link is created with the name of the argument ``$blog``.
 In this way, the link between the request parameter and
 the ``newAction()`` is resolved.
@@ -122,6 +130,8 @@ controller after calling ``newAction()``.
    $form = $this->view()->render();
    return $form;
 
+.. todo: return $this->htmlResponse($this->view->render());
+
 Here you will see the shortened template *new.html*:
 
 ::
@@ -146,6 +156,8 @@ Here you will see the shortened template *new.html*:
       </dl>
    </f:form>
 
+.. todo: There is a regular button inside the <f:form.submit>, looks wrong.
+
 Fluid offers some comfortable tags for creating forms which names are all starting
 with ``form``. The whole form is enclosed in ``<f:form></f:form>``. Like creating
 a link, the controller action combination, which should be called when clicking the
@@ -156,6 +168,8 @@ submit button, is given here.
    Don't be confused by the parameter ``method="post"``. This is the transfer method
    of the form and has nothing to do with our domain (instead of ``method="post"``
    it also could be ``method="get"``).
+   .. todo: I would either drop this explanation or simply refer to an official HTML
+      documentation to make things really clear.
 
 The form is bound with ``object="{newPost}"`` to the object assigned to
 the variable ``newPost`` in the controller. The specific form fields have a property
@@ -203,6 +217,13 @@ TYPO3 takes the rendered form and includes it at the appropriate place in the HT
 
 Clicking the *submit* button calls the ``createAction`` of the ``PostController``.
 Here you will see the stripped-down method:
+
+.. todo: This sounds like magic again. We should use the same wording as in a regular
+         HTML context. The submit button submits the form. It sends the form data to
+         the given form action. Given the query params, the then called plugin on the
+         same page dispatches the request to the desired controller and action. This
+         is important because many people ask for Extbase magic when they only need to
+         understand HTTP.
 
 ::
 

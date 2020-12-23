@@ -52,6 +52,8 @@ annotations which start with the @ character. The annotation::
     @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Post>
 
 
+.. todo: No need for FQCN's here no more.
+
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
 ``Post`` objects of the class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
 
@@ -66,6 +68,7 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
     Furthermore, the ``ObjectStorage`` behaves like an array. The ``ObjectStorage``
     of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error
     free since PHP-Version 5.3.1.
+    .. todo: No need to mention those ancient php versions and their errors anymore.
 
 
 The notation at first seems unusual. It is based on the so-called *Generics* of
@@ -78,6 +81,7 @@ PHP type will look like this::
      */
     protected $amount;
 
+.. todo: Use PHP 74. syntax here.
 
 It is also possible to enter a class as type::
 
@@ -86,6 +90,7 @@ It is also possible to enter a class as type::
      */
     protected $author;
 
+.. todo: Use PHP 74. syntax here.
 
 Properties which should be bound to multiple child objects require the class
 name of the child elements in angle brackets::
@@ -94,6 +99,8 @@ name of the child elements in angle brackets::
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Tag>
      */
     protected $tags;
+
+ .. todo: Avoid FQCN's here.
 
 Extbase gathers the type of the relation from the configuration of the database
 table column. Let's take a look at the definition of the column ``posts``. It can be
