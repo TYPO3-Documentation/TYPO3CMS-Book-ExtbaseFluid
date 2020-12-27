@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Extension store_inventory
 .. _creating-a-first-extension:
 
 ============================
