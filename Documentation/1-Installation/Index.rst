@@ -4,7 +4,7 @@
 .. * Last reviewed: May 17th, 2019 for TYPO3 version 9.5.7
 .. ----------------------------------------
 
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ====================
 Installation & setup
