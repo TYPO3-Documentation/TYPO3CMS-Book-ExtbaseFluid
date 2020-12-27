@@ -1,8 +1,8 @@
 .. include:: /Includes.rst.txt
-.. _creating-a-consistent-look-and-feel-with-layouts:
 .. index::
    Fluid; Layouts
    Layouts
+.. _creating-a-consistent-look-and-feel-with-layouts:
 
 ================================================
 Creating a consistent look and feel with layouts

@@ -1,7 +1,6 @@
 .. include:: /Includes.rst.txt
-.. _validating-domain-objects:
-
 .. index:: Validators
+.. _validating-domain-objects:
 
 =========================
 Validating domain objects

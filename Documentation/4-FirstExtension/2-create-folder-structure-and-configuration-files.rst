@@ -56,7 +56,7 @@ Resulting from all this, the folder structure within the extension folder
 .. index:: Files; ext_emconf.php
 
 Configuration file :file:`ext_emconf.php`
-========================================
+=========================================
 
 A single configuration file named :file:`ext_emconf.php` is required by TYPO3
 to allow loading the extension. The file is located in the extension's
