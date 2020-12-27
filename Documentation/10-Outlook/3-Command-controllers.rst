@@ -68,7 +68,7 @@ Calling commands
 
 Clear the backend-cache to complete the registration. Once a command is registered and available, you can check the availability by calling
 `
-/cli_dispatch.phpsh extbase help`.
+typo3/sysext/core/bin/typo3 extbase help`.
 
 The output should look like::
 
@@ -76,7 +76,7 @@ The output should look like::
     -------------------------------------------------------------------------------
       simple:simple
 
-To execute your command call `typo3/cli_dispatch.phpsh extbase simple:simple`.
+To execute your command call `typo3/sysext/core/bin/typo3 extbase simple:simple`.
 
 .. note::
 
@@ -111,7 +111,7 @@ a default value.
 
 TYPO3 will map the incoming values to the documented type.
 
-You can check whether the documentation is correct, by calling `typo3/cli_dispatch.phpsh extbase help
+You can check whether the documentation is correct, by calling `typo3/sysext/core/bin/typo3 extbase help
 simple:arguments`. The result will be something like:
 
 .. code-block:: none
@@ -152,7 +152,7 @@ commandline::
 
     }
 
-The information is shown when calling `typo3/cli_dispatch.phpsh extbase help
+The information is shown when calling `typo3/sysext/core/bin/typo3 extbase help
 simple:arguments`:
 
 .. code-block:: none
