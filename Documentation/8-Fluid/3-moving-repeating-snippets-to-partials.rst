@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. highlight:: html
 .. _moving-repeating-snippets-to-partials:
 
