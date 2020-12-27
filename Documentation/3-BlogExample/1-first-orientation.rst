@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Blog example
 
 =================
 First orientation

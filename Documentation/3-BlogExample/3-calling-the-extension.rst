@@ -5,7 +5,7 @@ Calling the extension
 =====================
 
 When a user opens the web page containing our blog in their browser,
-this request (`Request`) will be forwarded to the remote TYPO3 Server. Then
+this request (`Request`) will be forwarded to the remote TYPO3 server. Then
 TYPO3 starts the processing of this request straight away.
 
 A request generally contains the page's identifier
@@ -23,6 +23,8 @@ of the page.
    :align: center
 
    Figure 3-4: Output of the plugin of our example extension
+
+.. index:: Extbase; Dispatcher
 
 The process of eradication is first forwarded to the *dispatcher*
 of Extbase by TYPO3.
@@ -43,6 +45,12 @@ to the according position within the code of our blog example:
 * It prepares the cache in which the content is stored for faster reuse.
 * It instantiates and configures the controller of our extension
   which controls further processing within the extension.
+
+
+.. index::
+   Extbase; Controller
+   Blog Example; BlogController
+   Files; EXT:blog_example/Classes/Controller/BlogController.php
 
 When these preparations are fulfilled, we
 can travel to our destination's first stop: the controller. In

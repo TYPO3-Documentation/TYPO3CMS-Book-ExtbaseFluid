@@ -1,4 +1,8 @@
 .. include:: /Includes.rst.txt
+.. index::
+   PersistenceManager; persistAll()
+   pair: Dispatcher; Response
+   pair: Bootstrap; Response
 
 =============================
 Returning the result to TYPO3
@@ -9,7 +13,7 @@ only made in memory are made permanent (persisted). The persistence manager
 will be called via ``$persistenceManager->persistAll()``. The persistence
 manager will walk through all used repositories and collect the new
 and the deleted objects. In our case, the persistence manager asks the blog
-repository about such objects. Since we only displayed blogs but made no
+repository about such objects. Since we only displayed blog messages but made no
 changes, the persistence manager will not change anything at this time.
 
 We have now finally reached the end of our trip. The dispatcher returns

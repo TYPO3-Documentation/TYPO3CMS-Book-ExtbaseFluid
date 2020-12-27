@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   BlogController; newAction()
+   BlogController; createAction()
 
 ======================================
 Alternative route: creating a new post
@@ -26,6 +29,8 @@ front end, that looks - a bit purged - like this:
 
 This was created with the following Fluid code in the template
 *EXT:blog_example/Resources/Private/Templates/Post/Index.html*:
+
+.. index:: Fluid; f:link.action
 
 ::
 
@@ -78,6 +83,10 @@ object as parameter. It should be weird at first because we have no blog and no
 post object that has to be created with the form. Actually the parameter
 ``$newPost`` is empty (``null``) at the first call.
 
+.. index::
+   Blog Example; PostController
+   Extbase; PropertyManager
+
 Our ``PostController``, which is derived from ``ActionController``, prepares all
 parameters before an action is called. The controller delegates this to an
 instance of the class :php:`PropertyManager`, that has mainly two functions: it
@@ -91,6 +100,8 @@ How does Extbase know what the target of the conversion is? It takes this
 information from the type hint of the argument. If there is nothing declared
 it takes the destination type from the PHP doc above the method, from
 the line:
+
+.. index:: Action; Parameters
 
 ::
 
@@ -146,6 +157,8 @@ Here you will see the shortened template *new.html*:
       </dl>
    </f:form>
 
+.. index:: Fluid; f:form
+
 Fluid offers some comfortable tags for creating forms which names are all starting
 with ``form``. The whole form is enclosed in ``<f:form></f:form>``. Like creating
 a link, the controller action combination, which should be called when clicking the
@@ -162,6 +175,8 @@ the variable ``newPost`` in the controller. The specific form fields have a prop
 ``property="..."```. With this, a form field can be filled with the content of the
 given object's property. Because ``{newPost}`` is empty (= ``null``) here, the
 form fields are empty at first.
+
+.. index:: Fluid; f:form.select
 
 The ``select`` tag is created by the Fluid tag ``<f:form.select>``.
 The available options are taken by Fluid from the content
@@ -240,6 +255,10 @@ following processing is forwarded by ``$this->redirect([...])`` to the method
 argument. So that the new post is available in the blog when next called, it
 must be persisted. This is done automatically after the flow through the extension
 in the dispatcher of Extbase.
+
+..index::
+   Action; redirect
+   Extbase; ForwardResponse
 
 .. note::
 
