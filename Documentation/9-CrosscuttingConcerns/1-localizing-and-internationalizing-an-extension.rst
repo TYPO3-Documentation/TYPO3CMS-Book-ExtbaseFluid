@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Localization
 
 ==============================================
 Localizing and internationalizing an extension
@@ -30,6 +31,9 @@ the content of extensions, thus the domain objects. Finally, we explain how
 you can adjust the date formats following the date conventions in
 a particular country.
 
+.. index::
+   Templates; Multi-language
+   Localization: Templates
 
 Multi-language templates
 ========================
@@ -75,6 +79,9 @@ author_prefix   By:           Von:
 comment_header  Comments      Kommentare
 ==============  ===========   =============
 
+.. index::
+   Localization; Language files
+   Files; Resources/Private/Language/locallang.xlf
 
 In TYPO3 (and in Extbase), the language file in which the
 translated terms are stored is named :file:`locallang.xlf`.
@@ -105,8 +112,11 @@ way:
 .. tip::
 
     The TYPO3 Core API describes in detail the construction of the
-    :file:`locallang.xlf` file
-    (*https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Internationalization/XliffFormat.html*).
+    :file:`locallang.xlf` file: :ref:`t3coreapi:xliff`.
+
+.. index::
+   pair: Fluid; Localization
+   Fluid; f:translate
 
 Now the placeholder for the translated terms must be inserted into
 the template. To do this, Fluid offers the ViewHelper
@@ -163,6 +173,10 @@ English terms:
       <hr>
    </f:for>
 
+.. index::
+   Localization; PHP
+   \TYPO3\CMS\Extbase; Utility\LocalizationUtility
+   LocalizationUtility; translate($key, $extensionName)
 
 .. tip::
 
@@ -174,6 +188,10 @@ English terms:
     parameter. Then the corresponding text in the current language will be loaded from this extension's
     :file:`locallang.xlf` file .
 
+
+.. index::
+   Localization; sprintf
+   Localization; Arguments
 
 Output localized strings using ``sprintf``
 ==========================================
@@ -229,6 +247,8 @@ output:
     *http://php.net/manual/de/function.sprintf.php*.
 
 
+.. index:: Localization; TypoScript
+
 Changing localized terms using TypoScript
 =========================================
 
@@ -255,6 +275,8 @@ Of course, an extension's data must be
 translated according to the national language. We will show this in the
 next section.
 
+
+.. index:: Localization; Domain objects
 
 Multi-language domain objects
 =============================
@@ -450,6 +472,7 @@ exclusively in a target language. Especially when no data record exists in
 the default language.
 
 
+.. index:: Localization; Date output
 
 Localization of date output
 ===========================
@@ -517,6 +540,9 @@ Finally, the customization of date information for country-specific formats
 where explained. In the next section, you will see how constraints of the
 domain objects can be preserved.
 
+
+
+.. index:: Localization; consistentTranslationOverlayHandling
 
 TYPO3 v9 and higher
 ===================

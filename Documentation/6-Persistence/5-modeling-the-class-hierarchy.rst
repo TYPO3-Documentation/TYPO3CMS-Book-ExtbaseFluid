@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Class Hierarchy
 .. _modeling-the-class-hierarchy:
 
 ============================

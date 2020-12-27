@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Security
 .. _programming-secure-extensions:
 
 =============================
@@ -48,6 +49,7 @@ Next, we cover Cross-Site Scripting and illustrate how to secure your
 extensions.
 
 
+.. index:: Security; Database Querries
 .. _create-own-database-queries:
 
 Create own database queries
@@ -65,6 +67,7 @@ data to the desired format, for example, to a number with the use of
 ``intval()``.
 
 
+.. index:: Security; Trusted properties
 .. _trusted-properties:
 
 Trusted properties
@@ -145,7 +148,9 @@ this background knowledge only if you want to change data via JavaScript
 or web services.
 
 
-
+.. index::
+   Security; Cross-site scripting
+   Security; XSS
 .. _prevent-cross-site-scripting:
 
 Prevent cross-site scripting

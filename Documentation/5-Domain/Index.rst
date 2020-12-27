@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Domain; Modelling
 .. _modeling-the-domain:
 
 ===================

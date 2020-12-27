@@ -1,8 +1,12 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Coding guidelines
+   CGL
+   Convention over Configuration
 .. _extbase-cgl:
 
 =================
-Coding Guidelines
+Coding guidelines
 =================
 
 Extbase and Fluid follow the principle of **Convention over Configuration**.
@@ -22,6 +26,9 @@ Generally, classes are written in ``UpperCamelCase``, and methods and variables 
 written in ``lowerCamelCase``. Besides, the name must be detailed and meaningful.
 Abbreviations are to be avoided.
 
+.. index::
+   Coding guidelines; Folder structure
+   Extensions; Folder structure
 
 Folder structure
 ================
@@ -83,10 +90,6 @@ Every extension based on Extbase contains certain folders in the main directory:
    Contains the configuration for the extension manager of TYPO3 like metadata
    as the name, the description, and the author of the extension.
 
-:file:`ext_icon.gif`
-   The icon of the extension, which will be visible in the Extension Manager.
-   It should have a size of 18 x 16 px.
-
 :file:`ext_localconf.php`
    This file contains the configuration of the Frontend Plugins.
 
@@ -96,6 +99,8 @@ Every extension based on Extbase contains certain folders in the main directory:
 :file:`ext_tables.sql`
    This is a file with SQL commands for the definition of the database tables.
 
+
+.. index:: Coding guidelines; File and class names
 
 File and class names
 ====================

@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   ViewHelpers; Custom
+   Fluid; Custom ViewHelpers
 .. _developing-a-custom-viewhelper:
 
 ==============================

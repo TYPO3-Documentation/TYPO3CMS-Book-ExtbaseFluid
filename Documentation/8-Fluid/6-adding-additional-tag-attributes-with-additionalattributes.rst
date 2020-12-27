@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Fluid; additionalAttributes
 
 ==========================================================
 Adding additional tag attributes with additionalAttributes
