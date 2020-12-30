@@ -20,40 +20,30 @@ In our simple example, the controller looks like this:
 
 .. code-block:: php
 
-    <?php
+   <?php
 
-    namespace T3docs\StoreInventory\Controller;
+   namespace T3docs\StoreInventory\Controller;
 
-    use T3docs\StoreInventory\Domain\Repository\ProductRepository;
-    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-    use Psr\Http\Message\ResponseInterface;
+   use T3docs\StoreInventory\Domain\Repository\ProductRepository;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use Psr\Http\Message\ResponseInterface;
 
-    class StoreInventoryController extends ActionController
-    {
-        private $productRepository;
+   class StoreInventoryController extends ActionController
+   {
+      private $productRepository;
 
-        /**
-         * Inject the product repository
-         *
-         * @param \T3docs\StoreInventory\Domain\Repository\ProductRepository $productRepository
-         */
-        public function injectProductRepository(ProductRepository $productRepository)
-        {
-            $this->productRepository = $productRepository;
-        }
+      public function injectProductRepository(ProductRepository $productRepository)
+      {
+         $this->productRepository = $productRepository;
+      }
 
-        /**
-        * List Action
-        *
-        * @return ResponseInterface
-        */
-        public function listAction(): ResponseInterface
-        {
-            $products = $this->productRepository->findAll();
-            $this->view->assign('products', $products);
-            return $this->htmlResponse();
-        }
-    }
+      public function listAction(): ResponseInterface
+      {
+         $products = $this->productRepository->findAll();
+         $this->view->assign('products', $products);
+         return $this->htmlResponse();
+      }
+   }
 
 .. versionchanged:: 11.0
    From version 11 on Extbase expects actions to return an instance
