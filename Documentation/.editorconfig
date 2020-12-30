@@ -22,9 +22,9 @@ indent_size = 4
 [*.conf]
 indent_size = 2
 
-[*.rst]
-indent_style = space
+[{*.rst,*.rst.txt}]
 indent_size = 3
+max_line_length = 80
 
 [*.sql]
 indent_style = tab
