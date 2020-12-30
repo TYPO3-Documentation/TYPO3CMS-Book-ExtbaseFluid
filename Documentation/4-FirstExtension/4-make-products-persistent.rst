@@ -6,7 +6,7 @@
 Make products persistent
 ========================
 
-The model :php:`\MyVendor\StoreInventory\Domain\Model\Product` allows us
+The model :php:`\T3docs\StoreInventory\Domain\Model\Product` allows us
 to use "Products" in our application. However, we do not have any way to store them yet,
 meaning they are stored in memory and are deleted by PHP after the page request was completed.
 To make our products available across requests, we must "persist" it.
@@ -129,12 +129,12 @@ After installing the extension, we can create our first products in the backend.
 As shown in image 4-2, we create a sys folder to store the products (see 1 in figure 4-2).
 Let's create some items: (see 2 in figure 4-2 and 3 in 4-3).
 
-.. figure:: /Images/4-FirstExtension/figure-4-2.png
+.. figure:: Images/ProductStorage.png
    :align: center
 
    Figure 4-2: Create a new product
 
-.. figure:: /Images/4-FirstExtension/figure-4-3.png
+.. figure:: Images/RecordType.png
    :align: center
 
    Figure 4-3: The new record wizard.
@@ -146,7 +146,7 @@ but restricted the model to those we need to build our application
 
 After creating the items in the backend, we now want to display them in the frontend.
 To get data from the database with Extbase, we need a repository.
-Create a class :php:`MyVendor\StoreInventory\Domain\Repository\ProductRepository` (see below).
+Create a class :php:`T3docs\StoreInventory\Domain\Repository\ProductRepository` (see below).
 The repository is our connection to the database and retrieves products.
 As we do not need any special functionality, the Repository class is very short in our case:
 
@@ -154,7 +154,7 @@ As we do not need any special functionality, the Repository class is very short 
 
    <?php
 
-   namespace MyVendor\StoreInventory\Domain\Repository;
+   namespace T3docs\StoreInventory\Domain\Repository;
 
    use TYPO3\CMS\Extbase\Persistence\Repository;
 

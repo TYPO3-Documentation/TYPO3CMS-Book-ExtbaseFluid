@@ -9,7 +9,7 @@ In Extbase frontend templates are stored in a subdirectory:
 - if not configured otherwise.
 The name of the subdirectory in the :file:`Templates/` folder is derived
 from the corresponding controller name (without the `Controller` suffix).
-The class name :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`
+The class name :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`
 will result in the directory name :file:`StoreInventory/`.
 
 In the directory :file:`StoreInventory/` we can now create the template file for our list view.

@@ -40,7 +40,7 @@ Resulting from all this, the folder structure within the extension folder
 :file:`store_inventory` should look as in image 4-1.
 
 
-.. figure:: /Images/4-FirstExtension/figure-4-1.png
+.. figure:: Images/ExtensionFileTree.png
    :align: center
 
    Figure 4-1: The default directory structure with the important files for the extension manager
@@ -62,51 +62,63 @@ of the *Core Api Reference* manual.
 
    $EM_CONF[$_EXTKEY] = [
        'title' => 'Store Inventory',
-       'description' => 'An extension to manage a stock.',
+       'description' => 'This TYPO3 extension is an example in the Extbase Fluid Book. See external documentation',
        'category' => 'plugin',
-       'author' => 'John Doe',
-       'author_company' => 'John Doe Inc.',
-       'author_email' => 'john.doe@example.com',
+       'author' => 'TYPO3 Documentation Team',
+       'author_company' => 'TYPO3',
+       'author_email' => 'documentation@typo3.org',
        'state' => 'alpha',
        'clearCacheOnLoad' => true,
-       'version' => '0.0.0',
+       'version' => '11.0.0',
        'constraints' => [
            'depends' => [
-               'typo3' => '9.5.0-9.5.99',
-           ],
+               'typo3' => '11.0.0-11.99.99',
+           ]
+       ],
+       'autoload' => [
+           'psr-4' => [
+               'T3docs\\StoreInventory\\' => 'Classes'
+           ]
        ],
    ];
 
-In previous versions of TYPO3, the extension icon was named :file:`ext_icon.gif`.
-Starting with TYPO3 8, you can choose between PNG or SVG format.
-It is recommended to call the file :file:`Extension.png` or
-:file:`Extension.svg` and store it in the directory :file:`Resources/Public/Icons/`.
-The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
+The file :file:`Resources/Public/Icons/Extension.svg` or :file:`Extension.png` will be used as
+extension icon. The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
 
 Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 
 .. code-block:: php
 
-    {
-        "name": "myvendor/store-inventory",
-        "authors": [
-            {
-               "name": "TYPO3 Core Team",
-               "role": "Developer"
-            }
-        ],
-        "type": "typo3-cms-extension",
-        "description": "A Store Inventory Example for Programming with Extbase.",
-        "license": "GPL-2.0-or-later",
-        "autoload": {
-            "psr-4": {
-               "MyVendor\\StoreInventory\\": "Classes/"
-            }
-        },
-        "require": {
-            "typo3/cms-core": ">=9.5 <10.0.0"
-        }
-    }
+   {
+      "name": "t3docs/store-inventory",
+      "type": "typo3-cms-extension",
+      "description": "This TYPO3 extension is an example in the Extbase Fluid Book. See external documentation",
+      "license": [
+         "GPL-2.0+"
+      ],
+      "authors": [
+         {
+            "name": "TYPO3 Documentation Team",
+            "role": "Developer"
+         }
+      ],
+      "autoload": {
+         "psr-4": {
+            "T3docs\\StoreInventory\\": "Classes/"
+         }
+      },
+      "require": {
+         "typo3/cms-core": "^11.0.0"
+      },
+      "replace": {
+         "typo3-ter/store_inventory": "self.version"
+      },
+      "extra": {
+         "typo3/cms": {
+            "extension-key": "store_inventory"
+         }
+      }
+   }
 
 The :file:`composer.json` allows loading the extension with the PHP package manager composer.
 
