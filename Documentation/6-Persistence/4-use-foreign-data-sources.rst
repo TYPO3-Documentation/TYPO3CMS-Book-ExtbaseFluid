@@ -1,16 +1,17 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. _using-foreign-data-sources:
 
+==========================
 Using Foreign Data Sources
 ==========================
 
-In real projects many times data from different sources has to be ordered. One target of Extbase is
-to normalize the access to this data sources and to abstract it from the concrete technical solution.
+In real projects, many times, data from different sources have to be ordered. One target of Extbase is
+to normalize the access to these data sources and to abstract it from the concrete technical solution.
 These "foreign" data sources could be tables from the same TYPO3 database or a web service.
 
 Extbase building-up strongly of the rule "Convention over Configuration" (see also the appendix A for this).
-Foreign database tables rarely correspond with the conventions of Extbase. Therefore the assignment
-of the class to a given table as well as the assignment of field names to property names of the classes
+Foreign database tables rarely correspond with the conventions of Extbase. Therefore, the class assignment
+to a given table and the assignment of field names to property names of the classes
 must be configured via PHP. This assignment is also called *mapping*. The following configuration
 enables the storage of the object data of a class :php:`\MyVendor\MyExtension\Domain\Model\Person` in the table
 `tt_address`, which is available in most TYPO3 installations.
@@ -42,13 +43,13 @@ defines a set of class properties that should be mapped onto fields that don't c
 
 .. note::
 
-    Regard in each case that the field type fits the data type of your property. Additional information
-    you will find in "Preparing the tables of the Domain Objects" above in this chapter.
+    Regard in each case that the field type fits the data type of your property. You will find
+    additional information in "Preparing the tables of the domain objects" above in this chapter.
 
 This configuration causes Extbase to use the table ``tt_address`` when reconstructing or persisting of
 objects of the class :php:`\MyVendor\MyExtension\Domain\Model\Person`. Thereby the values of the properties
 ``dateOfBirth`` and ``thoroughfare`` are stored in the fields ``birthday`` and ``street``. If the
 configuration option ``tableName`` is not set, Extbase searches for a table that corresponds to the lower
-case class name, in our case: ``tx_myextension_domain_model_person``. If for a property
-there is no mapping defined, the property name, translated in lower case with underscores,
-is expected as field name. The property name `dateOfBirth` would result in a field name `date_of_birth`.
+case class name, in our case: ``tx_myextension_domain_model_person``. If
+there is no mapping defined for a property, the property name, translated in lower case with underscores,
+is expected as the field name. The property name `dateOfBirth` would result in a field name `date_of_birth`.

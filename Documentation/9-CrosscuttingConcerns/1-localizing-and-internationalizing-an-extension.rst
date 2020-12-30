@@ -1,41 +1,42 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
+==============================================
 Localizing and internationalizing an extension
 ==============================================
 
-Particularly in business relationships there is often the need to
-build a website in more than one language. Therefore not only does the
-translation of the websites content need to be completed, but also the extensions
-which are used must also be available in multiple languages.
+Particularly in business relationships, there is often the need to
+build a website in more than one language. Therefore, the
+translation of the website content needs to be completed, but the extensions
+used must also be available in multiple languages.
 
 The configuration options for localization inside TYPO3 are versatile.
 You will find a comprehensive description of all concepts and options in the
 *Frontend Localization Guide
 (https://docs.typo3.org/typo3cms/FrontendLocalizationGuide/)*.
-For the following sections we assume a correct configuration of the
+For the following sections, we assume a correct configuration of the
 localization, which is normally done in the site configuration.
 
-The selection of the frontend language is carried out with a parameter
-in the URL (``linkVars = L``). Important is the definition of the
+The frontend language selection is carried out with a URL parameter
+(``linkVars = L``). Important is the definition of the
 UID of the language (``sys_language_uid = 0``) and the language key
 of the language (``language = default``). When the URL of the
-website contains the parameter ``L=1`` the output occurs in german,
-if the parameter is not set the output of the website occurs in the default
-language (in our example in english).
+website contains the parameter ``L=1``, the output occurs in German;
+if the parameter is not set, the output of the website occurs in the default
+language (in our example in English).
 
 In the next section, we start with the translation of static text like
-captions of links which appear in templates. After this we go to translate
-the content of extensions, thus the domain objects. Finally we explain how
-you can adjust the date formats in accordance with the date conventions in
-the particular country.
+captions of links in templates. After this, we go to translate
+the content of extensions, thus the domain objects. Finally, we explain how
+you can adjust the date formats following the date conventions in
+a particular country.
 
 
-Multi language Templates
-------------------------
+Multi-language templates
+========================
 
 When you style the output of your extension using Fluid, you often
 have to localize particular terms or maybe short text in the templates. In
-the following sample template of the blog example which displays a single
+the following sample template of the blog example displays a single
 blog post with its comments there are some constant terms:
 
 .. code-block:: html
@@ -55,15 +56,15 @@ blog post with its comments there are some constant terms:
     The template is a little bit simplified and reduced to the
     basic.
 
-First of all the text "By:" in front of the author of the post is
-hard coded in the template, as well as the caption "Comments". For the use
-of the extension on an English website this is no problem but if you want
+First of all, the text "By:" in front of the author of the post is
+hardcoded in the template and the caption "Comments". For the use
+of the extension on an English website, this is no problem, but if you want
 to use it on a German website, the texts "By" and "Comments" would be
 displayed instead of "Von" and "Kommentare". To make such text
-exchangeable it has to be removed from the template and inserted in a
+exchangeable, it has to be removed from the template and inserted in a
 language file. Every text which is to be translated is given an identifier
 that can be inserted in the template later. Table 9-1 shows the identifier
-used in the sample and their translations into german and english.
+used in the sample and their translations into German and English.
 
 *Table 9-1: The texts how we want to translate them*
 
@@ -75,8 +76,8 @@ comment_header  Comments      Kommentare
 ==============  ===========   =============
 
 
-In TYPO3 (and also in Extbase) the language file, in which the
-translated terms are stored, is named :file:`locallang.xlf`.
+In TYPO3 (and in Extbase), the language file in which the
+translated terms are stored is named :file:`locallang.xlf`.
 It should contain all terms that have to be translated, in our example
 "By:" and "Comments", and their translations. Using Extbase the the file
 :file:`locallang.xlf` must reside in the folder
@@ -109,9 +110,9 @@ way:
 
 Now the placeholder for the translated terms must be inserted into
 the template. To do this, Fluid offers the ViewHelper
-``f:translate``. In this ViewHelper you give the identifier of
+``f:translate``. In this ViewHelper, you give the identifier of
 the term to be inserted as argument ``key`` and the ViewHelper
-inserts either the german or the english translation according to the
+inserts either the German or the English translation according to the
 current language selection ::
 
     <f:translate key="comment_header" />
@@ -121,11 +122,11 @@ current language selection ::
 .. tip::
 
     The used language is defined in the TypoScript template of the
-    website. By default the english texts are used; but when with setting of
-    the TypoScript setting ``config.language = de`` you can set the
-    used language to german for example.
+    website. By default, the English texts are used; but when with
+    the TypoScript setting, ``config.language = de`` you can set the
+    used language to german, for example.
 
-    To implement a language selection normally TypoScript conditions
+    To implement a language selection, normally, TypoScript conditions
     are used. These are comparable with an ``if/else``
     block
 
@@ -138,10 +139,10 @@ current language selection ::
         [end]
 
     When the URL of the website contains a parameter L=1, then the
-    output is in German; if the parameter is not set the output is in the
+    output is in German; if the parameter is not set, the output is in the
     default language English.
 
-    With the use of complex TypoScript conditions the language
+    With the use of complex TypoScript conditions, the language
     selection could be set to depend on the forwarded language of the
     browser.
 
@@ -149,7 +150,7 @@ By replacing all terms of the template with the
 ``translate`` ViewHelper we could fit the output of the extension
 to the currently selected language. Here we have a look at the Fluid
 template for the output of the blog posts, now without the hardcoded
-english terms:
+English terms:
 
 .. code-block:: html
 
@@ -169,24 +170,24 @@ english terms:
     example inside of a controller or a ViewHelper. In that case you
     can use the static method
     `\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($key, $extensionName)`.
-    This method requires the localization key as the first and the name of the extension as the second
+    This method requires the localization key as the first and the extension's name as the second
     parameter. Then the corresponding text in the current language will be loaded from this extension's
     :file:`locallang.xlf` file .
 
 
 Output localized strings using ``sprintf``
-------------------------------------------
+==========================================
 
-In the above example we have outputted the name of the blog post
-author simply by using ``{blog.author.fullName}``. Many
+In the above example, we have outputted the blog post
+author's name simply by using ``{blog.author.fullName}``. Many
 languages have special rules on how names are to be used - especially in
-Thailand it is common to only show the first name and place the word
+Thailand, it is common to only show the first name and place the word
 "Khan" in front of it (which is a polite form). We want to enhance our
-template now as far as it can to output the name of the blog author
-according to the current language. In German and English this is the
+template now as far as it can to output the blog author's name
+according to the current language. In German and English, this is the
 form "first name last name" and in Thai "Khan first name".
 
-Also for this use cases the ``translate`` ViewHelper can
+Also, for these use cases, the ``translate`` ViewHelper can
 be used. With the aid of the array ``arguments,`` values can be
 embedded into the translated string. To do this, the syntax of the PHP
 function ``sprintf`` is used.
@@ -198,8 +199,8 @@ first name and the last name of the blog author separate to the
 ``<f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />``
 
 How should the corresponding string in the
-:file:`locallang.xml` file looks like? It describes on
-which position the placeholder are to be inserted. For English and
+:file:`locallang.xml` file looks like? It describes in
+which position the placeholder is to be inserted. For English and
 German it looks like this:
 
 ``<label index="name">%1$s %2$s</label>``
@@ -208,18 +209,18 @@ Important are the placeholder strings ``%1$s`` and
 ``%2$s``. These will be replaced with the assigned parameters.
 Every placeholder starts with the % sign, followed by the position
 number inside the arguments array, starting with 1, followed by the $
-sign. After that the usual formatting specifications follows - in the
-example it is the data type ``string (s)``. Now we can define
-for Thai, that "Khan" followed by the first name should be
+sign. After that, the usual formatting specifications follow - in the
+example, it is the data type ``string (s)``. Now we can define
+for Thai that "Khan" followed by the first name should be
 output:
 
 ``<label index="name">Khan %1$s</label>``
 
 .. tip::
 
-    The keys in the arguments array of the ViewHelper have no
+    The keys in the argument array of the ViewHelper have no
     relevance. We recommend to give them numbers like the positions
-    (starting with 1), because it is easy understandable.
+    (starting with 1), because it is easily understandable.
 
 .. tip::
 
@@ -227,42 +228,42 @@ output:
     ``sprintf`` you should have a look at the PHP documentation:
     *http://php.net/manual/de/function.sprintf.php*.
 
+
 Changing localized terms using TypoScript
---------------------------------------------------------------------------------------------------
+=========================================
+
 If you use an existing extension for a customer project, you
 sometimes find out that the extension is insufficient translated or that
 the translations have to be adjusted. TYPO3 offers the possibility to
-overwrite the localization of a term by TypoScript. Fluid also support
+overwrite the localization of a term by TypoScript. Fluid also supports
 this.
 
-If, for example, you want use the text "Remarks" instead of the
+If, for example, you want to use the text "Remarks" instead of the
 text "Comments", you have to overwrite the identifier
-``comment_header`` for the English language. For this you can
-add following line to your TypoScript template:
+``comment_header`` for the English language. For this, you can
+add the following line to your TypoScript template:
 
 ``plugin.tx_blogexample._LOCAL_LANG.default.comment_header = Remarks``
 
-With this you will overwrite the localization of the term
+With this, you will overwrite the localization of the term
 ``comment_header`` for the default language in the blog
 example. So you can adjust the translation of the texts like you wish,
 without changing the :file:`locallang.xml` file.
 
-Until now we have shown how to translate static text of templates.
-Of course it is important that also the data of an extension is
+Until now, we have shown how to translate a static text of templates.
+Of course, an extension's data must be
 translated according to the national language. We will show this in the
 next section.
 
 
+Multi-language domain objects
+=============================
 
-
-Multi language domain objects
------------------------------
-
-With TYPO3 you can localize the data sets in the backend. This also
-applies to domain data, because they are treated like "normal" data sets
-in the TYPO3 backend. To make your domain objects translatable you have
+With TYPO3, you can localize the data sets in the backend. This also
+applies to domain data because they are treated as "normal" data sets
+in the TYPO3 backend. To make your domain objects translatable, you have
 to create additional fields in the database and tell TYPO3 about them. The
-class definitions must not be changed. Lets have a look at the required
+class definitions must not be changed. Let's look at the required
 steps based on the ``blog`` class of the blog example. TYPO3
 needs three additional database fields which you should insert in the
 :file:`ext_tables.sql` file::
@@ -276,7 +277,7 @@ needs three additional database fields which you should insert in the
     };
 
 You are free to choose the names of the database fields, but the
-names we use here are common in the world of TYPO3. In any case you have
+names we use here are common in the world of TYPO3. In any case, you have
 to tell TYPO3 which name you have chosen. This is done in the ``ctrl``
 section of the TCA configuration file
 :file:`Configuration/TCA/tx_blogexample_domain_model_blog.php`
@@ -301,8 +302,8 @@ Extbase choose the right translation depending on the current
 TypoScript setting in ``config.sys_language_uid``. In the field
 ``l10n_parent`` the UID of the original blog created in the
 default language, which the current blog is a translation of. The third
-field ``l10n_diffsource`` contains a snapshot of the source of
-the translation. This snapshot is used in the backend for creation of a
+field, ``l10n_diffsource`` contains a snapshot of the source of
+the translation. This snapshot is used in the backend for the creation of a
 differential view and is not used by Extbase.
 
 In the section ``columns`` of the ``TCA`` you have
@@ -362,14 +363,14 @@ translation relates to.
 With it, the localization of the domain object is already
 configured. By adding ``&amp;L=1`` to the URL, the language of
 the frontend will be changed to german. If there is an existing
-translation of a blog, it will be shown. Otherwise the blog is output in
+translation of a blog, it will be shown. Otherwise, the blog is output in
 the default language.
 
 .. tip::
 
     You can control this behavior. If you set the option
     ``config.sys_language_mode`` to ``strict`` in the
-    TypoScript configuration, then only these objects are shown which really
+    TypoScript configuration, then only these objects are shown, which really
     have content in the frontend language. More information for this you
     will find in the *Frontend Localization Guide* of the
     *Core Documentation*.
@@ -382,10 +383,10 @@ language. The second special feature is that always the UID of the record
 in the default language is bound for identification although the
 translated data record in the database table has another UID. This
 conception has a serious disadvantage: If you want to create a data record
-for a language that has no data record in the default language, you have
+for a language with no data record in the default language, you have
 to create the latter before. But with what content?
 
-Lets have an example for illustration: You create a blog in the
+Let's have an example for illustration: You create a blog in the
 default language English (=default). It is stored in the database like
 this::
 
@@ -394,7 +395,7 @@ this::
     sys_language_uid: 0 (selected in backend)
     l10n_parent:      0 (no translation original exists)
 
-After a while you create a German translation in the backend. In the
+After a while, you create a German translation in the backend. In the
 database the following record is stored::
 
     uid:              42 (given by the database)
@@ -420,7 +421,7 @@ administration effort during persistence. Extbase will do this for you by
 carrying the UID of the language of the domain model and the UID of the
 data record in which the domain data is effectively stored as "hidden"
 properties of the :php:`AbstractDomainObject` internally.
-In Table 9-2 you find for different actions in the frontend the behavior
+In Table 9-2, you find for different actions in the frontend the behavior
 of Extbase for localized domain objects.
 
 *Table 9-2: Behavior of Extbase for localized domain
@@ -451,13 +452,13 @@ the default language.
 
 
 Localization of date output
----------------------------
+===========================
 
 It often occurs that a date or time must be displayed in a template.
 Every language area has its own convention on how the date is to be
-displayed: While in Germany the date is displayed in the form
+displayed: While in Germany, the date is displayed in the form
 ``Day.Month.Year``, in the USA the form
-``Month/Day/Year`` is used. Depending on the language the date
+``Month/Day/Year`` is used. Depending on the language, the date
 must be formatted different.
 
 Generally the date or time is formatted by the
@@ -469,8 +470,8 @@ Generally the date or time is formatted by the
 
 The date object ``{dateObject}`` is displayed with the date
 format given in the parameter ``format``. This format string must
-be in a format which is readable by the PHP function ``date()``
-and declares the format of the output. Table 9-3 shows the some important
+be in a format that is readable by the PHP function ``date()``
+and declares the format of the output. Table 9-3 shows some important
 placeholders.
 
 *Table 9-3: Some place holder of date.*
@@ -486,20 +487,20 @@ H                Hour in 24 hour format                                      00 
 i                Minutes, with leading zero                                  00 ... 59
 ================ =========================================================== =========
 
-But the ViewHelper has to be configured different. Depending on the
-language area, which is controlled by the language of the user, an other
+But the ViewHelper has to be configured differently. Depending on the
+language area, which is controlled by the language of the user, another
 format string should be used. Here we combine the ``format.date``
 ViewHelper with the ``translate`` ViewHelper which you got to
-know in the section "Multilanguage templates"
+know in the section "Multi-language templates".
 
 ::
 
     <f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
 
-Than you can store an other format string for every language in the
-:file:`locallang.xml` file and you can change the format
-string via TypoScript if needed. This method to translate content you got
-to know in the section "Multilanguage templates".
+Then you can store another format string for every language in the
+:file:`locallang.xml` file, and you can change the format
+string via TypoScript if needed. This method to translate the content you got
+to know in the section "Multi-language templates".
 
 .. tip::
 
@@ -509,29 +510,29 @@ to know in the section "Multilanguage templates".
     Appendix C. These ViewHelpers can be used like the
     ``f:format.date`` ViewHelper you have just learned.
 
-In this section you have learned how you can translate and localize
-an extension. First we have worked on the localization of single terms in
-the template, after this we had a look at the content of the extension.
-Finally the customization of date information for country-specific formats
-where explained. In the next section you will see how constraints of the
+In this section, you have learned how you can translate and localize
+an extension. First, we have worked on the localization of single terms in
+the template. After this, we had a look at the content of the extension.
+Finally, the customization of date information for country-specific formats
+where explained. In the next section, you will see how constraints of the
 domain objects can be preserved.
 
 
 TYPO3 v9 and higher
 ===================
 
-Starting with version 9 extbase renders the translated records in the same way TypoScript rendering does.
-The new behaviour is controlled by the Extbase feature switch :typoscript:`consistentTranslationOverlayHandling`.
+Starting with version 9, Extbase renders the translated records in the same way TypoScript rendering does.
+The new behavior is controlled by the Extbase feature switch :typoscript:`consistentTranslationOverlayHandling`.
 
 .. code-block:: typoscript
 
      config.tx_extbase.features.consistentTranslationOverlayHandling = 1
 
-The new behaviour is enabled by default in TYPO3 v9. The feature switch will be removed in TYPO3 v10, so there will be just
+The new behavior is enabled by default in TYPO3 v9. The feature switch will be removed in TYPO3 v10, so there will be just
 one way of fetching records.
 You can override the setting using normal TypoScript.
 
-Users relying on the old behaviour can disable the feature switch.
+Users relying on the old behavior can disable the feature switch.
 
 The change modifies how Extbase interprets the TypoScript settings
 :ts:`config.sys_language_mode` and :ts:`config.sys_language_overlay` and the
@@ -541,19 +542,19 @@ Changes in the rendering:
 
 1) Setting :php:`Typo3QuerySettings->languageMode` does **not** influence how Extbase queries records anymore.
    The corresponding TypoScript setting :ts:`config.sys_language_mode` is used by the core
-   to decide what to do when a page is not translated to the given language (display 404, or try page with different language).
+   to decide what to do when a page is not translated to the given language (display 404 or try page with a different language).
    Users who used to set :php:`Typo3QuerySettings->languageMode` to `strict` should use
    :php:`Typo3QuerySettings->setLanguageOverlayMode('hideNonTranslated')` to get translated records only.
 
-   The old behavior was confusing, because `languageMode` had a different meaning and accepted different
-   values in TS context and in Extbase context.
+   The old behavior was confusing because `languageMode` had a different meaning and accepted different
+   values in the TypoScript context and the Extbase context.
 
 2) Setting :php:`Typo3QuerySettings->languageOverlayMode` to :php:`true` makes Extbase fetch records
-   from default language and overlay them with translated values. So e.g. when a record is hidden in
-   the default language, it will not be shown. Also records without translation parents will not be shown.
+   from default language and overlay them with translated values. So, e.g., when a record is hidden in
+   the default language, it will not be shown. Also, records without translation parents will not be shown.
    For relations, Extbase reads relations from a translated record (so it’s not possible to inherit
    a field value from translation source) and then passes the related records through :php:`$pageRepository->getRecordOverlay()`.
-   So e.g. when you have a translated `tt_content` with FAL relation, Extbase will show only those
+   So, e.g., when you have a translated `tt_content` with FAL relation, Extbase will show only those
    `sys_file_reference` records which are connected to the translated record (not caring whether some of
    these files have `l10n_parent` set).
 
@@ -564,7 +565,7 @@ Changes in the rendering:
    root records from a given language only. Extbase will follow relations (child records) as they are,
    without checking their `sys_language_uid` fields, and then it will pass these records through
    :php:`$pageRepository->getRecordOverlay()`.
-   This way the aggregate root record's sorting and visibility doesn't depend on default language records.
+   This way, the aggregate root record's sorting and visibility don't depend on default language records.
    Moreover, the relations of a record, which are often stored using default language uids,
    are translated in the final result set (so overlay happens).
 
@@ -573,7 +574,7 @@ Changes in the rendering:
    tt_content record is connected to category uid in default language), and one of the categories is translated.
    Extbase will return a `tt_content` model with both categories.
    If you want to have just translated category shown, remove the relation in the translated `tt_content`
-   record in the TYPO3 Backend.
+   record in the TYPO3 backend.
 
 Note that by default :php:`Typo3QuerySettings` uses the global TypoScript configuration like
 :ts:`config.sys_language_overlay` and :php:`$GLOBALS['TSFE']->sys_language_content`
@@ -623,7 +624,7 @@ The following examples show how to query data in Extbase in different scenarios,
 
 
 +------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| QuerySettings property | old behaviour                                                                                   | new behaviour                                | default value (TSFE|Extbase) |
+| QuerySettings property | old behavior                                                                                    | new behavior                                 | default value (TSFE|Extbase) |
 +========================+=================================================================================================+==============================================+==============================+
 | languageUid            |                                                                                                 | same                                         | 0                            |
 +------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
@@ -640,12 +641,12 @@ The following examples show how to query data in Extbase in different scenarios,
 
 
 Identifiers
------------
+===========
 
 Domain models have a main identifier `uid` and two additional properties `_localizedUid` and `_versionedUid`.
 Depending on whether the `languageOverlayMode` mode is enabled (`true` or `'hideNonTranslated'`) or disabled (`false`),
 the identifier contains different values.
-When `languageOverlayMode` is enabled then `uid` property contains `uid` value of the default language record,
+When `languageOverlayMode` is enabled, then the `uid` property contains the `uid` value of the default language record,
 the `uid` of the translated record is kept in the `_localizedUid`.
 
 +----------------------------------------------------------+-------------------------+---------------------------+
@@ -653,9 +654,9 @@ the `uid` of the translated record is kept in the `_localizedUid`.
 +==========================================================+=========================+===========================+
 | Database                                                 | uid:2                   | uid:11, l10n_parent:2     |
 +----------------------------------------------------------+-------------------------+---------------------------+
-| Domain Object values with `languageOverlayMode` enabled  | uid:2, _localizedUid:2  | uid:2, _localizedUid:11   |
+| Domain object values with `languageOverlayMode` enabled  | uid:2, _localizedUid:2  | uid:2, _localizedUid:11   |
 +----------------------------------------------------------+-------------------------+---------------------------+
-| Domain Object values with `languageOverlayMode` disabled | uid:2, _localizedUid:2  | uid:11, _localizedUid:11  |
+| Domain object values with `languageOverlayMode` disabled | uid:2, _localizedUid:2  | uid:11, _localizedUid:11  |
 +----------------------------------------------------------+-------------------------+---------------------------+
 
 See tests in :file:`extbase/Tests/Functional/Persistence/QueryLocalizedDataTest.php`.
@@ -663,10 +664,10 @@ See tests in :file:`extbase/Tests/Functional/Persistence/QueryLocalizedDataTest.
 The :php:`$repository->findByUid()` (or :php:`$persistenceManager->getObjectByIdentifier()`) method takes current
 rendering language into account (e.g. L=1). It does not take `defaultQuerySetting` set on the repository into account.
 This method always performs an overlay.
-Values in braces show previous behaviour (disabled flag) if different than current.
+Values in braces show previous behavior (disabled flag) if different than current.
 
 The bottom line is that with the feature flag on, you can now use  :php:`findByUid()` using translated record uid to get
-translated content independently from language set in global context.
+translated content independently from language set in the global context.
 
 +-------------------+----------------+----------------------+----------------------+----------------------+----------------------+
 |                   |                | L=0                                         | L=1                                         |
@@ -694,21 +695,22 @@ translated content independently from language set in global context.
    the language set in the :php:`$querySettings->setLanguageUid()` method.
 
 Filtering & sorting
--------------------
+===================
 
 When filtering by an aggregate root property like `Post->title`,
-both filtering and sorting take translated values into account and you will get correct results, same with pagination.
+both filtering and sorting take translated values into account, and you will get correct results, same with pagination.
 
 When filtering or ordering by a child object property, Extbase does a left join between the aggregate root
 table and the child record table.
 Then the filter is applied as where clause. This means filtering or ordering by a child record property
-only takes values from child records whose uids are stored in the database (in most cases its default language record).
+only takes values from child records whose uids are stored in the database (in most cases, its default language record).
 See :php:`TranslationTest::fetchingTranslatedPostByBlogTitle()`
 
-This limitation also applies to Extbase with the feature flag being disabled.
+This limitation also applies to Extbase, with the feature flag being disabled.
+
 
 Summary of the important code changes compared to previous versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------------------------------
 
 1) :php:`DataMapper` gets a :php:`Query` as a constructor parameter. This allows to use the aggregate root's :php:`QuerySettings` (language)
    when fetching child records/relations. See :php:`DataMapper->getPreparedQuery` method.
@@ -723,12 +725,12 @@ Summary of the important code changes compared to previous versions
 
 
 Most important known issues
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 - The persistence session uses the same key for the default language record and the translation - https://forge.typo3.org/issues/59992
-- Extbase allows to fetch deleted/hidden records - https://forge.typo3.org/issues/86307
+- Extbase allows fetching deleted/hidden records - https://forge.typo3.org/issues/86307
 
 
-For more information about rendering please refer to the TypoScript reference_.
+For more information about rendering, please refer to the TypoScript reference_.
 
 .. _reference: https://docs.typo3.org/typo3cms/TyposcriptReference/Setup/Config/Index.html?highlight=sys_language_mode#sys-language-overlay
 

@@ -1,16 +1,16 @@
 .. review information:
    - language: ok (corrected May/14 2019)
 
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 =====================
-The Example Extension
+The example extension
 =====================
 
 Our first extension will show an inventory list of products,
 which we created in a backend list module.
 Each product consists of a title,
-a short description and the number of pieces in stock.
+a short description, and the number of pieces in stock.
 The following steps are necessary for implementation:
 
 #. Create directory tree and the minimal configuration files

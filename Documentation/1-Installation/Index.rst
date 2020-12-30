@@ -1,26 +1,26 @@
 .. ---------------------------------------
 .. Review information for this page:
 .. * Review Status: ok
-.. * Last reviewed: May 17 2019 for TYPO3 version 9.5.7
+.. * Last reviewed: May 17th, 2019 for TYPO3 version 9.5.7
 .. ----------------------------------------
 
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ====================
-Installation & Setup
+Installation & setup
 ====================
 
 To follow this documentation, we assume you have TYPO3 up-and-running.
 
-Check out the "Installation & Upgrade Guide" for how to
+Check out the "Installation & upgrade guide" for how to
 :ref:`setup a TYPO3 installation with Composer <t3install:install-via-composer>`
 
-The System extension **extbase** and **fluid** are required.
+The system extension **extbase** and **fluid** are required.
 
-Extension Builder
+Extension builder
 =================
 
-Extension Key: extension_builder
+Extension key: extension_builder
 
 The `Extension Builder <https://extensions.typo3.org/extension/extension_builder>`__
 helps you build and manage your Extbase
@@ -40,7 +40,7 @@ Via composer:
 To install the extension in the "traditional" way, go to the
 extension manager and get the extension "extension_builder" from TER.
 
-To install this extension by cloning the source open the terminal
+To install this extension by cloning the source, open the terminal
 and go to the directory :file:`typo3conf/ext/` and enter:
 
 .. code-block:: bash

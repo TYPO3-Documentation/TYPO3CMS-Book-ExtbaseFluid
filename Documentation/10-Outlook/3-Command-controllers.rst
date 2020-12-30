@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _extbase_command_controller_about:
 .. _extbase_command_controller_creating:
@@ -7,7 +7,7 @@
 .. _extbase_command_controller_documentation:
 
 ===================
-Command Controllers
+Command controllers
 ===================
 
 Command controllers make functionality available on the command line

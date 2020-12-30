@@ -1,9 +1,9 @@
-.. include:: ../Includes.txt
-
+.. include:: /Includes.rst.txt
 .. _internationalization:
 
-Internationalization, Validation and Security
-==============================================================
+==============================================
+Internationalization, validation and security
+==============================================
 
 In the previous chapters we examined all levels of the MVC
 pattern, exploring each aspect in detail. This will change

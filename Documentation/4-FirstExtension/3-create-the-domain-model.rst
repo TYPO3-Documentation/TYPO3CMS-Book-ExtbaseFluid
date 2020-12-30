@@ -1,9 +1,10 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
-Create The Domain Model
+=======================
+Create the domain model
 =======================
 
-The domain of our first extension is very simple. The essential
+The domain of our first extension is straightforward. The essential
 concept of our domain is the "product". All important properties
 of a product and its behavior are defined in the model
 :php:`MyVendor\StoreInventory\Domain\Model\Product` which is stored
@@ -84,7 +85,7 @@ should extend :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
 The product properties are designed as properties :php:`$name`,
 :php:`$description` and :php:`$quantity` and protected (*encapsulated*)
 against direct access from outside by using the keyword :php:`protected`.
-The property values can be set and/or read only by the corresponding getters and setters.
+The property values can be set and/or read-only by the corresponding getters and setters.
 
 .. tip::
 
@@ -92,12 +93,12 @@ The property values can be set and/or read only by the corresponding getters and
     the class variables. However, they have several advantages:
     The internals of processing can be added or changed at a later time,
     without needing to make changes to the calling object.
-    Additionally, fine-grained access control is possible as for example the reading can be permitted,
+    Additionally, fine-grained access control is possible as, for example, the reading can be permitted,
     without simultaneously allowing writing access.
-    Most modern IDEs are able to create getters and setters automatically.
+    Most modern IDEs can create getters and setters automatically.
 
 The method :php:`__construct()` serves to guarantee
-a well defined state at the beginning of the life cycle of the object.
-The properties of the product are set with their respectively default
+a well-defined state at the beginning of the life cycle of the object.
+The properties of the product are set with their respective default
 values.
 

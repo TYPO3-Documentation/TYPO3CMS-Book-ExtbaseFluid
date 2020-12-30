@@ -1,15 +1,16 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
+==============
 And... action!
 ==============
 
-Our journey through the blog example is not only an educational journey, but
+Our journey through the blog example is not only an educational journey but
 also an active one. We now turn to the activities. We are already in
 the :php:`BlogController`. You can find the class file at
 :file:`EXT:blog_example/Classes/BlogController.php`.
 
 In software development, there are different variants of controllers.
-In Extbase the controllers mostly exist as
+In Extbase, the controllers mostly exist as
 :php:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
@@ -94,7 +95,7 @@ to recognize it as an action and returns an implementation of the
 form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
 `editAction()` and
-`updateAction()` have a similar functionality for the
+`updateAction()` has similar functionality for the
 change of an existing blog. The job of the
 `deleteAction()` should be self explaining.
 
@@ -108,9 +109,9 @@ change of an existing blog. The job of the
    classes in the subfolder :file:`Domain`.
 
 The request determines which controller action combination will be called.
-The dispatching and matching of actions happens in the `Dispatcher` and in
+The dispatching and matching of actions happen in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-inherits all methods from it, by deriving it from this class.
+inherits all methods from it by deriving it from this class.
 
 ::
 

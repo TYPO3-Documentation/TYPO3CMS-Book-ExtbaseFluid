@@ -1,16 +1,15 @@
-.. include:: ../Includes.txt
-
+.. include:: /Includes.rst.txt
 .. highlight:: html
-
 .. _moving-repeating-snippets-to-partials:
 
-Moving Repeating Snippets To Partials
+=====================================
+Moving repeating snippets to partials
 =====================================
 
-Some parts within different Templates might be the same. In order to not repeat this part
-in multiple templates, Fluid offers so called Partials.
+Some parts within different templates might be the same. To not repeat this part
+in multiple templates, Fluid offers so-called partials.
 Partials are small pieces of Fluid template within a separate file that can be
-included in multiple Templates.
+included in multiple templates.
 
 For example, an extension might display tags inside an
 :file:`Resources/Private/Templates/RecordType/Index.html` template and also in
@@ -19,70 +18,70 @@ these tags might look like::
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-If this is to be changed, e.g. an :html:`ul` is preferred some day, the
+If this is to be changed, e.g., an :html:`ul` is preferred someday, the
 modifications would have to be made in both templates.
 
-That's where Partials are used. Partials are stored, by default, within
-:file:`Resources/Private/Partials/`. One might create a new Partial
+That's where partials are used. Partials are stored, by default, within
+:file:`Resources/Private/Partials/`. One might create a new partial
 :file:`Resources/Private/Partials/Tags.html` with the snippet::
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-Inside the existing Template the snippet can now be replaced with a ViewHelper
-to render the Partial::
+Inside the existing template the snippet can now be replaced with a ViewHelper
+to render the partial::
 
    {f:render(partial: 'Tags', arguments: {
        tags: post.tags
    })}
 
-Fluid will replace the ViewHelper call with the result of the rendered Partial.
-The argument "partial" receives the full path within the configured Partial
+Fluid will replace the ViewHelper call with the result of the rendered partial.
+The argument "partial" receives the full path within the configured partial
 folder to the file, excluding the file extension.
 
 It's also possible to create further folders, e.g.:
-:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the Partial::
+:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the partial::
 
    {f:render(partial: 'Blogpost/Tags', arguments: {
        tags: post.tags
    })}
 
-ViewHelper Namespace import
----------------------------
+ViewHelper namespace import
+===========================
 
-Like within Fluid Templates, custom ViewHelpers can be used within Partials.
+Like within Fluid templates, custom ViewHelpers can be used within partials.
 Because these ViewHelpers are not in the default namespace,
 their namespace needs to be imported. For information about how to import a
 namespace, see :ref:`importing-namespaces`.
 
 It's possible to use a :ref:`global-namespace-import`, or :ref:`imports the namespace
-<importing-namespaces>` within the Partial, or within the Template.
+<importing-namespaces>` within the partial, or within the template.
 
 .. note::
 
-   Up to CMS v8 this namespace import has to be within each Partial where such a
-   ViewHelper was used. Since CMS v8 there is no need anymore. The namespace has
-   to be imported within the Partial or the Templates. It still can be imported
+   Up to CMS v8, this namespace import has to be within each partial where such a
+   ViewHelper was used. Since CMS v8, there is no need anymore. The namespace has
+   to be imported within the partial or the templates. It still can be imported
    in both, but the template is enough.
 
-How to treat Partials
----------------------
+How to treat partials
+=====================
 
-Partials should best be treated as reusable block of Fluid, with no
-dependencies. Therefore the namespace imports should happen within the Partial.
-Also the Partial should be self contained.
+Partials should best be treated as a reusable block of Fluid, with no
+dependencies. Therefore the namespace imports should happen within the partial.
+Also, the partial should be self-contained.
 
-This way the Partial can be reused within different Templates. As each Template
-has do call the Partial, each Template can map existing variables to match the
-used variables within the Partial.
+This way, the partial can be reused within different templates. As each template
+has do call the partial, each template can map existing variables to match the
+used variables within the partial.
 
-Let's assume the following Partial:
+Let's assume the following partial:
 :file:`Resources/Private/Partials/Tags.html` again::
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
-This Partial only requires the variable :html:`{tags}`.
+This partial only requires the variable :html:`{tags}`.
 
-Let's assume the following Template:
+Let's assume the following template:
 :file:`Resources/Private/Templates/BlogPosts/Index.html`::
 
    <f:for each="{blogPosts}" as="blogPost">
@@ -94,10 +93,10 @@ Let's assume the following Template:
        })}
    </f:for>
 
-Within the Template, no variable :html:`{tags}` exists. Instead, the variable
-:html:`{blogPost.tags}` is mapped to :html:`{tags}` for the Partial.
+Within the template, no variable :html:`{tags}` exists. Instead, the variable
+:html:`{blogPost.tags}` is mapped to :html:`{tags}` for the partial.
 
-This way, it can also be reused for the following Template:
+This way, it can also be reused for the following template:
 
 :file:`Resources/Private/Templates/Blogs/Index.html`::
 
@@ -112,5 +111,5 @@ This way, it can also be reused for the following Template:
 
 Again, there is no variable :html:`{tags}`. This time, an index of Blogs is
 displayed instead of blog posts of a single Blog. Both have relations to
-tags which should be displayed the same way. With a single Partial and the
+tags, which should be displayed the same way. With a single partial and the
 `arguments`-Argument this is possible.

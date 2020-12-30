@@ -1,17 +1,17 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
-Configure the Backend Input Forms
+=================================
+Configure the backend input forms
 =================================
 
-
-In our sample application the data of our extension should be editable in the
-Backend by the editors of the youth club organisation and - within certain
+In our sample application, the data of our extension should be editable in the
+Backend by the editors of the youth club organization and - within certain
 limitations - in the Frontend as well to provide functionalities for creation,
-update and deletion of the organisation's data. In this chapter, we first
+update and deletion of the organization's data. In this chapter, we first
 configure the Backend's form inputs for easy access to the database's contents.
 The forms that provide the management functionalities are stored in a
 PHP-Array called `Table Configuration Array (TCA)`.
-The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`
+The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`.
 Example: The TCA for the database table tx_sjroffers_domain_model_organization is therefore in the
 file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
 
@@ -47,10 +47,10 @@ The returned arrays will be added to one big array :php:`$GLOBALS['TCA']`. You c
 for the table `tx_sjroffers_domain_model_organization` in the TYPO3 backend module `System -> Configuration -> $GLOBALS['TCA'] (Table configuration array) -> tx_sjroffers_domain_model_organization`
 
 The associative array that is returned contains all information of all the tables of the TYPO3
-instance. Thus, we use the key `tx_sjroffers_domain_model_organization` and as
-value we use another nested Array that holds the configurations of the
-corresponding table. Then again, this Array is separated into several parts
-with names that are the keys of the nested Array.
+instance. Thus, we use the key `tx_sjroffers_domain_model_organization,` and as
+the value, we use another nested Array that holds the configurations of the
+corresponding table. Then again, this array is separated into several parts
+with names that are the keys of the nested array.
 
 .. code-block:: php
 
@@ -84,8 +84,8 @@ Below, you find the names of the parts and their meaning.
 `ctrl`
 This part contains configuration options that are used in the scope of the
 table. This covers the name of the table in the Backend, which table fields
-contain which meta data and the behavior of the table on creation and movement
-of its row sets. Meta data cover information about Visibility and Access
+contain which metadata and the behavior of the table on creation and movement
+of its row sets. Metadata cover information about Visibility and Access
 Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
 `fe_group`), data about the history of changes (e.g. `versioningWS`,
 `crdate`, `tstamp` as well as data for the localization of data sets (e.g.
@@ -102,16 +102,16 @@ icon of the row set through the `Info` option. The option
 without switching to the detail view of the database table. Then again, the
 number of row sets shown on a page in this perspective may be set via
 `maxSingleDBListItems`. If the option `always_description` is set to *true*,
-the corresponding help texts always show up .
+the corresponding help texts always show up.
 
 
 
 `types`
-This section defines the appearance of the Input Form for creation and update of
+This section defines the appearance of the Input Form for the creation and update of
 a row set. You can define several layout types by listing several elements in the
 array `types`. The key of all those elements is their type (usually a number)
 and their value is another nested array which itself usually contains one
-element with `showItem` as key and a list of comma-separated field names which
+element with `showItem` as key and a list of comma-separated field names that
 should emerge at the Input Form. An example of the table
 `tx_sjroffers_domain_model_organization` is:
 
@@ -124,24 +124,24 @@ should emerge at the Input Form. An example of the table
 Even though the behavior and the appearance of the table fields are configured in
 the section `columns`, it is required to list them explicitly here so that they show
 up in the input form. This prevents trouble when commenting out
-or moving code that is already configured and a corresponding field should
-just be hidden or the overall order of the Input Form's table fields should be
+or moving code that is already configured, and a corresponding field should
+just be hidden, or the overall order of the Input Form's table fields should be
 changed.
 
-The behaviour and the appearance of a field may be altered through several
+The behavior and the appearance of a field may be altered through several
 additional parameters - as well as with the field `address`. The notion
 convention of those additional params may seem a bit unfamiliar since they are
-appended behind the fieldname and separated through a semi-colon. At the first
-position there is the fieldname; at the second an alternative name of the fieldname;
-at third place follows the number of the palette (refer to the next book
+appended behind the field name and separated through a semi-colon. At the first
+position, there is the field name; at the second, an alternative name of the field name;
+third place follows the number of the palette (refer to the next book
 section); the fourth position holds extensive options which are separated
-through colons and the last place contains information about the appearance
-(e.g. color and structure). The information at the fourth place allow the use of
-the *Rich Text Editor*. For a full list of the options refer to the already
-mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi>`.
+through colons, and the last place contains information about the appearance
+(e.g., color and structure). The information at the fourth place allows the use of
+the *Rich Text Editor*. For a full list of the options, refer to the already
+mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 `palettes`
-Palettes are used to collect occasionally used fields and show them up on
+Palettes are used to collect occasionally used fields and show them upon
 demand. The Backend user has to choose the Extended View in the
 Backend's List module to view these. Palettes are connected to a durable visible field. An
 example from the table `tx_sjroffers_domain_model_organization` is:
@@ -156,10 +156,10 @@ The structure is the same as in the section *types* where `address;;1;;`
 refers to the palette with the number 1.
 
 `columns`
-This Array contains information about the behavior and the appearance in the
-Input Form of every table field. The fieldname is the key and, again, the value
+This array contains information about the behavior and the appearance in the
+Input Form of every table field. The field name is the key, and, again, the value
 is a nested array holding the field's corresponding configuration. The field
-configuration for the input of the name of an organisation would be as follows:
+configuration for the input of the name of an organization would be as follows:
 
 .. code-block:: php
 
@@ -175,21 +175,21 @@ configuration for the input of the name of an organisation would be as follows:
    ],
 
 The field name is *name*. First, we define some options that are independent
-from the field's type. This contains foremostly the field label (*label*), the
+of the field's type. This contains foremostly the field label (*label*), the
 conditions for the visibility of the field (`exclude`, `displayCond`) as
 well as information for its localization (`l10n_mode`, `l10n_cat`). The
-fieldname is, in our case, localized and will be taken from a language file
+field name is, in our case, localized and will be taken from a language file
 (head to Ch. 9).
 
 The array connected to `config` contains the field type and its corresponding
 configuration. TYPO3 provides a great range of pre-defined field types, e.g.
-text fields, date fields or selection fields. Each and every type has its own
+text fields, date fields, or selection fields. Each and every type has its own
 presentation and procession options. Consecutively, you will find a list of all
 the field types with their usual configuration:
 
 
 Field type "input"
-------------------
+==================
 
 The *input* field type accepts a one-line character string like names and
 telephone numbers. The configuration of a name field (see Fig. 6-1) looks as
@@ -208,7 +208,7 @@ follows:
    ],
 
 The given string will be truncated to 256 characters (`'max' => 256`), ending
-spaces will be dropped (`trim`) and the status of this field being empty will be
+spaces will be dropped (`trim`), and the status of this field being empty will be
 prevented (`required`).
 
 .. note::
@@ -219,7 +219,7 @@ prevented (`required`).
 .. figure:: /Images/6-Persistence/figure-6-1.png
    :align: center
 
-   Figure 6-1: An example for the field type "input" used as a name field.
+   Figure 6-1: An example of the field type "input" used as a name field.
 
 The field type `input` may be used for date and time inputs:
 
@@ -237,18 +237,18 @@ The field type `input` may be used for date and time inputs:
 
 The value then will be tested for being given in an appropriate date format.
 Simultaneously, this leads to the rendering of a collapsible calendar page with
-an icon right to the input field which is shown in Fig. 6-2:
+an icon right to the input field, which is shown in Fig. 6-2:
 
 .. figure:: /Images/6-Persistence/figure-6-2.png
    :align: center
 
-   Figure 6-2: An example for the field type "input" used as a date field.
+   Figure 6-2: An example of the field type "input" used as a date field.
 
 Field type "text"
------------------
+=================
 
 The `text` field type may contain multi-line formatted or unformatted texts
-e.g. product descriptions, addresses or news items. The indication of the lines
+, e.g., product descriptions, addresses, or news items. The indication of the lines
 (`rows`) and the columns (`cols`) specifies the area of the text input field.
 
 .. code-block:: php
@@ -269,10 +269,10 @@ e.g. product descriptions, addresses or news items. The indication of the lines
 
 
 Field type "check"
-------------------
+==================
 
 The field type `check` allows the definition of a single option (see Fig. 6-4)
- e.g. you can define whether a rowset should be hidden or not.
+ e.g., you can define whether a rowset should be hidden or not.
 
 .. code-block:: php
 
@@ -288,8 +288,8 @@ The field type `check` allows the definition of a single option (see Fig. 6-4)
 
    Figure 6-4: An example for the field type "check" for a single option.
 
-Several related options which can be individually selected can be grouped to a
-field (see Fig. 6-5). This may be helpful e.g. for a selection of valid weekdays
+Several related options that can be individually selected can be grouped into a
+field (see Fig. 6-5). This may be helpful, e.g., for a selection of valid weekdays
 or recommended training levels of a certain exercise.
 
 .. code-block:: php
@@ -315,23 +315,23 @@ or recommended training levels of a certain exercise.
 .. <!-- TODO: look, how math is being processed for the coming exp-value -->
 
 The value that is written to the database is of type Integer. This will be
-computed by bitwise addition of the checkboxes states (which can be 1 or 0). The
-first element (Level 1) is the least significant Bit (= 2^0 = 1). The second
+computed by the bitwise addition of the checkboxes states (which can be 1 or 0). The
+first element (Level 1) is the least significant bit (= 2^0 = 1). The second
 element is one level above (= 2^1 = 2), the third element will then be (= 2^2 =
 4) etc. The selection in the following Figure (see Fig. 6-5) would lead to the
 following Bit-Pattern (= binary-written number): 00101. This binary number is
-equivalent to the Integer value 5.
+equivalent to the integer value 5.
 
 .. figure:: /Images/6-Persistence/figure-6-5.png
    :align: center
 
-   Figure 6-5: An example for the field type "check" for several options that are grouped together.
+   Figure 6-5: An example of the field type "check" for several options that are grouped together.
 
 Field type "radio"
-------------------
+==================
 
 The field type radio is for choosing one unique value for a given property (see
-Fig. 6-6), e.g. the sex of a person or the color of a product.
+Fig. 6-6), e.g., the sex of a person or the color of a product.
 
 .. code-block:: php
 
@@ -354,13 +354,13 @@ database.
 .. figure:: /Images/6-Persistence/figure-6-6.png
    :align: center
 
-   Figure 6-6: An example for the field type "radio".
+   Figure 6-6: An example of the field type "radio".
 
 Field type "select"
--------------------
+===================
 
 The field type "select" provides a space-saving way to render multiple values
-(see Fig. 6-7). Examples could be a member status, a product color or a region.
+(see Fig. 6-7). Examples could be a member status, a product color, or a region.
 
 .. code-block:: php
 
@@ -375,7 +375,7 @@ The field type "select" provides a space-saving way to render multiple values
    ],
 
 The options are taken from another database table (*foreign_table*) and by
-setting *maxitems* to 1 (which is standard) the selection box will be limited to
+setting *maxitems* to 1 (which is standard), the selection box will be limited to
 exactly one showed item.
 
 .. figure:: /Images/6-Persistence/figure-6-7.png
@@ -384,7 +384,7 @@ exactly one showed item.
    Figure 6-7: An example for the field type "select" showing a selection box.
 
 The type `select` may also be used to select a whole subset of values. This is
-used for categories, tags or contact persons (see Fig. 6-8).
+used for categories, tags, or contact persons (see Fig. 6-8).
 
 .. code-block:: php
 
@@ -403,7 +403,7 @@ used for categories, tags or contact persons (see Fig. 6-8).
       ],
    ],
 
-Again, this takes the options of another table but it holds the references in a
+Again, this takes the options of another table, but it holds the references in a
 temporary table *tx_sjroffers_offer_category_mm*.
 
 .. figure:: /Images/6-Persistence/figure-6-8.png
@@ -412,7 +412,7 @@ temporary table *tx_sjroffers_offer_category_mm*.
    Figure 6-8: An example for the field type "select".
 
 Field type "group"
-------------------
+==================
 
 The "group" field type is very flexible in its use. It can be used to manage
 references to resources of the filesystem or rowsets of a database (see Fig. 6-9).
@@ -434,7 +434,7 @@ references to resources of the filesystem or rowsets of a database (see Fig. 6-9
 The combination of `type` and `internal_type` specifies the field's type.
 
 Field type "none"
------------------
+=================
 
 Fields of this type show the raw data values which cannot be edited (see Fig. 6-10).
 
@@ -447,7 +447,7 @@ Fields of this type show the raw data values which cannot be edited (see Fig. 6-
       ],
    ],
 
-In contrast to the date field with the type `input` there is no evaluation as
+In contrast to the date field with the type `input`, there is no evaluation as
 with `'eval' => 'date'`. The timestamp which is set in the database will be
 shown as a raw number.
 
@@ -457,10 +457,10 @@ shown as a raw number.
    Figure 6-10: An example for the field type "none" for a date field.
 
 Field type "passthrough"
-------------------------
+========================
 
 The field type "passthrough" is for data that is processed internally but cannot
-be edited or viewed in the form. An example for that would be information to
+be edited or viewed in the form. An example of that would be information to
 references (foreign keys).
 
 .. code-block:: php
@@ -477,31 +477,31 @@ This field configuration in the database table
 
 
 Field type "user"
------------------
+=================
 
-User generates free definable form fields which can be processed by any PHP
+A user generates free definable form fields that can be processed by any PHP
 function. For further information, refer to the documentation which is available
-online and to the :ref:`TYPO3-Core API <t3coreapi>`.
+online and to the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 
 Field type "flex"
------------------
+=================
 
 The field type "flex" manages complex inline form fields (*FlexForms*). The
-form data will be saved as XML data structure in the database fields.
+form data will be saved as an XML data structure in the database fields.
 Extbase uses FlexForms for persisting plugin configuration but not to save
-domain data. If your plugin data will be rather complex we encourage you to
+domain data. If your plugin data are rather complex, we encourage you to
 design your own backend module for them (refer to Ch. 10).
 
 
 Field type "inline"
--------------------
+===================
 
 The field type "inline" is for saving complex Aggregates of the Domain (see Fig.
-6-11). Basis of this field type is the so called *Inline Relational Record
-Editing (IRRE)* which powers the creation, update and deletion of Domain-objects
+6-11). The basis of this field type is the so-called *Inline Relational Record
+Editing (IRRE)* which powers the creation, update, and deletion of Domain-objects
 of whole Aggregates in a single Input Form. Without *IRRE* the Domain-objects
-must be edited and connected each by itself which would require an intermediate
+must be edited and connected each by itself, which would require an intermediate
 save. This technique is a comfortable tool for managing complex Aggregates. All
 the possibilities provided by IRRE are well documented, refer to :ref:`the TYPO3
 TCA Reference <t3tca:columns-inline>`.
@@ -530,7 +530,7 @@ representation of the connected objects.
 
 Extbase supports the most important aspects of *IRRE* with only one exception:
 *IRRE* allows a temporary table of an `m:n-relationship` to be enhanced by
-additional fields which can hold Domain data. An example: Assume that we want to
+additional fields that can hold Domain data. An example: Assume that we want to
 connect a CD to it's containing music tracks, whereas a CD can contain multiple
 tracks and one track can be present on several CD's. Thus, we can derive the
 following temporary table:
@@ -559,8 +559,8 @@ m:n-relationships.
 Every music track on the CD is given a unique track number. However, the track
 number is neither a property of the CD nor that of a track. It semantically
 corresponds to the relationship *between* them. Thus, IRRE provides the option
-to persist them within the temporary table and this can always be modelled into
-the Domain model which gets the following structure: `CD --1:n-- Track --n:1--Title`.
+to persist them within the temporary table, and this can always be modeled into
+the Domain model, which gets the following structure: `CD --1:n-- Track --n:1--Title`.
 
 Let's change the configuration of the table `tx_myext_domain_model_track` to a
 simple 1:n-relationship with `cd` as a foreign key.
@@ -578,7 +578,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi>` describes the
+Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
@@ -659,7 +659,7 @@ As already mentioned, the TCA is stored in a file with the database table name a
 
 The tables of all the Domain objects are defined like this.
 
-Now we can create a directory (*SysDirectory*) which will contain all the data
+Now we can create a directory (*SysDirectory*), which will contain all the data
 sets. Let's create our first organization (see Fig. 6-12).
 
 .. figure:: /Images/6-Persistence/figure-6-12.png
@@ -667,9 +667,9 @@ sets. Let's create our first organization (see Fig. 6-12).
 
    Figure 6-12: The input form for creating an organization with all its offers.
 
-Now you can set up the whole data structure. In our project this allows the
-offer-provider to set up some example data and thus we could do some early
+Now you can set up the whole data structure. In our project, this allows the
+offer-provider to set up some example data, and thus we could do some early
 integration tests. However, we can not access the given data because we still
-miss the Repositories that will be defined in the following section.
+miss the repositories that will be defined in the following section.
 
 

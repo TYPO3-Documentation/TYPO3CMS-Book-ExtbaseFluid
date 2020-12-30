@@ -1,20 +1,21 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
+======================================
 Alternative route: creating a new post
 ======================================
 
-After out first journey through the blog example, in this chapter we
-will follow a more complex example. As an example we have chosen the
+After our first journey through the blog example, we
+will follow a more complex example in this chapter. As an example, we have chosen the
 creation of a new post. The user will be offered a form in the front
 end, where he can insert the title and the content of a new post
 and select an existing author for this post.
 After clicking the *submit* button, the list of the last posts of the
-current blog should be displayed - now with the just created post at
+current blog should be displayed - now with the just created post in
 the first place. There are multiple steps, each based on the previous
 step, to be implemented that are mirrored in the actions ``new`` and
 ``create``. The method ``newAction()`` displays the form, while the
 method ``createAction()`` really creates the post, puts it in the
-repository and routes the process to the method ``indexAction()``.
+repository, and routes the process to the method ``indexAction()``.
 
 Calling the method ``newAction()`` is done in our case with a link in the
 front end, that looks - a bit purged - like this:
@@ -36,7 +37,7 @@ The tag ``<f:link.action>`` creates a link to a special controller action
 combination: ``tx_blogexample_pi1[controller]=post`` and
 ``tx_blogexample_pi1[action]=new``. The current blog is given as an argument
 with ``tx_blogexample_pi1[blog]=12``. Because the blog cannot be sent as an object,
-it must be translated into an unique identifier - the *UID*. In our case this is
+it must be translated into a unique identifier - the *UID*. In our case, this is
 the UID 12. Extbase creates the request out of these three parameters and routes
 it to the according ``PostController``. The translation of the UID back to the
 corresponding ``blog`` object is done automatically by Extbase.
@@ -78,17 +79,17 @@ Lets take a look at the called method ``newAction()``:
    }
 
 The method ``newAction()`` expects a ``blog`` object and an optional ``post``
-object as parameter. It should be weird at first, because we have no blog and no
-post object, that has to be created with the form. Actually the parameter
+object as parameter. It should be weird at first because we have no blog and no
+post object that has to be created with the form. Actually the parameter
 ``$newPost`` is empty (``null``) at the first call.
 
-Our ``PostController``, that is derived from ``ActionController``, prepares all
+Our ``PostController``, which is derived from ``ActionController``, prepares all
 parameters before an action is called. The controller delegates this to an
 instance of the class :php:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
-``$newPost`` it is an instance of the class
+``$newPost`` is an instance of the class
 :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
 
 How does Extbase know what the target of the conversion is? It takes this
@@ -101,7 +102,7 @@ the line:
    * @param Blog $blog The blog the post belongs to
 
 The link is created with the name of the argument ``$blog``.
-In this way the link between the request parameter and
+In this way, the link between the request parameter and
 the ``newAction()`` is resolved.
 The link parameter::
 
@@ -112,12 +113,12 @@ is assigned to the parameter::
    \FriendsOfTYPO3\BlogExample\Domain\Model\Blog $blog
 
 of the ``newAction()`` with the name "blog". With the help of the UID 12 the
-corresponding blog object can be identified, reconstructed and given to the
+corresponding blog object can be identified, reconstructed, and given to the
 ``newAction()``.
 
 In the first line of the ``newAction()`` the view gets an array of persons in
 the parameter ``authors`` which is taken from the ``PersonRepository`` with the
-``findAll()`` method. In the second and third line the view gets the parameter
+``findAll()`` method. In the second and third line, the view gets the parameter
 ``blog`` and ``newPost``. The following actions are called automatically by the
 controller after calling ``newAction()``.
 
@@ -151,9 +152,9 @@ Here you will see the shortened template *new.html*:
    </f:form>
 
 Fluid offers some comfortable tags for creating forms which names are all starting
-with ``form``. The whole form is enclosed in ``<f:form></f:form>``. Like the creating
-of a link the controller action combination which should be called when clicking the
-submit button is given here.
+with ``form``. The whole form is enclosed in ``<f:form></f:form>``. Like creating
+a link, the controller action combination, which should be called when clicking the
+submit button, is given here.
 
 .. note::
 
@@ -161,10 +162,10 @@ submit button is given here.
    of the form and has nothing to do with our domain (instead of ``method="post"``
    it also could be ``method="get"``).
 
-The form is bound with ``object="{newPost}"`` to the object that we have assigned to
+The form is bound with ``object="{newPost}"`` to the object assigned to
 the variable ``newPost`` in the controller. The specific form fields have a property
-``property="..."```. With this a form field can be filled with the content of the
-property of the given object. Because ``{newPost}`` is empty (= ``null``) here, the
+``property="..."```. With this, a form field can be filled with the content of the
+given object's property. Because ``{newPost}`` is empty (= ``null``) here, the
 form fields are empty at first.
 
 The ``select`` tag is created by the Fluid tag ``<f:form.select>``.
@@ -232,26 +233,26 @@ method ``newAction()``.
 
 .. note::
 
-   During the conversion of the arguments into the property values of the target
-   object, the above-mentioned ``PropertyManager`` checks if any errors are encountered
+   During the conversion of the arguments into the target
+   object's property values, the above-mentioned ``PropertyManager`` checks if any errors are encountered
    during the validation. The validation effected on the base of the property
-   definitions of the target object. More about the subject validating you will find
+   definitions of the target object. More about the subject validating, you will find
    in the section :ref:`validating-domain-objects`.
 
-The post is added to the blog with ``$blog->addPost($newPost)``. After that the
+The post is added to the blog with ``$blog->addPost($newPost)``. After that, the
 following processing is forwarded by ``$this->redirect([...])`` to the method
 ``indexAction()``. Thereby the blog - now with the new post - is passed as
-argument. In order that the new post is available in the blog when next called, it
+argument. So that the new post is available in the blog when next called, it
 must be persisted. This is done automatically after the flow through the extension
 in the dispatcher of Extbase.
 
 .. note::
 
-   What's ``redirect()``? Extbase knows the methods ``forward()`` and ``redirect()``.
-   They both forward the further processing. The difference is that
-   ``redirect()`` starts a complete new page call (new request response cycle),
-   while ``forward()`` resides in the processing of the current page call. The
-   outcome of this is an important consequence: At ``redirect()`` the changes are
-   persisted before the call of the target action, whereas at ``forward()`` these
-   must be done by hand with the call of
+   What's :php:`redirect()`? With Extbase, requests can be further dispatched either
+   by returning a `ForwardResponse` or by using :php:`redirect()`.
+   The difference is: ``redirect()`` starts a completely new page call
+   (new request-response cycle), while a :php:`ForwardResponse` is handled as part of the
+   current request cycle. This has an important consequence: When using ``redirect()`` the
+   changes are persisted before the call of the target action, whereas when returning a
+   :php:`ForwardResponse` changes need to be persisted manually by calling
    :php:`$persistenceManager->persistAll();`.

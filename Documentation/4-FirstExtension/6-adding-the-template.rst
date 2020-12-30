@@ -1,5 +1,6 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
+=================
 Adding a template
 =================
 
@@ -12,7 +13,7 @@ The class name :php:`\MyVendor\StoreInventory\Controller\StoreInventoryControlle
 will result in the directory name :file:`StoreInventory/`.
 
 In the directory :file:`StoreInventory/` we can now create the template file for our list view.
-As our list view is rendered by the list action, the template should be :file:`List.html`.
+As the list action renders our list view, the template should be :file:`List.html`.
 The action name, without the action suffix.
 
 :file:`EXT:store_inventory/Resources/Private/Templates/StoreInventory/List.html` looks like this:
@@ -44,7 +45,7 @@ We can access the array of products we assigned to the view
 Tags starting with :html:`<f:` are Fluid ViewHelper tags.
 The code inside the :html:`for` tag is repeated for each product in :html:`products`.
 The ViewHelper :html:`f:crop` shortens the containing text to at max 100 characters length.
-Within the brackets we can access the products and their properties.
+Within the brackets, we can access the products and their properties.
 If there is a dot after the object name, the getters are automatically called.
 So :html:`{product.description}` uses the getter method :php:`getDescription()` from the
 domain model in file :file:`EXT:store_inventory/Classes/Domain/Model/Product.php`.
