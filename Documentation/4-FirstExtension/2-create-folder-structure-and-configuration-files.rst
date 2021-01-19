@@ -60,7 +60,7 @@ of the *Core Api Reference* manual.
 
    <?php
 
-   $EM_CONF[$_EXTKEY] = [
+   $EM_CONF['store_inventory'] = [
        'title' => 'Store Inventory',
        'description' => 'An extension to manage a stock.',
        'category' => 'plugin',
