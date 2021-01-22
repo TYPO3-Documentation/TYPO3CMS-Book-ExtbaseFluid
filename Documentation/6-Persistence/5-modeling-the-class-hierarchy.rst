@@ -105,7 +105,7 @@ data of the instances are stored and with which type they should be stored. This
         ],
         \MyVendor\MyExtension\Domain\Model\Company::class => [
             'tableName' => 'tx_myextension_domain_model_party',
-            'recordType' => '\MyVendor\MyExtension\Domain\Model\Company'
+            'recordType' => '\MyVendor\MyExtension\Domain\Model\Company',
         ],
         \MyVendor\MyExtension\Domain\Model\ScientificInstitution::class => [
             'tableName' => 'tx_myextension_domain_model_party',
