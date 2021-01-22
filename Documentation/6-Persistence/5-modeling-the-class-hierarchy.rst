@@ -83,7 +83,7 @@ The name of the field that contains the type can be chosen freely. In our case, 
    // …
 
 You have to tell Extbase for every concrete class in which table the
-data of the instances are stored and with which type they should be stored. This is done in "Configuration/Extbase/Persistence/Classes.php".
+data of the instances are stored and with which type they should be stored. This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
 
 ::
    
