@@ -113,7 +113,7 @@ data of the instances are stored and with which type they should be stored. This
         ],
     ];
 
-Every class is assigned with `tableName = tx_myextension_domain_model_party` to this table.
+Every class is assigned with `'tableName' => 'tx_myextension_domain_model_party'` to this table.
 In `recordType` inside the table an unique identifier is expected (even the *Record Type*).
 It is advisable to use the class name for this. For every superclass additional all subclasses
 have to be declared under `subclasses`. In our example, `Party` and `Organization` are
