@@ -110,7 +110,7 @@ data of the instances are stored and with which type they should be stored. This
         \MyVendor\MyExtension\Domain\Model\ScientificInstitution::class => [
             'tableName' => 'tx_myextension_domain_model_party',
             'recordType' => '\MyVendor\MyExtension\Domain\Model\ScientificInstitution',
-        ]
+        ],
     ];
 
 Every class is assigned with `tableName = tx_myextension_domain_model_party` to this table.
