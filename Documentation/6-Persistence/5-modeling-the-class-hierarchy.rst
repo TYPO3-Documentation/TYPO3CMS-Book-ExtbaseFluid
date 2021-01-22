@@ -96,7 +96,7 @@ data of the instances are stored and with which type they should be stored. This
             'recordType' => '\MyVendor\MyExtension\Domain\Model\Organization',
             'subclasses' => [
                 '\MyVendor\MyExtension\Domain\Model\Company' => \MyVendor\MyExtension\Domain\Model\Company::class,
-                '\MyVendor\MyExtension\Domain\Model\ScientificInstitution' => MyVendor\MyExtension\Domain\Model\ScientificInstitution::class
+                '\MyVendor\MyExtension\Domain\Model\ScientificInstitution' => MyVendor\MyExtension\Domain\Model\ScientificInstitution::class,
             ]
         ],
         \MyVendor\MyExtension\Domain\Model\Person::class => [
