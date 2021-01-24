@@ -5,7 +5,7 @@ Conclusion
 ==========
 
 In this chapter, you have learned how to use the model–view–controller
-design pttern, which divides the applications in the data model and
+design pattern, which divides the applications in the data model and
 the user interaction, in Extbase.
 
 Domain-driven design and the MVC architecture form the conceptual backbone of

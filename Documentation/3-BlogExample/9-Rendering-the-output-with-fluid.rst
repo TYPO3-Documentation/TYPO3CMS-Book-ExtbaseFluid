@@ -1,4 +1,8 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Fluid; Rendering
+   Fluid; TemplateView
+   Files; EXT:blog_example/Resources/Private/Templates
 
 ===============================
 Rendering the output with Fluid

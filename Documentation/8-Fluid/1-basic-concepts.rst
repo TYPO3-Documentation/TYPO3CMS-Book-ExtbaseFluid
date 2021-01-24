@@ -17,6 +17,10 @@ the template engine and provide for scalability and flexibility:
 * *ViewHelpers* are special tags in the template which provide more complex functionality such as loops or generating links.
 * *Arrays* make it possible to assign hierarchical values to ViewHelpers.
 
+.. index::
+   Fluid; Object accessors
+   Fluid; {myObject}
+
 Outputting data with object accessors
 =====================================
 
@@ -127,6 +131,7 @@ the template. It is better to place PHP code in your own ViewHelper if
 needed. The following describes how to do this.
 
 
+.. index:: Fluid; ViewHelpers
 
 Implementing more complex functionalities with ViewHelpers
 ==========================================================
@@ -156,6 +161,9 @@ ViewHelpers that come with Fluid are prefixed with ``f``. Your
 own namespaces have to be imported into the template like previously
 mentioned.
 
+
+.. index:: Fluid; f:for
+
 All tags, which begin with a registered prefix, will be evaluated.
 Here's a small example:
 
@@ -166,8 +174,6 @@ Here's a small example:
             <li>{post.title}</li>
         </f:for>
     </ul>
-
-
 
 Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
@@ -203,10 +209,11 @@ functionality.
     All control structures like ``if/else`` or
     ``for`` are individual ViewHelpers in Fluid and not a core
     language feature. This is one of the main reasons for the flexibility
-    of Fluid. You'll find a detailed reference of the ViewHelpers in
-    Appendix C.
+    of Fluid. You'll find a detailed reference in the `ViewHelpers Reference
+    <https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Index.html>`__.
 
 
+.. index:: ViewHelpers; Inline notation
 .. _inline-notation-vs-tag-based-notation:
 
 Inline notation for ViewHelpers
@@ -300,6 +307,8 @@ can, therefore not be outputted with Object Accessors in the template.
 You'll trigger a PHP error message if you simple write
 ``{post.date}`` in your template.
 
+.. index:: Fluid; f:format.date
+
 In Fluid there is a ViewHelper ``f:format.date`` to output
 *DateTime* objects, which (as you can see on the prefix
 ``f:``) is already part of Fluid:
@@ -334,7 +343,7 @@ An alternative would be to use the following syntax::
 
     {post.date -> f:format.date(format: 'Y-m-d')}
 
-Inside the Object Accessor, we can use a ViewHelper to process the
+Inside the object accessor, we can use a ViewHelper to process the
 value. The above example is easily readable, intuitive, and less
 error-prone than the tag-based variation.
 
@@ -361,6 +370,8 @@ on. We can thus confirm that you can process the value of every Object
 Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->). This can also be done multiple times.
 
+
+.. index:: Fluid; arrays
 
 Flexible array data structures
 ==============================

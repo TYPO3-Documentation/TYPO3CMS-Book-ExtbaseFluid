@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Frontend plugins
+   Plugins
 
 ==========================================
 Configuring and embedding frontend plugins

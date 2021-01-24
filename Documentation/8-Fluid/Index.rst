@@ -1,7 +1,6 @@
 .. include:: /Includes.rst.txt
-
+.. index:: Fluid
 .. use the label fluid and deprecate fluid-start
-
 .. _fluid-start:
 .. _fluid:
 

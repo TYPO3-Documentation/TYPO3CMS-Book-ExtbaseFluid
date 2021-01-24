@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Extensions; Folder structure
+   Extensions; Configuration files
 
 ===============================================
 Create folder structure and configuration files
@@ -23,6 +26,10 @@ Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3c
     System extensions are in the folder :file:`typo3/sysext/`.
     Extbase or Fluid are examples of system extensions.
 
+
+The folder structure
+====================
+
 In our folder `store_inventory` we create the sub folders :file:`Classes` and :file:`Resources`.
 The folder :file:`Classes` will contain all of our PHP classes.
 In the folder :file:`Resources` we create two directories named :file:`Private` and :file:`Public`.
@@ -44,6 +51,12 @@ Resulting from all this, the folder structure within the extension folder
    :align: center
 
    Figure 4-1: The default directory structure with the important files for the extension manager
+
+
+.. index:: Files; ext_emconf.php
+
+Configuration file :file:`ext_emconf.php`
+=========================================
 
 A single configuration file named :file:`ext_emconf.php` is required by TYPO3
 to allow loading the extension. The file is located in the extension's
@@ -82,8 +95,20 @@ of the *Core Api Reference* manual.
        ],
    ];
 
-The file :file:`Resources/Public/Icons/Extension.svg` or :file:`Extension.png` will be used as
-extension icon. The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
+.. index:: Files; Resources/Public/Icons/Extension.svg
+
+In previous versions of TYPO3, the extension icon was named :file:`ext_icon.gif`.
+Starting with TYPO3 8, you can choose between PNG or SVG format.
+It is recommended to call the file :file:`Extension.png` or
+:file:`Extension.svg` and store it in the directory :file:`Resources/Public/Icons/`.
+The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
+
+
+.. index:: Files; composer.json
+
+Configuration file :file:`composer.json`
+========================================
+
 
 Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 

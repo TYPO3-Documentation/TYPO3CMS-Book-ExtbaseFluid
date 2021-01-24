@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Templates
+   Files; Resources/Private/Templates
 
 =================
 Adding a template
@@ -15,6 +18,12 @@ will result in the directory name :file:`StoreInventory/`.
 In the directory :file:`StoreInventory/` we can now create the template file for our list view.
 As the list action renders our list view, the template should be :file:`List.html`.
 The action name, without the action suffix.
+
+
+.. index:: Templates; Fluid
+
+The Fluid template
+==================
 
 :file:`EXT:store_inventory/Resources/Private/Templates/StoreInventory/List.html` looks like this:
 

@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Blog example; BlogRepository
+   \TYPO3\CMS\Extbase; Persistence\Repository
 
 ================================
 Get the blog from the repository
@@ -27,6 +30,9 @@ blog objects, which is one of the methods available by default.
 
    Although you don't need to implement your own logic, Extbase expects an existing
    class.
+
+
+..index:: Extbase; Repositories
 
 How repositories work
 =====================

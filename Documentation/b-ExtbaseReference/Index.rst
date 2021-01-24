@@ -1,8 +1,9 @@
 .. include:: /Includes.rst.txt
+.. index:: Extbase reference
 .. _extbase_reference:
 
 =================
-Extbase Reference
+Extbase reference
 =================
 
 In this appendix, you can look up how Extbase interacts with the TYPO3
@@ -10,6 +11,7 @@ installation. This includes the registration of plugins and the configuration of
 Extbase extensions.
 
 
+.. index:: Plugins; Registration
 .. _registration_of_frontend_plugins:
 
 Registration of frontend plugins
@@ -129,6 +131,7 @@ backend, you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
     file :file:`Configuration/TCA/Overrides/tt_content.php` will be displayed
 
 
+.. index:: Extbase; Caching
 .. _caching_of_actions_and_records:
 
 Caching of actions and records
@@ -166,9 +169,10 @@ The automatic cache clearing is enabled by default, you can use the TypoScript c
 it.
 
 
+.. index:: Plugins; TypoScript configuration
 .. _typoscript_configuration:
 
-TypoScript Configuration
+TypoScript configuration
 ========================
 
 Each Extbase extension has some settings which can be modified using TypoScript. Many of these
@@ -376,9 +380,10 @@ with conditions.
    Defines the default format for the plugin.
 
 
+.. index:: Extbase; Class hierarchy
 .. _class_hierarchy:
 
-Class Hierarchy
+Class hierarchy
 ===============
 
 The MVC Framework is the heart of Extbase. Below we will give you an overview of
@@ -400,6 +405,7 @@ you should have a look at the controllers below.
     interface.
 
 
+.. index:: Extbase; ActionController API
 .. _class_hierarchy-action_controller_api:
 
 ActionController API
@@ -546,6 +552,8 @@ in `$this->argumentsMappingResults`, you have a list of occurred warnings and er
 mappings available. This default `errorAction` refers back to the referrer if the referrer
 was sent with it.
 
+
+.. index:: Extbase; Annotations
 .. _available-annotations:
 
 Available annotations
@@ -673,6 +681,8 @@ The following annotations are available out of the box within Extbase:
       public $property;
 
 
+.. index:: Extbase; Application domain
+
 Application domain of the extension
 ===================================
 
@@ -689,6 +699,8 @@ as follows:
     Contains specific validators for the domain models.
 
 
+.. index:: Extbase; Domain models
+
 Domain model
 ------------
 
@@ -702,6 +714,8 @@ All classes of the domain model must inherit from one of the following two class
     ValueObjects are immutable.
 
 
+.. index:: Extbase; Repositories
+
 Repositories
 ------------
 
@@ -711,6 +725,9 @@ If the domain object is, for example, *Blog* (with full name `\\Ex\\BlogExample\
 then the corresponding repository is named *BlogRepository* (with the full name
 `\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
 
+
+
+.. index:: Repositories; API
 
 Public Repository API
 =====================
@@ -743,6 +760,8 @@ Each repository provides the following public methods:
 `update($object)`
     Updates the persisted object.
 
+
+.. index:: Repositories; Custom find methods
 
 Custom find methods in repositories
 -----------------------------------
@@ -815,6 +834,8 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
 
 In the section ":ref:`individual_database_queries`" in Chapter 6, you can find a comprehensive example for building queries.
 
+
+.. index:: Validation
 
 Validation
 ==========
@@ -908,6 +929,8 @@ usually jump back to the last screen. Validation mustn't be performed in certain
 cases. Further information for the usage of the annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` see
 ":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
+
+.. index:: Localization
 
 Localization
 ============

@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Extbase; DataMapper
+   \TYPO3\CMS\Extbase; Persistence\ObjectStorage
 
 =====================
 Paths on the data map
@@ -94,6 +97,10 @@ name of the child elements in angle brackets::
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Tag>
      */
     protected $tags;
+
+.. index::
+   Extbase; TCA
+   Files; Configuration/TCA/*
 
 Extbase gathers the type of the relation from the configuration of the database
 table column. Let's take a look at the definition of the column ``posts``. It can be
