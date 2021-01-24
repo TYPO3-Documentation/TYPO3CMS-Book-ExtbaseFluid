@@ -13,6 +13,11 @@ The controller is responsible for fetching the model's data and handing it
 to the view to be rendered. The controller uses `*Action` methods as entry points.
 In our case, we want to display a list of products, so we should implement a `listAction`.
 
+.. index:: Controller
+
+The Controller
+==============
+
 The class name of the controller must end with ``Controller``. Because our controller controls
 the display of the inventory we call it :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
 
@@ -49,20 +54,45 @@ In our simple example, the controller looks like this:
     }
 
 
+.. index:: \TYPO3\CMS\Extbase; Mvc\Controller\ActionController
+
 Our :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController` is derived from
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`.
 It only contains the method :php:`listAction()`.
 Extbase identifies all methods ending with ``Action`` as actions
 - entry points to our application.
 
+
+.. index:: Repository; Injection
+
+Injecting the repository
+========================
+
 The method :php:`injectProductRepository()` shows how dependency injection looks like in Extbase
 - Extbase automatically injects the product repository via this method.
 Afterward, we can access the repository with :php:`$this->productRepository` in all actions.
 Use dependency injection for getting all your class dependencies if possible.
 
+
+.. index::
+   Repository; findAll()
+   Repository; Fetching Models
+
+Fetching the products from the repository
+=========================================
+
 As we want to display a list of all products in our inventory,
 we can use the method :php:`findAll()` of the repository to fetch them.
 :php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, the parent class of our repository.
+
+
+.. index::
+   \TYPO3\CMS\Extbase; Persistence\Generic\QueryResult
+   View; Assign
+   View; Rendering
+
+Assigning the view
+==================
 
 The repository returns a :php:`\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`
 object with all product objects (that are not hidden or deleted).

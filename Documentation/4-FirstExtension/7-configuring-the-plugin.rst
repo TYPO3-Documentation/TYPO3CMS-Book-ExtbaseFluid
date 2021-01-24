@@ -1,5 +1,7 @@
 .. include:: /Includes.rst.txt
-
+.. index::
+   Frontend plugin;
+   Plugin
 .. _configuring-the-plugin:
 
 ======================
@@ -11,6 +13,16 @@ like any other element (like a text element or an image).
 It is a "virtual" collection of one or more actions.
 In our example there is only one controller action combination,
 namely ``StoreInventory->list``.
+
+.. index::
+   Plugin; Configuration
+   ExtensionUtility; configurePlugin()
+   \TYPO3\CMS\Extbase; Utility\ExtensionUtility
+   Files; ext_localconf.php
+
+Configuring the plugin: :php:`ExtensionUtility::configurePlugin`
+================================================================
+
 To register a plugin, we need the following code in the file
 :file:`ext_localconf.php`, that we create in the top level of
 our extension directory.
@@ -52,6 +64,16 @@ In an array with the same format as the previous.
 Now all actions are listed whose results should not be stored in the cache.
 
 This concludes the configuration of the plugin.
+
+
+.. index::
+   Plugin; registration
+   ExtensionUtility::registerPlugin()
+   Files; Configuration/TCA/Overrides/tt_content.php
+
+Plugin registration: :php:`ExtensionUtility::registerPlugin`
+============================================================
+
 We need to register the plugin to have it actually appear as a selectable element in the backend plugin list.
 To achieve this, insert the following line into a new file :file:`Configuration/TCA/Overrides/tt_content.php`:
 

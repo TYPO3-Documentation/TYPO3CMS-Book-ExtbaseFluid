@@ -17,6 +17,8 @@ Check out the "Installation & upgrade guide" for how to
 
 The system extension **extbase** and **fluid** are required.
 
+.. index:: Extension builder
+
 Extension builder
 =================
 

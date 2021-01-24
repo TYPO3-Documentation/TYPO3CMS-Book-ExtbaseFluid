@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Extbase; Dispatcher
 .. highlight:: php
 .. _dispatching:
 
@@ -19,6 +20,9 @@ Here's the dispatcher path, step by step:
    Figure 1-1: Extbase dispatching process
 
 
+.. index::
+   Extbase; RequestHandlerResolver
+   Files; Configuration/Extbase/RequestHandlers.php
 .. _requesthandlerresolver:
 
 RequestHandlerResolver

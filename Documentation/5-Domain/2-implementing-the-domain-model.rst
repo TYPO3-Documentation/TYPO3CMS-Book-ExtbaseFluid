@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Domain; Model
+   Model; Implementation
 
 =============================
 Implementing the domain model

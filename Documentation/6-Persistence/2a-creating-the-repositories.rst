@@ -1,9 +1,9 @@
 .. include:: /Includes.rst.txt
+.. index:: Repositories; Creation
 
 =========================
 Creating the repositories
 =========================
-
 
 We have already introduced the repositories in :ref:`the-blog-example`. They serve with
 capabilities to save and reaccess our objects. We set up such a repository
@@ -46,9 +46,14 @@ objects for easier access from the Frontend.
    yourself to a minimal number of repositories. Instead, you should define the
    access methods within the Aggregate-Root objects as `find` methods.
 
+
+.. index:: \TYPO3\CMS\Extbase; Persistence\Repository
+
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository` serves with the following methods which
 are of course accessible and overridable in the extending child derivations:
 
+
+.. index:: Repository; add($object)
 
 :php:`add($object)`
 ===================
@@ -60,6 +65,10 @@ precise, after the call of the method :php:`persistAll()` of the
 `PersistenceManager`.
 
 
+.. index::
+   Repository; remove($object)
+   Repository; removeAll()
+
 :php:`remove($object)` and :php:`removeAll()`
 =============================================
 
@@ -68,12 +77,18 @@ gonna be deleted from the database after finishing the Extension's loop. The
 method :php:`removeAll()` empties the whole repository.
 
 
+.. index:: Repository; update($object)
+
 :php:`update($modifiedObject)`
 ==============================
 
 An existing object in the repository will be updated with the properties of the
 given object. Extbase finds the to-be-updated object by the uid of the given
 object and throws an exception if it does not exist.
+
+.. index::
+   Repository; findAll()
+   Repository; countAll()
 
 
 :php:`findAll()` and :php:`countAll()`
@@ -85,6 +100,11 @@ database. However, this slightly confusing behavior is intended. Whereas
 the currently persisted objects (if the database backend is of type SQL, it just
 executes the query `SELECT COUNT`) and returns an Integer number.
 
+
+.. index::
+   Repository; findByProperty($value)
+   Repository; findOneByProperty($value)
+   Repository; countByProperty($value)
 
 :php:`findByProperty($value)`, :php:`findOneByProperty($value)` and :php:`countByProperty($value)`
 ==================================================================================================
@@ -103,6 +123,8 @@ the objects were created in the Backend. Last but not least, the method
 number.
 
 
+.. index:: Repository; createQuery()
+
 :php:`createQuery()`
 ====================
 
@@ -115,8 +137,6 @@ Before accessing the defined objects from the repository, you need to tell Extba
 on which pages on TYPO3's page tree (see below for TYPO3's concept of the page
 tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
-
-
 
 Generally, there are three cases which need to be distinguished: Persisting a
 newly created object, reaccessing an existing object and updating the properties
@@ -140,7 +160,6 @@ When new Domain objects are inserted, then the procedure will be as follows:
 * If none of the cases above apply, then the object will be inserted at the first item in the list of search pages. So to say, in the end, the root page (the one with the globe) is gonna be used for insertion.
 
 
-
 When updating the Domain objects, their PID is not changed. However, you can
 implement the property `pid` in your domain object with its corresponding set-
 and get-methods. A domain object may be moved from one page to another by
@@ -149,7 +168,7 @@ setting a new `pid`.
 .. note::
 
    The most occurring mistake for seemingly empty repositories is a misconfigured
-   *Storage-PID*. Thus, you should first evaluate the Template Module, whether
+   *Storage-PID*. Thus, you should first evaluate the template module, whether
    it is set correctly.
 
 

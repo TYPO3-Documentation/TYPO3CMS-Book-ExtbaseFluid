@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Extbase; Domain model
+   Extbase; Model
 
 =======================
 Create the domain model
@@ -21,6 +24,8 @@ The file itself is stored in the folder
     Pay attention to the corresponding upper casing of the folder names.
 
 Let's take a deeper look at the model :php:`\MyVendor\StoreInventory\Domain\Model\Product`.
+
+.. index:: \TYPO3\CMS\Extbase; DomainObject\AbstractEntity
 
 The model :php:`Product` in our extension denotes the aggregate root and
 represents an entity (as opposed to a :php:`ValueObject`) and
@@ -82,10 +87,15 @@ should extend :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
         }
     }
 
+.. index:: Model; Properties
+
 The product properties are designed as properties :php:`$name`,
 :php:`$description` and :php:`$quantity` and protected (*encapsulated*)
 against direct access from outside by using the keyword :php:`protected`.
 The property values can be set and/or read-only by the corresponding getters and setters.
+
+
+.. index:: Model; Getters and setters
 
 .. tip::
 
@@ -96,6 +106,9 @@ The property values can be set and/or read-only by the corresponding getters and
     Additionally, fine-grained access control is possible as, for example, the reading can be permitted,
     without simultaneously allowing writing access.
     Most modern IDEs can create getters and setters automatically.
+
+
+.. index:: Model; Constructor
 
 The method :php:`__construct()` serves to guarantee
 a well-defined state at the beginning of the life cycle of the object.
