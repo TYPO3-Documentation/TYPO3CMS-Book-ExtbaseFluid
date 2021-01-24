@@ -19,44 +19,44 @@ The Controller
 ==============
 
 The class name of the controller must end with ``Controller``. Because our controller controls
-the display of the inventory we call it :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
+the display of the inventory we call it :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
 
 In our simple example, the controller looks like this:
 
 .. code-block:: php
 
-    <?php
+   <?php
 
-    namespace MyVendor\StoreInventory\Controller;
+   namespace T3docs\StoreInventory\Controller;
 
-    use MyVendor\StoreInventory\Domain\Repository\ProductRepository;
-    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use T3docs\StoreInventory\Domain\Repository\ProductRepository;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use Psr\Http\Message\ResponseInterface;
 
-    class StoreInventoryController extends ActionController
-    {
-        private $productRepository;
+   class StoreInventoryController extends ActionController
+   {
+      private $productRepository;
 
-        /**
-         * Inject the product repository
-         *
-         * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
-         */
-        public function injectProductRepository(ProductRepository $productRepository)
-        {
-            $this->productRepository = $productRepository;
-        }
+      public function injectProductRepository(ProductRepository $productRepository)
+      {
+         $this->productRepository = $productRepository;
+      }
 
-        public function listAction()
-        {
-            $products = $this->productRepository->findAll();
-            $this->view->assign('products', $products);
-        }
-    }
+      public function listAction(): ResponseInterface
+      {
+         $products = $this->productRepository->findAll();
+         $this->view->assign('products', $products);
+         return $this->htmlResponse();
+      }
+   }
 
+.. versionchanged:: 11.0
+   From version 11 on Extbase expects actions to return an instance
+   of Psr\Http\Message\ResponseInterface.
 
 .. index:: \TYPO3\CMS\Extbase; Mvc\Controller\ActionController
 
-Our :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController` is derived from
+Our :php:`\T3docs\StoreInventory\Controller\StoreInventoryController` is derived from
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`.
 It only contains the method :php:`listAction()`.
 Extbase identifies all methods ending with ``Action`` as actions
