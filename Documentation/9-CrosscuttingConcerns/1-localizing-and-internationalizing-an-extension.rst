@@ -368,9 +368,7 @@ translation relates to.
                      ['', 0],
                  ],
                  'foreign_table' => 'tx_blogexample_domain_model_blog',
-                 'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_
-                       l10n_parent### AND tx_blogexample_domain_model_blog.
-                       sys_language_uid IN (-1,0)',
+                 'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_l10n_parent### AND tx_blogexample_domain_model_blog.sys_language_uid IN (-1,0)',
                ],
            ],
            'l10n_diffsource' => [
