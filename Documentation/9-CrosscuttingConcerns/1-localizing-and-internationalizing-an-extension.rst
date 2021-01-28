@@ -350,6 +350,7 @@ translation relates to.
                'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.php:LGL.language',
                'config' => [
                    'type' => 'select',
+                   'renderType' => 'selectSingle',
                    'foreign_table' => 'sys_language',
                    'foreign_table_where' => 'ORDER BY sys_language.title',
                    'items' => [
@@ -364,6 +365,7 @@ translation relates to.
                'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.php:LGL.l18n_parent',
                'config' => [
                  'type' => 'select',
+                 'renderType' => 'selectSingle',
                  'items' => [
                      ['', 0],
                  ],
