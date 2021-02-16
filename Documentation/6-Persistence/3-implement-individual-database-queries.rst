@@ -311,6 +311,11 @@ age value. (Here, the minimum age is more recent in the past than the maximum ag
 The ``logicalAnd()`` constraint then joins the two ``logicalOr()`` constraints, making a single
 constraint, overall.
 
+.. _extbase_query_orderings:
+
+Orderings in the query
+======================
+
 You can sort the result of a query by assigning one or more rules ``$query->setOrderings($orderings);``
 to the ``Query`` object. These rules are collected in an associative array. Each array element has the
 property name on which the sort is based as its key, and the search order constant as its value.

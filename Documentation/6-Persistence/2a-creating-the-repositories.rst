@@ -46,8 +46,9 @@ objects for easier access from the Frontend.
    yourself to a minimal number of repositories. Instead, you should define the
    access methods within the Aggregate-Root objects as `find` methods.
 
-:php:`\TYPO3\CMS\Extbase\Persistence\Repository` serves with the following methods which
-are of course accessible and overridable in the extending child derivations:
+:php:`\TYPO3\CMS\Extbase\Persistence\Repository` serves with the following
+methods and variables. These are of course accessible and overridable in the
+extending child derivations:
 
 
 :php:`add($object)`
@@ -117,13 +118,52 @@ tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
 
 
+Accessible variables in the class :php:`Repository`
+===================================================
+
+.. _extbase_repository_default_orderings:
+
+Default orderings
+-----------------
+
+.. todo: should we mention the method setDefaultOrderings?
+
+An alternative default ordering can be stored in the protected variable
+:php:`$defaultOrderings` of classes extending the class :php:`Repository`.
+the default orderings are being applied when there is no ordering defined in
+the query (see :ref:`extbase_query_orderings`)
+
+In the following example the records get ordered by field :sql:`sorting`::
+
+   use TYPO3\CMS\Extbase\Persistence\Repository;
+   use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
+   class FooRepository extends Repository {
+
+       // Order by BE sorting
+       protected $defaultOrderings = array(
+           'sorting' => QueryInterface::ORDER_ASCENDING
+       );
+
+   }
+
+Fields can be ordered reversely by setting the value of the array entry
+to :php:`QueryInterface::ORDER_DESCENDING`.
+
+
+.. todo Add information about the variable $defaultQuerySettings here
+
+.. _procedure_to_fetch_objects:
+
+Fetch Extbase objects
+=====================
 
 Generally, there are three cases which need to be distinguished: Persisting a
 newly created object, reaccessing an existing object and updating the properties
 of an existing object. When creating a new object, Extbase determines the
 destination pages in the following rule hierarchy:
 
-.. _procedure_to_fetch_objects:
+
 
 .. todo Check if the work for "Ausgangspunkt" is used as in Ch. 4
 
