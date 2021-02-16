@@ -138,10 +138,6 @@ on which pages on TYPO3's page tree (see below for TYPO3's concept of the page
 tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
 
-
-Accessible variables in the class :php:`Repository`
-===================================================
-
 .. _extbase_repository_default_orderings:
 
 Default orderings
@@ -152,7 +148,8 @@ Default orderings
 An alternative default ordering can be stored in the protected variable
 :php:`$defaultOrderings` of classes extending the class :php:`Repository`.
 the default orderings are being applied when there is no ordering defined in
-the query (see :ref:`extbase_query_orderings`)
+the query (see :ref:`extbase_query_orderings`). The default orderings can be
+changed at running time by calling the function :php:`setDefaultOrderings()`.
 
 In the following example the records get ordered by field :sql:`sorting`::
 
@@ -172,7 +169,50 @@ Fields can be ordered reversely by setting the value of the array entry
 to :php:`QueryInterface::ORDER_DESCENDING`.
 
 
-.. todo Add information about the variable $defaultQuerySettings here
+.. _extbase_repository_default_query_settings:
+
+Default query settings
+----------------------
+
+The default query settings of a repository are stored in the protected variable
+:php:`$defaultQuerySettings` as an object of type
+:php:`QuerySettingsInterface`. This variable is usually called by setting
+it via the public function :php:`setDefaultQuerySettings()` from the function
+:php:`initializeObject()`.
+
+Here is an example::
+
+   use TYPO3\CMS\Extbase\Persistence\Repository;
+   use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+
+   class ExampleRepository extends Repository {
+
+      // Example for repository wide settings
+      public function initializeObject() {
+         /** @var Typo3QuerySettings $querySettings */
+         $querySettings = new Typo3QuerySettings();
+
+         // don't add the pid constraint
+         $querySettings->setRespectStoragePage(false);
+         // set the storagePids to respect
+         $querySettings->setStoragePageIds(array(1, 26, 989));
+
+         // define the enablecolumn fields to be ignored, true ignores all of them
+         $querySettings->setIgnoreEnableFields(TRUE);
+
+         // define single fields to be ignored
+         $querySettings->setEnableFieldsToBeIgnored(array('disabled','starttime'));
+
+         // add deleted rows to the result
+         $querySettings->setIncludeDeleted(TRUE);
+
+         // don't add sys_language_uid constraint
+         $querySettings->setRespectSysLanguage(FALSE);
+
+         $this->setDefaultQuerySettings($querySettings);
+      }
+   }
+
 
 .. _procedure_to_fetch_objects:
 
