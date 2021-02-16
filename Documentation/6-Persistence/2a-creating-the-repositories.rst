@@ -143,8 +143,6 @@ Extbase will use the page tree's root (the globe).
 Default orderings
 -----------------
 
-.. todo: should we mention the method setDefaultOrderings?
-
 An alternative default ordering can be stored in the protected variable
 :php:`$defaultOrderings` of classes extending the class :php:`Repository`.
 the default orderings are being applied when there is no ordering defined in
