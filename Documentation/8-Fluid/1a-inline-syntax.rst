@@ -1,57 +1,10 @@
 .. include:: /Includes.rst.txt
 .. index:: ViewHelpers; Inline notation
-.. _inline-notation-vs-tag-based-notation:
+.. _inline-notation:
 
-=============================
-Inline syntax for ViewHelpers
-=============================
-
-
-
+===============================
 Inline notation for ViewHelpers
--------------------------------
-
-.. sidebar:: Inline notation vs. tag-based notation
-
-    Once again, a comparison between inline notation and tag-based syntax:
-
-    Tags have an advantage, if:
-
-    * Control structures are being displayed::
-
-        <f:for each="{posts}" as="post">...</f:for>
-
-    * The ViewHelper returns a tag::
-
-        <f:form.textfield />
-
-    * The hierarchical structure of ViewHelpers is
-      important::
-
-        <f:form>
-            <f:form.textfield />
-        </f:form>
-
-    * The ViewHelper contains a lot of content::
-
-        <f:section name="main">
-            <!-- ... -->
-        </f:section>
-
-    Inline notation should be used, if:
-
-    * The focus is on the data flow::
-
-        {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
-
-    * The ViewHelper is being used inside of XML tags::
-
-        <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
-
-    * The nature of the ViewHelper is rather a helper function::
-
-        {f:translate(key: '...')}
-
+===============================
 
 It is intuitive and natural for most of the ViewHelpers to be called
 with the tag-based syntax. Especially with control structures or form
@@ -163,67 +116,111 @@ Accessor by inserting it into the ViewHelper with the help of the chaining
 operator (->). This can also be done multiple times.
 
 
-Converting from Fluid tag syntax to inline syntax
--------------------------------------------------
+.. _inline-notation-converting:
+
+Converting from tag-based notation to inline notation
+=====================================================
+
+| For every view helper you have the choice of using the *tag based*
+  syntax or the so called *inline notation*.
+
+Here a list of view helper examples and the corresponding inline
+notation:
+
+.. t3-field-list-table::
+   :header-rows: 1
+
+   -  :Header1:   Syntax example
+      :Header2:   Tag notation
+      :Header3:   Inline notation
+
+   -  :Header1:   Variable as parameter
+      :Header2:   :xml:`<f:foo argument="{someVariable}" />`
+      :Header3:   :xml:`{f:foo(argument: someVariable)}`
+
+   -  :Header1:   Variable as tag content
+      :Header2:   :xml:`<f:foo>{someVariable}</f:foo>`
+      :Header3:   :xml:`{someVariable -> f:foo()}`
+
+   -  :Header1:   String
+      :Header2:   :xml:`<f:foo argument="someString" />`
+      :Header3:   :xml:`{f:foo(argument: 'someString')}`
 
 
-.. index:: Fluid; arrays
+.. note::
 
-Flexible array data structures
-==============================
+   Tags with String content cannot represented by the inline notation.
+   :html:`<f:foo>someString</f:foo>` has no inline notation representaton.
 
-Arrays round off the concept of Fluid and build another core concept
-of the template engine. Arrays in Fluid can be somewhat compared to
-associative arrays in PHP. Every value in a Fluid array needs a
-key.
 
-Arrays are used to pass a variable number of arguments to View
-Helpers. The best example is the ``link.action``-ViewHelper. With
-this, you can create a link to other controllers and Actions in your
-Extension. The following link refers to the ``index`` action of
-the ``Post`` controller:
+ViewHelper as array value
+-------------------------
 
-``<f:link.action controller="Post" action="index">Show
-list of all posts</f:link.action>``
+.. code-block:: xml
 
-However, many links in your application need parameters, which can be
-passed with the ``arguments`` attribute. We can already see that
-we need arrays to do so: It's unpredictable how many parameters you want
-to pass. By using an array, we can pass an indefinite amount of parameters.
-The following example adds the parameter ``post`` to the
-link:
+   <f:translate
+      key="{msg_id}"
+      arguments="{1: '{f:format.date(date: record.validend, format: \'d.m.Y H:i:s\')}'}"
+   />
 
-``<f:link.action controller="Post" action="show"
-arguments="{post: currentPost}">Show current
-post</f:link.action>``
+Nested inline notation ViewHelpers
+----------------------------------
 
-The array ``{post: currentPost}`` consists of a single
-element with the name ``post``. The value of the element is the
-object ``currentPost``. A comma separates multiple elements:
-``{post: currentPost, blogTitle: 'Webdesign-Blog'}``.
+Additional nesting levels require more escaped quotation marks!
 
-Fluid only supports named arrays, which means that you always have
-to specify the key of the array element. Let's look at what options you
-have when creating an array::
+.. code-block:: xml
 
-    {
-        key1: 'Hello',
-        key2: "World",
-        key3: 20,
-        key4: blog,
-        key5: blog.title,
-        key6: '{firstname} {lastname}'
-    }
+   <f:example
+      arguments="{1: '{f:format.date(
+         date: record.validend,
+         format: \'{f:test(value:\\'nested level 2\\')}\'
+      )}'}"
+   />
 
-The array can contain strings as values as in key1 and key2.
-It can also have numbers as values as in key3. More interesting are key4
-and key5: Object Accessors are being specified as array values. You can
-also access sub-objects like you are used to with Object Accessors. All
-strings in arrays are interpreted as Fluid markup as well. So that you can
-combine strings from individual strings, for example. This way, it is also
-possible to call ViewHelpers with the inline notation.
 
-These are the basic concepts of Fluid. Now we move on to more
-advanced concepts, which increase the effectiveness of template creation.
-The following chapter will explain how to use different output formats to
-achieve different views of data.
+.. _inline-notation-vs-tag-based-notation:
+
+Inline notation vs. tag-based notation
+======================================
+
+A comparison between inline notation and tag-based syntax:
+
+
+Tags have an advantage, if:
+---------------------------
+
+*  Control structures are being displayed::
+
+      <f:for each="{posts}" as="post">...</f:for>
+
+*  The ViewHelper returns a tag::
+
+      <f:form.textfield />
+
+*  The hierarchical structure of ViewHelpers is important::
+
+     <f:form>
+         <f:form.textfield />
+     </f:form>
+
+*  The ViewHelper contains a lot of content::
+
+      <f:section name="main">
+         <!-- ... -->
+      </f:section>
+
+
+Inline notation should be used, if:
+-----------------------------------
+
+*  The focus is on the data flow::
+
+      {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
+
+*  The ViewHelper is being used inside of XML tags::
+
+      <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
+
+*  The nature of the ViewHelper is rather a helper function::
+
+      {f:translate(key: '...')}
