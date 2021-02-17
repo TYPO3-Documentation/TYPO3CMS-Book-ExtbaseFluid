@@ -68,7 +68,7 @@ value against.
 .. tip::
 
     You will find the complete reference of the
-    :php:`ValidatorInterface` in Appendix B.
+    :php:`ValidatorInterface` in the :ref:`validation-api`.
 
 For example, a validator which checks whether the passed string is
 an email address looks like this:
