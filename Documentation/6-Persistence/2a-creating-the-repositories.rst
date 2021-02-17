@@ -114,14 +114,91 @@ on which pages on TYPO3's page tree (see below for TYPO3's concept of the page
 tree) it should seek and file the objects. Without any further definitions
 Extbase will use the page tree's root (the globe).
 
+.. _extbase_repository_default_orderings:
+
+Default orderings
+-----------------
+
+An alternative default ordering can be stored in the protected variable
+:php:`$defaultOrderings` of classes extending the class :php:`Repository`.
+the default orderings are being applied when there is no ordering defined in
+the query (see :ref:`extbase_query_orderings`). The default orderings can be
+changed at running time by calling the function :php:`setDefaultOrderings()`.
+
+In the following example the records get ordered by field :sql:`sorting`::
+
+   use TYPO3\CMS\Extbase\Persistence\Repository;
+   use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
+   class FooRepository extends Repository {
+
+       // Order by BE sorting
+       protected $defaultOrderings = array(
+           'sorting' => QueryInterface::ORDER_ASCENDING
+       );
+
+   }
+
+Fields can be ordered reversely by setting the value of the array entry
+to :php:`QueryInterface::ORDER_DESCENDING`.
 
 
-Generally there are three cases which need to be distinguished: Persisting a
+.. _extbase_repository_default_query_settings:
+
+Default query settings
+----------------------
+
+The default query settings of a repository are stored in the protected variable
+:php:`$defaultQuerySettings` as an object of type
+:php:`QuerySettingsInterface`. This variable is usually called by setting
+it via the public function :php:`setDefaultQuerySettings()` from the function
+:php:`initializeObject()`.
+
+Here is an example::
+
+   use TYPO3\CMS\Extbase\Persistence\Repository;
+   use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+
+   class ExampleRepository extends Repository {
+
+      // Example for repository wide settings
+      public function initializeObject() {
+         /** @var Typo3QuerySettings $querySettings */
+         $querySettings = new Typo3QuerySettings();
+
+         // don't add the pid constraint
+         $querySettings->setRespectStoragePage(false);
+         // set the storagePids to respect
+         $querySettings->setStoragePageIds(array(1, 26, 989));
+
+         // define the enablecolumn fields to be ignored, true ignores all of them
+         $querySettings->setIgnoreEnableFields(TRUE);
+
+         // define single fields to be ignored
+         $querySettings->setEnableFieldsToBeIgnored(array('disabled','starttime'));
+
+         // add deleted rows to the result
+         $querySettings->setIncludeDeleted(TRUE);
+
+         // don't add sys_language_uid constraint
+         $querySettings->setRespectSysLanguage(FALSE);
+
+         $this->setDefaultQuerySettings($querySettings);
+      }
+   }
+
+
+.. _procedure_to_fetch_objects:
+
+Fetch Extbase objects
+=====================
+
+Generally, there are three cases which need to be distinguished: Persisting a
 newly created object, reaccessing an existing object and updating the properties
 of an existing object. When creating a new object Extbase determines the
 destination pages in the following rule hierarchy:
 
-.. _procedure_to_fetch_objects:
+
 
 .. todo Check if the work for "Ausgangspunkt" is used as in Ch. 4
 
@@ -179,8 +256,8 @@ rewritten. This option is normally activated.
    cleared as well then you should set up their PIDs in the field *TSConfig* of
    the page's preferences of the directory. For example, our Offers will be
    shown on the pages with the PIDs 23 and 26 (let's say for a Single and a
-   List View). Then we will configure the variable 
-   `TCEMAIN.clearCacheCmd=23,26` 
+   List View). Then we will configure the variable
+   `TCEMAIN.clearCacheCmd=23,26`
    in the page preferences of the SysFolder. Then the cache of these
    pages will be cleared as well and changes of an offer will show up
    immediately.
@@ -190,11 +267,11 @@ so-called *RefIndex*. Due to this index it's possible to show the number of
 associated data sets in the list module's column *[Ref.]*. By clicking on the
 number you get further information about the incoming and outgoing references
 of the dataset. This index is automatically updated when any data sets are
-edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex = 1` 
+edited. The configuration `config.tx_extbase.persistence.updateReferenceIndex = 1`
 causes an immediate update when data sets are edited in the Frontend though it is
 normally deactivated due to its huge effects on performance.
 
-Before calling a Repository's methods, they need to be instantiated 
+Before calling a Repository's methods, they need to be instantiated
 by the ObjectManager or via dependency injection first.
 
 .. code-block:: php
@@ -221,7 +298,7 @@ by the ObjectManager or via dependency injection first.
 
    Repositories are *Singletons* therefore there may only exist one instance of
    each class at one point in time during script-execution. If a new instance is requested,
-   the system will check whether an instance of the requested object exists already. In that case, 
+   the system will check whether an instance of the requested object exists already. In that case,
    the system will return the existing object instead of creating a new one. This is
    ensured by using the dependency injection. Thus, never ever use the PHP syntax
    keyword :php:`new` for creating a repository object because the new objects
