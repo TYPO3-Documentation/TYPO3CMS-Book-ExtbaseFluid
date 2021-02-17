@@ -3,6 +3,7 @@
 
 .. role:: aspect (emphasis)
 .. role:: html(code)
+.. role:: xml(code)
 .. role:: js(code)
 .. role:: php(code)
 .. role:: sep (strong)
