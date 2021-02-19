@@ -87,13 +87,14 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
 
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
+   c-FAQ/Index
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
 
 .. toctree::
    :hidden:
    :caption: ABOUT
 
-   GenIndex
+   genindex
    Sitemap/Index
    About
    Targets
