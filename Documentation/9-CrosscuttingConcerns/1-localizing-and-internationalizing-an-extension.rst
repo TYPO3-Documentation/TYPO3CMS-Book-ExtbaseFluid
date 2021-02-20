@@ -320,8 +320,7 @@ section of the TCA configuration file
 
 The field ``sys_language_uid`` is used for storing
 the UID of the language in which the blog is written. Based on this UID
-Extbase choose the right translation depending on the current
-TypoScript setting in ``config.sys_language_uid``. In the field
+Extbase choose the right translation depending on the current site. In the field
 ``l10n_parent`` the UID of the original blog created in the
 default language, which the current blog is a translation of. The third
 field, ``l10n_diffsource`` contains a snapshot of the source of
@@ -390,9 +389,8 @@ the default language.
 
 .. tip::
 
-    You can control this behavior. If you set the option
-    ``config.sys_language_mode`` to ``strict`` in the
-    TypoScript configuration, then only these objects are shown, which really
+    You can control this behavior. If you configure the site to strict
+    language mode, then only those objects are shown, which really
     have content in the frontend language. More information for this you
     will find in the *Frontend Localization Guide* of the
     *Core Documentation*.
@@ -548,32 +546,15 @@ TYPO3 v9 and higher
 ===================
 
 Starting with version 9, Extbase renders the translated records in the same way TypoScript rendering does.
-The new behavior is controlled by the Extbase feature switch :typoscript:`consistentTranslationOverlayHandling`.
 
-.. code-block:: typoscript
+.. note::
+   In previous version the behaviour was controllable by the feature switch :ts:`consistentTranslationOverlayHandling`
+   which has been removed in newer versions.
 
-     config.tx_extbase.features.consistentTranslationOverlayHandling = 1
-
-The new behavior is enabled by default in TYPO3 v9. The feature switch will be removed in TYPO3 v10, so there will be just
-one way of fetching records.
-You can override the setting using normal TypoScript.
-
-Users relying on the old behavior can disable the feature switch.
-
-The change modifies how Extbase interprets the TypoScript settings
-:ts:`config.sys_language_mode` and :ts:`config.sys_language_overlay` and the
-:php:`Typo3QuerySettings` properties :php:`languageOverlayMode` and :php:`languageMode`.
-
-Changes in the rendering:
-
-1) Setting :php:`Typo3QuerySettings->languageMode` does **not** influence how Extbase queries records anymore.
-   The corresponding TypoScript setting :ts:`config.sys_language_mode` is used by the core
-   to decide what to do when a page is not translated to the given language (display 404 or try page with a different language).
+1) Setting :php:`Typo3QuerySettings->languageMode` does **not** influence how Extbase queries records.
+   The language mode is used by the core to decide what to do when a page is not translated to the given language (display 404 or try page with a different language).
    Users who used to set :php:`Typo3QuerySettings->languageMode` to `strict` should use
    :php:`Typo3QuerySettings->setLanguageOverlayMode('hideNonTranslated')` to get translated records only.
-
-   The old behavior was confusing because `languageMode` had a different meaning and accepted different
-   values in the TypoScript context and the Extbase context.
 
 2) Setting :php:`Typo3QuerySettings->languageOverlayMode` to :php:`true` makes Extbase fetch records
    from default language and overlay them with translated values. So, e.g., when a record is hidden in
@@ -583,9 +564,6 @@ Changes in the rendering:
    So, e.g., when you have a translated `tt_content` with FAL relation, Extbase will show only those
    `sys_file_reference` records which are connected to the translated record (not caring whether some of
    these files have `l10n_parent` set).
-
-   Previously :php:`Typo3QuerySettings->languageOverlayMode` had no effect.
-   Extbase always performed an overlay process on the result set.
 
 3) Setting :php:`Typo3QuerySettings->languageOverlayMode` to :php:`false` makes Extbase fetch aggregate
    root records from a given language only. Extbase will follow relations (child records) as they are,
@@ -602,9 +580,7 @@ Changes in the rendering:
    If you want to have just translated category shown, remove the relation in the translated `tt_content`
    record in the TYPO3 backend.
 
-Note that by default :php:`Typo3QuerySettings` uses the global TypoScript configuration like
-:ts:`config.sys_language_overlay` and :php:`$GLOBALS['TSFE']->sys_language_content`
-(calculated based on :ts:`config.sys_language_uid` and :ts:`config.sys_language_mode`).
+Note that by default :php:`Typo3QuerySettings` uses the site language configuration.
 So you need to change :php:`Typo3QuerySettings` manually only if your Extbase code should
 behave different than other `tt_content` rendering.
 
@@ -618,12 +594,6 @@ See :php:`QueryLocalizedDataTest->queryFirst5Posts()`.
 The following examples show how to query data in Extbase in different scenarios, independent of the global TS settings:
 
 1) Fetch records from the language uid=1 only, with no overlays.
-   Previously (:ts:`consistentTranslationOverlayHandling = 0`):
-
-   This was not possible.
-
-
-   Now (:ts:`consistentTranslationOverlayHandling = 1`):
 
 .. code-block:: php
 
@@ -632,39 +602,12 @@ The following examples show how to query data in Extbase in different scenarios,
     $querySettings->setLanguageOverlayMode(false);
 
 2) Fetch records from the language uid=1, with overlay, but hide non-translated records
-   Previously (:ts:`consistentTranslationOverlayHandling = 0`):
-
-.. code-block:: php
-
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setLanguageUid(1);
-    $querySettings->setLanguageMode('strict');
-
-   Now (:ts:`consistentTranslationOverlayHandling = 1`):
 
 .. code-block:: php
 
     $querySettings = $query->getQuerySettings();
     $querySettings->setLanguageUid(1);
     $querySettings->setLanguageOverlayMode('hideNonTranslated');
-
-
-+------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| QuerySettings property | old behavior                                                                                    | new behavior                                 | default value (TSFE|Extbase) |
-+========================+=================================================================================================+==============================================+==============================+
-| languageUid            |                                                                                                 | same                                         | 0                            |
-+------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| respectSysLanguage     |                                                                                                 | same                                         | `true`                       |
-+------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| languageOverlayMode    | not used                                                                                        | values: `true`, `false`, `hideNonTranslated` | 0 | `true`                   |
-|                        |                                                                                                 |                                              |                              |
-+------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-| languageMode           | documented values: `null`, `content_fallback`, `strict` or `ignore`.                            | not used                                     | `null`                       |
-|                        | Only `strict` was evaluated. Setting `LanguageMode` to `strict`                                 |                                              |                              |
-|                        | caused passing `hideNonTranslated` param to `getRecordOverlay` in :php:`Typo3DbBackend`         |                                              |                              |
-|                        | and changing the query to work similar to TypoScript `sys_language_overlay = hideNonTranslated` |                                              |                              |
-+------------------------+-------------------------------------------------------------------------------------------------+----------------------------------------------+------------------------------+
-
 
 Identifiers
 ===========
