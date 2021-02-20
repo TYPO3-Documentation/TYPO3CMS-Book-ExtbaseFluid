@@ -14,10 +14,39 @@ website content.
 
 Here's the dispatcher path, step by step:
 
-.. figure:: dispatching-flow.svg
-   :align: center
+.. uml::
 
-   Figure 1-1: Extbase dispatching process
+   activate Bootstrap
+   Bootstrap -> Bootstrap: handleRequest()
+
+   Bootstrap -> RequestHandlerResolver: resolveRequestHandler()
+   activate RequestHandlerResolver
+   Bootstrap <-- RequestHandlerResolver: RequestHandler
+   deactivate RequestHandlerResolver
+   activate RequestHandler
+   Bootstrap -> RequestHandler: handleRequest()
+
+   activate RequestBuilder
+   RequestHandler -> RequestBuilder: build()
+   activate Request
+   RequestHandler <-- RequestBuilder: Request
+   deactivate RequestBuilder
+
+   RequestHandler -> Request: setIsCached()
+   activate Dispatcher
+   RequestHandler -> Dispatcher: dispatch(Request)
+   activate Controller
+   Dispatcher -> Dispatcher: resolveController(Request)
+   Dispatcher -> Controller: processRequest(Request)
+   Controller -> Response
+   activate Response
+
+   Bootstrap <-- RequestHandler: Response
+   deactivate RequestHandler
+   Bootstrap -> Response: shutdown()
+   deactivate Response
+   Bootstrap <-- Response: content
+   deactivate Bootstrap
 
 
 .. index::
