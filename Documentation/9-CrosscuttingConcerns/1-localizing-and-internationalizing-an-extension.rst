@@ -341,7 +341,7 @@ translation relates to.
    return [
        // ...
        'types' => [
-           '1' => ['showitem' => 'l18n_parent , sys_language_uid, hidden, title,
+           '1' => ['showitem' => 'l10n_parent , sys_language_uid, hidden, title,
                        description, logo, posts, administrator'],
        ],
        'columns' => [
@@ -350,7 +350,6 @@ translation relates to.
                'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.php:LGL.language',
                'config' => [
                    'type' => 'select',
-                   'renderType' => 'selectSingle',
                    'foreign_table' => 'sys_language',
                    'foreign_table_where' => 'ORDER BY sys_language.title',
                    'items' => [
@@ -359,21 +358,20 @@ translation relates to.
                    ],
                ],
            ],
-           'l18n_parent' => [
+           'l10n_parent' => [
                'displayCond' => 'FIELD:sys_language_uid:>:0',
                'exclude' => 1,
-               'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.php:LGL.l18n_parent',
+               'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.php:LGL.l10n_parent',
                'config' => [
                  'type' => 'select',
-                 'renderType' => 'selectSingle',
                  'items' => [
                      ['', 0],
                  ],
                  'foreign_table' => 'tx_blogexample_domain_model_blog',
-                 'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_l18n_parent### AND tx_blogexample_domain_model_blog.sys_language_uid IN (-1,0)',
+                 'foreign_table_where' => 'AND tx_blogexample_domain_model_blog.uid=###REC_FIELD_l10n_parent### AND tx_blogexample_domain_model_blog.sys_language_uid IN (-1,0)',
                ],
            ],
-           'l18n_diffsource' => [
+           'l10n_diffsource' => [
                'config' => [
                  'type' =>'passthrough'
                ],
