@@ -562,10 +562,10 @@ Available annotations
 All available annotations for Extbase are placed within the namespace :php:`TYPO3\CMS\Extbase\Annotation`.
 They can be imported into the current namespace, e.g.::
 
-   use TYPO3\CMS\Extbase\Annotation\Inject;
+   use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 
    /**
-    * @Inject
+    * @Transient
     * @var Foo
     */
    public $property;
@@ -577,7 +577,7 @@ transparent::
    use TYPO3\CMS\Extbase\Annotation as Extbase;
 
    /**
-    * @Extbase\Inject
+    * @Extbase\Transient
     * @var Foo
     */
    public $property;
@@ -664,19 +664,6 @@ The following annotations are available out of the box within Extbase:
 
       /**
        * @Extbase\ORM\Lazy
-       */
-      public $property;
-
-:php:`@TYPO3\CMS\Extbase\Annotation\Inject`
-   Configures dependency injection (DI) to inject given property. Properties to be injected
-   have to be `public`.
-   In the following example, a class :php:`ServiceClassName` should be injected.
-
-   .. code-block:: php
-
-      /**
-       * @Extbase\Inject
-       * @var ServiceClassName
        */
       public $property;
 
