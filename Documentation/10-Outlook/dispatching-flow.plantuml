@@ -17,12 +17,13 @@ RequestHandler <-- RequestBuilder: Request
 deactivate RequestBuilder
 
 RequestHandler -> Request: setIsCached()
-activate Response
 activate Dispatcher
-RequestHandler -> Dispatcher: dispatch(Request, Response)
+RequestHandler -> Dispatcher: dispatch(Request)
 activate Controller
 Dispatcher -> Dispatcher: resolveController(Request)
-Dispatcher -> Controller: processRequest(Request, Response)
+Dispatcher -> Controller: processRequest(Request)
+Controller -> Response
+activate Response
 
 Bootstrap <-- RequestHandler: Response
 deactivate RequestHandler
