@@ -66,20 +66,6 @@ Plugin namespace
    tx_blogexample_myplugin (used to namespace GET/POST vars)
 
 
-Solving "Fatal error: Maximum function nesting level of '100' reached, aborting!"
----------------------------------------------------------------------------------
-
-That error comes from `Xdebug <http://xdebug.org>`__ and tells you, that
-a recursion level of 100 is reached within your PHP code. You can get
-rid of this error by disabling Xdebug or by increasing the maximum
-nesting level in php.ini:
-
-
-.. code-block:: code
-
-   xdebug.max_nesting_level = 250
-
-
 Fluid
 =====
 
