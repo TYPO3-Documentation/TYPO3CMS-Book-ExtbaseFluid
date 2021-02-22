@@ -226,12 +226,27 @@ These are the escaping rules for quotes:
 How can I use dynamic array indexes?
 ------------------------------------
 
-That is currently not possible with Fluid. So its not possible to
-replace *{someArray.123}* by *{someArray.{someDynamicIndex}}* for
-example because that would violate the Fluid syntax. You can, however,
-create a simple ViewHelper that wraps functionality of
-*Tx_Extbase_Utility_ObjectAccess*. But preferably you should move that
-kind of logic to your domain model.
+An array can be accessed dynamically by recursively inserting its index:
+
+.. code-block:: xml
+
+   <!-- Recursive variable resolving -->
+   <f:variable name="array" value="{0: 'foo', 1: 'bar'}" />
+   <f:variable name="index" value="1" />
+   Variable "index" contains the array position we need.
+   Dynamic array index #{index}: {array.{index}} <!-- bar -->
+   
+It is even possible to call variables dynamically that way:
+
+.. code-block:: xml
+   <f:variable name="typeOne" value="This is type 1" />
+   <f:variable name="typeTwo" value="This is type 2" />
+   <f:variable name="selectedType" value="Two" />
+   Variable "selectedType" is a string that's part of a variable name.
+   Dynamic named variable: {type{selectedType}} <!-- This is type 2 -->
+   
+See `Fluid supports variable access with dynamic names/parts of name 
+<https://twitter.com/NamelessCoder/status/937995733873184768>`__
 
 How can I use Fluid in my Email templates?
 ------------------------------------------
