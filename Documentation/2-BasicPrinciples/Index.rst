@@ -16,6 +16,8 @@ Basic design principles
 
 TYPO3 comes with an impressive variety of available extensions. As
 usual with Open Source projects, these extensions have been written by
+.. todo: `Open Source` -> `open source`?
+
 various programmers. Extensions are used in all sorts of projects: some are
 written for use in small organizations or even in private,
 others are developed in big teams in the context of major projects.

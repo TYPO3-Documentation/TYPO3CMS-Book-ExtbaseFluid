@@ -61,6 +61,10 @@ The functionality of many applications can be split into modules.
 These modules can be further differentiated.
 The functionality of a blog e.g., can be split as follows:
 
+.. todo: maybe we should replace the term "modules" with "contexts". This also reflects the
+         term "bounded contexts" of DDD better. Also, modules is a reserved word in TYPO3 and
+         has a different meaning.
+
 Functionality related to blog posts:
 
 * List View of all blog posts
@@ -107,6 +111,10 @@ presentation (4) - the array with blog posts in our case.
 
 The view displays the data and returns the response to the user.(5)
 
+.. todo: 1) The figure contains german texts
+         2) The figure shows a false flow. The view does not return a response, the controller does.
+            We should try to have another figure created here.
+
 .. figure:: /Images/2-BasicPrinciples/figure-2-2.png
    :align: center
 
@@ -117,6 +125,8 @@ blog posts displayed in the browser. Now the user clicks on a single
 blog post and gets the complete blog post.
 Besides, the user can add a comment to this post.
 With the help of figure 2-6 we want to understand how the comment is stored.
+
+.. todo: figure 2-6 does not exist, should be 2-3, I guess.
 
 When submitting the comment form, the user creates a new request (1)
 containing the according controller and action.

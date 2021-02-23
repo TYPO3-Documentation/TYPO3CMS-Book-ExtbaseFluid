@@ -14,14 +14,23 @@ further processing: the so-called *View*. If we make no own choice, like in our
 example, the TemplateView of Fluid is automatically available under the class
 variable ``$this->view``.
 
+.. todo: Let's drop that last sentence starting with "If we make no own choice..."
+         It's bad english and hard to understand without further explanation.
+
+
+
 With the method ``assign()`` we "bind" the array with our blogs to the variable
 name "blogs" of the TemplateView. It can be addressed with this name in the
 template. The method ``render()`` of the TemplateView starts the generation of the
 HTML code.
 
+.. todo: Let's have a code example here to let people see assign and render in action
+
 Before we leave our small, contemplative action island and dig into the deep of
 the Fluid template, let's take a look at the abbreviations and simplifications
 Extbase offers at this point.
+
+.. todo: deep -> depths?
 
 .. index:: Controller; initializeAction()
 
@@ -73,6 +82,8 @@ Action methods can either return a response (`string` or object of type `\Psr\Ht
 themselves or not return at all.
 If an action method does not return anything, Extbase calls `$this->view->render()` and
 returns the rendered view automatically.
+
+.. todo: Not returning responses is deprecated. The docs must reflect that.
 
 Come with us on another tour: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags

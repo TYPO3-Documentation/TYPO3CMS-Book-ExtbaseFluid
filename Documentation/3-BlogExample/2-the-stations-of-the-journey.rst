@@ -32,6 +32,13 @@ request in a *request* and sends it to the appropriate
 part of the extension, which takes over the flow control — the so-called
 *Controller* (2).
 
+.. todo: This is a false statement. Ther is no such thing as a dispatcher that
+         initiates the plugin rendering. TYPO3 calls Extbase's Bootstrap, which
+         then uses a RequestBuilder to create an Extbase Request. Then, Extbase
+         tries to find a suitable RequestHandler which then uses a class called
+         Dispatcher, which just creates the Controller instance and calls
+         processRequest().
+         
 .. index:: Extbase; Repository
 
 Within the controller, the appropriate storage facility which is in charge
@@ -56,3 +63,5 @@ The *View* returns the rendered content
 encapsulated in a *Response* back to the
 *Dispatcher*, which in turn returns the HTML code to
 the calling TYPO3 process (6).
+
+.. todo: nope, the View does not send a response, the Controller does.

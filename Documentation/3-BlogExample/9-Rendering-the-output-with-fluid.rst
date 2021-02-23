@@ -20,6 +20,9 @@ differently - the suffix *.html*. So every action method has its own template.
 Possible other formats are e.g. *.pdf*, *.json* or *.xml*. In table 3.1 you
 can find some examples for these convention.
 
+.. todo: This format query argument to file extension mapping magic is an anti feature
+         which should not be mentioned anymore.
+
 *Table 3-1: Examples for the convention of template paths*
 
 +-----------+------------+------------+--------------------------------------------+
@@ -84,6 +87,10 @@ blogs are "included" and then split into "blogs per page" (paginatedItems) by
 the :ref:`paginator <t3coreapi:pagination>`. The paginator has to be set up in the
 controller, see the :ref:`documentation on pagination <t3coreapi:pagination>` for a
 guide on how to achieve that.
+
+.. todo: As much as I like the new paginator, I think it's kind of a distraction from the
+         actual topic here. The example works well without paginated blog posts.
+
 The curly brackets tell Fluid that it is a variable that
 was "assigned" to the template. In our case this was done in the
 :php:`indexAction()` of the `BlogController`. With the attribute `each`, the
@@ -103,6 +110,8 @@ Objects cannot be rendered by Fluid directly if they do not have a
 :php:`__toString()` method. The single properties of an object can be accessed
 with point-notation.
 If Fluid crosses a string like `{blog.title}`, it tries to parse it. Fluid
+.. todo: crosses is not the right word, comes across makes more sense.
+
 expects the variable `blog` to be an object. Inside of this object it searches
 for a method named :php:`getTitle()`. The method's name is
 created by extracting the part after the point, capitalizing the first letter,
@@ -123,6 +132,8 @@ As soon as Fluid is done with the whole template the result is added to the
 `Response` object. This is done in the
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController` by the call
 :php:`$body->write($this->view->render())`.
+
+.. todo: Again, let's mention that the user has to do that.
 
 Our journey slowly comes to an end. The *request* has been fully answered by a
 corresponding action. The `Response` object carries the completely generated

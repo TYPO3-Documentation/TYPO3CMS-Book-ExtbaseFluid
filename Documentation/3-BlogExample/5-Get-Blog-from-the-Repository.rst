@@ -57,3 +57,9 @@ another server, or is instantiated for the first time (except the speed -
 but users have time). The only important thing is that the object is
 instantiated and delivered to you. Object attributes changed by you will be
 stored when you leave the extension.
+
+.. todo: Yeah, that is a quite non-technical explanation. `When you leave the extension`.
+         Not sure if that is understood. The mechanism of tracking changes in objects that
+         are present in the persistence session should be explained in more detail because
+         it's important to understand and it differs from the implementation in other
+         frameworks where you have to actively take care of persisting pending changes.

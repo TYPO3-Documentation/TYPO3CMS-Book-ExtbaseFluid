@@ -40,6 +40,8 @@ own extension later.
    every other class of Extbase - in the folder
    :file:`typo3/sysext/extbase/Classes/`.
 
+.. todo: Better set a breakpoint in the Bootstrap to not miss half the show.
+
 At the end of this chapter, you will find a short comparison of the
 traditional way to code an extension and an approach with Extbase and
 Fluid.

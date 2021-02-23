@@ -46,10 +46,13 @@ The core of the extension is located in the folder
 :file:`Classes`. There you will all files in which classes or
 interfaces are defined.
 
+.. todo: Last sentence is incorrect.
+
 .. note::
 
    If you are not familiar with the terms "classes" and "interfaces", you
    should look into "Object-oriented programming with PHP".
+   .. todo: Is this something we can link? Or is that a book?
 
 In the folder :file:`Resources`, you will find all files
 included at runtime, but no classes or interfaces. Those are icons, language packages, HTML templates, and external
