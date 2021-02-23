@@ -6,6 +6,11 @@
 Inline notation for ViewHelpers
 ===============================
 
+.. tip::
+
+   There is an online converter from tag-based syntax to inline syntax:
+   `Fluid Converter <http://www.fluid-converter.com/>`__
+
 It is intuitive and natural for most of the ViewHelpers to be called
 with the tag-based syntax. Especially with control structures or form
 elements, this syntax is easily understood. But there are also ViewHelpers,
