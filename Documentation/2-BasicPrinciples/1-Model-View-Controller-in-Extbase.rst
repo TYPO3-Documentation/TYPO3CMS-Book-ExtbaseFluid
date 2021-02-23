@@ -1,11 +1,16 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   MVC
+   Model-view-controller
+   see: Model-view-controller; MVC
+   pair: MVC; Extbase
 
 ======================================
 Model-view-controller (MVC) in Extbase
 ======================================
 
 Object-oriented programming and domain-driven design specify a structure
-for our Extension on different levels. Object-oriented programming provides
+for our extension on different levels. Object-oriented programming provides
 the basic building blocks of software development: Objects as a combination of data
 and associated methods. Domain-driven design provides tools for creating a model
 that represents the real world rules in Software. However, we still lack a component
@@ -45,6 +50,9 @@ difficult to test, it should stay as slim as possible.
 
 The top layer, the *view* encapsulates the whole
 presentation logic and everything related to the presentation of data.
+
+
+.. index:: MVC; Interaction
 
 The interaction of model, view, and controller
 ==============================================

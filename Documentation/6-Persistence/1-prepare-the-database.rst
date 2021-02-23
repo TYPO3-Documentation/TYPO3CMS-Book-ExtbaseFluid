@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Database
+   Files; ext_tables.sql
 
 ======================
 Preparing the database
@@ -19,6 +22,8 @@ of the extension directory.
    look at Chapter 10). However, you should fully understand all the
    peculiarities of your database.
 
+
+.. index:: Database; Domain object tables
 
 Preparing the tables of the domain objects
 ==========================================
@@ -317,6 +322,7 @@ types.
    one Byte contains exactly one character, whereas, in UTF-8, one
    character is saved in up to 3 Bytes (Multibyte Encoding).
 
+.. index:: Database; Object relationships
 
 Configure relationships between objects
 =======================================

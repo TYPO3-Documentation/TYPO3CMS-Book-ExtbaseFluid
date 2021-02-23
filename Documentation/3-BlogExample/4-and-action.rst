@@ -1,4 +1,9 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Extbase; Action
+   Extbase; ActionController
+   \TYPO3\CMS\Extbase; Mvc\Controller\ActionController
+   \FriendsOfTYPO3\BlogExample; Controller\BlogController
 
 ==============
 And... action!
@@ -69,6 +74,16 @@ the doc comments and some methods have been removed. Find the full example at
 
     }
 
+
+.. index::
+   BlogController; indexAction
+   BlogController; showMeTheListAction
+   BlogController; newAction
+   BlogController; createAction
+   BlogController; editAction
+   BlogController; updateAction
+   BlogController; deleteAction
+
 The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
@@ -86,6 +101,8 @@ creates a new blog with the data of the form. The pair
 `updateAction()` has similar functionality for the
 change of an existing blog. The job of the
 `deleteAction()` should be self explaining.
+
+.. index:: Extbase; Slim controller
 
 .. tip::
 
@@ -118,6 +135,8 @@ inherits all methods from it by deriving it from this class.
    {
        // ...
    }
+
+.. index:: Action; Default
 
 If no specific action information is given, the default action will
 be called; in our case the `indexAction()`. The `indexAction()` contains

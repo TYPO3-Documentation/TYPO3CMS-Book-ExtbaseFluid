@@ -1,10 +1,10 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ==============================
 Using different output formats
 ==============================
 
-The model-view-controller-Paradigm (MVC), as described in chapter 2,
+The model view controller paradigm (MVC), as described in chapter 2,
 has many decisive advantages: It separates the model from the user
 interaction and allows different output formats for the same data. We
 want to discuss them later.
@@ -40,6 +40,8 @@ format is being reflected in the file ending of the template.
    semantically meaningful name.
 
 
+.. index:: Fluid; Output formats
+
 Output other formats with Fluid
 ===============================
 
@@ -72,6 +74,7 @@ to the number of the page containing the data to tell Extbase from which page
 the data should be read.
 
 
+.. index:: JsonView
 .. _using-built-in-jsonview:
 
 Using built in :php:`JsonView`

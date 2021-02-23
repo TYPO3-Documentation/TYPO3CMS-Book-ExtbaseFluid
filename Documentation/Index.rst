@@ -1,4 +1,4 @@
-
+.. include:: /Includes.rst.txt
 .. _start:
 
 ==================================================
@@ -93,6 +93,7 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    :hidden:
    :caption: ABOUT
 
+   GenIndex
    Sitemap/Index
    About
    Targets

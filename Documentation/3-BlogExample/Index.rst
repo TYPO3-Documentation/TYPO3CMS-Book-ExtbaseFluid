@@ -1,5 +1,5 @@
-.. include:: ../Includes.txt
-
+.. include:: /Includes.rst.txt
+.. index:: Blog Example
 .. _The-Blog-Example:
 
 A journey through the blog example

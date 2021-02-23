@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ===========================
 The stations of the journey
@@ -17,10 +17,15 @@ which you will get to know in more detail during the upcoming sections.
 When an extension like the blog example is called, the following
 happens behind the scenes:
 
+.. index:: Extbase; Dispatcher
+
 TYPO3 digs into the page content and discovers the extension's content
 elements (plugins) on the page. It does not call the extension directly,
 but hands over the control to the Extbase *Dispatcher*
 (1).
+
+.. index:: Extbase; Request
+.. index:: Extbase; Controller
 
 The *Dispatcher* bundles all information of the
 request in a *request* and sends it to the appropriate
@@ -33,6 +38,8 @@ part of the extension, which takes over the flow control — the so-called
          tries to find a suitable RequestHandler which then uses a class called
          Dispatcher, which just creates the Controller instance and calls
          processRequest().
+         
+.. index:: Extbase; Repository
 
 Within the controller, the appropriate storage facility which is in charge
 of the blogs — the *repository* — is instructed to
@@ -43,10 +50,14 @@ The *repository* returns a collection of the
 already present ``Blog`` objects with all of their posts, comments and
 tags (4).
 
+.. index:: Extbase; View
+
 The *Controller* sends these blogs to the part of
 the extension responsible for the output — the *View* —
 and advises it to render the content in the requested output format
 (5).
+
+.. index:: Extbase; Response
 
 The *View* returns the rendered content
 encapsulated in a *Response* back to the

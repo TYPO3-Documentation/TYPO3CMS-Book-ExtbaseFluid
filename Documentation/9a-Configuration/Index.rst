@@ -1,4 +1,5 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index:: Configuration
 .. _configuration:
 
 =============
@@ -13,6 +14,11 @@ various options described here each differs in:
 * the access level required to make the change (editor, admin)
 
 
+
+.. index::
+   TypoScript
+   Configuration; TypoScript
+
 TypoScript and constants
 ========================
 
@@ -26,6 +32,10 @@ The changes apply to the current page and all subpages.
 
    * :ref:`t3tsref:typoscript-syntax-what-are-constants`
 
+
+.. index::
+   Configuration; Extension configuration
+   Files; ext_conf_template.txt
 
 Extension configuration
 =======================
@@ -42,6 +52,8 @@ Use this for general options that should be globally applied to the extension.
 
    * :ref:`t3coreapi:extension-options`
 
+
+.. index:: FlexForms
 
 FlexForms
 =========

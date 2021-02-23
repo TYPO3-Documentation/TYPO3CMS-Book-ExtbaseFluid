@@ -1,5 +1,8 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. highlight:: html
+.. index::
+   Fluid; Partials
+   Partials
 .. _moving-repeating-snippets-to-partials:
 
 =====================================
@@ -27,6 +30,8 @@ That's where partials are used. Partials are stored, by default, within
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
+.. index:: Partials; Rendering
+
 Inside the existing template the snippet can now be replaced with a ViewHelper
 to render the partial::
 
@@ -45,6 +50,9 @@ It's also possible to create further folders, e.g.:
        tags: post.tags
    })}
 
+
+.. index:: Fluid; Namespace import
+
 ViewHelper namespace import
 ===========================
 
@@ -62,6 +70,7 @@ It's possible to use a :ref:`global-namespace-import`, or :ref:`imports the name
    ViewHelper was used. Since CMS v8, there is no need anymore. The namespace has
    to be imported within the partial or the templates. It still can be imported
    in both, but the template is enough.
+
 
 How to treat partials
 =====================

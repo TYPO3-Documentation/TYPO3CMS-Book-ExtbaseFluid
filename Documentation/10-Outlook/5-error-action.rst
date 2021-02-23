@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Controller; Errors
+   Controller; errorAction()
 .. _extbase_error_action:
 
 ============

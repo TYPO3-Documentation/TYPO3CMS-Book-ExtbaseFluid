@@ -1,4 +1,8 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Table configuration array
+   TCA
+   Files: Configuration/TCA/*.php
 
 =================================
 Configure the backend input forms
@@ -10,7 +14,7 @@ limitations - in the Frontend as well to provide functionalities for creation,
 update and deletion of the organization's data. In this chapter, we first
 configure the Backend's form inputs for easy access to the database's contents.
 The forms that provide the management functionalities are stored in a
-PHP-Array called `Table Configuration Array (TCA)`.
+PHP-Array called `table configuration array (TCA)`.
 The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`.
 Example: The TCA for the database table tx_sjroffers_domain_model_organization is therefore in the
 file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
@@ -81,7 +85,12 @@ with names that are the keys of the nested array.
 
 Below, you find the names of the parts and their meaning.
 
+
+.. index:: TCA; ctrl
+
 `ctrl`
+------
+
 This part contains configuration options that are used in the scope of the
 table. This covers the name of the table in the Backend, which table fields
 contain which metadata and the behavior of the table on creation and movement
@@ -92,7 +101,11 @@ Control (e.g. `disabled`, `hidden`, `starttime`, `endtime`,
 `languageField`).
 
 
+.. index:: TCA; interface
+
 `interface`
+-----------
+
 This part contains information about the representation of the table data in the
 Backend's List Module. The key `showRecordFieldList` contains a
 comma-separated list of field values that will be shown in the info
@@ -105,8 +118,11 @@ number of row sets shown on a page in this perspective may be set via
 the corresponding help texts always show up.
 
 
+.. index:: TCA; types
 
 `types`
+-------
+
 This section defines the appearance of the Input Form for the creation and update of
 a row set. You can define several layout types by listing several elements in the
 array `types`. The key of all those elements is their type (usually a number)
@@ -140,7 +156,12 @@ through colons, and the last place contains information about the appearance
 the *Rich Text Editor*. For a full list of the options, refer to the already
 mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
+
+.. index:: TCA; palettes
+
 `palettes`
+----------
+
 Palettes are used to collect occasionally used fields and show them upon
 demand. The Backend user has to choose the Extended View in the
 Backend's List module to view these. Palettes are connected to a durable visible field. An
@@ -155,7 +176,12 @@ example from the table `tx_sjroffers_domain_model_organization` is:
 The structure is the same as in the section *types* where `address;;1;;`
 refers to the palette with the number 1.
 
+
+.. index:: TCA; columns
+
 `columns`
+---------
+
 This array contains information about the behavior and the appearance in the
 Input Form of every table field. The field name is the key, and, again, the value
 is a nested array holding the field's corresponding configuration. The field
@@ -187,6 +213,8 @@ text fields, date fields, or selection fields. Each and every type has its own
 presentation and procession options. Consecutively, you will find a list of all
 the field types with their usual configuration:
 
+
+.. index:: Field types; input
 
 Field type "input"
 ==================
@@ -244,6 +272,9 @@ an icon right to the input field, which is shown in Fig. 6-2:
 
    Figure 6-2: An example of the field type "input" used as a date field.
 
+
+.. index:: Field types; text
+
 Field type "text"
 =================
 
@@ -267,6 +298,8 @@ The `text` field type may contain multi-line formatted or unformatted texts
 
    Figure 6-3: An example for the field type "text".
 
+
+.. index:: Field types; check
 
 Field type "check"
 ==================
@@ -327,6 +360,9 @@ equivalent to the integer value 5.
 
    Figure 6-5: An example of the field type "check" for several options that are grouped together.
 
+
+.. index:: Field types; radio
+
 Field type "radio"
 ==================
 
@@ -355,6 +391,9 @@ database.
    :align: center
 
    Figure 6-6: An example of the field type "radio".
+
+
+.. index:: Field types; select
 
 Field type "select"
 ===================
@@ -411,6 +450,9 @@ temporary table *tx_sjroffers_offer_category_mm*.
 
    Figure 6-8: An example for the field type "select".
 
+
+.. index:: Field types; group
+
 Field type "group"
 ==================
 
@@ -432,6 +474,9 @@ references to resources of the filesystem or rowsets of a database (see Fig. 6-9
    ],
 
 The combination of `type` and `internal_type` specifies the field's type.
+
+
+.. index:: Field types; none
 
 Field type "none"
 =================
@@ -456,6 +501,9 @@ shown as a raw number.
 
    Figure 6-10: An example for the field type "none" for a date field.
 
+
+.. index:: Field types; passthrough
+
 Field type "passthrough"
 ========================
 
@@ -476,6 +524,9 @@ This field configuration in the database table
 `organization` of the `Offer`-object will be filled with the correct object.
 
 
+
+.. index:: Field types; user
+
 Field type "user"
 =================
 
@@ -483,6 +534,8 @@ A user generates free definable form fields that can be processed by any PHP
 function. For further information, refer to the documentation which is available
 online and to the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
+
+.. index:: Field types; flex
 
 Field type "flex"
 =================
@@ -493,6 +546,11 @@ Extbase uses FlexForms for persisting plugin configuration but not to save
 domain data. If your plugin data are rather complex, we encourage you to
 design your own backend module for them (refer to Ch. 10).
 
+
+.. index::
+   Field types; inline
+   IRRE
+   Inline relational record editing
 
 Field type "inline"
 ===================
@@ -578,7 +636,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
+Nevertheless, the online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
@@ -603,8 +661,10 @@ Those are the summarized configuration possibilities within the TCA. As you see,
 the huge count of options can be overwhelming for the novice. But in the future,
 they can be auto-generated by the Extension Builder (refer to Ch. 10).
 
+.. index:: TCA; Storage
 
-As already mentioned, the TCA is stored in a file with the database table name as filename suffixed with `.php` in the directory :file:`Configuration/TCA/Overrides`
+As already mentioned, the TCA is stored in a file with the database table name as filename suffixed with `.php` in the
+directory :file:`Configuration/TCA/`
 
 .. code-block:: php
    :caption: tx_sjroffers_domain_model_organization.php

@@ -1,5 +1,7 @@
-.. include:: ../Includes.txt
-
+.. include:: /Includes.rst.txt
+.. index::
+   Frontend plugin;
+   Plugin
 .. _configuring-the-plugin:
 
 ======================
@@ -11,26 +13,40 @@ like any other element (like a text element or an image).
 It is a "virtual" collection of one or more actions.
 In our example there is only one controller action combination,
 namely ``StoreInventory->list``.
+
+.. index::
+   Plugin; Configuration
+   ExtensionUtility; configurePlugin()
+   \TYPO3\CMS\Extbase; Utility\ExtensionUtility
+   Files; ext_localconf.php
+
+Configuring the plugin: :php:`ExtensionUtility::configurePlugin`
+================================================================
+
 To register a plugin, we need the following code in the file
 :file:`ext_localconf.php`, that we create in the top level of
 our extension directory.
 
 .. code-block:: php
 
-    <?php
-    defined('TYPO3') || die('Access denied.');
+   <?php
+   // Prevent script from being called directly
+   defined('TYPO3') or die();
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'StoreInventory',
-        'InventoryList',
-        [
-            \Vendor\StoreInventory\Controller\StoreInventoryController::class => 'list',
-        ],
-        // non-cacheable actions
-        [
-            \Vendor\StoreInventory\Controller\StoreInventoryController::class => '',
-        ]
-    );
+   // encapsulate all locally defined variables
+   (function () {
+      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+         'StoreInventory',
+         'Pi1',
+         [
+            \T3docs\StoreInventory\Controller\StoreInventoryController::class => 'list',
+         ],
+         // non-cacheable actions
+         [
+            \T3docs\StoreInventory\Controller\StoreInventoryController::class => '',
+         ]
+      );
+   })();
 
 With the first line we prevent calling the PHP code in this file without TYPO3 context
 (this is basically a small security measure).
@@ -45,13 +61,23 @@ and the array value is a comma-separated list of all allowed actions.
 In our case, this is the ``list`` action (also without the suffix ``Action``).
 Thus the array :php:`[\Vendor\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
 allows to execute the method :php:`listAction()`
-in the :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
+in the :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
 All actions are cached by default. If you need to have an uncached action,
 specify the controller/action combination as the fourth parameter.
 In an array with the same format as the previous.
 Now all actions are listed whose results should not be stored in the cache.
 
 This concludes the configuration of the plugin.
+
+
+.. index::
+   Plugin; registration
+   ExtensionUtility::registerPlugin()
+   Files; Configuration/TCA/Overrides/tt_content.php
+
+Plugin registration: :php:`ExtensionUtility::registerPlugin`
+============================================================
+
 We need to register the plugin to have it actually appear as a selectable element in the backend plugin list.
 To achieve this, insert the following line into a new file :file:`Configuration/TCA/Overrides/tt_content.php`:
 
@@ -61,7 +87,7 @@ To achieve this, insert the following line into a new file :file:`Configuration/
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'StoreInventory',
-        'InventoryList',
+        'Pi1',
         'The Store Inventory List',
         'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
     );
@@ -75,17 +101,17 @@ Don't forget to set the sys_folder, where the products are stored as the startin
 (in our case, "Inventory") in the plugin.
 Otherwise, your products are not found (see figure 4-4).
 
-.. figure:: /Images/4-FirstExtension/figure-4-4.png
+.. figure:: Images/PluginInBackend.png
    :align: center
 
    Figure 4-4: Our plugin appears in the selection box of the content element.
 
 The next call of the page with the plugin shows the inventory as a table (figure 4-5).
 
-.. figure:: /Images/4-FirstExtension/figure-4-5.png
+.. figure:: Images/PluginInFrontend.png
    :align: center
 
-   Figure 4-5: The output of the inventory in the front end
+   Figure 4-5: The output of the inventory in the frontend
 
 This marks the end of our first little Extbase extension.
 This example was intentionally simple to get you started.

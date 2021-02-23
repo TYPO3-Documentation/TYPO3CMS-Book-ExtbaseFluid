@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. _template-creation-by-example:
 
 ============================
@@ -80,7 +80,7 @@ controller, e.g., at unauthorized access (see also the sections for edit and del
    }
 
 
-Store functions in Viewhelper
+Store functions in ViewHelper
 =============================
 
 With this, the base framework of our plugin output is ready. In the

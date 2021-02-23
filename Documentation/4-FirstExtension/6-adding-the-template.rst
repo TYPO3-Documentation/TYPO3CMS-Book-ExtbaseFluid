@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Templates
+   Files; Resources/Private/Templates
 
 =================
 Adding a template
@@ -9,12 +12,18 @@ In Extbase frontend templates are stored in a subdirectory:
 - if not configured otherwise.
 The name of the subdirectory in the :file:`Templates/` folder is derived
 from the corresponding controller name (without the `Controller` suffix).
-The class name :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`
+The class name :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`
 will result in the directory name :file:`StoreInventory/`.
 
 In the directory :file:`StoreInventory/` we can now create the template file for our list view.
 As the list action renders our list view, the template should be :file:`List.html`.
 The action name, without the action suffix.
+
+
+.. index:: Templates; Fluid
+
+The Fluid template
+==================
 
 :file:`EXT:store_inventory/Resources/Private/Templates/StoreInventory/List.html` looks like this:
 
