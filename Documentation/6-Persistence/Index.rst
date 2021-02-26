@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Extbase; Persistence
+   Persistence
 .. _persistence:
 
 ================================

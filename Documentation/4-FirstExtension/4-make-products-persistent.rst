@@ -1,16 +1,24 @@
-.. include:: ../Includes.txt
-
+.. include:: /Includes.rst.txt
+.. index:: Extbase; Persistence
 .. _persisting_products:
 
 ========================
 Make products persistent
 ========================
 
-The model :php:`\MyVendor\StoreInventory\Domain\Model\Product` allows us
+The model :php:`\T3docs\StoreInventory\Domain\Model\Product` allows us
 to use "Products" in our application. However, we do not have any way to store them yet,
 meaning they are stored in memory and are deleted by PHP after the page request was completed.
 To make our products available across requests, we must "persist" it.
 The most common way to persist objects is to store them in the database.
+
+.. index::
+   Database schema
+   Files; ext_tables.sql
+
+Defining the database schema
+============================
+
 To be able to do that, we need to define a database schema in the file
 :file:`EXT:store_inventory/ext_tables.sql`:
 
@@ -29,9 +37,19 @@ purposes and will be created automatically.
 Your product's characteristics ``name``, ``description`` and ``quantity``
 appear as columns, too.
 
+
+.. index::
+   Table configuration array
+   TCA
+   see: Table configuration array; TCA
+   Files; Configuration/TCA/*.php
+
+The table configuration array (TCA)
+===================================
+
 To make your products editable/creatable by the backend of TYPO3,
 you need a configuration file specifying how your editing form should look like.
-The configuration is stored in a PHP array, the *Table-Configuration-Array* (in short: *TCA*).
+The configuration is stored in a PHP array, the *table configuration array* (in short: *TCA*).
 
 .. seealso::
    You can find the full documentation for all *Table Configuration Array*
@@ -83,6 +101,11 @@ TYPO3 needs to render the list and detail view for the records of this extension
    ];
 
 
+..index:: TCA; sections
+
+TCA sections
+============
+
 This file consists of several sections.
 In the section ``ctrl``, the table's basic characteristics are configured, like the title or the icon.
 The section ``columns`` describes how each table column is rendered in the backend forms.
@@ -93,6 +116,16 @@ The section ``types`` defines in which sequence the table columns are rendered.
    You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
 
 TYPO3 is able to group all records of an extension in the new record wizard.
+
+
+..index::
+   Localization; Backend language file
+   Resources/Private/Language/locallang_db.xlf
+   XLF
+
+Language file
+=============
+
 To define the name of this group, create a language file
 :file:`EXT:store_inventory/Resources/Private/Language/locallang_db.xlf`
 and add the key **extension.title**.
@@ -124,17 +157,21 @@ and add the key **extension.title**.
        </file>
    </xliff>
 
+
+Creating our first products
+===========================
+
 After installing the extension, we can create our first products in the backend.
 
 As shown in image 4-2, we create a sys folder to store the products (see 1 in figure 4-2).
 Let's create some items: (see 2 in figure 4-2 and 3 in 4-3).
 
-.. figure:: /Images/4-FirstExtension/figure-4-2.png
+.. figure:: Images/ProductStorage.png
    :align: center
 
    Figure 4-2: Create a new product
 
-.. figure:: /Images/4-FirstExtension/figure-4-3.png
+.. figure:: Images/RecordType.png
    :align: center
 
    Figure 4-3: The new record wizard.
@@ -144,9 +181,17 @@ We did not model the full set of properties a product might have,
 but restricted the model to those we need to build our application
 (these are the properties relevant to our current domain).
 
+
+.. index::
+   Repository
+   \TYPO3\CMS\Extbase; Persistence\Repository
+
+The ProductRepository
+=====================
+
 After creating the items in the backend, we now want to display them in the frontend.
 To get data from the database with Extbase, we need a repository.
-Create a class :php:`MyVendor\StoreInventory\Domain\Repository\ProductRepository` (see below).
+Create a class :php:`T3docs\StoreInventory\Domain\Repository\ProductRepository` (see below).
 The repository is our connection to the database and retrieves products.
 As we do not need any special functionality, the Repository class is very short in our case:
 
@@ -154,7 +199,7 @@ As we do not need any special functionality, the Repository class is very short 
 
    <?php
 
-   namespace MyVendor\StoreInventory\Domain\Repository;
+   namespace T3docs\StoreInventory\Domain\Repository;
 
    use TYPO3\CMS\Extbase\Persistence\Repository;
 

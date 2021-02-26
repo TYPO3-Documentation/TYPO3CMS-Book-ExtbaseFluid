@@ -1,10 +1,13 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Property mapper
+   TYPO3\CMS\Extbase; Property\PropertyMapper
 .. _extbase_property_mapping:
 .. _property-mapper:
 
-===============
-Property mapper
-===============
+===================
+The property mapper
+===================
 
 Extbase provides a property mapper to convert different values, like integers or arrays, to other
 types, like strings or objects.
@@ -18,8 +21,8 @@ method.
 
 .. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
-How to use property mapper
-==========================
+How to use property mappers
+===========================
 
 The above example was a straightforward one. Most of the time, you will convert from an array to an
 where some points must be considered. This example will show a simple conversion::

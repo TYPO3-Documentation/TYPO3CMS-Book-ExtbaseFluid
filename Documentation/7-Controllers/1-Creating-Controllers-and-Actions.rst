@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Controllers
+   Controllers; Actions
 
 ================================
 Creating controllers and actions

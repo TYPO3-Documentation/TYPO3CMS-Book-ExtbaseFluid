@@ -1,4 +1,5 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index:: Extbase; Controller
 
 ======================
 Back in the controller
@@ -30,6 +31,8 @@ the Fluid template, let's take a look at the abbreviations and simplifications
 Extbase offers at this point.
 
 .. todo: deep -> depths?
+
+.. index:: Controller; initializeAction()
 
 * First of all, there is the method `initializeAction()`, which is called before
   every action, if defined in your controller.
@@ -71,6 +74,9 @@ The following example explains this mechanism:
            // bar
        }
    }
+
+
+.. index:: \Psr\Http\Message\ResponseInterface
 
 Action methods can either return a response (`string` or object of type `\Psr\Http\Message\ResponseInterface`)
 themselves or not return at all.

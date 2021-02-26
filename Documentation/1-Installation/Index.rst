@@ -4,7 +4,7 @@
 .. * Last reviewed: May 17th, 2019 for TYPO3 version 9.5.7
 .. ----------------------------------------
 
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ====================
 Installation & setup
@@ -16,6 +16,8 @@ Check out the "Installation & upgrade guide" for how to
 :ref:`setup a TYPO3 installation with Composer <t3install:install-via-composer>`
 
 The system extension **extbase** and **fluid** are required.
+
+.. index:: Extension builder
 
 Extension builder
 =================

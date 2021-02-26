@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Fluid; Layouts
+   Layouts
 .. _creating-a-consistent-look-and-feel-with-layouts:
 
 ================================================

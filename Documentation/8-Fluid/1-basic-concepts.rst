@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. _basic-concepts:
 
 ==============
@@ -16,6 +16,10 @@ the template engine and provide for scalability and flexibility:
 * *Object Accessors* output the content of variables assigned to the View to be displayed.
 * *ViewHelpers* are special tags in the template which provide more complex functionality such as loops or generating links.
 * *Arrays* make it possible to assign hierarchical values to ViewHelpers.
+
+.. index::
+   Fluid; Object accessors
+   Fluid; {myObject}
 
 Outputting data with object accessors
 =====================================
@@ -127,6 +131,7 @@ the template. It is better to place PHP code in your own ViewHelper if
 needed. The following describes how to do this.
 
 
+.. index:: Fluid; ViewHelpers
 
 Implementing more complex functionalities with ViewHelpers
 ==========================================================
@@ -156,6 +161,9 @@ ViewHelpers that come with Fluid are prefixed with ``f``. Your
 own namespaces have to be imported into the template like previously
 mentioned.
 
+
+.. index:: Fluid; f:for
+
 All tags, which begin with a registered prefix, will be evaluated.
 Here's a small example:
 
@@ -166,8 +174,6 @@ Here's a small example:
             <li>{post.title}</li>
         </f:for>
     </ul>
-
-
 
 Tags without a registered prefix (in this example
 <ul> and <li>) will be treated as text. The tag
@@ -203,164 +209,10 @@ functionality.
     All control structures like ``if/else`` or
     ``for`` are individual ViewHelpers in Fluid and not a core
     language feature. This is one of the main reasons for the flexibility
-    of Fluid. You'll find a detailed reference of the ViewHelpers in
-    Appendix C.
+    of Fluid. You'll find a detailed reference in the `ViewHelpers Reference
+    <https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Index.html>`__.
 
-
-.. _inline-notation-vs-tag-based-notation:
-
-Inline notation for ViewHelpers
--------------------------------
-
-.. sidebar:: Inline notation vs. tag-based notation
-
-    Once again, a comparison between inline notation and tag-based syntax:
-
-    Tags have an advantage, if:
-
-    * Control structures are being displayed::
-
-        <f:for each="{posts}" as="post">...</f:for>
-
-    * The ViewHelper returns a tag::
-
-        <f:form.textfield />
-
-    * The hierarchical structure of ViewHelpers is
-      important::
-
-        <f:form>
-            <f:form.textfield />
-        </f:form>
-
-    * The ViewHelper contains a lot of content::
-
-        <f:section name="main">
-            <!-- ... -->
-        </f:section>
-
-    Inline notation should be used, if:
-
-    * The focus is on the data flow::
-
-        {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
-
-    * The ViewHelper is being used inside of XML tags::
-
-        <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
-
-    * The nature of the ViewHelper is rather a helper function::
-
-        {f:translate(key: '...')}
-
-
-It is intuitive and natural for most of the ViewHelpers to be called
-with the tag-based syntax. Especially with control structures or form
-elements, this syntax is easily understood. But there are also ViewHelpers,
-which can lead to difficult to understand and invalid template code when
-used as a tag. An example of this is the ``f:uri.resource``
-ViewHelper, which returns the path to a resource in the
-*Public/* folder of an Extension. It is being used
-inside of ``<link rel="stylesheet" href="..." />`` for
-example. Using the normal, tag-based syntax, it looks like this::
-
-    <link rel="stylesheet" href="<f:uri.resource path='myCss.css' />" />
-
-That isn't easy to read and doesn't adequately communicate
-the meaning of the ViewHelper. Also, the above code is not valid XHTML, and
-therefore most text editors can't display the code with correct syntax
-highlighting anymore.
-
-For that reason, it is also possible to call the ViewHelper
-differently, with the help of the *inline notation*.
-The inline notation is function-oriented, which is more suitable for this
-ViewHelper: Instead of ``<f:uri.resource />`` you can also
-write ``{f:uri.resource()}``.
-
-So the example above can be changed to::
-
-    <link rel="stylesheet" href="{f:uri.resource(path: 'myCss.css')}" />
-
-The purpose of the ViewHelper is easily understandable and visible -
-it is a helper function that returns a resource. It is well-formed XHTML
-code as well, and the syntax highlighting of your editor will work
-correctly again.
-
-We'll illustrate some details of Fluid's syntax, based on formatting
-a date.
-
-Let's assume we have a blog post object with the name
-*post* in the template. It has, among others, a
-property *date* which contains the date of the creation
-of the post in a *DateTime* object.
-
-*DateTime* objects that can be used in PHP to
-represent dates, have no `__toString()`-method and
-can, therefore not be outputted with Object Accessors in the template.
-You'll trigger a PHP error message if you simple write
-``{post.date}`` in your template.
-
-In Fluid there is a ViewHelper ``f:format.date`` to output
-*DateTime* objects, which (as you can see on the prefix
-``f:``) is already part of Fluid:
-
-``<f:format.date format="Y-m-d">{post.date}</f:format.date>``
-
-This ViewHelper formats the date as defined in the
-*format* property. In this case, there must be
-no whitespaces or newlines before or after
-``{post.date}``. If there is, Fluid tries to chain the whitespace
-and the string representation of ``{post.date}`` together as
-string. Because the DateTime object has no method
-`__toString()`, a PHP error message will be thrown
-again.
-
-.. tip::
-
-    To avoid this problem, all ``f:format``-ViewHelpers
-    have a property to specify the object to be formatted.
-
-Instead of writing
-``<f:format.date>{post.date}</f:format.date>``
-you can write: ``<f:format.date date="{post.date}" />``
-to bypass the problem. But again, there can't be any characters before
-or after ``{post.date}``.
-</tip>You can pretty much see, that in this case the tag based syntax is
-prone to errors: We have to know, that ``{post.date}`` is an
-object so we don't add whitespaces inside of
-``<f:format.date>...</f:format.date>``.
-
-An alternative would be to use the following syntax::
-
-    {post.date -> f:format.date(format: 'Y-m-d')}
-
-Inside the Object Accessor, we can use a ViewHelper to process the
-value. The above example is easily readable, intuitive, and less
-error-prone than the tag-based variation.
-
-.. tip::
-
-    This might look familiar if you happen to know the UNIX shell:
-    There is a pipe operator (|) which has the same functionality as our
-    chaining operator. The arrow shows the direction of the data flow
-    better though.
-
-You can also chain multiple ViewHelpers together. Lets assume we
-want to pad the processed string to the length of 40 characters (e.g.
-because we output code). This can be simply written as::
-
-    {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
-
-Which is functionally equal to::
-
-    <f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
-
-The data flow is also easier to read with an inline syntax like
-this, and it is easier to see on which values the ViewHelper is working
-on. We can thus confirm that you can process the value of every Object
-Accessor by inserting it into the ViewHelper with the help of the chaining
-operator (->). This can also be done multiple times.
-
+.. index:: Fluid; arrays
 
 Flexible array data structures
 ==============================

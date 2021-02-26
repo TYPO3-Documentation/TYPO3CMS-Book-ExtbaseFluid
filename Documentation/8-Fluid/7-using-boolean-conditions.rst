@@ -1,4 +1,7 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
+.. index::
+   Fluid; Boolean conditions
+   Fluid; f:if
 
 ========================
 Using boolean conditions
