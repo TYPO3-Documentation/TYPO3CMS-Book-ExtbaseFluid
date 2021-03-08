@@ -110,4 +110,4 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
 The :file:`composer.json` allows loading the extension with Composer (PHP package manager).
 
 After the basic structure has been created, the extension can now
-be activated in the extension manager. But at first the domain must be set up.
+be activated in the extension manager. But first the domain must be set up.
