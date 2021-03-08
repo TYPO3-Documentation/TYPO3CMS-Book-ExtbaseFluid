@@ -84,12 +84,6 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
 
     {
         "name": "myvendor/store-inventory",
-        "authors": [
-            {
-               "name": "TYPO3 Core Team",
-               "role": "Developer"
-            }
-        ],
         "type": "typo3-cms-extension",
         "description": "A Store Inventory Example for Programming with Extbase.",
         "authors": [
@@ -109,8 +103,7 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
             "typo3/cms-core": "^10.4"
         }
        "replace": {
-           "myvendor/store-inventory": "self.version",
-           "typo3-ter/store-inventory": "self.version"
+           "myvendor/store-inventory": "self.version"
        }
     }
 
