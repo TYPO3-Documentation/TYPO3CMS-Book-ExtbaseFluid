@@ -106,7 +106,7 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
             }
         },
         "require": {
-            "typo3/cms-core": "^9.5"
+            "typo3/cms-core": "^10.4"
         }
        "replace": {
            "myvendor/store-inventory": "self.version",
