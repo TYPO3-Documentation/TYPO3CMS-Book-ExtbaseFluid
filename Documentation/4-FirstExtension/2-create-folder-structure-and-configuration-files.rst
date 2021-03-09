@@ -78,32 +78,36 @@ It is recommended to call the file :file:`Extension.png` or
 :file:`Extension.svg` and store it in the directory :file:`Resources/Public/Icons/`.
 The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
 
-Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
+Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be added:
 
 .. code-block:: php 
 
     {
         "name": "myvendor/store-inventory",
-        "authors": [
-            {
-               "name": "TYPO3 Core Team",
-               "role": "Developer"
-            }
-        ],
         "type": "typo3-cms-extension",
         "description": "A Store Inventory Example for Programming with Extbase.",
+        "authors": [
+          {
+            "name": "John Doe",
+            "role": "Developer",
+            "homepage": "https://www.example.com"
+          }
+        ],
         "license": "GPL-2.0-or-later",
         "autoload": {
             "psr-4": {
-               "MyVendor\\StoreInventory\\": "Classes/"
+               "MyVendor\\StoreInventory\\": "Classes"
             }
         },
         "require": {
-            "typo3/cms-core": ">=9.5 <10.0.0"
+            "typo3/cms-core": "^10.4"
+        },
+        "replace": {
+            "myvendor/store-inventory": "self.version"
         }
     }
 
-The :file:`composer.json` allows loading the extension with the PHP package manager composer.
+The :file:`composer.json` allows loading the extension with Composer (PHP package manager).
 
-After the basic structure has been created the extension can now
-be installed in the extension manager. But first we turn to our domain.
+After the basic structure has been created, the extension can now
+be activated in the extension manager. But first the domain must be set up.
