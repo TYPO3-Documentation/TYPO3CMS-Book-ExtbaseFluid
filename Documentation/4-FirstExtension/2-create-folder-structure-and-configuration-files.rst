@@ -101,10 +101,10 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
         },
         "require": {
             "typo3/cms-core": "^10.4"
+        },
+        "replace": {
+            "myvendor/store-inventory": "self.version"
         }
-       "replace": {
-           "myvendor/store-inventory": "self.version"
-       }
     }
 
 The :file:`composer.json` allows loading the extension with Composer (PHP package manager).
