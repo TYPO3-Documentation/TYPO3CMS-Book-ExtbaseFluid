@@ -4,7 +4,7 @@
 Controlling the flow
 ====================
 
-We now want to show a list of products in our inventory in the frontend.
+The frontend page shall show a list of products in the inventory.
 The component responsible for rendering that list is the *view*.
 The default view and templating engine used in Extbase is Fluid.
 
@@ -21,7 +21,7 @@ The Controller
 The class name of the controller must end with ``Controller``. Because our controller controls
 the display of the inventory we call it :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
 
-In our simple example, the controller looks like this:
+The controller looks like this:
 
 .. code-block:: php
 
@@ -70,8 +70,8 @@ Injecting the repository
 
 The method :php:`injectProductRepository()` shows how dependency injection looks like in Extbase
 - Extbase automatically injects the product repository via this method.
-Afterward, we can access the repository with :php:`$this->productRepository` in all actions.
-Use dependency injection for getting all your class dependencies if possible.
+Afterwards the repository can be accessed with :php:`$this->productRepository` in all actions.
+Use dependency injection for getting all of your class dependencies if possible.
 
 
 .. index::
@@ -81,9 +81,10 @@ Use dependency injection for getting all your class dependencies if possible.
 Fetching the products from the repository
 =========================================
 
-As we want to display a list of all products in our inventory,
-we can use the method :php:`findAll()` of the repository to fetch them.
-:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, the parent class of our repository.
+As a list of all products should be displayed in our inventory,
+the method :php:`findAll()` of the repository is used to fetch them.
+:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, 
+the parent class of our repository.
 
 
 .. index::
@@ -96,7 +97,7 @@ Assigning the view
 
 The repository returns a :php:`\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`
 object with all product objects (that are not hidden or deleted).
-We pass these objects to the view with :php:`$this->view->assign(…)`.
+These objects are passed to the view with :php:`$this->view->assign(…)`.
 The view will automatically call :php:`render()` and return the rendered template.
 
 .. code-block:: php
