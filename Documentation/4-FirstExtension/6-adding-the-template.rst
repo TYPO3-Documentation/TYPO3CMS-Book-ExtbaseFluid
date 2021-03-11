@@ -7,7 +7,10 @@
 Adding a template
 =================
 
-In Extbase frontend templates are stored by default in the subdirectory :file:`Resources/Private/Templates/` provided by  an extension. This local path is written as :file:`EXT:store_inventory/Resources/Private/Templates` in the setup.
+In Extbase frontend templates are stored by default in the subdirectory 
+:file:`Resources/Private/Templates/` provided by  an extension. This 
+local path is written as :file:`EXT:store_inventory/Resources/Private/Templates` 
+in the setup.
 
 The name of the subdirectory below the :file:`Templates/` folder is derived
 from the corresponding controller name (without the `Controller` suffix).
@@ -24,7 +27,8 @@ This is the action name, without the "action" suffix.
 The Fluid template
 ==================
 
-:file:`EXT:store_inventory/Resources/Private/Templates/StoreInventory/List.html` looks like this:
+:file:`EXT:store_inventory/Resources/Private/Templates/StoreInventory/List.html` 
+looks like this:
 
 .. code-block:: html
 
