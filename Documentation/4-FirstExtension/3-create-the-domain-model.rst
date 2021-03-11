@@ -15,6 +15,7 @@ in a file with the name :file:`Product.php`.
 The name of the file corresponds to the name of the model.
 The file itself is stored in the folder
 :file:`EXT:store_inventory/Classes/Domain/Model/`.
+The model must be written together with the table tx_storeinventory_domain_model_product in the file :file:`ext_tables.sql`.
 
 .. tip::
 
@@ -22,6 +23,7 @@ The file itself is stored in the folder
     For example the class :php:`T3docs\MyExtension\FirstFolder\SecondFolder\File` should be in the folder
     :file:`my_extension/Classes/FirstFolder/SecondFolder/File.php`.
     Pay attention to the corresponding upper casing of the folder names.
+    The member variables and their setter and getter methods must correspond to the field names of the database table.
 
 Let's take a deeper look at the model :php:`\T3docs\StoreInventory\Domain\Model\Product`.
 
