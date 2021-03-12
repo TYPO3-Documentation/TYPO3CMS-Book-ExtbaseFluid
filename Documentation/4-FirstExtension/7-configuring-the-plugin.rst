@@ -31,10 +31,13 @@ the extension directory.
 
    <?php
    // Prevent script from being called directly
-   defined('TYPO3_MODE') or die();
+   
+   defined('TYPO3') or die();
 
    // encapsulate all locally defined variables
-   (function () {
+   call_user_func(
+      function ()
+      {
       \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
          'StoreInventory',
          'Pi1',
@@ -46,10 +49,13 @@ the extension directory.
             \T3docs\StoreInventory\Controller\StoreInventoryController::class => '',
          ]
       );
-   })();
+     }
+   );
 
-The first line prevents a calling of the PHP code in this file outside of the TYPO3_MODE context
-This is a small security measure.
+
+The first line prevents a calling of the PHP code in this file outside of the TYPO3_MODE context.
+The php closure and anonymous function is used to encapsulate the code and its variables.
+These are a small security measures.
 The static method :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
 is used to configure the plugin for use in TYPO3.
 The first parameter denotes the extension key in UpperCamelCase (ExtensionKey).
@@ -83,14 +89,19 @@ To achieve this, the following line must be inserted into the file :file:`Config
 
 .. code-block:: php
 
-    <?php
+   <?php
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'StoreInventory',
-        'Pi1',
-        'The Store Inventory List',
-        'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
-    );
+   call_user_func(
+      function ()
+      {
+      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+          'StoreInventory',
+          'Pi1',
+          'The Store Inventory List',
+          'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
+      );
+      }
+   );
 
 
 The first argument is like in the method :php:`configurePlugin()` again the
