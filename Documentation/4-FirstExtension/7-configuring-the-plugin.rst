@@ -48,8 +48,9 @@ the extension directory.
             \T3docs\StoreInventory\Controller\StoreInventoryController::class => '',
          ]
       );
-      }
+     }
    );
+
 
 The first line prevents a calling of the PHP code in this file outside of the TYPO3_MODE context.
 The php closure and anonymous function is used to encapsulate the code and its variables.
@@ -87,14 +88,19 @@ To achieve this, the following line must be inserted into the file :file:`Config
 
 .. code-block:: php
 
-    <?php
+   <?php
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'StoreInventory',
-        'Pi1',
-        'The Store Inventory List',
-        'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
-    );
+   call_user_func(
+      function ()
+      {
+      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+          'StoreInventory',
+          'Pi1',
+          'The Store Inventory List',
+          'EXT:store_inventory/Resources/Public/Icons/Extension.svg'
+      );
+      }
+   );
 
 
 The first argument is like in the method :php:`configurePlugin()` again the
