@@ -8,8 +8,8 @@ Create folder structure and configuration files
 ===============================================
 
 
-Before we write the first line of code, we need to create the extension's basic infrastructure.
-To allow TYPO3 to load the extension, we need some default configuration files.
+Before the first lines of code can be written, it is necessary to create the basic infrastructure of the extension.
+To allow TYPO3 to load the extension, some default configuration files must be created.
 Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3conf/ext/`
 - the folder name `store_inventory` corresponds to the unique identifier of our extension
 (also known as "extension key").
@@ -23,6 +23,7 @@ Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3c
     Extensions can be stored at different places in TYPO3.
     Locally installed extensions are the rule.
     These are in the folder :file:`typo3conf/ext/`.
+    Global extensions are in the folder :file:`typo3/ext/`.
     System extensions are in the folder :file:`typo3/sysext/`.
     Extbase or Fluid are examples of system extensions.
 
@@ -30,19 +31,19 @@ Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3c
 The folder structure
 ====================
 
-In our folder `store_inventory` we create the sub folders :file:`Classes` and :file:`Resources`.
-The folder :file:`Classes` will contain all of our PHP classes.
-In the folder :file:`Resources` we create two directories named :file:`Private` and :file:`Public`.
+Inside of the folder `store_inventory` the sub folders :file:`Classes` and :file:`Resources` must be created.
+The folder :file:`Classes` must contain all of the PHP class files.
+In the folder :file:`Resources` two directories named :file:`Private` and :file:`Public` must be created.
 The folder :file:`Resources/Private/` will contain subfolders like
 :file:`Templates`, :file:`Layouts`, :file:`Partials` and :file:`Language`.
-These files are not accessible via the web browser. They are mostly used via PHP.
+These files are not accessible via the web browser, they are mostly used via PHP.
 The folder :file:`Resources/Public/` contains subfolders like :file:`Icons`,
 :file:`Css`, :file:`Js`. These files can be accessed through the web browser.
 
-Within the folder :file:`Classes` we create the folders :file:`Controller` and :file:`Domain`.
-In our example, the folder :file:`Controller` contains only one class
+Within the folder :file:`Classes` the subfolders :file:`Controller` and :file:`Domain` must be created.
+In this example, the folder :file:`Controller` contains only one class
 that will control the entire process of listing creation later.
-The folder *domain* contains the two folders :file:`Model` and :file:`Repository`.
+The folder :file:`Classes/Domain/` contains the two folders :file:`Model` and :file:`Repository`.
 Resulting from all this, the folder structure within the extension folder
 :file:`store_inventory` should look as in image 4-1.
 
@@ -148,5 +149,4 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 The :file:`composer.json` allows loading the extension with the PHP package manager composer.
 
 After the basic structure has been created, the extension can now
-be installed in the extension manager. But first, we turn to our domain.
-
+be activated in the extension manager. But first the domain must be developed.
