@@ -43,7 +43,7 @@ The folder :file:`Resources/Public/` contains subfolders like :file:`Icons`,
 Within the folder :file:`Classes` the subfolders :file:`Controller` and :file:`Domain` must be created.
 In this example, the folder :file:`Controller` contains only one class
 that will control the entire process of listing creation later.
-The folder *Domain* contains the two folders :file:`Model` and :file:`Repository`.
+The folder :file:`Classes/Domain/` contains the two folders :file:`Model` and :file:`Repository`.
 Resulting from all this, the folder structure within the extension folder
 :file:`store_inventory` should look as in image 4-1.
 
