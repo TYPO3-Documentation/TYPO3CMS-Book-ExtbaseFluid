@@ -10,7 +10,7 @@ In this chapter, you learn the basics of an extension based on Extbase and Fluid
 You build a minimalistic extension, which is reduced to the necessary structures.
 So you can get a first overview without being confused by details.
 In the following chapters, you will learn about a more complex example,
-which covers all fundamental attributes of Extbase and Fluid exhaustively.
+which covers all fundamental features of Extbase and Fluid exhaustively.
 
 You can download the extension from the `TYPO3 Extension Repository: store_inventory
 <https://extensions.typo3.org/extension/store_inventory/>`__ or install it via composer:
