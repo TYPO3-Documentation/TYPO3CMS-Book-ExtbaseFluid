@@ -8,7 +8,7 @@ Create folder structure and configuration files
 ===============================================
 
 
-Before the the first lines of code can be written, it is necessary to create the basic infrastructure of the extension.
+Before the first lines of code can be written, it is necessary to create the basic infrastructure of the extension.
 To allow TYPO3 to load the extension, some default configuration files must be created.
 Let's start by creating a folder ``store_inventory`` in the folder :file:`typo3conf/ext/`
 - the folder name `store_inventory` corresponds to the unique identifier of our extension
@@ -150,4 +150,3 @@ The :file:`composer.json` allows loading the extension with the PHP package mana
 
 After the basic structure has been created, the extension can now
 be activated in the extension manager. But first the domain must be developed.
-
