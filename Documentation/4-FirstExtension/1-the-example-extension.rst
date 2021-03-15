@@ -8,7 +8,7 @@ The example extension
 =====================
 
 The first extension will show an inventory list of products,
-which can be created in the backend list module.
+which is maintained in the backend *List* module.
 Each product consists of a title,
 a short description, and the number of pieces in stock.
 The following steps are necessary for implementation:
