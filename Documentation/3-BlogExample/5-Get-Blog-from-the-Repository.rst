@@ -7,8 +7,8 @@
 Get the blog from the repository
 ================================
 
-Let's take a look into the ``BlogRepository`` and travel into the inner core of
-our little action island.
+The travel leads into the inner core of
+our little action island, the ``BlogRepository``.
 
 .. code-block:: php
 
@@ -23,7 +23,7 @@ our little action island.
 The ``BlogRepository`` does not need any own code since all methods which are
 most commonly used are already implemented in the parent class
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
-In the controller, you saw the call to ``findAll()``, to retrieve all
+In the controller is a call to ``findAll()``, to retrieve all
 blog objects, which is one of the methods available by default.
 
 .. note::
