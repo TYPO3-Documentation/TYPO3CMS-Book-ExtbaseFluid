@@ -69,9 +69,7 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
     ``ObjectStorage`` also implements the interfaces ``Iterator``, ``Countable``,
     ``ArrayAccess``. So it is usable in ``foreach``.
     Furthermore, the ``ObjectStorage`` behaves like an array. The ``ObjectStorage``
-    of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error
-    free since PHP-Version 5.3.1.
-    .. todo: No need to mention those ancient php versions and their errors anymore.
+    of Extbase is based upon the native ``SplObjectStorage`` of PHP.
 
 
 The notation at first seems unusual. It is based on the so-called *Generics* of
@@ -110,7 +108,7 @@ name of the child elements in angle brackets::
    Files; Configuration/TCA/*
 
 Extbase gathers the type of the relation from the configuration of the database
-table column. Let's take a look at the definition of the column ``posts``. It can be
+table column. The definition of the column ``posts`` can be
 found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
    <?php
@@ -138,12 +136,12 @@ found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *
 Extbase "reads" from the configuration the table of the child objects
 (``foreign_table``) and the key field where the unique identifier (UID) of the
 parent object (``foreign_field``) is stored. With the help of this information and
-the data given in the PHP documentation above the property definition Extbase
+the data given in the PHP documentation above, the property definition, Extbase
 can read the database records and map them onto the Post class. This process
 will be continued recursively over the complete object graph - the blog with all
 its containing posts, comments, tags, etc. - starting from the single blog as
 root object.
 
-After our exhausting journey, let's get back to the realm of our extension.
-Remember that normally you will not need to enter these paths -
+After this exhausting journey,
+remember that normally you will not need to enter these paths -
 except that you are into customized journeys.
