@@ -27,17 +27,19 @@ but hands over the control to the Extbase *Dispatcher*
 .. index:: Extbase; Request
 .. index:: Extbase; Controller
 
-The *Dispatcher* bundles all information of the
-request in a *request* and sends it to the appropriate
-part of the extension, which takes over the flow control — the so-called
-*Controller* (2).
+TYPO3 calls Extbase's Bootstrap, which then uses a RequestBuilder to create an Extbase Request.
+Then Extbase tries to find a suitable RequestHandler which then uses a class called Dispatcher.
 
-.. todo: This is a false statement. Ther is no such thing as a dispatcher that
-         initiates the plugin rendering. TYPO3 calls Extbase's Bootstrap, which
-         then uses a RequestBuilder to create an Extbase Request. Then, Extbase
-         tries to find a suitable RequestHandler which then uses a class called
-         Dispatcher, which just creates the Controller instance and calls
+, which just creates the Controller instance and calls
          processRequest().
+         
+The *Dispatcher* handles all bundled information in the
+request object and hands it over to the extension. Depending on the action parameter of the url, 
+it sends the request to the appropriate
+part of the extension. This  is the so-called
+*Controller* (2) , which takes over the flow control and processes the request. 
+The *Dispatcher* calls the `__construct` and the appropriate action method of the controller. 
+
          
 .. index:: Extbase; Repository
 
@@ -53,15 +55,14 @@ tags (4).
 .. index:: Extbase; View
 
 The *Controller* sends these blogs to the part of
-the extension responsible for the output — the *View* —
+the extension responsible for the output generation — the *View* —
 and advises it to render the content in the requested output format
 (5).
 
 .. index:: Extbase; Response
 
-The *View* returns the rendered content
-encapsulated in a *Response* back to the
-*Dispatcher*, which in turn returns the HTML code to
+The *View* returns the rendered content in HTML format back to the "Controller". 
+This returns the output result encapsulated in a *Response* object to the
+*Dispatcher*, which in turn returns it to
 the calling TYPO3 process (6).
 
-.. todo: nope, the View does not send a response, the Controller does.
