@@ -9,21 +9,20 @@
 And... action!
 ==============
 
-Our journey through the blog example is not only an educational journey but
-also an active one. We now turn to the activities. We are already in
-the :php:`BlogController`. You can find the class file at
+The journey through the blog example is not only an educational journey but
+also an active one. This topic is about activities. The class file
+of the :php:`BlogController` is at
 :file:`EXT:blog_example/Classes/BlogController.php`.
 
 In software development, there are different variants of controllers.
 In Extbase, the controllers mostly exist as
-.. todo: mostly -> only, will change in the future when ActionController will be optional or replaced by traits.
+.. todo: mostly -> only, will change in the future when ActionController will be optional or replaced by traits. Also Middlewares will have controllers.
 
 :php:`ActionController`. This variant is characterized by
 short methods for controlling a single action, the
 so-called `Actions`. Let's have a deeper look at a
 shortened version of the :php:`BlogController`. Please note that for brevity,
-the doc comments and some methods have been removed. Find the full example at
-:file:`EXT:blog_example/Classes/BlogController.php`:
+the doc comments and some methods have been removed:
 
 .. code-block:: php
    :caption: Classes/BlogController.php
@@ -88,12 +87,7 @@ The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
 blogs. We also could have called it
 `showMeTheListAction()`. The only important point is
-that it ends with `Action` to help Extbase
-.. todo: This sounds like Extbase is a human being that does non-deterministic
-         things to find possible actions. It's pretty clear though. Only methods
-         ending with `Action` are interpreted as actions. We can rephrase it to
-         Action methods MUST end with Action to be recognized as such by Extbase.
-
+that the method name ends with `Action`, because this is a requirement from Extbase to
 recognize it as an action. `newAction()` shows a
 form to create a new blog. The `createAction()` then
 creates a new blog with the data of the form. The pair
@@ -112,17 +106,13 @@ change of an existing blog. The job of the
    exclusively responsible for the control of the process flow. Additional
    logic (especially business or domain logic) needs to be separated into
    classes in the subfolder :file:`Domain`.
-   .. todo: We should also mention Services here. The domain only holds the
+   .. todo: We should also mention Services and Middlewares here. The domain only holds the
             business logic, not all the application logic.
 
 The request determines which controller action combination will be called.
-The dispatching and matching of actions happen in the `Dispatcher` and in
+The dispatching and matching of actions happen in the `RequestBuilder`, in the Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-inherits all methods from it by deriving it from this class.
-
-.. todo: Again, nope. The Dispatcher doesn't do it. The RequestBuilder does.
-
-::
+inherits all methods from it by deriving it from this class ::
 
    <?php
    declare(strict_types = 1);
