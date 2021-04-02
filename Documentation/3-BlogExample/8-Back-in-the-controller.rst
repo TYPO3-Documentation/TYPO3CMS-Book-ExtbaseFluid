@@ -5,29 +5,24 @@
 Back in the controller
 ======================
 
-You get the ready ``Blog`` objects delivered in an array. "Ready" means in this
-context that every ``Blog`` object already has all it's ``Post`` objects and their
+The ready ``Blog`` objects are delivered in an array. "Ready" means in this
+context that every ``Blog`` object already has all its related ``Post`` objects and their
 ``Comment`` and ``Tag`` objects.
 
 These blogs are delivered to the object responsible for the output for
-further processing: the so-called *View*. If we make no own choice, like in our
-example, the TemplateView of Fluid is automatically available under the class
+further processing: the so-called *View*, available under the class
 variable ``$this->view``.
 
-.. todo: Let's drop that last sentence starting with "If we make no own choice..."
-         It's bad english and hard to understand without further explanation.
 
-
-
-With the method ``assign()`` we "bind" the array with our blogs to the variable
-name "blogs" of the TemplateView. It can be addressed with this name in the
-template. The method ``render()`` of the TemplateView starts the generation of the
+The method ``assign()`` "binds" the array of the blogs to the variable
+named "blogs" of the TemplateView. It can be addressed in the
+template with this name. The method ``render()`` of the TemplateView starts the generation of the
 HTML code.
 
 .. todo: Let's have a code example here to let people see assign and render in action
 
-Before we leave our small, contemplative action island and dig into the deep of
-the Fluid template, let's take a look at the abbreviations and simplifications
+Before leaving the small, contemplative action island and digging into the deep of
+the Fluid template, take a look at the abbreviations and simplifications
 Extbase offers at this point.
 
 .. todo: deep -> depths?
@@ -64,6 +59,12 @@ The following example explains this mechanism:
            // mind the uppercase F in the method name.
        }
 
+       public function initializeBarAction()
+       {
+           // this method is only called before method barAction
+           // mind the uppercase B in the method name.
+       }
+     
        public function fooAction()
        {
            // foo
@@ -79,12 +80,12 @@ The following example explains this mechanism:
 .. index:: \Psr\Http\Message\ResponseInterface
 
 Action methods can either return a response (`string` or object of type `\Psr\Http\Message\ResponseInterface`)
-themselves or not return at all.
-If an action method does not return anything, Extbase calls `$this->view->render()` and
+by themselves, or they do not have a `return` command at all.
+If an action method does not return anything, then it is Extbase which calls `$this->view->render()` and
 returns the rendered view automatically.
 
 .. todo: Not returning responses is deprecated. The docs must reflect that.
 
-Come with us on another tour: dive into Fluid - the new template engine of TYPO3
+Another tour is coming: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
 and view helpers.
