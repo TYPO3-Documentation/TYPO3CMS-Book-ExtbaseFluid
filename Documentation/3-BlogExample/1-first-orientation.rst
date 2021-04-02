@@ -51,7 +51,7 @@ interfaces are defined.
 .. note::
 
    If you are not familiar with the terms "classes" and "interfaces", you
-   should look into `Object-oriented programming with PHP 7 https://www.freecoursessites.com/oop-object-oriented-programming-in-php-7-free-download/`__ .
+   should look into `Object-oriented programming with PHP 7 <https://www.freecoursessites.com/oop-object-oriented-programming-in-php-7-free-download/>`__ .
 
 The folder :file:`Resources` contains media and text files
 included at runtime, but no PHP classes or interfaces. Those are icons, language packages, HTML templates, and external
