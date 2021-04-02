@@ -28,10 +28,10 @@ of the page.
 
 The process of eradication is first forwarded to the *dispatcher*
 of Extbase by TYPO3.
-Before the execution is handed to the controller code in `ActionController`, the
-dispatcher and the parent `Boostrap` complete several
+The dispatcher and the parent `Boostrap` complete several
 preliminary tasks before they hand the further processing on
-to the according position within the code of the blog example:
+to the according position within the code of the blog example, 
+which is part of the `ActionController`:
 
 * The `RequestBuilder` interprets the incoming request and bundles all relevant
   information into a ``Request`` object.
@@ -40,7 +40,7 @@ to the according position within the code of the blog example:
   sources and makes it available.
 
 * The `ActionController` determines whether or not the request was manipulated in an
-  illegal manner and when this is the case deflects it (e.g. in case of
+  illegal manner and when this is the case, it deflects it (e.g. in case of
   a maliciously added form input field).
 
 * The extension contains a set up of the persistence layer, which performs the persisting of
@@ -60,8 +60,8 @@ to the according position within the code of the blog example:
    Files; EXT:blog_example/Classes/Controller/BlogController.php
 
 When these preparations are fulfilled, you
-can travel to the destination's first stop: the `ActionController`. In
-this example, all further processing is assigned to the
+can travel to the destination's first stop: the `ActionController` which will be present under different names. 
+In this example, all further processing is assigned to the
 :php:`BlogController`. A reference to the `request` is handed over.
 
 The class :php:`BlogController` can be found in the file
