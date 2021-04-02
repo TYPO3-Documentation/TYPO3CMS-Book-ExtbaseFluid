@@ -16,7 +16,7 @@ of a post can add one or more tags to his post. Figure 3-1 shows an overview
 of the blog example's domain and the relation among the domain terms.
 The asterisk (* or 0..*) means "any amount", 1 has to be translated with
 "exactly one". So exactly one administrator can administrate any amount of
-blogs. The diamond can be translated with "has", so: "One post has any
+blogs. The diamond symbol can be translated with "has", so: "One post has any
 amount of comments".
 
 .. figure:: /Images/3-BlogExample/figure-3-1.png
@@ -51,15 +51,14 @@ interfaces are defined.
 .. note::
 
    If you are not familiar with the terms "classes" and "interfaces", you
-   should look into "Object-oriented programming with PHP".
-   .. todo: Is this something we can link? Or is that a book?
+   should look into `Object-oriented programming with PHP 7 https://www.freecoursessites.com/oop-object-oriented-programming-in-php-7-free-download/`__ .
 
-In the folder :file:`Resources`, you will find all files
-included at runtime, but no classes or interfaces. Those are icons, language packages, HTML templates, and external
+The folder :file:`Resources` contains media and text files
+included at runtime, but no PHP classes or interfaces. Those are icons, language packages, HTML templates, and external
 libraries or scripts. These resources are structured into a public
 (:file:`Public`) and a private (:file:`Private`)
-block. The folder :file:`Public` holds files allowed to be called *directly* by the client - in normal
+directory. The folder :file:`Public` holds files allowed to be called *directly* by the client - in normal
 cases, the web browser. Files processed by a PHP class before they
-get delivered to the browser are located in the folder
+get delivered to the browser, are located in the folder
 :file:`Private`.
 
