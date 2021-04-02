@@ -10,7 +10,7 @@ Paths on the data map
 The `DataMapper` object has the task to create an instance of the blog class
 (whose name is stored in `$this->className`) for each tuple and "fill" this fresh
 instance with the data of the tuple. It is called in the `Query` object by the
-following Lines::
+following lines::
 
     $this->dataMapper->map($this->getType(), $rows);
 
