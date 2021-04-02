@@ -13,31 +13,29 @@ A journey through the blog example
      `Blog Example on TER <https://extensions.typo3.org/extension/blog_example/>`__,
      `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__
 
-In this chapter, we accompany you on a journey through a simple TYPO3 extension.
+In this chapter you make a journey through a simple TYPO3 extension.
 While traveling on this round trip, you will get to know more about extension
 development with Extbase and Fluid and learn the most important stations and
 coordinates of extension development with the help of an example extension. You
 will first familiarize yourself with the geography and the typical
-characteristics of an extension and determine which processes run in the
-background. This knowledge will then help you in the creation of your own
-extension.
+characteristics of an extension and determine which processes are running in the
+background.
 
 If you are looking for a manual specifically on creating an extension,
-:ref:`creating-a-first-extension` will show you the right set of tools. However, we recommend
-working on the fundamentals in this chapter. The journey that lies ahead
-of us could also have the title "Europe in five days." If you discover nice
-places, you should visit them later without the travel group.
+:ref:`creating-a-first-extension` will show you the right set of tools.
+The chapter for this journey explains the fundamentals. It could also 
+have the title "Europe in five days." If you discover nice
+places, you should revisit them later without the travel group.
 
 You will find it beneficial to look at the source code while
-reading the text, so you will have an easier time getting your bearings in your
+reading this text, so you will have an easier time getting your bearings in your
 own extension later.
 
 .. note::
 
    If you use a debugger, it can be interesting to follow a full cycle
    in single step mode. For that, you have to set a breakpoint in the
-   file :file:`Dispatcher.php`. You will find this class - like
-   every other class of Extbase - in the folder
+   file :file:`Dispatcher.php`. You will find this class in the folder for Extbase
    :file:`typo3/sysext/extbase/Classes/`.
 
 .. todo: Better set a breakpoint in the Bootstrap to not miss half the show.
