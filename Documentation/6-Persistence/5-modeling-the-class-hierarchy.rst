@@ -119,10 +119,15 @@ Exmaple of the previous typoscript defintions. (until TYPO3 v9)
             }
         }
     }
+
+.. versionchanged:: 10.4
     
-With TYPO3 v10 this has been moved into a new PHP-File.
+   With TYPO3 v10 the relationship between classes and tables has been moved into the file 
+   :file:`Configuration/Extbase/Persistence/Classes.php`.
+   
 You have to tell Extbase for every concrete class in which table the
-data of the instances are stored and with which type they should be stored. This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
+data of the instances are stored and with which type they should be stored. 
+This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
 
 ::
    
