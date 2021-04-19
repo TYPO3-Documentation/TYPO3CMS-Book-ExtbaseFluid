@@ -82,8 +82,7 @@ The name of the field that contains the type can be chosen freely. In our case i
    ],
    // …
 
-In your TypoScript template you have to tell Extbase for every concrete class in which table the
-data of the instances are stored and with which type they should be stored.
+Exmaple of the previous typoscript defintions. (until TYPO3 v9)
 
 .. code-block:: typoscript
 
@@ -108,6 +107,9 @@ data of the instances are stored and with which type they should be stored.
             mapping {
                 tableName = tx_myextension_domain_model_party
                 recordType = \MyVendor\MyExtension\Domain\Model\Company
+                columns {
+                    crdate.mapOnProperty = customCreationDateField
+                }
             }
         }
         MyVendor\MyExtension\Domain\Model\ScientificInstitution {
@@ -117,6 +119,48 @@ data of the instances are stored and with which type they should be stored.
             }
         }
     }
+
+.. versionchanged:: 10.4
+    
+   With TYPO3 v10 the relationship between classes and tables has been moved into the file 
+   :file:`Configuration/Extbase/Persistence/Classes.php`.
+   
+You have to tell Extbase for every concrete class in which table the
+data of the instances are stored and with which type they should be stored. 
+This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
+
+::
+   
+    <?php
+    declare(strict_types = 1);
+
+    return [
+        \MyVendor\MyExtension\Domain\Model\Organization::class => [
+            'tableName' => 'tx_myextension_domain_model_party',
+            'recordType' => '\MyVendor\MyExtension\Domain\Model\Organization',
+            'subclasses' => [
+                '\MyVendor\MyExtension\Domain\Model\Company' => \MyVendor\MyExtension\Domain\Model\Company::class,
+                '\MyVendor\MyExtension\Domain\Model\ScientificInstitution' => MyVendor\MyExtension\Domain\Model\ScientificInstitution::class,
+            ]
+        ],
+        \MyVendor\MyExtension\Domain\Model\Person::class => [
+            'tableName' => 'tx_myextension_domain_model_party',
+            'recordType' => '\MyVendor\MyExtension\Domain\Model\Person',
+        ],
+        \MyVendor\MyExtension\Domain\Model\Company::class => [
+            'tableName' => 'tx_myextension_domain_model_party',
+            'recordType' => '\MyVendor\MyExtension\Domain\Model\Company',
+            'properties' => [
+                'customCreationDateField' => [
+                    'fieldName' => 'crdate',
+                ],
+            ],
+        ],
+        \MyVendor\MyExtension\Domain\Model\ScientificInstitution::class => [
+            'tableName' => 'tx_myextension_domain_model_party',
+            'recordType' => '\MyVendor\MyExtension\Domain\Model\ScientificInstitution',
+        ],
+    ];
 
 Every class is assigned with `tableName = tx_myextension_domain_model_party` to this table.
 In `recordType` inside the table an unique identifier is expected (even the *Record Type*).
