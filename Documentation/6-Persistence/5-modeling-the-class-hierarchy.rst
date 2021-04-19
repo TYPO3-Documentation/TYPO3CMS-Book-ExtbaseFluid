@@ -87,7 +87,55 @@ You have to tell Extbase for every concrete class in which table the
 data of the instances are stored and with which type they should be stored. This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
 
 ::
-   
+
+    <?php
+    declare(strict_types = 1);
+
+    config.tx_extbase.persistence.classes {
+        MyVendor\MyExtension\Domain\Model\Organization {
+            mapping {
+                tableName = tx_myextension_domain_model_party
+                recordType = MyVendor\MyExtension\Domain\Model\Organization
+            }
+            subclasses {
+                \MyVendor\MyExtension\Domain\Model\Company = MyVendor\MyExtension\Domain\Model\Company
+                \MyVendor\MyExtension\Domain\Model\ScientificInstitution = MyVendor\MyExtension\Domain\Model\ScientificInstitution
+            }
+        }
+        MyVendor\MyExtension\Domain\Model\Person {
+            mapping {
+                tableName = tx_myextension_domain_model_party
+                recordType = \MyVendor\MyExtension\Domain\Model\Person
+            }
+        }
+        MyVendor\MyExtension\Domain\Model\Company {
+            mapping {
+                tableName = tx_myextension_domain_model_party
+                recordType = \MyVendor\MyExtension\Domain\Model\Company
+                columns {
+                    crdate.mapOnProperty = customCreationDateField
+                }
+            }
+        }
+        MyVendor\MyExtension\Domain\Model\ScientificInstitution {
+            mapping {
+                tableName = tx_myextension_domain_model_party
+                recordType = \MyVendor\MyExtension\Domain\Model\ScientificInstitution
+            }
+        }
+    }
+
+.. versionchanged:: 10.4
+
+   With TYPO3 v10 the relationship between classes and tables has been moved into the file
+   :file:`Configuration/Extbase/Persistence/Classes.php`.
+
+You have to tell Extbase for every concrete class in which table the
+data of the instances are stored and with which type they should be stored.
+This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
+
+::
+
     <?php
     declare(strict_types = 1);
 
@@ -107,6 +155,11 @@ data of the instances are stored and with which type they should be stored. This
         \MyVendor\MyExtension\Domain\Model\Company::class => [
             'tableName' => 'tx_myextension_domain_model_party',
             'recordType' => '\MyVendor\MyExtension\Domain\Model\Company',
+            'properties' => [
+                'customCreationDateField' => [
+                    'fieldName' => 'crdate',
+                ],
+            ],
         ],
         \MyVendor\MyExtension\Domain\Model\ScientificInstitution::class => [
             'tableName' => 'tx_myextension_domain_model_party',
@@ -114,7 +167,7 @@ data of the instances are stored and with which type they should be stored. This
         ],
     ];
 
-Every class is assigned with `'tableName' => 'tx_myextension_domain_model_party'` to this table.
+Every class is assigned with `tableName = tx_myextension_domain_model_party` to this table.
 In `recordType` inside the table an unique identifier is expected (even the *Record Type*).
 It is advisable to use the class name for this. For every superclass additional all subclasses
 have to be declared under `subclasses`. In our example, `Party` and `Organization` are
