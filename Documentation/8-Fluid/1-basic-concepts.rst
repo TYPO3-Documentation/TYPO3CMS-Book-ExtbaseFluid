@@ -108,7 +108,7 @@ in the following order:
     The Uniform Access Principle says all services offered by a
     module should be available through a uniform notation that does not
     betray whether they are implemented through storage or
-    computation. <remark>Explanation on Wiki</remark>
+    computation. `Explanation on Wiki <https://en.wikipedia.org/wiki/Uniform_access_principle>`__
 
     Stored objects are being accessed directly using public class
     variables in PHP - and it is visible on the outside that the object
