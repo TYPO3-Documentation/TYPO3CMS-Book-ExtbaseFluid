@@ -13,21 +13,18 @@ creation of a new post. The user js offered a form in the front
 end, where he can insert the title and the content of a new post
 and select an existing author for this post.
 After clicking the *submit* button, the list of the last posts of the
-current blog should be displayed - now with the just created post in
-the first place. There are multiple steps, each based on the previous
-step, to be implemented that are mirrored in the actions ``new`` and
+current blog are displayed - now with the just created post in
+the first place. The steps of this example are mirrored in the actions ``new`` and
 ``create``. The method ``newAction()`` displays the form, while the
-method ``createAction()`` really creates the post, puts it in the
-repository, and routes the process to the method ``indexAction()``.
+method ``createAction()`` creates the post after the submission of the form. It puts the
+submitted data into the repository, and redirects to the method ``indexAction()``.
 
-.. todo: routes the process? Maybe just say "redirects"?
-
-Calling the method ``newAction()`` is done in our case with a link in the
-front end, that looks - a bit purged - like this:
+Calling the method ``newAction()`` is done with a link in the
+front end, that looks - a bit challenging - like this:
 
 ::
 
-   <a href="?tx_blogexample_pi1[action]=new&tx_blogexample_pi1[blog]=12&tx_blogexample_pi1[controller]=Post">Create a new Post</a>
+   <a href="/index.php?id=29&tx_blogexample_pi1[action]=new&tx_blogexample_pi1[blog]=12&tx_blogexample_pi1[controller]=Post">Create a new Post</a>
 
 This was created with the following Fluid code in the template
 *EXT:blog_example/Resources/Private/Templates/Post/Index.html*:
@@ -42,14 +39,15 @@ This was created with the following Fluid code in the template
 
 .. todo: Either remove the class attribute here or add it above. There are people (like me) that
          are confused by code examples where things are not 100% correct. Same for the title attribute.
+         franzholz: I do not understand this comment. Can we remove this?
 
 The tag ``<f:link.action>`` creates a link to a special controller action
-combination: ``tx_blogexample_pi1[controller]=post`` and
+combination: ``tx_blogexample_pi1[controller]=Post`` and
 ``tx_blogexample_pi1[action]=new``. The current blog is given as an argument
 with ``tx_blogexample_pi1[blog]=12``. Because the blog cannot be sent as an object,
 it must be translated into a unique identifier - the *UID*. In our case, this is
-the UID 12. Extbase creates the request out of these three parameters and routes
-it to the according ``PostController``. The translation of the UID back to the
+the UID 12. Extbase creates the request out of these three parameters and redirects
+to the according ``PostController``. The translation of the UID back to the
 corresponding ``blog`` object is done automatically by Extbase.
 
 Lets take a look at the called method ``newAction()``:
@@ -61,10 +59,15 @@ Lets take a look at the called method ``newAction()``:
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
 
-   use TYPO3\CMS\Extbase\Annotation as Extbase;
-   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Comment;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Post;
+   use FriendsOfTYPO3\BlogExample\Domain\Repository\PersonRepository;
+   use FriendsOfTYPO3\BlogExample\Domain\Repository\PostRepository;
+   use TYPO3\CMS\Core\Messaging\FlashMessage;
+   use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 
-   class BlogController extends ActionController
+   class PostController extends \FriendsOfTYPO3\BlogExample\Controller\AbstractController
    {
       /**
       * Displays a form for creating a new post
@@ -72,7 +75,7 @@ Lets take a look at the called method ``newAction()``:
       * @param Blog $blog The blog the post belogs to
       * @param Post $newPost A fresh post object taken as a basis for the rendering
       * @return void
-      * @IgnoreValidation $newPost
+      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newPost
       */
       public function newAction(Blog $blog, Post $newPost = null)
       {
@@ -84,7 +87,7 @@ Lets take a look at the called method ``newAction()``:
    }
 
 The method ``newAction()`` expects a ``blog`` object and an optional ``post``
-object as parameter. It should be weird at first because we have no blog and no
+object as parameter. This can sound weird at first, because there exists no blog and no
 post object that has to be created with the form. Actually the parameter
 ``$newPost`` is empty (``null``) at the first call.
 
