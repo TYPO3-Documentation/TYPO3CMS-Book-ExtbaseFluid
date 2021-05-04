@@ -95,7 +95,8 @@ post object that has to be created with the form. Actually the parameter
    Blog Example; PostController
    Extbase; PropertyManager
 
-Our ``PostController``, which is derived from ``ActionController``, prepares all
+Our ``PostController``,which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
+and its parent ``ActionController``, prepares all
 parameters before an action is called. The controller delegates this to an
 instance of the class :php:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
