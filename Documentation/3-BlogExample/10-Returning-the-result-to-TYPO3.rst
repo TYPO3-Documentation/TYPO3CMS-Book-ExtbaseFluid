@@ -35,7 +35,7 @@ the TYPO3 framework. Then TYPO3 will add this to the output of the current page 
 .. todo: Let's add context to this code snippet. It's taken from the Bootstrap
          and users should be able to follow and look it up quickly if wanted.
 
-In this section it has been explained, how the extension displays a list of blogs.
+This section explains how the extension displays a list of blogs.
 The following chapter is about how to create a new post.
 It is about chaining several actions into a coherent sequence. 
 It shows the possibilities of validation and deeper internals of Fluid.
