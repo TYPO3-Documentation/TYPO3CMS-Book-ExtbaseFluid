@@ -3,13 +3,13 @@
    BlogController; newAction()
    BlogController; createAction()
 
-======================================
-Alternative route: creating a new post
-======================================
+=========================================
+Alternative redirect: creating a new post
+=========================================
 
-After our first journey through the blog example, we
-will follow a more complex example in this chapter. As an example, we have chosen the
-creation of a new post. The user will be offered a form in the front
+After the first journey through the blog example, 
+here follows a more complex example. It is about the
+creation of a new post. The user js offered a form in the front
 end, where he can insert the title and the content of a new post
 and select an existing author for this post.
 After clicking the *submit* button, the list of the last posts of the
