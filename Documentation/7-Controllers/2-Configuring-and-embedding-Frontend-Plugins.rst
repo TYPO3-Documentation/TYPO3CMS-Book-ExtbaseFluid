@@ -11,7 +11,7 @@ The plugin must be registered as a content type (plugin) and its behavior must
 be configured. Both steps are resolved by two Extbase API-methods. These calls
 are located in two different files.
 
-In the file :file:`EXT:extension_key/ext_tables.php` you have to register every plugin as
+In the file :file:`EXT:extension_key/Configuration/TCA/Overrides/tt_content.php` you have to register every plugin as
 a content element with TYPO3 using the static method :php:`registerPlugin()`.
 
 .. this isn't text for the srj example - correct?
