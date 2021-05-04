@@ -22,7 +22,7 @@ changes, the persistence manager will not change anything at this time.
 
 This is the end of this trip. The dispatcher returns
 the response to the Bootstrap, which will return the rendered HTML content to
-the TYPO3 framework. Then TYPO3 will include this into its other output of the current page content.
+the TYPO3 framework. Then TYPO3 will add this to the output of the current page content.
 
 .. code-block:: php
 
