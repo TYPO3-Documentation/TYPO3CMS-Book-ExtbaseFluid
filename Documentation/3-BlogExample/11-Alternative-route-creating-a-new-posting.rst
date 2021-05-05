@@ -3,9 +3,9 @@
    BlogController; newAction()
    BlogController; createAction()
 
-=========================================
-Alternative redirect: creating a new post
-=========================================
+============================================
+Alternative redirection: creating a new post
+============================================
 
 After the first journey through the blog example, 
 here follows a more complex example. It is about the
@@ -26,7 +26,7 @@ front end, that looks - a bit challenging - like this:
 
    <a href="/index.php?id=29&tx_blogexample_pi1[action]=new&tx_blogexample_pi1[blog]=12&tx_blogexample_pi1[controller]=Post">Create a new Post</a>
 
-This was created with the following Fluid code in the template
+This is created with the following Fluid code in the template
 *EXT:blog_example/Resources/Private/Templates/Post/Index.html*:
 
 .. index:: Fluid; f:link.action
@@ -39,14 +39,14 @@ This was created with the following Fluid code in the template
 
 .. todo: Either remove the class attribute here or add it above. There are people (like me) that
          are confused by code examples where things are not 100% correct. Same for the title attribute.
-         franzholz: I do not understand this comment. Can we remove this?
+         franzholz: I do not understand this comment. I consider the class as useful for some cases. Can we remove the comment?
 
 The tag ``<f:link.action>`` creates a link to a special controller action
 combination: ``tx_blogexample_pi1[controller]=Post`` and
 ``tx_blogexample_pi1[action]=new``. The current blog is given as an argument
 with ``tx_blogexample_pi1[blog]=12``. Because the blog cannot be sent as an object,
 it must be translated into a unique identifier - the *UID*. In our case, this is
-the UID 12. Extbase creates the request out of these three parameters and redirects
+the UID 12. Extbase creates the request out of these three parameters and redirections
 to the according ``PostController``. The translation of the UID back to the
 corresponding ``blog`` object is done automatically by Extbase.
 
@@ -88,16 +88,16 @@ Lets take a look at the called method ``newAction()``:
 
 The method ``newAction()`` expects a ``blog`` object and an optional ``post``
 object as parameter. This can sound weird at first, because there exists no blog and no
-post object that has to be created with the form. Actually the parameter
+post object. That has to be created with the form. Actually the parameter
 ``$newPost`` is empty (``null``) at the first call.
 
 .. index::
    Blog Example; PostController
    Extbase; PropertyManager
 
-Our ``PostController``,which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
-and its parent ``ActionController``, prepares all
-parameters before an action is called. The controller delegates this to an
+Our ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
+and its parent ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController``, prepares all
+parameters, before an action is called. The controller delegates this to an
 instance of the class :php:`PropertyManager`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
