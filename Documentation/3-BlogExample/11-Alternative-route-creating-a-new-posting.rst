@@ -61,7 +61,7 @@ Lets take a look at the called method ``newAction()``:
       * @param Blog $blog The blog the post belogs to
       * @param Post $newPost A fresh post object taken as a basis for the rendering
       * @return void
-      * @IgnoreValidation $newPost
+      * @Extbase\IgnoreValidation("newPost")
       */
       public function newAction(Blog $blog, Post $newPost = null)
       {
