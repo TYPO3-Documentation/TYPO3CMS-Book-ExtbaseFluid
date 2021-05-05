@@ -7,7 +7,7 @@
 Action: creating a new post
 ===========================
 
-After the first journey through the blog example, 
+After the first journey through the blog example,
 here follows a more complex action. It is about the
 creation of a new post. The user js offered a form in the front
 end, where he can insert the title and the content of a new post
@@ -58,7 +58,7 @@ Lets take a look at the called method ``newAction()``:
    declare(strict_types=1);
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
-   
+
    use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
    use FriendsOfTYPO3\BlogExample\Domain\Model\Comment;
    use FriendsOfTYPO3\BlogExample\Domain\Model\Post;
@@ -78,7 +78,7 @@ Lets take a look at the called method ``newAction()``:
       * @param Blog $blog The blog the post belogs to
       * @param Post $newPost A fresh post object taken as a basis for the rendering
       * @return void
-      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newPost
+      * @Extbase\IgnoreValidation("newPost")
       */
       public function newAction(Blog $blog, Post $newPost = null): ResponseInterface
       {
@@ -103,21 +103,21 @@ post object. They have to be created after submission of the form. Actually the 
    Extbase; PropertyMapper
 
 The ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
-and its parents ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`` and ``\TYPO3\CMS\Extbase\Mvc\Controller\AbstractController``, 
-prepares all parameters, before an action method is called. 
+and its parents ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`` and ``\TYPO3\CMS\Extbase\Mvc\Controller\AbstractController``,
+prepares all parameters, before an action method is called.
 instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
-The controller method :php:`mapRequestArgumentsToControllerArguments` calls the method :php:`setValue` in a loop for each parameter. 
+The controller method :php:`mapRequestArgumentsToControllerArguments` calls the method :php:`setValue` in a loop for each parameter.
 This method delegates the conversion to an
 instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
 converts the parameter from the call (initiated from our link) into the target object and
 it checks, if the parameter is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
 ``$newPost`` it is an instance of the class
-:php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`. 
+:php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
 A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion into the blog object for record with :php:`$blog->uid == 12`.
 
 How does Extbase know what the target type of the conversion has to be? It takes this
-information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method. 
+information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method.
 If there is nothing else declared (``$propertyMappingConfiguration``), it takes this destination type by methods of the PHP class :php:`ReflectionClass` for the parameters of the method :php:`createAction` as the target type.
 All this PHP class parsing is done in the class :php:`TYPO3\CMS\Extbase\Reflection\ClassSchema`.
 The type of the parameters are given in the function definition.
@@ -207,9 +207,9 @@ Here you see the full partials template *PosForm.html*:
                 <f:form.submit class="button" value="{f:translate(key: 'submit', default: '[submit]')}"><input class="button" type="submit" name="" value="Submit" /></f:form.submit>
             </dd>
         </dl>
-    </f:form>    
-   
- 
+    </f:form>
+
+
 .. todo: There is a regular button inside the <f:form.submit>, looks wrong.
 
 .. index:: Fluid; f:form
@@ -232,7 +232,7 @@ The ``select`` tag is created by the Fluid tag ``<f:form.select>``.
 The available options are taken by Fluid from the content
 of the given property ``options="{authors}"``. In our case it is an array with all
 persons available by the ``PersonRepository``. The visible texts of the options are created by
-Fluid from the parameter ``optionLabelField="fullName"``. Fluid calls the method ``getFullName`` 
+Fluid from the parameter ``optionLabelField="fullName"``. Fluid calls the method ``getFullName``
 of the class ''FriendsOfTYPO3\BlogExample\Domain\Model\Person'' :
 
 ::
