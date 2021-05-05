@@ -175,7 +175,8 @@ Here you see the full partials template *PosForm.html*:
                 <label for="tx-blogexample-author"><f:translate key="property.author">[author]</f:translate>:</label>
             </dt>
             <dd>
-                <f:form.select property="author" id="tx-blogexample-author" options="{authors}" optionLabelField="fullName"><select id="tx-blogexample-author"><option>dummy</option></select></f:form.select>
+                <f:form.select property="author" id="tx-blogexample-author" options="{authors}" optionLabelField="
+                "><select id="tx-blogexample-author"><option>dummy</option></select></f:form.select>
             </dd>
             <dt>
                 <label for="tx-blogexample-title"><f:translate key="property.title">[title]</f:translate>:</label>
@@ -223,9 +224,24 @@ form fields are empty at first.
 The ``select`` tag is created by the Fluid tag ``<f:form.select>``.
 The available options are taken by Fluid from the content
 of the given property ``options="{authors}"``. In our case it is an array with all
-persons of the ``PersonRepository``. The visible text of the options are created by
-Fluid from the parameter ``optionLabelField="fullName"``. The created HTML code of
-the form looks like this:
+persons available by the ``PersonRepository``. The visible texts of the options are created by
+Fluid from the parameter ``optionLabelField="fullName"``. Fluid calls the method ``getFullName`` 
+of the class ''FriendsOfTYPO3\BlogExample\Domain\Model\Person'' :
+
+::
+
+    /**
+     * Returns the person's full name
+     *
+     * @return string The persons's lastname
+     */
+    public function getFullName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+
+The created HTML code of the form can look like this:
 
 ::
 
