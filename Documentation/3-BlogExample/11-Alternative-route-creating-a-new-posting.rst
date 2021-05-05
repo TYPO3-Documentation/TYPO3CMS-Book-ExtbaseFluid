@@ -45,9 +45,9 @@ The tag ``<f:link.action>`` creates a link to a special controller action
 combination: ``tx_blogexample_pi1[controller]=Post`` and
 ``tx_blogexample_pi1[action]=new``. The current blog is given as an argument
 with ``tx_blogexample_pi1[blog]=12``. Because the blog cannot be sent as an object,
-it must be translated into a unique identifier - the *UID*. In our case, this is
+it must be converted into a unique identifier - the *UID*. In our case, this is
 the UID 12. Extbase creates the request out of these three parameters and redirections
-to the according ``PostController``. The translation of the UID back to the
+to the according ``PostController``. The conversion of the UID back to the
 corresponding ``blog`` object is done automatically by Extbase.
 
 Lets take a look at the called method ``newAction()``:
@@ -93,22 +93,22 @@ post object. That has to be created with the form. Actually the parameter
 
 .. index::
    Blog Example; PostController
-   Extbase; PropertyManager
+   Extbase; PropertyMapper
 
 Our ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
 and its parent ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController``, prepares all
 parameters, before an action is called. The controller delegates this to an
-instance of the class :php:`PropertyManager`, that has mainly two functions: it
+instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
 converts the parameter from the call (from our link) into the target object and
 checks if it is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
-``$newPost`` is an instance of the class
-:php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
+``$newPost`` it is an instance of the class
+:php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`. 
+A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion to the blog object for record with :php:`$result->uid == 12`.
 
 How does Extbase know what the target of the conversion is? It takes this
-information from the type hint of the argument. If there is nothing declared
-it takes the destination type from the PHP doc above the method, from
-the line:
+information from the type hint of the argument :php:`$targetType` of the :php:`convert` method. 
+If there is nothing declared, it takes the destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
 
 .. index:: Action; Parameters
 
