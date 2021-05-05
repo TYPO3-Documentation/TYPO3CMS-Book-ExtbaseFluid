@@ -106,9 +106,9 @@ class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
 :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`. 
 A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion into the blog object for record with :php:`$blog->uid == 12`.
 
-How does Extbase know what the target of the conversion has to be? It takes this
+How does Extbase know what the target type of the conversion has to be? It takes this
 information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method. 
-If there is nothing else declared, it takes the destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
+If there is nothing else declared, it takes this destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
 
 .. index:: Action; Parameters
 
