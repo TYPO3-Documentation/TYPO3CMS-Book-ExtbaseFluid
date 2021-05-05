@@ -150,27 +150,33 @@ controller after calling ``newAction()``.
 
 .. todo: return $this->htmlResponse($this->view->render());
 
-Here you see the full template *Blog/New.html*:
+Here you see the full template *Post/New.html*:
 
 ::
 
     <f:layout name="Default" />
 
     <f:section name="content">
-        <f:link.action action="index" class="textIcon cancel" title="{f:translate(key: 'cancel')}"><f:translate key="cancel">[cancel]</f:translate></f:link.action>
-        <h1><f:translate key="blog.createHeader">[create blog]</f:translate></h1>
-        <p><f:translate key="blog.createIntroduction">[create blog below]</f:translate></p>
-        <f:render partial="BlogForm" arguments="{object: newBlog, objectName: 'newBlog', action: 'create', administrators: administrators}" />
+        <f:link.action action="index" arguments="{post: post, blog: blog}" class="textIcon cancel" title="{f:translate(key: 'cancel')}"><f:translate key="cancel">[cancel]</f:translate></f:link.action>
+        <h1><f:translate key="post.createHeader">[create post]</f:translate></h1>
+        <f:render partial="PostForm" arguments="{object: newPost, objectName: 'newPost', action: 'create', blog: blog, authors: authors, remainingPosts: remainingPosts}" />
     </f:section>
 
 
-Here you see the full partials template *BlogForm.html*:
+
+Here you see the full partials template *PosForm.html*:
 
 ::
 
     <f:render partial="FormErrors" />
-    <f:form action="{action}" controller="Blog" objectName="{objectName}" object="{object}" method="post">
+    <f:form action="{action}" controller="Post" arguments="{blog: blog}" objectName="{objectName}" object="{object}" method="post">
         <dl>
+            <dt>
+                <label for="tx-blogexample-author"><f:translate key="property.author">[author]</f:translate>:</label>
+            </dt>
+            <dd>
+                <f:form.select property="author" id="tx-blogexample-author" options="{authors}" optionLabelField="fullName"><select id="tx-blogexample-author"><option>dummy</option></select></f:form.select>
+            </dd>
             <dt>
                 <label for="tx-blogexample-title"><f:translate key="property.title">[title]</f:translate>:</label>
             </dt>
@@ -178,40 +184,33 @@ Here you see the full partials template *BlogForm.html*:
                 <f:form.textfield property="title" id="tx-blogexample-title"><input type="text" id="tx-blogexample-title" /></f:form.textfield>
             </dd>
             <dt>
-                <label for="tx-blogexample-description"><f:translate key="property.description">[description]</f:translate>:</label>
+                <label for="tx-blogexample-content"><f:translate key="property.content">[content]</f:translate>:</label>
             </dt>
             <dd>
-                <f:form.textarea property="description" id="tx-blogexample-description" rows="8" cols="46"><textarea id="tx-blogexample-description" rows="8" cols="46" /></f:form.textarea>
+                <f:form.textarea property="content" id="tx-blogexample-content" rows="8" cols="46"><textarea id="tx-blogexample-content" rows="8" cols="46" /></f:form.textarea>
             </dd>
             <dt>
-                <label for="tx-blogexample-administrator"><f:translate key="property.administrator">[administrator]</f:translate>:</label>
+                <label for="tx-blogexample-relatedposts"><f:translate key="property.relatedPosts">[related posts]</f:translate>:</label>
             </dt>
             <dd>
-                <f:form.select property="administrator" id="tx-blogexample-administrator" value="{blog.administrator}" options="{administrators}" optionLabelField="name"><select id="tx-blogexample-administrator"><option>dummy</option></select></f:form.select>
+                <f:form.select property="relatedPosts" multiple="multiple" id="tx-blogexample-relatedPosts" options="{remainingPosts}" optionLabelField="title"><select id="tx-blogexample-relatedPosts" multiple="multiple"><option>dummy</option></select></f:form.select>
             </dd>
             <dd>
                 <f:form.submit class="button" value="{f:translate(key: 'submit', default: '[submit]')}"><input class="button" type="submit" name="" value="Submit" /></f:form.submit>
             </dd>
         </dl>
-    </f:form>
-    
+    </f:form>    
    
+ 
 .. todo: There is a regular button inside the <f:form.submit>, looks wrong.
 
 .. index:: Fluid; f:form
 
-Fluid offers some comfortable tags for creating forms which names are all starting
+Fluid offers some comfortable tags for creating forms, which names are all starting
 with ``form``. The whole form is enclosed in ``<f:form></f:form>``. Like creating
 a link, the controller action combination, which should be called when clicking the
 submit button, is given here.
 
-.. note::
-
-   Don't be confused by the parameter ``method="post"``. This is the transfer method
-   of the form and has nothing to do with our domain (instead of ``method="post"``
-   it also could be ``method="get"``).
-   .. todo: I would either drop this explanation or simply refer to an official HTML
-      documentation to make things really clear.
 
 The form is bound with ``object="{newPost}"`` to the object assigned to
 the variable ``newPost`` in the controller. The specific form fields have a property
