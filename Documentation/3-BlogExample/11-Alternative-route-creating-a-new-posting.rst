@@ -245,15 +245,16 @@ The created HTML code of the form can look like this:
 
 ::
 
-   <form method="post" action="/?tx_blogexample_pi1%5Baction%5D=create&amp;tx_blogexample_pi1%5Bblog%5D=12&amp;tx_blogexample_pi1%5Bcontroller%5D=Post&amp;cHash=4218364112cecc7a3cc9de3428c36c46">
+   <form method="post" action="/index.php?id=29&amp;tx_blogexample_pi1%5Bblog%5D=12&amp;tx_blogexample_pi1%5Baction%5D=create&amp;tx_blogexample_pi1%5Bcontroller%5D=Post&amp;cHash=4218364112cecc7a3cc9de3428c36c46">
+      <input type="hidden" name="tx_blogexample_pi1..." > // many hidden fields
        <dl>
          <dt><label for="tx-blogexample-author">author:</label></dt>
          <dd>
                <select id="tx-blogexample-author" name="tx_blogexample_pi1[newPost][author]">
                      <option value="9">Stephen Smith</option>
-                     <option value="10">Stephen Smith</option>
-                     <option value="11">Stephen Smith</option>
-                     <option value="12">Stephen Smith</option>
+                     <option value="10">Andrew Walter</option>
+                     <option value="11">Jennifer Daniels</option>
+                     <option value="12">Sarah Lawrence</option>
                </select>
          </dd>
          <dt><label for="tx-blogexample-title">title:</label></dt>
@@ -262,11 +263,20 @@ The created HTML code of the form can look like this:
          <dd><textarea rows="8" cols="46" id="tx-blogexample-content" name="tx_blogexample_pi1[newPost][content]"></textarea></dd>
          <dt><label for="tx-blogexample-relatedposts">related posts:</label></dt>
 
+         <dt><label for="tx-blogexample-relatedposts">related posts:</label></dt>
+         <dd><input type="hidden" name="tx_blogexample_pi1[newPost][relatedPosts]" value="" />
+            <select id="tx-blogexample-relatedPosts" multiple="multiple" name="tx_blogexample_pi1[newPost][relatedPosts][]">
+               <select id="tx-blogexample-relatedPosts" multiple="multiple">
+                  <option>dummy</option>
+               </select>
+            </select>
+         </dd>
+
          <dd><input class="button" type="submit" value="submit"></dd>
       </dl>
    </form>
 
-TYPO3 takes the rendered form and includes it at the appropriate place in the HTML page
+TYPO3 takes the rendered form and includes it at the appropriate place in the final HTML page
 (see figure 3-5).
 
 .. figure:: /Images/3-BlogExample/figure-3-5.png
@@ -274,15 +284,14 @@ TYPO3 takes the rendered form and includes it at the appropriate place in the HT
 
    Figure 3-5: The rendered form
 
-Clicking the *submit* button calls the ``createAction`` of the ``PostController``.
-Here you will see the stripped-down method:
+Clicking the *submit* button submits the form, then it calls the ``createAction`` of the ``PostController`` with the submitted form data.
+This is the stripped-down method:
 
-.. todo: This sounds like magic again. We should use the same wording as in a regular
-         HTML context. The submit button submits the form. It sends the form data to
-         the given form action. Given the query params, the then called plugin on the
+.. todo: Given the query params, the then called plugin on the
          same page dispatches the request to the desired controller and action. This
          is important because many people ask for Extbase magic when they only need to
          understand HTTP.
+         franzholz: The lines above should not be described here, but somewhere else.
 
 ::
 
@@ -309,16 +318,16 @@ method ``newAction()``.
 .. note::
 
    During the conversion of the arguments into the target
-   object's property values, the above-mentioned ``PropertyManager`` checks if any errors are encountered
+   object's property values, the above-mentioned ``PropertyMapper`` checks if any errors are encountered
    during the validation. The validation effected on the base of the property
    definitions of the target object. More about the subject validating you will find
    in the section :ref:`validating-domain-objects`.
 
 The post is added to the blog with ``$blog->addPost($newPost)``. After that, the
-following processing is forwarded by ``$this->redirect([...])`` to the method
+following processing is forwarded by ``$this->redirect('index', ...)`` to the method
 ``indexAction()``. Thereby the blog - now with the new post - is passed as
-argument. So that the new post is available in the blog when next called, it
-must be persisted. This is done automatically after the flow through the extension
+argument. So that the new post is available in the blog. And it
+must be persisted. This is done automatically at the end
 in the dispatcher of Extbase.
 
 ..index::
@@ -327,7 +336,7 @@ in the dispatcher of Extbase.
 
 .. note::
 
-   What's :php:`redirect()`? With Extbase, requests can be further dispatched either
+   What is :php:`redirect()`? With Extbase, requests can be further dispatched either
    by returning a `ForwardResponse` or by using :php:`redirect()`.
    The difference is: ``redirect()`` starts a completely new page call
    (new request-response cycle), while a :php:`ForwardResponse` is handled as part of the
