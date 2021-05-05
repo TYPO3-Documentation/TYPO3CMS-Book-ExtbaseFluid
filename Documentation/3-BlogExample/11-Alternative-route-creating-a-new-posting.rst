@@ -3,12 +3,12 @@
    BlogController; newAction()
    BlogController; createAction()
 
-============================================
-Alternative redirection: creating a new post
-============================================
+===========================
+Action: creating a new post
+===========================
 
 After the first journey through the blog example, 
-here follows a more complex example. It is about the
+here follows a more complex action. It is about the
 creation of a new post. The user js offered a form in the front
 end, where he can insert the title and the content of a new post
 and select an existing author for this post.
@@ -97,7 +97,10 @@ post object. They have to be created after submission of the form. Actually the 
 
 The ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
 and its parents ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`` and ``\TYPO3\CMS\Extbase\Mvc\Controller\AbstractController``, 
-prepares all parameters, before an action method is called. The controller delegates this to an
+prepares all parameters, before an action method is called. 
+instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
+The controller method :php:`mapRequestArgumentsToControllerArguments` calls the method :php:`setValue` in a loop for each parameter. 
+This method delegates the conversion to an
 instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
 converts the parameter from the call (initiated from our link) into the target object and
 it checks, if the parameter is valid. The target for the parameter ``$blog`` is an instance of the
@@ -108,16 +111,16 @@ A source parameter with value 12 for the :php:`convert` method of the PropertyMa
 
 How does Extbase know what the target type of the conversion has to be? It takes this
 information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method. 
-If there is nothing else declared, it takes this destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
+If there is nothing else declared (``$propertyMappingConfiguration``), it takes this destination type by methods of the PHP class :php:`ReflectionClass` for the parameters of the method :php:`createAction` as the target type.
+All this PHP class parsing is done in the class :php:`TYPO3\CMS\Extbase\Reflection\ClassSchema`.
+The type of the parameters are given in the function definition.
+For a better understanding you should keep the formerly required param notations in the comments as well:
 
 .. index:: Action; Parameters
 
 ::
 
    * @param Blog $blog The blog the post belongs to
-
-.. todo: This needs to be checked. Might be that this fallback is dropped already.
-         If not, it should be with 13, forcing people to use native type hints.
 
 The link is created with the name of the argument ``$blog``.
 In this way, the link between the request parameter and
