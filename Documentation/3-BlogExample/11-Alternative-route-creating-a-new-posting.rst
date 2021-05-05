@@ -87,28 +87,28 @@ Lets take a look at the called method ``newAction()``:
    }
 
 The method ``newAction()`` expects a ``blog`` object and an optional ``post``
-object as parameter. This can sound weird at first, because there exists no blog and no
-post object. That has to be created with the form. Actually the parameter
+object as parameter. This can sound weird at first, because in the beginning there is no blog and no
+post object. They have to be created after submission of the form. Actually the parameter
 ``$newPost`` is empty (``null``) at the first call.
 
 .. index::
    Blog Example; PostController
    Extbase; PropertyMapper
 
-Our ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
-and its parent ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController``, prepares all
-parameters, before an action is called. The controller delegates this to an
+The ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
+and its parents ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`` and ``\TYPO3\CMS\Extbase\Mvc\Controller\AbstractController``, 
+prepares all parameters, before an action method is called. The controller delegates this to an
 instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
-converts the parameter from the call (from our link) into the target object and
-checks if it is valid. The target for the parameter ``$blog`` is an instance of the
+converts the parameter from the call (initiated from our link) into the target object and
+it checks, if the parameter is valid. The target for the parameter ``$blog`` is an instance of the
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
 ``$newPost`` it is an instance of the class
 :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`. 
-A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion to the blog object for record with :php:`$result->uid == 12`.
+A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion into the blog object for record with :php:`$blog->uid == 12`.
 
-How does Extbase know what the target of the conversion is? It takes this
-information from the type hint of the argument :php:`$targetType` of the :php:`convert` method. 
-If there is nothing declared, it takes the destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
+How does Extbase know what the target of the conversion has to be? It takes this
+information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method. 
+If there is nothing else declared, it takes the destination type from the PHP comment above the method :php:`createAction`                                          as the target type:
 
 .. index:: Action; Parameters
 
@@ -271,7 +271,7 @@ method ``newAction()``.
    During the conversion of the arguments into the target
    object's property values, the above-mentioned ``PropertyManager`` checks if any errors are encountered
    during the validation. The validation effected on the base of the property
-   definitions of the target object. More about the subject validating, you will find
+   definitions of the target object. More about the subject validating you will find
    in the section :ref:`validating-domain-objects`.
 
 The post is added to the blog with ``$blog->addPost($newPost)``. After that, the
