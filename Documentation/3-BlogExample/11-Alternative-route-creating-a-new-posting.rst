@@ -330,7 +330,8 @@ argument. So that the new post is available in the blog. And it
 must be persisted. This is done automatically at the end
 in the dispatcher of Extbase.
 
-..index::
+.. index::
+
    Action; redirect
    Extbase; ForwardResponse
 
