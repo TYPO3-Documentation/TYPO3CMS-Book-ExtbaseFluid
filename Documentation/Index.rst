@@ -88,6 +88,7 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
    c-FAQ/Index
+   Extbase and Fluid Guide ➜  <https://docs.typo3.org/m/typo3/guide-extbasefluid/>
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
 
 .. toctree::
