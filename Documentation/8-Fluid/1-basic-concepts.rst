@@ -105,10 +105,12 @@ in the following order:
 
 .. sidebar:: The Uniform Access Principle
 
-    The Uniform Access Principle says all services offered by a
+    The `Uniform Access Principle 
+    <https://en.wikipedia.org/wiki/Uniform_access_principle>`__ 
+    says all services offered by a
     module should be available through a uniform notation that does not
     betray whether they are implemented through storage or
-    computation. <remark>Explanation on Wiki</remark>
+    computation. 
 
     Stored objects are being accessed directly using public class
     variables in PHP - and it is visible on the outside that the object
