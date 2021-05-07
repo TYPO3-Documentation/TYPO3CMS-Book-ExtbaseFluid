@@ -124,7 +124,7 @@ Parsing this point goes recursively. That means Fluid can parse a string
 .. note::
 
     The return value is "tidied up" by :php:`htmlspecialchars()`. That protects from
-    Cross Site Scripting (XSS) Attacks.
+    cross-site scripting (XSS) attacks.
 
 As soon as Fluid is done with the whole template, the result is added to the
 `Response` object. This is done in the
