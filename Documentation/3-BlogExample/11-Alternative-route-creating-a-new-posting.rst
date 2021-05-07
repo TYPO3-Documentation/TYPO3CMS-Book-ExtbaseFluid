@@ -331,7 +331,6 @@ must be persisted. This is done automatically at the end
 in the dispatcher of Extbase.
 
 .. index::
-
    Action; redirect
    Extbase; ForwardResponse
 
