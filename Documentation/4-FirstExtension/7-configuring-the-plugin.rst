@@ -75,6 +75,11 @@ It must list all actions whose results should not be stored in the cache.
 
 This concludes the configuration of the plugin.
 
+.. _registrating-the-plugin:
+
+=======================
+Registrating the plugin
+=======================
 
 .. index::
    Plugin; registration
@@ -84,7 +89,7 @@ This concludes the configuration of the plugin.
 Plugin registration: :php:`ExtensionUtility::registerPlugin()`
 ==============================================================
 
-The plugin must be registered to have it actually appear as a selectable element in the backend plugin list.
+The plugin must be registered to have it appear as a selectable element in the backend. And the frontend must get the information which controller class to call for this plugin.
 To achieve this, the following line must be inserted into the file :file:`Configuration/TCA/Overrides/tt_content.php`:
 
 .. code-block:: php
@@ -105,7 +110,7 @@ To achieve this, the following line must be inserted into the file :file:`Config
 
 
 The first argument is like in the method :php:`configurePlugin()` again the
-extension key, and the second is the name of the plugin :php:`Pi1`.
+extension key, and the second is the name of the plugin :php:`Pi1` (plugin no. 1).
 The third argument is the title of the plugin used in the select box of the content element.
 After activating the extension (and clearing the cache), the plugin can be inserted on a page.
 Don't forget to set the sys_folder, where the products are stored as the starting point
