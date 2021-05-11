@@ -32,7 +32,7 @@ the extension directory.
    <?php
    // Prevent script from being called directly
    
-   defined('TYPO3') or die();
+   defined('TYPO3_MODE') or die();
 
    // encapsulate all locally defined variables
    call_user_func(
