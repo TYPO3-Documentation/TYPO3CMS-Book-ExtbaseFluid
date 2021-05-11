@@ -74,8 +74,8 @@ is used to configure the plugin for use in TYPO3.
    This array has the same format as the third parameter. 
    It must list all actions whose results should not be stored in the cache.
 
-The first action of the first line configured in the action list is the default action of the plugin.
-This determines the first template and its generated result to be shown in the frontend.
+The first action in the action list of the first line of the configuration parameter is the default action of the plugin.
+This determines the first template and its generated result to be shown in the frontend when no action parameter is present.
 
 .. _registrating-the-plugin:
 
