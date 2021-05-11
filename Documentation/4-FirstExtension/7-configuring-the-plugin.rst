@@ -63,18 +63,18 @@ is used to configure the plugin for use in TYPO3.
 *  With the second argument :php:`'Pi1'` (short for plugin no. 1), a unique name called **plugin name** is given for the plugin (also in UpperCamelCase notation and with less than 32 characters).
    The plugin name is used to identify the plugin clearly.
 *  The third argument is an array with all allowed controller action combinations.
-   The array key is the fully-qualified controller class name
-   and the array value is a comma-separated list of all allowed actions.
+   The array key is the fully-qualified controller class name. Alternatively it would be sufficient to use the table name qualifier, which is StoreInventory in this example.
+   The array value is a comma-separated list of all allowed actions.
    In this case there is only the ``list`` action (also without the suffix ``Action``).
    Thus the array :php:`[\Vendor\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
    registers the method :php:`listAction()`
    in the :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
-   All actions are cached by default. 
+   All actions are cached by default.
 *  If an uncached action is required, an additional controller/action combination must be added as the fourth parameter.
    This array has the same format as the third parameter. 
    It must list all actions whose results should not be stored in the cache.
 
-The first action configured in the action list is the default action of the plugin.
+The first action of the first line configured in the action list is the default action of the plugin.
 This determines the first template and its generated result to be shown in the frontend.
 
 .. _registrating-the-plugin:
