@@ -32,7 +32,7 @@ the extension directory.
    <?php
    // Prevent script from being called directly
    
-   defined('TYPO3_MODE') or die();
+   defined('TYPO3') or die();
 
    // encapsulate all locally defined variables
    call_user_func(
@@ -53,7 +53,7 @@ the extension directory.
    );
 
 
-The first line prevents a calling of the PHP code in this file outside of the TYPO3_MODE context.
+The first line prevents a calling of the PHP code in this file outside of the TYPO3 context.
 The php closure and anonymous function is used to encapsulate the code and its variables.
 These are a small security measures.
 The static method :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
