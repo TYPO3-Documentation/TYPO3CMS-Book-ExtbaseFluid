@@ -144,5 +144,5 @@ The next call of the page with the plugin shows the inventory as a table (figure
    Figure 4-5: The output of the inventory in the frontend
 
 This marks the end of this little Extbase extension.
-This example was intentionally simple.
-It illustrates all the important steps and the conventions.
+This example gives a small glimpse of TYPO3 programming.
+It illustrates all important steps and conventions.
