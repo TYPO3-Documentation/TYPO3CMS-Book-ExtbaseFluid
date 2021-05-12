@@ -199,7 +199,7 @@ to the view, taking care of the HTML output.
     Pattern does not only cover single domain objects but, in the event,
     also a complex aggregate.
 
-If an Argument is identified as invalid, the already implemented
+If an argument is identified as invalid, the already implemented
 method :php:`errorAction()` of
 :php:`ActionController` is called instead of the method
 :php:`showAction()`. The method then generates a message
