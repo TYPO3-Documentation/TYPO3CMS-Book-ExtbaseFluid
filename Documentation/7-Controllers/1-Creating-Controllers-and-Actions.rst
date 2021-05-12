@@ -319,27 +319,36 @@ redirecting to other action controllers at your disposal:
    redirectToURI($uri, $delay = 0, $statusCode = 303)
    return new :php:`ForwardResponse('actionName')`;
 
-Using the :php:`redirect()` Method, you can start a
-new request-response-cycle on the spot, similar to clicking on a link: The
-given action (specified in :php:`$actionName`) of the
-appropriate controller (specified in
-:php:`$controllerName`) in the given extension (specified
-in :php:`$extensionName`) is called. If you did not
-specify a controller or extension, Extbase assumes that you stay in the
-same context. In the fourth parameter :php:`$arguments`
-you can pass an Array of arguments. In our example :php:`['organization' => $organization]`
-would look like this in the URL:
-:php:`tx_sjroffers_pi1[organization]=5`. The Array key is
-transcribed to the parameter name, while the organization object in
-:php:`$organization` is transformed into the number 5,
-which is the appropriate UID. If you want to link to another page inside
-the TYPO3 installation, you can pass its uid in the 5th parameter
-(:php:`$pageUid`). A delay before redirecting can be
-achieved by using the 6th parameter (:php:`$delay`). By
-default the reason for redirecting is set to status code 303 (which means
-*See Other*).You can use the 7th parameter
-(:php:`$statusCode`) to override this (for example, with
-301, which means *Moved Permanently*).
+Using the :php:`redirect()` method, you can start a
+new request-response-cycle on the spot, similar to clicking on a link: 
+
+*  The destimation action is specified in :php:`$actionName`.
+*  The appropriate controller is defined in
+   :php:`$controllerName`).
+*  The extension name is passed over to the method
+   in :php:`$extensionName`). 
+*  In the fourth parameter :php:`$arguments`
+   you can pass an array of arguments. In our example :php:`['organization' => $organization]`
+   would look like this in the URL:
+   :php:`tx_sjroffers_pi1[organization]=5`. The array key is
+   transcribed to the parameter name, while the organization object in
+   :php:`$organization` is transformed into the number 5,
+   which is the appropriate UID. 
+*  If you want to link to another page inside
+   the TYPO3 installation, you can pass its uid in the 5th parameter
+   (:php:`$pageUid`). 
+*  A delay before redirecting can be
+   achieved by using the 6th parameter (:php:`$delay`). By
+   default the reason for redirecting is set to status code 303 (which means
+   *See Other*).
+*  You can use the 7th parameter
+   (:php:`$statusCode`) to override this (for example, with
+   301, which means *Moved Permanently*).
+
+.. tip::
+
+If you do not specify a controller or extension, Extbase assumes that you stay in the
+same context.
 
 In our example, the following code is sent to the Browser. It
 provokes the immediate reload of the page with the given URL:
