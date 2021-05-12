@@ -59,11 +59,14 @@ These are a small security measures.
 The static method :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
 is used to configure the plugin for use in TYPO3.
 
-*  The first parameter denotes the extension name in UpperCamelCase (StoreInventory). Instead of this also the extension key in lower case with underscores can be given (store_inventory).
-*  With the second argument :php:`'Pi1'` (short for plugin no. 1), a unique name called **plugin name** is given for the plugin (also in UpperCamelCase notation and with less than 32 characters).
+*  The first parameter denotes the extension name in UpperCamelCase (StoreInventory). 
+   Instead of this also the extension key in lower case with underscores can be given (store_inventory).
+*  With the second argument :php:`'Pi1'` (short for plugin no. 1), a unique name called **plugin name** 
+   is given for the plugin (also in UpperCamelCase notation and with less than 32 characters).
    The plugin name is used to identify the plugin clearly.
 *  The third argument is an array with all allowed controller action combinations.
-   The array key is the fully-qualified controller class name. Alternatively it would be sufficient to use the table name qualifier, which is StoreInventory in this example.
+   The array key is the fully-qualified controller class name. 
+   Alternatively it would be sufficient to use the table name qualifier, which is StoreInventory in this example.
    The array value is a comma-separated list of all allowed actions.
    In this case there is only the ``list`` action (also without the suffix ``Action``).
    Thus the array :php:`[\Vendor\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
@@ -75,7 +78,8 @@ is used to configure the plugin for use in TYPO3.
    It must list all actions whose results should not be stored in the cache.
 
 The first action in the action list of the first line of the configuration parameter is the default action of the plugin.
-This determines the first template and its generated result to be shown in the frontend when no action parameter is present.
+This determines the first template and its generated result to be shown in the frontend when no action 
+parameter is present.
 
 .. _registrating-the-plugin:
 
@@ -91,7 +95,8 @@ Registrating the plugin
 Plugin registration: :php:`ExtensionUtility::registerPlugin()`
 ==============================================================
 
-The plugin must be registered to have it appear as a selectable element in the backend. The **plugin name** must be the same as it has been used in the plugin configuration. 
+The plugin must be registered to have it appear as a selectable element in the backend. 
+The **plugin name** must be the same as it has been used in the plugin configuration. 
 To achieve this, the following line must be inserted into the file :file:`Configuration/TCA/Overrides/tt_content.php`:
 
 .. code-block:: php
