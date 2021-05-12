@@ -322,26 +322,26 @@ redirecting to other action controllers at your disposal:
 Using the :php:`redirect()` method, you can start a
 new request-response-cycle on the spot, similar to clicking on a link: 
 
-*  The destimation action is specified in :php:`$actionName`.
-*  The appropriate controller is defined in
+#. The destimation action is specified in :php:`$actionName`.
+#. The appropriate controller is defined in
    :php:`$controllerName`).
-*  The extension name is passed over to the method
+#. The extension name is passed over to the method
    in :php:`$extensionName`). 
-*  In the fourth parameter :php:`$arguments`
+#. In the fourth parameter :php:`$arguments`
    you can pass an array of arguments. In our example :php:`['organization' => $organization]`
    would look like this in the URL:
    :php:`tx_sjroffers_pi1[organization]=5`. The array key is
    transcribed to the parameter name, while the organization object in
    :php:`$organization` is transformed into the number 5,
    which is the appropriate UID. 
-*  If you want to link to another page inside
+#. If you want to link to another page inside
    the TYPO3 installation, you can pass its uid in the 5th parameter
    (:php:`$pageUid`). 
-*  A delay before redirecting can be
+#. A delay before redirecting can be
    achieved by using the 6th parameter (:php:`$delay`). By
    default the reason for redirecting is set to status code 303 (which means
    *See Other*).
-*  You can use the 7th parameter
+#. You can use the 7th parameter
    (:php:`$statusCode`) to override this (for example, with
    301, which means *Moved Permanently*).
 
