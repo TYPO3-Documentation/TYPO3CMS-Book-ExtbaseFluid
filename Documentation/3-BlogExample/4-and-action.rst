@@ -87,18 +87,21 @@ the doc comments and some methods have been removed. Find the full example at
 
 The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
-blogs. We also could have called it
-`showMeTheListAction()`. The function name has to end on "Action". 
-This helps Extbase to recognize it as an action. The `indexAction` 
-returns an implementation of the :php:\Psr\Http\Message\ResponseInterface`. 
+blogs. The `indexAction` has to return an implementation 
+of the :php:\Psr\Http\Message\ResponseInterface`. 
 
-`newAction()` shows a
-form to create a new blog. The `createAction()` then
-creates a new blog with the data of the form. The pair
-`editAction()` and
-`updateAction()` has similar functionality for the
-change of an existing blog. The job of the
-`deleteAction()` should be self explaining.
+`newAction()` shows a form to create a new blog. The 
+`createAction()` then creates a new blog with the data of the form. 
+
+The `editAction()` and `updateAction()` have similar functionality for the
+change of an existing blog.
+
+The job of the `deleteAction()` should be self explaining.
+
+The function names can be chosen freely but have to end on "Action". 
+This helps Extbase to recognize them as an action. For example  `indexAction()`
+could also be called  `showTheListAction()`.
+
 
 .. tip::
 
