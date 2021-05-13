@@ -347,10 +347,10 @@ new request-response-cycle on the spot, similar to clicking on a link:
 
 .. tip::
 
-If you do not specify a controller or extension, Extbase assumes that you stay in the
-same context.
+   If you do not specify a controller or extension, Extbase assumes that you stay in the
+   same context.
 
-In our example, the following code is sent to the Browser. It
+In this example, the following code is sent to the browser. It
 provokes the immediate reload of the page with the given URL:
 
 .. code-block:: html
