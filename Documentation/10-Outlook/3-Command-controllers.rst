@@ -18,3 +18,5 @@ more, which is then available for administrators and regular backend users.
 
 Please see :ref:`t3coreapi:cli-mode` in "TYPO3 Explained" for more
 information on command controllers.
+
+.. todo: This chapter can be dropped, command controllers are dead.

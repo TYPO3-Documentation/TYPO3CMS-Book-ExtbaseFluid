@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   ViewHelpers; Custom
+   Fluid; Custom ViewHelpers
 .. _developing-a-custom-viewhelper:
 
 ==============================
@@ -502,8 +505,8 @@ three ways are explained in the following section.
 
 .. _local-namespace-import-via-<>-syntax:
 
-Local namespace import via <>-syntax
-------------------------------------
+Local namespace import via lower-greater <>-syntax
+--------------------------------------------------
 
 To import a Viewhelper namespace into Fluid, the following syntax can be used:
 
@@ -530,8 +533,8 @@ possibility to lint the Fluid files.
 
 .. _local-namespace-import-via-{}-syntax:
 
-Local namespace import via {}-syntax
-------------------------------------
+Local namespace import via curly braces {}-syntax
+-------------------------------------------------
 
 To import a Viewhelper namespace into Fluid, the following syntax can be used:
 

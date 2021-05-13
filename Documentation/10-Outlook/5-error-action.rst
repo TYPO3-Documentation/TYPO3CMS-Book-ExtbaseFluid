@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Controller; Errors
+   Controller; errorAction()
 .. _extbase_error_action:
 
 ============
@@ -42,6 +45,10 @@ Each of the above steps can be adjusted by implementing custom methods or
 replacing values within properties. All of the above is `protected` and, therefore,
 can be replaced.
 
+.. todo: This is something that will change eventually. There will be a possibility
+         to implement custom error handling but it will no longer happen by overloading
+         methods.
+
 :php:`errorMethodName` property
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -67,3 +74,12 @@ generated flash message.
 
 Can be replaced in order to display some other error message if no referrer
 exists.
+
+.. todo: Well, we don't want the user to overload/override methods to achieve desired
+         behavior. Most methods of `ActionController` are marked internal already and
+         users shouldn't rely on them any longer. Overriding those methods is often
+         done as a quirk, for example to disable flash messages that cumulate and are
+         displayed automatically by the f:form.validationResults view helper. There is
+         no other mechanism in place but when forwarding to the referring request, no
+         flash messages are needed. In that case, validation errors should not be stored
+         as flash messages but passed along to the re-dispatched request.

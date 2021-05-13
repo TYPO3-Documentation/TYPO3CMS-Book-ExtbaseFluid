@@ -10,12 +10,14 @@
 Installation & setup
 ====================
 
-To follow this documentation, we assume you have TYPO3 up-and-running.
+To follow this documentation, you must have TYPO3 up-and-running.
 
 Check out the "Installation & upgrade guide" for how to
 :ref:`setup a TYPO3 installation with Composer <t3install:install-via-composer>`
 
-The system extension **extbase** and **fluid** are required.
+The system extensions **extbase** and **fluid** are required.
+
+.. index:: Extension builder
 
 Extension builder
 =================
@@ -47,6 +49,11 @@ and go to the directory :file:`typo3conf/ext/` and enter:
 
    git clone https://github.com/FriendsOfTYPO3/extension_builder.git
 
-Then you can use the *Extension Manager* to install the Extension Builder.
+To install this extension by downloading the source, open the url 
+`Extension Builder <https://extensions.typo3.org/extension/extension_builder>`__. There you can
+download a ZIP file, which you can import directly into the *Extension Manager*. Alternatively
+you copy the unpacked extension folder to the directory :file:`typo3conf/ext/`.
+
+Then you can use the *Extension Manager* to activate the Extension Builder.
 
 

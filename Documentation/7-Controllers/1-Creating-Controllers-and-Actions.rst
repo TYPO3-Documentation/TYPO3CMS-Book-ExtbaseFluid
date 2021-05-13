@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Controllers
+   Controllers; Actions
 
 ================================
 Creating controllers and actions
@@ -45,16 +48,16 @@ of *Actions*:
 #. An existing domain object is to be edited.
 #. A domain object is to be deleted.
 
-We will shed some light on these recurring patterns in the following
-sections. Together with the schedule model, you will learn the background to
-generate your own flows.
+The following sections will shed some light on these recurring patterns. 
+Together with the schedule model they form the background for
+generating flows.
 
 .. tip::
 
-    Note that you are free to choose the method names for your
-    *Actions* as you like. Nevertheless, we recommend to
-    stick to the names presented here to help other developers to find
-    their way through your code.
+    The method names for your
+    *Actions* can be chosen freely. Nevertheless, 
+    the names presented here should be used to help other developers to find
+    their ways through your code.
 
 
 Flow pattern "display a list of domain objects"
@@ -62,8 +65,8 @@ Flow pattern "display a list of domain objects"
 
 The first pattern in our example fits the action "*display
 a list of all offers*". One action method usually will be enough
-for implementing this. We choose :php:`indexAction` as
-the name of the method:
+for implementing this. :php:`indexAction` is the
+name of this method:
 
 .. code-block:: php
 
@@ -90,7 +93,6 @@ the name of the method:
    {
       $offers = $this->offerRepository->findAll();
       $this->view->assign('offers', $offers);
-
       return $this->responseFactory->createHtmlResponse($this->view->render());
    }
 
@@ -119,10 +121,10 @@ Flow pattern "display a single domain object"
 =============================================
 
 The second pattern is best put into action by a single method as
-well. We call it :php:`showAction()`. In contrast to
-:php:`indexAction`, we have to tell this method from
-outside which domain object is displayed. In our case, the offer to
-be shown is passed to the method as Argument:
+well. It is called :php:`showAction()`. In contrast to
+:php:`indexAction`, this method must be told from
+outside which domain object is displayed. In this case the offer to
+be shown is passed to the method as argument:
 
 .. code-block:: php
 
@@ -138,7 +140,7 @@ be shown is passed to the method as Argument:
    }
 
 Usually, the display of a single Object is called by a link in the
-frontend. In our example extension it connects the list view by something
+frontend. In this example extension it connects the list view by something
 like the following URL:
 
 `http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer`
@@ -179,7 +181,7 @@ to the view, taking care of the HTML output.
     Pattern does not only cover single domain objects but, in the event,
     also a complex aggregate.
 
-If an Argument is identified as invalid, the already implemented
+If an argument is identified as invalid, the already implemented
 method :php:`errorAction()` of
 :php:`ActionController` is called instead of the method
 :php:`showAction()`. The method then generates a message
@@ -195,19 +197,17 @@ For the third Flow Pattern, the one for creating a new Domain
 Object, two steps are required: First, a form for inputting the Domain
 Data has to be shown in Frontend. Second, a new domain object has to be
 created (using the incoming form data) and put in the appropriate
-repository. We're going to implement these two steps in the methods
+repository. These two steps are implemented in the methods
 :php:`newAction() `and
 :php:`createAction()`.
 
 .. tip::
 
-    We already described these steps in chapter 3 in section
-    "Alternative route: creating a new posting". We now shortly revise
-    this Flow using our example extension and focus on some further
-    aspects.
+    These steps are described in chapter 3 in section
+    "Alternative route: creating a new posting".
 
 First the method :php:`newAction()` is called by a
-Link in frontend with the following URL:
+link in frontend with the following URL:
 
 `http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
 
@@ -256,7 +256,7 @@ method :php:`newAction()`.
 This action passes to the view in :php:`organization` the :php:`Organization` object, in :php:`newOffer`
 :php:`null` (to begin with) the and in :php:`region` all :php:`Region` Objects contained in the
 :php:`RegionRepository`. The view creates the output of
-the form in the frontend, using a template, which we focus on in chapter 8 in
+the form in the frontend, using a template, which has a focus on in chapter 8 in
 section "Template Creation by example". After the user filled in the offer's data
 and submitted the form, the Method
 :php:`createAction()` shall be called. It expects as Arguments
@@ -286,14 +286,14 @@ will cause the persistence of the new offer in the dispatcher before
 returning to TYPO3.
 
 After creating the new offer, the appropriate organization is to be
-displayed with all of its offers. We, therefore, start a new request
+displayed with all of its offers. Therefore a new request is started
 (*request-response-cycle*) by redirecting to
 :php:`showAction()` of the
 :php:`OrganizationController` using the Method
 :php:`redirect()`. The actual organization is hereby
 passed on as an argument. Inside the
-:php:`ActionController` you have the following Methods for
-redirecting to other action controllers at your disposal:
+:php:`ActionController` the following methods are at disposal for
+redirecting to other action controllers:
 
 .. code-block:: php
 
@@ -303,28 +303,38 @@ redirecting to other action controllers at your disposal:
    return new :php:`ForwardResponse('actionName')`;
 
 Using the :php:`redirect()` method, you can start a
-new request-response-cycle on the spot, similar to clicking on a link: The
-given action (specified in :php:`$actionName`) of the
-appropriate controller (specified in
-:php:`$controllerName`) in the given extension (specified
-in :php:`$extensionName`) is called. If you did not
-specify a controller or extension, Extbase assumes that you stay in the
-same context. In the fourth parameter :php:`$arguments`
-you can pass an Array of arguments. In our example :php:`['organization' => $organization]`
-would look like this in the URL:
-:php:`tx_sjroffers_pi1[organization]=5`. The Array key is
-transcribed to the parameter name, while the organization object in
-:php:`$organization` is transformed into the number 5,
-which is the appropriate UID. If you want to link to another page inside
-the TYPO3 installation, you can pass its uid in the 5th parameter
-(:php:`$pageUid`). A delay before redirecting can be
-achieved by using the 6th parameter (:php:`$delay`). By
-default the reason for redirecting is set to status code 303 (which means
-*See Other*).You can use the 7th parameter
-(:php:`$statusCode`) to override this (for example, with
-301, which means *Moved Permanently*).
 
-In our example, the following code is sent to the Browser. It
+new request-response-cycle on the spot, similar to clicking on a link: 
+
+#. The destimation action is specified in :php:`$actionName`.
+#. The appropriate controller is defined in
+   :php:`$controllerName`).
+#. The extension name is passed over to the method
+   in :php:`$extensionName`). 
+#. In the fourth parameter :php:`$arguments`
+   you can pass an array of arguments. In our example :php:`['organization' => $organization]`
+   would look like this in the URL:
+   :php:`tx_sjroffers_pi1[organization]=5`. The array key is
+   transcribed to the parameter name, while the organization object in
+   :php:`$organization` is transformed into the number 5,
+   which is the appropriate UID. 
+#. If you want to link to another page inside
+   the TYPO3 installation, you can pass its uid in the 5th parameter
+   (:php:`$pageUid`). 
+#. A delay before redirecting can be
+   achieved by using the 6th parameter (:php:`$delay`). By
+   default the reason for redirecting is set to status code 303 (which means
+   *See Other*).
+#. You can use the 7th parameter
+   (:php:`$statusCode`) to override this (for example, with
+   301, which means *Moved Permanently*).
+
+.. tip::
+
+   If you do not specify a controller or extension, Extbase assumes that you stay in the
+   same context.
+
+In this example, the following code is sent to the browser. It
 provokes the immediate reload of the page with the given URL:
 
 .. code-block:: html
@@ -361,9 +371,8 @@ manually trigger the persisting before you return the :php:`ForwardResponse`,
 by using :php:`$persistenceManager->persistAll()`,
 though.
 
-When calling the method :php:`createAction(),` we
-already described the case of all Arguments being valid. But what happens
-if a frontend user inserts invalid data or even manipulates the form to
+When calling the method :php:`createAction(),` the case of all arguments being valid has already been described.
+But what happens if a frontend user inserts invalid data or even manipulates the form to
 attack the website deliberately?
 
 .. tip::
@@ -390,7 +399,7 @@ encrypted form (:php:`__trustedProperties`), the structure of the form
    s:6:&quot;action&quot;;i:1;s:10:&quot;controller&quot;;
    i:1;}8888b05fbf35fc96d0e3aadd370a8856a9edad20" />
 
-If now a validation error occurs when calling the Method
+If now a validation error occurs when calling the method
 :php:`createAction()`, an error message is saved and the
 processing is passed back to the previous action, including all already
 inserted form data. Extbase reads the necessary information from the
@@ -413,8 +422,8 @@ displayed if the template is intending so.
 .. tip::
 
     Standard error messages of Extbase are not yet localized in
-    Version 1.2 (TYPO3 4.4). In the section "Localize error messages" in chapter 8, we
-    describe a possibility to translate them too, though.
+    Version 1.2 (TYPO3 4.4). In the section "Localize error messages" in chapter 8 
+    a possibility is described how to translate them.
 
 Using the hidden field :php:`__trustedProperties`, the Extbase property
 mapper compares the incoming property data with the allowed ones.
@@ -429,16 +438,16 @@ validation of its properties is also bypassed.
 Flow pattern "editing an existing domain object"
 ================================================
 
-The flow pattern we now present you is quite similar to the
-previous one. We again need two action Methods, which this time we call
+The flow pattern presented to you is quite similar to the
+previous one. Aain need two action methods are neede, which this time call
 :php:`editAction()` and
-:php:`updateAction()`. The Method
+:php:`updateAction()`. The method
 :php:`editAction()` provides the form for editing, while
-:php:`updateAction()` updates the Object in the
+:php:`updateAction()` updates the object in the
 repository. In contrast to :php:`newAction()` it is not
-necessary to pass an organization to the Method
+necessary to pass an organization to the method
 :php:`editAction()`. It is sufficient to pass the offer to
-be edited as an Argument.
+be edited as an argument.
 
 .. code-block:: php
 
@@ -492,12 +501,12 @@ offers.
 .. warning::
     Do not forget to explicitly update the changed domain object
     using :php:`update()`. Extbase will not do this
-    automatically for you, for doing so could lead to unexpected results.
+    automatically for you. Not doing so could lead to unexpected results.
     For example, if you have to manipulate the incoming domain object
     inside your action method.
 
-At this point, we have to ask ourselves how to prevent
-unauthorized changes in our Domain data. The organization and offer data
+At this point it is necessary to prevent
+unauthorized changes in the domain data. The organization and offer data
 are not to be changed by all visitors after all. An
 *administrator* is allocated to each organization,
 authorized to change the organization's data. The administrator can
@@ -513,10 +522,10 @@ unauthorized access can be done on different levels:
   has no access, are blinded.
 
 Of these three levels, only the first two offer reliable
-protection. We do not take a closer look at the first level in this book.
+protection. The first level is not described in this book.
 You can find detailed information for setting up permissions in
 your TYPO3 system in the :ref:`Core API <t3coreapi:access>`.
-The second level, we are going to implement in all "critical" Actions.
+The second levelis implemented here in all "critical" actions.
 Let's look at an example with the Method
 :php:`updateAction()`.
 
@@ -541,14 +550,14 @@ Let's look at an example with the Method
       $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
-We ask a previously instantiated
-:php:`AccessControlService` if the organization's administrator is
-responsible for the offer is logged in the frontend. If yes, we
-do update the offer. If no, an error message is generated, which is
+A previously instantiated
+:php:`AccessControlService` is asked if the organization's administrator is
+responsible for the offer is logged in the frontend. If yes, do update the offer. 
+If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
-Extbase does not yet offer an API for access control. We therefore
-implement an :php:`AccessControlService` on ourselves.
+Extbase does not yet offer an API for access control. Therefore
+an :php:`AccessControlService` is implemented.
 The description of the class is to be found in the file :file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
 
 .. code-block:: php
@@ -630,7 +639,7 @@ this snippet from a template:
     Service creating a continuous invoice number. They are usually located
     in `EXT:my_ext/Classes/Domain/Service/`.
 
-We make use of an :php:`IfAuthenticatedViewHelper`
+It is made use of an :php:`IfAuthenticatedViewHelper`
 to access the :php:`AccessControlService`. The class file
 `IfAuthenticatedViewHelper.php` is in our case
 located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
@@ -768,8 +777,8 @@ piece by piece.
 
 One requirement our extension has to realize is that a website visitor
 can define a special demand, which is then used to filter the
-range of offers. We already implemented an appropriate Method
-:php:`findDemanded()` (see :ref:`chapter 6 <individual_database_queries>`).
+range of offers. An appropriate Method
+:php:`findDemanded()` has already been implemented (see :ref:`chapter 6 <individual_database_queries>`).
 To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
@@ -787,7 +796,7 @@ the accordant options in a form (see pic. 7-2).
 
     In real life, you will often need similar functionality in some
     or even all controllers. The previously mentioned access control is a
-    simple example. In our example extension, we sourced it out to a
+    simple example. In the example extension it is sourced out to a
     *service* object. Another possibility is to create
     a basis controller which extends the
     :php:`ActionController` of Extbase. Inside, you

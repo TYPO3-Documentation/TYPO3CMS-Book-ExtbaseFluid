@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Extbase; Dispatcher
 .. highlight:: php
 .. _dispatching:
 
@@ -11,14 +12,52 @@ request. Once found, the dispatcher executes the method *handleRequest* in the
 matching class and receives the result. This result is then passed out as
 website content.
 
+.. todo: This description is not true. There is no such thing as the dispatcher
+         as a root object that initiates the steps shown in the figure. We can
+         talk about the process of dispatching an Extbase request instead. This
+         is especially misleading as there is a Dispatcher class, which actually
+         comes into play quite late.
+
 Here's the dispatcher path, step by step:
 
-.. figure:: dispatching-flow.svg
-   :align: center
+.. uml::
 
-   Figure 1-1: Extbase dispatching process
+   activate Bootstrap
+   Bootstrap -> Bootstrap: handleRequest()
+
+   Bootstrap -> RequestHandlerResolver: resolveRequestHandler()
+   activate RequestHandlerResolver
+   Bootstrap <-- RequestHandlerResolver: RequestHandler
+   deactivate RequestHandlerResolver
+   activate RequestHandler
+   Bootstrap -> RequestHandler: handleRequest()
+
+   activate RequestBuilder
+   RequestHandler -> RequestBuilder: build()
+   activate Request
+   RequestHandler <-- RequestBuilder: Request
+   deactivate RequestBuilder
+
+   RequestHandler -> Request: setIsCached()
+   activate Dispatcher
+   RequestHandler -> Dispatcher: dispatch(Request)
+   activate Controller
+   Dispatcher -> Dispatcher: resolveController(Request)
+   Dispatcher -> Controller: processRequest(Request)
+   Controller -> Response
+   activate Response
+
+   Bootstrap <-- RequestHandler: Response
+   deactivate RequestHandler
+   Bootstrap -> Response: shutdown()
+   deactivate Response
+   Bootstrap <-- Response: content
+   deactivate Bootstrap
 
 
+.. index::
+   Extbase; RequestHandlerResolver
+   Files; Configuration/Extbase/RequestHandlers.php
 .. _requesthandlerresolver:
 
 RequestHandlerResolver
@@ -37,6 +76,13 @@ backend context.
 
 Thanks to this configuration, one can register a custom :php:`RequestHandler`.
 For example, a handler for AJAX requests can be registered here.
+
+.. todo: We should not encourage users to write their own request handlers. Those
+         are low-level API that takes care of fundamental parts of the whole plugin
+         rendering and caching, so that the user does not really have a chance to
+         do things differently than the default handlers. A much better approach is
+         to implement a PSR-15 middleware stack that lets users add custom
+         handlers that modify the request or response.
 
 The class-specific method :php:`canHandleRequest()` decides whether the request
 can be handled by its :php:`RequestHandler`. For a :php:`BackendRequestHandler`,
@@ -63,11 +109,19 @@ RequestBuilder also checks the Uri, to check whether an alternative controller
 or an alternative action should be loaded instead of the entries from
 :file:`ext_localconf.php`.
 
+.. todo: This description is not true. The request handlers do no longer build the
+         request object. That was a flaw in the original design, and the reason why
+         method canHandleRequest() did not receive the request to be handled. This
+         has changed in version 11, making the request handlers a mere wrapper to
+         dispatch the request via the dispatcher.
+
 .. note::
 
    Extbase does not use PSR-7 for requests, but
    custom implementations.
 
+.. todo: We should mention that this unfortunately still is the case but is being
+         worked on, and a PSR-7 request implementation might make it into 11 LTS.
 
 .. _the-dispatcher:
 
@@ -87,6 +141,13 @@ That is the point when TYPO3 receives the content and integrates it into the
 rendering. The response itself will already send headers, and no TYPO3 API will be
 used at this place.
 
+.. todo: It is worth mentioning that the controller that "now returns the response"
+         is responsible for creating it and that it must be a PSR-7 response. It is
+         not the right moment to explain how to create the response, though. Also, it
+         is not up to the response "to handler further stuff". It is still the Bootstrap
+         class that decides what to do. It only does it based on the returned response.
+         To be more clear: The response itself does not invoke sending headers "and stuff".
+         It is only a wrapper for the user data and headers to be handled by Extbase.
 
 .. _the-controller:
 
@@ -100,6 +161,9 @@ controller can also set further response headers and access arguments from the
 
 .. _accessing-the-request:
 
+.. todo: This is no longer true. The user is responsible for creating a response
+         object in the action. It seems we can drop this short intro.
+
 Accessing the request
 ---------------------
 
@@ -108,6 +172,11 @@ request. This way, it is possible to access all arguments provided to the
 request directly. Still, it is better to use argument mapping instead.
 
 In case of a forward, the request also enables access to the original request.
+
+.. todo: This will most likely change when there is no ActionController
+         anymore that can hold the request instance. Nothing to do here now, but we
+         need to keep this part in mind in the future.
+
 Further information like the controller name and plugin name can be retrieved
 from the request.
 
@@ -121,6 +190,7 @@ extension. The default is to prefix arguments with the plugin signature. This ca
 adjusted via TypoScript option :ts:`view.pluginNamespace`, see
 :ref:`typoscript_configuration-view`.
 
+.. todo: This is something that might be deprecated in version 11.
 
 .. _using-the-response:
 
@@ -132,6 +202,9 @@ manually create a response, as the :php:`callActionMethod()` already takes
 care of it. However, to gain better control over the returned response, a
 PSR-7 response can be created and returned, for example, if headers should
 be set explicitly.
+
+.. todo: Since not returning a response object will trigger a deprecation error, we
+         should state that returning a PSR-7 response object is mandatory.
 
 Responses need to implement :php:`\Psr\Http\Message\ResponseInterface`.
 To create a response, it is recommended to use the :ref:`PSR-17 response factory <t3coreapi:request-handling-psr-17>`::
@@ -158,6 +231,13 @@ To create a response, it is recommended to use the :ref:`PSR-17 response factory
 
 .. _returning-content:
 
+.. todo: This is a technically correct way but PSR-17 actually doesn't bring any benefits
+         at all for the user IMHO. We should recommend the response factory of the core
+         here along with its optional methods (those not forced to exist by interface) to
+         create responses like `\TYPO3\CMS\Core\Http\ResponseFactory::createJsonResponse`.
+         Also, when dealing with just html, there is a helper method `htmlResponse` in
+         `ActionController` which renders the given string or the current view.
+
 Returning content
 -----------------
 
@@ -168,6 +248,7 @@ the rendering result.
 Content can be returned as string or object with :php:`__toString()`
 implementation.
 
+.. todo: Again, this should be rewritten. It's plain false in version 11.0.
 
 .. _forwarding-a-request:
 
@@ -195,6 +276,7 @@ returning a `ForwardResponse`::
       }
    }
 
+.. todo: We could add, that method `forward()` of `ActionController` is deprecated.
 
 .. _redirecting-a-request:
 
@@ -210,3 +292,7 @@ In the first example, Extbase will build the URL and call :php:`redirectToUri()`
 
 Extbase will adjust the response to contain the redirect and stop execution by
 throwing an exception.
+
+.. todo: This is not true anymore and needs to be rewritten. Unfortunately ther is
+         no alternative to `redirect` and `redirectToUri` yet, but it will change
+         very soon (in version 10.1.).

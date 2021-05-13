@@ -5,14 +5,13 @@ Conclusion
 ==========
 
 In this chapter, you have learned how to use the model–view–controller
-design pttern, which divides the applications in the data model and
+design pattern, which divides the applications in the data model and
 the user interaction, in Extbase.
 
 Domain-driven design and the MVC architecture form the conceptual backbone of
-Extbase. Additionally, we recommend to look at the test-driven development
-paradigm. It lowers the probability of errors in
+Extbase. The test-driven development
+paradigm means testing immediately after the development of a small component. It lowers the probability of errors in
 the code dramatically and structures the daily work of
 developers even more.
 
-With these base concepts, you are perfectly prepared for the next chapters. Now
-dive into the depths of Extbase with us!
+With understanding of these base concepts you are ready to dive into the depths of Extbase.

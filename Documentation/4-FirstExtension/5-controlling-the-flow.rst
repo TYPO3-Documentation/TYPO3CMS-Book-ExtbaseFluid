@@ -4,7 +4,7 @@
 Controlling the flow
 ====================
 
-We now want to show a list of products in our inventory in the frontend.
+The frontend page shall show a list of products in the inventory.
 The component responsible for rendering that list is the *view*.
 The default view and templating engine used in Extbase is Fluid.
 
@@ -13,10 +13,15 @@ The controller is responsible for fetching the model's data and handing it
 to the view to be rendered. The controller uses `*Action` methods as entry points.
 In our case, we want to display a list of products, so we should implement a `listAction`.
 
-The class name of the controller must end with ``Controller``. Because our controller controls
-the display of the inventory we call it :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController`.
+.. index:: Controller
 
-In our simple example, the controller looks like this:
+The Controller
+==============
+
+The class name of the controller must end with ``Controller``. Because our controller controls
+the display of the inventory we call it :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
+
+The controller looks like this:
 
 .. code-block:: php
 
@@ -52,24 +57,54 @@ In our simple example, the controller looks like this:
       }
    }
 
+.. versionchanged:: 11.0
+   From version 11 on Extbase expects actions to return an instance
+   of Psr\Http\Message\ResponseInterface.
 
-Our :php:`\MyVendor\StoreInventory\Controller\StoreInventoryController` is derived from
+.. index:: \TYPO3\CMS\Extbase; Mvc\Controller\ActionController
+
+Our :php:`\T3docs\StoreInventory\Controller\StoreInventoryController` is derived from
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`.
 It only contains the method :php:`listAction()`.
 Extbase identifies all methods ending with ``Action`` as actions
 - entry points to our application.
 
+
+.. index:: Repository; Injection
+
+Injecting the repository
+========================
+
 The method :php:`injectProductRepository()` shows how dependency injection looks like in Extbase
 - Extbase automatically injects the product repository via this method.
-Afterward, we can access the repository with :php:`$this->productRepository` in all actions.
-Use dependency injection for getting all your class dependencies if possible.
+Afterwards the repository can be accessed with :php:`$this->productRepository` in all actions.
+Use dependency injection for getting all of your class dependencies if possible.
 
-As we want to display a list of all products in our inventory,
-we can use the method :php:`findAll()` of the repository to fetch them.
-:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, the parent class of our repository.
+
+.. index::
+   Repository; findAll()
+   Repository; Fetching Models
+
+Fetching the products from the repository
+=========================================
+
+As a list of all products should be displayed in our inventory,
+the method :php:`findAll()` of the repository is used to fetch them.
+:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, 
+the parent class of our repository.
+
+
+.. index::
+   \TYPO3\CMS\Extbase; Persistence\Generic\QueryResult
+   View; Assign
+   View; Rendering
+
+Assigning the view
+==================
 
 The repository returns a :php:`\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`
 object with all product objects (that are not hidden or deleted).
-We pass these objects to the view with :php:`$this->view->assign(…)` and
+
+These objects are passed to the view with :php:`$this->view->assign(…)` and
 finally return a :php:`Response` object (created with the :php:`ResponseFactory`)
 with the rendered content of the view.

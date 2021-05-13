@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Extension store_inventory
 .. _creating-a-first-extension:
 
 ============================
@@ -8,12 +9,15 @@ Creating the first extension
 In this chapter, you learn the basics of an extension based on Extbase and Fluid.
 You build a minimalistic extension, which is reduced to the necessary structures.
 So you can get a first overview without being confused by details.
-In the following chapters, we will turn to a more complex example,
-to cover all fundamental attributes of Extbase and Fluid exhaustively.
+In the following chapters, you will learn about a more complex example,
+which covers all fundamental features of Extbase and Fluid exhaustively.
 
-You can get the extension here:
+You can download the extension from the `TYPO3 Extension Repository: store_inventory
+<https://extensions.typo3.org/extension/store_inventory/>`__ or install it via composer:
 
-`<https://github.com/TYPO3-Documentation-Examples/store_inventory>`_
+.. code-block:: shell
+
+   composer req t3docs/store-inventory
 
 .. toctree::
    :hidden:

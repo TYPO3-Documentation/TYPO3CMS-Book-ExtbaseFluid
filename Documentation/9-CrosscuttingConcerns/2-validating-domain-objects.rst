@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Validators
 .. _validating-domain-objects:
 
 =========================
@@ -68,7 +69,7 @@ value against.
 .. tip::
 
     You will find the complete reference of the
-    :php:`ValidatorInterface` in Appendix B.
+    :php:`ValidatorInterface` in the :ref:`validation-api`.
 
 For example, a validator that checks whether the passed string is
 an email address looks like this:
@@ -111,6 +112,8 @@ In the package
 many validators for default requirements like the validation of emails,
 numbers and strings.
 
+
+.. index:: Validators; When validated
 
 When does validation take place?
 ================================
@@ -162,6 +165,8 @@ correct the errors.
     again.
 
 
+.. index:: Validators; Registration
+
 Registering validators
 ======================
 
@@ -174,6 +179,8 @@ there are three possibilities which we define in the following:
 * validating in the domain model with our own validator class
 * validating of controller arguments
 
+
+.. index:: Validators; Annotations
 
 Validating in the domain model with annotations
 ===============================================
@@ -278,6 +285,8 @@ Now you have seen how you can validate particular properties of
 the domain model. The next section shows how complex domain
 objects are validated.
 
+
+.. index:: Validators; Custom validator classes
 
 Validating in the domain model with your own validator class
 ============================================================
@@ -399,6 +408,7 @@ when calling special actions. How this can be done, we will see in the
 next section.
 
 
+.. index:: Validators; Controller arguments
 
 Validation of controller arguments
 ==================================
@@ -425,6 +435,8 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
 Here the parameter ``$pageName`` is checked with its own
 validator.
 
+
+.. index:: Validators; Interaction
 
 Interaction of validators
 -------------------------
@@ -670,6 +682,8 @@ frontend.
     error occurs, it is displayed again.
 
 
+
+.. index:: Validators; Argument mapping
 .. _mapping-arguments:
 
 Mapping arguments

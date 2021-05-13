@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Queries; Custom
 .. _individual_database_queries:
 
 ===========================
@@ -311,6 +312,11 @@ age value. (Here, the minimum age is more recent in the past than the maximum ag
 The ``logicalAnd()`` constraint then joins the two ``logicalOr()`` constraints, making a single
 constraint, overall.
 
+.. _extbase_query_orderings:
+
+Orderings in the query
+======================
+
 You can sort the result of a query by assigning one or more rules ``$query->setOrderings($orderings);``
 to the ``Query`` object. These rules are collected in an associative array. Each array element has the
 property name on which the sort is based as its key, and the search order constant as its value.
@@ -524,6 +530,8 @@ In any backend storage case, the call
 thus returns the count of offers of a given region.
 
 
+.. index:: Cardinality handling
+
 Implicit relation cardinality handling
 ======================================
 
@@ -548,6 +556,9 @@ queries. The used entities are the following:
     used in the **Blog Example** would be `tx_blogexample_domain_model_post`.
     Besides that, only the relevant query parts, as mentioned, not all of them.
 
+
+.. index:: Cardinality handling; 1:1
+
 1:1 (RELATION_HAS_ONE)
 ----------------------
 
@@ -569,6 +580,9 @@ queries. The used entities are the following:
 
 Even if the SQL-like query contains a ``LEFT JOIN``, due to the 1:1 cardinality
 this won't lead to duplicate results for ``Post`` entities.
+
+
+.. index:: Cardinality handling; 1:n
 
 1:n (RELATION_HAS_MANY)
 -----------------------
@@ -593,6 +607,7 @@ Since there might be more ``Post`` entities belonging to a single ``Blog``
 entity it could happen that the ``LEFT JOIN`` results in having many duplicate
 ``Blog`` entities in the result set.
 
+.. index:: Cardinality handling; m:n
 
 m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
 --------------------------------------

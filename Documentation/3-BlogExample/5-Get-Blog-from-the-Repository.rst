@@ -1,11 +1,14 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Blog example; BlogRepository
+   \TYPO3\CMS\Extbase; Persistence\Repository
 
 ================================
 Get the blog from the repository
 ================================
 
-Let's take a look into the ``BlogRepository`` and travel into the inner core of
-our little action island.
+The travel leads into the inner core of
+our little action island, the ``BlogRepository``.
 
 .. code-block:: php
 
@@ -20,13 +23,16 @@ our little action island.
 The ``BlogRepository`` does not need any own code since all methods which are
 most commonly used are already implemented in the parent class
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
-In the controller, you saw the call to ``findAll()``, to retrieve all
+In the controller is a call to ``findAll()``, to retrieve all
 blog objects, which is one of the methods available by default.
 
 .. note::
 
    Although you don't need to implement your own logic, Extbase expects an existing
    class.
+
+
+..index:: Extbase; Repositories
 
 How repositories work
 =====================
@@ -51,3 +57,9 @@ another server, or is instantiated for the first time (except the speed -
 but users have time). The only important thing is that the object is
 instantiated and delivered to you. Object attributes changed by you will be
 stored when you leave the extension.
+
+.. todo: Yeah, that is a quite non-technical explanation. `When you leave the extension`.
+         Not sure if that is understood. The mechanism of tracking changes in objects that
+         are present in the persistence session should be explained in more detail because
+         it's important to understand and it differs from the implementation in other
+         frameworks where you have to actively take care of persisting pending changes.

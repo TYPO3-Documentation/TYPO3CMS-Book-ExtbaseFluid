@@ -1,4 +1,7 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Extbase; DataMapper
+   \TYPO3\CMS\Extbase; Persistence\ObjectStorage
 
 =====================
 Paths on the data map
@@ -7,7 +10,7 @@ Paths on the data map
 The `DataMapper` object has the task to create an instance of the blog class
 (whose name is stored in `$this->className`) for each tuple and "fill" this fresh
 instance with the data of the tuple. It is called in the `Query` object by the
-following Lines::
+following lines::
 
     $this->dataMapper->map($this->getType(), $rows);
 
@@ -52,6 +55,8 @@ annotations which start with the @ character. The annotation::
     @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Post>
 
 
+.. todo: No need for FQCN's here no more.
+
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
 ``Post`` objects of the class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
 
@@ -64,8 +69,7 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
     ``ObjectStorage`` also implements the interfaces ``Iterator``, ``Countable``,
     ``ArrayAccess``. So it is usable in ``foreach``.
     Furthermore, the ``ObjectStorage`` behaves like an array. The ``ObjectStorage``
-    of Extbase is based upon the native ``SplObjectStorage`` of PHP, which is error
-    free since PHP-Version 5.3.1.
+    of Extbase is based upon the native ``SplObjectStorage`` of PHP.
 
 
 The notation at first seems unusual. It is based on the so-called *Generics* of
@@ -78,6 +82,7 @@ PHP type will look like this::
      */
     protected $amount;
 
+.. todo: Use PHP 74. syntax here.
 
 It is also possible to enter a class as type::
 
@@ -86,6 +91,7 @@ It is also possible to enter a class as type::
      */
     protected $author;
 
+.. todo: Use PHP 74. syntax here.
 
 Properties which should be bound to multiple child objects require the class
 name of the child elements in angle brackets::
@@ -95,8 +101,14 @@ name of the child elements in angle brackets::
      */
     protected $tags;
 
+ .. todo: Avoid FQCN's here.
+ 
+.. index::
+   Extbase; TCA
+   Files; Configuration/TCA/*
+
 Extbase gathers the type of the relation from the configuration of the database
-table column. Let's take a look at the definition of the column ``posts``. It can be
+table column. The definition of the column ``posts`` can be
 found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
 
    <?php
@@ -124,12 +136,12 @@ found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *
 Extbase "reads" from the configuration the table of the child objects
 (``foreign_table``) and the key field where the unique identifier (UID) of the
 parent object (``foreign_field``) is stored. With the help of this information and
-the data given in the PHP documentation above the property definition Extbase
+the data given in the PHP documentation above, the property definition, Extbase
 can read the database records and map them onto the Post class. This process
 will be continued recursively over the complete object graph - the blog with all
 its containing posts, comments, tags, etc. - starting from the single blog as
 root object.
 
-After our exhausting journey, let's get back to the realm of our extension.
-Remember that normally you will not need to enter these paths -
+After this exhausting journey,
+remember that normally you will not need to enter these paths -
 except that you are into customized journeys.

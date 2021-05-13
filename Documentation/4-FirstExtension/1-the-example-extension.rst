@@ -7,8 +7,8 @@
 The example extension
 =====================
 
-Our first extension will show an inventory list of products,
-which we created in a backend list module.
+The first extension will show an inventory list of products,
+which is maintained in the backend *List* module.
 Each product consists of a title,
 a short description, and the number of pieces in stock.
 The following steps are necessary for implementation:
@@ -19,10 +19,10 @@ The following steps are necessary for implementation:
 
 
    * Define the database tables
-   * Configure the display of backend forms
-   * Create repositories for product objects
+   * Configure the display of the backend forms
+   * Create the repository for the product object
 
 #. Define the application flow inside the extension (create *controller* and *action* methods)
 #. Implement design with HTML-templates
 #. Configure the plugin for list display
-#. Install and test the extension
+#. Activate and test the extension

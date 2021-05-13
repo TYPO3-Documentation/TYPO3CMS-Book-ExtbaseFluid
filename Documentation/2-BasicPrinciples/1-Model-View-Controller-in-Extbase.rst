@@ -1,11 +1,16 @@
 .. include:: /Includes.rst.txt
+.. index::
+   MVC
+   Model-view-controller
+   see: Model-view-controller; MVC
+   pair: MVC; Extbase
 
 ======================================
 Model-view-controller (MVC) in Extbase
 ======================================
 
 Object-oriented programming and domain-driven design specify a structure
-for our Extension on different levels. Object-oriented programming provides
+for our extension on different levels. Object-oriented programming provides
 the basic building blocks of software development: Objects as a combination of data
 and associated methods. Domain-driven design provides tools for creating a model
 that represents the real world rules in Software. However, we still lack a component
@@ -46,12 +51,19 @@ difficult to test, it should stay as slim as possible.
 The top layer, the *view* encapsulates the whole
 presentation logic and everything related to the presentation of data.
 
+
+.. index:: MVC; Interaction
+
 The interaction of model, view, and controller
 ==============================================
 
 The functionality of many applications can be split into modules.
 These modules can be further differentiated.
 The functionality of a blog e.g., can be split as follows:
+
+.. todo: maybe we should replace the term "modules" with "contexts". This also reflects the
+         term "bounded contexts" of DDD better. Also, modules is a reserved word in TYPO3 and
+         has a different meaning.
 
 Functionality related to blog posts:
 
@@ -99,6 +111,10 @@ presentation (4) - the array with blog posts in our case.
 
 The view displays the data and returns the response to the user.(5)
 
+.. todo: 1) The figure contains german texts
+         2) The figure shows a false flow. The view does not return a response, the controller does.
+            We should try to have another figure created here.
+
 .. figure:: /Images/2-BasicPrinciples/figure-2-2.png
    :align: center
 
@@ -109,6 +125,8 @@ blog posts displayed in the browser. Now the user clicks on a single
 blog post and gets the complete blog post.
 Besides, the user can add a comment to this post.
 With the help of figure 2-6 we want to understand how the comment is stored.
+
+.. todo: figure 2-6 does not exist, should be 2-3, I guess.
 
 When submitting the comment form, the user creates a new request (1)
 containing the according controller and action.

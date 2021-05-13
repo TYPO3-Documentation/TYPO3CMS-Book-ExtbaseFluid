@@ -1,26 +1,33 @@
 .. include:: /Includes.rst.txt
+.. index:: Extbase; Controller
 
 ======================
 Back in the controller
 ======================
 
-You get the ready ``Blog`` objects delivered in an array. "Ready" means in this
-context that every ``Blog`` object already has all it's ``Post`` objects and their
+The ready ``Blog`` objects are delivered in an array. "Ready" means in this
+context that every ``Blog`` object already has all its related ``Post`` objects and their
 ``Comment`` and ``Tag`` objects.
 
 These blogs are delivered to the object responsible for the output for
-further processing: the so-called *View*. If we make no own choice, like in our
-example, the TemplateView of Fluid is automatically available under the class
+further processing: the so-called *View*, available under the class
 variable ``$this->view``.
 
-With the method ``assign()`` we "bind" the array with our blogs to the variable
-name "blogs" of the TemplateView. It can be addressed with this name in the
-template. The method ``render()`` of the TemplateView starts the generation of the
+
+The method ``assign()`` "binds" the array of the blogs to the variable
+named "blogs" of the TemplateView. It can be addressed in the
+template with this name. The method ``render()`` of the TemplateView starts the generation of the
 HTML code.
 
-Before we leave our small, contemplative action island and dig into the deep of
-the Fluid template, let's take a look at the abbreviations and simplifications
+.. todo: Let's have a code example here to let people see assign and render in action
+
+Before leaving the small, contemplative action island and digging into the deep of
+the Fluid template, take a look at the abbreviations and simplifications
 Extbase offers at this point.
+
+.. todo: deep -> depths?
+
+.. index:: Controller; initializeAction()
 
 * First of all, there is the method `initializeAction()`, which is called before
   every action, if defined in your controller.
@@ -66,6 +73,6 @@ The following example explains this mechanism:
 
 Action methods return a response object of type `\Psr\Http\Message\ResponseInterface`.
 
-Come with us on another tour: dive into Fluid - the template engine of TYPO3
+Another tour is coming: dive into Fluid - the new template engine of TYPO3
 - and get to know the magnificent underwater world full of colorful Fluid tags
 and view helpers.

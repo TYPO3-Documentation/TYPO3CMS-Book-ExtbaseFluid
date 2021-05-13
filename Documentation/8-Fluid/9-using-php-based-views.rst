@@ -1,4 +1,5 @@
 .. include:: /Includes.rst.txt
+.. index:: Views; PHP based
 
 =====================
 Using PHP based views

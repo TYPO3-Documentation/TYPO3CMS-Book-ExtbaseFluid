@@ -1,8 +1,9 @@
 .. include:: /Includes.rst.txt
+.. index:: Extbase reference
 .. _extbase_reference:
 
 =================
-Extbase Reference
+Extbase reference
 =================
 
 In this appendix, you can look up how Extbase interacts with the TYPO3
@@ -10,6 +11,7 @@ installation. This includes the registration of plugins and the configuration of
 Extbase extensions.
 
 
+.. index:: Plugins; Registration
 .. _registration_of_frontend_plugins:
 
 Registration of frontend plugins
@@ -22,6 +24,10 @@ several frontend plugins. Normally each has a separate codebase.
 In contrast, there is only one codebase in Extbase (a series of controllers and
 actions). Nevertheless, it is possible to group controllers and actions
 to make it possible to have multiple frontend plugins.
+
+.. todo: This is real hard to understand for newbies. Why not just say that in TYPO3 there
+         are plugin content elements which can be placed on pages and that extbase allows
+         to define multiple plugins in one extension?
 
 .. sidebar:: Why two files?
 
@@ -43,6 +49,9 @@ Combinations. Also here you have to define which actions should not be cached.
 In :file:`Configuration/TCA/Overrides/tt_content.php` there is only the configuration of the plugin selector for the
 backend. Let's have a look at the following two files:
 
+.. todo: We could mention that registering plugins in the backend is optional and that a plugin content
+         element is just some internal wrapper code that triggers a TypoScript USER object rendering.
+
 :file:`ext_localconf.php`::
 
     $pluginName = 'ExamplePlugin';
@@ -52,6 +61,11 @@ backend. Let's have a look at the following two files:
         $controllerActionCombinations,
         $uncachedActions
     );
+
+.. todo: In fact, that's not the extension key given to that function but the extension name.
+         Using the extension name (upper camel case extension key) should be deprecated. The
+         function does an internal check anyway if extension key or name are given and why
+         confuse users with yet another format at this point?
 
 The allowed combinations of the controller and actions are determined in
 addition to the extension key and the plugin's unique name (lines 3 and 4).
@@ -63,6 +77,11 @@ default action.
 Additionally, you need to specify which actions should not be cached. To do this,
 the fourth parameter also is a list of controller action Combinations in the
 same format as above, containing all the non-cached-actions.
+
+.. todo: Instead of explaining an arbitrary configuration format, why not just provide
+         an example here? Who wouldn't expect example code here but parse the text?
+         Maybe refer to the example further down or rip that apart and show the relevant
+         configuration right here?
 
 :file:`Configuration/TCA/Overrides/tt_content.php`:
 
@@ -122,6 +141,12 @@ the :php:`deleteAction()` action in the
 :php:`Vendor\ExampleExtension\Controller\BlogController` controller. In the
 backend, you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
 
+.. todo: "All actions which change data" is quite non-explanatory here. What data?
+         It's important to understand that cacheable plugins are executed once and
+         that its content is then stored in the page cache, resulting in no code
+         execution at all. This also affects dynamically changing meta tags and such
+         via plugins. It's not just about domain data.
+
 .. figure:: /Images/b-ExtbaseReference/figure-b-1.png
     :align: center
 
@@ -129,6 +154,7 @@ backend, you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
     file :file:`Configuration/TCA/Overrides/tt_content.php` will be displayed
 
 
+.. index:: Extbase; Caching
 .. _caching_of_actions_and_records:
 
 Caching of actions and records
@@ -166,9 +192,10 @@ The automatic cache clearing is enabled by default, you can use the TypoScript c
 it.
 
 
+.. index:: Plugins; TypoScript configuration
 .. _typoscript_configuration:
 
-TypoScript Configuration
+TypoScript configuration
 ========================
 
 Each Extbase extension has some settings which can be modified using TypoScript. Many of these
@@ -214,6 +241,8 @@ Activate features for Extbase or a specific plugin.
     The feature switch will be removed in TYPO3 v10, and the behavior will become the only way translations are handled.
 
 
+.. todo: This can be removed now.
+
 .. _typoscript_configuration-persistence:
 .. _persistence-enableAutomaticCacheClearing:
 
@@ -240,6 +269,8 @@ Settings
 Here reside are all the domain-specific extension settings. These settings are
 available in the controllers as the array variable `$this->settings` and in any Fluid
 template with `{settings}`.
+
+.. todo: domain-specific? Not really. Settings holds all the settings, both extension-wide and plugin-specific.
 
 .. tip::
 
@@ -270,7 +301,7 @@ View and template settings.
     This can be used to specify an alternative namespace for the plugin.
     Use this to shorten the Extbase default plugin namespace or to access
     arguments from other extensions by setting this option to their namespace.
-    .. todo: This is not understandable without an example.
+    .. todo: This is not understandable without an example. This option might be deprecated and dropped.
 
 `view.templateRootPaths`
     This can be used to specify the root paths for all Fluid templates in this
@@ -330,6 +361,9 @@ no template file is found, it will proceed with `0`.
 
    If there is no root path defined at all, a fallback path will be created during runtime.
    The fallback path consists of the extension key and a fixed directory path.
+   .. todo: We should mention that there is no typoscript created during runtime. Fluid is
+            Checking the given configuration and falls back to specific paths which should
+            be mentioned here. `EXT:extension/Resources/Private/{Templates/Partials/Layouts}`
 
 More information on root paths can be found in the TypoScript reference:
 :ref:`t3tsref:cobj-fluidtemplate-properties-templaterootpaths`
@@ -350,6 +384,8 @@ These are useful MVC settings about error handling:
     Same as `mvc.callDefaultActionIfActionCantBeResolved`
     but this will raise a "page not found" error.
 
+.. todo: It's important to mention that this settings takes precedence. If enabled, setting
+         mvc.callDefaultActionIfActionCantBeResolved is without any effect.
 
 .. _typoscript_configuration-local_lang:
 
@@ -372,13 +408,21 @@ JSON, …. The required format can be requested via the request parameter. The d
 format, if nothing is requested, can be set via TypoScript. This can be combined
 with conditions.
 
+.. todo: That's no desired behavior any more. It's been a myth from the beginning
+         that by simply changing a format param, the action con automagically
+         deliver the content in different types. This MUST be a clear decision
+         of the user. This format param needs to be deprecated and removed.
+         Users need to manually route different output formats to specific
+         controller actions.
+
 `format`
    Defines the default format for the plugin.
 
 
+.. index:: Extbase; Class hierarchy
 .. _class_hierarchy:
 
-Class Hierarchy
+Class hierarchy
 ===============
 
 The MVC Framework is the heart of Extbase. Below we will give you an overview of
@@ -391,6 +435,10 @@ you should have a look at the controllers below.
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface`
     The basic interface that must be implemented by all controllers.
 
+.. todo: This interface is useless because implementing it does not guarantee a controller
+         is dispatchable. It's been wishful thinking from the beginning on. The interface will
+         be removed.
+
 :php:`TYPO3\CMS\Extbase\Mvc\Controller\ActionController`
     The most widely used controller in Extbase with the basic functionality of the ControllerInterface.
     An overview of its API is given in the following section.
@@ -399,7 +447,9 @@ you should have a look at the controllers below.
     Extend this controller if you want to provide commands to the scheduler or command line
     interface.
 
+.. todo: CommandControllers are already removed. Remove this section.
 
+.. index:: Extbase; ActionController API
 .. _class_hierarchy-action_controller_api:
 
 ActionController API
@@ -427,6 +477,8 @@ you see the most important properties of the action controller:
 `$view`
     The view used of type :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface`.
 
+.. todo: We need to keep an eye on these. They are more or less internal and
+         will be removed at some point.
 
 .. _class_hierarchy-most_important_api_methods_of_action_controller:
 
@@ -453,21 +505,31 @@ Most important API methods of action controller
 `redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
     External HTTP redirect to another controller (immediately)
 
+.. todo: Will soon be deprecated
+
 `redirectToURI($uri, $delay = 0, $statusCode = 303)`
     Redirect to full URI (immediately)
+
+.. todo: Will soon be deprecated
 
 `resolveView()`
     By overriding this method, you can build and configure a completely individual
     view object. This method should return a complete view object. In general,
     however, it is sufficient to overwrite resolveViewObjectName().
 
+.. todo: This MUST NOT be overridden. Users can add a custom \TYPO3\CMS\Extbase\Mvc\View\ViewResolverInterface
+         implementation if needed.
+
 `resolveViewObjectName()`
     Resolves the name of the view object, if no suitable Fluid template could be
     found.
 
+.. todo: This is already deleted.
+
 `throwStatus($statusCode, $statusMessage = NULL, $content = NULL)`
     The specified HTTP status code is sent immediately.
 
+.. todo: This will be deprecated soon
 
 .. _class_hierarchy-actions:
 
@@ -514,6 +576,8 @@ It is important to specify the full type in the `@param` annotation as this is u
 the object. Note that not only simple data types such as String, Integer, or Float can be validated,
 but also complex object types (see also the section ":ref:`validating-domain-objects`" in Chapter 9).
 
+.. todo: It's neither true that users need an `@param`, nor is it true that users need to use the FQCN.
+
 Besides, on actions showing the forms used to create domain objects, the validation of domain
 objects must be explicitly disabled - therefore, the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` is necessary.
@@ -522,6 +586,7 @@ Default values can, as usual in PHP, just be indicated in the method signature. 
 the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
 then automatically `$this->view->render()` is called, and thus the view is rendered.
 
+.. todo: We need to adjust this example to reflect the PSR-7 response changes.
 
 .. _class_hierarchy-define_initialization_code:
 
@@ -546,6 +611,8 @@ in `$this->argumentsMappingResults`, you have a list of occurred warnings and er
 mappings available. This default `errorAction` refers back to the referrer if the referrer
 was sent with it.
 
+
+.. index:: Extbase; Annotations
 .. _available-annotations:
 
 Available annotations
@@ -554,10 +621,10 @@ Available annotations
 All available annotations for Extbase are placed within the namespace :php:`TYPO3\CMS\Extbase\Annotation`.
 They can be imported into the current namespace, e.g.::
 
-   use TYPO3\CMS\Extbase\Annotation\Inject;
+   use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 
    /**
-    * @Inject
+    * @Transient
     * @var Foo
     */
    public $property;
@@ -569,7 +636,7 @@ transparent::
    use TYPO3\CMS\Extbase\Annotation as Extbase;
 
    /**
-    * @Extbase\Inject
+    * @Extbase\Transient
     * @var Foo
     */
    public $property;
@@ -659,19 +726,7 @@ The following annotations are available out of the box within Extbase:
        */
       public $property;
 
-:php:`@TYPO3\CMS\Extbase\Annotation\Inject`
-   Configures dependency injection (DI) to inject given property. Properties to be injected
-   have to be `public`.
-   In the following example, a class :php:`ServiceClassName` should be injected.
-
-   .. code-block:: php
-
-      /**
-       * @Extbase\Inject
-       * @var ServiceClassName
-       */
-      public $property;
-
+.. index:: Extbase; Application domain
 
 Application domain of the extension
 ===================================
@@ -689,6 +744,8 @@ as follows:
     Contains specific validators for the domain models.
 
 
+.. index:: Extbase; Domain models
+
 Domain model
 ------------
 
@@ -702,6 +759,8 @@ All classes of the domain model must inherit from one of the following two class
     ValueObjects are immutable.
 
 
+.. index:: Extbase; Repositories
+
 Repositories
 ------------
 
@@ -711,6 +770,9 @@ If the domain object is, for example, *Blog* (with full name `\\Ex\\BlogExample\
 then the corresponding repository is named *BlogRepository* (with the full name
 `\\Ex\\BlogExample\\Domain\\Repository\\BlogRepository`).
 
+
+
+.. index:: Repositories; API
 
 Public Repository API
 =====================
@@ -744,11 +806,15 @@ Each repository provides the following public methods:
     Updates the persisted object.
 
 
+.. index:: Repositories; Custom find methods
+
 Custom find methods in repositories
 -----------------------------------
 
 A repository can be extended with own finder methods. Within this methods, you can use the ``Query`` object,
 to formulate a request:
+
+.. todo: Enhance this code snippet. Add the surrounding class.
 
 ::
 
@@ -816,6 +882,8 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
 In the section ":ref:`individual_database_queries`" in Chapter 6, you can find a comprehensive example for building queries.
 
 
+.. index:: Validation
+
 Validation
 ==========
 
@@ -825,6 +893,8 @@ domain model, but with the suffix Validator and implement the interface
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`. For more details, see the
 following section.
 
+
+.. todo: This is no longer true. The concept of automatically called domain validators is removed.
 
 Validation API
 --------------
@@ -895,19 +965,28 @@ Validation of controller arguments
 The following rules validate each controller argument:
 
 * If the argument has a simple type (string, integer, etc.), this type is checked.
+  .. todo: Not any more!
+
 * If the argument is a domain object, the annotations `@TYPO3\CMS\Extbase\Annotation\Validate` in the domain object is taken into
   account, and - if set - the appropriate validator in the folder :file:`Domain/Validator` for the
   existing domain object is run.
+  .. todo: Not any more!
+
 * If there is set an annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` for the argument,
   no validation is done.
 * Additional validation rules can be specified via further `@TYPO3\CMS\Extbase\Annotation\Validate` annotations in the methods
   PHPDoc block.
+  .. todo: ALL validators need to be specified with this annotation!
 
 If an action's arguments can not be validated, then the `errorAction` is executed, which will
 usually jump back to the last screen. Validation mustn't be performed in certain
 cases. Further information for the usage of the annotation :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` see
 ":ref:`case_study-edit_an_existing_object`" in Chapter 9.
 
+.. todo: "If the arguments of an action can not be validated,...". This is misleading. It should
+         say, "If the arguments of an action are invalid,..."
+
+.. index:: Localization
 
 Localization
 ============

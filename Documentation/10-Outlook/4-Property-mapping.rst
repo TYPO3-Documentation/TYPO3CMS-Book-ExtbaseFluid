@@ -1,10 +1,13 @@
 .. include:: /Includes.rst.txt
+.. index::
+   Property mapper
+   TYPO3\CMS\Extbase; Property\PropertyMapper
 .. _extbase_property_mapping:
 .. _property-mapper:
 
-===============
-Property mapper
-===============
+===================
+The property mapper
+===================
 
 Extbase provides a property mapper to convert different values, like integers or arrays, to other
 types, like strings or objects.
@@ -16,9 +19,10 @@ In this example, we provide a string that will be converted to an integer::
 Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper::convert()`
 method.
 
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
-How to use property mapper
-==========================
+How to use property mappers
+===========================
 
 The above example was a straightforward one. Most of the time, you will convert from an array to an
 where some points must be considered. This example will show a simple conversion::
@@ -39,6 +43,8 @@ with defined property `username`.
 .. note::
     The property mapper will not check the validation rules. The result will be whatever the input is.
 
+
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
 Allow mapping of sub-properties
 ===============================
@@ -68,3 +74,5 @@ you have to configure the mapper as per default he won't map sub properties for 
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser',
             $mappingConfiguration
         );
+
+.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.

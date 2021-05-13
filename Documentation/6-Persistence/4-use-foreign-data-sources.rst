@@ -2,7 +2,7 @@
 .. _using-foreign-data-sources:
 
 ==========================
-Using Foreign Data Sources
+Using foreign data sources
 ==========================
 
 In real projects, many times, data from different sources have to be ordered. One target of Extbase is
