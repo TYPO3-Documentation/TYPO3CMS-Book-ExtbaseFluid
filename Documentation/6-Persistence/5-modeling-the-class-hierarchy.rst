@@ -242,40 +242,41 @@ can look like this:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\MyExtension\Controller;
 
    use MyVendor\MyExtension\Domain\Repository\CompanyRepository;
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class CompanyController extends ActionController
    {
-       /**
-        * @var CompanyRepository
-        */
-       private $companyRepository;
+      /**
+       * @var CompanyRepository
+       */
+      private $companyRepository;
 
-       /**
-        * Inject the company repository
-        *
-        * @param CompanyRepository $companyRepository
-        */
-       public function injectCompanyRepository(CompanyRepository $companyRepository)
-       {
-           $this->companyRepository = $companyRepository;
-       }
+      /**
+       * Inject the company repository
+       *
+       * @param CompanyRepository $companyRepository
+       */
+      public function injectCompanyRepository(CompanyRepository $companyRepository)
+      {
+        $this->companyRepository = $companyRepository;
+      }
 
-       /**
-        * List action
-        *
-        * @return void
-        */
-       public function listAction()
-       {
-           $companies = $this->companyRepository->findAll();
-           $this->view->assign('companies', $companies);
-       }
+      /**
+       * List Action
+      */
+      public function listAction(): ResponseInterface
+      {
+         $companies = $this->companyRepository->findAll();
+         $this->view->assign('companies', $companies);
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
    }
 
 
@@ -284,33 +285,34 @@ You can also find straightforward all concrete classes of a super class:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\MyExtension\Controller;
 
    use MyVendor\MyExtension\Domain\Repository\OrganizationRepository;
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class OrganizationController extends ActionController
    {
-       /**
-        * @var OrganizationRepository
-        */
-       private $organizationRepository;
+      /**
+       * @var OrganizationRepository
+       */
+      private $organizationRepository;
 
-       /**
-        * @param OrganizationRepository $organizationRepository
-        */
-       public function injectOrganizationRepository(OrganizationRepository $organizationRepository)
-       {
-           $this->organizationRepository = $organizationRepository;
-       }
+      /**
+       * @param OrganizationRepository $organizationRepository
+       */
+      public function injectOrganizationRepository(OrganizationRepository $organizationRepository)
+      {
+         $this->organizationRepository = $organizationRepository;
+      }
 
-       public function listAction()
-       {
-           $organizations = $this->organizationRepository->findAll();
-           // ...
-       }
+      public function listAction(): ResponseInterface
+      {
+         $organizations = $this->organizationRepository->findAll();
+         // ...
+      }
    }
 
 In the result set :php:`$organizationRepository` there are domain objects of the class

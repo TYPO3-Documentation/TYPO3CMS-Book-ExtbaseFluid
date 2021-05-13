@@ -25,7 +25,7 @@ thus looks like this:
 
 ::
 
-   public function indexAction()
+   public function indexAction(): ResponseInterface
    {
        $this->view->assign(
            'organizations',
@@ -53,7 +53,6 @@ we are used to doing.
    recommend, though, to prepare all parameter coming from outside
    (settings, form input) before passing them on to the two other
    components Model and View.
-
 
 In this chapter, you've learned how to set the Objects of your domain
 in motion and how to control the flow of a page visit. You now can

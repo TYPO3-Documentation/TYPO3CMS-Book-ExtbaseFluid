@@ -26,17 +26,23 @@ The controller looks like this:
 .. code-block:: php
 
    <?php
+   declare(strict_types=1);
 
-   namespace T3docs\StoreInventory\Controller;
+   namespace MyVendor\StoreInventory\Controller;
 
-   use T3docs\StoreInventory\Domain\Repository\ProductRepository;
-   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use MyVendor\StoreInventory\Domain\Repository\ProductRepository;
    use Psr\Http\Message\ResponseInterface;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class StoreInventoryController extends ActionController
    {
       private $productRepository;
 
+      /**
+      * Inject the product repository
+      *
+      * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
+      */
       public function injectProductRepository(ProductRepository $productRepository)
       {
          $this->productRepository = $productRepository;
@@ -46,7 +52,8 @@ The controller looks like this:
       {
          $products = $this->productRepository->findAll();
          $this->view->assign('products', $products);
-         return $this->htmlResponse();
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
       }
    }
 
@@ -97,10 +104,7 @@ Assigning the view
 
 The repository returns a :php:`\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult`
 object with all product objects (that are not hidden or deleted).
-These objects are passed to the view with :php:`$this->view->assign(…)`.
-The view will automatically call :php:`render()` and return the rendered template.
 
-.. code-block:: php
-
-   return $this->view->render();
-
+These objects are passed to the view with :php:`$this->view->assign(…)` and
+finally return a :php:`Response` object (created with the :php:`ResponseFactory`)
+with the rendered content of the view.

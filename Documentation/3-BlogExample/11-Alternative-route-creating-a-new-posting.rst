@@ -55,17 +55,20 @@ Lets take a look at the called method ``newAction()``:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace FriendsOfTYPO3\BlogExample\Controller;
-
+   
    use FriendsOfTYPO3\BlogExample\Domain\Model\Blog;
    use FriendsOfTYPO3\BlogExample\Domain\Model\Comment;
    use FriendsOfTYPO3\BlogExample\Domain\Model\Post;
    use FriendsOfTYPO3\BlogExample\Domain\Repository\PersonRepository;
    use FriendsOfTYPO3\BlogExample\Domain\Repository\PostRepository;
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Core\Messaging\FlashMessage;
    use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class PostController extends \FriendsOfTYPO3\BlogExample\Controller\AbstractController
    {
@@ -77,12 +80,16 @@ Lets take a look at the called method ``newAction()``:
       * @return void
       * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $newPost
       */
-      public function newAction(Blog $blog, Post $newPost = null)
+      public function newAction(Blog $blog, Post $newPost = null): ResponseInterface
       {
-         $this->view->assign('authors', $this->personRepository->findAll());
-         $this->view->assign('blog', $blog);
-         $this->view->assign('newPost', $newPost);
-         $this->view->assign('remainingPosts', $this->postRepository->findByBlog($blog));
+         $this->view->assignMultiple([
+            'authors' => $this->personRepository->findAll(),
+            'blog' => $blog,
+            'newPost' => $newPost,
+            'remainingPosts' => $this->postRepository->findByBlog($blog),
+         });
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
       }
    }
 

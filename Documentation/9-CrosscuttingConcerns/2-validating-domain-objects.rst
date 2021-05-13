@@ -370,9 +370,12 @@ for example:
 ::
 
    <?php
+   declare(strict_types=1);
+
    namespace MyVendor\ExtbaseExample\Controller;
 
    use MyVendor\ExtbaseExample\Domain\Model\User;
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
@@ -381,7 +384,7 @@ for example:
       /**
        * @Extbase\Validate(param="user", validator="MyVendor\ExtbaseExample\Domain\Validator\UserValidator")
        */
-      public function showAction(User $user)
+      public function showAction(User $user): ResponseInterface
       {
          // ...
       }
@@ -424,7 +427,7 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
      * @param string $pageName THe name of the page which should be created.
      * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\MyExtension\Domain\Validator\PageNameValidator", param="pageName")
      */
-    public function createPageAction($pageName)
+    public function createPageAction($pageName): ResponseInterface
     {
         // ...
     }
@@ -456,7 +459,7 @@ example::
      * @TYPO3\CMS\Extbase\Annotation\Validate(param="pageName", validator="TYPO3\CMS\Extbase\Validation\Validator\StringValidator")
      * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\BlogExample\Domain\Validator\CustomUserValidator", param="user")
      */
-    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user)
+    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user): ResponseInterface
     {
         // ...
     }
@@ -494,7 +497,7 @@ validation error. Two actions are involved in editing the blog: The
 
 The ``editAction`` for the blog looks like this::
 
-    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+    public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
     {
         $this->view->assign('blog', $blog);
     }
@@ -521,7 +524,7 @@ as a parameter.
 
 ::
 
-    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
     {
         $this->blogRepository->update($blog);
     }
@@ -556,23 +559,26 @@ of the ``editAction`` must be changed like this:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
    namespace MyVendor\BlogExample\Controller;
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class BlogController extends ActionController
    {
-       /**
-        * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
-        * @Extbase\IgnoreValidation("blog")
-        */
-       public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
-       {
-           $this->view->assign('blog', $blog);
-       }
+      /**
+       * @param \MyVendor\BlogExample\Domain\Model\Blog $blog The blog object
+       * @Extbase\IgnoreValidation("blog")
+       */
+      public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
+      {
+         $this->view->assign('blog', $blog);
+
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
    }
 
 Now the ``blog`` object is not validated in the
@@ -612,33 +618,36 @@ code:
 ::
 
    <?php
-   declare(strict_types = 1);
+   declare(strict_types=1);
 
+   use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class BlogController extends ActionController
    {
-       /**
-        * This action shows the 'new' form for the blog.
-        *
-        * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
-        * @Extbase\IgnoreValidation("newBlog")
-        */
-       public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL)
-       {
-           $this->view->assign('newBlog', $newBlog);
-       }
+      /**
+       * This action shows the 'new' form for the blog.
+       *
+       * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog The optional default values
+       * @Extbase\IgnoreValidation("newBlog")
+       */
+      public function newAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog = NULL): ResponseInterface
+      {
+         $this->view->assign('newBlog', $newBlog);
 
-       /**
-        * This action creates the blog and stores it.
-        *
-        * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
-        */
-       public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog)
-       {
-           $this->blogRepository->add($newBlog);
-       }
+         return $this->responseFactory->createHtmlResponse($this->view->render());
+      }
+
+      /**
+       * This action creates the blog and stores it.
+       *
+       * @param \MyVendor\BlogExample\Domain\Model\Blog $newBlog
+       */
+      public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog): ResponseInterface
+      {
+         $this->blogRepository->add($newBlog);
+      }
    }
 
 The Fluid template for the `newAction` looks
