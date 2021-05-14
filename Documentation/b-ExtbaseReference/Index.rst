@@ -726,20 +726,24 @@ All classes of the domain model must inherit from one of the following two class
 
        use TYPO3\CMS\Core\Type\TypeInterface;
 
-       class ModelName implements TypeInterface
+       final class ModelName implements TypeInterface
        {
-           private string $serialized = '';
+           private array $data = [];
 
            public function __construct(string $serialized)
            {
-               $this->serialized = $serialized;
+               $this->serialized = json_decode(
+                   $serialized,
+                   true,
+                   JSON_THROW_ON_ERROR
+               );
            }
 
-           // Add proper getter, e.g. for template …
+           // Add getter/setters to update internal data
 
            public function __toString(): string
            {
-               return $this->serialized;
+               return json_encode($this->data);
            }
        }
 
