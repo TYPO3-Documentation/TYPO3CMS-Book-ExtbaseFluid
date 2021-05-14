@@ -89,9 +89,11 @@ These tags are provided by Fluid and represent different functionalities.
    iterates over the paginated Blog objects found in Blogs.
 * `<f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>` :
    creates a link to the :php:`indexAction` method of the :php:`PostController` which is :php:`public function indexAction(Blog $blog, $tag = null)`. 
-   The first parameter blog is passed to this method. A temporary variable `numberOfPosts` is filled by the `f:count()` method.
-   The count method gives the numbers of posts. The text key `blog.numberOfPosts`of the file 
-   :file:`Resources/Private/Language/locallang.xml` refers to the text `%d posts`. 
+   The blog stored in the variable `{blog}` is passed as `blog` parameter to the action.
+
+* `{f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')}`
+   The translation key `blog.numberOfPosts` refers to the translation file:`Resources/Private/Language/locallang.xml`.
+   The number of `{blog.posts}` is counted using the `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper inserts the argument into the translation text `%d posts`. 
    The fluid method `f:translate(...)` fetches this string and replaces its `%d` argument by the number of posts for the current blog.
    `{blog.posts}` is the array of posts which belong to the current blog. The class `Blog` contains the protected variable `$posts`.
    This is the member variable (of type `\TYPO3\CMS\Extbase\Persistence\ObjectStorage`) where the posts are stored, e.g. in `function addPost(Post $post)` .
