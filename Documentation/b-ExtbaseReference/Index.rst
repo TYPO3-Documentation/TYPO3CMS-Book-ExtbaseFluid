@@ -695,6 +695,46 @@ All classes of the domain model must inherit from one of the following two class
     Is used if the object is a ValueObject, i.e. if its identity is defined by all of its properties.
     ValueObjects are immutable.
 
+:php:`TYPO3\CMS\Core\Type\TypeInterface`
+    Is used if the object is stored as a single value.
+    The class has to implement :php:`__toString()` to return the value for storage.
+    The class receives the stored value as first argument in :php:`__construct()`.
+
+    A small example::
+
+       <?php
+
+       namespace Vendor\ExtName\Domain\Model;
+
+       use TYPO3\CMS\Core\Type\TypeInterface;
+
+       final class ModelName implements TypeInterface
+       {
+           private array $data = [];
+
+           public function __construct(string $serialized)
+           {
+               $this->data = json_decode(
+                   $serialized,
+                   true,
+                   JSON_THROW_ON_ERROR
+               );
+           }
+
+           // Add getter/setters to update internal data
+
+           public function __toString(): string
+           {
+               return json_encode($this->data);
+           }
+       }
+
+    That way it is not necessary to have proper database columns.
+    This is helpful for serialized data and rapid prototyping.
+
+
+.. index:: Extbase; Repositories
+
 Repositories
 ------------
 
