@@ -85,7 +85,7 @@ These tags are provided by Fluid and represent different functionalities.
    modifies linebreaks (new lines) to `<br />` tags.
 * `<f:link.action action="edit">` :
   creates a link tag that links to the :php:`editAction()` of the current controller.
-* `<f:for each="{paginator.paginatedItems}" as="blog">[...]</f:for>` :
+* `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
    iterates over the paginated Blog objects found in Blogs.
 * `<f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>` :
    creates a link to the `indexAction` method of the `PostController` which is `public function indexAction(Blog $blog, $tag = null)`. 
