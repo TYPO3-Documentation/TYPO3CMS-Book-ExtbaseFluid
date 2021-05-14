@@ -87,7 +87,7 @@ These tags are provided by Fluid and represent different functionalities.
   creates a link tag that links to the :php:`editAction()` of the current controller.
 * `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
    iterates over the paginated Blog objects found in Blogs.
-* `<f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>` :
+* `<f:link.action action="index" controller="Post" arguments="{blog : blog}">[…]</f:link.action>` :
    creates a link to the :php:`indexAction` method of the :php:`PostController` which is :php:`public function indexAction(Blog $blog, $tag = null)`. 
    The blog stored in the variable `{blog}` is passed as `blog` parameter to the action.
 
