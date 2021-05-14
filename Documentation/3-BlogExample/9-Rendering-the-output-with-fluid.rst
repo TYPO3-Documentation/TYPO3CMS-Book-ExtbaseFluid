@@ -81,10 +81,21 @@ In this case, the file *Index.html* will be loaded. Here you see an extract of t
 All the XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`.
 These tags are provided by Fluid and represent different functionalities.
 
-* `<f:format.nl2br>[…]</f:format.nl2br>` modifies linebreaks (new lines) to `<br />` tags.
-* `<f:link.action action="edit">` creates a link tag that links to the :php:`editAction()` of the current controller.
-* `<f:for each="{paginator.paginatedItems}" as="blog">[...]</f:for>` iterates over the paginated Blog objects found in Blogs.
-
+* `<f:format.nl2br>[…]</f:format.nl2br>` :
+   modifies linebreaks (new lines) to `<br />` tags.
+* `<f:link.action action="edit">` :
+  creates a link tag that links to the :php:`editAction()` of the current controller.
+* `<f:for each="{paginator.paginatedItems}" as="blog">[...]</f:for>` :
+   iterates over the paginated Blog objects found in Blogs.
+* `<f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>` :
+   creates a link to the `indexAction` method of the `PostController` which is `public function indexAction(Blog $blog, $tag = null)`. 
+   The first parameter blog is passed to this method. A temporary variable `numberOfPosts` is filled by the `f:count()` method.
+   The count method gives the numbers of posts. The text key `blog.numberOfPosts`of the file 
+   :file:`Resources/Private/Language/locallang.xml` refers to the text `%d posts`. 
+   The fluid method `f:translate(...)` fetches this string and replaces its `%d` argument by the number of posts for the current blog.
+   `{blog.posts}` is the array of posts which belong to the current blog. The class `Blog` contains the protected variable `$posts`.
+   This is the member variable (of type `\TYPO3\CMS\Extbase\Persistence\ObjectStorage`) where the posts are stored, e.g. in `function addPost(Post $post)` .
+ 
 In the variable `{blogs}` of the latter example all
 blogs are "included" and then split into "blogs per page" (paginatedItems) by
 the paginator. The details have to be set up in the
