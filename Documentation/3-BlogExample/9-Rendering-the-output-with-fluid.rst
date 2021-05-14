@@ -95,7 +95,7 @@ These tags are provided by Fluid and represent different functionalities.
    The translation key `blog.numberOfPosts` refers to the translation file:`Resources/Private/Language/locallang.xml`.
    The number of `{blog.posts}` is counted using the `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper inserts the argument into the translation text `%d posts`. 
    The fluid method `f:translate(...)` fetches this string and replaces its `%d` argument by the number of posts for the current blog.
-   `{blog.posts}` is the array of posts which belong to the current blog. The class `Blog` contains the protected variable `$posts`.
+   `{blog.posts}` is the list of posts which belong to the current blog. The class `Blog` contains a getter method `getPosts()` which is automatically used to access the list of posts (:php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage`).
    This is the member variable (of type `\TYPO3\CMS\Extbase\Persistence\ObjectStorage`) where the posts are stored, e.g. in `function addPost(Post $post)` .
  
 In the variable `{blogs}` of the latter example all
