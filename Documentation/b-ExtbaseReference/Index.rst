@@ -732,7 +732,7 @@ All classes of the domain model must inherit from one of the following two class
 
            public function __construct(string $serialized)
            {
-               $this->serialized = json_decode(
+               $this->data = json_decode(
                    $serialized,
                    true,
                    JSON_THROW_ON_ERROR
