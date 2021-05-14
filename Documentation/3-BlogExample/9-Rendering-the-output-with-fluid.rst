@@ -88,7 +88,7 @@ These tags are provided by Fluid and represent different functionalities.
 * `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
    iterates over the paginated Blog objects found in Blogs.
 * `<f:link.action action="index" controller="Post" arguments="{blog : blog}">{blog.title} ({f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')})</f:link.action>` :
-   creates a link to the `indexAction` method of the `PostController` which is `public function indexAction(Blog $blog, $tag = null)`. 
+   creates a link to the :php:`indexAction` method of the :php:`PostController` which is :php:`public function indexAction(Blog $blog, $tag = null)`. 
    The first parameter blog is passed to this method. A temporary variable `numberOfPosts` is filled by the `f:count()` method.
    The count method gives the numbers of posts. The text key `blog.numberOfPosts`of the file 
    :file:`Resources/Private/Language/locallang.xml` refers to the text `%d posts`. 
