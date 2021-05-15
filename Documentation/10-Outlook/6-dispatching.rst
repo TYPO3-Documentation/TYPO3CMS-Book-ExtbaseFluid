@@ -301,6 +301,8 @@ or to another uri::
    If the redirection happens after a new / create form, then it mudst be taken care that the database record is stored
    into the database before the redirection:
    `$this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class)->persistAll();` 
+   `Data Transfer Objects in Extbase <https://usetypo3.com/dtos-in-extbase.html>`__ are an alternative solution
+   to store the form data beween redirections.
 
 
 In the first example, Extbase will build the URL and call :php:`redirectToUri()`.
