@@ -7,9 +7,9 @@
 Dispatching
 ===========
 
-The dispatcher's job is to find a class that can handle the current page
-request. Once found, the dispatcher executes the method *handleRequest* in the
-matching class and receives the result. This result is then passed out as
+The dispatcher's job is to find one or more classes that can handle the current page
+request. Once found, the dispatcher executes the methods *handleRequest* in the
+matching classes and receives their results. These results are then combined and passed out as
 website content.
 
 .. todo: This description is not true. There is no such thing as the dispatcher
@@ -114,14 +114,17 @@ or an alternative action should be loaded instead of the entries from
          method canHandleRequest() did not receive the request to be handled. This
          has changed in version 11, making the request handlers a mere wrapper to
          dispatch the request via the dispatcher.
+         franzholz: This seems to be still true and important to know. Maybe it is not 
+         the RequestHandler but an object executed before which collects the configuration.
 
 .. note::
 
-   Extbase does not use PSR-7 for requests, but
+   Extbase does not yet use PSR-7 for requests, but
    custom implementations.
 
 .. todo: We should mention that this unfortunately still is the case but is being
          worked on, and a PSR-7 request implementation might make it into 11 LTS.
+         franzholz: It is not necessary to mention more things here for this case. Another place shall describe more.
 
 .. _the-dispatcher:
 
@@ -283,16 +286,25 @@ returning a `ForwardResponse`::
 Redirecting a request
 ---------------------
 
-Within an action the current request can be redirected to another action or uri::
+Within an action the current request can be redirected to another action::
 
-   $this->redirect('newAction', 'ForeignController', 'ForeignExtension');
+   $this->redirect('newAction', 'ForeignController', 'ForeignExtension', ['param1' => $param1, 'param2' => $param2]);
+   
+or to another uri::
+   
    $this->redirectToUri('https://example.com');
+
+.. note::
+
+   A redirection leads to a reload of the page. All the $_REQUEST variable is lost. Therefore all data needed on the 
+   destination must be passed as an array in parameter 4.
+
 
 In the first example, Extbase will build the URL and call :php:`redirectToUri()`.
 
 Extbase will adjust the response to contain the redirect and stop execution by
 throwing an exception.
 
-.. todo: This is not true anymore and needs to be rewritten. Unfortunately ther is
+.. todo: This is not true anymore and needs to be rewritten. Unfortunately there is
          no alternative to `redirect` and `redirectToUri` yet, but it will change
          very soon (in version 10.1.).
