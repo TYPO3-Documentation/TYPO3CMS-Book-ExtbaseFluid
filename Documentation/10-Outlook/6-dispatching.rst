@@ -298,7 +298,7 @@ or to another uri::
 
    A redirection leads to a reload of the page. All the $_REQUEST variable is lost. Therefore all data needed on the 
    destination must be passed as an array in parameter 4. 
-   If the redirection happens after a new / create form, then it mudst be taken care that the database record is stored
+   If the redirection happens after a new / create form, then it must be taken care that the database record is stored
    into the database before the redirection:
    `$this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class)->persistAll();` 
    `Data Transfer Objects in Extbase <https://usetypo3.com/dtos-in-extbase.html>`__ are an alternative solution
