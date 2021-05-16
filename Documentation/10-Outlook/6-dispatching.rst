@@ -304,6 +304,7 @@ or to another uri::
    `Data Transfer Objects in Extbase <https://usetypo3.com/dtos-in-extbase.html>`__ are an alternative solution
    to store the form data beween redirections.
 
+.. todo: Replace the ObjectManager class. deprecation #90803 in TYPO3 11.2.
 
 In the first example, Extbase will build the URL and call :php:`redirectToUri()`.
 
