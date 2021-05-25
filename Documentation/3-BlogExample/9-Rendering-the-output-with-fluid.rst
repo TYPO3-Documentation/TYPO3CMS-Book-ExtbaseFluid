@@ -81,20 +81,22 @@ In this case, the file *Index.html* will be loaded. Here you see an extract of t
 All the XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`.
 These tags are provided by Fluid and represent different functionalities.
 
-* `<f:format.nl2br>[…]</f:format.nl2br>` :
+*  `<f:format.nl2br>[…]</f:format.nl2br>` :
    modifies linebreaks (new lines) to `<br />` tags.
-* `<f:link.action action="edit">` :
-  creates a link tag that links to the :php:`editAction()` of the current controller.
-* `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
+*  `<f:link.action action="edit">` :
+   creates a link tag that links to the :php:`editAction()` of the current controller.
+*  `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
    iterates over the paginated Blog objects found in Blogs.
-* `<f:link.action action="index" controller="Post" arguments="{blog : blog}">[…]</f:link.action>` :
+*  `<f:link.action action="index" controller="Post" arguments="{blog : blog}">[…]</f:link.action>` :
    creates a link to the :php:`indexAction` method of the :php:`PostController` which is :php:`public function indexAction(Blog $blog, $tag = null)`. 
    The blog stored in the variable `{blog}` is passed as `blog` parameter to the action.
-
-* `{f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')}`
-   The translation key `blog.numberOfPosts` refers to the translation file:`Resources/Private/Language/locallang.xml`.
-   The number of `{blog.posts}` is counted using the `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper inserts the argument into the translation text `%d posts`. 
-   `{blog.posts}` is the list of posts which belong to the current blog. The class `Blog` contains a getter method `getPosts()` which is automatically used to access the list of posts (:php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage`).
+*  `{f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')}`
+   The translation key `blog.numberOfPosts` refers to the translation 
+   file:`Resources/Private/Language/locallang.xml`. The number of `{blog.posts}` is counted using the 
+   `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper 
+   inserts the argument into the translation text `%d posts`.  `{blog.posts}` is the list of posts
+   which belong to the current blog. The class `Blog` contains a getter method `getPosts()` which is 
+   automatically used to access the list of posts (:php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage`).
  
 In the variable `{blogs}` of the latter example all
 blogs are "included" and then split into "blogs per page" (paginatedItems) by
