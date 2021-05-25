@@ -120,8 +120,8 @@ When does validation take place?
 ================================
 
 Domain objects in Extbase are validated only at one point in time:
-When they get inserted into a controller action. With the help of figure
-9-1 we can show what happens before the action is called.
+When they get inserted into a controller action. Figure
+9-1 shows what happens before the action is called.
 
 .. figure:: /Images/9-CrosscuttingConcerns/figure-9-1.png
     :align: center
@@ -140,7 +140,7 @@ the given objects.
 
 .. tip::
 
-    Certainly, it would be helpful if the validation is also be done
+    Certainly, it would be helpful if the validation is also done
     during the persisting of the objects to the database. At the moment, it
     is not done since the data is stored in the database after sending the
     answer back to the browser. Therefore the user could not be informed in
@@ -148,7 +148,7 @@ the given objects.
     persisting the objects is built into FLOW. So this is expected in
     Extbase in the medium term.
 
-When an error occurs during validation, the method
+When an error occurs during the validation, then the method
 `errorAction()` of the current controller is
 called. The default ``errorAction()`` redirects the user
 to the last used form when possible, in order to give them a chance to
@@ -156,8 +156,8 @@ correct the entries.
 
 .. tip::
 
-    You may ask how the `errorAction()` knows
-    which form was the last displayed one. This information is created by
+    How the `errorAction()` knows
+    which form was the last displayed one? This information is created by
     the ``form`` ViewHelper. It automatically adds the property
     ``__referrer`` to every generated form, which contains
     information about the current extension, controller, and action
@@ -172,9 +172,9 @@ Registering validators
 ======================
 
 The last chapter shows how validators are working and when they are called.
-However the domain model must be connected with the validators. It must be defined
+However the domain model must be connected with its validators. It must be defined
 which part of the model has to be checked by which validator. Therefore
-there are three possibilities as follows:
+there are three possibilities:
 
 * validating in the domain model with annotations
 * validating in the domain model with user defined validator class
@@ -191,16 +191,16 @@ the complete domain object is also successfully validated. When a property
 can not be validated, the overall validation of the domain object
 fails.
 
-To define how a property of our domain object should be validated
-we use *annotations* inside our source code.
-Annotations are machine-readable "annotations" in the source code that
+To define how a property of a domain object should be validated
+there is a mark *annotations* inside the source code.
+Annotations are machine-readable "annotations" marks in the source code that
 are placed in comment blocks and start with the character
 ``@``.
 
 For the validation, the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation is
-available. With it, we can specify which validator is to be used for
-checking the annotated property. Let us take a look at this using part
-of the domain model ``Post`` inside the blog example::
+available. With it, it can be specified which validator has to be used for
+checking the annotated property. Take a look at this part
+of the domain model ``Post`` inside of the blog example::
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -222,10 +222,10 @@ of the domain model ``Post`` inside the blog example::
 With the line ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={"minimum": 3, "maximum": 50})``
 the validator for the property ``$title`` is
 specified. In parenthesis, the parameters for the validator are also specified.
-In our case, we make sure that a title of a blog post is never shorter
-than three characters and will never be longer than 50 characters.
+It is made sure that a title of a blog post is never shorter
+than three characters and that it will never be longer than 50 characters.
 
-Which validator class is to be used? Extbase looks for a validator
+Which validator class has to be used? Extbase looks for a validator
 class using
 ``\TYPO3\CMS\Extbase\Validation\Validator\*ValidatorName*Validator``.
 Using the above given annotation ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength")`` the
@@ -256,7 +256,7 @@ Example::
         protected $content;
     }
 
-Here we validate the property ``$title`` with the
+Here the property ``$title`` is validated with the
 :php:`\MyVendor\BlogExample\Domain\Validator\TitleValidator`.
 This validator class can now check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
@@ -282,23 +282,23 @@ blog post is always built using the convention *Maintopic: Title*:
       }
    }
 
-Now you have seen how you can validate particular properties of
-the domain model. The next section shows how complex domain
-objects are validated.
+By this method particular properties of
+the domain model are validated. The next section is about complex domain
+objects.
 
 
 .. index:: Validators; Custom validator classes
 
-Validating in the domain model with your own validator class
-============================================================
+Domain model with user defined validator class
+==============================================
 
 The ability to register validators in the
 model is handy when the model's individual properties
 need to be validated. However, sometimes it is necessary to validate the
 relationship between two or more properties of a model class. For
 example, for a user registration, it is reasonable that in the user object,
-the property ``$password`` and ``$passwordConfirmed``
-exists which should be identical. Therefore the individual validators
+the properties ``$password`` and ``$passwordConfirmed``
+exist and must be identical. Therefore the individual validators
 for ``$password`` respectively
 ``$passwordConfirmation`` can not help because they have no
 access to each other. You need an option to validate a domain object
@@ -308,9 +308,9 @@ For this, you can create your own validator class for every object
 in the domain model, which validates the object as a whole and with it
 has access to all object properties where possible.
 
-Equipped with this knowledge, we can implement a
-``UserValidator`` which compares ``$password`` with
-``$passwordConfirmation``. At first, we must check if the given
+Equipped with this knowledge, a
+``UserValidator`` can be implemented, which compares ``$password`` with
+``$passwordConfirmation``. At first it must be checked, if the given
 object is of the type ``user`` - after all, the validator can be
 called with any object and has to add an error in such
 case::
@@ -336,12 +336,12 @@ validator does not validate the object any further.
 
     The method ``addError()`` gets two parameters - the
     first is an error message string, while the second is an error number.
-    The Extbase developers always use the current UNIX timestamp when
-    calling ``addError()``. By this, it is secured that the
+    The Extbase developers always use the current UNIX timestamp of the source code's creation time
+    when calling ``addError()``. By this, it is secured that any
     validation errors can be uniquely identified.
 
-Now we have created the foundation of our validator and can start
-with the proper implementation of it - the check for equality between the
+Now the foundation of the validator is created. 
+Here comes the proper implementation of it - the check for equality between the
 passwords. This is made quickly::
 
     <?php
@@ -361,7 +361,7 @@ passwords. This is made quickly::
         }
     }
 
-Because we have access to the complete object, the checking
+Because the complete object is accessed, the checking
 for equality of ``$password`` and
 ``$passwordConfirmation`` is very straightforward.
 
@@ -391,10 +391,12 @@ for example:
       }
    }
 
-Now we have got to know two possibilities how validators can be
-registered for our domain objects: directly in the model via
-``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties and for complete
-domain objects with an own validator class.
+Now there are two possibilities how validators can be
+registered for domain objects: 
+
+*  directly in the model via
+``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties
+*  with an own validator class for complete domain objects.
 
 .. important::
 
@@ -405,7 +407,7 @@ domain objects with an own validator class.
 The illustrated validators until now are always executed when a
 domain model is given as a parameter to a controller action - that is, for
 all actions. Sometimes it is desired to initiate the validation only
-when calling special actions. How this can be done, we will see in the
+when calling special actions. How this can be done, is shown in the
 next section.
 
 
@@ -442,8 +444,7 @@ validator.
 Interaction of validators
 -------------------------
 
-Now you know the possibilities of how validators are to be
-registered. For an argument of an action, the following validators are
+For an argument of an action, the following validators are
 called:
 
 * All ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the domain model are evaluated.
@@ -484,8 +485,7 @@ object.
 Case study: Edit an existing object
 ===================================
 
-Now you know all the building blocks you need to edit a blog object with
-a form. As of now, the edit form should be displayed again in case of a
+As of now, the edit form should be displayed again in case of a
 validation error. Two actions are involved in editing the blog: The
 ``editAction`` shows the form with the blog to be edited and the
 ``updateAction`` saves the changes.
@@ -503,7 +503,7 @@ The ``editAction`` for the blog looks like this::
         $this->view->assign('blog', $blog);
     }
 
-The blog object that we want to edit is passed and given to the
+The blog object to edit is passed and given to the
 view. The Fluid template than looks like this (slightly shortened and
 reduced to the important)::
 
@@ -545,16 +545,16 @@ message is generated and given to the controller. Ergo: In case of a
 validation error, the `editAction` is displayed
 again.
 
-As we want to display the erroneous object again, it is important
+As the erroneous object should be displayed again, it is important
 that the ``updateAction`` and ``editAction`` use the
 same argument names. In our example, the argument is called
 ``$blog`` in both cases, so we are on the safe side.
 
-Now we have another problem: The ``editAction``
-validates all parameters, but our blog object is not valid - we are
-trapped in an endless loop. Therefore we have to suppress the argument
-validation for the ``editAction``. For this, we need the annotation
-:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` – the comment block
+There is another problem: The ``editAction``
+validates all parameters, but the blog object is not valid - the programm is
+trapped in an endless loop. Therefore the argument
+validation must be suppressed for the ``editAction``. For this, the annotation
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` is needed. – The comment block
 of the ``editAction`` must be changed like this:
 
 ::
@@ -601,8 +601,7 @@ the error messages of the validation.
 Case study: Create an object
 ============================
 
-In the last section, you have seen how to edit a blog object with a
-form. Now we will show you how to create a new blog object with a form.
+Here it is shown how to create a new blog object with a form.
 Also, for creating a blog object, two actions are involved. The
 `newAction` shows a form for creating an object, and
 the `createAction` finally stores the
@@ -661,8 +660,7 @@ like this (in short form)::
         <f:form.submit />
     </f:form>
 
-What is the summary of what we have done? Again it is important
-that the `newAction` and the
+Again it is important that the `newAction` and the
 `createAction` have the same argument name. This
 also has to conform with the name of the Fluid template
 (``newBlog`` in the example). Also, the parameter for the
@@ -672,7 +670,7 @@ validation of the parameter must be suppressed with
 output validation errors in the template using the ``flashMessages``
 ViewHelper when saving the data.
 
-In figure 9-2, you can find an overview of the behavior of Extbase when
+Figure 9-2 gives an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
 frontend.
 
@@ -690,7 +688,7 @@ frontend.
 Mapping arguments
 =================
 
-In this section, we will describe what happens during a
+This section describes what happens during a
 request before the respective action is called, especially when sending a form.
 Because the HTTP protocol (and PHP) can only transfer arrays and strings, a large array with data is transferred when
 sending a form. In the action, domain objects are often expected as input
@@ -700,8 +698,7 @@ makes it possible that as a user of Extbase, you not only work with
 arrays, but you can change objects in forms or give over a complete object
 as *parameter* in links.
 
-Let's have a look at all of this in a concrete example: We pick up
-the blog example extension and edit a blog object, like you got to know in
+Here is a concrete example: Edit a blog object, like you got to know in
 the last section ("Case study: Edit an existing object"). When you edit a
 blog you see a form in which you can change the properties of the blog, in
 our case ``title`` and ``description``.
@@ -722,11 +719,11 @@ manner to the server::
 
 First of all, the data is tagged with a prefix that contains the name
 of the extension and the plugin (``tx_blogexample_pi1``). This
-makes sure that two extensions have no impact on each other. Furthermore,
+makes sure that no extensions have impact on each other. Furthermore,
 all changed properties of the blog object are transferred in an array, in
-our case ``title`` and ``description``. As we want to
-change a blog object, we also need the identity of the blog object. In
-order to do this, Fluid automatically adds the ``__identity``
+this case ``title`` and ``description``. As 
+a blog object needs a change, also its identity is needed. 
+This is why Fluid automatically adds the ``__identity``
 property for the ``blog`` object and fills it with the UID of the
 blog.
 
@@ -737,13 +734,13 @@ operation method is shown in figure 9-3.
 For every argument, it must be decided first whether a new object has
 to be created or if the work is based on an existing object. This will be
 decided based on the identity property ``__identity``. If this is
-not in the input data, a new object is created. Otherwise, the framework
+not part of the input data, a new object is created. Otherwise, the framework
 knows the object identity and can continue working with it.
 
 .. tip::
 
     When you take a look at what is transferred to the server by the
-    new action of the blog example, you will find that no identity
+    new action of the blog example, you will see that no identity
     properties are transferred - in this case, a new object is created as
     intended.
 
@@ -752,7 +749,7 @@ therefore the object with the corresponding UID is fetched from the
 repository and used for further modification.
 
 When no properties should be changed, the object is given as an argument
-to the action. So that is always persistent, that is changes to this
+to the action. So that it is always persistent, that its changes to this
 object are saved automatically. <remark>!!!Sentence not
 clear</remark>
 
@@ -761,18 +758,18 @@ clear</remark>
 
     Figure 9-3: The internal control flow of the property mapper.
 
-In our case, not only is the ``__identity`` property sent,
-but also a new ``title`` and ``description`` for our
+In this case, not only the ``__identity`` property is sent,
+but also a new ``title`` and ``description`` for this
 blog. For safety reasons, a *copy* of the persistent
 object is applied. The properties of the copy are changed as given in the
-request. In our case, ``title`` and ``description`` are
+request. In this case, ``title`` and ``description`` are
 set new. The generated copy is yet a transient object (see section "live
 cycle of objects" in chapter 2); that is, changes on the object are
 *not* automatically persisted. The changed copy is
 given to the action as an argument.
 
-Now we have to tell our controller that we want to explicitly
-replace the existing persistent ``blog`` object with our modified
+Now it is to tell the controller to explicitly
+replace the existing persistent ``blog`` object with the modified
 ``blog`` object. For this, the repository provides the method
 update()::
 
@@ -814,9 +811,6 @@ The generated URL contains the identity of the blog object:
 ``tx_blogexample_pi1[blog][__Identity]=47``. Therefore the
 property mapper gets the blog object with identity 47 from the
 repository and returns it directly without copying before.
-
-Now that you know about argument mapping in greater detail and can begin to use
-it in your own projects.
 
 After you have learned how you can make sure any invariants of
 domain objects, the focus will be directed to the secure programming of
