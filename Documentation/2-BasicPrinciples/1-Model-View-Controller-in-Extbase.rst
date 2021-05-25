@@ -98,7 +98,7 @@ list of blog posts (see Figure 2-2):
 
 The user sends a request (1). The request object contains information
 about the controller and action that should be called and optionally
-additional parameters. In this example, the controller is :php:`PostControlelr`
+additional parameters. In this example, the controller is :php:`PostController`
 and the action :php:`listAction()`.
 
 To respond to the request, the action has to query data from the model.
