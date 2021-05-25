@@ -1,10 +1,10 @@
 .. include:: /Includes.rst.txt
 .. index:: Extension store_inventory
-.. _creating-a-first-extension:
+.. _creating-store-inventory-extension:
 
-============================
-Creating the first extension
-============================
+======================================
+Creating the store inventory extension
+======================================
 
 In this chapter, you learn the basics of an extension based on Extbase and Fluid.
 You build a minimalistic extension, which is reduced to the necessary structures.

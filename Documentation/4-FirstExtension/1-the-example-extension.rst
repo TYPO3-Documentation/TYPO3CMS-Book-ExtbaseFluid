@@ -3,11 +3,11 @@
 
 .. include:: /Includes.rst.txt
 
-=====================
-The example extension
-=====================
+=============================
+The store inventory extension
+=============================
 
-The first extension will show an inventory list of products,
+An inventory list of products is shown as an example extension,
 which is maintained in the backend *List* module.
 Each product consists of a title,
 a short description, and the number of pieces in stock.
