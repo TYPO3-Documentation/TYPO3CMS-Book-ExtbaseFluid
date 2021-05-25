@@ -6,30 +6,31 @@
 Validating domain objects
 =========================
 
-We have discussed both Extbase and Fluid in some detail but have spent
-very little time discussing the domain and how we go about ensuring its consistency. We often assume that
-domain objects are consistent and adhere to our rules at all times.
+After the first introduction to Extbase and Fluid in some detail
+there has been very little time for discussing the domain and 
+how to go about ensuring its consistency. 
+People often assume that domain objects are consistent and adhere to some rules at all times.
 Unfortunately, this is not achieved automatically. So it is important to define these
-rules explicitly. In the blog example, for example, we can create the following
-rules:
+rules explicitly. In the blog example the following
+rules can be created:
 
-* The field ``username`` and ``password`` of the
-  user object must have at least five characters. Furthermore, the username
+* The fields ``username`` and ``password`` of the
+  user object must have at least five characters. Furthermore, the ``username``
   must not contain special characters.
 * The field ``email`` of the user object must contain a valid email address.
 
 These rules must apply at all times for the user object. A user object is only valid if
 it complies with these validation rules.
-These rules are called *invariants* because they must be
+These rules are called *invariants*, because they must be
 valid during the entire lifetime of the object.
 
 At the beginning of your project, it is important to consider which invariants your domain
 objects will consist of. The next stage is to add these invariants to Extbase
 in an appropriate way. Extbase provides *validators* for
 checking the invariants - these are PHP classes in which the invariants are
-implemented in code.
+implemented.
 
-We will show you in the following example how you can use a validator for the
+The following example will show you in how you can use a validator for the
 checking of invariants and how you can give the user the ability to
 correct an error if and when it occurs.
 
@@ -46,14 +47,14 @@ The interface requires validators to implement two methods:
 - :php:`getOptions()`
 
 The main method is `validate`, which is called by the framework.
-The value which is to be validated is passed along to said method, and it is the
+The value which is to be validated is passed along to the said method, and it is the
 validator's job to check if that value is valid.
 
 .. note::
 
     Although the interface states, that the method `validate` should return
-    a :php:`\TYPO3\CMS\Extbase\Error\Result` object, it's not common practice to do
-    so because most people who create custom validators extend the class
+    a :php:`\TYPO3\CMS\Extbase\Error\Result` object, it is not a common practice to do
+    so, because most people who create custom validators extend the class
     :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
 
     This enables you to call the addError()` method and let the abstract
@@ -72,7 +73,7 @@ value against.
     :php:`ValidatorInterface` in the :ref:`validation-api`.
 
 For example, a validator that checks whether the passed string is
-an email address looks like this:
+a valid email address looks like this:
 
 ::
 
@@ -103,7 +104,7 @@ adds an error by calling `$this->addError()`.
     error code's help, the error can be definitely identified, for
     example, in bug reports.
 
-By default, Extbase will not call your validator if the value to validate is
+By default, Extbase will not call a validator if the value to validate is
 empty. This is configured through the property ``$acceptsEmptyValues``, which is
 set to ``true`` by default.
 
@@ -131,11 +132,11 @@ When a user sends a request, Extbase first determines which action
 within the controller is responsible for this request. As Extbase knows
 the names and types of the action's arguments, it can create objects
 from the incoming data. This operation will be described in detail in the
-section "Argument mapping" later on. Now the main step for us is as
+section "Argument mapping" later on. Now the main step is as
 follows: The created objects are to be validated. That is, the invariants
 must be checked. If all arguments are successfully validated, the
 extension's requested action is called, and it can continue processing
-the given objects. For example, it might pass it to the view ready for displaying.
+the given objects.
 
 .. tip::
 
@@ -144,14 +145,14 @@ the given objects. For example, it might pass it to the view ready for displayin
     is not done since the data is stored in the database after sending the
     answer back to the browser. Therefore the user could not be informed in
     case of validating errors. In the meantime, a second validating when
-    persisting the objects is built into FLOW, so this will be expected in
+    persisting the objects is built into FLOW. So this is expected in
     Extbase in the medium term.
 
 When an error occurs during validation, the method
 `errorAction()` of the current controller is
 called. The default ``errorAction()`` redirects the user
 to the last used form when possible, in order to give them a chance to
-correct the errors.
+correct the entries.
 
 .. tip::
 
@@ -170,13 +171,13 @@ correct the errors.
 Registering validators
 ======================
 
-Now we know how validators are working and when they are called.
-However, we have to connect our domain model with the validators to define
+The last chapter shows how validators are working and when they are called.
+However the domain model must be connected with the validators. It must be defined
 which part of the model has to be checked by which validator. Therefore
-there are three possibilities which we define in the following:
+there are three possibilities as follows:
 
 * validating in the domain model with annotations
-* validating in the domain model with our own validator class
+* validating in the domain model with user defined validator class
 * validating of controller arguments
 
 
