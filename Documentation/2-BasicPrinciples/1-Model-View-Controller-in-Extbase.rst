@@ -24,8 +24,8 @@ and the *view*, which prepares and outputs the data to the user
 (see Figure 2-1).
 
 The lowest layer, the *Model* encapsulates the application
-logic and data as well as the according access and storage logic. 
-Domain Driven Design divides this layer even further. In an Extbase extension you can usually find 
+logic and data as well as the according access and storage logic.
+Domain Driven Design divides this layer even further. In an Extbase extension you can usually find
 the classes for this layer in the folder :file:`Classes/Domain`.
 
 The Controller represents external ( that is: directly callable by the user )
@@ -85,8 +85,8 @@ list of blog posts (see Figure 2-2):
 
 The user sends a request (1). The request object contains information
 about the controller and action that should be called and optionally
-additional parameters. In this example the controller is `Post`
-and the action `list`.
+additional parameters. In this example, the controller is :php:`PostController`
+and the action :php:`listAction()`.
 
 To respond to the request the action has to query data from the Model.
 (2) In return it receives one or several domain objects.
