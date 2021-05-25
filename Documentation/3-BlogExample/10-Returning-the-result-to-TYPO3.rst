@@ -12,7 +12,7 @@ At the end of the request, all changes to objects that have previously
 been made only in memory are made permanent (persisted). The persistence manager
 is called via ``$persistenceManager->persistAll()``. The persistence
 manager walks through all used repositories and collects the new, the modified and
-and the deleted objects. In this case, the persistence manager asks the blog
+the deleted objects. In this case, the persistence manager asks the blog
 repository about such objects. Since we only displayed blog messages, but made no
 changes, the persistence manager will not change anything at this time.
 
