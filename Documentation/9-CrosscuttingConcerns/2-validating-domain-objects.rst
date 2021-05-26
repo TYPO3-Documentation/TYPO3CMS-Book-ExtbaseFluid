@@ -46,6 +46,33 @@ The interface requires validators to implement two methods:
 - :php:`validate($value)`
 - :php:`getOptions()`
 
+::
+
+    namespace TYPO3\CMS\Extbase\Validation\Validator;
+
+    /**
+    * Contract for a validator
+    */
+    interface ValidatorInterface
+    {
+        /**
+        * Checks if the given value is valid according to the validator, and returns
+        * an Error Result object.
+        *
+        * @param mixed $value The value that should be validated
+        * @return \TYPO3\CMS\Extbase\Error\Result
+        */
+        public function validate($value);
+
+        /**
+        * Returns the options of this validator which can be specified in the constructor
+        *
+        * @return array
+        */
+        public function getOptions();
+    }
+
+
 The main method is `validate`, which is called by the framework.
 The value which is to be validated is passed along to the said method, and it is the
 validator's job to check if that value is valid.
@@ -66,10 +93,6 @@ validator options might come in handy. Extbase ships with a :php:`StringLength`
 validator which offers the options `minimum` and `maximum` that
 let you define the string length the validator should use to check the incoming
 value against.
-
-.. tip::
-
-    The complete API of the :php:`ValidatorInterface` is `here https://github.com/TYPO3/TYPO3.CMS/blob/11.1/typo3/sysext/extbase/Classes/Validation/Validator/ValidatorInterface.php`__.
 
 For example, a validator that checks whether the passed string is
 a valid email address looks like this:
