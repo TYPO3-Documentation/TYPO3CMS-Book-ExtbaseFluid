@@ -69,18 +69,35 @@ by step, line by line. Here you see an extract of the template file:
     </f:widget.paginate>
 
 
-At first all the unknown XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`. 
+At first all the unknown XML tags with namespace »f« stand out, like `<f:for>` or `<f:link.action>`.
 These tags are provided by Fluid and represent different functionalities.
 
-* `<f:format.nl2br>[…]</f:format.nl2br>` modifies linebreaks (new lines) to `<br />` tags.
-* `<f:link.action action="new">` creates a link tag that links to the :php:`newAction()` of the current controller.
-* `<f:for each="{paginatedBlogs}" as="blog">[...]</f:for>` iterates over all Blog objects found in Blogs.
+*  `<f:format.nl2br>[…]</f:format.nl2br>` :
+   modifies linebreaks (new lines) to `<br />` tags.
+*  `<f:link.action action="edit">` :
+   creates a link tag that links to the :php:`editAction()` of the current controller.
+*  `<f:for each="{paginator.paginatedItems}" as="blog">[…]</f:for>` :
+   iterates over the paginated Blog objects found in Blogs.
+*  `<f:link.action action="index" controller="Post" arguments="{blog : blog}">[…]</f:link.action>` :
+   creates a link to the :php:`indexAction` method of the :php:`PostController` which is :php:`public function indexAction(Blog $blog, $tag = null)`.
+   The blog stored in the variable `{blog}` is passed as `blog` parameter to the action.
+*  `{f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')}`
+   The translation key `blog.numberOfPosts` refers to the translation
+   file:`Resources/Private/Language/locallang.xlf`. The number of `{blog.posts}` is counted using the
+   `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper
+   inserts the argument into the translation text `%d posts`.  `{blog.posts}` is the list of posts
+   which belong to the current blog. The class `Blog` contains a getter method `getPosts()` which is
+   automatically used to access the list of posts (:php:`\TYPO3\CMS\Extbase\Persistence\ObjectStorage`).
 
-Let's have a closer look at the latter example. In the variable `{blogs}` all
-blogs are "included" and then split into "blogs per page" (paginatedBlogs) by 
-the pagination widget. The curly brackets tell Fluid that it is a variable that
-was "assigned" to the template. In our case this was done in the
-:php:`indexAction()` of the `BlogController`. With the attribute `each` the
+In the variable `{blogs}` of the latter example all
+blogs are "included" and then split into "blogs per page" (paginatedItems) by
+the paginator. The details have to be set up in the
+controller, see the :ref:`documentation on pagination <t3coreapi:pagination>` for a
+guide on how to achieve that.
+
+The curly brackets tell Fluid that it is a variable that
+has been "assigned" to the template. In our case this is done in the
+:php:`indexAction()` of the `BlogController`. With the attribute `each`, the
 `for` ViewHelper gets the `blog` objects over whom to iterate. The
 attribute ``as`` holds the name of the variable with which the `blog` object is
 available inside of `<f:for>[...]</f:for>`. Here it can be called with `{blog}`.
