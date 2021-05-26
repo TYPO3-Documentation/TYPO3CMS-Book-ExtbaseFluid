@@ -40,13 +40,7 @@ Validators for checking of invariants
 
 A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
-:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
-The interface requires validators to implement two methods:
-
-- :php:`validate($value)`
-- :php:`getOptions()`
-
-::
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`::
 
     namespace TYPO3\CMS\Extbase\Validation\Validator;
 
@@ -72,8 +66,12 @@ The interface requires validators to implement two methods:
         public function getOptions();
     }
 
+This interface requires validators to implement two methods:
 
-The main method is `validate`, which is called by the framework.
+- :php:`validate($value)`
+- :php:`getOptions()`
+
+The main method is :php:`validate()`, which is called by the framework.
 The value which is to be validated is passed along to the said method, and it is the
 validator's job to check if that value is valid.
 
