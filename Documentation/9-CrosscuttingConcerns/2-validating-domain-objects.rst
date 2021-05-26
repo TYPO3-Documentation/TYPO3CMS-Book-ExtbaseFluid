@@ -69,8 +69,7 @@ value against.
 
 .. tip::
 
-    You will find the complete reference of the
-    :php:`ValidatorInterface` in the :ref:`validation-api`.
+    The complete API of the :php:`ValidatorInterface` is `here https://github.com/TYPO3/TYPO3.CMS/blob/master/typo3/sysext/extbase/Classes/Validation/Validator/ValidatorInterface.php`__.
 
 For example, a validator that checks whether the passed string is
 a valid email address looks like this:
