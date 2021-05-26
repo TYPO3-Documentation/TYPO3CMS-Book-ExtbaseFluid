@@ -92,7 +92,7 @@ These tags are provided by Fluid and represent different functionalities.
    The blog stored in the variable `{blog}` is passed as `blog` parameter to the action.
 *  `{f:translate(key: 'blog.numberOfPosts', arguments: '{numberOfPosts: \'{blog.posts -> f:count()}\'}')}`
    The translation key `blog.numberOfPosts` refers to the translation 
-   file:`Resources/Private/Language/locallang.xml`. The number of `{blog.posts}` is counted using the 
+   file:`Resources/Private/Language/locallang.xlf`. The number of `{blog.posts}` is counted using the 
    `f:count()` viewhelper and passed as argument to the `f:translate()` viewhelper. This viewhelper 
    inserts the argument into the translation text `%d posts`.  `{blog.posts}` is the list of posts
    which belong to the current blog. The class `Blog` contains a getter method `getPosts()` which is 
