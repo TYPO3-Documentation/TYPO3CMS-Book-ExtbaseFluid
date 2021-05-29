@@ -40,13 +40,38 @@ Validators for checking of invariants
 
 A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
-:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`.
-The interface requires validators to implement two methods:
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`::
+
+    namespace TYPO3\CMS\Extbase\Validation\Validator;
+
+    /**
+    * Contract for a validator
+    */
+    interface ValidatorInterface
+    {
+        /**
+        * Checks if the given value is valid according to the validator, and returns
+        * an Error Result object.
+        *
+        * @param mixed $value The value that should be validated
+        * @return \TYPO3\CMS\Extbase\Error\Result
+        */
+        public function validate($value);
+
+        /**
+        * Returns the options of this validator which can be specified in the constructor
+        *
+        * @return array
+        */
+        public function getOptions();
+    }
+
+This interface requires validators to implement two methods:
 
 - :php:`validate($value)`
 - :php:`getOptions()`
 
-The main method is `validate`, which is called by the framework.
+The main method is :php:`validate()`, which is called by the framework.
 The value which is to be validated is passed along to the said method, and it is the
 validator's job to check if that value is valid.
 
@@ -66,11 +91,6 @@ validator options might come in handy. Extbase ships with a :php:`StringLength`
 validator which offers the options `minimum` and `maximum` that
 let you define the string length the validator should use to check the incoming
 value against.
-
-.. tip::
-
-    You will find the complete reference of the
-    :php:`ValidatorInterface` in the :ref:`validation-api`.
 
 For example, a validator that checks whether the passed string is
 a valid email address looks like this:
