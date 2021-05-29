@@ -89,7 +89,7 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    b-ExtbaseReference/Index
    c-FAQ/Index
    ViewHelper Reference    ➜  <https://docs.typo3.org/typo3cms/ViewHelperReference/>
-   TYPO3.Fluid Rendering Engine  ➜  <https://github.com/TYPO3/Fluid>
+   TYPO3 Fluid Rendering Engine  ➜  <https://github.com/TYPO3/Fluid>
 
 .. toctree::
    :hidden:
