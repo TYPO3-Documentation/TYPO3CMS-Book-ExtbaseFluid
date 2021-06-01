@@ -432,6 +432,7 @@ used for categories, tags, or contact persons (see Fig. 6-8).
       'label' => 'Categories',
       'config' => [
          'type' => 'select',
+         'renderType' => 'selectMultipleSideBySide',
          'size' => 10,
          'minitems' => 0,
          'maxitems' => 9999,
