@@ -558,7 +558,7 @@ Global namespace import
 
 Fluid allows for registering namespaces. This is already done for
 `typo3/cms-fluid` and `typo3fluid/fluid` Viewhelpers. Therefore they are always
-available via the `v` namespace.
+available via the `f` namespace.
 
 Custom Viewhelpers, e.g. for a site package, can be registered the same way.
 Namespaces are registered within
