@@ -384,9 +384,9 @@ annotations:
 By default, Extbase invites all child objects with the parent object (so for
 example, all offers of an organization). This behavior is called Eager-Loading.
 The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to load and build the objects only when they
-are actually needed (lazy loading). This can be appropriate for big data records,
-e.g., many organizations, each with very many offers. That can lead to a significant
-increase in speed.
+are actually needed (lazy loading). This can lead to a significant
+increase in speed in scenarios with big data records,
+for example, many organizations, each with many offers. 
 
 .. note::
 
