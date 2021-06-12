@@ -395,9 +395,8 @@ increase in speed.
    The ensuing small-scaled database accesses reduce the performance and will cause the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted,
-the offers will also be deleted immediately. Extbase usually leaves all
-child objects persist unchanged.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` has the effect that, if an organization is deleted, its offers will also be deleted immediately. Extbase usually leaves all
+child objects' persistence unchanged.
 
 Besides these two, there are a few more annotations available, which will be used
 in other contexts (e.g., in the controller). For the complete list of all Extbase
