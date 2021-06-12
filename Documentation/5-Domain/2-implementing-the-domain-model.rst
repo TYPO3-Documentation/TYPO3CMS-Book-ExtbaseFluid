@@ -392,7 +392,7 @@ for example, many organizations, each with many offers.
 
    Beware of using all properties provided by child objects with
    :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`. These annotations can lead to frequent loading of child objects.
-   The ensuing small-scaled database accesses reduce the performance and will cause the exact
+   The ensuing small-scale accesses of the database reduce the performance and will cause the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
 The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` has the effect that, if an organization is deleted, its offers will also be deleted immediately. Extbase usually leaves all
