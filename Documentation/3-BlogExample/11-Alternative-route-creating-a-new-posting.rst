@@ -87,7 +87,7 @@ Lets take a look at the called method ``newAction()``:
             'blog' => $blog,
             'newPost' => $newPost,
             'remainingPosts' => $this->postRepository->findByBlog($blog),
-         });
+         ]);
 
          return $this->responseFactory->createHtmlResponse($this->view->render());
       }
