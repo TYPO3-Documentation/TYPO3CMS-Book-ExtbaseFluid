@@ -13,7 +13,7 @@ Figure 8-2. We are using both layouts and partials to avoid double code.
 Inside *Scripts* we put JavaScript code that we use for
 animations and for a Date picker in the frontend.
 
-.. figure:: /Images/8-Fluid/figure-8-2.png
+.. figure::  /Images/ManualScreenshots/8-Fluid/figure-8-2.png
    :align: center
 
    Figure 8-2: Folder structure of layouts, templates, and partials inside the
@@ -100,7 +100,7 @@ authorized administrator of the organization is logged in as a frontend user
 purpose.
 
 
-.. figure:: /Images/8-Fluid/figure-8-3.png
+.. figure::  /Images/ManualScreenshots/8-Fluid/figure-8-3.png
    :align: center
 
    Figure 8-3: Single view of an organization with its offers (left) and the

@@ -244,7 +244,7 @@ prevented (`required`).
    **Important:** When a field is defined as required, the Domain Model must have the
    annotation `@NotEmpty` for the validator.
 
-.. figure:: /Images/6-Persistence/figure-6-1.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-1.png
    :align: center
 
    Figure 6-1: An example of the field type "input" used as a name field.
@@ -267,7 +267,7 @@ The value then will be tested for being given in an appropriate date format.
 Simultaneously, this leads to the rendering of a collapsible calendar page with
 an icon right to the input field, which is shown in Fig. 6-2:
 
-.. figure:: /Images/6-Persistence/figure-6-2.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-2.png
    :align: center
 
    Figure 6-2: An example of the field type "input" used as a date field.
@@ -293,7 +293,7 @@ The `text` field type may contain multi-line formatted or unformatted texts
       ],
    ],
 
-.. figure:: /Images/6-Persistence/figure-6-3.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-3.png
    :align: center
 
    Figure 6-3: An example for the field type "text".
@@ -316,7 +316,7 @@ The field type `check` allows the definition of a single option (see Fig. 6-4)
       ],
    ],
 
-.. figure:: /Images/6-Persistence/figure-6-4.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-4.png
    :align: center
 
    Figure 6-4: An example for the field type "check" for a single option.
@@ -355,7 +355,7 @@ element is one level above (= 2^1 = 2), the third element will then be (= 2^2 =
 following Bit-Pattern (= binary-written number): 00101. This binary number is
 equivalent to the integer value 5.
 
-.. figure:: /Images/6-Persistence/figure-6-5.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-5.png
    :align: center
 
    Figure 6-5: An example of the field type "check" for several options that are grouped together.
@@ -387,7 +387,7 @@ The options (*items*) are given in an array and each option is an array itself
 containing the label and the key used to persist the selected option in the
 database.
 
-.. figure:: /Images/6-Persistence/figure-6-6.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-6.png
    :align: center
 
    Figure 6-6: An example of the field type "radio".
@@ -417,7 +417,7 @@ The options are taken from another database table (*foreign_table*) and by
 setting *maxitems* to 1 (which is standard), the selection box will be limited to
 exactly one showed item.
 
-.. figure:: /Images/6-Persistence/figure-6-7.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-7.png
    :align: center
 
    Figure 6-7: An example for the field type "select" showing a selection box.
@@ -445,7 +445,7 @@ used for categories, tags, or contact persons (see Fig. 6-8).
 Again, this takes the options of another table, but it holds the references in a
 temporary table *tx_sjroffers_offer_category_mm*.
 
-.. figure:: /Images/6-Persistence/figure-6-8.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-8.png
    :align: center
 
    Figure 6-8: An example for the field type "select".
@@ -496,7 +496,7 @@ In contrast to the date field with the type `input`, there is no evaluation as
 with `'eval' => 'date'`. The timestamp which is set in the database will be
 shown as a raw number.
 
-.. figure:: /Images/6-Persistence/figure-6-10.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-10.png
    :align: center
 
    Figure 6-10: An example for the field type "none" for a date field.
@@ -581,7 +581,7 @@ The configuration is almost identical to the field type "select". However, there
 are several more possibilities for the configuration of the management and the
 representation of the connected objects.
 
-.. figure:: /Images/6-Persistence/figure-6-11.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-11.png
    :align: center
 
    Figure 6-11: An example for the field type "inline".
@@ -722,7 +722,7 @@ The tables of all the Domain objects are defined like this.
 Now we can create a directory (*SysDirectory*), which will contain all the data
 sets. Let's create our first organization (see Fig. 6-12).
 
-.. figure:: /Images/6-Persistence/figure-6-12.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-12.png
    :align: center
 
    Figure 6-12: The input form for creating an organization with all its offers.

@@ -147,7 +147,7 @@ backend, you can see "*A Blog Example*" in the list of plugins (see Figure B-1).
          execution at all. This also affects dynamically changing meta tags and such
          via plugins. It's not just about domain data.
 
-.. figure:: /Images/b-ExtbaseReference/figure-b-1.png
+.. figure::  /Images/ManualScreenshots/b-ExtbaseReference/figure-b-1.png
     :align: center
 
     Figure B-1: In the selection field for frontend plugins, the name which was defined in the
@@ -168,7 +168,7 @@ of TSConfig :ref:`TCEMAIN.clearCacheCmd <t3tsconfig:pagetcemain-clearcachecmd>` 
 
 Figure B-2 is an example that is explained below:
 
-.. figure:: /Images/b-ExtbaseReference/figure-b-2.png
+.. figure::  /Images/ManualScreenshots/b-ExtbaseReference/figure-b-2.png
     :align: center
 
     Figure B-2: For the sysfolder in which the data was stored, the setting

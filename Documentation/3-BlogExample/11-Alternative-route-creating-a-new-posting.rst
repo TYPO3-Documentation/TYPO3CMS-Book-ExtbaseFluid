@@ -286,7 +286,7 @@ The created HTML code of the form can look like this:
 TYPO3 takes the rendered form and includes it at the appropriate place in the final HTML page
 (see figure 3-5).
 
-.. figure:: /Images/3-BlogExample/figure-3-5.png
+.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-5.png
    :align: center
 
    Figure 3-5: The rendered form

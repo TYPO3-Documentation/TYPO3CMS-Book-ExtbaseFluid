@@ -13,7 +13,7 @@ domain model and the relational model of the database (object-relational impedan
 However, there are some technical options to represent the class hierarchies. Let us look for
 these with a simplified class hierarchy detached from our sample extension (see figure 6-14).
 
-.. figure:: /Images/6-Persistence/figure-6-14.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-14.png
 
    Figure 6-14: A simple class hierarchy
 

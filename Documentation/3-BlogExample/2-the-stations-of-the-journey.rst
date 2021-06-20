@@ -9,7 +9,7 @@ don't feel disoriented when we stop at the several steps, you can start.
 Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know in more detail during the upcoming sections.
 
-.. figure:: /Images/3-BlogExample/figure-3-3.png
+.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-3.png
    :align: center
 
    Figure 3-3: The several stations of the journey
@@ -32,15 +32,15 @@ Then Extbase tries to find a suitable RequestHandler which then uses a class cal
 
 , which just creates the Controller instance and calls
          processRequest().
-         
+
 The *Dispatcher* handles all bundled information in the
-request object and hands it over to the extension. Depending on the action parameter of the url, 
+request object and hands it over to the extension. Depending on the action parameter of the url,
 it sends the request to the appropriate
 part of the extension. This  is the so-called
-*Controller* (2) , which takes over the flow control and processes the request. 
-The *Dispatcher* calls the `__construct` and the appropriate action method of the controller. 
+*Controller* (2) , which takes over the flow control and processes the request.
+The *Dispatcher* calls the `__construct` and the appropriate action method of the controller.
 
-         
+
 .. index:: Extbase; Repository
 
 Within the controller, the appropriate storage facility which is in charge
@@ -61,7 +61,7 @@ and advises it to render the content in the requested output format
 
 .. index:: Extbase; Response
 
-The *View* returns the rendered content in HTML format back to the "Controller". 
+The *View* returns the rendered content in HTML format back to the "Controller".
 This returns the output result encapsulated in a *Response* object to the
 *Dispatcher*, which in turn returns it to
 the calling TYPO3 process (6).

@@ -19,7 +19,7 @@ amount of all enclosed posts. In figure 3-4, you can see the output of the
 plugin in the frontend. This output is embedded within the greater overview
 of the page.
 
-.. figure:: /Images/3-BlogExample/figure-3-4.png
+.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-4.png
    :align: center
 
    Figure 3-4: Output of the plugin of the example extension
@@ -30,7 +30,7 @@ The process of eradication is first forwarded to the *dispatcher*
 of Extbase by TYPO3.
 The dispatcher and the parent `Boostrap` complete several
 preliminary tasks before they hand the further processing on
-to the according position within the code of the blog example, 
+to the according position within the code of the blog example,
 which is part of the `ActionController`:
 
 * The `RequestBuilder` interprets the incoming request and bundles all relevant
@@ -44,7 +44,7 @@ which is part of the `ActionController`:
   a maliciously added form input field).
 
 * The extension contains a set up of the persistence layer, which performs the persisting of
-  new or changed objects. This is done in a mechanism of the `Bootstrap`, 
+  new or changed objects. This is done in a mechanism of the `Bootstrap`,
   that automatically saves pending domain objects.
 
 * The extension contains definitions for the TYPO3 cache, by which the content is stored for faster reuse.
@@ -60,7 +60,7 @@ which is part of the `ActionController`:
    Files; EXT:blog_example/Classes/Controller/BlogController.php
 
 When these preparations are fulfilled, you
-can travel to the destination's first stop: the `ActionController` which will be present under different names. 
+can travel to the destination's first stop: the `ActionController` which will be present under different names.
 In this example, all further processing is assigned to the
 :php:`BlogController`. A reference to the `request` is handed over.
 
