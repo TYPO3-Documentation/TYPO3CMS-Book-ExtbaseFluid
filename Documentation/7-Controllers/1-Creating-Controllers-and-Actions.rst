@@ -697,7 +697,7 @@ Object in one single Action. The appropriate Method
    public function deleteAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
       $administrator = $offer->getOrganization()->getAdministrator();
-      if ($this->accessControlService->isLoggedIn($administrator) {
+      if ($this->accessControlService->isLoggedIn($administrator)) {
          $this->offerRepository->remove($offer);
       } else {
          $this->flashMessages->add('Please sign in.');
