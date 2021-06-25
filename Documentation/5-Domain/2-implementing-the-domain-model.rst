@@ -383,21 +383,22 @@ annotations:
 
 By default, Extbase invites all child objects with the parent object (so for
 example, all offers of an organization). This behavior is called Eager-Loading.
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to load the objects and build only when they
-are actually needed (lazy loading). This can be an appropriate data structure,
-e.g., many organizations, each with very many offers, that lead to a significant
-increase in speed.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to 
+load and build the objects only when they
+are actually needed (lazy loading). This can lead to a significant
+increase in speed in scenarios with big data records,
+for example, many organizations, each with many offers. 
 
 .. note::
 
-   Beware, however, against all the properties provided by child objects with
-   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because this can lead to frequent loading of child objects. The ensuing,
-   small-scaled database accesses reduces the performance and cause then the exact
+   Beware of using all properties provided by child objects with
+   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because these annotations 
+   can lead to frequent loading of child objects.
+   The ensuing small-scale accesses of the database reduce the performance and will cause the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted, the offers
-will also be deleted immediately. Extbase leaves usually persist unchanged all
-child objects.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` has the effect that, if an organization is deleted, its offers will also be deleted immediately. Extbase usually leaves all
+child objects' persistence unchanged.
 
 Besides these two, there are a few more annotations available, which will be used
 in other contexts (e.g., in the controller). For the complete list of all Extbase
