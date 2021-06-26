@@ -14,10 +14,10 @@ Unfortunately, this is not achieved automatically. So it is important to define 
 rules explicitly. In the blog example the following
 rules can be created:
 
-* The fields ``username`` and ``password`` of the
-  user object must have at least five characters. Furthermore, the ``username``
-  must not contain special characters.
-* The field ``email`` of the user object must contain a valid email address.
+*  The fields ``username`` and ``password`` of the
+   user object must have at least five characters. Furthermore, the ``username``
+   must not contain special characters.
+*  The field ``email`` of the user object must contain a valid email address.
 
 These rules must apply at all times for the user object. A user object is only valid if
 it complies with these validation rules.
@@ -36,8 +36,11 @@ Validators for checking of invariants
 =====================================
 
 A validator is a PHP class that has to check a certain invariant. All
-validators that are used in Extbase extensions have to implement the interface
-:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`::
+validators that are used in Extbase extensions have to implement the 
+:php:`ValidatorInterface`:
+
+.. code-block:: php
+   :caption: \TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface
 
     namespace TYPO3\CMS\Extbase\Validation\Validator;
 
@@ -217,7 +220,11 @@ are placed in comment blocks and start with the character
 For the validation, the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation is
 available. With this it can be specified, which validator has to be used for
 checking the annotated property. Take a look at this part
-of the domain model ``Post`` inside of the blog example::
+of the domain model ``Post`` inside of the blog example:
+
+
+.. code-block:: php
+   :caption: blog_example/Class/Domain/Model/Post.php
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -254,7 +261,10 @@ When you have created your own validator to check the invariants
 you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
 class name.
 
-Example :file:`blog_example/Class/Domain/Model/Post.php` ::
+Example: 
+
+.. code-block:: php
+   :caption: blog_example/Class/Domain/Model/Post.php
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -279,7 +289,8 @@ This validator class can now check any invariants. For example, the
 validator shown in the following listing checks whether the title of a
 blog post is always built using the convention *Maintopic: Title*:
 
-:file:`blog_example/Class/Domain/Validator/TitleValidator.php` ::
+.. code-block:: php
+   :caption: blog_example/Class/Domain/Validator/TitleValidator.php
 
    <?php
 
@@ -331,7 +342,9 @@ Equipped with this knowledge, a
 object is of the type ``user`` - after all, the validator can be
 called with any object and has to add an error in such
 case.
-:file:`extbase_example/Class/Domain/Validator/UserValidator.php` ::
+
+.. code-block:: php
+   :caption: extbase_example/Class/Domain/Validator/UserValidator.php
 
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
@@ -362,7 +375,8 @@ Now the foundation of the validator is created.
 Here comes the proper implementation of it - the check for equality between the
 passwords. This is made quickly.
 
-:file:`extbase_example/Class/Domain/Validator/UserValidator.php` ::
+.. code-block:: php
+   :caption: extbase_example/Class/Domain/Validator/UserValidator.php
 
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
@@ -388,9 +402,9 @@ for equality of ``$password`` and
 Use the newly created validator by annotating the corresponding controller,
 for example:
 
-:file:`extbase_example/Class/Controller/UserController.php` ::
-
-
+.. code-block:: php
+   :caption: extbase_example/Class/Controller/UserController.php
+   
    <?php
    declare(strict_types=1);
 
@@ -442,7 +456,10 @@ Therefore a slightly modified form of the ``@TYPO3\CMS\Extbase\Annotation\Valida
 annotation can be used, which is set in the comment block of the
 controller action. It has the format ``@TYPO3\CMS\Extbase\Annotation\Validate
 *[variablename] [validators]*``, in the example
-below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
+below it is ``$pageName``:
+
+.. code-block:: php
+   :caption: \MyVendor\MyExtension\Domain\Validator\PagenameValidator
 
     /**
      * Creates a new page with a given name.
