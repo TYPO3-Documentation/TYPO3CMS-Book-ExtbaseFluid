@@ -48,14 +48,14 @@ of *Actions*:
 #. An existing domain object is to be edited.
 #. A domain object is to be deleted.
 
-The following sections will shed some light on these recurring patterns. 
+The following sections will shed some light on these recurring patterns.
 Together with the schedule model they form the background for
 generating flows.
 
 .. tip::
 
     The method names for your
-    *Actions* can be chosen freely. Nevertheless, 
+    *Actions* can be chosen freely. Nevertheless,
     the names presented here should be used to help other developers to find
     their ways through your code.
 
@@ -304,23 +304,23 @@ redirecting to other action controllers:
 
 Using the :php:`redirect()` method, you can start a
 
-new request-response-cycle on the spot, similar to clicking on a link: 
+new request-response-cycle on the spot, similar to clicking on a link:
 
 #. The destimation action is specified in :php:`$actionName`.
 #. The appropriate controller is defined in
    :php:`$controllerName`).
 #. The extension name is passed over to the method
-   in :php:`$extensionName`). 
+   in :php:`$extensionName`).
 #. In the fourth parameter :php:`$arguments`
    you can pass an array of arguments. In our example :php:`['organization' => $organization]`
    would look like this in the URL:
    :php:`tx_sjroffers_pi1[organization]=5`. The array key is
    transcribed to the parameter name, while the organization object in
    :php:`$organization` is transformed into the number 5,
-   which is the appropriate UID. 
+   which is the appropriate UID.
 #. If you want to link to another page inside
    the TYPO3 installation, you can pass its uid in the 5th parameter
-   (:php:`$pageUid`). 
+   (:php:`$pageUid`).
 #. A delay before redirecting can be
    achieved by using the 6th parameter (:php:`$delay`). By
    default the reason for redirecting is set to status code 303 (which means
@@ -413,7 +413,7 @@ the invalid object and displays the form once more. Formerly filled in
 data is put in the fields again, and the previously saved error message is
 displayed if the template is intending so.
 
-.. figure:: /Images/7-Controllers/figure-7-1.png
+.. figure::  /Images/ManualScreenshots/7-Controllers/figure-7-1.png
     :align: center
 
     Figure 7-1: Wrong input in the form of an offer leads to an error message
@@ -422,7 +422,7 @@ displayed if the template is intending so.
 .. tip::
 
     Standard error messages of Extbase are not yet localized in
-    Version 1.2 (TYPO3 4.4). In the section "Localize error messages" in chapter 8 
+    Version 1.2 (TYPO3 4.4). In the section "Localize error messages" in chapter 8
     a possibility is described how to translate them.
 
 Using the hidden field :php:`__trustedProperties`, the Extbase property
@@ -552,7 +552,7 @@ Let's look at an example with the Method
 
 A previously instantiated
 :php:`AccessControlService` is asked if the organization's administrator is
-responsible for the offer is logged in the frontend. If yes, do update the offer. 
+responsible for the offer is logged in the frontend. If yes, do update the offer.
 If no, an error message is generated, which is
 displayed in the subsequently called organization overview.
 
@@ -695,7 +695,7 @@ Object in one single action. The appropriate Method
    public function deleteAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
       $administrator = $offer->getOrganization()->getAdministrator();
-      if ($this->accessControlService->isLoggedIn($administrator) {
+      if ($this->accessControlService->isLoggedIn($administrator)) {
          $this->offerRepository->remove($offer);
       } else {
          $this->flashMessages->add('Please sign in.');
@@ -782,7 +782,7 @@ range of offers. An appropriate Method
 To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
-.. figure:: /Images/7-Controllers/figure-7-2.png
+.. figure::  /Images/ManualScreenshots/7-Controllers/figure-7-2.png
     :align: center
 
     Figure 7-2: The buildup of the "demand" in a form above the offer list.

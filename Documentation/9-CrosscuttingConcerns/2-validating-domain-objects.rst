@@ -7,8 +7,8 @@ Validating domain objects
 =========================
 
 After the first introduction to Extbase and Fluid in some detail
-there has been very little time for discussing the domain and 
-how to go about ensuring its consistency. 
+there has been very little time for discussing the domain and
+how to go about ensuring its consistency.
 People often assume that domain objects are consistent and adhere to some rules at all times.
 Unfortunately, this is not achieved automatically. So it is important to define these
 rules explicitly. In the blog example the following
@@ -140,7 +140,7 @@ Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. Figure
 9-1 shows what happens before the action is called.
 
-.. figure:: /Images/9-CrosscuttingConcerns/figure-9-1.png
+.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-1.png
     :align: center
 
     Figure 9-1: Data flow of a request before the action is called
@@ -358,7 +358,7 @@ validator does not validate the object any further.
     when calling ``addError()``. By this, it is secured that any
     validation errors can be uniquely identified.
 
-Now the foundation of the validator is created. 
+Now the foundation of the validator is created.
 Here comes the proper implementation of it - the check for equality between the
 passwords. This is made quickly.
 
@@ -694,7 +694,7 @@ Figure 9-2 gives an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
 frontend.
 
-.. figure:: /Images/9-CrosscuttingConcerns/figure-9-2.png
+.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-2.png
     :align: center
 
     Figure 9-2: Data flow of the form display and saving. When a validating
@@ -741,8 +741,8 @@ First of all, the data is tagged with a prefix that contains the name
 of the extension and the plugin (``tx_blogexample_pi1``). This
 makes sure that no extensions have impact on each other. Furthermore,
 all changed properties of the blog object are transferred in an array, in
-this case ``title`` and ``description``. As 
-a blog object needs a change, also its identity is needed. 
+this case ``title`` and ``description``. As
+a blog object needs a change, also its identity is needed.
 This is why Fluid automatically adds the ``__identity``
 property for the ``blog`` object and fills it with the UID of the
 blog.
@@ -773,7 +773,7 @@ to the action. So that it is always persistent, that its changes to this
 object are saved automatically. <remark>!!!Sentence not
 clear</remark>
 
-.. figure:: /Images/9-CrosscuttingConcerns/figure-9-3.png
+.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-3.png
     :align: center
 
     Figure 9-3: The internal control flow of the property mapper.

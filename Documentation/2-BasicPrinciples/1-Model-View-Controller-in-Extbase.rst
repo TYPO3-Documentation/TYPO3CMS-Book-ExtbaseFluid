@@ -42,7 +42,7 @@ Important: The controller only *coordinates*, the actual functionality
 is usually implemented in the *model* layer. Because the controller is
 difficult to test, it should stay as slim as possible.
 
-.. figure:: /Images/2-BasicPrinciples/figure-2-1.png
+.. figure::  /Images/ManualScreenshots/2-BasicPrinciples/figure-2-1.png
    :align: center
 
    Figure 2-1: The MVC pattern divides the application into three global layers
@@ -115,7 +115,7 @@ The view displays the data and returns the response to the user.(5)
          2) The figure shows a false flow. The view does not return a response, the controller does.
             We should try to have another figure created here.
 
-.. figure:: /Images/2-BasicPrinciples/figure-2-2.png
+.. figure::  /Images/ManualScreenshots/2-BasicPrinciples/figure-2-2.png
    :align: center
 
    Figure 2-2: In this request, a list of blog posts is displayed.
@@ -146,7 +146,7 @@ over the blog post that should be displayed. (4)
 
 The view now displays the data and returns the result to the user. (5)
 
-.. figure:: /Images/2-BasicPrinciples/figure-2-3.png
+.. figure::  /Images/ManualScreenshots/2-BasicPrinciples/figure-2-3.png
    :align: center
 
    Figure 2-3: In this request, a comment is stored.

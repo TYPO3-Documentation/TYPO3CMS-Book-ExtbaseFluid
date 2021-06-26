@@ -92,7 +92,7 @@ we create first a minimum trunk of the class and its methods.
 
 The test can now run but failed as expected (see Figure 5-5).
 
-.. figure:: /Images/5-Domain/figure-5-5.jpg
+.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-5.jpg
 
    Figure 5-5: the message of the failed first test run
 
@@ -306,7 +306,7 @@ compliant as expected. In English, one can use the expression »green bar
 feeling« (see figure 5-6). In the course, we will not explicitly deal with
 the testing. But we use it always in the background.
 
-.. figure:: /Images/5-Domain/figure-5-6.jpg
+.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-6.jpg
 
    Figure 5-6: By the test-driven development, there is a residual »Green-Bar-Feeling«.
 
@@ -383,21 +383,22 @@ annotations:
 
 By default, Extbase invites all child objects with the parent object (so for
 example, all offers of an organization). This behavior is called Eager-Loading.
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to load the objects and build only when they
-are actually needed (lazy loading). This can be an appropriate data structure,
-e.g., many organizations, each with very many offers, that lead to a significant
-increase in speed.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to 
+load and build the objects only when they
+are actually needed (lazy loading). This can lead to a significant
+increase in speed in scenarios with big data records,
+for example, many organizations, each with many offers. 
 
 .. note::
 
-   Beware, however, against all the properties provided by child objects with
-   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because this can lead to frequent loading of child objects. The ensuing,
-   small-scaled database accesses reduces the performance and cause then the exact
+   Beware of using all properties provided by child objects with
+   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because these annotations 
+   can lead to frequent loading of child objects.
+   The ensuing small-scale accesses of the database reduce the performance and will cause the exact
    opposite of what you wanted to achieve with the lazy-loading.
 
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` causes if the organization is deleted, the offers
-will also be deleted immediately. Extbase leaves usually persist unchanged all
-child objects.
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")` has the effect that, if an organization is deleted, its offers will also be deleted immediately. Extbase usually leaves all
+child objects' persistence unchanged.
 
 Besides these two, there are a few more annotations available, which will be used
 in other contexts (e.g., in the controller). For the complete list of all Extbase
@@ -605,11 +606,11 @@ objects. This may be abstracted and then stores them in a new, higher-level
 class out. In Figure 5-7 and Figure 5-8, we have shown the procedure again
 separately.
 
-.. figure:: /Images/5-Domain/figure-5-7.png
+.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-7.png
 
    Figure 5-7: Creating the Range Constraints
 
-.. figure:: /Images/5-Domain/figure-5-8.png
+.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-8.png
 
    Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
 
@@ -784,7 +785,7 @@ Behind the property `isOnline` we would suspect a value of the type Boolean.
 But it contains the date on which the website has started the last page user demand.
 The class hierarchy is shown in Figure 5-9.
 
-.. figure:: /Images/5-Domain/figure-5-9.png
+.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-9.png
 
    Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 

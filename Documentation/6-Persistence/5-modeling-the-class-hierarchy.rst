@@ -13,7 +13,7 @@ domain model and the relational model of the database (object-relational impedan
 However, there are some technical options to represent the class hierarchies. Let us look for
 these with a simplified class hierarchy detached from our sample extension (see figure 6-14).
 
-.. figure:: /Images/6-Persistence/figure-6-14.png
+.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-14.png
 
    Figure 6-14: A simple class hierarchy
 
@@ -82,48 +82,6 @@ The name of the field that contains the type can be chosen freely. In our case, 
       // …
    ],
    // …
-
-You have to tell Extbase for every concrete class in which table the
-data of the instances are stored and with which type they should be stored. This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
-
-::
-
-    <?php
-    declare(strict_types = 1);
-
-    config.tx_extbase.persistence.classes {
-        MyVendor\MyExtension\Domain\Model\Organization {
-            mapping {
-                tableName = tx_myextension_domain_model_party
-                recordType = MyVendor\MyExtension\Domain\Model\Organization
-            }
-            subclasses {
-                \MyVendor\MyExtension\Domain\Model\Company = MyVendor\MyExtension\Domain\Model\Company
-                \MyVendor\MyExtension\Domain\Model\ScientificInstitution = MyVendor\MyExtension\Domain\Model\ScientificInstitution
-            }
-        }
-        MyVendor\MyExtension\Domain\Model\Person {
-            mapping {
-                tableName = tx_myextension_domain_model_party
-                recordType = \MyVendor\MyExtension\Domain\Model\Person
-            }
-        }
-        MyVendor\MyExtension\Domain\Model\Company {
-            mapping {
-                tableName = tx_myextension_domain_model_party
-                recordType = \MyVendor\MyExtension\Domain\Model\Company
-                columns {
-                    crdate.mapOnProperty = customCreationDateField
-                }
-            }
-        }
-        MyVendor\MyExtension\Domain\Model\ScientificInstitution {
-            mapping {
-                tableName = tx_myextension_domain_model_party
-                recordType = \MyVendor\MyExtension\Domain\Model\ScientificInstitution
-            }
-        }
-    }
 
 .. versionchanged:: 10.4
 
