@@ -39,9 +39,9 @@ The controller looks like this:
       private $productRepository;
 
       /**
-      * Inject the product repository
+      * Injects the product repository
       *
-      * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
+      * @param ProductRepository $productRepository
       */
       public function injectProductRepository(ProductRepository $productRepository)
       {
@@ -90,7 +90,7 @@ Fetching the products from the repository
 
 As a list of all products should be displayed in our inventory,
 the method :php:`findAll()` of the repository is used to fetch them.
-:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`, 
+:php:`findAll()` is  implemented in class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`,
 the parent class of our repository.
 
 

@@ -131,20 +131,21 @@ The `NumericRangeViewHelper` is implemented as follows:
    namespace MyVendor\SjrOffers\ViewHelpers\Format;
 
    use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use MyVendor\SjrOffers\Domain\Model\NumericRangeInterface;
 
    class NumericRangeViewHelper extends AbstractViewHelper
    {
      /**
-      * @param \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range The range
+      * @param \NumericRangeInterface $range The range
       * @return string Formatted range
       */
-     public function render(\MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range = NULL)
+     public function render(NumericRangeInterface $range = NULL)
      {
        $output = '';
        if ($range === NULL) {
          $range = $this->renderChildren();
        }
-       if ($range instanceof \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface) {
+       if ($range instanceof NumericRangeInterface) {
          $minimumValue = $range->getMinimumValue();
          $maximumValue = $range->getMaximumValue();
          if (empty($minimumValue) && !empty($maximumValue)) {

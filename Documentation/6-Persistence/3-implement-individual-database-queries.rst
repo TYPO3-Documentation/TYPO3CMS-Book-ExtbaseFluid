@@ -76,7 +76,7 @@ More repository search methods are available:
      * @return object The matching object if found, otherwise NULL
      * @api
      */
-    public function findByUid($uid)
+    public function findByUid(int $uid)
     {
         return $this->findByIdentifier($uid);
     }
@@ -86,11 +86,11 @@ More repository search methods are available:
     /**
      * Finds an object matching the given identifier.
      *
-     * @param int $uid The identifier of the object to find
+     * @param int $identifier The identifier of the object to find
      * @return object The matching object if found, otherwise NULL
      * @api
      */
-    public function findByIdentifier($identifier)
+    public function findByIdentifier(int $identifier)
     {
         return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
     }
