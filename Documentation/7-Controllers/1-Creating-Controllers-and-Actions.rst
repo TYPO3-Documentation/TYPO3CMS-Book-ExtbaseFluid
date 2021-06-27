@@ -285,7 +285,7 @@ Form data. If all Arguments are valid, the action
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
-      $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
 
 The new offer is allocated to the organization, and inversely the
@@ -506,8 +506,7 @@ offers.
    public function updateAction(Offer $offer) : ResponseInterface
    {
       $this->offerRepository->update($offer);
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
-      return $this->htmlResponse();
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 .. warning::
@@ -559,7 +558,7 @@ Let's look at an example with the Method
       } else {
          $this->flashMessages->add('Please sign in.');
       }
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 A previously instantiated
@@ -714,8 +713,7 @@ Object in one single action. The appropriate Method
       } else {
          $this->flashMessages->add('Please sign in.');
       }
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
-      return $this->htmlResponse();
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 The important thing here is that you delete the given Offer from the

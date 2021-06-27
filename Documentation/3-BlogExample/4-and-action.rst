@@ -66,7 +66,7 @@ the doc comments and some methods have been removed. Find the full example at
       public function createAction(Blog $newBlog): ResponseInterface
       {
          $this->blogRepository->add($newBlog);
-         $this->redirect('index');
+         return $this->redirect('index');
       }
 
       public function editAction(Blog $blog): ResponseInterface
@@ -82,13 +82,13 @@ the doc comments and some methods have been removed. Find the full example at
       public function updateAction(Blog $blog): ResponseInterface
       {
          $this->blogRepository->update($blog);
-         $this->redirect('index');
+         return $this->redirect('index');
       }
 
       public function deleteAction(Blog $blog): ResponseInterface
       {
          $this->blogRepository->remove($blog);
-         $this->redirect('index');
+         return $this->redirect('index');
       }
    }
 
