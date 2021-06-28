@@ -72,8 +72,8 @@ This interface requires validators to implement two methods:
 - :php:`getOptions()`
 
 The main method is :php:`validate()`, which is called by the framework.
-The value, which is to be validated, is passed along to the said method. It is the
-validator's job to check, if that value is valid.
+The value that is to be validated is passed along to the said method. It is the
+validator's job to check if that value is valid.
 
 .. note::
 
