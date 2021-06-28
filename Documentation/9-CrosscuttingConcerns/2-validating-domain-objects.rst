@@ -93,7 +93,7 @@ There are 2 types of validation checks:
 #.  A loose check is making only a relaxed check over a very large range of possible values.
 #.  A tight check requires the exact fitting of the value.
 
-If the logic of your validator allows for loose variable validation checks,
+If you want to implement a loose variable validation,
 then validator options might come in handy. Extbase ships with a :php:`StringLength`
 validator, which offers the options `minimum` and `maximum`, that
 let you define the string length the validator should use to check against the incoming
