@@ -76,13 +76,17 @@ The value to be validated is passed to the :php:validate() method where it's val
 
 .. note::
 
-    Although the interface states, that the method `validate` should return
-    a :php:`\TYPO3\CMS\Extbase\Error\Result` object, it is a common practice not to do
-    so, because most people who create custom validators extend the class
+    The example below never returns anything but is using $this->addError() instead.
+    No return-values are given for validate()
+    although the interface states, that the method `validate` should return
+    a :php:`\TYPO3\CMS\Extbase\Error\Result` object. 
+    Most people who create custom validators extend the class
     :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
-
-    This enables you to call the addError()` method and let the abstract
-    validator take care of returning a proper result object to the validation
+    Instead the bool method isValid is called.
+    This enables you to call the addError()` or `$this->addError($error, 1624260704)` 
+    method and let the abstract
+    validator method `validate` take care of returning a proper result object 
+    of type `\TYPO3\CMS\Extbase\Error\Result` to the validation
     framework. 
 
 If the logic of your validator allows for loose/variable validation checks,
