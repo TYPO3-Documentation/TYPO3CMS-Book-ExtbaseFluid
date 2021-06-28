@@ -89,8 +89,12 @@ The value to be validated is passed to the :php:validate() method where it's val
     of type `\TYPO3\CMS\Extbase\Error\Result` to the validation
     framework. 
 
-If the logic of your validator allows for loose/variable validation checks,
-validator options might come in handy. Extbase ships with a :php:`StringLength`
+There are 2 types of validation checks:
+#.  A loose check is making only a relaxed check over a very large range of possible values.
+#.  A tight check requires the exact fitting of the value.
+
+If the logic of your validator allows for loose variable validation checks,
+then validator options might come in handy. Extbase ships with a :php:`StringLength`
 validator, which offers the options `minimum` and `maximum`, that
 let you define the string length the validator should use to check against the incoming
 value.
