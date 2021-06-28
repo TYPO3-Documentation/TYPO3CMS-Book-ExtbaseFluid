@@ -148,7 +148,7 @@ When they get inserted into a controller action. Figure
 
     Figure 9-1: Data flow of a request before the action is called
 
-When a user sends a request, Extbase first determines, which action
+When a user sends a request, Extbase first determines which action
 within the controller is responsible for this request. As Extbase knows
 the names and types of the action's arguments, it can create objects
 from the incoming data. This operation will be described in detail in the
