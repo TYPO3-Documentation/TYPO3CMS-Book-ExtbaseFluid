@@ -92,7 +92,7 @@ validator, which offers the options `minimum` and `maximum`, that
 let you define the string length the validator should use to check against the incoming
 value.
 
-For example, a validator that checks, whether the passed string is
+For example, a validator that checks whether the passed string is
 a valid email address, looks like this:
 
 ::
