@@ -69,7 +69,7 @@ is used to configure the plugin for use in TYPO3.
    Alternatively it would be sufficient to use the table name qualifier, which is StoreInventory in this example.
    The array value is a comma-separated list of all allowed actions.
    In this case there is only the ``list`` action (also without the suffix ``Action``).
-   Thus the array :php:`[\Vendor\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
+   Thus the array :php:`[\T3docs\StoreInventory\Controller\StoreInventoryController::class -> 'list']`
    registers the method :php:`listAction()`
    in the :php:`\T3docs\StoreInventory\Controller\StoreInventoryController`.
    All actions are cached by default.
