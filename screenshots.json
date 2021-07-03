@@ -1,0 +1,17 @@
+{
+    "suites": {
+        "Core": {
+            "screenshots": {
+                "codeSnippets": [
+                    {"action": "setCodeSnippetsTargetPath", "path": "CodeSnippets/StyleguideCode"},
+                    {
+                        "action": "createCodeSnippet",
+                        "caption": "\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface",
+                        "sourceFile": "typo3/sysext/extbase/Classes/Validation/Validator/ValidatorInterface.php",
+                        "targetFileName": "ValidatorInterface"
+                    }
+                ]
+            }
+        }
+    }
+}

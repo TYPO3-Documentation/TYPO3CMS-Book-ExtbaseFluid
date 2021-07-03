@@ -70,7 +70,8 @@ name of this method:
 
 .. code-block:: php
 
-   // …
+   // use \MyVendor\SjrOffers\Domain\Repository\OfferRepository;
+
    /**
     * @var OfferRepository
     */
@@ -79,7 +80,7 @@ name of this method:
    /**
     * Inject the offer repository
     *
-    * @param \MyVendor\SjrOffers\Domain\Repository\OfferRepository $offerRepository
+    * @param OfferRepository $offerRepository
     */
    public function injectOfferRepository(OfferRepository $offerRepository)
    {
@@ -132,11 +133,12 @@ be shown is passed to the method as argument:
     * Show action
     *
     * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be shown
-    * @return string The rendered HTML string
+    * @return ResponseInterface The rendered HTML string
     */
    public function showAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
       $this->view->assign('offer', $offer);
+      return $this->htmlResponse();
    }
 
 Usually, the display of a single Object is called by a link in the
@@ -158,9 +160,10 @@ that the GET Argument `tx_sjroffers_pi1[offer]=3` corresponds to the method argu
 :php:`showAction(\MyVendor\SjrOffers\Domain\Model\Offer *$offer*)`.
 Extbase fetches the type of this Argument from the method signature:
 :php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer* $offer)`.
-In case this so called *Type Hint* should not be present,
-Extbase reads the type from the annotation written above the method:
-:php:`@param *\MyVendor\SjrOffers\Domain\Model\Offer* $offer`.
+
+.. deprecated:: 11.3
+   Starting with TYPO3 11.3 omitting the PHP type declaration and only using
+   the DocBlock annotation :php:`@param` has been deprecated.
 
 After successfully assigning, the incoming argument's value has
 to be cast in the target type and checked for validity (read more
@@ -230,18 +233,20 @@ method :php:`newAction()`.
    use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use MyVendor\SjrOffers\Domain\Model\Organization;
+   use \MyVendor\SjrOffers\Domain\Model\Offer;
 
    class OfferController extends ActionController
    {
       // ...
 
       /**
-       * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization
-       * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The new offer object
+       * @param Organization $organization The organization
+       * @param Offer $offer The new offer object
        * @return ResponseInterface An HTML form for creating a new offer
        * @Extbase\IgnoreValidation("newOffer")
        */
-      public function newAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer = null): ResponseInterface
+      public function newAction(Organization $organization, Offer $newOffer = null): ResponseInterface
       {
          $this->view->assign('organization', $organization);
          $this->view->assign('newOffer', $newOffer);
@@ -268,16 +273,19 @@ Form data. If all Arguments are valid, the action
 
 .. code-block:: php
 
+   // use \MyVendor\SjrOffers\Domain\Model\Organization;
+   // use \MyVendor\SjrOffers\Domain\Model\Offer
+
    /**
-    * @param \MyVendor\SjrOffers\Domain\Model\Organization $organization The organization the offer belongs to
-    * @param \MyVendor\SjrOffers\Domain\Model\Offer $newOffer A fresh Offer object which has not yet been added to the repository
-    * @return void
+    * @param Organization $organization The organization the offer belongs to
+    * @param Offer $newOffer A fresh Offer object which has not yet been added to the repository
+    * @return ResponseInterface
     */
-   public function createAction(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Offer $newOffer)
+   public function createAction(Organization $organization, Offer $newOffer) : ResponseInterface
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
-      $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
 
 The new offer is allocated to the organization, and inversely the
@@ -459,17 +467,18 @@ be edited as an argument.
    use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use MyVendor\SjrOffers\Domain\Model\Offer;
 
    class OfferController extends ActionController
    {
       // ...
 
       /**
-       * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The existing, unmodified offer
-       * @return string Form for editing the existing organization
+       * @param Offer $offer The existing, unmodified offer
+       * @return ResponseInterface
        * @Extbase\IgnoreValidation("offer")
        */
-      public function editAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer): ResponseInterface
+      public function editAction(Offer $offer): ResponseInterface
       {
          $this->view->assign('offer', $offer);
          $this->view->assign('regions', $this->regionRepository->findAll());
@@ -488,14 +497,16 @@ offers.
 
 .. code-block:: php
 
+   // use \MyVendor\SjrOffers\Domain\Model\Offer;
+
    /**
-    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The modified offer
-    * @return void
+    * @param Offer $offer The modified offer
+    * @return ResponseInterface
     */
-   public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   public function updateAction(Offer $offer) : ResponseInterface
    {
       $this->offerRepository->update($offer);
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 .. warning::
@@ -547,7 +558,7 @@ Let's look at an example with the Method
       } else {
          $this->flashMessages->add('Please sign in.');
       }
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 A previously instantiated
@@ -658,7 +669,7 @@ located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
        * @param mixed $person The person to be tested for login
        * @return string The output
        */
-      public function render($person = NULL)
+      public function render(mixed $person = NULL)
       {
          $accessControlService = GeneralUtility::makeInstance(AccessControlService::class);
          if ($accessControlService->isLoggedIn($person)) {
@@ -688,11 +699,13 @@ Object in one single action. The appropriate Method
 
 .. code-block:: php
 
+   // use \MyVendor\SjrOffers\Domain\Model\Offer
+
    /**
-    * @param \MyVendor\SjrOffers\Domain\Model\Offer $offer The offer to be deleted
-    * @return void
+    * @param Offer $offer The offer to be deleted
+    * @return ResponseInterface
     */
-   public function deleteAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
+   public function deleteAction(Offer $offer) : ResponseInterface
    {
       $administrator = $offer->getOrganization()->getAdministrator();
       if ($this->accessControlService->isLoggedIn($administrator)) {
@@ -700,7 +713,7 @@ Object in one single action. The appropriate Method
       } else {
          $this->flashMessages->add('Please sign in.');
       }
-      $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
+      return $this->redirect('show', 'Organization', NULL, ['organization' => $offer->getOrganization()]);
    }
 
 The important thing here is that you delete the given Offer from the
@@ -724,11 +737,13 @@ stage":
 
 .. code-block:: php
 
+   // use \MyVendor\SjrOffers\Domain\Model\Demand;
+
    /**
-    * @param \MyVendor\SjrOffers\Domain\Model\Demand $demand A demand (filter)
-    * @return string The rendered HTML string
+    * @param Demand $demand A demand (filter)
+    * @return ResponseInterface
     */
-   public function indexAction(\MyVendor\SjrOffers\Domain\Model\Demand $demand = NULL): ResponseInterface
+   public function indexAction(Demand $demand = NULL): ResponseInterface
    {
       $allowedStates = (strlen($this->settings['allowedStates']) > 0) ?
             t3lib_div::intExplode(',', $this->settings['allowedStates']) : [];

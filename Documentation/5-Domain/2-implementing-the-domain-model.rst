@@ -383,16 +383,16 @@ annotations:
 
 By default, Extbase invites all child objects with the parent object (so for
 example, all offers of an organization). This behavior is called Eager-Loading.
-The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to 
+The annotation :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` causes Extbase to
 load and build the objects only when they
 are actually needed (lazy loading). This can lead to a significant
 increase in speed in scenarios with big data records,
-for example, many organizations, each with many offers. 
+for example, many organizations, each with many offers.
 
 .. note::
 
    Beware of using all properties provided by child objects with
-   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because these annotations 
+   :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`, because these annotations
    can lead to frequent loading of child objects.
    The ensuing small-scale accesses of the database reduce the performance and will cause the exact
    opposite of what you wanted to achieve with the lazy-loading.
@@ -549,7 +549,7 @@ emphasizes some peculiarities.
         *
         * @param string $title
         */
-       public function __construct($title)
+       public function __construct(string $title)
        {
            $this->setTitle($title);
            $this->setAttendanceFees(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage);
@@ -646,7 +646,7 @@ The class RangeConstraint looks as follows (Comments were partly removed):
        * @param int $minimumValue
        * @param int $maximumValue
        */
-      public function __construct($minimumValue = null, $maximumValue = null)
+      public function __construct(int $minimumValue = null, int $maximumValue = null)
       {
          $this->setMinimumValue($minimumValue);
          $this->setMaximumValue($maximumValue);
@@ -656,7 +656,7 @@ The class RangeConstraint looks as follows (Comments were partly removed):
        * @param mixed The minimum value
        * @return void
        */
-      public function setMinimumValue($minimumValue = null)
+      public function setMinimumValue(mixed $minimumValue = null)
       {
          $this->minimumValue = $this->normalizeValue($minimumValue);
       }
@@ -670,7 +670,7 @@ The class RangeConstraint looks as follows (Comments were partly removed):
        * @param mixed The maximum value
        * @return void
        */
-      public function setMaximumValue($maximumValue = null)
+      public function setMaximumValue(mixed $maximumValue = null)
       {
          $this->maximumValue = $this->normalizeValue($maximumValue);
       }

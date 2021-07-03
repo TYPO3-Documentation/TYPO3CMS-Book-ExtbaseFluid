@@ -40,31 +40,9 @@ Validators for checking of invariants
 
 A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
-:php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`::
+:php:`ValidatorInterface`:
 
-    namespace TYPO3\CMS\Extbase\Validation\Validator;
-
-    /**
-    * Contract for a validator
-    */
-    interface ValidatorInterface
-    {
-        /**
-        * Checks if the given value is valid according to the validator, and returns
-        * an Error Result object.
-        *
-        * @param mixed $value The value that should be validated
-        * @return \TYPO3\CMS\Extbase\Error\Result
-        */
-        public function validate($value);
-
-        /**
-        * Returns the options of this validator which can be specified in the constructor
-        *
-        * @return array
-        */
-        public function getOptions();
-    }
+.. include:: /CodeSnippets/StyleguideCode/ValidatorInterface.rst.txt
 
 This interface requires validators to implement two methods:
 
@@ -446,10 +424,10 @@ below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameV
     /**
      * Creates a new page with a given name.
      *
-     * @param string $pageName THe name of the page which should be created.
+     * @param string $pageName The name of the page which should be created.
      * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\MyExtension\Domain\Validator\PageNameValidator", param="pageName")
      */
-    public function createPageAction($pageName): ResponseInterface
+    public function createPageAction(string $pageName): ResponseInterface
     {
         // ...
     }
@@ -472,18 +450,20 @@ called:
 Let's have a look at the interaction once more with an
 example::
 
-    /**
-     * Creates a website user for the given page name.
-     *
-     * @param string $pageName The name of the page where the user should be created.
-     * @param \MyVendor\ExtbaseExample\Domain\Model\User $user The user which should be created.
-     * @TYPO3\CMS\Extbase\Annotation\Validate(param="pageName", validator="TYPO3\CMS\Extbase\Validation\Validator\StringValidator")
-     * @TYPO3\CMS\Extbase\Annotation\Validate("MyVendor\BlogExample\Domain\Validator\CustomUserValidator", param="user")
-     */
-    public function createUserAction($pageName, \MyVendor\ExtbaseExample\Domain\Model\User $user): ResponseInterface
-    {
-        // ...
-    }
+   // use TYPO3\CMS\Extbase\Annotation\Validate;
+   // use MyVendor\ExtbaseExample\Domain\Model\User;
+   /**
+   * Creates a website user for the given page name.
+   *
+   * @param string $pageName The name of the page where the user should be created.
+   * @param User $user The user which should be created.
+   * @Validate(param="pageName", validator="TYPO3\CMS\Extbase\Validation\Validator\StringValidator")
+   * @Validate("MyVendor\BlogExample\Domain\Validator\CustomUserValidator", param="user")
+   */
+   public function createUserAction(string $pageName, User $user): ResponseInterface
+   {
+     // ...
+   }
 
 For ``$user`` all ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotations of the model are validated. Beyond that, the validator
 ``\MyVendor\BlogExample\Domain\Validator\CustomUserValidator`` is used
@@ -666,6 +646,7 @@ code:
       public function createAction(\MyVendor\BlogExample\Domain\Model\Blog $newBlog): ResponseInterface
       {
          $this->blogRepository->add($newBlog);
+         return $this->htmlResponse();
       }
    }
 

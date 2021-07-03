@@ -114,7 +114,7 @@ or an alternative action should be loaded instead of the entries from
          method canHandleRequest() did not receive the request to be handled. This
          has changed in version 11, making the request handlers a mere wrapper to
          dispatch the request via the dispatcher.
-         franzholz: This seems to be still true and important to know. Maybe it is not 
+         franzholz: This seems to be still true and important to know. Maybe it is not
          the RequestHandler but an object executed before which collects the configuration.
 
 .. note::
@@ -286,34 +286,41 @@ returning a `ForwardResponse`::
 Redirecting a request
 ---------------------
 
-Within an action the current request can be redirected to another action::
+Within an action the current request can be redirected to another action
+by returning the redirect method::
 
-   $this->redirect('newAction', 'ForeignController', 'ForeignExtension', ['param1' => $param1, 'param2' => $param2]);
-   
+   return $this->redirect(
+      'newAction',
+      'ForeignController',
+      'ForeignExtension',
+      ['param1' => $param1, 'param2' => $param2]
+   );
+
 or to another uri::
-   
-   $this->redirectToUri('https://example.com');
+
+   return $this->redirectToUri('https://example.com');
 
 .. note::
 
-   A redirection leads to a reload of the page. All the $_REQUEST variable is lost. Therefore all data needed on the 
-   destination must be passed as an array in parameter 4. 
-   If the redirection happens after a new / create form, then it must be taken care that the database record is stored
+   A redirection leads to a reload of the page. All the $_REQUEST variable is
+   lost. Therefore all data needed on the
+   destination must be passed as an array in parameter 4.
+   If the redirection happens after a new / create form, then it must be taken
+   care that the database record is stored
    into the database before the redirection::
-   
+
       // use \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
       $persistenceManager->persistAll();
-   
+
    `Data Transfer Objects in Extbase <https://usetypo3.com/dtos-in-extbase.html>`__ are an alternative solution
-   to store the form data beween redirections.
+   to store the form data between redirections.
 
 .. todo: Replace the ObjectManager class. deprecation #90803 in TYPO3 11.2.
 
 In the first example, Extbase will build the URL and call :php:`redirectToUri()`.
 
-Extbase will adjust the response to contain the redirect and stop execution by
-throwing an exception.
-
-.. todo: This is not true anymore and needs to be rewritten. Unfortunately there is
-         no alternative to `redirect` and `redirectToUri` yet, but it will change
-         very soon (in version 10.1.).
+.. versionchanged:: 11.3
+   Formerly the methods :php:`redirect` and :php:`redirectToUri` depended on
+   throwing a :php:`StopActionException`. This Exception has however been
+   deprecated with 11.3 as it is not PSR-7 conform. Therefore returning the
+   results of the redirect methods becomes mandatory with TYPO3 12.

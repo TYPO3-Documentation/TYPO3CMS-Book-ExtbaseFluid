@@ -553,34 +553,35 @@ of the specified method, as shown in Example B-3:
 
    use TYPO3\CMS\Extbase\Annotation as Extbase;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use Ex\BlogExample\Domain\Model\Blog
 
    class BlogController extends ActionController
    {
        /**
         * Displays a form for creating a new blog, optionally pre-filled with partial information.
         *
-        * @param \Ex\BlogExample\Domain\Model\Blog $newBlog A fresh blog object which should be taken
+        * @param Blog $newBlog A fresh blog object which should be taken
         *        as a basis for the form if it is set.
         *
-        * @return void
+        * @return ResponseInterface
         *
         * @Extbase\IgnoreValidation("newBlog")
         */
-       public function newAction(\Ex\BlogExample\Domain\Model\Blog $newBlog = NULL)
+       public function newAction(Blog $newBlog = NULL) : ResponseInterface
        {
            $this->view->assign('newBlog', $newBlog);
+           return $this->htmlResponse();
        }
    }
 
-It is important to specify the full type in the `@param` annotation as this is used to validate
-the object. Note that not only simple data types such as String, Integer, or Float can be validated,
-but also complex object types (see also the section ":ref:`validating-domain-objects`" in Chapter 9).
+.. note::
+   Not only simple data types such as String, Integer, or Float can be validated,
+   but also complex object types (see also the section
+   ":ref:`validating-domain-objects`" in Chapter 9).
 
-.. todo: It's neither true that users need an `@param`, nor is it true that users need to use the FQCN.
-
-Besides, on actions showing the forms used to create domain objects, the validation of domain
-objects must be explicitly disabled - therefore, the annotation
-:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` is necessary.
+The validation of domain object can be explicitly disabled by the annotation
+:php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation`. This might be necessary
+in actions that show forms or create domain objects.
 
 Default values can, as usual in PHP, just be indicated in the method signature. In the above case,
 the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
@@ -855,14 +856,17 @@ to formulate a request:
 
 ::
 
+   // use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+   // use Ex\BlogExample\Domain\Model\Category;
+
     /**
      * Find blogs, which have the given category.
      *
-     * @param \Ex\BlogExample\Domain\Model\Category $category
+     * @param Category $category
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     * @return QueryResult
      */
-    public function findWithCategory(\Ex\BlogExample\Domain\Model\Category $category)
+    public function findWithCategory(Category $category) : QueryResult
     {
         $query = $this->createQuery();
         $query->matching($query->contains('categories', $category));
