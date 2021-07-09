@@ -280,7 +280,7 @@ types.
 |                              |`longtext*`         |max. 4.294.967.295 Bytes                         |
 +------------------------------+--------------------+-------------------------------------------------+
 |Integer types                 |`tinyint[(n)]` *    |8 Bit                                            |
-|                              |                    | -128 to +128 (signed; n=4)                      |
+|                              |                    | -128 to +127 (signed; n=4)                      |
 |(item counts, ages etc.; in   |                    | 0 to 255(unsigned; n=3)                         |
 |TYPO3 as well as dates and    |                    |                                                 |
 |boolean properties)           |`smallint[(n)]`     |16 Bit                                           |
