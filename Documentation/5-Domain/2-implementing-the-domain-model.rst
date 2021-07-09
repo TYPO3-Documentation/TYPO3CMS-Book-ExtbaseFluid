@@ -92,7 +92,7 @@ we create first a minimum trunk of the class and its methods.
 
 The test can now run but failed as expected (see Figure 5-5).
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-5.jpg
+.. figure::  /Images/ExternalScreenshots/5-Domain/figure-5-5.jpg
 
    Figure 5-5: the message of the failed first test run
 
@@ -306,7 +306,7 @@ compliant as expected. In English, one can use the expression »green bar
 feeling« (see figure 5-6). In the course, we will not explicitly deal with
 the testing. But we use it always in the background.
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-6.jpg
+.. figure::  /Images/ExternalScreenshots/5-Domain/figure-5-6.jpg
 
    Figure 5-6: By the test-driven development, there is a residual »Green-Bar-Feeling«.
 
@@ -606,11 +606,11 @@ objects. This may be abstracted and then stores them in a new, higher-level
 class out. In Figure 5-7 and Figure 5-8, we have shown the procedure again
 separately.
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-7.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-7.png
 
    Figure 5-7: Creating the Range Constraints
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-8.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-8.png
 
    Figure 5-8: Abstraction of the properties and the shift in RangeConstraint
 
@@ -785,7 +785,7 @@ Behind the property `isOnline` we would suspect a value of the type Boolean.
 But it contains the date on which the website has started the last page user demand.
 The class hierarchy is shown in Figure 5-9.
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-9.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-9.png
 
    Figure 5-9: The Administrator class inherits all the properties and methods of the class Extbase FrontendUser.
 

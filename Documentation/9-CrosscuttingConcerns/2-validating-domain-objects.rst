@@ -121,7 +121,7 @@ Domain objects in Extbase are validated only at one point in time:
 When they get inserted into a controller action. Figure
 9-1 shows what happens before the action is called.
 
-.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-1.png
+.. figure::  /Images/Graphics/9-CrosscuttingConcerns/figure-9-1.png
     :align: center
 
     Figure 9-1: Data flow of a request before the action is called
@@ -674,7 +674,7 @@ Figure 9-2 gives an overview of the behavior of Extbase when
 displaying, editing respectively creating of domain objects in the
 frontend.
 
-.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-2.png
+.. figure::  /Images/Graphics/9-CrosscuttingConcerns/figure-9-2.png
     :align: center
 
     Figure 9-2: Data flow of the form display and saving. When a validating
@@ -753,7 +753,7 @@ to the action. So that it is always persistent, that its changes to this
 object are saved automatically. <remark>!!!Sentence not
 clear</remark>
 
-.. figure::  /Images/ManualScreenshots/9-CrosscuttingConcerns/figure-9-3.png
+.. figure::  /Images/Graphics/9-CrosscuttingConcerns/figure-9-3.png
     :align: center
 
     Figure 9-3: The internal control flow of the property mapper.

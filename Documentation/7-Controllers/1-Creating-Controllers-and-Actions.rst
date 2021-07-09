@@ -797,7 +797,7 @@ range of offers. An appropriate Method
 To define his demand, the visitor chooses
 the accordant options in a form (see pic. 7-2).
 
-.. figure::  /Images/ManualScreenshots/7-Controllers/figure-7-2.png
+.. figure::  /Images/ManualScreenshots/Frontend/7-Controllers/figure-7-2.png
     :align: center
 
     Figure 7-2: The buildup of the "demand" in a form above the offer list.

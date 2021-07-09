@@ -16,7 +16,7 @@ current template. Note that the template has the focus and controls the
 output. You also have to determine which layout is being used in the
 template.
 
-.. figure::  /Images/ManualScreenshots/8-Fluid/figure-8-1.png
+.. figure::  /Images/Graphics/8-Fluid/figure-8-1.png
    :align: center
 
    Figure 8-1: Layouts build the outer frame for a template, whereas recurring

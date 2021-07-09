@@ -9,7 +9,7 @@ don't feel disoriented when we stop at the several steps, you can start.
 Figure 3-3 gives you an overview of the stations on the journey,
 which you will get to know in more detail during the upcoming sections.
 
-.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-3.png
+.. figure::  /Images/Graphics/3-BlogExample/figure-3-3.png
    :align: center
 
    Figure 3-3: The several stations of the journey

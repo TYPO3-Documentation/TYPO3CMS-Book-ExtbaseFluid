@@ -481,7 +481,7 @@ If a property has a NULL value, it is stored in the object array like this:
 
 The debug output of the return value looks like figure 6-13.
 
-.. figure::  /Images/ManualScreenshots/6-Persistence/figure-6-13.png
+.. figure::  /Images/ManualScreenshots/Frontend/6-Persistence/figure-6-13.png
     :align: center
 
     Figure 6-13: Debug output of "raw" object data
