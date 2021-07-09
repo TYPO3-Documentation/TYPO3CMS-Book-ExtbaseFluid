@@ -19,7 +19,7 @@ The asterisk (* or 0..*) means "any amount", 1 has to be translated with
 blogs. The diamond symbol can be translated with "has", so: "One post has any
 amount of comments".
 
-.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-1.png
+.. figure::  /Images/Graphics/3-BlogExample/figure-3-1.png
    :align: center
 
    Figure 3-1: Domain of the blog example
@@ -37,7 +37,7 @@ have the prefix :file:`ext_`. All other configuration files
 needed by TYPO3 are located in the subfolder
 :file:`Configuration` or in one of its subfolders.
 
-.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-2.png
+.. figure::  /Images/ExternalScreenshots/3-BlogExample/figure-3-2.png
    :align: center
 
    Figure 3-2: folder structure of the example extension

@@ -35,7 +35,7 @@ following characteristics were defined:
 * A single organization can be shown with its offers in a view.
 * The offers can be collected to a flyer which contains all information to the offers.
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-1.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-1.png
    :align: center
 
    Figure 5-1: The still incoherent terms of the domain
@@ -80,7 +80,7 @@ references to the child objects. The chaining lines with an arrow point to
 those parent-child relations. An additional rhomb symbolized an
 *aggregate*, also a package of child objects.
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-2.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-2.png
    :align: center
 
    Figure 5-2: First draft of the domain.
@@ -124,7 +124,7 @@ property pair. We store each property pair in an own domain object:
 `DateRange`. The outcome of this is the optimized second draft
 (see figure 5-3).
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-3.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-3.png
    :align: center
 
    Figure 5-3: Second draft of the domain.
@@ -136,7 +136,7 @@ three domain objects inherit these common properties from a domain object
 `minimumValue` and `maximumValue` (see figure
 5-4).
 
-.. figure::  /Images/ManualScreenshots/5-Domain/figure-5-4.png
+.. figure::  /Images/Graphics/5-Domain/figure-5-4.png
    :align: center
 
    Figure 5-4: Third draft of the domain.
