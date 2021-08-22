@@ -6,7 +6,7 @@
 Configuration
 =============
 
-There are several possibilities to make your extension configurable. The
+There are several possibilities to make your extension configurable. From the
 various options described here each differs in:
 
 * the scope to what the configuration applies (extension, pages,
@@ -23,7 +23,7 @@ TypoScript and constants
 ========================
 
 You can define configuration options using TypoScript.
-These options can be changed via TypoScript constants in the backend.
+These options can be changed via TypoScript constants and setup in the backend.
 The changes apply to the current page and all subpages.
 
 .. seealso::
@@ -46,7 +46,7 @@ using TypoScript constant syntax.
 The configuration options you define in this file can be changed in the
 backend :guilabel:`ADMIN TOOLS > Settings > Extension Configuration`.
 
-Use this for general options that should be globally applied to the extension.
+Use this file for general options that should be globally applied to the extension.
 
 .. seealso::
 
@@ -58,7 +58,7 @@ Use this for general options that should be globally applied to the extension.
 FlexForms
 =========
 
-FlexForms can be configured in the backend by editors. With FlexForms, you can
+FlexForms can be configured in the backend by editors. With FlexForms you can
 configure each plugin or content element individually.
 
 .. seealso::
@@ -66,7 +66,7 @@ configure each plugin or content element individually.
    * :ref:`t3coreapi:flexforms`
 
 FlexForms are handled in "TYPO3 Explained".
-Here, we only cover options that are specific to Extbase.
+Here only options are covered that are specific to Extbase.
 
 
 Access settings
