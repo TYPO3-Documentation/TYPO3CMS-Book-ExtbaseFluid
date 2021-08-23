@@ -66,7 +66,7 @@ configure each plugin or content element individually.
    * :ref:`t3coreapi:flexforms`
 
 FlexForms are handled in "TYPO3 Explained".
-Here only options are covered that are specific to Extbase.
+Only options specific to Extbase are covered here.
 
 
 Access settings
