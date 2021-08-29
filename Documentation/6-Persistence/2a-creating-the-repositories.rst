@@ -301,20 +301,22 @@ by the ObjectManager or via dependency injection first.
    :caption: Dependency injection example from chapter 2
    :name:
 
-    /**
-     * @var ProductRepository
-     */
-    private $productRepository;
+   // use \MyVendor\StoreInventory\Domain\Repository\ProductRepository
 
-    /**
-     * Inject the product repository
-     *
-     * @param \MyVendor\StoreInventory\Domain\Repository\ProductRepository $productRepository
-     */
-    public function injectProductRepository(ProductRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
+   /**
+   * @var ProductRepository
+   */
+   private $productRepository;
+
+   /**
+   * Inject the product repository
+   *
+   * @param ProductRepository $productRepository
+   */
+   public function injectProductRepository(ProductRepository $productRepository)
+   {
+      $this->productRepository = $productRepository;
+   }
 
 
 .. warning::

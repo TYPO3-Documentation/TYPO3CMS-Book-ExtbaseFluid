@@ -166,6 +166,48 @@ The following is happening during rendering:
    Therefore `key2` is ignored.
 
 
+.. _jsonview_recursive:
+
+Recursive transformation of properties
+--------------------------------------
+
+.. versionadded:: 11.4
+   Since TYPO3 11.4 recursive tranformations of properties are available in
+   the build-in JsonView.
+
+The Extbase :php:`JsonView` is able to resolve recursive properties of
+objects, for example directories containing directories or comments
+containing comments as replies.
+
+Examples:
+
+1. This is for 1:1 relations, where a comment has at most 1 comment.
+
+   .. code-block:: php
+
+      $configuration = [
+          'comment' => [
+              '_recursive' => ['comment']
+           ]
+      ];
+
+
+2. This is for the more common 1:n relation in which you have lists of
+   sub objects.
+
+   .. code-block:: php
+
+      $configuration = [
+          'directories' => [
+              '_descendAll' => [
+                  '_recursive' => ['directories']
+              ],
+          ]
+      ];
+
+You can put all the other configuration like `_only` or `_exclude` at the same
+level as `_recursive` and the view will apply this for all levels.
+
 .. _further-examples:
 
 Further examples

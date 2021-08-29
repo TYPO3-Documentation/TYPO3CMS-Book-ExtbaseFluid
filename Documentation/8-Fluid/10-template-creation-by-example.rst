@@ -13,7 +13,7 @@ Figure 8-2. We are using both layouts and partials to avoid double code.
 Inside *Scripts* we put JavaScript code that we use for
 animations and for a Date picker in the frontend.
 
-.. figure::  /Images/ManualScreenshots/8-Fluid/figure-8-2.png
+.. figure::  /Images/ExternalScreenshots/8-Fluid/figure-8-2.png
    :align: center
 
    Figure 8-2: Folder structure of layouts, templates, and partials inside the
@@ -100,7 +100,7 @@ authorized administrator of the organization is logged in as a frontend user
 purpose.
 
 
-.. figure::  /Images/ManualScreenshots/8-Fluid/figure-8-3.png
+.. figure::  /Images/ManualScreenshots/Frontend/8-Fluid/figure-8-3.png
    :align: center
 
    Figure 8-3: Single view of an organization with its offers (left) and the
@@ -131,20 +131,21 @@ The `NumericRangeViewHelper` is implemented as follows:
    namespace MyVendor\SjrOffers\ViewHelpers\Format;
 
    use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+   use MyVendor\SjrOffers\Domain\Model\NumericRangeInterface;
 
    class NumericRangeViewHelper extends AbstractViewHelper
    {
      /**
-      * @param \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range The range
+      * @param \NumericRangeInterface $range The range
       * @return string Formatted range
       */
-     public function render(\MyVendor\SjrOffers\Domain\Model\NumericRangeInterface $range = NULL)
+     public function render(NumericRangeInterface $range = NULL)
      {
        $output = '';
        if ($range === NULL) {
          $range = $this->renderChildren();
        }
-       if ($range instanceof \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface) {
+       if ($range instanceof NumericRangeInterface) {
          $minimumValue = $range->getMinimumValue();
          $maximumValue = $range->getMaximumValue();
          if (empty($minimumValue) && !empty($maximumValue)) {

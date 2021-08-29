@@ -19,7 +19,7 @@ amount of all enclosed posts. In figure 3-4, you can see the output of the
 plugin in the frontend. This output is embedded within the greater overview
 of the page.
 
-.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-4.png
+.. figure::  /Images/ManualScreenshots/Frontend/3-BlogExample/figure-3-4.png
    :align: center
 
    Figure 3-4: Output of the plugin of the example extension

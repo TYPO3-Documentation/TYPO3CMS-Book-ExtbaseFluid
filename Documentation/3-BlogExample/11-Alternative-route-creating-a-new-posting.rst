@@ -77,7 +77,7 @@ Lets take a look at the called method ``newAction()``:
       *
       * @param Blog $blog The blog the post belogs to
       * @param Post $newPost A fresh post object taken as a basis for the rendering
-      * @return void
+      * @return ResponseInterface
       * @Extbase\IgnoreValidation("newPost")
       */
       public function newAction(Blog $blog, Post $newPost = null): ResponseInterface
@@ -114,20 +114,32 @@ it checks, if the parameter is valid. The target for the parameter ``$blog`` is 
 class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Blog`, for the parameter
 ``$newPost`` it is an instance of the class
 :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
-A source parameter with value 12 for the :php:`convert` method of the PropertyMapper will make a conversion into the blog object for record with :php:`$blog->uid == 12`.
+A source parameter with value 12 for the :php:`convert` method of
+the PropertyMapper will make a conversion into the blog object for
+record with :php:`$blog->uid == 12`.
 
-How does Extbase know what the target type of the conversion has to be? It takes this
-information from the type hint of the argument :php:`$targetType` passed to the :php:`convert` method.
-If there is nothing else declared (``$propertyMappingConfiguration``), it takes this destination type by methods of the PHP class :php:`ReflectionClass` for the parameters of the method :php:`createAction` as the target type.
-All this PHP class parsing is done in the class :php:`TYPO3\CMS\Extbase\Reflection\ClassSchema`.
+Extbase determines the target type of the conversion by the :php:`$targetType`
+passed to the :php:`convert` method. If it is not declared in the
+:php:`$propertyMappingConfiguration`, the php type of the action is used.
+
+The PHP class parsing is done in :php:`TYPO3\CMS\Extbase\Reflection\ClassSchema`.
 The type of the parameters are given in the function definition.
-For a better understanding you should keep the formerly required param notations in the comments as well:
+
+For a better understanding you may keep the formerly required
+param notations in the comments as well:
+
+.. deprecated:: 11.3
+   Using the :php:`@param` DocBlock annotation without adding the actual PHP
+   type declaration has been deprecated with TYPO3 11.3.
+
 
 .. index:: Action; Parameters
 
 ::
-
-   * @param Blog $blog The blog the post belongs to
+   /**
+    * @param \MyVendor\MyExtension\Blog $blog
+    */
+   public function createAction(\MyVendor\MyExtension\Blog $blog);
 
 The link is created with the name of the argument ``$blog``.
 In this way, the link between the request parameter and
@@ -286,7 +298,7 @@ The created HTML code of the form can look like this:
 TYPO3 takes the rendered form and includes it at the appropriate place in the final HTML page
 (see figure 3-5).
 
-.. figure::  /Images/ManualScreenshots/3-BlogExample/figure-3-5.png
+.. figure::  /Images/ManualScreenshots/Frontend/3-BlogExample/figure-3-5.png
    :align: center
 
    Figure 3-5: The rendered form
@@ -307,9 +319,9 @@ This is the stripped-down method:
      *
      * @param Blog $blog The blog the post belogns to
      * @param Post $newBlog A fresh Blog object which has not yet been added to the repository
-     * @return void
+     * @return ResponseInterface
      */
-    public function createAction(Blog $blog, Post $newPost)
+    public function createAction(Blog $blog, Post $newPost) : ResponseInterface
     {
         // TODO access protection
         $blog->addPost($newPost);
