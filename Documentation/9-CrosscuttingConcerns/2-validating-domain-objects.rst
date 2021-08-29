@@ -433,7 +433,7 @@ for example:
       }
    }
 
-Now there are two possibilities, how validators can be
+Now there are two possibilities how validators can be
 registered for domain objects: 
 
 *  directly in the model via ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties
