@@ -13,13 +13,12 @@ Extbase provides a property mapper to convert different values, like integers or
 types, like strings or objects.
 In this example, we provide a string that will be converted to an integer::
 
-        $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
-            ->convert('10', 'integer');
+   $output = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
+      ->convert('10', 'integer');
 
 Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper::convert()`
 method.
 
-.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
 How to use property mappers
 ===========================
@@ -31,7 +30,7 @@ where some points must be considered. This example will show a simple conversion
         'username' => 'This is the user name',
     ];
 
-    $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
+    $output = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
         ->convert(
             $input,
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser'
@@ -44,7 +43,6 @@ with defined property `username`.
     The property mapper will not check the validation rules. The result will be whatever the input is.
 
 
-.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
 
 Allow mapping of sub-properties
 ===============================
@@ -61,18 +59,16 @@ you have to configure the mapper as per default he won't map sub properties for 
     ];
 
     // Get property mapping configuration
-    $mappingConfiguration = $this->objectManager
-        ->get('TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationBuilder')
+    $mappingConfiguration = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationBuilder')
         ->build();
     // Adjust configuration to allow mapping of sub property 'usergroup'
     $mappingConfiguration->forProperty('usergroup')
         ->allowAllProperties();
 
-    $output = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
+    $output = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Property\PropertyMapper::class)
         ->convert(
             $input,
             'TYPO3\CMS\Extbase\Domain\Model\FrontendUser',
             $mappingConfiguration
         );
 
-.. todo: Since `ObjectManager::get()` is deprecated, this example needs to be updated to reflect DI.
