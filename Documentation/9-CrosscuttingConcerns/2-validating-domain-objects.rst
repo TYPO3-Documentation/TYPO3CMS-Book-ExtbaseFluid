@@ -14,10 +14,10 @@ Unfortunately, this is not achieved automatically. So it is important to define 
 rules explicitly. In the blog example the following
 rules can be created:
 
-* The fields ``username`` and ``password`` of the
-  user object must have at least five characters. Furthermore, the ``username``
-  must not contain special characters.
-* The field ``email`` of the user object must contain a valid email address.
+*  The fields ``username`` and ``password`` of the
+   user object must have at least five characters. Furthermore, the ``username``
+   must not contain special characters.
+*  The field ``email`` of the user object must contain a valid email address.
 
 These rules must apply at all times for the user object. A user object is only valid if
 it complies with these validation rules.
@@ -25,14 +25,11 @@ These rules are called *invariants*, because they must be
 valid during the entire lifetime of the object.
 
 At the beginning of your project, it is important to consider which invariants your domain
-objects will consist of. The next stage is to add these invariants to Extbase
-in an appropriate way. Extbase provides *validators* for
-checking the invariants - these are PHP classes in which the invariants are
-implemented.
+objects will consist of. Extbase provides *validator* PHP classes for
+checking of the invariants.
 
-The following example will show you in how you can use a validator for the
-checking of invariants and how you can give the user the ability to
-correct an error if and when it occurs.
+The following example shows this. The framework gives the user the ability to
+correct an error, when it occurs.
 
 
 Validators for checking of invariants
@@ -50,28 +47,35 @@ This interface requires validators to implement two methods:
 - :php:`getOptions()`
 
 The main method is :php:`validate()`, which is called by the framework.
-The value which is to be validated is passed along to the said method, and it is the
-validator's job to check if that value is valid.
+The value to be validated is passed to the :php:validate() method where it's validity is checked.
 
 .. note::
 
-    Although the interface states, that the method `validate` should return
-    a :php:`\TYPO3\CMS\Extbase\Error\Result` object, it is not a common practice to do
-    so, because most people who create custom validators extend the class
+    The example below never returns anything but is using $this->addError() instead.
+    No return-values are given for validate()
+    although the interface states, that the method `validate` should return
+    a :php:`\TYPO3\CMS\Extbase\Error\Result` object. 
+    Most people who create custom validators extend the class
     :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
+    Instead the bool method isValid is called.
+    This enables you to call the addError()` or `$this->addError($error, 1624260704)` 
+    method and let the abstract
+    validator method `validate` take care of returning a proper result object 
+    of type `\TYPO3\CMS\Extbase\Error\Result` to the validation
+    framework. 
 
-    This enables you to call the addError()` method and let the abstract
-    validator take care of returning a proper result object to the validation
-    framework.
+There are 2 types of validation checks:
+#.  A loose check is making only a relaxed check over a very large range of possible values.
+#.  A tight check requires the exact fitting of the value.
 
-If the logic of your validator allows for loose/variable validation checks,
-validator options might come in handy. Extbase ships with a :php:`StringLength`
-validator which offers the options `minimum` and `maximum` that
-let you define the string length the validator should use to check the incoming
-value against.
+If you want to implement a loose form value validation,
+then validator options might come in handy. Extbase ships with a :php:`StringLength`
+validator, which offers the options `minimum` and `maximum`, that
+let you define the string length the validator should use to check against the incoming
+value.
 
 For example, a validator that checks whether the passed string is
-a valid email address looks like this:
+a valid email address, looks like this:
 
 ::
 
@@ -99,7 +103,7 @@ adds an error by calling `$this->addError()`.
     The method ``addError()`` expects an error message and an
     error code. The latter should be unique; therefore, we recommend using
     the UNIX timestamp of the source code's creation time. With the
-    error code's help, the error can be definitely identified, for
+    help of the error code, the error can be definitely identified, for
     example, in bug reports.
 
 By default, Extbase will not call a validator if the value to validate is
@@ -138,9 +142,9 @@ the given objects.
 
 .. tip::
 
-    Certainly, it would be helpful if the validation is also done
+    Certainly, it would be helpful if the validation was also done
     during the persisting of the objects to the database. At the moment, it
-    is not done since the data is stored in the database after sending the
+    is not done, since the data is stored in the database after sending the
     answer back to the browser. Therefore the user could not be informed in
     case of validating errors. In the meantime, a second validating when
     persisting the objects is built into FLOW. So this is expected in
@@ -148,8 +152,8 @@ the given objects.
 
 When an error occurs during the validation, then the method
 `errorAction()` of the current controller is
-called. The default ``errorAction()`` redirects the user
-to the last used form when possible, in order to give them a chance to
+called. The default ``errorAction()``, when possible, redirects the user
+to the last used form, in order to give them a chance to
 correct the entries.
 
 .. tip::
@@ -158,7 +162,7 @@ correct the entries.
     which form was the last displayed one? This information is created by
     the ``form`` ViewHelper. It automatically adds the property
     ``__referrer`` to every generated form, which contains
-    information about the current extension, controller, and action
+    information about the current extension, controller, model and action
     combination. This data can be used by the
     `errorAction()` to display the erroneous form
     again.
@@ -189,16 +193,20 @@ the complete domain object is also successfully validated. When a property
 can not be validated, the overall validation of the domain object
 fails.
 
-To define how a property of a domain object should be validated
+To define how a property of a domain object should be validated,
 there is a mark *annotations* inside the source code.
 Annotations are machine-readable "annotations" marks in the source code that
 are placed in comment blocks and start with the character
 ``@``.
 
 For the validation, the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation is
-available. With it, it can be specified which validator has to be used for
+available. With this it can be specified, which validator has to be used for
 checking the annotated property. Take a look at this part
-of the domain model ``Post`` inside of the blog example::
+of the domain model ``Post`` inside of the blog example:
+
+
+.. code-block:: php
+   :caption: blog_example/Class/Domain/Model/Post.php
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -221,7 +229,7 @@ With the line ``@TYPO3\CMS\Extbase\Annotation\Validate("StringLength", options={
 the validator for the property ``$title`` is
 specified. In parenthesis, the parameters for the validator are also specified.
 It is made sure that a title of a blog post is never shorter
-than three characters and that it will never be longer than 50 characters.
+than three characters, and that it will never be longer than 50 characters.
 
 Which validator class has to be used? Extbase looks for a validator
 class using
@@ -235,7 +243,10 @@ When you have created your own validator to check the invariants
 you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
 class name.
 
-Example::
+Example: 
+
+.. code-block:: php
+   :caption: blog_example/Class/Domain/Model/Post.php
 
     <?php
     namespace MyVendor\BlogExample\Domain\Model;
@@ -261,6 +272,7 @@ validator shown in the following listing checks whether the title of a
 blog post is always built using the convention *Maintopic: Title*:
 
 .. code-block:: php
+   :caption: blog_example/Class/Domain/Validator/TitleValidator.php
 
    <?php
 
@@ -311,7 +323,10 @@ Equipped with this knowledge, a
 ``$passwordConfirmation``. At first it must be checked, if the given
 object is of the type ``user`` - after all, the validator can be
 called with any object and has to add an error in such
-case::
+case.
+
+.. code-block:: php
+   :caption: extbase_example/Class/Domain/Validator/UserValidator.php
 
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
@@ -340,7 +355,10 @@ validator does not validate the object any further.
 
 Now the foundation of the validator is created.
 Here comes the proper implementation of it - the check for equality between the
-passwords. This is made quickly::
+passwords. This is made quickly.
+
+.. code-block:: php
+   :caption: extbase_example/Class/Domain/Validator/UserValidator.php
 
     <?php
     namespace MyVendor\ExtbaseExample\Domain\Validator;
@@ -366,8 +384,9 @@ for equality of ``$password`` and
 Use the newly created validator by annotating the corresponding controller,
 for example:
 
-::
-
+.. code-block:: php
+   :caption: extbase_example/Class/Controller/UserController.php
+   
    <?php
    declare(strict_types=1);
 
@@ -390,7 +409,7 @@ for example:
    }
 
 Now there are two possibilities how validators can be
-registered for domain objects:
+registered for domain objects: 
 
 *  directly in the model via ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties
 *  with an own validator class for complete domain objects.
@@ -419,7 +438,10 @@ Therefore a slightly modified form of the ``@TYPO3\CMS\Extbase\Annotation\Valida
 annotation can be used, which is set in the comment block of the
 controller action. It has the format ``@TYPO3\CMS\Extbase\Annotation\Validate
 *[variablename] [validators]*``, in the example
-below it is ``$pageName`` :php:`\MyVendor\MyExtension\Domain\Validator\PagenameValidator`::
+below it is ``$pageName``:
+
+.. code-block:: php
+   :caption: \MyVendor\MyExtension\Domain\Validator\PagenameValidator
 
     /**
      * Creates a new page with a given name.
