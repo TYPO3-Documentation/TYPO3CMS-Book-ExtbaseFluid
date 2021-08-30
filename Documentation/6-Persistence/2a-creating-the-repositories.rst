@@ -295,7 +295,7 @@ causes an immediate update when data sets are edited in the Frontend though it i
 normally deactivated due to its huge effects on performance.
 
 Before calling a repository's methods, they need to be instantiated
-by the ObjectManager or via dependency injection first.
+via :ref:`dependency injection<t3coreapi:dependency-injection>` first.
 
 .. code-block:: php
    :caption: Dependency injection example from chapter 2
