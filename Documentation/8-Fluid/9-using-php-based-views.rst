@@ -40,31 +40,78 @@ Each view must implement the interface
 initializing methods and the ``render()`` method called
 by the controller for displaying the view.
 
-It is often helpful to inherit directly from
-``\TYPO3\CMS\Extbase\Mvc\View\AbstractView`` which provides default
-initializing methods, and you only have to implement the
-``render()`` method. A minimal view would like this::
+.. deprecated:: 11.4
+   Extending :php:`\TYPO3\CMS\Extbase\Mvc\View\AbstractView` has been
+   deprecated with v11. The class will be removed with v12.
+
+A minimal view would like this::
 
    <?php
    namespace MyVendor\BlogExample\View\Post;
 
-   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
+   use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
+
+   class ListJSON implements \TYPO3\CMS\Extbase\Mvc\View\ViewInterface
    {
-      public function render()
-      {
-         return 'Hello World';
-      }
+       protected ControllerContext $controllerContext;
+       protected $variables = [];
+
+       public function setControllerContext(ControllerContext $controllerContext)
+       {
+           $this->controllerContext = $controllerContext;
+       }
+
+       /**
+        * Add a variable to $this->viewData.
+        * Can be chained, so $this->view->assign(..., ...)->assign(..., ...); is possible
+        *
+        * @param string $key Key of variable
+        * @param mixed $value Value of object
+        * @return self an instance of $this, to enable chaining
+        */
+       public function assign($key, $value)
+       {
+           $this->variables[$key] = $value;
+           return $this;
+       }
+
+       /**
+        * Add multiple variables to $this->viewData.
+        *
+        * @param array $values array in the format array(key1 => value1, key2 => value2).
+        * @return self an instance of $this, to enable chaining
+        */
+       public function assignMultiple(array $values)
+       {
+           foreach ($values as $key => $value) {
+               $this->assign($key, $value);
+           }
+           return $this;
+       }
+
+       /**
+        * Initializes this view.
+        *
+        * Override this method for initializing your concrete view implementation.
+        */
+       public function initializeView()
+       {
+       }
+
+       public function render()
+       {
+           return 'Hello World';
+       }
    }
+
 
 Now we have the full expressive power of PHP available, and we can
 implement our own output logic. For example, our JSON view could look like
 this::
 
-   <?php
-   namespace MyVendor\BlogExample\View\Post;
-
-   class ListJSON extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
+   class ListJSON implements \TYPO3\CMS\Extbase\Mvc\View\ViewInterface
    {
+      // [...]
       public function render()
       {
          $postList = $this->viewData['posts'];
