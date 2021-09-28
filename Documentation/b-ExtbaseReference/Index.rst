@@ -486,7 +486,7 @@ Most important API methods of action controller
 -----------------------------------------------
 
 .. deprecated:: 11.5
-   The method :php:`initializeView` has been deprecated and will be dropped together with the 
+   The method :php:`initializeView` has been deprecated and will be removed along with the 
    :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12. 
 
 `Action()`
