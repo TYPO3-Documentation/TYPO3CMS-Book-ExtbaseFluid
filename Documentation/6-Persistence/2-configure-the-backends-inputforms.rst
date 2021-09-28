@@ -68,7 +68,7 @@ with names that are the keys of the nested array.
       ],
       'types' => [
          // …
-      ]
+      ],
       'palettes' => [
          // …
       ],
@@ -732,5 +732,3 @@ Now you can set up the whole data structure. In our project, this allows the
 offer-provider to set up some example data, and thus we could do some early
 integration tests. However, we can not access the given data because we still
 miss the repositories that will be defined in the following section.
-
-
