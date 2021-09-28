@@ -9,7 +9,7 @@ Backend by the editors of the youth club organisation and - within certain
 limitations - in the Frontend as well to provide functionalities for creation,
 update and deletion of the organisation's data. In this chapter, we first
 configure the Backend's form inputs for easy access to the database's contents.
-The forms that provide the management functionalities are stored in a 
+The forms that provide the management functionalities are stored in a
 PHP-Array called `Table Configuration Array (TCA)`.
 The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`
 Example: The TCA for the database table tx_sjroffers_domain_model_organization is therefore in the
@@ -64,7 +64,7 @@ with names that are the keys of the nested Array.
       ],
       'types' => [
          // …
-      ]
+      ],
       'palettes' => [
          // …
       ],
@@ -236,7 +236,7 @@ The field type `input` may be used for date and time inputs:
    ],
 
 The value then will be tested for being given in an appropriate date format.
-Simultaneously, this leads to the rendering of a collapsible calendar page with 
+Simultaneously, this leads to the rendering of a collapsible calendar page with
 an icon right to the input field which is shown in Fig. 6-2:
 
 .. figure:: /Images/6-Persistence/figure-6-2.png
@@ -429,7 +429,7 @@ references to resources of the filesystem or rowsets of a database (see Fig. 6-9
             'size' => 3,
             'maxitems' => 50,
             'minitems' => 0
-      ] 
+      ]
    ],
 
 The combination of `type` and `internal_type` specifies the field's type.
@@ -596,7 +596,7 @@ configuration of products with their according categories:
    ],
 
 This second option deserves some additional kudos because it does not need a
-TCA-configuration for the temporary table *tx_myext_product_category_mm*. 
+TCA-configuration for the temporary table *tx_myext_product_category_mm*.
 You don't need to show up or edit the whole table or parts of it in the Backend -
 the SQL definition is sufficient.
 
@@ -672,5 +672,3 @@ Now you can set up the whole data structure. In our project this allows the
 offer-provider to set up some example data and thus we could do some early
 integration tests. However, we can not access the given data because we still
 miss the Repositories that will be defined in the following section.
-
-
