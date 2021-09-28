@@ -483,7 +483,11 @@ you see the most important properties of the action controller:
 .. _class_hierarchy-most_important_api_methods_of_action_controller:
 
 Most important API methods of action controller
----------------------------------------------------
+-----------------------------------------------
+
+.. deprecated:: 11.5
+   The method :php:`initializeView` has been deprecated and will be removed along with the 
+   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12. 
 
 `Action()`
     Defines an action.
@@ -498,9 +502,6 @@ Most important API methods of action controller
 `initialize[actionName]Action()`
     Action-specific initialization, which is called only before the specific action.
     It can be used to, e.g., register arguments.
-
-`initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $ view)`
-    Initialization method to configure and initialize the passed view.
 
 `redirect($actionName, $controllerName = NULL, $extensionName = NULL, array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)`
     External HTTP redirect to another controller (immediately)
