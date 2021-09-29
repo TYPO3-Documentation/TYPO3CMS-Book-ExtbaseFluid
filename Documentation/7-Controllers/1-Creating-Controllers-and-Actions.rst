@@ -145,7 +145,7 @@ Usually, the display of a single Object is called by a link in the
 frontend. In this example extension it connects the list view by something
 like the following URL:
 
-`http://localhost/index.php?id=123&tx_sjroffers_pi1[offer]=3&tx_sjroffers_pi1[action]=show&tx_sjroffers_pi1[controller]=Offer`
+:samp:`http://localhost/index.php?id=123&tx_sjroffers_pi1[offer]=3&tx_sjroffers_pi1[action]=show&tx_sjroffers_pi1[controller]=Offer`
 
 Due to the 2 Arguments
 `tx_sjroffers_pi1[controller]=Offer` and
@@ -212,7 +212,7 @@ repository. These two steps are implemented in the methods
 First the method :php:`newAction()` is called by a
 link in frontend with the following URL:
 
-`http://localhost/index.php?id=123&tx_sjroffers_pi1[organization]=5&tx_sjroffers_pi1[action]=new&tx_sjroffers_pi1[controller]=Offer`
+:samp:`http://localhost/index.php?id=123&tx_sjroffers_pi1[organization]=5&tx_sjroffers_pi1[action]=new&tx_sjroffers_pi1[controller]=Offer`
 
 Extbase instantiates the :php:`Organization `Object
 mapped to the Argument :php:`$organization,` just
