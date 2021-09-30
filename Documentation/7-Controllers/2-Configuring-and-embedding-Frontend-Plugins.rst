@@ -34,7 +34,7 @@ name of the extension.
 The second parameter is a freely selectable name of the plugin (a short,
 meaningful name in UpperCamelCase). The plugin name plays a significant role in
 the allocation of GET- and POST parameters to the appropriate plugin:
-http://localhost/index.php?id=123&tx_extensionkey_list[offer]=3. The third argument
+:samp:`http://localhost/index.php?id=123&tx_extensionkey_list[offer]=3`. The third argument
 is the plugin label in the list of plugins in the backend.
 Now that the plugin is made available in the backend, we can add a plugin with the
 name `List` to our example.
