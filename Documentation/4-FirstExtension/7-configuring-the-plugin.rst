@@ -116,8 +116,7 @@ To achieve this, the following line must be inserted into the file :file:`Config
    );
 
 
-*  The first argument is like in the method :php:`configurePlugin()` again the
-extension key. 
+*  The first argument is like in the method :php:`configurePlugin()` again the extension key.
 *  The second argument is the plugin name :php:`Pi1` (short for plugin no. 1).
 *  The third argument is the title of the plugin used in the select box of the content element and elsewhere.
 *  The forth argument is a scalable vector graphic icon.
