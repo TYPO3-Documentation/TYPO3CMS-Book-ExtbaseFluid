@@ -180,6 +180,7 @@ it via the public function :php:`setDefaultQuerySettings()` from the function
 
 Here is an example::
 
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
    use TYPO3\CMS\Extbase\Persistence\Repository;
    use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
@@ -188,7 +189,7 @@ Here is an example::
       // Example for repository wide settings
       public function initializeObject() {
          /** @var Typo3QuerySettings $querySettings */
-         $querySettings = new Typo3QuerySettings();
+         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
 
          // don't add the pid constraint
          $querySettings->setRespectStoragePage(false);
