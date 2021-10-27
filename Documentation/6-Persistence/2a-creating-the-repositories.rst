@@ -188,7 +188,7 @@ Here is an example::
       // Example for repository wide settings
       public function initializeObject() {
          /** @var Typo3QuerySettings $querySettings */
-         $querySettings = new Typo3QuerySettings();
+         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
 
          // don't add the pid constraint
          $querySettings->setRespectStoragePage(false);
