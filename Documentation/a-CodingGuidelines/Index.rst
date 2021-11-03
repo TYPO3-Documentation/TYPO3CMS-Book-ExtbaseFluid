@@ -114,12 +114,18 @@ Every extension based on Extbase contains certain folders in the main directory:
 
 .. todo: We should mention the usually used sub folder `Tests/Unit`.
 
+
+:file:`composer.json`
+   This file enables the extension to be installed via Composer. Read more
+   about it in the :ref:`TYPO3 Explained, composer.json <t3coreapi:composer-json>`.
+
 :file:`ext_emconf.php`
    Contains the configuration for the extension manager of TYPO3 like metadata
-   as the name, the description, and the author of the extension.
+   as the name, the description, and the author of the extension. Used in
+   legacy non-Composer based installations.
 
 :file:`ext_localconf.php`
-   This file contains the configuration of the Frontend Plugins.
+   This file contains the configuration of the frontend plugins.
 
 :file:`ext_tables.php`
    This file contains configuration for the backend.

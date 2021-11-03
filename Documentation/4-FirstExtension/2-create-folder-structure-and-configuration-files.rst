@@ -59,8 +59,11 @@ Resulting from all this, the folder structure within the extension folder
 Configuration file :file:`ext_emconf.php`
 =========================================
 
-A single configuration file named :file:`ext_emconf.php` is required by TYPO3
-to allow loading the extension. The file is located in the extension's
+The configuration file named :file:`ext_emconf.php` is required by TYPO3 in
+legacy non-Composer installations. It is recommended to keep this files in
+all extensions that are being published.
+
+he file is located in the extension's
 top-level folder (:file:`store_inventory/`). You can copy and adapt this file
 from an existing extension.
 
@@ -146,7 +149,8 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
       }
    }
 
-The :file:`composer.json` allows loading the extension with the PHP package manager composer.
+The :file:`composer.json` allows loading the extension with the PHP package
+manager Composer.
 
 After the basic structure has been created, the extension can now
 be activated in the extension manager. But first the domain must be developed.
