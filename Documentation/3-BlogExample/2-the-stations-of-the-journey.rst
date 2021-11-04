@@ -30,8 +30,8 @@ but hands over the control to the Extbase *Dispatcher*
 TYPO3 calls Extbase's Bootstrap, which then uses a RequestBuilder to create an Extbase Request.
 Then Extbase tries to find a suitable RequestHandler which then uses a class called Dispatcher.
 
-, which just creates the Controller instance and calls
-         processRequest().
+.. todo: determine whether to include following text-snippet:
+   ", which just creates the Controller instance and calls processRequest()."
 
 The *Dispatcher* handles all bundled information in the
 request object and hands it over to the extension. Depending on the action parameter of the url,
