@@ -60,7 +60,7 @@ Configuration file :file:`ext_emconf.php`
 =========================================
 
 The configuration file named :file:`ext_emconf.php` is required by TYPO3 in
-legacy non-Composer installations. It is recommended to keep this files in
+legacy non-Composer installations. It is recommended to keep this file in
 all extensions that are being published.
 
 he file is located in the extension's
