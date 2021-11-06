@@ -60,10 +60,10 @@ Configuration file :file:`ext_emconf.php`
 =========================================
 
 The configuration file named :file:`ext_emconf.php` is required by TYPO3 in
-legacy non-Composer installations. It is recommended to keep this file in
-all extensions that are being published.
+:ref:`legacy installations not based on Composer <t3start:legacyinstallation>`.
+It is recommended to keep this file in all extensions that are being published.
 
-he file is located in the extension's
+The file is located in the extension's
 top-level folder (:file:`store_inventory/`). You can copy and adapt this file
 from an existing extension.
 
@@ -113,8 +113,9 @@ The icon will be displayed in the extension manager and in the TYPO3 extension r
 Configuration file :file:`composer.json`
 ========================================
 
-
-Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
+Next to the `ext_emconf.php` you should add a :file:`composer.json` file. It
+enables the extension to be loaded in all
+:ref:`Composer installations <t3start:install>` of TYPO3.
 
 .. code-block:: php
 
@@ -148,9 +149,6 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
          }
       }
    }
-
-The :file:`composer.json` allows loading the extension with the PHP package
-manager Composer.
 
 After the basic structure has been created, the extension can now
 be activated in the extension manager. But first the domain must be developed.
