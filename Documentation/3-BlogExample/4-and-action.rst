@@ -16,14 +16,15 @@ of the :php:`BlogController` is at
 
 In software development, there are different variants of controllers.
 In Extbase, the controllers mostly exist as
-.. todo: mostly -> only, will change in the future when ActionController will be optional or replaced by traits. Also Middlewares will have controllers.
-
 :php:`ActionController`. This variant is characterized by
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
 shortened version of the :php:`BlogController`. Please note that for brevity
 the doc comments and some methods have been removed. Find the full example at
 :file:`EXT:blog_example/Classes/BlogController.php`:
+
+.. todo: mostly -> only (referring to 'the controllers mostly exist as'),
+   will change in the future when ActionController will be optional or replaced by traits. Also Middlewares will have controllers.
 
 .. code-block:: php
    :caption: Classes/BlogController.php
@@ -92,10 +93,19 @@ the doc comments and some methods have been removed. Find the full example at
       }
    }
 
+.. index::
+   BlogController; indexAction
+   BlogController; newAction
+   BlogController; createAction
+   BlogController; editAction
+   BlogController; updateAction
+   BlogController; deleteAction
+   BlogController; showTheListAction
+
 The method `indexAction()` within the
 :php:`BlogController` is responsible for showing a list of
 blogs. The `indexAction` has to return an implementation
-of the :php:\Psr\Http\Message\ResponseInterface`.
+of the :php:`\Psr\Http\Message\ResponseInterface`.
 
 `newAction()` shows a form to create a new blog. The
 `createAction()` then creates a new blog with the data of the form.
@@ -109,29 +119,6 @@ The function names can be chosen freely but have to end on "Action".
 This helps Extbase to recognize them as an action. For example  `indexAction()`
 could also be called  `showTheListAction()`.
 
-
-.. index::
-   BlogController; indexAction
-   BlogController; showMeTheListAction
-   BlogController; newAction
-   BlogController; createAction
-   BlogController; editAction
-   BlogController; updateAction
-   BlogController; deleteAction
-
-The method `indexAction()` within the
-:php:`BlogController` is responsible for showing a list of
-blogs. We also could have called it
-`showMeTheListAction()`. The only important point is
-that the method name ends with `Action`, because this is a requirement from Extbase to
-recognize it as an action. `newAction()` shows a
-form to create a new blog. The `createAction()` then
-creates a new blog with the data of the form. The pair
-`editAction()` and
-`updateAction()` has similar functionality for the
-change of an existing blog. The job of the
-`deleteAction()` should be self explaining.
-
 .. index:: Extbase; Slim controller
 
 .. tip::
@@ -142,11 +129,12 @@ change of an existing blog. The job of the
    exclusively responsible for the control of the process flow. Additional
    logic (especially business or domain logic) needs to be separated into
    classes in the subfolder :file:`Domain`.
+   
    .. todo: We should also mention Services and Middlewares here. The domain only holds the
             business logic, not all the application logic.
 
 The request determines which controller action combination will be called.
-The dispatching and matching of actions happen in the `RequestBuilder`, in the Dispatcher` and in
+The dispatching and matching of actions happen in the `RequestBuilder`, in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
 inherits all methods from it by deriving it from this class ::
 
