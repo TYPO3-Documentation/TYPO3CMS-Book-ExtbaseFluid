@@ -105,7 +105,6 @@ post object. They have to be created after submission of the form. Actually the 
 The ``PostController``, which is derived from ``\FriendsOfTYPO3\BlogExample\Controller\AbstractController``
 and its parents ``\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`` and ``\TYPO3\CMS\Extbase\Mvc\Controller\AbstractController``,
 prepares all parameters, before an action method is called.
-instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
 The controller method :php:`mapRequestArgumentsToControllerArguments` calls the method :php:`setValue` in a loop for each parameter.
 This method delegates the conversion to an
 instance of the class :php:`\TYPO3\CMS\Extbase\Property\PropertyMapper`, that has mainly two functions: it
@@ -136,6 +135,7 @@ param notations in the comments as well:
 .. index:: Action; Parameters
 
 ::
+
    /**
     * @param \MyVendor\MyExtension\Blog $blog
     */

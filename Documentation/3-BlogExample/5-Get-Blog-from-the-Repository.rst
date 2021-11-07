@@ -32,7 +32,7 @@ blog objects, which is one of the methods available by default.
    class.
 
 
-..index:: Extbase; Repositories
+.. index:: Extbase; Repositories
 
 How repositories work
 =====================

@@ -124,9 +124,7 @@ As the first request is completely dispatched, the user has a list of all
 blog posts displayed in the browser. Now the user clicks on a single
 blog post and gets the complete blog post.
 Besides, the user can add a comment to this post.
-With the help of figure 2-6 we want to understand how the comment is stored.
-
-.. todo: figure 2-6 does not exist, should be 2-3, I guess.
+With the help of figure 2-3 we want to understand how the comment is stored.
 
 When submitting the comment form, the user creates a new request (1)
 containing the according controller and action.
