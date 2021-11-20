@@ -93,8 +93,9 @@ name of this method:
    public function indexAction(): ResponseInterface
    {
       $offers = $this->offerRepository->findAll();
-      $this->view->assign('offers', $offers);
-      return $this->responseFactory->createHtmlResponse($this->view->render());
+      $this->view->assign('offers', $offers);      
+
+      return $this->htmlResponse();
    }
 
 
@@ -252,7 +253,7 @@ method :php:`newAction()`.
          $this->view->assign('newOffer', $newOffer);
          $this->view->assign('regions', $this->regionRepository->findAll());
 
-         return $this->responseFactory->createHtmlResponse($this->view->render());
+         return $this->htmlResponse();
        }
 
        // ...
@@ -483,7 +484,7 @@ be edited as an argument.
          $this->view->assign('offer', $offer);
          $this->view->assign('regions', $this->regionRepository->findAll());
 
-         return $this->responseFactory->createHtmlResponse($this->view->render());
+         return $this->htmlResponse();
       }
 
       // ...
@@ -782,7 +783,7 @@ stage":
          )
       );
 
-      return $this->responseFactory->createHtmlResponse($this->view->render());
+      return $this->htmlResponse();
    }
 
 In the script's first few lines, configuration options, set in
