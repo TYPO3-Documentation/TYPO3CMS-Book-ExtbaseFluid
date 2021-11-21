@@ -298,7 +298,7 @@ by returning the redirect method::
 
 or to another uri::
 
-   return $this->redirectToUri('https://example.com');
+   return $this->redirectToUri('https://example.org');
 
 .. note::
 
