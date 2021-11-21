@@ -157,7 +157,7 @@ Usually the display of a single Object is called by a link in the
 frontend. In our example extension it connects the list view by something
 like the following URL:
 
-`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer`
+`https://example.org/index.php?id=123&amp;tx_sjroffers_pi1[offer]=3&amp;tx_sjroffers_pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Offer`
 
 Due to the 2 Arguments
 `tx_sjroffers_pi1[controller]=Offer` and
@@ -225,7 +225,7 @@ Repository. We're going to implement these two steps in the methods
 First the method :php:`newAction()` is called by a
 Link in frontend with the following URL:
 
-`http://localhost/index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
+`https://example.org/index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_pi1[action]=new&amp;tx_sjroffers_pi1[controller]=Offer`
 
 Extbase instantiates the :php:`Organization `Object
 which is mapped to the Argument :php:`$organization,` just
@@ -327,13 +327,13 @@ provokes the immediate reload of the page with the given URL:
 
 .. code-block:: html
 
-   <html><head><meta http-equiv="refresh" content="0;url=http://localhost/
+   <html><head><meta http-equiv="refresh" content="0;url=https://example.org/
    index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_
    pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Organization"/></head></html>
 
 The Method :php:`redirectToURI()` corresponds to the
 Method :php:`redirect()`, but you can directly set a URL
-respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=http://example.com/foo/bar.html"/></head></html>`.
+respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=https://example.org/foo/bar.html"/></head></html>`.
 With this, you have all the freedom to do what you need. The Method
 :php:`forward()`, at last, does a redirect of the request
 to another Action on the spot, just as the two redirect Methods. In

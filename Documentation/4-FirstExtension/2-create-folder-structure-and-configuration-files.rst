@@ -75,7 +75,7 @@ extension. Find a complete reference in chapter
        'category' => 'plugin',
        'author' => 'John Doe',
        'author_company' => 'John Doe Inc.',
-       'author_email' => 'john.doe@example.com',
+       'author_email' => 'john.doe@example.org',
        'state' => 'alpha',
        'clearCacheOnLoad' => true,
        'version' => '0.0.0',
