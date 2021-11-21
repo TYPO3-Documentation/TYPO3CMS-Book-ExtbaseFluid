@@ -61,7 +61,7 @@ of the *Core Api Reference* manual.
        'category' => 'plugin',
        'author' => 'John Doe',
        'author_company' => 'John Doe Inc.',
-       'author_email' => 'john.doe@example.com',
+       'author_email' => 'john.doe@example.org',
        'state' => 'alpha',
        'clearCacheOnLoad' => true,
        'version' => '0.0.0',
@@ -80,7 +80,7 @@ The icon will be displayed in the extension manager and in the TYPO3 extension r
 
 Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be added:
 
-.. code-block:: php 
+.. code-block:: php
 
     {
         "name": "myvendor/store-inventory",
@@ -90,7 +90,7 @@ Next to the :file:`ext_emconf.php` also a :file:`composer.json` file should be a
           {
             "name": "John Doe",
             "role": "Developer",
-            "homepage": "https://www.example.com"
+            "homepage": "https://example.org"
           }
         ],
         "license": "GPL-2.0-or-later",
