@@ -28,7 +28,7 @@ name of the extension.
 The second parameter is a freely selectable name of the plugin (a short,
 meaningful name in UpperCamelCase). The plugin name plays a significant role in
 the allocation of GET- and POST parameters to the appropriate plugin:
-https://example.org/index.php?id=123&ts_sjroffers_list[offer]=3. The third argument
+:samp:`https://example.org/index.php?id=123&ts_sjroffers_list[offer]=3`. The third argument
 is the label by which the plugin appears in the list of plugin in the backend.
 Now the plugin is made available in the backend, we can add a plugin with the
 name _Offers_ to our example.
