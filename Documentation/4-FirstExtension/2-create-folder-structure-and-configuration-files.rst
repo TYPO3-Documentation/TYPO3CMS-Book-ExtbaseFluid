@@ -65,7 +65,7 @@ of the *Core Api Reference* manual.
        'category' => 'plugin',
        'author' => 'John Doe',
        'author_company' => 'John Doe Inc.',
-       'author_email' => 'john.doe@example.com',
+       'author_email' => 'john.doe@example.org',
        'state' => 'alpha',
        'clearCacheOnLoad' => true,
        'version' => '0.0.0',
@@ -84,7 +84,7 @@ The icon will be displayed in the extension manager and in the TYPO3 extension r
 
 Next to the `ext_emconf.php` you should add a :file:`composer.json` file:
 
-.. code-block:: php 
+.. code-block:: php
 
     {
         "name": "myvendor/store-inventory",
