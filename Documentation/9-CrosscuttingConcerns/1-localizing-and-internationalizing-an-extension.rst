@@ -409,12 +409,12 @@ database the following record is stored::
 A link that references the single view of a blog looks like
 this:
 
-:samp:`http://www.example.com/index.php?id=99&amp;tx_blogexample_pi1[controller]=Blog&amp;tx_blogexample_pi1[action]=show&amp;tx_blogexample_pi1[blog]=7`
+:samp:`https://example.org/index.php?id=99&amp;tx_blogexample_pi1[controller]=Blog&amp;tx_blogexample_pi1[action]=show&amp;tx_blogexample_pi1[blog]=7`
 
 By adding ``&amp;L=1`` we referencing now the German
 version:
 
-:samp:`http://www.example.com/index.php?id=99&amp;tx_blogexample_pi1[controller]=Blog&amp;tx_blogexample_pi1[action]=show&amp;tx_blogexample_pi1[blog]=7&amp;L=1`
+:samp:`https://example.org/index.php?id=99&amp;tx_blogexample_pi1[controller]=Blog&amp;tx_blogexample_pi1[action]=show&amp;tx_blogexample_pi1[blog]=7&amp;L=1`
 
 Notice that the given UID in tx_blogexample_pi1[blog]=7 is not
 changed. There is not UID of the data record of the german translation

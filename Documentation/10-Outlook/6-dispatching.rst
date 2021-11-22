@@ -189,7 +189,7 @@ Redirecting a request
 Within an action the current request can be redirected to another action or uri::
 
    $this->redirect('newAction', 'ForeignController', 'ForeignExtension');
-   $this->redirectToUri('https://example.com');
+   $this->redirectToUri('https://example.org');
 
 In first example Extbase will build the url and call :php:`redirectToUri()`.
 
