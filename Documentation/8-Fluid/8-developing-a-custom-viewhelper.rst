@@ -52,7 +52,7 @@ address as a parameter. The Viewhelper is called in the template as follows:
 
 .. code-block:: html
 
-   <blog:gravatar emailAddress="username@example.com" />
+   <blog:gravatar emailAddress="username@example.org" />
 
 See :ref:`global-namespace-import` for information how to import
 namespaces globally.
@@ -208,7 +208,7 @@ for the following usage:
 
 .. code-block:: html
 
-   <blog:gravatar emailAddress="username@example.com" />
+   <blog:gravatar emailAddress="username@example.org" />
 
 Does not result in:
 
