@@ -871,7 +871,7 @@ rewritten. This option is normally activated.
    than a a Node Element or a leaf in the virtual Page Tree. Every page is
    associated with a unique Page ID (PID). Some of the pages are reachable via
    a URL and TYPO3 renders and delivers them (usually in HTML). For example,
-   the URL *https://example.org/index.php?id=123* requests the Page with the
+   the URL :samp:`https://example.org/index.php?id=123` requests the Page with the
    PID 123. In this case, the term Page has the meaning of being a Webpage. But
    there are other cases, e.g. a directory (*SysFolder*) or a separator which
    are used to save data in a clear and structured way. A special already
