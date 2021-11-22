@@ -146,7 +146,7 @@ Usually, the display of a single Object is called by a link in the
 frontend. In this example extension it connects the list view by something
 like the following URL:
 
-:samp:`http://localhost/index.php?id=123&tx_sjroffers_pi1[offer]=3&tx_sjroffers_pi1[action]=show&tx_sjroffers_pi1[controller]=Offer`
+:samp:`https://example.org/index.php?id=123&tx_sjroffers_pi1[offer]=3&tx_sjroffers_pi1[action]=show&tx_sjroffers_pi1[controller]=Offer`
 
 Due to the 2 Arguments
 `tx_sjroffers_pi1[controller]=Offer` and
@@ -213,7 +213,7 @@ repository. These two steps are implemented in the methods
 First the method :php:`newAction()` is called by a
 link in frontend with the following URL:
 
-:samp:`http://localhost/index.php?id=123&tx_sjroffers_pi1[organization]=5&tx_sjroffers_pi1[action]=new&tx_sjroffers_pi1[controller]=Offer`
+:samp:`https://example.org/index.php?id=123&tx_sjroffers_pi1[organization]=5&tx_sjroffers_pi1[action]=new&tx_sjroffers_pi1[controller]=Offer`
 
 Extbase instantiates the :php:`Organization `Object
 mapped to the Argument :php:`$organization,` just
@@ -348,13 +348,13 @@ provokes the immediate reload of the page with the given URL:
 
 .. code-block:: html
 
-   <html><head><meta http-equiv="refresh" content="0;url=http://localhost/
+   <html><head><meta http-equiv="refresh" content="0;url=https://example.org/
    index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_
    pi1[action]=show&amp;tx_sjroffers_pi1[controller]=Organization"/></head></html>
 
 The method :php:`redirectToURI()` corresponds to the
 method :php:`redirect()`, but you can directly set a URL
-respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=http://example.com/foo/bar.html"/></head></html>`.
+respectively URI as string, e.g. `<html><head><meta http-equiv= "refresh" content="0;url=https://example.org/foo/bar.html"/></head></html>`.
 With this, you have all the freedom to do what you need. Returning
 a :php:`ForwardResponse` object redirects the request
 to another action, just as the other two redirect methods do. In
