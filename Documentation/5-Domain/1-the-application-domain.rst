@@ -73,7 +73,7 @@ Here is an excerpt of the list:
 
 The terms and rules are taken in relationship now. From the
 past thoughts a first draft of the domain is made, which you can see in
-figure 5-2. Every rectangle emblematise an object of the domain.The lower
+figure 5-2. Every rectangle emblematise an object of the domain. The lower
 half of the bin shows an extract of its properties. Properties in
 *italic* writing of a parent object are holding
 references to the child objects. The chaining lines with an arrow point to
