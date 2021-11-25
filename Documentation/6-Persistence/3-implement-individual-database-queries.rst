@@ -370,7 +370,7 @@ Extbase makes complete abstraction of the storage backend possible.
     The ``Query`` object leans against the *Java Specification Request* (JSR) 283. JSR 283
     describes a standardised content repository for Java, The FLOW team ported this idea to PHP. You can
     find more information about this at
-    :file:`http://jcp.org/en/jsr/detail?id=283`.
+    https://jcp.org/en/jsr/detail?id=283.
 
 Even so, using the method ``statement()`` of the ``Query`` object, you can send a native SQL statement to
 the database.
