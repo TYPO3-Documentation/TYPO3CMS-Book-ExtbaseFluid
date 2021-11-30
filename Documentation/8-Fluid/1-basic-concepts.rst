@@ -108,12 +108,12 @@ in the following order:
 
 .. sidebar:: The Uniform Access Principle
 
-    The `Uniform Access Principle 
-    <https://en.wikipedia.org/wiki/Uniform_access_principle>`__ 
+    The `Uniform Access Principle
+    <https://en.wikipedia.org/wiki/Uniform_access_principle>`__
     says all services offered by a
     module should be available through a uniform notation that does not
     betray whether they are implemented through storage or
-    computation. 
+    computation.
 
     Stored objects are being accessed directly using public class
     variables in PHP - and it is visible on the outside that the object
@@ -215,7 +215,7 @@ functionality.
     ``for`` are individual ViewHelpers in Fluid and not a core
     language feature. This is one of the main reasons for the flexibility
     of Fluid. You'll find a detailed reference in the `ViewHelpers Reference
-    <https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Index.html>`__.
+    <https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/typo3/fluid/latest/Index.html>`__.
 
 .. index:: Fluid; arrays
 
