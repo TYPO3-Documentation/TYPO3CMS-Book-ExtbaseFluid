@@ -38,6 +38,9 @@ method.
 How to use property mappers
 ===========================
 
+.. todo: \TYPO3\CMS\Extbase\Domain\Model\FrontendUser has been deprecated with
+         Version 11 and removed with version 12. make another example
+
 The above example was a straightforward one. Most of the time, you will
 convert from an array to an where some points must be considered. This example
 will show a simple conversion::
@@ -63,6 +66,9 @@ with defined property `username`.
 
 Allow mapping of sub-properties
 ===============================
+
+.. todo: \TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup has been deprecated with
+         Version 11 and removed with version 12. make another example
 
 It's also possible to map to subtypes. In the above example, the `FrontendUser` has a sub-property
 of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you wanna map an incoming id,

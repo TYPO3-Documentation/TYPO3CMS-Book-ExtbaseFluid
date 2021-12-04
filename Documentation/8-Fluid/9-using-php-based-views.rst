@@ -35,14 +35,26 @@ it applies only to the format JSON. So that the class according to the
 naming convention must be implemented in the file
 *EXT:blog_example/Classes/View/Post/ListJSON.php*.
 
-Each view must implement the interface
-``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. This consists of some
+Each view must extend class :php:`TYPO3\CMS\Fluid\View\StandaloneView`
+or at least implement the interface
+:php:`\TYPO3Fluid\Fluid\View\ViewInterface`. This consists of some
 initializing methods and the ``render()`` method called
 by the controller for displaying the view.
 
-.. deprecated:: 11.4
+.. versionchanged:: 12.0
    Extending :php:`\TYPO3\CMS\Extbase\Mvc\View\AbstractView` has been
-   deprecated with v11. The class will be removed with v12.
+   deprecated with v11 and removed with v12.
+
+.. versionchanged:: 12.0
+   :php:`TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext has been
+   deprecated with v11 and removed with v12.
+
+.. todo: The following code example will not work in TYPO3 12 anymore. Example needs
+   to be updated.
+
+.. warning::
+   The following code example will not work in TYPO3 12 anymore. Example needs
+   to be updated.
 
 A minimal view would like this::
 
@@ -148,7 +160,7 @@ view.
 If you want to control the resolving and initializing of the view
 completely, you have to rewrite the method ``resolveView()``.
 This method has to return a view that implements
-``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. Sometimes it is enough to
+:php:`\TYPO3Fluid\Fluid\View\ViewInterface`. Sometimes it is enough to
 overwrite the resolution of the view object name. Therefore you must
 overwrite the method ``resolveViewObjectName()``. This method
 returns the name of the PHP class, which should be used as a view.

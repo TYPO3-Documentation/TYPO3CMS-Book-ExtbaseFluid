@@ -90,7 +90,7 @@ the check looks like this::
 
    canHandleRequest()
    {
-       return $this->environmentService->isEnvironmentInBackendMode()
+       return Environment::isEnvironmentInBackendMode()
            && !Environment::isCli();
    }
 

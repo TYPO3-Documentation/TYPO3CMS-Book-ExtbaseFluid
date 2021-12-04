@@ -475,7 +475,7 @@ you see the most important properties of the action controller:
     Domain-specific extension settings from TypoScript (as array), see :ref:`typoscript_configuration-settings`.
 
 `$view`
-    The view used of type :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface`.
+    The view used of type :php:`\TYPO3Fluid\Fluid\View\ViewInterface`.
 
 .. todo: We need to keep an eye on these. They are more or less internal and
          will be removed at some point.
@@ -485,9 +485,9 @@ you see the most important properties of the action controller:
 Most important API methods of action controller
 -----------------------------------------------
 
-.. deprecated:: 11.5
-   The method :php:`initializeView` has been deprecated and will be removed along with the 
-   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12. 
+.. versionchanged:: 12.0
+   The method :php:`initializeView` has been removed along with the
+   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12.
 
 `Action()`
     Defines an action.
