@@ -198,7 +198,9 @@ The methods above return a ``Constraint`` object. The resulting ``Constraint``
 object of ``logicalAnd()`` is true if both given parameters ``$constraint1`` and
 ``$constraint2`` are true. It's sufficient when using ``logicalOr()`` to
 be true if only one of the given parameters is true. Both methods
-accept an Array of constraints. Last but not least, the function
+require at least two parameters and accept an infinite number of parameters.
+
+Last but not least, the function
 ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
 complex queries such as:
@@ -210,10 +212,8 @@ complex queries such as:
         $query = $this->createQuery();
         $query->matching(
             $query->logicalAnd(
-                [
-                    $query->equals('organization', $organization),
-                    $query->contains('regions', $region)
-                ]
+                 $query->equals('organization', $organization),
+                 $query->contains('regions', $region)
             )
         );
         return $query->execute();
@@ -252,36 +252,35 @@ In the method ``findDemanded()`` of the ``offerRepository``, the request is impl
         }
         if ($demand->getAge() !== null) {
             $constraints[] = $query->logicalAnd(
-                [
-                    $query->logicalOr(
-                        [
-                            $query->equals('ageRange.minimumValue', null),
-                            $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-                        ]
-                    ),
-                    $query->logicalOr(
-                        [
-                            $query->equals('ageRange.maximumValue', null),
-                            $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-                        ]
-                    ),
-                ]
+                 $query->logicalOr(
+                      $query->equals('ageRange.minimumValue', null),
+                      $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+                 ),
+                 $query->logicalOr(
+                      $query->equals('ageRange.maximumValue', null),
+                      $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+                 ),
             );
         }
         $constraints[] = $query->logicalOr(
-            [
-                $query->equals('dateRange.minimumValue', null),
-                $query->equals('dateRange.minimumValue', 0),
-                $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
-            ]
+             $query->equals('dateRange.minimumValue', null),
+             $query->equals('dateRange.minimumValue', 0),
+             $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
         );
-        $query->matching($query->logicalAnd($constraints));
+
+        $numberOfConstraints = count($constraints);
+        if ($numberOfConstraints === 1) {
+            $query->matching(reset($constraints));
+        } elseif ($numberOfConstraints >= 2) {
+            $query->matching($query->logicalAnd(...$constraints));
+        }
         return $query->execute();
     }
 
 The ``Demand`` object is passed as an argument. In the first line, the ``Query`` object is created.
 All single constraint terms are then collected in the array ``$constraints``. The
-``$query->logicalAnd($constraints)`` instruction brings together these constraint terms, and
+``$query->logicalAnd(...$constraints)`` instruction brings together these constraint terms
+if there are more then one, and
 they are assigned to the ``Query`` object via ``matching()``. With ``return $query->execute();``, the
 query is executed, and the located ``Offer`` objects are returned to the caller.
 
@@ -290,20 +289,14 @@ The example's offer age range requirement is interesting.
 .. code-block:: php
 
     $constraints[] = $query->logicalAnd(
-        [
-            $query->logicalOr(
-                [
-                    $query->equals('ageRange.minimumValue', null),
-                    $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-                ]
-            ),
-            $query->logicalOr(
-                [
-                    $query->equals('ageRange.maximumValue', null),
-                    $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-                ]
-            ),
-        ]
+         $query->logicalOr(
+              $query->equals('ageRange.minimumValue', null),
+              $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+         ),
+         $query->logicalOr(
+              $query->equals('ageRange.maximumValue', null),
+              $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+         ),
     );
 
 This requirement is fulfilled using multiple levels of nested query constraints. Each ``logicalOr()``
@@ -616,10 +609,10 @@ m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
 
    $query = $postRepository->createQuery();
    $query->matching(
-      $query->logicalOr([
+      $query->logicalOr (
          $query->equals('author.tags.name', 'typo3'),
          $query->equals('author.tagsSpecial.name', 'typo3')
-       ])
+      )
    );
    $posts = $query->execute();
 

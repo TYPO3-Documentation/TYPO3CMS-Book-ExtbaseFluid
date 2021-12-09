@@ -486,8 +486,8 @@ Most important API methods of action controller
 -----------------------------------------------
 
 .. deprecated:: 11.5
-   The method :php:`initializeView` has been deprecated and will be removed along with the 
-   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12. 
+   The method :php:`initializeView` has been deprecated and will be removed along with the
+   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12.
 
 `Action()`
     Defines an action.
@@ -911,12 +911,34 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 `$query->logicalAnd($constraint1, $constraint2);`
-    Two conditions are joined with a logical *and*, it gives back the resulting condition. Since Extbase
-    1.1 (TYPO3 4.3) also an array of conditions is allowed.
+   Two conditions are joined with a logical *and*, it gives back the resulting condition.
+   Multiple parameters are allowed, at least 2. Since TYPO3 12 passing the
+   parameters as array is not allowed anymore. Use the following migration::
+
+   $constraints = [];
+
+   if (...) {
+      $constraints[] = $query->equals('propertyName1', 'value1');
+   }
+
+   if (...) {
+      $constraints[] = $query->equals('propertyName2', 'value2');
+   }
+
+   $query = $this->createQuery();
+
+   $numberOfConstraints = count($constraints);
+   if ($numberOfConstraints === 1) {
+       $query->matching(reset($constraints));
+   } elseif ($numberOfConstraints >= 2) {
+       $query->matching($query->logicalAnd(...$constraints));
+   }
 
 `$query->logicalOr($constraint1, $constraint2);`
-    Two conditions are joined with a logical *or*, it gives back the resulting condition. Since Extbase
-    1.1 (TYPO3 4.3) also an array of conditions is allowed.
+   Two conditions are joined with a logical *or*, it gives back the resulting condition.
+   Multiple parameters are allowed, at least 2. Since TYPO3 12 passing the
+   parameters as array is not allowed anymore. For a migration have a look at
+   the above description for function :php:`logicalAnd`.
 
 `$query->logicalNot($constraint);`
     Returns a condition that inverts the result of the given condition (logical *not*).
