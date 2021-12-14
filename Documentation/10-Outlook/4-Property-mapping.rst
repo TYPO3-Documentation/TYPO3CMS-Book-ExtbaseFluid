@@ -24,15 +24,15 @@ method.
 .. note::
    The :php:`PropertyMapper` has to be injected before it can be used::
 
-   // use \TYPO3\CMS\Extbase\Property\PropertyMapper
-
-   /**
-    * @param PropertyMapper $propertyMapper
-    */
-   public function injectPropertyMapper(PropertyMapper $propertyMapper)
-   {
-       $this->propertyMapper = $propertyMapper;
-   }
+      // use \TYPO3\CMS\Extbase\Property\PropertyMapper
+      
+      /**
+       * @param PropertyMapper $propertyMapper
+       */
+      public function injectPropertyMapper(PropertyMapper $propertyMapper)
+      {
+          $this->propertyMapper = $propertyMapper;
+      }
 
 
 How to use property mappers
