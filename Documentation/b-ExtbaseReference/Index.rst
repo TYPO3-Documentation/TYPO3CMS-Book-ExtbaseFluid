@@ -911,9 +911,9 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
     "tools" assigned. If necessary, you can combine multiple conditions with boolean operations.
 
 `$query->logicalAnd($constraint1, $constraint2);`
-   Two conditions are joined with a logical *and*, it gives back the resulting condition.
-   Multiple parameters are allowed, at least 2. Since TYPO3 12 passing the
-   parameters as array is not allowed anymore. Use the following migration::
+   Two conditions are joined with a logical *and* that returns a condition.
+   Multiple parameters are allowed, at least 2. As of TYPO3 version 12, passing the
+   parameters as an array is not allowed. Use the following migration::
 
    $constraints = [];
 
@@ -935,10 +935,10 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
    }
 
 `$query->logicalOr($constraint1, $constraint2);`
-   Two conditions are joined with a logical *or*, it gives back the resulting condition.
-   Multiple parameters are allowed, at least 2. Since TYPO3 12 passing the
-   parameters as array is not allowed anymore. For a migration have a look at
-   the above description for function :php:`logicalAnd`.
+   Two conditions are joined with a logical *or*, that returns a condition.
+   A minimum of two paramaters are allowed. As of TYPO3 version 12, passing the
+   parameters as an array is not allowed. For a migration, check the
+   the description above for :php:`logicalAnd`.
 
 `$query->logicalNot($constraint);`
     Returns a condition that inverts the result of the given condition (logical *not*).
