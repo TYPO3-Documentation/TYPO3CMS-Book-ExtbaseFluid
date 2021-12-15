@@ -200,8 +200,7 @@ object of ``logicalAnd()`` is true if both given parameters ``$constraint1`` and
 be true if only one of the given parameters is true. Both methods
 require at least two parameters and accept an infinite number of parameters.
 
-Last but not least, the function
-``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
+The function ``logicalNot()`` inverts the given ``$constraint`` to its opposite, i.e. *true*
 yields *false* and *false* yields *true*. Given this information, you can create
 complex queries such as:
 
