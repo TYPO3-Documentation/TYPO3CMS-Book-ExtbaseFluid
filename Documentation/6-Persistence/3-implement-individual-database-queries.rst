@@ -279,7 +279,7 @@ In the method ``findDemanded()`` of the ``offerRepository``, the request is impl
 The ``Demand`` object is passed as an argument. In the first line, the ``Query`` object is created.
 All single constraint terms are then collected in the array ``$constraints``. The
 ``$query->logicalAnd(...$constraints)`` instruction brings together these constraint terms
-if there are more then one, and
+if there are more than one and
 they are assigned to the ``Query`` object via ``matching()``. With ``return $query->execute();``, the
 query is executed, and the located ``Offer`` objects are returned to the caller.
 
