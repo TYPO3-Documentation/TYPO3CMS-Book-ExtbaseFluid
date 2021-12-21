@@ -936,9 +936,9 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
 
 `$query->logicalOr($constraint1, $constraint2);`
    Two conditions are joined with a logical *or*, that returns a condition.
-   A minimum of two paramaters are allowed. As of TYPO3 version 12, passing the
+   A minimum of two parameters are allowed. As of TYPO3 version 12, passing the
    parameters as an array is not allowed. For a migration, check the
-   the description above for :php:`logicalAnd`.
+   description above for :php:`logicalAnd`.
 
 `$query->logicalNot($constraint);`
     Returns a condition that inverts the result of the given condition (logical *not*).
