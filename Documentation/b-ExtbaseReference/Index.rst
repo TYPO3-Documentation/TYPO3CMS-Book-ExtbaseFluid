@@ -36,7 +36,7 @@ to make it possible to have multiple frontend plugins.
     file :file:`ext_localconf.php` is evaluated in the frontend and file :file:`Configuration/TCA/Overrides/tt_content.php` in
     the backend. Therefore, in file :file:`Configuration/TCA/Overrides/tt_content.php` we add the entry to the plugin list (for
     the backend). In addition, the list of controller / action combinations is required at runtime
-    in the frontend - and therefore this must be defined in the file file :file:`ext_localconf.php`.
+    in the frontend - and therefore this must be defined in the file :file:`ext_localconf.php`.
 
     For further information, check out :ref:`Extension configuration files
     <t3coreapi:extension-configuration-files>`.
