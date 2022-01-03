@@ -51,7 +51,7 @@ should extend :php:`\TYPO3\CMS\Extbase\DomainObject\AbstractEntity`.
 
         protected $quantity = 0;
 
-        public function __construct(string $name = '', string $description = '', int $quantity = 0): void
+        public function __construct(string $name = '', string $description = '', int $quantity = 0)
         {
             $this->setName($name);
             $this->setDescription($description);
