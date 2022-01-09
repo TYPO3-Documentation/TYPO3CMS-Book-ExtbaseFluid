@@ -9,7 +9,7 @@ Backend by the editors of the youth club organisation and - within certain
 limitations - in the Frontend as well to provide functionalities for creation,
 update and deletion of the organisation's data. In this chapter, we first
 configure the Backend's form inputs for easy access to the database's contents.
-The forms that provide the management functionalities are stored in a 
+The forms that provide the management functionalities are stored in a
 PHP-Array called `Table Configuration Array (TCA)`.
 The TCA is stored in a file with the database table name suffixed with `.php` in the directory :file:`Configuration/TCA/`
 Example: The TCA for the database table tx_sjroffers_domain_model_organization is therefore in the
@@ -138,7 +138,7 @@ section); the fourth position holds extensive options which are separated
 through colons and the last place contains information about the appearance
 (e.g. color and structure). The information at the fourth place allow the use of
 the *Rich Text Editor*. For a full list of the options refer to the already
-mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi>`.
+mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 `palettes`
 Palettes are used to collect occasionally used fields and show them up on
@@ -236,7 +236,7 @@ The field type `input` may be used for date and time inputs:
    ],
 
 The value then will be tested for being given in an appropriate date format.
-Simultaneously, this leads to the rendering of a collapsible calendar page with 
+Simultaneously, this leads to the rendering of a collapsible calendar page with
 an icon right to the input field which is shown in Fig. 6-2:
 
 .. figure:: /Images/6-Persistence/figure-6-2.png
@@ -429,7 +429,7 @@ references to resources of the filesystem or rowsets of a database (see Fig. 6-9
             'size' => 3,
             'maxitems' => 50,
             'minitems' => 0
-      ] 
+      ]
    ],
 
 The combination of `type` and `internal_type` specifies the field's type.
@@ -482,7 +482,7 @@ Field type "user"
 
 User generates free definable form fields which can be processed by any PHP
 function. For further information, refer to the documentation which is available
-online and to the :ref:`TYPO3-Core API <t3coreapi>`.
+online and to the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 
 Field type "flex"
@@ -579,7 +579,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi>` describes the
+Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
@@ -596,7 +596,7 @@ configuration of products with their according categories:
    ],
 
 This second option deserves some additional kudos because it does not need a
-TCA-configuration for the temporary table *tx_myext_product_category_mm*. 
+TCA-configuration for the temporary table *tx_myext_product_category_mm*.
 You don't need to show up or edit the whole table or parts of it in the Backend -
 the SQL definition is sufficient.
 

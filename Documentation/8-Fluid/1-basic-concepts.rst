@@ -211,8 +211,6 @@ functionality.
     Appendix C.
 
 
-.. _inline-notation-vs-tag-based-notation:
-
 Inline Notation for View Helpers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
