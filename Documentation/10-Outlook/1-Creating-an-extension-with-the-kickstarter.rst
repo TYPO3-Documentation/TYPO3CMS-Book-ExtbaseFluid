@@ -7,4 +7,4 @@
 Creating an extension with the kickstarter
 ==========================================
 
-The content of this page was moved to :ref:`extension-builder`
+The content of this page was moved to :ref:`installation`.

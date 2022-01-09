@@ -3,11 +3,13 @@
 Installation
 ============
 
-Extbase and Fluid are required TYPO3 system extensions - therefor
-available in all TYPO3 installations. To follow this documentation,
-we assume you have TYPO3 up-and-running.
+To follow this documentation you need to have
 
-.. toctree::
-   :maxdepth: 2
+1. :doc:`TYPO3 installed and running <t3install:QuickInstall/Index>`,
+2. the system extensions *Extbase* and *Fluid* and
+3. the `Extension Builder <https://extensions.typo3.org/extension/extension_builder>`__ extension installed.
 
-   1-extension-builder
+The Extension Builder helps you to create and manage your Extbase and Fluid
+based TYPO3 extensions by providing you a GUI.
+But note that you should still familiarize yourself with the generated files
+and their usage.
