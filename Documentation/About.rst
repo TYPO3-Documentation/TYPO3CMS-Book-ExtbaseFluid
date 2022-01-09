@@ -65,7 +65,7 @@ and three appendices. The chapters discuss the following topics:
 
 .. In chapter 4, **Creating a first extension**
 
-* In :ref:`creating-a-first-extension`, we show
+* In :ref:`creating-store-inventory-extension`, we show
   you a minimal extension. With this extension, data is managed through the
   TYPO3 backend and displayed in the frontend.
 

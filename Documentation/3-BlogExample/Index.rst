@@ -22,8 +22,8 @@ characteristics of an extension and determine which processes are running in the
 background.
 
 If you are looking for a manual specifically on creating an extension,
-:ref:`creating-a-first-extension` will show you the right set of tools.
-The chapter for this journey explains the fundamentals. It could also 
+:ref:`creating-store-inventory-extension` will show you the right set of tools.
+The chapter for this journey explains the fundamentals. It could also
 have the title "Europe in five days." If you discover nice
 places, you should revisit them later without the travel group.
 
