@@ -90,7 +90,7 @@ The form looks (shortened) like this:
 If the form is sent, the argument mapping for the user object gets
 this array:
 
-.. code-block:: raw
+.. code-block:: none
 
    [
       __identity => ...

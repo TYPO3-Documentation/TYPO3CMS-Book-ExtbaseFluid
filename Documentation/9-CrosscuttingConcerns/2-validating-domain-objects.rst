@@ -5,7 +5,7 @@
 Validating domain objects
 =========================
 
-We have discussed both Extbase and Fluid in some detail, but have spent 
+We have discussed both Extbase and Fluid in some detail, but have spent
 very little time discussing the domain and how we go about ensuring its consistency. We often assume that
 domain objects are consistent and adhere to our rules at all times.
 Unfortunately, this is not achieved automatically. So it is important to define these
@@ -17,7 +17,7 @@ rules:
   must not contain special characters.
 * The field ``email`` of the user object must contain a valid email address.
 
-These rules must apply at all times for the user object. A user object is only valid if 
+These rules must apply at all times for the user object. A user object is only valid if
 it complies to these validation rules.
 These rules are called *invariants* because they must be
 valid during the entire lifetime of the object.
@@ -777,7 +777,7 @@ The generated URL contains the identity of the blog object:
 property mapper gets the blog object with the identity 47 from the
 repository and returns it directly without copying before.
 
-Now that you know about argument mapping in greater detail an can begin to use 
+Now that you know about argument mapping in greater detail an can begin to use
 it in your own projects.
 
 After you have learned how you can make sure any invariants of

@@ -300,7 +300,7 @@ types.
 |Floating-point                |`decimal(p[,s])`    |(saved as string of characters)                  |
 +------------------------------+--------------------+-------------------------------------------------+
 |(amounts of money, measurement|`float(p[,s])`      |-1.79E+308 to +1.79E+308 (eventually limited     |
-|values etc.)                  |                    |by the precision)                           |
+|values etc.)                  |                    |by the precision)                                |
 |                              |                    |                                                 |
 +------------------------------+--------------------+-------------------------------------------------+
 
@@ -373,7 +373,7 @@ attached to several offers.
      expressions like `uid IS NULL`. However, Extbase
      automatically figures out the right way for you.
    * `NULL` values in queries like
-     `DISTINCT`, `ORDER BY` and `GROUP BY` are seen 
+     `DISTINCT`, `ORDER BY` and `GROUP BY` are seen
      the same way and are thus grouped together.
    * Fields permitting `NULL` values take more memory,
      because it is harder to improve the database engine for those SQL

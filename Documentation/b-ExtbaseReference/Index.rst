@@ -879,6 +879,8 @@ Domain model, but with the suffix Validator and implement the interface
 :php:`\TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface`. For more details, see the
 following Section.
 
+.. _validation-api:
+
 Validation API
 --------------
 
