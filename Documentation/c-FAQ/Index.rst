@@ -139,28 +139,26 @@ Similar to the localized error messages, you can put date formats in
 your locallang files:
 
 
-.. code-block:: code
+.. code-block:: xml
 
-      [...]
-          <label index="culture.date.formatLong">Y-m-d H:i</label>
-          <label index="culture.date.formatShort">Y-m-d</label>
-      [...]
+   [...]
+      <label index="culture.date.formatLong">Y-m-d H:i</label>
+      <label index="culture.date.formatShort">Y-m-d</label>
+   [...]
 
 And then just refer to them in your fluid template: <HTML> {post.date ->
 f:format.date(format: '{f:translate(key:
 \\'culture.date.formatShort\')}')} </HTML>
 
-If you want to use names for months, you can do so like this: locallang:
+If you want to use names for months, you can do so like this:
 
 
-.. code-block:: code
+.. code-block:: xml
 
-   ::
-
-      [...]
-          <label index="culture.monthNames.1">january</label>
-          <label index="culture.monthNames.2">february</label>
-      [...]
+   [...]
+      <label index="culture.monthNames.1">january</label>
+      <label index="culture.monthNames.2">february</label>
+   [...]
 
 Fluid:
 
@@ -235,17 +233,18 @@ An array can be accessed dynamically by recursively inserting its index:
    <f:variable name="index" value="1" />
    Variable "index" contains the array position we need.
    Dynamic array index #{index}: {array.{index}} <!-- bar -->
-   
+
 It is even possible to call variables dynamically that way:
 
 .. code-block:: xml
+
    <f:variable name="typeOne" value="This is type 1" />
    <f:variable name="typeTwo" value="This is type 2" />
    <f:variable name="selectedType" value="Two" />
    Variable "selectedType" is a string that's part of a variable name.
    Dynamic named variable: {type{selectedType}} <!-- This is type 2 -->
-   
-See `Fluid supports variable access with dynamic names/parts of name 
+
+See `Fluid supports variable access with dynamic names/parts of name
 <https://twitter.com/NamelessCoder/status/937995733873184768>`__
 
 How can I use Fluid in my Email templates?
