@@ -361,9 +361,10 @@ no template file is found, it will proceed with `0`.
 
    If there is no root path defined at all, a fallback path will be created during runtime.
    The fallback path consists of the extension key and a fixed directory path.
-   .. todo: We should mention that there is no typoscript created during runtime. Fluid is
-            Checking the given configuration and falls back to specific paths which should
-            be mentioned here. `EXT:extension/Resources/Private/{Templates/Partials/Layouts}`
+
+.. todo: We should mention that there is no typoscript created during runtime. Fluid is
+         Checking the given configuration and falls back to specific paths which should
+         be mentioned here. `EXT:extension/Resources/Private/{Templates/Partials/Layouts}`
 
 More information on root paths can be found in the TypoScript reference:
 :ref:`t3tsref:cobj-fluidtemplate-properties-templaterootpaths`
@@ -914,25 +915,25 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
    Two conditions are joined with a logical *and* that returns a condition.
    Multiple parameters are allowed, at least 2. As of TYPO3 version 12, passing the
    parameters as an array is not allowed. Use the following migration::
-
-   $constraints = [];
-
-   if (...) {
-      $constraints[] = $query->equals('propertyName1', 'value1');
-   }
-
-   if (...) {
-      $constraints[] = $query->equals('propertyName2', 'value2');
-   }
-
-   $query = $this->createQuery();
-
-   $numberOfConstraints = count($constraints);
-   if ($numberOfConstraints === 1) {
-       $query->matching(reset($constraints));
-   } elseif ($numberOfConstraints >= 2) {
-       $query->matching($query->logicalAnd(...$constraints));
-   }
+   
+       $constraints = [];
+       
+       if (...) {
+          $constraints[] = $query->equals('propertyName1', 'value1');
+       }
+       
+       if (...) {
+          $constraints[] = $query->equals('propertyName2', 'value2');
+       }
+       
+       $query = $this->createQuery();
+       
+       $numberOfConstraints = count($constraints);
+       if ($numberOfConstraints === 1) {
+           $query->matching(reset($constraints));
+       } elseif ($numberOfConstraints >= 2) {
+           $query->matching($query->logicalAnd(...$constraints));
+       }
 
 `$query->logicalOr($constraint1, $constraint2);`
    Two conditions are joined with a logical *or*, that returns a condition.
