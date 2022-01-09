@@ -361,9 +361,10 @@ no template file is found, it will proceed with `0`.
 
    If there is no root path defined at all, a fallback path will be created during runtime.
    The fallback path consists of the extension key and a fixed directory path.
-   .. todo: We should mention that there is no typoscript created during runtime. Fluid is
-            Checking the given configuration and falls back to specific paths which should
-            be mentioned here. `EXT:extension/Resources/Private/{Templates/Partials/Layouts}`
+
+.. todo: We should mention that there is no typoscript created during runtime. Fluid is
+         Checking the given configuration and falls back to specific paths which should
+         be mentioned here. `EXT:extension/Resources/Private/{Templates/Partials/Layouts}`
 
 More information on root paths can be found in the TypoScript reference:
 :ref:`t3tsref:cobj-fluidtemplate-properties-templaterootpaths`
@@ -486,8 +487,8 @@ Most important API methods of action controller
 -----------------------------------------------
 
 .. deprecated:: 11.5
-   The method :php:`initializeView` has been deprecated and will be removed along with the 
-   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12. 
+   The method :php:`initializeView` has been deprecated and will be removed along with the
+   :php:`\TYPO3\CMS\Extbase\Mvc\View\ViewInterface` in v12.
 
 `Action()`
     Defines an action.
