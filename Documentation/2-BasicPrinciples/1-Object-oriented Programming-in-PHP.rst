@@ -169,7 +169,7 @@ process consequentially *Instantiation*. We can use the
 command `var_dump()` to closely examine the object. We'll see
 the following:
 
-.. code-block:: raw
+.. code-block:: none
 
    object(Ship)#1 (3) {
 
