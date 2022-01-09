@@ -810,7 +810,7 @@ In the setter of the title of an offer would stand the following code:
 This has several disadvantages:
 
 * This examination, had to be done at any point, which manipulates the title (risk of failure to examination,
-and risk of duplicated code by cut-and-paste).
+  and risk of duplicated code by cut-and-paste).
 * The definition of the rule is more or less far away from the definition of the property (poor readability of the code).
 * A change in an option of a rule ("80 rather than 50 characters") requires an intervention possibly at a difficult to-find places.
 

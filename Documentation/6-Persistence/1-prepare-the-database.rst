@@ -297,7 +297,7 @@ types.
 |Floating-point                |`decimal(p[,s])`    |(saved as string of characters)                  |
 +------------------------------+--------------------+-------------------------------------------------+
 |(amounts of money, measurement|`float(p[,s])`      |-1.79E+308 to +1.79E+308 (eventually limited     |
-|values etc.)                  |                    |by the precision)                           |
+|values etc.)                  |                    |by the precision)                                |
 |                              |                    |                                                 |
 +------------------------------+--------------------+-------------------------------------------------+
 

@@ -1,4 +1,4 @@
-.. include:: /Includes.rst.txt
+.. include:: /Includes.txt
 .. index:: ViewHelpers; Inline notation
 .. _inline-notation:
 

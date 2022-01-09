@@ -138,7 +138,7 @@ section); the fourth position holds extensive options which are separated
 through colons and the last place contains information about the appearance
 (e.g. color and structure). The information at the fourth place allow the use of
 the *Rich Text Editor*. For a full list of the options refer to the already
-mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi>`.
+mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 `palettes`
 Palettes are used to collect occasionally used fields and show them up on
@@ -482,7 +482,7 @@ Field type "user"
 
 User generates free definable form fields which can be processed by any PHP
 function. For further information, refer to the documentation which is available
-online and to the :ref:`TYPO3-Core API <t3coreapi>`.
+online and to the :ref:`TYPO3-Core API <t3coreapi:start>`.
 
 
 Field type "flex"
@@ -579,7 +579,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi>` describes the
+Nevertheless, the Online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:

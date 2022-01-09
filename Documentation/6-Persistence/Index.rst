@@ -14,16 +14,11 @@ will describe the necessary steps for doing that.
 
 It is important to understand  the lifecycle of a domain object to fully
 understand the persistence layer. When we instantiate a domain object, we essentially
-store it in memory. It is then in a transient (or volatile) state. 
-When TYPO3 delivers the rendered website, PHP frees up this allocated memory. 
+store it in memory. It is then in a transient (or volatile) state.
+When TYPO3 delivers the rendered website, PHP frees up this allocated memory.
 This means that the saved data will be lost and thus also the domain object.
 
-.. note::
-
-   You can read more about the lifecycle of objects in the chapter
-   :ref:`object-lifecyle`
-
-Domain Objects need to be transferred into a persistent state if the need to be available 
+Domain Objects need to be transferred into a persistent state if the need to be available
 across several page loads. This is done in Extbase by putting
 the Domain objects into a Repository. When the script finished its work,
 the Repository takes care about saving the volatile data in a persistent state.
@@ -34,7 +29,7 @@ This chapter deals with the necessary steps to persist the data
 of a Domain Object. First, the Domain Objects
 have to be prepared to make them persistable in the underlying database. Most
 extensions get their input data from the Backend, thus the input forms which
-receive the data have to be configured. Subsequently, the Repositories which serve 
+receive the data have to be configured. Subsequently, the Repositories which serve
 as an interface to the Domain Object are created.
 
 Those steps are sufficient for most of the simple extensions, however,

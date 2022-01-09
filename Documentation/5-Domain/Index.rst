@@ -7,7 +7,7 @@ Modeling the Domain
 ===================
 
 In this chapter you are going to learn how to create an abstraction
-(the **Domain Model**) as described in :ref:`ddd`.
+(the **Domain Model**) as described in :ref:`the-application-domain`.
 
 This first step of extension development is the most important
 as well. It provides the foundation for all following stages of development.
