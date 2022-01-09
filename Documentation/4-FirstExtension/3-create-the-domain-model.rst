@@ -152,7 +152,7 @@ generically named Getter and Setter for short.
     to make changes to the calling object. Also, for example, the reading can
     be permitted, without simultaneously allowing writing access. Later on,
     the tedious work needed to code these methods will be made for you by the
-    *Extension Builder*. Moreover, most development environments offer macros or
+    Extension Builder. Moreover, most development environments offer macros or
     snippets for this purpose. Note that in different moments Extbase
     internally tries to fill a property ``$name`` over a method
     ``setName()``.

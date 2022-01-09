@@ -27,7 +27,7 @@ following steps are necessary for implementation:
    connection will stay visible and a »natural« growth of extension and
    knowledge is given. After gathering the first experience in programming
    with Extbase, you probably will work in another and quicker order.
-   Furthermore, in the future you will have the *Extension Builder*, a convenient
+   Furthermore, in the future you will have the Extension Builder, a convenient
    tool to create the base of an extension which is outlined in chapter
    10.
 
