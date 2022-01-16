@@ -81,13 +81,17 @@ class names are written in lowercase, retaining the underlines.
 The definition of the database table fields `name`,
 `address` etc., follows in round brackets. Some of them should
 sound familiar since they meet the properties' names of the class
-`Organization`. However, the Extbase convention is still
-present: Field names are written in `lowercase_underscore` and are derived
-from the property's name by prefixing every uppercase letter with an
-underscore writing the whole construct in lowercase. The
-value of the property `address` is saved in the field
-`address`. The property `telephoneNumber` transforms
-into the field name `telephone_number` etc.
+`Organization`. 
+
+.. note::
+
+   However, the Extbase convention is still
+   present: Field names are written in `lowercase_underscore` and are derived
+   from the property's name by prefixing every uppercase letter with an
+   underscore writing the whole construct in lowercase. The
+   value of the property `address` is saved in the field
+   `address`. The property `telephoneNumber` transforms
+   into the field name `telephone_number` etc.
 
 However, the table definition contains additional fields with
 no correlating property in the class :php:`Organisation`.
