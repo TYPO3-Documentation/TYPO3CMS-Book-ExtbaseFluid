@@ -282,7 +282,7 @@ Form data. If all Arguments are valid, the action
     * @param Offer $newOffer A fresh Offer object which has not yet been added to the repository
     * @return void
     */
-   public function createAction(Organization $organization, Offer $newOffer) : void
+   public function createAction(Organization $organization, Offer $newOffer): void
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
