@@ -280,13 +280,13 @@ Form data. If all Arguments are valid, the action
    /**
     * @param Organization $organization The organization the offer belongs to
     * @param Offer $newOffer A fresh Offer object which has not yet been added to the repository
-    * @return ResponseInterface
+    * @return void
     */
-   public function createAction(Organization $organization, Offer $newOffer) : ResponseInterface
+   public function createAction(Organization $organization, Offer $newOffer) : void
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
-      return $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
+      $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
 
 The new offer is allocated to the organization, and inversely the
