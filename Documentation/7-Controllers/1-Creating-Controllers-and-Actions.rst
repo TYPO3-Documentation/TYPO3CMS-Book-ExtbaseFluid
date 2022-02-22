@@ -272,6 +272,9 @@ instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the action
 :php:`createAction()` is called.
 
+.. note::
+   Redirects do not return anything, that is the reason why the following action returns void
+
 .. code-block:: php
 
    // use \MyVendor\SjrOffers\Domain\Model\Organization;
