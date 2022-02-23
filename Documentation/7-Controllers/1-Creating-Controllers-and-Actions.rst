@@ -290,7 +290,7 @@ Form data. If all Arguments are valid, the action
    }
    
 .. note::
-   Redirects do not return anything, that is the reason why the above action returns void. This is going to be change in TYPO3 12 and it has been marked as deprecated. `Breaking: #96107 - Deprecated functionality removed <https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-96107-DeprecatedFunctionalityRemoved.html/>`__
+   The redirect methods do not return any response, any method using them should return `void` accordingly. This has been `deprecated in TYPO3v11 <https://docs.typo3.org/c/typo3/cms-core/11.5/en-us/Changelog/11.0/Deprecation-92784-ExtbaseControllerActionsMustReturnResponseInterface.html>`__ and was `dropped in TYPO3v12 where every action must return a response now <https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-96107-DeprecatedFunctionalityRemoved.html>`__.
 
 The new offer is allocated to the organization, and inversely the
 organization is allocated to the offer. Thanks to this allocation, Extbase
