@@ -272,9 +272,6 @@ instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the action
 :php:`createAction()` is called.
 
-.. note::
-   Redirects do not return anything, that is the reason why the following action returns void
-
 .. code-block:: php
 
    // use \MyVendor\SjrOffers\Domain\Model\Organization;
@@ -291,6 +288,9 @@ Form data. If all Arguments are valid, the action
       $newOffer->setOrganization($organization);
       $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
+   
+.. note::
+   Redirects do not return anything, that is the reason why the above action returns void. This is going to be change in TYPO3 12 and it has been marked as deprecated. `Breaking: #96107 - Deprecated functionality removed <https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-96107-DeprecatedFunctionalityRemoved.html/>`__
 
 The new offer is allocated to the organization, and inversely the
 organization is allocated to the offer. Thanks to this allocation, Extbase
