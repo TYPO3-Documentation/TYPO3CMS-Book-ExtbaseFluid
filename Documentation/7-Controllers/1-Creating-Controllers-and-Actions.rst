@@ -280,14 +280,17 @@ Form data. If all Arguments are valid, the action
    /**
     * @param Organization $organization The organization the offer belongs to
     * @param Offer $newOffer A fresh Offer object which has not yet been added to the repository
-    * @return ResponseInterface
+    * @return void
     */
-   public function createAction(Organization $organization, Offer $newOffer) : ResponseInterface
+   public function createAction(Organization $organization, Offer $newOffer): void
    {
       $organization->addOffer($newOffer);
       $newOffer->setOrganization($organization);
-      return $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
+      $this->redirect('show', 'Organization', NULL, ['organization' => $organization]);
    }
+   
+.. note::
+   The redirect methods do not return any response, any method using them should return `void` accordingly. This has been `deprecated in TYPO3v11 <https://docs.typo3.org/c/typo3/cms-core/11.5/en-us/Changelog/11.0/Deprecation-92784-ExtbaseControllerActionsMustReturnResponseInterface.html>`__ and was `dropped in TYPO3v12 where every action must return a response now <https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/12.0/Breaking-96107-DeprecatedFunctionalityRemoved.html>`__.
 
 The new offer is allocated to the organization, and inversely the
 organization is allocated to the offer. Thanks to this allocation, Extbase
