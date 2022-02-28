@@ -81,10 +81,10 @@ The first action in the action list of the first line of the configuration param
 This determines the first template and its generated result to be shown in the frontend when no action
 parameter is present.
 
-.. _registrating-the-plugin:
+.. _registering-the-plugin:
 
 =======================
-Registrating the plugin
+Registering the plugin
 =======================
 
 .. index::
