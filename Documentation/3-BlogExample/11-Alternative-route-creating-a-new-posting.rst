@@ -9,7 +9,7 @@ Action: creating a new post
 
 After the first journey through the blog example,
 here follows a more complex action. It is about the
-creation of a new post. The user js offered a form in the front
+creation of a new post. The user is offered a form in the front
 end, where he can insert the title and the content of a new post
 and select an existing author for this post.
 After clicking the *submit* button, the list of the last posts of the
