@@ -31,23 +31,20 @@ the extension directory.
 
    <?php
 
-   use T3docs\StoreInventory\Controller\StoreInventoryController;
-   use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-
    // Prevent script from being called directly
    defined('TYPO3') or die();
 
    // encapsulate all locally defined variables
    (static function() {
-      ExtensionUtility::configurePlugin(
+      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
          'StoreInventory',
          'Pi1',
          [
-            StoreInventoryController::class => 'list',
+            T3docs\StoreInventory\Controller\StoreInventoryController::class => 'list',
          ],
          // non-cacheable actions
          [
-            StoreInventoryController::class => '',
+            T3docs\StoreInventory\Controller\StoreInventoryController::class => '',
          ]
       );
    })();
@@ -103,13 +100,11 @@ To achieve this, the following line must be inserted into the file :file:`Config
 
    <?php
 
-   use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-
    // Prevent script from being called directly
    defined('TYPO3') or die();
 
    (static function() {
-      ExtensionUtility::registerPlugin(
+      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
          'StoreInventory',
          'Pi1',
          'The Store Inventory List',
