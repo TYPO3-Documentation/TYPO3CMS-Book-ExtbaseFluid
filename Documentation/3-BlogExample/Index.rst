@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _The-Blog-Example:
 
@@ -11,7 +11,7 @@ A journey through the Blog Example
 
    * The latest version is:
      `Blog Example on TER <https://extensions.typo3.org/extension/blog_example/>`__,
-     `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__ 
+     `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__
 
 In this chapter we accompany you on a journey through a simple TYPO3 extension.
 While travelling on this round trip, you will get to know more about extension

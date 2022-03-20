@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ==============================
 Using Different Output Formats
@@ -77,7 +77,7 @@ Using built in :php:`JsonView`
 
 Extbase provides the :php:`\TYPO3\CMS\Extbase\Mvc\View\JsonView` as an
 alternative to :php:`\TYPO3\CMS\Fluid\View\TemplateView` which is used by
-default. 
+default.
 
 The intention is to provide the same public API, e.g. assign variables to the
 view, but replace the rendering. The View itself needs further configuration

@@ -1,6 +1,6 @@
 :orphan:
 
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 Outlook
 =======
@@ -11,4 +11,3 @@ This page will be removed. You can find the previous content on:
 * :ref:`command_controllers`
 * :ref:`property-mapper`
 * :ref:`error_action`
-*
