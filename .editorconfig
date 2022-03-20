@@ -3,7 +3,7 @@
 # Use as master: https://github.com/TYPO3-Documentation/T3DocTeam/blob/main/.editorconfig
 
 # top-most EditorConfig file
-root = false
+root = true
 
 [{*.rst,*.rst.txt}]
 charset = utf-8
