@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _persisting_products:
 
@@ -92,7 +92,7 @@ The section ``types`` defines in which sequence the table columns are rendered.
    You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
 
 TYPO3 is able to group all records of an extension in the new record wizard.
-To define the name of this group, create a language file 
+To define the name of this group, create a language file
 :file:`EXT:store_inventory/Resources/Private/Language/locallang_db.xlf`
 and add the key **extension.title**.
 

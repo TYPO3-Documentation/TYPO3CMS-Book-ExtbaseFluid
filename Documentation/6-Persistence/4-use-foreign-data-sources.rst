@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. _using-foreign-data-sources:
 
 Using Foreign Data Sources
