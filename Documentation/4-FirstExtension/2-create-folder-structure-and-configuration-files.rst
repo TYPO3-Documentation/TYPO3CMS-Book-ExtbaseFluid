@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 Create Folder Structure And Configuration Files
 ===============================================

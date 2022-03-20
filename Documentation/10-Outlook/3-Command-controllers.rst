@@ -1,5 +1,4 @@
-.. include:: ../Includes.txt
-.. _extbase_command_controller_about:
+.. include:: /Includes.rst.txt
 
 Command controllers
 ===================
