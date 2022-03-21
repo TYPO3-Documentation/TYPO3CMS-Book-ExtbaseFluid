@@ -25,7 +25,7 @@ How it works
 
 #. The default is to call :php:`errorAction()` which will:
 
-   #. Clear cache in case :ts:`persistence.enableAutomaticCacheClearing` is
+   #. Clear cache in case :typoscript:`persistence.enableAutomaticCacheClearing` is
       activated and current scope is frontend.
 
    #. Add an error :ref:`Flash Message <t3coreapi:flash-messages>`
