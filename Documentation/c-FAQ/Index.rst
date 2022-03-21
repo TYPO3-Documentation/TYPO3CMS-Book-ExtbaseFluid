@@ -31,8 +31,8 @@ in your TypoScript setup like this:
        }
    }
 
-To set it only for one plugin, replace :ts:`tx_yourextension` by
-:ts:`tx_yourextension_yourplugin`. For modules it's the same syntax:
+To set it only for one plugin, replace :typoscript:`tx_yourextension` by
+:typoscript:`tx_yourextension_yourplugin`. For modules it's the same syntax:
 
 .. code-block:: ts
 

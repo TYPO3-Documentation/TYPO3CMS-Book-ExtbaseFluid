@@ -546,7 +546,7 @@ TYPO3 v9 and higher
 Starting with version 9, Extbase renders the translated records in the same way TypoScript rendering does.
 
 .. note::
-   In previous version the behaviour was controllable by the feature switch :ts:`consistentTranslationOverlayHandling`
+   In previous version the behaviour was controllable by the feature switch :typoscript:`consistentTranslationOverlayHandling`
    which has been removed in newer versions.
 
 1) Setting :php:`Typo3QuerySettings->languageMode` does **not** influence how Extbase queries records.
