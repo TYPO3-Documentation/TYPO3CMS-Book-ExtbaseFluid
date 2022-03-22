@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 And... action!
 ==============
@@ -14,7 +14,7 @@ In Extbase the controllers mostly exist as
 short methods, which are responsible for the control of a single action, the
 so called `Actions`. Let's have a deeper look at a
 shortened version of the :php:`BlogController`. Please note that for brevity
-the doc comments and some methods have been removed. Find the full example at 
+the doc comments and some methods have been removed. Find the full example at
 :file:`EXT:blog_example/Classes/BlogController.php`:
 
 .. code-block:: php
@@ -108,8 +108,8 @@ inherits all methods from it, by deriving it from this class.
    }
 
 If no specific action information is given, the default action will
-be called; in our case the `indexAction()`. The `indexAction()` contains 
-only one line in our example (as shown above), 
+be called; in our case the `indexAction()`. The `indexAction()` contains
+only one line in our example (as shown above),
 which looks like this:
 
 ::

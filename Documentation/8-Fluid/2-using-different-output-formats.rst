@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 ==============================
 Using Different Output Formats
@@ -66,7 +66,7 @@ You can use the following TypoScript::
 You still have to exchange *[ExtensionKey]* and *[PluginName]* with the name of the Extension and Plugin.
 We recommend to search for the path of your Plugin in the
 TypoScript Object Browser to avoid misspelling. Further on you have to
-explicitly set :ts:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
+explicitly set :typoscript:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
 to the number of the page containing the data to tell Extbase from which page
 the data should be read.
 
@@ -77,7 +77,7 @@ Using built in :php:`JsonView`
 
 Extbase provides the :php:`\TYPO3\CMS\Extbase\Mvc\View\JsonView` as an
 alternative to :php:`\TYPO3\CMS\Fluid\View\TemplateView` which is used by
-default. 
+default.
 
 The intention is to provide the same public API, e.g. assign variables to the
 view, but replace the rendering. The View itself needs further configuration
