@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 Domain-Driven Design
 ===============================================
@@ -7,7 +7,7 @@ Software development is a creative process. You do not stand on an assembly
 line, but are increasingly exposed to new challenges. Each software differs
 from each other, and every time you start with a new program you start from
 scratch. You have to find out, what your client wants to achieve and after that
-you want to implement this. Though in general you have great freedom for your development 
+you want to implement this. Though in general you have great freedom for your development
 misunderstandings between the customer and you as a developer
 can rise. There is hardly anyone who never has been working a project in which the requirements were documented
 and the specifications were written but still the client was not satisfied at
@@ -23,7 +23,7 @@ Extbase supports you in supplying you with the required technical
 infrastructure.
 
 
-Domain-Driven Design is a development paradigm that does not include 
+Domain-Driven Design is a development paradigm that does not include
 technical concepts. Instead, by using different techniques, extbase tries to
 to direct the creativity of the software development to structured directions
 and thus channel it and make it more effective.

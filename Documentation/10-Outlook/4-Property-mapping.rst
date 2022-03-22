@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. _extbase_property_mapping:
 
 Last Update 01 Feb 2016.

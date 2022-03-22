@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 Calling the extension
 =====================
 

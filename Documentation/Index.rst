@@ -1,3 +1,4 @@
+.. include:: /Includes.rst.txt
 
 .. _start:
 
@@ -6,53 +7,30 @@ Developing TYPO3 Extensions with Extbase and Fluid
 ==================================================
 
 :Version:
-      |release|
+   |release|
 
 :Language:
-      en
+   en
 
-:Authors:
-   Sebastian Kurfürst <sebastian@typo3.org>
-
-   Jochen Rau <jochen.rau@typoplanet.de>
-
-:Copyright:
-   Since 2010, Sebastian Kurfürst, Jochen Rau
-
-:Translation:
-   Translated to English by the TYPO3 community
+:Author:
+   Sebastian Kurfürst, Jochen Rau & Contributors
 
 :Rendered:
    |today|
 
-The content of this document is related to TYPO3 CMS, a GNU/GPL CMS/Framework available from typo3.org.
-
-**About this manual:**
+----
 
 This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
 
-**Official documentation:**
+The extension `sjroffers <https://github.com/martin-helmich/typo3-sjroffers>`__
+is used as an example in this book.
 
-This document is included as part of the official TYPO3 documentation.
+----
 
-If you find an error or something is missing, please:
-`Report a Problem <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues/new>`__
-
-**For Contributors**
-
-You are welcome to help in improving this guide. Just click on "Edit me on GitHub"
-on the top right to submit your change request.
-
-You can find out more about how to do this in :ref:`h2document:docs-contribute`.
-
-Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:contact-us>`.
-
-`GitHub repository <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/>`__
-| `Issues <https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid/issues>`__
-| :ref:`linktargets`
+**Table of Contents:**
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
    :caption: INTRODUCTION
 
    0-Introduction/Index
@@ -60,7 +38,7 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    3-BlogExample/Index
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
    :caption: GETTING STARTED
 
    1-Installation/Index
@@ -71,7 +49,7 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    8-Fluid/Index
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
    :caption: ADVANCED
 
    9a-Configuration/Index
@@ -79,10 +57,17 @@ Find out how to contact the Documentation Team in :ref:`Contact Us <h2document:c
    10-Outlook/Index
 
 .. toctree::
-   :hidden:
+   :maxdepth: 1
    :caption: REFERENCES
 
    a-CodingGuidelines/Index
    b-ExtbaseReference/Index
-   Sitemap/Index
-   Targets
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+   :caption: ABOUT
+
+   Sitemap
+   genindex

@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 Typographic conventions
 =======================
@@ -29,7 +29,7 @@ This book uses the following typographic conventions:
    is equivalent to:
       :code:`$s = 'a code snippet';`
 
-   as we have told Sphinx in the above ../Includes.txt that 'code'
+   as we have told Sphinx in the above /Includes.rst.txt that 'code'
    is the *default textrole*.
 
    End of comment.
@@ -52,7 +52,7 @@ This book uses the following typographic conventions:
    With this symbol, certain special behavior is explained, which could
    lead to problems or impose a risk.
 
-Each and every reST file of :file:`*.rst` should include :file:`Includes.txt`
+Each and every reST file of :file:`*.rst` should include :file:`/Includes.rst.txt`
 at the very beginning. Specify the relative path.
 
 Headlines in the reST source look nicer when the punctuation lines are
