@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _controllers:
 .. _controlling-the-flow-with-controllers:

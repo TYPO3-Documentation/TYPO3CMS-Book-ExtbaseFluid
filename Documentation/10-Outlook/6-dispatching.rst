@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 .. highlight:: php
 
 .. _dispatching:
@@ -125,7 +125,7 @@ Arguments can be accessed through::
 In order to make arguments available within the Request, or for mapping, they
 need to conform to Extbase naming standard, in order to be mapped to the
 extension. The default is to prefix arguments with plugin signature. This can be
-adjusted via TypoScript option :ts:`view.pluginNamespace`, see
+adjusted via TypoScript option :typoscript:`view.pluginNamespace`, see
 :ref:`typoscript_configuration-view`.
 
 .. _using-the-response:

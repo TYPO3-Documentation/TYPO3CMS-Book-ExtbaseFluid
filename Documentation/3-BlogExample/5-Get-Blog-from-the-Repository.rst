@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 Get Blog from the Repository
 ============================
@@ -40,8 +40,8 @@ blog objects which is one of the methods available by default.
    receive the corresponding object. In this case you don't care where the object
    is stored. Practically it even doesn't matter if the object is stored in the
    memory, must be fetched from the hard drive, is retrieved via web service from
-   another server, or is instantiated for the first time. The only important thing 
-   is that the object is instantiated and delivered to you. Object attributes 
+   another server, or is instantiated for the first time. The only important thing
+   is that the object is instantiated and delivered to you. Object attributes
    changed by you will be stored when you leave the extension.
 
 .. note::

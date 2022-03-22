@@ -1,4 +1,4 @@
-.. include:: ../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _persistence:
 
@@ -12,8 +12,8 @@ will discuss the steps being important for doing that.
 
 It is important to understand  the lifecycle of a domain object to fully
 understand the persistence layer. When we instantiate a domain object, we essentially
-store it in memory. It is then in a transient (or volatile) state. 
-When TYPO3 delivers the rendered website, PHP frees up this allocated memory. 
+store it in memory. It is then in a transient (or volatile) state.
+When TYPO3 delivers the rendered website, PHP frees up this allocated memory.
 This means that the saved data will be lost and thus also the domain object.
 
 .. note::
