@@ -24,7 +24,7 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
    The configuration options that can be set in the TCA are very extensive and
    a broad description of them would cause the book to burst at its
    seams. However, each and every option is well documented in the
-   Online-documentation :ref:`TCA Reference <t3tca:start>`
+   Online-documentation :doc:`TCA Reference <t3tca:Index>`
 
 First, you should dip into the top layer of the TCA hierarchy. The TCA
 for table *tx_sjroffers_domain_model_organization* is in the

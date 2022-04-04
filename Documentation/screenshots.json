@@ -3,7 +3,7 @@
         "Core": {
             "screenshots": {
                 "codeSnippets": [
-                    {"action": "setCodeSnippetsTargetPath", "path": "CodeSnippets/StyleguideCode"},
+                    {"action": "setCodeSnippetsTargetPath", "path": "CodeSnippets/PhpDomain"},
                     {
                         "action": "createCodeSnippet",
                         "caption": "\\TYPO3\\CMS\\Extbase\\Validation\\Validator\\ValidatorInterface",
