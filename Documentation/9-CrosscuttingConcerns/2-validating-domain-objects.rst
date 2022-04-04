@@ -37,32 +37,12 @@ Validators for checking of invariants
 
 A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
-:php:`ValidatorInterface`:
+:php:`ValidatorInterface`. In most use cases it is recommended to extend the
+:php:`TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`, overriding
+the abstract method :php:`isValid()`.
 
-.. include:: /CodeSnippets/StyleguideCode/ValidatorInterface.rst.txt
-
-This interface requires validators to implement two methods:
-
-- :php:`validate($value)`
-- :php:`getOptions()`
-
-The main method is :php:`validate()`, which is called by the framework.
-The value to be validated is passed to the :php:validate() method where it's validity is checked.
-
-.. note::
-
-    The example below never returns anything but is using $this->addError() instead.
-    No return-values are given for validate()
-    although the interface states, that the method `validate` should return
-    a :php:`\TYPO3\CMS\Extbase\Error\Result` object. 
-    Most people who create custom validators extend the class
-    :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
-    Instead the bool method isValid is called.
-    This enables you to call the addError()` or `$this->addError($error, 1624260704)` 
-    method and let the abstract
-    validator method `validate` take care of returning a proper result object 
-    of type `\TYPO3\CMS\Extbase\Error\Result` to the validation
-    framework. 
+The method :php:`isValid()` does not return a value but adds an error to the
+:php:`TYPO3\CMS\Extbase\Error\Result` in case the validation fails.
 
 There are 2 types of validation checks:
 #.  A loose check is making only a relaxed check over a very large range of possible values.
@@ -77,23 +57,30 @@ value.
 For example, a validator that checks whether the passed string is
 a valid email address, looks like this:
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Validator/MyValidator.php
 
-    public function validate($value)
-    {
-        if (!is_string($value) || !$this->validEmail($value)) {
-            $this->addError(
-                $this->translateErrorMessage(
-                    'validator.emailaddress.notvalid',
-                    'extbase'
-                ), 1221559976);
-        }
-    }
+   use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
-    protected function validEmail($emailAddress)
-    {
-        return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
-    }
+   final class MyValidator extends AbstractValidator
+   {
+
+       public function isValid(mixed $value): void
+       {
+           if (!is_string($value) || !$this->validEmail($value)) {
+               $this->addError(
+                   $this->translateErrorMessage(
+                       'validator.emailaddress.notvalid',
+                       'extbase'
+                   ), 1221559976);
+           }
+       }
+
+       private function validEmail($emailAddress)
+       {
+           return \TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($emailAddress);
+       }
+   }
 
 If ``$value`` is neither a string nor a valid email address, the validator
 adds an error by calling `$this->addError()`.
@@ -243,7 +230,7 @@ When you have created your own validator to check the invariants
 you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
 class name.
 
-Example: 
+Example:
 
 .. code-block:: php
    :caption: blog_example/Class/Domain/Model/Post.php
@@ -386,7 +373,7 @@ for example:
 
 .. code-block:: php
    :caption: extbase_example/Class/Controller/UserController.php
-   
+
    <?php
    declare(strict_types=1);
 
@@ -409,7 +396,7 @@ for example:
    }
 
 Now there are two possibilities how validators can be
-registered for domain objects: 
+registered for domain objects:
 
 *  directly in the model via ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties
 *  with an own validator class for complete domain objects.

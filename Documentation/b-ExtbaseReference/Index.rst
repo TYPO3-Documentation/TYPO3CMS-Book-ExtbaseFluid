@@ -915,19 +915,19 @@ Since 1.1 (TYPO3 4.3), `$propertyName` is not necessarily only a simple property
    Two conditions are joined with a logical *and* that returns a condition.
    Multiple parameters are allowed, at least 2. As of TYPO3 version 12, passing the
    parameters as an array is not allowed. Use the following migration::
-   
+
        $constraints = [];
-       
+
        if (...) {
           $constraints[] = $query->equals('propertyName1', 'value1');
        }
-       
+
        if (...) {
           $constraints[] = $query->equals('propertyName2', 'value2');
        }
-       
+
        $query = $this->createQuery();
-       
+
        $numberOfConstraints = count($constraints);
        if ($numberOfConstraints === 1) {
            $query->matching(reset($constraints));
@@ -972,6 +972,10 @@ Validator implements the :php:`\TYPO3\CMS\Extbase\Validation\Validator\Validator
 that defines the following methods:
 
 .. include:: /CodeSnippets/PhpDomain/ValidatorInterface.rst.txt
+
+In most use cases extending the abstract class
+:php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator` is sufficient
+however.
 
 You can call Validators in your own code with the method `createValidator($validatorName,
 $validatorOptions)` in :php:`\TYPO3\CMS\Extbase\Validation\ValidatorResolver`. Though in

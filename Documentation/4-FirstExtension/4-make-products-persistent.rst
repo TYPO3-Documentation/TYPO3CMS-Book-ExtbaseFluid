@@ -53,7 +53,7 @@ The configuration is stored in a PHP array, the *table configuration array* (in 
 
 .. seealso::
    You can find the full documentation for all *Table Configuration Array*
-   options in the :ref:`TCA Reference <t3tca:start>`
+   options in the :doc:`TCA Reference <t3tca:Index>`
 
 Create your configuration in the file:
 :file:`EXT:store_inventory/Configuration/TCA/tx_storeinventory_domain_model_product.php`.
