@@ -113,7 +113,7 @@ The section ``types`` defines in which sequence the table columns are rendered.
 
 .. seealso::
 
-   You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
+   You can find a complete listing of all options at :doc:`TYPO3 Core APIs <t3coreapi:Index>`.
 
 TYPO3 is able to group all records of an extension in the new record wizard.
 
