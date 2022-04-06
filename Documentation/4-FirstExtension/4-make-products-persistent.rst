@@ -46,7 +46,7 @@ configuration, that is stored in a PHP array, the so-called
 *Table-Configuration-Array* (shortly *TCA*).
 
 .. tip::
-   You find the documentation for the *Table-Configuration-Array* in the :ref:`TCA Reference <t3tca:start>`
+   You find the documentation for the *Table-Configuration-Array* in the :doc:`TCA Reference <t3tca:Index>`
 
 Within the Extension we can access the data transparently by the repositories.
 "Transparently" means that we don't have to think about the *type*
@@ -110,7 +110,7 @@ hard-coded in the TYPO3 core and you have to use this to define your own text.
 .. tip::
 
    The possibilities to impact the TCA are immense.
-   You can find a complete listing of all options at :ref:`TYPO3 Core APIs <t3coreapi:start>`.
+   You can find a complete listing of all options at :doc:`TYPO3 Core APIs <t3coreapi:Index>`.
 
 .. attention::
 
