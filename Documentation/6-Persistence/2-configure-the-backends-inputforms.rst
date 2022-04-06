@@ -24,7 +24,7 @@ file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php`.
    The configuration options that can be set in the TCA are very extensive and
    a broad description of them would cause the book to burst at its
    seams. However, each and every option is well documented in the
-   Online-documentation :ref:`TCA Reference <t3tca:start>`
+   Online-documentation :doc:`TCA Reference <t3tca:Index>`
 
 First, you should dip into the top layer of the TCA hierarchy. The TCA
 for table *tx_sjroffers_domain_model_organization* is in the
@@ -154,7 +154,7 @@ section); the fourth position holds extensive options which are separated
 through colons, and the last place contains information about the appearance
 (e.g., color and structure). The information at the fourth place allows the use of
 the *Rich Text Editor*. For a full list of the options, refer to the already
-mentioned TYPO3-Online documentation for the :ref:`TYPO3-Core API <t3coreapi:start>`.
+mentioned TYPO3-Online documentation for the :doc:`TYPO3-Core API <t3coreapi:Index>`.
 
 
 .. index:: TCA; palettes
@@ -533,7 +533,7 @@ Field type "user"
 
 A user generates free definable form fields that can be processed by any PHP
 function. For further information, refer to the documentation which is available
-online and to the :ref:`TYPO3-Core API <t3coreapi:start>`.
+online and to the :doc:`TYPO3-Core API <t3coreapi:Index>`.
 
 
 .. index:: Field types; flex
@@ -637,7 +637,7 @@ simple 1:n-relationship with `cd` as a foreign key.
 
 However, Extbase does not support the persistence of additional Domain data in
 the temporary table because the corresponding Domain object does not exist.
-Nevertheless, the online documentation of the :ref:`TYPO3-Core API <t3coreapi:start>` describes the
+Nevertheless, the online documentation of the :doc:`TYPO3-Core API <t3coreapi:Index>` describes the
 second, more correct option for configuring m:n-relationships within IRRE. It
 depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
