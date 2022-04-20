@@ -7,7 +7,7 @@
 Adding a template
 =================
 
-In Extbase frontend templates are stored by default in the subdirectory
+In Extbase, frontend templates are stored by default in the subdirectory
 :file:`Resources/Private/Templates/` provided by  an extension. This
 local path is written as :file:`EXT:store_inventory/Resources/Private/Templates`
 in the setup.
