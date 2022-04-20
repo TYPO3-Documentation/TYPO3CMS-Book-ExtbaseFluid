@@ -28,6 +28,7 @@ To register a plugin, the following code must be inserted into the file
 the extension directory.
 
 .. code-block:: php
+   :caption: EXT:store_inventory/ext_localconf.php
 
    <?php
 
@@ -100,6 +101,7 @@ The **plugin name** must be the same as it has been used in the plugin configura
 To achieve this, the following line must be inserted into the file :file:`Configuration/TCA/Overrides/tt_content.php`:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Configuration/TCA/Overrides/tt_content.php
 
    <?php
 
@@ -126,7 +128,10 @@ To achieve this, the following line must be inserted into the file :file:`Config
 After activating the extension (and clearing the cache), the plugin can be inserted on a page.
 Don't forget to set the sys_folder, where the products are stored as the starting point
 (in this case, "Inventory"). This can be done at the end of the plugin entry form in the backend and
-globally in the page configuration TSConfig::
+globally in the page configuration TSConfig:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Configuration/page.tsconfig
 
    TCEFORM.tt_content.pages.PAGE_TSCONFIG_ID = 2
 

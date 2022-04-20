@@ -20,31 +20,38 @@ for a controller/action/format combination. This PHP class is resolved
 against a naming convention which is defined in the
 ``ActionController`` in the class variable
 ``$viewObjectNamePattern``. The default naming convention is
-following::
+following:
 
-   \MyVendor\@extension\View\@controller\@action@format
 
-All parts beginning with ``@`` will be replaced accordingly.
-When no class with this name can be found, the ``@format`` will be
+.. code-block:: html
+   :caption: EXT:my_extension/Classes/View/Post/ListJSON.php
+
+   \MyVendor\<extension>\View\<controller>\<action><format>
+
+All parts in brachces will be replaced accordingly.
+When no class with this name can be found, the :php:`<format>` will be
 removed from the naming convention and a matching class again searched
 for.
 
 Our PHP based view for the list view of the post controller should
-have the class name ``\MyVendor\BlogExample\View\Post\ListJSON``, because
+have the class name :php:`\MyVendor\BlogExample\View\Post\ListJSON`, because
 it applies only to the format JSON. So that the class according to the
 naming convention must be implemented in the file
 *EXT:blog_example/Classes/View/Post/ListJSON.php*.
 
 Each view must implement the interface
-``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. This consists of some
-initializing methods and the ``render()`` method called
+:php:`\TYPO3\CMS\Extbase\Mvc\ViewViewInterface`. This consists of some
+initializing methods and the :php:`render()` method called
 by the controller for displaying the view.
 
 .. deprecated:: 11.4
    Extending :php:`\TYPO3\CMS\Extbase\Mvc\View\AbstractView` has been
    deprecated with v11. The class will be removed with v12.
 
-A minimal view would like this::
+A minimal view would like this:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/View/Post/ListJSON.php
 
    <?php
    namespace MyVendor\BlogExample\View\Post;
@@ -107,7 +114,10 @@ A minimal view would like this::
 
 Now we have the full expressive power of PHP available, and we can
 implement our own output logic. For example, our JSON view could look like
-this::
+this:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/View/Post/ListJSON.php
 
    class ListJSON implements \TYPO3\CMS\Extbase\Mvc\View\ViewInterface
    {
@@ -120,8 +130,8 @@ this::
    }
 
 Here we can see that the data passed to the
-view is available in the array ``$this->viewData``. These are
-converted to JSON data using the function ``json_encode`` and then
+view is available in the array :php:`$this->viewData`. These are
+converted to JSON data using the function :php:`json_encode` and then
 returned.
 
 .. tip::
@@ -135,29 +145,29 @@ View configuration options in the controller
 
 You have some methods in the controller that you can overwrite to
 control the resolution of the view. In most cases, the customization of
-``$viewObjectNamePattern`` should be flexible enough, but
+:php:`$viewObjectNamePattern` should be flexible enough, but
 sometimes you have to put more logic into it.
 
 For example, you might have to initialize your view specially
 before it can be used. For this, there is the template method
-``initializeView($view)`` inside the
-``ActionContoller``, which gets the view as a parameter. In this
+:php:`initializeView($view)` inside the
+:php:`ActionContoller`, which gets the view as a parameter. In this
 method, you should write your own initializing routine for your
 view.
 
 If you want to control the resolving and initializing of the view
-completely, you have to rewrite the method ``resolveView()``.
+completely, you have to rewrite the method :php:`resolveView()`.
 This method has to return a view that implements
-``\TYPO3\CMS\Extbase\Mvc\ViewViewInterface``. Sometimes it is enough to
+:php:`\TYPO3\CMS\Extbase\Mvc\ViewViewInterface`. Sometimes it is enough to
 overwrite the resolution of the view object name. Therefore you must
-overwrite the method ``resolveViewObjectName()``. This method
+overwrite the method :php:`resolveViewObjectName()`. This method
 returns the name of the PHP class, which should be used as a view.
 
 .. tip::
 
   If you have a look at the source code of Extbase at these points,
   in the comment blocks of the above-mentioned methods, you see an
-  ``@api`` annotation. These methods are part of the
+  :php:`@api` annotation. These methods are part of the
   *official API* of Extbase and could be overwritten
   for personal use.
 

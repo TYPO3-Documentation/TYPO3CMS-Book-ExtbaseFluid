@@ -14,13 +14,14 @@ repository's class name is derived from the class name of the Aggregate-Root
 object concatenated with the suffix *repository*. The repository needs to extend
 the class :php:`\TYPO3\CMS\Extbase\Persistence\Repository`. The class file :php:`\MyVendor\
 SjrOffers\Domain\Repository\OrganizationRepository` will be saved in the
-directory :file:`EXT:sjr_ offers/Classes/Domain/Repository/`. Thus the directory
+directory :file:`EXT:sjr_offers/Classes/Domain/Repository/`. Thus the directory
 *repository* is on the same hierarchy-level as the directory *Model*. In our
 case, the class body remains empty because all the important functionalities are
 already generically implemented in the super-class
 :php:`\TYPO3\CMS\Extbase\Persistence\Repository`.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OrganizationRepository.php
 
    <?php
 
@@ -149,7 +150,10 @@ the default orderings are being applied when there is no ordering defined in
 the query (see :ref:`extbase_query_orderings`). The default orderings can be
 changed at running time by calling the function :php:`setDefaultOrderings()`.
 
-In the following example the records get ordered by field :sql:`sorting`::
+In the following example the records get ordered by field :sql:`sorting`:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Repository/FooRepository.php
 
    use TYPO3\CMS\Extbase\Persistence\Repository;
    use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -178,7 +182,10 @@ The default query settings of a repository are stored in the protected variable
 it via the public function :php:`setDefaultQuerySettings()` from the function
 :php:`initializeObject()`.
 
-Here is an example::
+Here is an example:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Repository/ExampleRepository.php
 
    use TYPO3\CMS\Core\Utility\GeneralUtility;
    use TYPO3\CMS\Extbase\Persistence\Repository;

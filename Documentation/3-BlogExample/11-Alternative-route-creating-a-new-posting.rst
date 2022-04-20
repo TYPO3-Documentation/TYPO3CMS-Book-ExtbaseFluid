@@ -22,7 +22,8 @@ submitted data into the repository, and redirects to the method ``indexAction()`
 Calling the method ``newAction()`` is done with a link in the
 front end, that looks - a bit challenging - like this:
 
-::
+.. code-block:: html
+   :caption: Example frontend output
 
    <a href="/index.php?id=29&tx_blogexample_pi1[action]=new&tx_blogexample_pi1[blog]=12&tx_blogexample_pi1[controller]=Post">Create a new Post</a>
 
@@ -31,7 +32,8 @@ This is created with the following Fluid code in the template
 
 .. index:: Fluid; f:link.action
 
-::
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:link.action action="new" class="icon new" arguments="{blog: blog}" title="{f:translate(key: 'post.createAnother')}">
          <f:translate key="post.createAnother">[create another post]</f:translate>
@@ -52,7 +54,9 @@ corresponding ``blog`` object is done automatically by Extbase.
 
 Lets take a look at the called method ``newAction()``:
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    <?php
    declare(strict_types=1);
@@ -134,7 +138,9 @@ param notations in the comments as well:
 
 .. index:: Action; Parameters
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    /**
     * @param \MyVendor\MyExtension\Blog $blog
@@ -144,11 +150,17 @@ param notations in the comments as well:
 The link is created with the name of the argument ``$blog``.
 In this way, the link between the request parameter and
 the ``newAction()`` is resolved.
-The link parameter::
+The link parameter:
+
+.. code-block:: none
+   :caption: Example link parameter
 
    tx_blogexample_pi1[blog]=12
 
-is assigned to the parameter::
+is assigned to the parameter:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    \FriendsOfTYPO3\BlogExample\Domain\Model\Blog $blog
 
@@ -162,7 +174,9 @@ the parameter ``authors`` which is taken from the ``PersonRepository`` with the
 ``blog`` and ``newPost``. The following actions are called automatically by the
 controller after calling ``newAction()``.
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    $form = $this->view()->render();
    return $form;
@@ -171,7 +185,9 @@ controller after calling ``newAction()``.
 
 Here you see the full template *Post/New.html*:
 
-::
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Post/New.html
 
     <f:layout name="Default" />
 
@@ -183,9 +199,11 @@ Here you see the full template *Post/New.html*:
 
 
 
-Here you see the full partials template *PosForm.html*:
+Here you see the full partials template *PostForm.html*:
 
-::
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Post/PostForm.html
 
     <f:render partial="FormErrors" />
     <f:form action="{action}" controller="Post" arguments="{blog: blog}" objectName="{objectName}" object="{object}" method="post">
@@ -247,7 +265,9 @@ persons available by the ``PersonRepository``. The visible texts of the options 
 Fluid from the parameter ``optionLabelField="fullName"``. Fluid calls the method ``getFullName``
 of the class ''FriendsOfTYPO3\BlogExample\Domain\Model\Person'' :
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Person.php
 
     /**
      * Returns the person's full name
@@ -262,7 +282,8 @@ of the class ''FriendsOfTYPO3\BlogExample\Domain\Model\Person'' :
 
 The created HTML code of the form can look like this:
 
-::
+.. code-block:: html
+   :caption: Example frontend output
 
    <form method="post" action="/index.php?id=29&amp;tx_blogexample_pi1%5Bblog%5D=12&amp;tx_blogexample_pi1%5Baction%5D=create&amp;tx_blogexample_pi1%5Bcontroller%5D=Post&amp;cHash=4218364112cecc7a3cc9de3428c36c46">
       <input type="hidden" name="tx_blogexample_pi1..." > // many hidden fields
@@ -312,7 +333,9 @@ This is the stripped-down method:
          understand HTTP.
          franzholz: The lines above should not be described here, but somewhere else.
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
     /**
      * Creates a new post

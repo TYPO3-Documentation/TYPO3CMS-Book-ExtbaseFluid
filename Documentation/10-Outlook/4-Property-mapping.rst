@@ -12,7 +12,10 @@ The property mapper
 Extbase provides a property mapper to convert different values, like integers
 or arrays, to other types, like strings or objects.
 
-In this example, we provide a string that will be converted to an integer::
+In this example, we provide a string that will be converted to an integer:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    // use \TYPO3\CMS\Extbase\Property\PropertyMapper
 
@@ -22,10 +25,13 @@ Conversion is done by using the :php:`TYPO3\CMS\Extbase\Property\PropertyMapper:
 method.
 
 .. note::
-   The :php:`PropertyMapper` has to be injected before it can be used::
+   The :php:`PropertyMapper` has to be injected before it can be used:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
       // use \TYPO3\CMS\Extbase\Property\PropertyMapper
-      
+
       /**
        * @param PropertyMapper $propertyMapper
        */
@@ -40,7 +46,10 @@ How to use property mappers
 
 The above example was a straightforward one. Most of the time, you will
 convert from an array to an where some points must be considered. This example
-will show a simple conversion::
+will show a simple conversion:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    // use \TYPO3\CMS\Extbase\Property\PropertyMapper
 
@@ -65,9 +74,11 @@ Allow mapping of sub-properties
 ===============================
 
 It's also possible to map to subtypes. In the above example, the `FrontendUser` has a sub-property
-of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you wanna map an incoming id,
-you have to configure the mapper as per default he won't map sub properties for security reasons::
+of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you want to map an incoming id,
+you have to configure the mapper as by default it won't map sub properties for security reasons:
 
+.. code-block:: html
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    // use \TYPO3\CMS\Extbase\Property\PropertyMapper
    // use \TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationBuilder

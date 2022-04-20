@@ -27,8 +27,7 @@ high costs for printing a flyer. In the future, those offers will be managed by
 the youth organizations via the Internet. At the same time parents, children
 and teenagers should find suitable offers and display them easily.
 You can download the extension with the extension-key
-*sjr_offers* at the extension repository
-(`sjr_offers  <https://extensions.typo3.org/extension/sjr_offers/>`_).
+*sjr_offers* at the extension repository (:t3ext:`sjr_offers/`).
 
 The example is also being used to demonstrate the approach of
 test-driven development close to reality. We manage those unit tests with the

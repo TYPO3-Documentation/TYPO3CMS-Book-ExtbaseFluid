@@ -31,6 +31,7 @@ for table *tx_sjroffers_domain_model_organization* is in the
 file :file:`Configuration/TCA/tx_sjroffers_domain_model_organization.php` and has this structure:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    <?php
    return [
@@ -57,6 +58,7 @@ corresponding table. Then again, this array is separated into several parts
 with names that are the keys of the nested array.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    <?php
    return [
@@ -132,6 +134,7 @@ should emerge at the Input Form. An example of the table
 `tx_sjroffers_domain_model_organization` is:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'types' => [
       '0' => ['showitem' => 'hidden,status,name,address;;1;;description,contacts,offers,administrator'],
@@ -168,6 +171,7 @@ Backend's List module to view these. Palettes are connected to a durable visible
 example from the table `tx_sjroffers_domain_model_organization` is:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'palettes' => [
       '1' => ['showitem' => 'telephone_number,telefax_number,url,email_address'],
@@ -188,6 +192,7 @@ is a nested array holding the field's corresponding configuration. The field
 configuration for the input of the name of an organization would be as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'name' => [
       'exclude' => false,
@@ -224,6 +229,7 @@ telephone numbers. The configuration of a name field (see Fig. 6-1) looks as
 follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'name' => [
       'label' => 'Organization\'s name',
@@ -252,6 +258,7 @@ prevented (`required`).
 The field type `input` may be used for date and time inputs:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'minimum_value' => [
       'label' => 'valid since',
@@ -283,6 +290,7 @@ The `text` field type may contain multi-line formatted or unformatted texts
 (`rows`) and the columns (`cols`) specifies the area of the text input field.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'address' => [
       'label' => 'Address:',
@@ -308,6 +316,7 @@ The field type `check` allows the definition of a single option (see Fig. 6-4)
  e.g., you can define whether a rowset should be hidden or not.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'hidden' => [
       'label' => 'Hide:',
@@ -326,6 +335,7 @@ field (see Fig. 6-5). This may be helpful, e.g., for a selection of valid weekda
 or recommended training levels of a certain exercise.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'level' => [
       'exclude' => true,
@@ -370,6 +380,7 @@ The field type radio is for choosing one unique value for a given property (see
 Fig. 6-6), e.g., the sex of a person or the color of a product.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'gender' => [
       'label' => 'Sex',
@@ -402,6 +413,7 @@ The field type "select" provides a space-saving way to render multiple values
 (see Fig. 6-7). Examples could be a member status, a product color, or a region.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'status' => [
       'exclude' => false,
@@ -426,6 +438,7 @@ The type `select` may also be used to select a whole subset of values. This is
 used for categories, tags, or contact persons (see Fig. 6-8).
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'categories' => [
       'exclude' => true,
@@ -461,6 +474,7 @@ The "group" field type is very flexible in its use. It can be used to manage
 references to resources of the filesystem or rowsets of a database (see Fig. 6-9).
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'pages' => [
       'label' => 'Pages',
@@ -485,6 +499,7 @@ Field type "none"
 Fields of this type show the raw data values which cannot be edited (see Fig. 6-10).
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'date' => [
       'label' => 'Datum (Timestamp)',
@@ -513,6 +528,7 @@ be edited or viewed in the form. An example of that would be information to
 references (foreign keys).
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'organization' => [
       'config' => [
@@ -567,6 +583,7 @@ TCA Reference <t3tca:columns-inline>`.
 
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
 
    'offers' => [
       'label' => 'Offers',
@@ -597,8 +614,10 @@ following temporary table:
 `CD --1:n-- Temporary-Table --n:1-- Title`
 
 
+The corresponding *IRRE*-Configuration looks as follows:
 
-The corresponding *IRRE*-Configuration looks as follows::
+.. code-block:: php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_offer.php
 
    'titles' => [
       'label' => 'Track Title',
@@ -625,6 +644,7 @@ Let's change the configuration of the table `tx_myext_domain_model_track` to a
 simple 1:n-relationship with `cd` as a foreign key.
 
 .. code-block:: php
+   :caption: EXT:my_ext/Configuration/TCA/tx_myext_domain_model_track.php
 
    'tracks' => [
       'label' => 'Track',
@@ -643,6 +663,7 @@ depends on a plain temporary table. The following example shows off the
 configuration of products with their according categories:
 
 .. code-block:: php
+   :caption: EXT:my_ext/Configuration/TCA/tx_myext_domain_model_track.php
 
    'categories' => [
       'label' => 'Categories',
@@ -668,7 +689,7 @@ As already mentioned, the TCA is stored in a file with the database table name a
 directory :file:`Configuration/TCA/`
 
 .. code-block:: php
-   :caption: tx_sjroffers_domain_model_organization.php
+   :caption: EXT:sjr_offers/Configuration/TCA/tx_sjroffers_domain_model_organization.php
    :name: tca-tx-sjroffers-domain-model-organization-php
 
    <?php

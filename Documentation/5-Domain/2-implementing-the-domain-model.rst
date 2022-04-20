@@ -44,6 +44,7 @@ First, we create the corresponding test class in the appropriate folder
 /Model/. After that we write our test.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Tests/Domain/Model/OrganizationTest.php
 
    class OrganizationTest extends \TYPO3\CMS\Core\Tests\BaseTestCase
    {
@@ -78,6 +79,7 @@ run because the appropriate class and its method `getName()` note yet exist. So
 we create first a minimum trunk of the class and its methods.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
 
    <?php
    namespace MyVendor\SjrOffers\Domain\Model;
@@ -99,6 +101,7 @@ The test can now run but failed as expected (see Figure 5-5).
 Only now we add just enough code that the test is successful:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
 
    <?php
 
@@ -155,6 +158,7 @@ of property :php:`$name`, the type of property is specified. In our case, the na
 String. Thereby our class looks like as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
 
    <?php
    namespace MyVendor\SjrOffers\Domain\Model;
@@ -204,6 +208,7 @@ references to instances).
 But the test at first:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Tests/Domain/Model/OrganizationTest.php
 
    /**
     * @test
@@ -227,6 +232,8 @@ example:
 
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Tests/Domain/Model/OrganizationTest.php
+
 
    /**
     * @test
@@ -244,6 +251,8 @@ the class :php:`\MyVendor\SjrOffers\Domain\Model\Person`. Because of this we can
 two methods `addContact()` and implement `getContacts()`:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
+
 
    <?php
    declare(strict_types = 1);
@@ -342,6 +351,7 @@ In a 1:1 relationship, set and get methods are implemented. At the polyhydric 1:
 and m:n relationships, the add and remove methods are added.
 
 .. code-block:: php
+   :caption: Example of method names
 
    setContacts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contacts)
    getContacts()
@@ -361,6 +371,7 @@ annotations:
 :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy` and :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade` remove.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
 
    <?php
    declare(strict_types = 1);
@@ -424,6 +435,8 @@ add one if there is an existing contact to the result. This is especially useful
 for administrators of an organization. The implementation is as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Organization.php
+
 
    public function getAllContacts()
    {
@@ -468,6 +481,7 @@ different from the last. Let's take a look at the (shortened) class, which
 emphasizes some peculiarities.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Offer.php
 
    <?php
    declare(strict_types = 1);
@@ -622,6 +636,7 @@ So we »override« the type definition in the class DateRange and set the type D
 The class RangeConstraint looks as follows (Comments were partly removed):
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/RangeConstraint.php
 
    <?php
 
@@ -708,7 +723,7 @@ These »adjusted« the value coming from the outside before they are assigned to
 DateRange together with the above-mentioned type definitions:
 
 .. code-block:: php
-   :caption: DateRange.php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/DateRange.php
    :name: daterange
 
    <?php
@@ -747,28 +762,29 @@ The classes :php:`AgeRange` and :php:`AttendanceRange` Classes are otherwise emp
 because they inherit all the properties and methods from the object RangeConstraint.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/DateRange.php
 
-    <?php
+   <?php
 
-    namespace MyVendor\SjrOffers\Domain\Model;
+   namespace MyVendor\SjrOffers\Domain\Model;
 
-    class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
-       implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
-    {
-    }
+   class AgeRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
+      implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+   {
+   }
 
    class AttendanceRange extends \MyVendor\SjrOffers\Domain\Model\RangeConstraint
-       implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
-    {
-    }
+      implements \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+   {
+   }
 
-    interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
-    {
-    }
+   interface \MyVendor\SjrOffers\Domain\Model\NumericRangeInterface
+   {
+   }
 
-    interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface
-    {
-    }
+   interface \MyVendor\SjrOffers\Domain\Model\DateRangeInterface
+   {
+   }
 
 
 We have implemented the terms age range, number of participants and offer an adequate period in domain models.
@@ -805,13 +821,14 @@ You can implement the check of the details of these invariants directly in the d
 In the setter of the title of an offer would stand the following code:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Offer.php
 
- public function setTitle($title)
- {
-   if (strlen($title) > 3 && strlen($title) < 50) {
-      $this->title = $title;
+   public function setTitle($title)
+   {
+      if (strlen($title) > 3 && strlen($title) < 50) {
+         $this->title = $title;
+      }
    }
- }
 
 This has several disadvantages:
 
@@ -824,6 +841,7 @@ Therefore Extbase offers an alternative about Annotations.
 Let us have a look at the definitions of the properties of the class Offer definition - this time with all the comments:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Model/Offer.php
 
    <?php
    declare(strict_types=1);

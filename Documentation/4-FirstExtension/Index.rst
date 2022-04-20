@@ -12,10 +12,11 @@ So you can get a first overview without being confused by details.
 In the following chapters, you will learn about a more complex example,
 which covers all fundamental features of Extbase and Fluid exhaustively.
 
-You can download the extension from the `TYPO3 Extension Repository: store_inventory
-<https://extensions.typo3.org/extension/store_inventory/>`__ or install it via composer:
+You can download the extension from the TYPO3 Extension Repository:
+:t3ext:`store_inventory/` or install it via composer:
 
 .. code-block:: shell
+   :caption: Execute in TYPO3 root directory
 
    composer req t3docs/store-inventory
 

@@ -95,6 +95,7 @@ changed in our system).
 The form basically looks like this:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <f:form name="user" object="{user}" action="update">
       <f:form.textbox property="email" />
@@ -106,6 +107,7 @@ If the form is sent, the argument mapping for the user object gets
 this array:
 
 .. code-block:: none
+   :caption: HTTP POST
 
    [
       __identity => ...
@@ -164,7 +166,10 @@ description and show how you can avoid cross-site scripting (XSS).
 
 Assume you have programmed a forum. An "evil" user will get access
 to the admin account. For this, he posted the following harmful looking message
-in the forum to try to embed JavaScript code::
+in the forum to try to embed JavaScript code:
+
+.. code-block:: html
+   :caption: A simple example for XSS
 
    <script type="text/javascript">alert("XSS");</script>
 
@@ -202,7 +207,10 @@ sure to convert the special characters correctly.
 
 It is also deactivated for
 object accessors that are used in arguments of a ViewHelper. A short
-example for this::
+example for this:
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {variable1}
    <f:format.crop append="{variable2}">a very long text</f:format.crop>
@@ -212,5 +220,3 @@ htmlspecialchars(), the content of ``{variable2}`` is not
 changed. The ViewHelper must retrieve the unchanged data because we can not
 foresee what should be done with it. For this reason, ViewHelpers
 that output parameters directly have to handle special characters correctly.
-
-
