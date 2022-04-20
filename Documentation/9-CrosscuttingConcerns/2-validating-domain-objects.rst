@@ -428,7 +428,7 @@ controller action. It has the format ``@TYPO3\CMS\Extbase\Annotation\Validate
 below it is ``$pageName``:
 
 .. code-block:: php
-   :caption: \MyVendor\MyExtension\Domain\Validator\PagenameValidator
+   :caption: EXT:my_extension/Classes/Domain/Validator/PagenameValidator.php
 
     /**
      * Creates a new page with a given name.
@@ -457,7 +457,10 @@ called:
 * Validators defined in the action doc block with ``@TYPO3\CMS\Extbase\Annotation\Validate`` are called.
 
 Let's have a look at the interaction once more with an
-example::
+example:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    // use TYPO3\CMS\Extbase\Annotation\Validate;
    // use MyVendor\ExtbaseExample\Domain\Model\User;
@@ -504,7 +507,10 @@ validation error. Two actions are involved in editing the blog: The
     extension you should implement it according to the schema displayed
     here.
 
-The ``editAction`` for the blog looks like this::
+The ``editAction`` for the blog looks like this:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
     public function editAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
     {
@@ -513,13 +519,16 @@ The ``editAction`` for the blog looks like this::
 
 The blog object to edit is passed and given to the
 view. The Fluid template than looks like this (slightly shortened and
-reduced to the important)::
+reduced to the important):
 
-    <f:form name="blog" object="{blog}" action="update">
-        <f:form.textfield property="title" />
-        <f:form.textarea property="description" />
-        <f:form.submit />
-    </f:form>
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:form name="blog" object="{blog}" action="update">
+       <f:form.textfield property="title" />
+       <f:form.textarea property="description" />
+       <f:form.submit />
+   </f:form>
 
 Note that the ``blog`` object to be edited is bound to the
 form with ``object="{blog}"``. With this, you can reference a
@@ -531,12 +540,13 @@ used as a variable name for the object to be sent. When submitting the form,
 the ``updateAction`` is called with the ``blog`` object
 as a parameter.
 
-::
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
-    public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
-    {
-        $this->blogRepository->update($blog);
-    }
+   public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog): ResponseInterface
+   {
+       $this->blogRepository->update($blog);
+   }
 
 
 So the name of the argument is ``$blog`` because the form
@@ -565,7 +575,8 @@ validation must be suppressed for the ``editAction``. For this, the annotation
 :php:`@TYPO3\CMS\Extbase\Annotation\IgnoreValidation` is needed. – The comment block
 of the ``editAction`` must be changed like this:
 
-::
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    <?php
    declare(strict_types=1);
@@ -623,7 +634,8 @@ to be displayed. Therefore the argument must be marked as optional.
 Here you will see all that we need. At first the controller
 code:
 
-::
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    <?php
    declare(strict_types=1);
@@ -659,8 +671,11 @@ code:
       }
    }
 
-The Fluid template for the `newAction` looks
-like this (in short form)::
+The Fluid template for the `NewAction` looks
+like this (in short form):
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/NewAction.html
 
     <f:flashMessages />
     <f:form name="newBlog" object="{newBlog}" action="create">
@@ -712,7 +727,10 @@ the last section ("Case study: Edit an existing object"). When you edit a
 blog you see a form in which you can change the properties of the blog, in
 our case ``title`` and ``description``.
 
-The Fluid form looks like this (shortened to the essential)::
+The Fluid form looks like this (shortened to the essential):
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/NewAction.html
 
     <f:form method="post" action="update" name="blog" object="{blog}">
         <f:form.textfield property="title" />
@@ -720,11 +738,14 @@ The Fluid form looks like this (shortened to the essential)::
     </f:form>
 
 If the form is submitted the data will be sent in the following
-manner to the server::
+manner to the server:
 
-    tx_blogexample_pi1[blog][__identity] = 5
-    tx_blogexample_pi1[blog][title] = My title
-    tx_blogexample_pi1[blog][description] = Description
+.. code-block:: none
+   :caption: HTTP POST
+
+   tx_blogexample_pi1[blog][__identity] = 5
+   tx_blogexample_pi1[blog][title] = My title
+   tx_blogexample_pi1[blog][description] = Description
 
 First of all, the data is tagged with a prefix that contains the name
 of the extension and the plugin (``tx_blogexample_pi1``). This
@@ -780,40 +801,49 @@ given to the action as an argument.
 Now it is to tell the controller to explicitly
 replace the existing persistent ``blog`` object with the modified
 ``blog`` object. For this, the repository provides the method
-update()::
+update():
 
-    $this->blogRepository->update($blog);
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
+
+   $this->blogRepository->update($blog);
 
 With this, the changed object will be made into the persistent
 object: The changes are now permanently stored.
 
 .. sidebar:: Copies of objects
 
-    Why is a copy of an object created when it is to be changed? Lets
-    assume that the persistent object would be directly changed. In
-    this case, an empty controller would be updating persistent
-    objects::
+   Why is a copy of an object created when it is to be changed? Lets
+   assume that the persistent object would be directly changed. In
+   this case, an empty controller would be updating persistent
+   objects:
 
-        public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
-        {
-            // object will be automatically persisted
-        }
+   .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
-    This is not transparent and difficult to understand.
-    Besides that, this procedure introduces a big safety issue: When the
-    original object is changed, it would be impossible to cancel the
-    persisting of the changes. For this reason, a copy of the object is
-    returned for changed objects, so the developer of the extension has to
-    decide explicitly whether or not the changes are to be made
-    persistent.
+      public function updateAction(\MyVendor\BlogExample\Domain\Model\Blog $blog)
+      {
+         // object will be automatically persisted
+      }
+
+   This is not transparent and difficult to understand.
+   Besides that, this procedure introduces a big safety issue: When the
+   original object is changed, it would be impossible to cancel the
+   persisting of the changes. For this reason, a copy of the object is
+   returned for changed objects, so the developer of the extension has to
+   decide explicitly whether or not the changes are to be made
+   persistent.
 
 We want to assume a refinement of the argument mapping: When a link
 to an action is generated, and the link contains an object as a parameter, the
 object's identity is transferred automatically. In the following
 example, the UID is transferred instead of the ``blog``
-object::
+object:
 
-    <f:link.action action='show' arguments='{blog: blog}'>Show Blog</f:link.action>
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:link.action action='show' arguments='{blog: blog}'>Show Blog</f:link.action>
 
 The generated URL contains the identity of the blog object:
 ``tx_blogexample_pi1[blog]=47``. That is a short form of

@@ -41,7 +41,10 @@ Setting up the HTML basic framework
 The various templates have many common elements. First we define the
 basic framework by a common layout (see the section :ref:`creating-a-consistent-look-and-feel-with-layouts` earlier in this chapter) and store
 repeating code in partials (see the section ":ref:`moving-repeating-snippets-to-partials`" earlier in this chapter). The basic
-framework of our templates looks as follows::
+framework of our templates looks as follows:
+
+.. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Templates/SomeTemplate.html
 
    <f:layout name="default" />
       <f:section name="content">
@@ -52,13 +55,14 @@ In most templates, we are referencing the layout
 ``default``, that should build the "frame" of our plugin output.
 The actual template resides in a section with the name
 ``content``. The layout definition is stored in the HTML file
-*EXT:sjr_offers/Resources/Private/Layouts/default.html*
+:file:`EXT:sjr_offers/Resources/Private/Layouts/default.html`.
 
-::
+.. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Layouts/default.html
 
    <div class="tx-sjroffers">
-   <f:render section="content" />
-   <f:flashMessages id="dialog" title="Notice!"/>
+      <f:render section="content" />
+      <f:flashMessages id="dialog" title="Notice!"/>
    </div>
 
 A section ``content`` of the respective template is
@@ -66,7 +70,11 @@ rendered, and after this, a message to the frontend user is shown if
 necessary. The complete content of the plugin is then "packed" in a
 ``div`` container. The message - a so-called *flash
 message* - will be created inside our sample extension in the
-controller, e.g., at unauthorized access (see also the sections for edit and delete controller actions in :ref:`chapter 7 <controlling-the-flow-with-controllers>`)::
+controller, e.g., at unauthorized access (see also the sections for edit and
+delete controller actions in :ref:`chapter 7 <controlling-the-flow-with-controllers>`):
+
+.. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    public function updateAction(\MyVendor\SjrOffers\Domain\Model\Offer $offer)
    {
@@ -115,7 +123,10 @@ is given, the value should be prefixed with from respectively to. We store
 these jobs in a ``NumericalRangeViewHelper`` and call it in our
 template like this:
 
-``<sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>``
+.. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Layouts/default.html
+
+   <sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>
 
 Alternatively you can use the inline notation of Fluid (therefore
 see the box
@@ -127,6 +138,7 @@ earlier in this chapter):
 The `NumericRangeViewHelper` is implemented as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/ViewHelpers/Format/NumericRangeViewHelper.php
 
    namespace MyVendor\SjrOffers\ViewHelpers\Format;
 
@@ -180,17 +192,18 @@ Design a form
 
 In the end, we show you another sample for designing a form for
 editing the basic data of an organization. You find the associated
-template *edit.html* in the folder
-*EXT:sjr_offers/Resources/Private/Templates/Organization/*.
+template :file:`Edit.html` in the folder
+:file:`EXT:sjr_offers/Resources/Private/Templates/Organization/`.
 
 .. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Templates/Organization/Edit.html
 
    {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
    <f:layout name="default" />
    <f:section name="content">
      <sjr:security.ifAuthenticated person="{organization.administrator}">
        <f:then>
-         <f:render partial="formErrors" arguments="{formName: 'organization'}" />
+         <f:render partial="FormErrors" arguments="{formName: 'organization'}" />
          <f:form class="tx-sjroffers-form" method="post" action="update" name="organization"
                object="{organization}">
            <label for="name">Name</label>
@@ -211,7 +224,7 @@ template *edit.html* in the folder
          </f:form>
        </f:then>
        <f:else>
-         <f:render partial="accessError" />
+         <f:render partial="AccessError" />
        </f:else>
      </sjr:security.ifAuthenticated>
    </f:section>
@@ -219,13 +232,15 @@ template *edit.html* in the folder
 The form is enclosed in the tags of the
 ``IfAuthenticatedViewHelper``. If access is granted, then the
 form is displayed. Otherwise, the content of the partial
-``accessError`` is displayed.
+``AccessError`` is displayed.
 
-::
+
+.. code-block:: html
+   :caption: Example frontend output
 
    <div id="dialog" title="Notice!">
-   You are not authorized to execute this action.
-   Please first log in with your username and password.
+      You are not authorized to execute this action.
+      Please first log in with your username and password.
    </div>
 
 With the declaration of ``object="{organization}"`` the
@@ -242,10 +257,13 @@ submitting the form, the data is sent as POST parameters to the method
 
 When the entered data is not valid, the method ``editActon()`` is called again
 and an error message is displayed. We have stored the HTML code for the error
-message in a partial ``formErrors`` (see
-:file:`EXT:sjr_offers/Resources/Private/Partials/formErrors.html`).  In this
+message in a partial ``FormErrors`` (see
+:file:`EXT:sjr_offers/Resources/Private/Partials/FormErrors.html`).  In this
 partial, the name of the form that relates to the error message is given as
-``formName``::
+``formName``:
+
+.. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Partials/FormErrors.html
 
    <f:form.errors for="formName">
       <div id="dialog" title="{error.propertyName}">
@@ -265,6 +283,7 @@ partial, the name of the form that relates to the error message is given as
    ``formErrors`` with the following code:
 
    .. code-block:: html
+      :caption: EXT:sjr_offers/Resources/Private/Partials/FormErrors.html
 
       <f:form.errors for="{formName}">
         <div id="dialog" title="{f:translate(key: '{formName}.{error.propertyName}',
@@ -280,13 +299,16 @@ partial, the name of the form that relates to the error message is given as
 
    In the file
    :file:`EXT:sjr_offers/Resources/Private/Language/locallang.xml`
-   you have to write for example::
+   you have to write for example:
+
+   .. code-block:: xml
+      :caption: EXT:sjr_offers/Resources/Private/Language/locallang.xml
 
       <label index="newOffer.title">Title of the offer</label>
       <label index="newOffer.title.1238108067">The length of the title must between 3 an 50 character.</label>
 
    This solution is only an agreement. The default localization of
    the error messages are planned for a future version of
-   Extbase.<remark>TODO: rework for current Extbase version</remark>
+   Extbase.
 
-
+   .. TODO: rework for current Extbase version

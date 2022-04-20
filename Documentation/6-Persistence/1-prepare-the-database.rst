@@ -81,7 +81,7 @@ class names are written in lowercase, retaining the underlines.
 The definition of the database table fields `name`,
 `address` etc., follows in round brackets. Some of them should
 sound familiar since they meet the properties' names of the class
-`Organization`. 
+`Organization`.
 
 .. note::
 
@@ -445,6 +445,7 @@ persistence that will be explained subsequently. In case of a
 Key field of the parent object:
 
 .. code-block:: mysql
+   :caption: EXT:sjr_offers/ext_tables.sql
 
    CREATE TABLE tx_sjroffers_domain_model_offer(
       # …
@@ -477,6 +478,7 @@ filled with instances of the class
 `\MyVendor\SjrOffers\Domain\Model\Offer`.
 
 .. code-block:: mysql
+   :caption: EXT:sjr_offers/ext_tables.sql
 
    CREATE TABLE tx_sjroffers_domain_model_organization (
       # …
@@ -489,6 +491,7 @@ The definition of the table
 `organization` as a Foreign Key.
 
 .. code-block:: mysql
+   :caption: EXT:sjr_offers/ext_tables.sql
 
    CREATE TABLE tx_sjroffers_domain_model_offer (
       # …
@@ -521,6 +524,7 @@ the child object. The table definitions for a relationship between offer
 and category are as follows:
 
 .. code-block:: mysql
+   :caption: EXT:sjr_offers/ext_tables.sql
 
    CREATE TABLE tx_sjroffers_domain_model_offer (
         # ...

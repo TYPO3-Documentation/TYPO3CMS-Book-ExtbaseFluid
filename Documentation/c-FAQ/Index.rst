@@ -23,7 +23,8 @@ How can I specify a storage Pid for my plugins?
 You can specify a global storage Pid for all plugins of your extension
 in your TypoScript setup like this:
 
-.. code-block:: ts
+.. code-block:: typoscript
+   :caption: EXT:my_extension/Configuration/TypoScript/setup.typoscript
 
    plugin.tx_yourextension {
        persistence {
@@ -34,7 +35,9 @@ in your TypoScript setup like this:
 To set it only for one plugin, replace :typoscript:`tx_yourextension` by
 :typoscript:`tx_yourextension_yourplugin`. For modules it's the same syntax:
 
-.. code-block:: ts
+
+.. code-block:: typoscript
+   :caption: EXT:my_extension/Configuration/TypoScript/setup.typoscript
 
    module.tx_yourextension {
        persistence {
@@ -75,7 +78,8 @@ How can I comment out parts of my Fluid template?
 As the Fluid syntax is basically XML, you can use CDATA tags to comment
 out parts of your template:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <![CDATA[
    This will be ignored by the Fluid parser
@@ -84,20 +88,20 @@ out parts of your template:
 If you want to hide the contents from the browser, you can additionally
 encapsulate the part in HTML comments:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <!--<![CDATA[
    This will be ignored by the Fluid parser and by the browser
    ]]>-->
 
-Note: This way the content will still be transfered to the browser! If
+Note: This way the content will still be transferred to the browser! If
 you want to completely skip parts of your template, you can make use of
 the **f:comment** view helper. To disable parsing you best combine it
 with CDATA tags:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:comment><![CDATA[
    This will be ignored by the Fluid parser and won't appear in the source code of the rendered template
@@ -111,8 +115,8 @@ inline scripts with CDATA tags (see above). If you want to access Fluid
 variables from your scripts, you should instantiate them on top of your
 script block like:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <script type="text/javascript">
    var someSetting = "{settings.someSetting}";
@@ -138,8 +142,8 @@ How can I render localized dates?
 Similar to the localized error messages, you can put date formats in
 your locallang files:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    [...]
       <label index="culture.date.formatLong">Y-m-d H:i</label>
@@ -152,8 +156,8 @@ f:format.date(format: '{f:translate(key:
 
 If you want to use names for months, you can do so like this:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    [...]
       <label index="culture.monthNames.1">january</label>
@@ -162,12 +166,13 @@ If you want to use names for months, you can do so like this:
 
 Fluid:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    {post.date -> f:format.date(format: 'd.')}
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:translate key="culture.monthNames.{post.date -> f:format.date(format: 'n')}" />
 
@@ -177,36 +182,35 @@ Can ViewHelpers be nested?
 
 Yes:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:format.date format="{f:translate(key: 'culture.date.formatShort')}">{post.date}</f:format.date>
 
 If you use the inline notation for the outer and the inner view helper,
 you'll have to take care of the correct escaping:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    {post.date -> f:format.date(format: '{f:translate(key: \'culture.date.formatShort\')}')}
 
 You can also use view helpers in array parameters:
 
-
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:translate key="someKey" arguments="{0: 'foo', 1: '{f:count(subject: items)}'}" />
 
 Another nested Example
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:translate key="text" htmlEscape="false" arguments="{0: '{f:translate(key: \'here\') -> f:link.action(action: \'show\')}'}" />
 
-
-
 .. code-block:: xml
-   :caption: File: locallang.xml
+   :caption: File: EXT:my_extension/Resources/Private/Language/locallang.xlf
 
    <label index="here">this link</label>
    <label index="text">You can use %1$s to register.</label>
@@ -226,7 +230,8 @@ How can I use dynamic array indexes?
 
 An array can be accessed dynamically by recursively inserting its index:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <!-- Recursive variable resolving -->
    <f:variable name="array" value="{0: 'foo', 1: 'bar'}" />
@@ -236,7 +241,8 @@ An array can be accessed dynamically by recursively inserting its index:
 
 It is even possible to call variables dynamically that way:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:variable name="typeOne" value="This is type 1" />
    <f:variable name="typeTwo" value="This is type 2" />
@@ -258,7 +264,8 @@ Can I compare strings with the if view helper?
 Starting from TYPO3 6.1 this is possible as expected and you can use
 constant strings in if view helper as follows:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:if condition="{item.status} == 'active'"> Output something </f:if>
 
@@ -272,7 +279,8 @@ FLUIDTEMPLATE uses the Standalone View of Fluid that is by default not
 bound to an extension. But you can specify the path to your locallang
 file as ViewHelper argument:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    <f:translate key="LLL:fileadmin/some/path/locallang.xlf:your.key" />
 
@@ -280,7 +288,8 @@ Alternatively, if you put your locallang files inside an extension (the
 recommended way) you can tell the FLUIDTEMPLATE to use that extension by
 default:
 
-.. code-block:: ts
+.. code-block:: typoscript
+   :caption: EXT:my_extension/Configuration/TypoScript/setup.typoscript
 
    10 = FLUIDTEMPLATE
    10.file = some/file

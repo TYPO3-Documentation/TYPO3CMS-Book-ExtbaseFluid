@@ -51,12 +51,15 @@ to Extbase and Fluid, respectively. Otherwise, TYPO3 will always generate
 the ``<head>``- and
 ``<body>``-section.
 
-You can use the following TypoScript::
+You can use the following TypoScript:
+
+.. code-block:: typoscript
+   :caption: EXT:blog_example/Configuration/TypoScript/setup.typoscript
 
    rss = PAGE
    rss {
       typeNum = 100
-      10 =< tt_content.list.20.*[ExtensionKey]*_*[PluginName]*
+      10 =< tt_content.list.20.myextension_pi1
 
       config {
          disableAllHeaderCode = 1
@@ -66,10 +69,10 @@ You can use the following TypoScript::
       }
    }
 
-You still have to exchange *[ExtensionKey]* and *[PluginName]* with the Extension and Plugin name.
+You still have to exchange :typoscript:`myextension_pi1` with the Extension and Plugin name.
 We recommend searching for the path of your Plugin in the
 TypoScript Object Browser to avoid misspelling. Further on you have to
-explicitly set :typoscript:`plugin.tx_*[ExtensionKey]*.persistence.storagePid`
+explicitly set :typoscript:`plugin.tx_myextension.persistence.storagePid`
 to the number of the page containing the data to tell Extbase from which page
 the data should be read.
 
@@ -91,22 +94,30 @@ about how to convert assigned variables to JSON format.
 
 .. _switching-php-class-of-view:
 
-Switching php class of view
+Switching PHP class of view
 ---------------------------
 
 To use this view, these are multiple possible ways within the controller:
 
 .. rst-class:: bignums
 
-#. Replace default view by changing property :php:`$defaultViewObjectName`::
+#. Replace default view by changing property :php:`$defaultViewObjectName`:
 
-       protected $defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
-#. Switch property values within an :php:`initialize*Action()` method::
+      use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+
+      protected $defaultViewObjectName = JsonView::class;
+
+#. Switch property values within an :php:`initialize*Action()` method:
+
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
       public function initializeSpecialAction()
       {
-          $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+          $this->defaultViewObjectName = JsonView::class;
       }
 
 
@@ -115,34 +126,38 @@ To use this view, these are multiple possible ways within the controller:
 Configuring :php:`JsonView`
 ---------------------------
 
-Once the view is in use, it needs to be configured::
+Once the view is in use, it needs to be configured:
 
-     $this->view->setConfiguration([
-         'customVariable' => [
-             '_only' => [
-                 'key1',
-                 'key3',
-             ],
-         ],
-     ]);
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
-     $this->view->setVariablesToRender(['customVariable']);
+   $this->view->setConfiguration([
+       'customVariable' => [
+           '_only' => [
+               'key1',
+               'key3',
+           ],
+       ],
+   ]);
 
-     $this->view->assignMultiple([
-         'anotherVariable' => 'value',
-         'customVariable' => [
-             'key1' => 'value1',
-             'key2' => 'value2',
-             'key3' => [
-                 'key3.1' => 'value3.1',
-                 'key3.2' => 'value3.2',
-             ],
-         ],
-     ]);
+   $this->view->setVariablesToRender(['customVariable']);
+
+   $this->view->assignMultiple([
+       'anotherVariable' => 'value',
+       'customVariable' => [
+           'key1' => 'value1',
+           'key2' => 'value2',
+           'key3' => [
+               'key3.1' => 'value3.1',
+               'key3.2' => 'value3.2',
+           ],
+       ],
+   ]);
 
 The above example will result in the following output:
 
 .. code-block:: json
+   :caption: Example json output
 
    {
        "key1": "value1",
@@ -184,6 +199,7 @@ Examples:
 1. This is for 1:1 relations, where a comment has at most 1 comment.
 
    .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
       $configuration = [
           'comment' => [
@@ -196,6 +212,7 @@ Examples:
    sub objects.
 
    .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
       $configuration = [
           'directories' => [
@@ -213,7 +230,10 @@ level as `_recursive` and the view will apply this for all levels.
 Further examples
 ----------------
 
-Example 1 for :php:`setConfiguration()` call::
+Example 1 for :php:`setConfiguration()` call:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    $this->view->setConfiguration([
       'variable1' => [
@@ -264,7 +284,10 @@ for the output to export indexed arrays. The configuration inside a
 ``_descendAll`` will be applied to each array element.
 
 
-Example 2 for :php:`setConfiguration()` call: exposing object identifier::
+Example 2 for :php:`setConfiguration()` call: exposing object identifier:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    $this->view->setConfiguration([
       'variableFoo' => [
@@ -288,7 +311,10 @@ Example 2 above would output (summarized):
 ``{"customer":{"firstName":"John","guid":"892693e4-b570-46fe-af71-1ad32918fb64"}}``
 
 
-Example 3 for :php:`setConfiguration()` call: exposing object's class name::
+Example 3 for :php:`setConfiguration()` call: exposing object's class name:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
    $this->view->setConfiguration([
       'variableFoo' => [

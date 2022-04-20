@@ -26,10 +26,13 @@ appropriate message should be displayed. In Fluid the
 ``IfViewHelper`` enables such case-by-case analysis.
 
 Simple ``if`` queries (without an else term) looks like
-this::
+this:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/MyTemplate.html
 
    <f:if condition="{blog.posts}">
-   This is only shown if blog posts are available.
+      This is only shown if blog posts are available.
    </f:if>
 
 .. tip::
@@ -38,29 +41,40 @@ this::
    default empty lists are interpreted as ``false`` and list with at
    least one element as ``true``.
 
-Using the inline notation it looks like this::
+Using the inline notation it looks like this:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/MyTemplate.html
+
 
    <div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable')}">
-   This div has the CSS class 'BlogPostAvailable', if blog posts are available.
+      This div has the CSS class 'BlogPostAvailable', if blog posts are available.
    </div>
 
 Also ``if-then-else`` structures are possible. In that case
-the ``then`` tag is required::
+the ``then`` tag is required:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/MyTemplate.html
+
 
    <f:if condition="{blog.posts}">
-   <f:then>
-   This is only shown if blog posts are available.
-   </f:then>
-   <f:else>
-   No blog posts available.
-   </f:else>
+      <f:then>
+         This is only shown if blog posts are available.
+      </f:then>
+      <f:else>
+         No blog posts available.
+      </f:else>
    </f:if>
 
-This is also possible in the inline notation::
+This is also possible in the inline notation:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/MyTemplate.html
 
    <div class="{f:if(condition: blog.posts, then: 'blogPostsAvailable', else: 'noPosts')}">
-   This div has the CSS class 'BlogPostAvailable', if blog posts are available.
-   If no posts are available, this div container gets the CSS class 'noPosts' assigned.
+      This div has the CSS class 'BlogPostAvailable', if blog posts are available.
+      If no posts are available, this div container gets the CSS class 'noPosts' assigned.
    </div>
 
 
@@ -70,10 +84,14 @@ Realize complex comparisons
 Until now we have employed with simplest boolean evaluations. With
 the syntax you have learned until now, no comparisons or modulo operations
 are possible. Fluid supports these conditions as well. Here is a short
-example::
+example:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/MyTemplate.html
+
 
    <f:if condition="{posts.viewCount} % 2">
-   viewCount is an even number.
+      viewCount is an even number.
    </f:if>
 
 Note the enhanced syntax inside the condition.

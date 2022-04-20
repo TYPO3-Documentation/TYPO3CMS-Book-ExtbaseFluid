@@ -10,7 +10,10 @@ Paths on the data map
 The `DataMapper` object has the task to create an instance of the blog class
 (whose name is stored in `$this->className`) for each tuple and "fill" this fresh
 instance with the data of the tuple. It is called in the `Query` object by the
-following lines::
+following lines:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
 
     $this->dataMapper->map($this->getType(), $rows);
 
@@ -25,37 +28,46 @@ tables (stored in the *Table Configuration Array*, short: TCA), furthermore it
 "reads" the PHP comments inside the class definition standing above the
 definitions (or *properties*). For example, let's look at the definition of the
 property *posts* within the ``Blog`` class. You can find this in the file
-:file:`EXT:blog_example/Classes/Domain/Model/Blog.php`. ::
+:file:`EXT:blog_example/Classes/Domain/Model/Blog.php`.
 
-    <?php
-    namespace FriendsOfTYPO3\BlogExample\Domain\Model;
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
 
-    use TYPO3\CMS\Extbase\Annotation as Extbase;
-    use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   <?php
+   namespace FriendsOfTYPO3\BlogExample\Domain\Model;
 
-    /**
-    * A blog
-    */
-    class Blog extends AbstractEntity
-    {
-        /**
-        * The posts of this blog
-        *
-        * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Post>
-        * @Extbase\ORM\Lazy
-        * @Extbase\ORM\Cascade("remove")
-        */
-        protected $posts;
-    }
+   use TYPO3\CMS\Extbase\Annotation as Extbase;
+   use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Post;
+
+   /**
+   * A blog
+   */
+   class Blog extends AbstractEntity
+   {
+       /**
+       * The posts of this blog
+       *
+       * @var ObjectStorage<Post>
+       * @Extbase\ORM\Lazy
+       * @Extbase\ORM\Cascade("remove")
+       */
+       protected $posts;
+   }
 
 
 The property ``$posts`` contains within the PHP comment above some so called
-annotations which start with the @ character. The annotation::
+annotations which start with the @ character. The annotation:
 
-    @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Post>
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
 
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Post;
 
-.. todo: No need for FQCN's here no more.
+    // @var ObjectStorage<Post>
+
 
 tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with the
 ``Post`` objects of the class :php:`\FriendsOfTYPO3\BlogExample\Domain\Model\Post`.
@@ -75,41 +87,55 @@ tells the ``DataMapper`` to create an ``ObjectStorage`` there and fill it with t
 The notation at first seems unusual. It is based on the so-called *Generics* of
 the programming language Java. In the definition of your property, you have to
 enter the type in the annotation above the method definition. Properties of a
-PHP type will look like this::
+PHP type will look like this:
 
-    /**
-     * @var int
-     */
-    protected $amount;
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
+
+   /**
+    * @var int
+    */
+   protected $amount;
 
 .. todo: Use PHP 74. syntax here.
 
-It is also possible to enter a class as type::
+It is also possible to enter a class as type:
 
-    /**
-     * @var \FriendsOfTYPO3\BlogExample\Domain\Model\Person
-     */
-    protected $author;
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
+
+   /**
+    * @var \FriendsOfTYPO3\BlogExample\Domain\Model\Person
+    */
+   protected $author;
 
 .. todo: Use PHP 74. syntax here.
 
 Properties which should be bound to multiple child objects require the class
-name of the child elements in angle brackets::
+name of the child elements in angle brackets:
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\FriendsOfTYPO3\BlogExample\Domain\Model\Tag>
-     */
-    protected $tags;
 
- .. todo: Avoid FQCN's here.
- 
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
+
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+   use FriendsOfTYPO3\BlogExample\Domain\Model\Tag
+
+   /**
+    * @var ObjectStorage<Tag>
+    */
+   protected $tags;
+
 .. index::
    Extbase; TCA
    Files; Configuration/TCA/*
 
 Extbase gathers the type of the relation from the configuration of the database
 table column. The definition of the column ``posts`` can be
-found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*. ::
+found in the file :file:`tx_blogexample_domain_model_blog.php` within the path *Configuration/TCA/*.
+
+.. code-block:: php
+   :caption: EXT:blog_example/Configuration/TCA/x_blogexample_domain_model_blog.php
 
    <?php
 

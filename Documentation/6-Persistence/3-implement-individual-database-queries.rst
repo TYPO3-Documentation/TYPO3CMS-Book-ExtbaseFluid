@@ -53,56 +53,60 @@ objects (or a via limit and offset customized section of it). For example, the
 generic repository method :php:`findAll()` looks as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    /**
-     * Returns all objects of this repository.
-     *
-     * @return QueryResultInterface|array
-     * @api
-     */
-    public function findAll()
-    {
-        return $this->createQuery()->execute();
-    }
+   /**
+    * Returns all objects of this repository.
+    *
+    * @return QueryResultInterface|array
+    * @api
+    */
+   public function findAll()
+   {
+       return $this->createQuery()->execute();
+   }
 
 More repository search methods are available:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    /**
-     * Finds an object matching the given unique id.
-     *
-     * @param int $uid The unique id of the object to find
-     * @return object The matching object if found, otherwise NULL
-     * @api
-     */
-    public function findByUid(int $uid)
-    {
-        return $this->findByIdentifier($uid);
-    }
+   /**
+    * Finds an object matching the given unique id.
+    *
+    * @param int $uid The unique id of the object to find
+    * @return object The matching object if found, otherwise NULL
+    * @api
+    */
+   public function findByUid(int $uid)
+   {
+       return $this->findByIdentifier($uid);
+   }
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    /**
-     * Finds an object matching the given identifier.
-     *
-     * @param int $identifier The identifier of the object to find
-     * @return object The matching object if found, otherwise NULL
-     * @api
-     */
-    public function findByIdentifier(int $identifier)
-    {
-        return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
-    }
+   /**
+    * Finds an object matching the given identifier.
+    *
+    * @param int $identifier The identifier of the object to find
+    * @return object The matching object if found, otherwise NULL
+    * @api
+    */
+   public function findByIdentifier(int $identifier)
+   {
+       return $this->persistenceManager->getObjectByIdentifier($identifier, $this->objectType);
+   }
 
 You must set the `storagePid` to the allowed pages before a query finds any records.
 By default, a query only searches on the root page with `id=0`.
 
 TypoScript example of an extension for the page id's 12 and 22
 
-::
+.. code-block:: typoscript
+   :caption: EXT:blog_example/Configuration/TypoScript/setup.typoscript
 
-    plugin.tx_[lowercasedextensionname] {
+    plugin.tx_myextension {
       persistence {
         storagePid = 12,22
       }
@@ -115,13 +119,14 @@ specified request, "Find all the offers for a certain region". Thus, the
 corresponding method looks as follows:
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    public function findInRegion(\MyVendor\SjrOffers\Domain\Model\Region $region)
-    {
-        $query = $this->createQuery();
-        $query->matching($query->contains('regions', $region));
-        return $query->execute();
-    }
+   public function findInRegion(\MyVendor\SjrOffers\Domain\Model\Region $region)
+   {
+       $query = $this->createQuery();
+       $query->matching($query->contains('regions', $region));
+       return $query->execute();
+   }
 
 Using the method ``matching()`` we give the Query the following condition: The
 property *regions* of the object *Offer* (which is managed by the repository)
@@ -132,17 +137,20 @@ roughly split into two groups: Comparing operations and Boolean operations.
 The first group leads to a comparison between the value of a given property
 and another operand. The latter mentioned operations connect two conditions to
 one condition by the rules of Boolean Algebra and may
-respectively negate a result. The following Comparing operations are acceptable::
+respectively negate a result. The following Comparing operations are acceptable:
 
-    equals($propertyName, $operand, $caseSensitive = TRUE)
-    in($propertyName, $operand)
-    contains($propertyName, $operand)
-    like($propertyName, $operand)
-    lessThan($propertyName, $operand)
-    lessThanOrEqual($propertyName, $operand)
-    greaterThan($propertyName, $operand)
-    greaterThanOrEqual($propertyName, $operand)
-    between($propertyName, $operandLower, $operandUpper) // inclusive comparison
+.. code-block:: none
+   :caption: Examples of different comparing operations
+
+   equals($propertyName, $operand, $caseSensitive = TRUE)
+   in($propertyName, $operand)
+   contains($propertyName, $operand)
+   like($propertyName, $operand)
+   lessThan($propertyName, $operand)
+   lessThanOrEqual($propertyName, $operand)
+   greaterThan($propertyName, $operand)
+   greaterThanOrEqual($propertyName, $operand)
+   between($propertyName, $operandLower, $operandUpper) // inclusive comparison
 
 The method ``equals()`` executes a simple comparison between the property's
 value and the operand, which may be a simple PHP data type or a Domain object.
@@ -155,13 +163,14 @@ of the introduced method ``findInRegion()`` is ``findOfferedBy()`` which accepts
 a multi-valued operand (``$organizations``).
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    public function findOfferedBy(array $organizations)
-    {
-        $query = $this->createQuery();
-        $query->matching($query->in('organization', $organizations));
-        return $query->execute();
-    }
+   public function findOfferedBy(array $organizations)
+   {
+       $query = $this->createQuery();
+       $query->matching($query->in('organization', $organizations));
+       return $query->execute();
+   }
 
 .. note::
 
@@ -177,7 +186,10 @@ a multi-valued operand (``$organizations``).
 It's possible to use comparison operators that are reaching deep into the object tree
 hierarchy. Let's assume you want to filter the organizations by whether
 they have offers for youngsters older than 16. You may define the request in the
-``OrganizationRepository`` as follows::
+``OrganizationRepository`` as follows:
+
+.. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OrganizationRepository.php
 
     $query->lessThanOrEqual('offers.ageRange.minimalValue', 16)
 
@@ -188,7 +200,10 @@ Backend, this is internally solved by a so-called *INNER JOIN*. This feature cov
 types (1:1, 1:n, m:n) and all comparison operators.
 
 Besides comparison operators, the ``Query`` object supports Boolean
-Operators such as::
+Operators such as:
+
+.. code-block:: none
+   :caption: Examples of different boolean operators
 
     logicalAnd($constraint1, $constraint2)
     logicalOr($constraint1, $constraint2)
@@ -205,18 +220,22 @@ yields *false* and *false* yields *true*. Given this information, you can create
 complex queries such as:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    public function findMatchingOrganizationAndRegion(\MyVendor\SjrOffers\Domain\Model\Organization $organization, \MyVendor\SjrOffers\Domain\Model\Region $region)
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalAnd(
-                 $query->equals('organization', $organization),
-                 $query->contains('regions', $region)
-            )
-        );
-        return $query->execute();
-    }
+   use MyVendor\SjrOffers\Domain\Model\Organization;
+   use MyVendor\SjrOffers\Domain\Model\Region;
+
+   public function findMatchingOrganizationAndRegion(Organization $organization, Region $region)
+   {
+       $query = $this->createQuery();
+       $query->matching(
+           $query->logicalAnd(
+                $query->equals('organization', $organization),
+                $query->contains('regions', $region)
+           )
+       );
+       return $query->execute();
+   }
 
 The method :php:`findMatchingOrganizationAndRegion()` returns those offers that
 match both the given organization and the given region.
@@ -232,49 +251,52 @@ to show the current offers. This example request denotes a date constraint at mo
 In the method ``findDemanded()`` of the ``offerRepository``, the request is implemented:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    public function findDemanded(\MyVendor\SjrOffers\Domain\Model\Demand $demand)
-    {
-        $query = $this->createQuery();
-        $constraints = [];
-        if ($demand->getRegion() !== null) {
-            $constraints[] = $query->contains('regions', $demand->getRegion());
-        }
-        if ($demand->getCategory() !== null) {
-            $constraints[] = $query->contains('categories', $demand->getCategory());
-        }
-        if ($demand->getOrganization() !== null) {
-            $constraints[] = $query->contains('organization', $demand->getOrganization());
-        }
-        if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
-            $constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
-        }
-        if ($demand->getAge() !== null) {
-            $constraints[] = $query->logicalAnd(
-                 $query->logicalOr(
-                      $query->equals('ageRange.minimumValue', null),
-                      $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-                 ),
-                 $query->logicalOr(
-                      $query->equals('ageRange.maximumValue', null),
-                      $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-                 ),
-            );
-        }
-        $constraints[] = $query->logicalOr(
-             $query->equals('dateRange.minimumValue', null),
-             $query->equals('dateRange.minimumValue', 0),
-             $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
-        );
+   use MyVendor\SjrOffers\Domain\Model\Demand;
 
-        $numberOfConstraints = count($constraints);
-        if ($numberOfConstraints === 1) {
-            $query->matching(reset($constraints));
-        } elseif ($numberOfConstraints >= 2) {
-            $query->matching($query->logicalAnd(...$constraints));
-        }
-        return $query->execute();
-    }
+   public function findDemanded(Demand $demand)
+   {
+       $query = $this->createQuery();
+       $constraints = [];
+       if ($demand->getRegion() !== null) {
+           $constraints[] = $query->contains('regions', $demand->getRegion());
+       }
+       if ($demand->getCategory() !== null) {
+           $constraints[] = $query->contains('categories', $demand->getCategory());
+       }
+       if ($demand->getOrganization() !== null) {
+           $constraints[] = $query->contains('organization', $demand->getOrganization());
+       }
+       if (is_string($demand->getSearchWord()) && strlen($demand->getSearchWord()) > 0) {
+           $constraints[] = $query->like($propertyName, '%' . $demand->getSearchWord . '%');
+       }
+       if ($demand->getAge() !== null) {
+           $constraints[] = $query->logicalAnd(
+                $query->logicalOr(
+                     $query->equals('ageRange.minimumValue', null),
+                     $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+                ),
+                $query->logicalOr(
+                     $query->equals('ageRange.maximumValue', null),
+                     $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+                ),
+           );
+       }
+       $constraints[] = $query->logicalOr(
+            $query->equals('dateRange.minimumValue', null),
+            $query->equals('dateRange.minimumValue', 0),
+            $query->greaterThan('dateRange.maximumValue', (time() - 60*60*24*7))
+       );
+
+       $numberOfConstraints = count($constraints);
+       if ($numberOfConstraints === 1) {
+           $query->matching(reset($constraints));
+       } elseif ($numberOfConstraints >= 2) {
+           $query->matching($query->logicalAnd(...$constraints));
+       }
+       return $query->execute();
+   }
 
 The ``Demand`` object is passed as an argument. In the first line, the ``Query`` object is created.
 All single constraint terms are then collected in the array ``$constraints``. The
@@ -286,17 +308,18 @@ query is executed, and the located ``Offer`` objects are returned to the caller.
 The example's offer age range requirement is interesting.
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    $constraints[] = $query->logicalAnd(
-         $query->logicalOr(
-              $query->equals('ageRange.minimumValue', null),
-              $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
-         ),
-         $query->logicalOr(
-              $query->equals('ageRange.maximumValue', null),
-              $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
-         ),
-    );
+   $constraints[] = $query->logicalAnd(
+        $query->logicalOr(
+             $query->equals('ageRange.minimumValue', null),
+             $query->lessThanOrEqual('ageRange.minimumValue', $demand->getAge())
+        ),
+        $query->logicalOr(
+             $query->equals('ageRange.maximumValue', null),
+             $query->greaterThanOrEqual('ageRange.maximumValue', $demand->getAge())
+        ),
+   );
 
 This requirement is fulfilled using multiple levels of nested query constraints. Each ``logicalOr()``
 condition allows either an unset age (value ``equals() null``) or a boundary
@@ -317,13 +340,14 @@ for ascending order, and ``\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_
 order. A complete sample for specifying a sort order looks like this:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    $query->setOrderings(
-        [
-            'organization.name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
-            'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
-        ]
-    );
+   $query->setOrderings(
+       [
+           'organization.name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
+           'title' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+       ]
+   );
 
 Multiple orderings are processed in the specified order. In our sample, the offers are ordered first
 by the organization's name, then inside the organization by the title of the offers, both in ascending
@@ -334,9 +358,10 @@ and ``Offset``. Assuming you want to get the tenth up to thirtieth offers from t
 from the repository, you can use the following lines:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    $query->setOffset(10);
-    $query->setLimit(20);
+   $query->setOffset(10);
+   $query->setLimit(20);
 
 Both methods expect an integer value. With the method ``setOffset()``, you set the pointer to the
 object you will start with. With the method ``setLimit()``, you set the maximum count of objects you will
@@ -357,23 +382,28 @@ Even so, using the method ``statement()`` of the ``Query`` object, you can send 
 the database.
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
-    $result = $query->statement('SELECT * FROM tx_sjroffers_domain_model_offer
-        WHERE title LIKE ? AND organization IN ?', ['%climbing%', [33,47]]);
+   $result = $query->statement('SELECT * FROM tx_sjroffers_domain_model_offer
+       WHERE title LIKE ? AND organization IN ?', ['%climbing%', [33,47]]);
 
 is translated by Extbase to the following query:
 
-.. code-block:: php
+.. code-block:: sql
+   :caption: Generated SQL example
 
     SELECT * FROM tx_sjroffers_domain_model_offer WHERE title LIKE '%climbing%' AND
         organization IN ('33','47')
 
 .. warning::
 
-    You should always avoid making queries to the persistence layer outside of the domain model.
-    Encapsulate these queries always in a repository.
+   You should always avoid making queries to the persistence layer outside of the domain model.
+   Encapsulate these queries always in a repository.
 
-    Inside of the repositories, you can access the database using a database connection::
+   Inside of the repositories, you can access the database using a database connection:
+
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
        use TYPO3\CMS\Core\Database\ConnectionPool;
        use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -389,7 +419,7 @@ is translated by Extbase to the following query:
 
        $rows = $query->execute()->fetchAll();
 
-    You have to handle the creation and maintenance of the objects by yourself.
+   You have to handle the creation and maintenance of the objects by yourself.
 
 The method ``execute()`` per default returns a ready-built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
@@ -397,6 +427,7 @@ e.g., if you want to manipulate them before building objects out of them. For th
 method with its parameter ``$returnRawQueryResult`` set to true.
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
     $query->execute(true);
 
@@ -404,20 +435,21 @@ The method ``execute()`` will then return a multidimensional array with the obje
 Inside an object, one finds single value properties, multi-value properties, and NULL values. Let's have a
 look at an object with a single value property.
 
-::
+.. code-block:: php
+   :caption: Example object data
 
-    [
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => [
-            '<name>' => [
-                'type' => '<type>',
-                'multivalue' => FALSE,
-                'value' => <value>
-            ],
-            ...
-        ],
-    ],
+   [
+       'identifier' => '<identifier>',
+       'classname' => '<classname>',
+       'properties' => [
+           '<name>' => [
+               'type' => '<type>',
+               'multivalue' => FALSE,
+               'value' => <value>
+           ],
+           ...
+       ],
+   ],
 
 In Extbase, the value for ``<identifier>`` is always the data record's UID. The class name
 ``<classname>`` and the identifier together make the element unique across the whole database. The
@@ -433,43 +465,45 @@ for multi-value properties is always ``\TYPO3\CMS\Extbase\Persistence\ObjectStor
 like ``array`` or ``splObjectStorage`` may be supported. The property is per definition declared as
 multi-value (``'multivalue' => TRUE``).
 
-::
+.. code-block:: php
+   :caption: Example object data
 
-    [
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => [
-            '<name>' => [
-                'type' => '<type>',  // always '\TYPO3\CMS\Extbase\Persistence\ObjectStorage'
-                'multivalue' => TRUE,
-                'value' => [
-                    [
-                        'type' => '<type>',
-                        'index' => <index>,
-                        'value' => <value>
-                    ],
-                    ...
-                ],
-            ],
-        ],
-    ],
+   [
+       'identifier' => '<identifier>',
+       'classname' => '<classname>',
+       'properties' => [
+           '<name>' => [
+               'type' => '<type>',  // always '\TYPO3\CMS\Extbase\Persistence\ObjectStorage'
+               'multivalue' => TRUE,
+               'value' => [
+                   [
+                       'type' => '<type>',
+                       'index' => <index>,
+                       'value' => <value>
+                   ],
+                   ...
+               ],
+           ],
+       ],
+   ],
 
 If a property has a NULL value, it is stored in the object array like this:
 
-::
+.. code-block:: php
+   :caption: Example object data
 
-    [
-        'identifier' => '<identifier>',
-        'classname' => '<classname>',
-        'properties' => [
-            '<name>' => [
-                'type' => '<type>',
-                'multivalue' => <boolean>,
-                'value' => NULL
-            ],
-            ...
-        ],
-    ],
+   [
+       'identifier' => '<identifier>',
+       'classname' => '<classname>',
+       'properties' => [
+           '<name>' => [
+               'type' => '<type>',
+               'multivalue' => <boolean>,
+               'value' => NULL
+           ],
+           ...
+       ],
+   ],
 
 The debug output of the return value looks like figure 6-13.
 
@@ -515,7 +549,8 @@ conjunction with the method ``matching()``. In a backend SQL database, a stateme
 
 In any backend storage case, the call
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
 
     $offersInRegion = $query->matching($query->contains('regions', $region))->count();
 
@@ -555,6 +590,7 @@ queries. The used entities are the following:
 ----------------------
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OrganizationRepository.php
 
    $query = $postRepository->createQuery();
    $query->matching(
@@ -563,6 +599,7 @@ queries. The used entities are the following:
    $posts = $query->execute();
 
 .. code-block:: sql
+   :caption: Generated SQL example
 
    SELECT    tx_blogexample_post.*
    FROM      tx_blogexample_post
@@ -580,6 +617,7 @@ this won't lead to duplicate results for ``Post`` entities.
 -----------------------
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OrganizationRepository.php
 
    $query = $blogRepository->createQuery();
    $query->matching(
@@ -588,6 +626,7 @@ this won't lead to duplicate results for ``Post`` entities.
    $blogs = $query->execute();
 
 .. code-block:: sql
+   :caption: Generated SQL example
 
    SELECT    DISTINCT tx_blogexample_blog.*
    FROM      tx_blogexample_blog
@@ -605,6 +644,7 @@ m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
 --------------------------------------
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OrganizationRepository.php
 
    $query = $postRepository->createQuery();
    $query->matching(
@@ -616,6 +656,7 @@ m:n (RELATION_HAS_AND_BELONGS_TO_MANY)
    $posts = $query->execute();
 
 .. code-block:: sql
+   :caption: Generated SQL example
 
     SELECT    DISTINCT tx_blogexample_post.*
     FROM      tx_blogexample_post

@@ -11,6 +11,7 @@ The travel leads into the inner core of
 our little action island, the ``BlogRepository``.
 
 .. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Repository/OfferRepository.php
 
     <?php
     namespace FriendsOfTYPO3\BlogExample\Domain\Repository;

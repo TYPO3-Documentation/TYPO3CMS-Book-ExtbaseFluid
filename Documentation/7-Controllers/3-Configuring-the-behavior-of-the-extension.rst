@@ -11,6 +11,7 @@ establish an option `allowedStates` under the path
 `tx_sjroffers.settings`:
 
 .. code-block:: typoscript
+   :caption: EXT:sjr_offers/Configuration/TypoScript/setup.typoscript
 
    plugin.tx_sjroffers {
        settings {
@@ -23,14 +24,18 @@ Extbase makes the settings inside of the path
 the class variable :php:`$this->settings`. Our action
 thus looks like this:
 
-::
+
+.. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Controller/OrganizationController.php
+
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
 
    public function indexAction(): ResponseInterface
    {
        $this->view->assign(
            'organizations',
            $this->organizationRepository->findByStates(
-               \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->settings['allowedStates'])
+               GeneralUtility::intExplode(',', $this->settings['allowedStates'])
            )
        );
 

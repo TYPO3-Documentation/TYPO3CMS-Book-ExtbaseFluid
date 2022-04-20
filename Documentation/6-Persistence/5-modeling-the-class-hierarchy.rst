@@ -51,9 +51,10 @@ additional configuration effort needed. Furthermore, the table must have an addi
 that contains the type of the stored database tuple. The table definition schematically looks
 like this:
 
-.. code-block:: guess
+.. code-block:: sql
+   :caption: EXT:my_extension/ext_tables.sql
 
-   CREATE TABLE tx_myextension_domain_model_party {
+   CREATE TABLE tx_myextension_domain_model_party (
       uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
       pid int(11) DEFAULT '0' NOT NULL,
       record_type varchar(255) DEFAULT '' NOT NULL,
@@ -66,7 +67,7 @@ like this:
 
       PRIMARY KEY (uid),
       KEY parent (pid)
-   }
+   );
 
 The name of the field that contains the type can be chosen freely. In our case, it is the field
 `record_type`. The field name must be specified in the `ctrl` section of the TCA as `type`:
@@ -92,7 +93,8 @@ You have to tell Extbase for every concrete class in which table the
 data of the instances are stored and with which type they should be stored.
 This is done in :file:`Configuration/Extbase/Persistence/Classes.php`.
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Configuration/Extbase/Persistence/Classes.php
 
     <?php
     declare(strict_types = 1);
@@ -197,7 +199,8 @@ are displayed after a confirmation by TYPO3.
 You can access the objects via repositories as normal. In your controller the corresponding lines
 can look like this:
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/CompanyController.php
 
    <?php
    declare(strict_types=1);
@@ -240,7 +243,9 @@ can look like this:
 
 You can also find straightforward all concrete classes of a super class:
 
-::
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/OrganizationController.php
 
    <?php
    declare(strict_types=1);

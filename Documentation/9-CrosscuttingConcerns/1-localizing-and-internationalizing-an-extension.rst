@@ -44,6 +44,7 @@ the following sample template of the blog example displays a single
 blog post with its comments there are some constant terms:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <h3>{post.title}</h3>
    <p>By: {post.author.fullName}</p>
@@ -93,6 +94,7 @@ terms we create the :file:`locallang.xlf` file the following
 way:
 
 .. code-block:: xml
+   :caption: EXT:blog_example/Resources/Private/Language/locallang.xlf
 
     <?xml version="1.0" encoding="UTF-8"?>
     <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
@@ -123,38 +125,42 @@ the template. To do this, Fluid offers the ViewHelper
 ``f:translate``. In this ViewHelper, you give the identifier of
 the term to be inserted as argument ``key`` and the ViewHelper
 inserts either the German or the English translation according to the
-current language selection ::
+current language selection:
 
-    <f:translate key="comment_header" />
-    <!-- or -->
-    {f:translate(key: 'comment_header')}
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:translate key="comment_header" />
+   <!-- or -->
+   {f:translate(key: 'comment_header')}
 
 .. tip::
 
-    The used language is defined in the TypoScript template of the
-    website. By default, the English texts are used; but when with
-    the TypoScript setting, ``config.language = de`` you can set the
-    used language to german, for example.
+   The used language is defined in the TypoScript template of the
+   website. By default, the English texts are used; but when with
+   the TypoScript setting, ``config.language = de`` you can set the
+   used language to german, for example.
 
-    To implement a language selection, normally, TypoScript conditions
-    are used. These are comparable with an ``if/else``
-    block
+   To implement a language selection, normally, TypoScript conditions
+   are used. These are comparable with an ``if/else``
+   block
 
-    .. code-block:: typoscript
+   .. code-block:: typoscript
+      :caption: EXT:blog_example/Configuration/TypoScript/setup.typoscript
 
-        [globalVar = GP:L = 1]
-        config.language = de
-        [else]
-        config.language = default
-        [end]
+      [globalVar = GP:L = 1]
+         config.language = de
+      [else]
+         config.language = default
+      [end]
 
-    When the URL of the website contains a parameter L=1, then the
-    output is in German; if the parameter is not set, the output is in the
-    default language English.
+   When the URL of the website contains a parameter L=1, then the
+   output is in German; if the parameter is not set, the output is in the
+   default language English.
 
-    With the use of complex TypoScript conditions, the language
-    selection could be set to depend on the forwarded language of the
-    browser.
+   With the use of complex TypoScript conditions, the language
+   selection could be set to depend on the forwarded language of the
+   browser.
 
 By replacing all terms of the template with the
 ``translate`` ViewHelper we could fit the output of the extension
@@ -162,7 +168,9 @@ to the currently selected language. Here we have a look at the Fluid
 template for the output of the blog posts, now without the hardcoded
 English terms:
 
+
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <h3>{post.title}</h3>
    <p><f:translate key="author_prefix"> {post.author.fullName}</p>
@@ -214,14 +222,21 @@ If we want to implement the above example, we must assign the
 first name and the last name of the blog author separate to the
 ``translate`` ViewHelper:
 
-``<f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />``
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:translate key="name" arguments="{1:post.author.firstName, 2: post.author.lastName}" />
 
 How should the corresponding string in the
 :file:`locallang.xml` file looks like? It describes in
 which position the placeholder is to be inserted. For English and
 German it looks like this:
 
-``<label index="name">%1$s %2$s</label>``
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Language/locallang.xml
+
+   <label index="name">%1$s %2$s</label>
 
 Important are the placeholder strings ``%1$s`` and
 ``%2$s``. These will be replaced with the assigned parameters.
@@ -232,7 +247,10 @@ example, it is the data type ``string (s)``. Now we can define
 for Thai that "Khan" followed by the first name should be
 output:
 
-``<label index="name">Khan %1$s</label>``
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Language/locallang_th.xml
+
+   <label index="name">Khan %1$s</label>
 
 .. tip::
 
@@ -263,7 +281,10 @@ text "Comments", you have to overwrite the identifier
 ``comment_header`` for the English language. For this, you can
 add the following line to your TypoScript template:
 
-``plugin.tx_blogexample._LOCAL_LANG.default.comment_header = Remarks``
+.. code-block:: typoscript
+   :caption: EXT:blog_example/Configuration/TypoScript/setup.typoscript
+
+   plugin.tx_blogexample._LOCAL_LANG.default.comment_header = Remarks
 
 With this, you will overwrite the localization of the term
 ``comment_header`` for the default language in the blog
@@ -288,15 +309,18 @@ to create additional fields in the database and tell TYPO3 about them. The
 class definitions must not be changed. Let's look at the required
 steps based on the ``blog`` class of the blog example. TYPO3
 needs three additional database fields which you should insert in the
-:file:`ext_tables.sql` file::
+:file:`ext_tables.sql` file:
 
-    CREATE TABLE tx_blogexample_domain_model_blog {
-        // ...
-        sys_language_uid int(11) DEFAULT '0' NOT NULL,
-        l10n_parent int(11) DEFAULT '0' NOT NULL,
-        l10n_diffsource mediumblob NOT NULL,
-        // ...
-    };
+.. code-block:: sql
+   :caption: EXT:blog_example/ext_tables.sql
+
+   CREATE TABLE tx_blogexample_domain_model_blog (
+       --  ...
+       sys_language_uid int(11) DEFAULT '0' NOT NULL,
+       l10n_parent int(11) DEFAULT '0' NOT NULL,
+       l10n_diffsource mediumblob NOT NULL,
+       -- ...
+   );
 
 You are free to choose the names of the database fields, but the
 names we use here are common in the world of TYPO3. In any case, you have
@@ -304,7 +328,9 @@ to tell TYPO3 which name you have chosen. This is done in the ``ctrl``
 section of the TCA configuration file
 :file:`Configuration/TCA/tx_blogexample_domain_model_blog.php`
 
-::
+
+.. code-block:: sql
+   :caption: EXT:blog_example/Configuration/TCA/tx_blogexample_domain_model_blog.php
 
    <?php
 
@@ -333,7 +359,9 @@ fields to the backend form of the blog: one field for the editor to define
 the language of a data record and one field to select the data record the
 translation relates to.
 
-::
+
+.. code-block:: sql
+   :caption: EXT:blog_example/Configuration/TCA/tx_blogexample_domain_model_blog.php
 
    <?php
 
@@ -406,20 +434,26 @@ to create the latter before. But with what content?
 
 Let's have an example for illustration: You create a blog in the
 default language English (=default). It is stored in the database like
-this::
+this:
 
-    uid:              7 (given by the database)
-    title:            "My first Blog"
-    sys_language_uid: 0 (selected in backend)
-    l10n_parent:      0 (no translation original exists)
+.. code-block:: none
+   :caption: Example database content
+
+   uid:              7 (given by the database)
+   title:            "My first Blog"
+   sys_language_uid: 0 (selected in backend)
+   l10n_parent:      0 (no translation original exists)
 
 After a while, you create a German translation in the backend. In the
-database the following record is stored::
+database the following record is stored:
 
-    uid:              42 (given by the database)
-    title:            "Mein erster Blog"
-    sys_language_uid: 1 (selected in backend)
-    l10n_parent:      7 (selected in backend respectively given automatically)
+.. code-block:: none
+   :caption: Example database content
+
+   uid:              42 (given by the database)
+   title:            "Mein erster Blog"
+   sys_language_uid: 1 (selected in backend)
+   l10n_parent:      7 (selected in backend respectively given automatically)
 
 A link that references the single view of a blog looks like
 this:
@@ -481,11 +515,14 @@ displayed: While in Germany, the date is displayed in the form
 must be formatted different.
 
 Generally the date or time is formatted by the
-``format.date`` ViewHelper::
+``format.date`` ViewHelper:
 
-    <f:format.date date="{dateObject}" format="d.m.Y" />
-    <!-- or -->
-    {dateObject -> f:format.date(format: 'd.m.Y')}
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:format.date date="{dateObject}" format="d.m.Y" />
+   <!-- or -->
+   {dateObject -> f:format.date(format: 'd.m.Y')}
 
 The date object ``{dateObject}`` is displayed with the date
 format given in the parameter ``format``. This format string must
@@ -512,9 +549,11 @@ format string should be used. Here we combine the ``format.date``
 ViewHelper with the ``translate`` ViewHelper which you got to
 know in the section "Multi-language templates".
 
-::
 
-    <f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   <f:format.date date="{dateObject}" format="{f:translate(key: 'date_format')}" />
 
 Then you can store another format string for every language in the
 :file:`locallang.xml` file, and you can change the format
@@ -594,18 +633,20 @@ The following examples show how to query data in Extbase in different scenarios,
 1) Fetch records from the language uid=1 only, with no overlays.
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setLanguageUid(1);
-    $querySettings->setLanguageOverlayMode(false);
+   $querySettings = $query->getQuerySettings();
+   $querySettings->setLanguageUid(1);
+   $querySettings->setLanguageOverlayMode(false);
 
 2) Fetch records from the language uid=1, with overlay, but hide non-translated records
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Domain/Repository/OfferRepository.php
 
-    $querySettings = $query->getQuerySettings();
-    $querySettings->setLanguageUid(1);
-    $querySettings->setLanguageOverlayMode('hideNonTranslated');
+   $querySettings = $query->getQuerySettings();
+   $querySettings->setLanguageUid(1);
+   $querySettings->setLanguageOverlayMode('hideNonTranslated');
 
 Identifiers
 ===========
@@ -693,8 +734,9 @@ Summary of the important code changes compared to previous versions
 
 Most important known issues
 ---------------------------
-- The persistence session uses the same key for the default language record and the translation - https://forge.typo3.org/issues/59992
-- Extbase allows fetching deleted/hidden records - https://forge.typo3.org/issues/86307
+-  The persistence session uses the same key for the default language record
+   and the translation - :forge:`59992`
+-  Extbase allows fetching deleted/hidden records - :forge:`86307`
 
 
 For more information about rendering, please refer to the TypoScript reference_.

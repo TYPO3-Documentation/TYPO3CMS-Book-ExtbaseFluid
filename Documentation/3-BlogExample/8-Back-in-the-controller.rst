@@ -37,7 +37,9 @@ Extbase offers at this point.
 
 The following example explains this mechanism:
 
-::
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/CompanyController.php
 
    <?php
    declare(strict_types=1);

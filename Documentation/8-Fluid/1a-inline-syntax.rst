@@ -19,7 +19,10 @@ used as a tag. An example of this is the ``f:uri.resource``
 ViewHelper, which returns the path to a resource in the
 *Public/* folder of an Extension. It is being used
 inside of ``<link rel="stylesheet" href="..." />`` for
-example. Using the normal, tag-based syntax, it looks like this::
+example. Using the normal, tag-based syntax, it looks like this
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
     <link rel="stylesheet" href="<f:uri.resource path='myCss.css' />" />
 
@@ -34,7 +37,10 @@ The inline notation is function-oriented, which is more suitable for this
 ViewHelper: Instead of ``<f:uri.resource />`` you can also
 write ``{f:uri.resource()}``.
 
-So the example above can be changed to::
+So the example above can be changed to:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
     <link rel="stylesheet" href="{f:uri.resource(path: 'myCss.css')}" />
 
@@ -89,9 +95,12 @@ prone to errors: We have to know, that ``{post.date}`` is an
 object so we don't add whitespaces inside of
 ``<f:format.date>...</f:format.date>``.
 
-An alternative would be to use the following syntax::
+An alternative would be to use the following syntax:
 
-    {post.date -> f:format.date(format: 'Y-m-d')}
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
+
+   {post.date -> f:format.date(format: 'Y-m-d')}
 
 Inside the object accessor, we can use a ViewHelper to process the
 value. The above example is easily readable, intuitive, and less
@@ -106,13 +115,19 @@ error-prone than the tag-based variation.
 
 You can also chain multiple ViewHelpers together. Lets assume we
 want to pad the processed string to the length of 40 characters (e.g.
-because we output code). This can be simply written as::
+because we output code). This can be simply written as:
 
-    {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
-Which is functionally equal to::
+   {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
 
-    <f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
+Which is functionally equal to:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
+
+   <f:format.padding padLength="40"><f:format.date format="Y-m-d">{post.date}</f:format.date></f:format.padding>
 
 The data flow is also easier to read with an inline syntax like
 this, and it is easier to see on which values the ViewHelper is working
@@ -161,7 +176,8 @@ notation:
 ViewHelper as array value
 -------------------------
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <f:translate
       key="{msg_id}"
@@ -173,7 +189,9 @@ Nested inline notation ViewHelpers
 
 Additional nesting levels require more escaped quotation marks!
 
-.. code-block:: xml
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <f:example
       arguments="{1: '{f:format.date(
@@ -194,21 +212,33 @@ A comparison between inline notation and tag-based syntax:
 Tags have an advantage, if:
 ---------------------------
 
-*  Control structures are being displayed::
+*  Control structures are being displayed:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       <f:for each="{posts}" as="post">...</f:for>
 
-*  The ViewHelper returns a tag::
+*  The ViewHelper returns a tag:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       <f:form.textfield />
 
-*  The hierarchical structure of ViewHelpers is important::
+*  The hierarchical structure of ViewHelpers is important:
 
-     <f:form>
-         <f:form.textfield />
-     </f:form>
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
-*  The ViewHelper contains a lot of content::
+      <f:form>
+          <f:form.textfield />
+      </f:form>
+
+*  The ViewHelper contains a lot of content:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       <f:section name="main">
          <!-- ... -->
@@ -218,14 +248,23 @@ Tags have an advantage, if:
 Inline notation should be used, if:
 -----------------------------------
 
-*  The focus is on the data flow::
+*  The focus is on the data flow:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       {post.date -> f:format.date(format: 'Y-m-d') -> f:format.padding(padLength: 40)}
 
-*  The ViewHelper is being used inside of XML tags::
+*  The ViewHelper is being used inside of XML tags:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       <link rel="stylesheet" href="{f:uri.resource(path: 'styles.css')}" />
 
-*  The nature of the ViewHelper is rather a helper function::
+*  The nature of the ViewHelper is rather a helper function:
+
+   .. code-block:: html
+      :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
       {f:translate(key: '...')}

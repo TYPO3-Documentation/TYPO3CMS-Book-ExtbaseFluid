@@ -74,6 +74,7 @@ extension. Find a complete reference in chapter :ref:`t3coreapi:extension-declar
 of the *Core Api Reference* manual.
 
 .. code-block:: php
+   :caption: EXT:store_inventory/ext_emconf.php
 
    <?php
 
@@ -117,7 +118,8 @@ Next to the `ext_emconf.php` you should add a :file:`composer.json` file. It
 enables the extension to be loaded in all
 :ref:`Composer installations <t3start:install>` of TYPO3.
 
-.. code-block:: php
+.. code-block:: json
+   :caption: EXT:store_inventory/composer.json
 
    {
       "name": "t3docs/store-inventory",
