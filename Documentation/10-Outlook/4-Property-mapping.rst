@@ -74,8 +74,8 @@ Allow mapping of sub-properties
 ===============================
 
 It's also possible to map to subtypes. In the above example, the `FrontendUser` has a sub-property
-of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you wanna map an incoming id,
-you have to configure the mapper as per default he won't map sub properties for security reasons:
+of type :php:`TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup`. If you want to map an incoming id,
+you have to configure the mapper as by default it won't map sub properties for security reasons:
 
 .. code-block:: html
    :caption: EXT:my_extension/Classes/Controller/SomeController.php
