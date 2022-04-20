@@ -129,14 +129,17 @@ could also be called  `showTheListAction()`.
    exclusively responsible for the control of the process flow. Additional
    logic (especially business or domain logic) needs to be separated into
    classes in the subfolder :file:`Domain`.
-   
+
    .. todo: We should also mention Services and Middlewares here. The domain only holds the
             business logic, not all the application logic.
 
 The request determines which controller action combination will be called.
 The dispatching and matching of actions happen in the `RequestBuilder`, in the `Dispatcher` and in
 :php:`\TYPO3\CMS\Extbase\Mvc\Controller\ActionController`. The BlogController
-inherits all methods from it by deriving it from this class ::
+inherits all methods from it by deriving it from this class:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    <?php
    declare(strict_types=1);
@@ -162,7 +165,9 @@ which looks like this:
          which defines the default method. First time readers could get the
          impression that the default action always is `indexAction()`.
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    <?php
    declare(strict_types=1);

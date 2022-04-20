@@ -9,9 +9,8 @@ A journey through the blog example
 
    About the code of the blog example:
 
-   * The latest version is:
-     `Blog Example on TER <https://extensions.typo3.org/extension/blog_example/>`__,
-     `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__
+   * :t3ext:`Blog Example in the TER <blog_example/>`
+   * `Blog Example on Github <https://github.com/FriendsOfTYPO3/blog_example>`__
 
 In this chapter you make a journey through a simple TYPO3 extension.
 While traveling on this round trip, you will get to know more about extension

@@ -25,6 +25,7 @@ the response to the Bootstrap, which will return the rendered HTML content to
 the TYPO3 framework. Then TYPO3 will add this to the output of the current page content.
 
 .. code-block:: php
+   :caption: Pseudocode from Bootstrap
 
    $body = $response->getBody();
    $body->rewind();
@@ -37,5 +38,5 @@ the TYPO3 framework. Then TYPO3 will add this to the output of the current page 
 
 This section explains how the extension displays a list of blogs.
 The following chapter is about how to create a new post.
-It is about chaining several actions into a coherent sequence. 
+It is about chaining several actions into a coherent sequence.
 It shows the possibilities of validation and deeper internals of Fluid.

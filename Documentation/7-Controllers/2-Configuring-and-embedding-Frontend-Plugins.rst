@@ -18,9 +18,8 @@ are located in two different files.
 In the file :file:`EXT:extension_key/Configuration/TCA/Overrides/tt_content.php` you have to register every plugin as
 a content element with TYPO3 using the static method :php:`registerPlugin()`.
 
-.. this isn't text for the srj example - correct?
-
 .. code-block:: php
+   :caption: EXT:my_extension/Configuration/TCA/Overrides/tt_content.php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'ExtensionKey',
@@ -45,6 +44,7 @@ Besides the actions that have to be called on by the plugin, you also have to
 specify which content will be stored in the cache.
 
 .. code-block:: php
+   :caption: EXT:my_extension/ext_localconf.php
 
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
        'ExampleExtension',

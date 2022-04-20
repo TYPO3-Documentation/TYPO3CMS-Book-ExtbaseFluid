@@ -22,7 +22,7 @@ The method names have to end in :php:`Action`. The body of
 :php:`OfferController` thus looks like this:
 
 .. code-block:: php
-   :caption: OfferController.php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
    :name: offer-controller
 
    <?php
@@ -68,7 +68,9 @@ a list of all offers*". One action method usually will be enough
 for implementing this. :php:`indexAction` is the
 name of this method:
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    // use \MyVendor\SjrOffers\Domain\Repository\OfferRepository;
 
@@ -93,7 +95,7 @@ name of this method:
    public function indexAction(): ResponseInterface
    {
       $offers = $this->offerRepository->findAll();
-      $this->view->assign('offers', $offers);      
+      $this->view->assign('offers', $offers);
 
       return $this->htmlResponse();
    }
@@ -128,7 +130,9 @@ well. It is called :php:`showAction()`. In contrast to
 outside which domain object is displayed. In this case the offer to
 be shown is passed to the method as argument:
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    /**
     * Show action
@@ -224,7 +228,9 @@ method :php:`showAction()`. In the URL, there is no information
 these Arguments, the controller passes the further processing to the
 method :php:`newAction()`.
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    <?php
    declare(strict_types=1);
@@ -272,7 +278,9 @@ instantiates the Object and "fills" its Properties with the appropriate
 Form data. If all Arguments are valid, the action
 :php:`createAction()` is called.
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    // use \MyVendor\SjrOffers\Domain\Model\Organization;
    // use \MyVendor\SjrOffers\Domain\Model\Offer
@@ -307,7 +315,9 @@ passed on as an argument. Inside the
 :php:`ActionController` the following methods are at disposal for
 redirecting to other action controllers:
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    redirect($actionName, $controllerName = NULL, $extensionName = NULL,
       array $arguments = NULL, $pageUid = NULL, $delay = 0, $statusCode = 303)
@@ -350,6 +360,7 @@ In this example, the following code is sent to the browser. It
 provokes the immediate reload of the page with the given URL:
 
 .. code-block:: html
+   :caption: Example frontend output
 
    <html><head><meta http-equiv="refresh" content="0;url=https://example.org/
    index.php?id=123&amp;tx_sjroffers_pi1[organization]=5&amp;tx_sjroffers_
@@ -399,6 +410,7 @@ encrypted form (:php:`__trustedProperties`), the structure of the form
 (shorted in the example below).
 
 .. code-block:: html
+   :caption: Example frontend output
 
    <input type="hidden" name="tx_sjroffers_list[__referrer][extensionName]"
        value="SjrOffers" />
@@ -462,6 +474,7 @@ necessary to pass an organization to the method
 be edited as an argument.
 
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    <?php
    declare(strict_types=1);
@@ -500,6 +513,7 @@ new request is started, and the organization is shown with its updated
 offers.
 
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    // use \MyVendor\SjrOffers\Domain\Model\Offer;
 
@@ -544,7 +558,9 @@ The second levelis implemented here in all "critical" actions.
 Let's look at an example with the Method
 :php:`updateAction()`.
 
+
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    use TYPO3\CMS\Core\Utility\GeneralUtility;
    use \MyVendor\SjrOffers\Service\AccessControlService;
@@ -573,9 +589,12 @@ displayed in the subsequently called organization overview.
 
 Extbase does not yet offer an API for access control. Therefore
 an :php:`AccessControlService` is implemented.
-The description of the class is to be found in the file :file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
+The description of the class is to be found in the file
+:file:`EXT:sjr_offers/Classes/Service/AccessControlService.php`.
+
 
 .. code-block:: php
+   :caption: EXT:sjr_offers/Classes/Service/AccessControlService.php
 
    <?php
 
@@ -617,7 +636,9 @@ or the form data. It, therefore, only reduces the confusion for honest
 visitors and the stimulus for the bad ones. Let's take a short look at
 this snippet from a template:
 
+
 .. code-block:: html
+   :caption: EXT:sjr_offers/Resources/Private/Templates/SomeTemplate.html
 
    {namespace sjr=MyVendor\SjrOffers\ViewHelpers}
    <!-- ... -->
@@ -660,6 +681,7 @@ to access the :php:`AccessControlService`. The class file
 located in :file:`EXT:sjr_offers/Classes/ViewHelpers/Security/`.
 
 .. code-block:: php
+   :caption: sjr_offers/Classes/ViewHelpers/Security/IfAuthenticatedViewHelper.php
 
    namespace MyVendor\SjrOffers\ViewHelper\Security;
 
@@ -702,6 +724,7 @@ Object in one single action. The appropriate Method
 :php:`deleteAction()` is kind of straightforward:
 
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    // use \MyVendor\SjrOffers\Domain\Model\Offer
 
@@ -740,6 +763,7 @@ Method :php:`indexAction()` of the
 stage":
 
 .. code-block:: php
+   :caption: sjr_offers/Classes/Controller/OfferController.php
 
    // use \MyVendor\SjrOffers\Domain\Model\Demand;
 

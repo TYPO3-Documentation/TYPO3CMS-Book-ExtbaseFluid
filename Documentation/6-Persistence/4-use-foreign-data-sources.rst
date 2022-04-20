@@ -16,7 +16,9 @@ must be configured via PHP. This assignment is also called *mapping*. The follow
 enables the storage of the object data of a class :php:`\MyVendor\MyExtension\Domain\Model\Person` in the table
 `tt_address`, which is available in most TYPO3 installations.
 
-:file:`EXT:extension/Configuration/Extbase/Persistence/Classes.php`::
+
+.. code-block:: php
+   :caption: EXT:my_extension/Configuration/Extbase/Persistence/Classes.php
 
    <?php
    declare(strict_types = 1);

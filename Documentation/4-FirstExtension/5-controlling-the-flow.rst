@@ -24,6 +24,7 @@ the display of the inventory we call it :php:`\T3docs\StoreInventory\Controller\
 The controller looks like this:
 
 .. code-block:: php
+   :caption: EXT:store_inventory/Classes/Controller/StoreInventoryController.php
 
    <?php
    declare(strict_types=1);

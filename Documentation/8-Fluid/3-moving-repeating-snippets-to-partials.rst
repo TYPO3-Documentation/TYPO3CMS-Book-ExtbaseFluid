@@ -17,7 +17,10 @@ included in multiple templates.
 For example, an extension might display tags inside an
 :file:`Resources/Private/Templates/RecordType/Index.html` template and also in
 :file:`Resources/Private/Templates/RecordType/Show.html`. The snippet to display
-these tags might look like::
+these tags might look like:
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/RecordType/Index.html
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
@@ -26,14 +29,20 @@ modifications would have to be made in both templates.
 
 That's where partials are used. Partials are stored, by default, within
 :file:`Resources/Private/Partials/`. One might create a new partial
-:file:`Resources/Private/Partials/Tags.html` with the snippet::
+:file:`Resources/Private/Partials/Tags.html` with the snippet:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Partials/Tags.html
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
 .. index:: Partials; Rendering
 
 Inside the existing template the snippet can now be replaced with a ViewHelper
-to render the partial::
+to render the partial:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
 
    {f:render(partial: 'Tags', arguments: {
        tags: post.tags
@@ -44,7 +53,10 @@ The argument "partial" receives the full path within the configured partial
 folder to the file, excluding the file extension.
 
 It's also possible to create further folders, e.g.:
-:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the partial::
+:file:`Resources/Private/Partials/Blogpost/Tags.html` and to call the partial:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Partials/Blogpost/Tags.html
 
    {f:render(partial: 'Blogpost/Tags', arguments: {
        tags: post.tags
@@ -84,14 +96,20 @@ has do call the partial, each template can map existing variables to match the
 used variables within the partial.
 
 Let's assume the following partial:
-:file:`Resources/Private/Partials/Tags.html` again::
+:file:`Resources/Private/Partials/Tags.html` again:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Partials/Tags.html
 
    <b>Tags</b>: <f:for each="{tags}" as="tag">{tag}</f:for>
 
 This partial only requires the variable :html:`{tags}`.
 
 Let's assume the following template:
-:file:`Resources/Private/Templates/BlogPosts/Index.html`::
+:file:`Resources/Private/Templates/BlogPosts/Index.html`:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/BlogPosts/Index.html
 
    <f:for each="{blogPosts}" as="blogPost">
        <h2>{blogPost.title}</h2>
@@ -107,7 +125,10 @@ Within the template, no variable :html:`{tags}` exists. Instead, the variable
 
 This way, it can also be reused for the following template:
 
-:file:`Resources/Private/Templates/Blogs/Index.html`::
+:file:`Resources/Private/Templates/Blogs/Index.html`:
+
+.. code-block:: html
+   :caption: EXT:my_extension/Resources/Private/Templates/Blogs/Index.html
 
    <f:for each="{blogs}" as="blog">
        <h2>{blog.title}</h2>

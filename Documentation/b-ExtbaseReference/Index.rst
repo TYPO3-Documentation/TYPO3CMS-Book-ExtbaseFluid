@@ -52,20 +52,16 @@ backend. Let's have a look at the following two files:
 .. todo: We could mention that registering plugins in the backend is optional and that a plugin content
          element is just some internal wrapper code that triggers a TypoScript USER object rendering.
 
-:file:`ext_localconf.php`::
+.. code-block:: php
+   :caption: EXT:my_extension/ext_localconf.php
 
     $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'ExtensionKey',
+        'my_extension',
         $pluginName,
         $controllerActionCombinations,
         $uncachedActions
     );
-
-.. todo: In fact, that's not the extension key given to that function but the extension name.
-         Using the extension name (upper camel case extension key) should be deprecated. The
-         function does an internal check anyway if extension key or name are given and why
-         confuse users with yet another format at this point?
 
 The allowed combinations of the controller and actions are determined in
 addition to the extension key and the plugin's unique name (lines 3 and 4).
@@ -86,12 +82,13 @@ same format as above, containing all the non-cached-actions.
 :file:`Configuration/TCA/Overrides/tt_content.php`:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Configuration/TCA/Overrides/tt_content.php
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'ExtensionKey',
-        'ExamplePlugin',
-        'Title used in Backend'
-    );
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+       'my_extension',
+       'ExamplePlugin',
+       'Title used in Backend'
+   );
 
 The first two arguments must be completely identical to the definition in
 :file:`ext_localconf.php`.
@@ -102,32 +99,34 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 *Example B-1: Configuration of an extension in the file ext_localconf.php*
 
 .. code-block:: php
+   :caption: EXT:my_extension/ext_localconf.php
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'ExampleExtension',
-        'Blog',
-        [
-            \Vendor\ExampleExtension\Controller\BlogController::class => 'index,show,new,create,delete,deleteAll,edit,update,populate',
-            \Vendor\ExampleExtension\Controller\PostController::class => 'index,show,new,create,delete,edit,update',
-            \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
-        ],
-        [
-            \Vendor\ExampleExtension\Controller\BlogController::class => 'delete,deleteAll,edit,update,populate',
-            \Vendor\ExampleExtension\Controller\PostController::class => 'show,delete,edit,update',
-            \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
-        ]
-    );
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+       'my_extension',
+       'Blog',
+       [
+           \Vendor\ExampleExtension\Controller\BlogController::class => 'index,show,new,create,delete,deleteAll,edit,update,populate',
+           \Vendor\ExampleExtension\Controller\PostController::class => 'index,show,new,create,delete,edit,update',
+           \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
+       ],
+       [
+           \Vendor\ExampleExtension\Controller\BlogController::class => 'delete,deleteAll,edit,update,populate',
+           \Vendor\ExampleExtension\Controller\PostController::class => 'show,delete,edit,update',
+           \Vendor\ExampleExtension\Controller\CommentController::class => 'create',
+       ]
+   );
 
 *Example B-2: Configuration of an extension in the file Configuration/TCA/Overrides/tt_content.php*
 
 .. code-block:: php
+   :caption: EXT:my_extension/Configuration/TCA/Overrides/tt_content.php
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'ExampleExtension',
-        'Blog',
-        'A Blog Example',
-        'EXT:blog/Resources/Public/Icons/Extension.svg'
-    );
+   \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+       'my_extension',
+       'Blog',
+       'A Blog Example',
+       'EXT:blog/Resources/Public/Icons/Extension.svg'
+   );
 
 The plugin name is ``Blog``. The name must be the same
 in :file:`ext_localconf.php` and
@@ -317,36 +316,35 @@ Imagine you installed the extension `news`, which provides several plugins for
 rendering news in the frontend.
 
 The default template directory of that extension is the following:
+:file:`EXT:my_extension/Resources/Private/Templates/`.
 
-.. code-block:: typoscript
-
-   EXT:news/Resources/Private/Templates/
-
-Let's assume you want to change the plugins' output because you need to use
+Let's assume you want to change the plugin's output because you need to use
 different CSS classes, for example. You can simply create your own extension and
 add the following TypoScript setup:
 
 .. code-block:: typoscript
+   :caption: EXT:my_extension/Configuration/TypoScript/setup.typoscript
 
    plugin.tx_news {
        view {
-           templateRootPaths.10 = EXT:example_extension/Resources/Private/Templates/
+           templateRootPaths.10 = EXT:my_extension/Resources/Private/Templates/
        }
    }
 
 As all TypoScript will be merged, the following configuration will be compiled:
 
 .. code-block:: typoscript
+   :caption: EXT:my_extension/Configuration/TypoScript/setup.typoscript
 
-   plugin.tx_news {
-       view {
-           templateRootPaths {
-               0 = EXT:news/Resources/Private/Templates/
-               10 = EXT:example_extension/Resources/Private/Templates/
-           }
-           ...
-       }
-   }
+    plugin.tx_news {
+        view {
+            templateRootPaths {
+                0 = EXT:news/Resources/Private/Templates/
+                10 = EXT:my_extension/Resources/Private/Templates/
+            }
+            ...
+        }
+    }
 
 Imagine there is a news plugin that lists news entries. In that case, the `listAction` method
 of the `NewsController` will be called. By convention, Extbase will look for an html file
@@ -546,7 +544,9 @@ of the specified method, as shown in Example B-3:
 
 *Example B-3: Actions with parameters*
 
-::
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    <?php
    declare(strict_types = 1);
@@ -622,7 +622,11 @@ Available annotations
 ^^^^^^^^^^^^^^^^^^^^^
 
 All available annotations for Extbase are placed within the namespace :php:`TYPO3\CMS\Extbase\Annotation`.
-They can be imported into the current namespace, e.g.::
+They can be imported into the current namespace, e.g.:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
+
 
    use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 
@@ -634,7 +638,10 @@ They can be imported into the current namespace, e.g.::
 
 It is completely valid and will be parsed. It is considered to be best practice to
 use the following instead, in order to make the source of annotation more
-transparent::
+transparent:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
    use TYPO3\CMS\Extbase\Annotation as Extbase;
 
@@ -649,7 +656,9 @@ The following annotations are available out of the box within Extbase:
 :php:`@TYPO3\CMS\Extbase\Annotation\Validate`
    Allows to configure validators for properties and method arguments:
 
+
    .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
       /**
        * Existing TYPO3 validator.
@@ -691,6 +700,8 @@ The following annotations are available out of the box within Extbase:
    of an controller.
 
    .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
+
 
       /**
        * @Extbase\IgnoreValidation("param")
@@ -702,7 +713,9 @@ The following annotations are available out of the box within Extbase:
 :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")`
    Allows to remove child entities during deletion of aggregate root.
 
+
    .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
       /**
        * @Extbase\ORM\Cascade("remove")
@@ -712,7 +725,9 @@ The following annotations are available out of the box within Extbase:
 :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Transient`
    Marks property as transient (not persisted).
 
+
    .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
       /**
        * @Extbase\ORM\Transient
@@ -722,7 +737,9 @@ The following annotations are available out of the box within Extbase:
 :php:`@TYPO3\CMS\Extbase\Annotation\ORM\Lazy`
    Marks property to be lazily loaded on first access.
 
+
    .. code-block:: php
+      :caption: EXT:blog_example/Classes/Controller/BlogController.php
 
       /**
        * @Extbase\ORM\Lazy
@@ -762,15 +779,18 @@ All classes of the domain model must inherit from one of the following two class
     ValueObjects are immutable.
 
 :php:`TYPO3\CMS\Core\Type\TypeInterface`
-    Is used if the object is stored as a single value.
-    The class has to implement :php:`__toString()` to return the value for storage.
-    The class receives the stored value as first argument in :php:`__construct()`.
+   Is used if the object is stored as a single value.
+   The class has to implement :php:`__toString()` to return the value for storage.
+   The class receives the stored value as first argument in :php:`__construct()`.
 
-    A small example::
+   A small example:
+
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Domain/Model/ModelName.php
 
        <?php
 
-       namespace Vendor\ExtName\Domain\Model;
+       namespace Vendor\MyExtension\Domain\Model;
 
        use TYPO3\CMS\Core\Type\TypeInterface;
 
@@ -795,8 +815,8 @@ All classes of the domain model must inherit from one of the following two class
            }
        }
 
-    That way it is not necessary to have proper database columns.
-    This is helpful for serialized data and rapid prototyping.
+   That way it is not necessary to have proper database columns.
+   This is helpful for serialized data and rapid prototyping.
 
 
 .. index:: Extbase; Repositories
@@ -856,7 +876,9 @@ to formulate a request:
 
 .. todo: Enhance this code snippet. Add the surrounding class.
 
-::
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Domain/Repository/ModelRepository.php
 
    // use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
    // use Ex\BlogExample\Domain\Model\Category;
@@ -973,6 +995,7 @@ example:
 *Example B-4: validation in the domain object*
 
 .. code-block:: php
+   :caption: EXT:blog_example/Classes/Domain/Model/Blog.php
 
     namespace Ex\BlogExample\Domain\Model;
 
@@ -1045,43 +1068,53 @@ functionality in templates.
 The localization class has only one public static method called `translate`, which
 does all the translation. The method can be called like this:
 
-`\TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate($key, $extensionName, $arguments=NULL)`
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/SomeController.php
+
+   use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
+   $someString = LocalizationUtility::translate($key, $extensionName, $arguments);
 
 `$key`
-    The identifier to be translated. If the format *LLL:path:key* is given, then this
-    identifier is used, and the parameter `$extensionName` is ignored. Otherwise, the
-    file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded,
-    and the resulting text for the given key in the current language returned.
+   The identifier to be translated. If the format *LLL:path:key* is given, then this
+   identifier is used, and the parameter `$extensionName` is ignored. Otherwise, the
+   file :file:`Resources/Private/Language/locallang.xlf` from the given extension is loaded,
+   and the resulting text for the given key in the current language returned.
 
 `$extensionName`
-    The extension name. It can be fetched from the request.
+   The extension name. It can be fetched from the request.
 
 `$arguments`
-    It allows you to specify an array of arguments. In the `LocalizationUtility`, these arguments will be passed to the function `vsprintf`. So you can insert dynamic values in every translation. You can find the possible wildcard specifiers under `<https://www.php.net/manual/function.sprintf.php#refsect1-function.sprintf-parameters>`__.
+   It allows you to specify an array of arguments. In the `LocalizationUtility`, these arguments will be passed to the function `vsprintf`. So you can insert dynamic values in every translation. You can find the possible wildcard specifiers under `<https://www.php.net/manual/function.sprintf.php#refsect1-function.sprintf-parameters>`__.
 
-    *Example language file with inserted wildcards*
+   *Example language file with inserted wildcards*
 
-    .. code-block:: xml
+   .. code-block:: xml
+      :caption: EXT:my_extension/Resources/Private/Language/locallang.xlf
 
-       <?xml version="1.0" encoding="UTF-8"?>
-       <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
-           <file source-language="en" datatype="plaintext" original="messages" date="..." product-name="...">
-               <header/>
-               <body>
-                   <trans-unit id="count_posts">
-                       <source>You have %d posts with %d comments written.</source>
-                   </trans-unit>
-                   <trans-unit id="greeting">
-                       <source>Hello %s!</source>
-                   </trans-unit>
-               </body>
-           </file>
-       </xliff>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.1">
+         <file source-language="en" datatype="plaintext" original="messages" date="..." product-name="...">
+            <header/>
+            <body>
+               <trans-unit id="count_posts">
+                  <source>You have %d posts with %d comments written.</source>
+               </trans-unit>
+               <trans-unit id="greeting">
+                  <source>Hello %s!</source>
+               </trans-unit>
+            </body>
+         </file>
+      </xliff>
 
-    *Called translations with arguments to fill data in wildcards*
+   *Called translations with arguments to fill data in wildcards*
 
-    .. code-block:: php
 
-        \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('count_posts', 'BlogExample', [$countPosts, $countComments])
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/SomeController.php
 
-        \TYPO3\CMS\Extbase\Uility\LocalizationUtility::translate('greeting', 'BlogExample', [$userName])
+      use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
+      $someString = LocalizationUtility::translate('count_posts', 'BlogExample', [$countPosts, $countComments])
+
+      $anotherString = LocalizationUtility::translate('greeting', 'BlogExample', [$userName])

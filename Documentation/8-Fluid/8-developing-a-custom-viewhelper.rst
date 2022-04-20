@@ -41,7 +41,10 @@ The custom Viewhelper is not part of the default distribution. Therefore an own
 namespace import is necessary to use this Viewhelper. In the following example,
 the namespace :php:`\MyVendor\BlogExample\ViewHelpers` is imported with the
 prefix `blog`. Now, all tags starting with `blog:` are interpreted as
-Viewhelper from within this namespace::
+Viewhelper from within this namespace:
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
@@ -51,6 +54,7 @@ The Viewhelper should be given the name "gravatar" and only take an email
 address as a parameter. The Viewhelper is called in the template as follows:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <blog:gravatar emailAddress="username@example.org" />
 
@@ -66,7 +70,10 @@ Every Viewhelper is a PHP class. For the Gravatar Viewhelper, the name of the
 class is :php:`\MyVendor\BlogExample\ViewHelpers\GravatarViewHelper`.
 
 Following the naming conventions for Extbase extensions the Viewhelper skeleton
-is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php`::
+is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php`:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -103,7 +110,10 @@ Several subclasses are offering additional functionality. The
 Also, every Viewhelper needs a method :php:`renderStatic()`, which is called
 once the Viewhelper will be displayed in the template. The return value of the
 method is copied directly into the complete output. If the above example is
-extended like the following::
+extended like the following:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -128,6 +138,7 @@ extended like the following::
 And called like this in the template:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
@@ -146,7 +157,10 @@ This is the last remaining piece before the implementation can be completed.
 
 All arguments of a Viewhelper must be registered. Every Viewhelper has to
 declare which parameters are accepted explicitly. The registration happens
-inside :php:`initializeArguments()`::
+inside :php:`initializeArguments()`:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    public function initializeArguments()
    {
@@ -169,7 +183,10 @@ through the array :php:`$arguments`, which is passed into the method.
    Sometimes arguments can take various types. In this case, the type `mixed`
    should be used.
 
-Finally the output of the :html:`img` tag needs to be implemented::
+Finally the output of the :html:`img` tag needs to be implemented:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -207,25 +224,33 @@ The above implementation still does not provide the expected result. The output
 for the following usage:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Post/New.html
 
    <blog:gravatar emailAddress="username@example.org" />
 
 Does not result in:
 
+
 .. code-block:: html
+   :caption: Example frontend output
 
    <img src="http://www.gravatar.com/avatar/5f0efb20de5ecfedbe0bf5e7c12353fe" />
 
 Instead, the result is:
 
+
 .. code-block:: html
+   :caption: Example frontend output
 
    &lt;img src=&quot;http://www.gravatar.com/avatar/5f0efb20de5ecfedbe0bf5e7c12353fe&quot; /&gt;
 
 By default, all output is escaped by :php:`htmlspecialchars` to prevent cross site scripting.
 
 To allow unescaped HTML output, escaping has to be explicitly disabled. This is done
-by setting the class property :php:`$escapeOutput` to `false`::
+by setting the class property :php:`$escapeOutput` to `false`:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    protected $escapeOutput = false;
 
@@ -238,6 +263,7 @@ syntax or values used as tag content will be escaped. Note that
 is also disabled unless explicitly enabled.
 
 .. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    protected $escapeChildren = false;
 
@@ -264,7 +290,10 @@ escapes single and double quotes in attribute values.
 The :php:`GravatarViewHelper` will now make use of the
 :php:`TagBasedViewHelper`. Because the Gravatar ViewHelper creates an
 :html:`img` tag the use of the
-:php:`\TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder` is advised::
+:php:`\TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder` is advised:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -320,7 +349,10 @@ should be output directly must be registered in :php:`initializeArguments()`
 with the method :php:`$this->registerTagAttribute($name, $type, $description, $required = false)`.
 If support for the :html:`<img>` attribute :html:`alt`
 should be provided in the Viewhelper, this can be done by initializing this in
-:php:`initializeArguments()` in the following way::
+:php:`initializeArguments()` in the following way:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    public function initializeArguments()
    {
@@ -333,7 +365,10 @@ accesskey and tabindex there is a helper method
 
 If support for universal attributes should be provided and in addition to the
 `alt` attribute in the Gravatar Viewhelper the following
-:php:`initializeArguments()` method will be necessary::
+:php:`initializeArguments()` method will be necessary:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    public function initializeArguments()
    {
@@ -352,7 +387,10 @@ size parameter will determine the height and width in pixels of the
 image and can range from 1 to 512. When no size is given, an image of 80px is
 generated.
 
-The :php:`render()` method can be improved like this::
+The :php:`render()` method can be improved like this:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    public function initializeArguments()
    {
@@ -384,19 +422,22 @@ Viewhelper. The call to render the Viewhelper was written with tag syntax, which
 seemed obvious because it itself returns a tag:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <blog:gravatar emailAddress="{post.author.emailAddress}" />
 
 Alternatively, this expression can be written using the inline notation:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {blog:gravatar(emailAddress: post.author.emailAddress)}
 
-One should see the Gravatar Viewhelper as a kind of post-processor for an email
+One should see the Gravatar ViewHelper as a kind of post-processor for an email
 address and would allow the following syntax:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {post.author.emailAddress -> blog:gravatar()}
 
@@ -424,7 +465,10 @@ To fetch the content of the Viewhelper, the argument
 :php:`$renderChildrenClosure` is available.  This returns the evaluated object
 between the opening and closing tag.
 
-Lets have a look at the new code of the :php:`renderStatic()` method::
+Lets have a look at the new code of the :php:`renderStatic()` method:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;
@@ -466,7 +510,10 @@ To fetch the content of the Viewhelper the method :php:`renderChildren()` is
 available in the :php:`AbstractViewHelper`. This returns the evaluated object
 between the opening and closing tag.
 
-Lets have a look at the new code of the :php:`render()` method::
+Lets have a look at the new code of the :php:`render()` method:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/GravatarViewHelper.php
 
     <?php
     namespace MyVendor\BlogExample\ViewHelpers;
@@ -508,9 +555,10 @@ three ways are explained in the following section.
 Local namespace import via lower-greater <>-syntax
 --------------------------------------------------
 
-To import a Viewhelper namespace into Fluid, the following syntax can be used:
+To import a ViewHelper namespace into Fluid, the following syntax can be used:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
          xmlns:blog="http://typo3.org/ns/MyVendor/BlogExample/ViewHelpers"
@@ -536,9 +584,10 @@ possibility to lint the Fluid files.
 Local namespace import via curly braces {}-syntax
 -------------------------------------------------
 
-To import a Viewhelper namespace into Fluid, the following syntax can be used:
+To import a ViewHelper namespace into Fluid, the following syntax can be used:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    {namespace blog=MyVendor\BlogExample\ViewHelpers}
 
@@ -560,10 +609,13 @@ Fluid allows for registering namespaces. This is already done for
 `typo3/cms-fluid` and `typo3fluid/fluid` Viewhelpers. Therefore they are always
 available via the `f` namespace.
 
-Custom Viewhelpers, e.g. for a site package, can be registered the same way.
+Custom ViewHelpers, e.g. for a site package, can be registered the same way.
 Namespaces are registered within
 :php:`$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']` in the form
-of::
+of:
+
+.. code-block:: php
+   :caption: EXT:blog_example/ext_localconf.php
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['blog'] = [
         'MyVendor\BlogExample\ViewHelpers',
@@ -588,7 +640,10 @@ The method will receive an array of all arguments, which are passed in addition
 to the registered arguments. The array uses the argument name as the key and the
 argument value as the value. Within the method, these arguments can be handled.
 
-E.g. the :php:`AbstractTagBasedViewHelper` implements the following behaviour::
+E.g. the :php:`AbstractTagBasedViewHelper` implements the following behaviour:
+
+.. code-block:: php
+   :caption: EXT:fluid/Classes/ViewHelpers/AbstractTagBasedViewHelper.php
 
     public function handleAdditionalArguments(array $arguments)
     {
@@ -636,7 +691,10 @@ code before the execution.
    compiled version of the Viewhelper. In the future, this should no longer be
    necessary.
 
-Example implementation::
+Example implementation:
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/ViewHelpers/StrtolowerViewHelper.php
 
    <?php
    namespace MyVendor\BlogExample\ViewHelpers;

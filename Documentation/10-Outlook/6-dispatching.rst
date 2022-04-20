@@ -64,7 +64,10 @@ RequestHandlerResolver
 ======================
 
 Extbase innately contains a couple of classes for various requests and makes
-them available via :file:`Configuration/Extbase/RequestHandlers.php`::
+them available via :file:`Configuration/Extbase/RequestHandlers.php`:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Configuration/Extbase/RequestHandlers.php
 
    return [
        \TYPO3\CMS\Extbase\Mvc\Web\FrontendRequestHandler::class,
@@ -86,7 +89,10 @@ For example, a handler for AJAX requests can be registered here.
 
 The class-specific method :php:`canHandleRequest()` decides whether the request
 can be handled by its :php:`RequestHandler`. For a :php:`BackendRequestHandler`,
-the check looks like this::
+the check looks like this:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/RequestHandler/MyRequestHandler.php
 
    canHandleRequest()
    {
@@ -183,7 +189,10 @@ In case of a forward, the request also enables access to the original request.
 Further information like the controller name and plugin name can be retrieved
 from the request.
 
-Arguments can be accessed through::
+Arguments can be accessed through:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    $this->request->getArgument('argumentName');
 
@@ -210,7 +219,12 @@ be set explicitly.
          should state that returning a PSR-7 response object is mandatory.
 
 Responses need to implement :php:`\Psr\Http\Message\ResponseInterface`.
-To create a response, it is recommended to use the :ref:`PSR-17 response factory <t3coreapi:request-handling-psr-17>`::
+To create a response, it is recommended to use the
+:ref:`PSR-17 response factory <t3coreapi:request-handling-psr-17>`:
+
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    use Psr\Http\Message\ResponseFactoryInterface;
    use Psr\Http\Message\ResponseInterface;
@@ -259,13 +273,17 @@ Forwarding a request
 --------------------
 
 Within an action the current request can be forwarded to another action by
-returning a `ForwardResponse`::
+returning a `ForwardResponse`:
+
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    use Psr\Http\Message\ResponseInterface;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
    use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
-   class FooController extends ActionController
+   class MyController extends ActionController
    {
       public function listAction(): ResponseInterface
       {
@@ -287,7 +305,10 @@ Redirecting a request
 ---------------------
 
 Within an action the current request can be redirected to another action
-by returning the redirect method::
+by returning the redirect method:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    return $this->redirect(
       'newAction',
@@ -296,7 +317,10 @@ by returning the redirect method::
       ['param1' => $param1, 'param2' => $param2]
    );
 
-or to another uri::
+or to another uri:
+
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    return $this->redirectToUri('https://example.org');
 
@@ -307,7 +331,10 @@ or to another uri::
    destination must be passed as an array in parameter 4.
    If the redirection happens after a new / create form, then it must be taken
    care that the database record is stored
-   into the database before the redirection::
+   into the database before the redirection:
+
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/Controller/MyController.php
 
       // use \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
       $persistenceManager->persistAll();

@@ -42,7 +42,11 @@ Object Accessors are written in curly brackets. For example,
 controller with :php:`$this->view->assign(variableName, object)`.
 Let us look at this in an example of a list of blog posts.
 In the controller, we assign some data to the template with the following
-code::
+code:
+
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    namespace ExtbaseTeam\BlogExample\Controller;
    use Psr\Http\Message\ResponseInterface;
@@ -59,9 +63,12 @@ code::
       }
    }
 
-Now we can insert the string »Webdesign-Blog« into the
+Now we can insert the string "Webdesign-Blog" into the
 template with the Object Accessor ``{blogTitle}``. Let us take a
-look at the associated template::
+look at the associated template:
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Index.html
 
     <h1>{blogTitle}</h1>
 
@@ -74,7 +81,10 @@ Accessor ``{blogTitle}`` will be replaced by the title of the
 blog »Webdesign-Blog«. To output the individual blog posts, the tag
 ``<f:for>`` is used, which you can also see in the template
 above. Depending on the title of each blog post, the complete output looks
-like this::
+like this:
+
+.. code-block:: html
+   :caption: Example frontend output
 
     <h1>Webdesign-Blog</h1>
 
@@ -156,7 +166,10 @@ the template, readability increases immensely for other template editors
 who work on the same templates.
 
 The standard ViewHelper of Fluid will be imported and assigned to
-the shortcut ``f`` with the following declaration::
+the shortcut ``f`` with the following declaration:
+
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Index.html
 
     {namespace f=TYPO3\CMS\Fluid\ViewHelpers}
 
@@ -172,7 +185,8 @@ mentioned.
 All tags, which begin with a registered prefix, will be evaluated.
 Here's a small example:
 
-.. code-block:: xml
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Index.html
 
     <ul>
         <f:for each="{blogPosts}" as="post">
@@ -233,8 +247,12 @@ this, you can create a link to other controllers and Actions in your
 Extension. The following link refers to the ``index`` action of
 the ``Post`` controller:
 
-``<f:link.action controller="Post" action="index">Show
-list of all posts</f:link.action>``
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Index.html
+
+   <f:link.action controller="Post" action="index">
+       Show list of all posts
+   </f:link.action>
 
 However, many links in your application need parameters, which can be
 passed with the ``arguments`` attribute. We can already see that
@@ -243,9 +261,12 @@ to pass. By using an array, we can pass an indefinite amount of parameters.
 The following example adds the parameter ``post`` to the
 link:
 
-``<f:link.action controller="Post" action="show"
-arguments="{post: currentPost}">Show current
-post</f:link.action>``
+.. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/Index.html
+
+   <f:link.action controller="Post" action="show" arguments="{post: currentPost}">
+      Show current post
+   </f:link.action>
 
 The array ``{post: currentPost}`` consists of a single
 element with the name ``post``. The value of the element is the
@@ -254,7 +275,10 @@ object ``currentPost``. A comma separates multiple elements:
 
 Fluid only supports named arrays, which means that you always have
 to specify the key of the array element. Let's look at what options you
-have when creating an array::
+have when creating an array:
+
+.. code-block:: html
+   :caption: Example array in Fluid
 
     {
         key1: 'Hello',

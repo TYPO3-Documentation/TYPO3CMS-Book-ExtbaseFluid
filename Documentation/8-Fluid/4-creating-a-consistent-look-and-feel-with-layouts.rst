@@ -30,6 +30,7 @@ use case of the ViewHelper ``<f:render section="..." />`` as
 a placeholder.
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <html>
       <!-- ... -->
@@ -50,6 +51,7 @@ a placeholder.
 A template looks like this:
 
 .. code-block:: html
+   :caption: EXT:blog_example/Resources/Private/Templates/SomeTemplate.html
 
    <f:layout name="default" />
 

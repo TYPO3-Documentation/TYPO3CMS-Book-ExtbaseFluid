@@ -23,6 +23,7 @@ To be able to do that, we need to define a database schema in the file
 :file:`EXT:store_inventory/ext_tables.sql`:
 
 .. code-block:: mysql
+   :caption: EXT:store_inventory/ext_tables.sql
 
    CREATE TABLE tx_storeinventory_domain_model_product (
       name varchar(255) DEFAULT '' NOT NULL,
@@ -62,6 +63,7 @@ The file returns an array with all information,
 TYPO3 needs to render the list and detail view for the records of this extension.
 
 .. code-block:: php
+   :caption: EXT:store_inventory/Configuration/TCA/tx_storeinventory_domain_model_product.php
 
    <?php
    return [
@@ -131,6 +133,7 @@ To define the name of this group, create a language file
 and add the key **extension.title**.
 
 .. code-block:: xml
+   :caption: EXT:store_inventory/Resources/Private/Language/locallang_db.xlf
 
    <?xml version="1.0" encoding="UTF-8"?>
    <xliff version="1.0">
@@ -196,6 +199,7 @@ The repository is our connection to the database and retrieves products.
 As we do not need any special functionality, the Repository class is very short in our case:
 
 .. code-block:: php
+   :caption: EXT:store_inventory/Classes/Domain/Repository/ProductRepository.php
 
    <?php
 

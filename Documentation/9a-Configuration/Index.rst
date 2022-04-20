@@ -79,10 +79,11 @@ Access settings
     directly followed by a dot (`.`).
 
 .. code-block:: xml
+   :caption: EXT:my_extension/Configuration/FlexForms/SomeFlexForm.xml
 
     <settings.includeCategories>
         <TCEforms>
-            <label>LLL:EXT:example/Resources/Private/Language/Backend.xlf:settings.registration.includeCategories</label>
+            <label>Some Label</label>
             <config>
                 <type>check</type>
                 <default>0</default>
@@ -99,5 +100,6 @@ The settings can be read using :php:`$this->settings` in an
 Extbase controller action. And via :html:`{settings}` within Fluid.
 
 .. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
 
    $includeCategories = (bool) ($this->settings['includeCategories'] ?? false);
