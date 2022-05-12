@@ -36,7 +36,7 @@ With the first line we prevent calling the PHP code in this file without TYPO3 c
 The static method :php:`\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin()`
 is used to configure the plugin for use in TYPO3.
 The first parameter denotes the extension key in UpperCamelCase (ExtensionKey).
-With the second argument we give an unique name for the plugin (also in UpperCamelCase notation).
+With the second argument we give a unique name for the plugin (also in UpperCamelCase notation).
 This is later used to clearly identify the plugin.
 The third argument is an array with all allowed controller action combinations.
 The array key is the fully-qualified controller class name
