@@ -46,15 +46,15 @@ backend. Let's have a look at the following two files:
 
     $pluginName = 'ExamplePlugin';
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'extension_key',
+        'ExtensionKey',
         $pluginName,
         $controllerActionCombinations,
         $uncachedActions
     );
 
-In addition to the extension key and a unique name of the plugin (line 2 and 3),
+In addition to the extension key and a unique name of the plugin (line 3 and 4),
 the allowed combinations of the controller and actions are determined.
-`$controllerActionCombinations` is an associative array. The Keys of this array
+`$controllerActionCombinations` is an associative array. The keys of this array
 are the allowed controller classes, and the values are a comma-separated list of
 allowed actions per controller. The first action of the first controller is the
 default action.
@@ -68,7 +68,7 @@ same format as above, containing all the non-cached-actions.
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'extension_key',
+        'ExtensionKey',
         'ExamplePlugin',
         'Title used in Backend'
     );
@@ -84,7 +84,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'example_extension',
+        'ExampleExtension',
         'Blog',
         [
             \Vendor\ExampleExtension\Controller\BlogController::class => 'index,show,new,create,delete,deleteAll,edit,update,populate',
@@ -103,7 +103,7 @@ frontend plugin within the files :file:`ext_localconf.php` and :file:`Configurat
 .. code-block:: php
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-        'example_extension',
+        'ExampleExtension',
         'Blog',
         'A Blog Example',
         'EXT:blog/Resources/Public/Icons/Extension.svg'
