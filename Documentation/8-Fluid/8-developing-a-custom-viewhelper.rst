@@ -82,13 +82,7 @@ is created in the PHP file :file:`EXT:blog_example/Classes/ViewHelpers/GravatarV
       }
    }
 
-.. note::
-
-   Prior to Fluid 2.4, the method :php:`renderStatic()` required a :php:`use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;` at
-   the beginning of the ViewHelper class file and additionally a :php:`use CompileWithRenderStatic;` inside of the ViewHelper class.
-   Otherwise the method :php:`render()` would not be found. If you use the latest TYPO3 9 or higher, this should no longer be necessary.
-
-Every ViewHelper must inherit from the class
+Every Viewhelper must inherit from the class
 :php:`\TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper`.
 
 A ViewHelper can also inherit from subclasses of :php:`AbstractViewHelper`, e.g.
