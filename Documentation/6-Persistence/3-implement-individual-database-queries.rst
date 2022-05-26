@@ -417,7 +417,7 @@ is translated by Extbase to the following query:
            ->from('tx_sjroffers_domain_model_offer')
            ->where(...)
 
-       $rows = $query->execute()->fetchAll();
+       $rows = $query->executeQuery()->fetchAllAssociative();
 
    You have to handle the creation and maintenance of the objects by yourself.
 
