@@ -395,32 +395,6 @@ is translated by Extbase to the following query:
     SELECT * FROM tx_sjroffers_domain_model_offer WHERE title LIKE '%climbing%' AND
         organization IN ('33','47')
 
-.. warning::
-
-   You should always avoid making queries to the persistence layer outside of the domain model.
-   Encapsulate these queries always in a repository.
-
-   Inside of the repositories, you can access the database using a database connection:
-
-   .. code-block:: php
-      :caption: EXT:my_extension/Classes/Domain/Repository/MyRepository.php
-
-       use TYPO3\CMS\Core\Database\ConnectionPool;
-       use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-       $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-           ->getConnectionForTable('tx_sjroffers_domain_model_offer');
-
-       $queryBuilder = $connection->createQueryBuilder();
-       $query = $queryBuilder
-           ->select('*')
-           ->from('tx_sjroffers_domain_model_offer')
-           ->where(...)
-
-       $rows = $query->executeQuery()->fetchAllAssociative();
-
-   You have to handle the creation and maintenance of the objects by yourself.
-
 The method ``execute()`` per default returns a ready-built object and the related objects
 - the complete *Aggregate*. In some cases, though, it is convenient to preserve the "raw data" of the objects,
 e.g., if you want to manipulate them before building objects out of them. For this, you have to execute the
