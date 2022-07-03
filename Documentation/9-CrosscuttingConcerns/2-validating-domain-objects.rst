@@ -39,7 +39,7 @@ A validator is a PHP class that has to check a certain invariant. All
 validators that are used in Extbase extensions have to implement the interface
 :php:`ValidatorInterface`:
 
-.. include:: /CodeSnippets/StyleguideCode/ValidatorInterface.rst.txt
+.. include:: /CodeSnippets/PhpDomain/ValidatorInterface.rst.txt
 
 This interface requires validators to implement two methods:
 
@@ -54,15 +54,15 @@ The value to be validated is passed to the :php:validate() method where it's val
     The example below never returns anything but is using $this->addError() instead.
     No return-values are given for validate()
     although the interface states, that the method `validate` should return
-    a :php:`\TYPO3\CMS\Extbase\Error\Result` object. 
+    a :php:`\TYPO3\CMS\Extbase\Error\Result` object.
     Most people who create custom validators extend the class
     :php:`\TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator`.
     Instead the bool method isValid is called.
-    This enables you to call the addError()` or `$this->addError($error, 1624260704)` 
+    This enables you to call the addError()` or `$this->addError($error, 1624260704)`
     method and let the abstract
-    validator method `validate` take care of returning a proper result object 
+    validator method `validate` take care of returning a proper result object
     of type `\TYPO3\CMS\Extbase\Error\Result` to the validation
-    framework. 
+    framework.
 
 There are 2 types of validation checks:
 #.  A loose check is making only a relaxed check over a very large range of possible values.
@@ -243,7 +243,7 @@ When you have created your own validator to check the invariants
 you can use it in the ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation using the full
 class name.
 
-Example: 
+Example:
 
 .. code-block:: php
    :caption: blog_example/Class/Domain/Model/Post.php
@@ -386,7 +386,7 @@ for example:
 
 .. code-block:: php
    :caption: extbase_example/Class/Controller/UserController.php
-   
+
    <?php
    declare(strict_types=1);
 
@@ -409,7 +409,7 @@ for example:
    }
 
 Now there are two possibilities how validators can be
-registered for domain objects: 
+registered for domain objects:
 
 *  directly in the model via ``@TYPO3\CMS\Extbase\Annotation\Validate`` annotation for single properties
 *  with an own validator class for complete domain objects.
