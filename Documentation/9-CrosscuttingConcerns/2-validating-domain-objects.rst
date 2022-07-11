@@ -45,6 +45,7 @@ The method :php:`isValid()` does not return a value but adds an error to the
 :php:`TYPO3\CMS\Extbase\Error\Result` in case the validation fails.
 
 There are 2 types of validation checks:
+
 #.  A loose check is making only a relaxed check over a very large range of possible values.
 #.  A tight check requires the exact fitting of the value.
 
