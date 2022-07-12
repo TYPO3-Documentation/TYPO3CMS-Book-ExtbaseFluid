@@ -65,6 +65,7 @@ The value to be validated is passed to the :php:validate() method where it's val
     framework. 
 
 There are 2 types of validation checks:
+
 #.  A loose check is making only a relaxed check over a very large range of possible values.
 #.  A tight check requires the exact fitting of the value.
 
