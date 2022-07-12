@@ -28,7 +28,6 @@ sample.
    :hidden:
 
    1-basic-concepts
-   1a-inline-syntax
    2-using-different-output-formats
    3-moving-repeating-snippets-to-partials
    4-creating-a-consistent-look-and-feel-with-layouts
