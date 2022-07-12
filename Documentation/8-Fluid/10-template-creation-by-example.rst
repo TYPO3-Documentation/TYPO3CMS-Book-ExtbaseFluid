@@ -128,10 +128,8 @@ template like this:
 
    <sjr:format.numericRange>{offer.ageRange}</sjr:format.numericRange>
 
-Alternatively you can use the inline notation of Fluid (therefore
-see the box
-:ref:`Inline Notation Versus Tag Based Notation <inline-notation-vs-tag-based-notation>`
-earlier in this chapter):
+Alternatively you can use the
+:ref:`inline notation of Fluid <t3coreapi:fluid-inline-notation>`:
 
 ``{offer.ageRange->sjr:format.numericRange()}``
 
