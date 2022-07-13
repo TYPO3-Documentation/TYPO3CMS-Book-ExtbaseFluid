@@ -51,7 +51,7 @@ What is the "Extension Name"?
 These are the Extbase naming conventions:
 
 Extension key
-   blog_example (= $_EXTKEY)
+   blog_example
 
 Extension name
    BlogExample (used e.g. in class names)
