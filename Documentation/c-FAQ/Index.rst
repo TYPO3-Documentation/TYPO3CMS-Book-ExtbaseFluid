@@ -75,37 +75,9 @@ Fluid
 How can I comment out parts of my Fluid template?
 -------------------------------------------------
 
-As the Fluid syntax is basically XML, you can use CDATA tags to comment
-out parts of your template:
+.. note::
 
-.. code-block:: html
-   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
-
-   <![CDATA[
-   This will be ignored by the Fluid parser
-   ]]>
-
-If you want to hide the contents from the browser, you can additionally
-encapsulate the part in HTML comments:
-
-.. code-block:: html
-   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
-
-   <!--<![CDATA[
-   This will be ignored by the Fluid parser and by the browser
-   ]]>-->
-
-Note: This way the content will still be transferred to the browser! If
-you want to completely skip parts of your template, you can make use of
-the **f:comment** view helper. To disable parsing you best combine it
-with CDATA tags:
-
-.. code-block:: html
-   :caption: EXT:my_extension/Resources/Private/Templates/SomeTemplate.html
-
-   <f:comment><![CDATA[
-   This will be ignored by the Fluid parser and won't appear in the source code of the rendered template
-   ]]></f:comment>
+   The part was moved to TYPO3 Explained :ref:`t3coreapi:fluid-comments`.
 
 How can I use JavaScript inside Fluid templates?
 ------------------------------------------------
