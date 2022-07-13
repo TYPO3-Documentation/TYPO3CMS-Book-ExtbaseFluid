@@ -34,7 +34,6 @@ sample.
    5-using-typoscript-for-rendering-the-cobject-viewhelper
    6-adding-additional-tag-attributes-with-additionalattributes
    7-using-boolean-conditions
-   8-developing-a-custom-viewhelper
    9-using-php-based-views
    10-template-creation-by-example
    11-conclusion
