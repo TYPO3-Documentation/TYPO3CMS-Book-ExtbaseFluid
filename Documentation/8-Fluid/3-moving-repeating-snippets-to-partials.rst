@@ -71,10 +71,7 @@ ViewHelper namespace import
 Like within Fluid templates, custom ViewHelpers can be used within partials.
 Because these ViewHelpers are not in the default namespace,
 their namespace needs to be imported. For information about how to import a
-namespace, see :ref:`importing-namespaces`.
-
-It's possible to use a :ref:`global-namespace-import`, or :ref:`imports the namespace
-<importing-namespaces>` within the partial, or within the template.
+namespace, see :ref:`t3coreapi:fluid-syntax-viewhelpers-import-namespaces`.
 
 .. note::
 
