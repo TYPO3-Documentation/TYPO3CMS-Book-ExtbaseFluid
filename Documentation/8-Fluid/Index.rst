@@ -32,7 +32,6 @@ sample.
    3-moving-repeating-snippets-to-partials
    4-creating-a-consistent-look-and-feel-with-layouts
    6-adding-additional-tag-attributes-with-additionalattributes
-   7-using-boolean-conditions
    9-using-php-based-views
    10-template-creation-by-example
    11-conclusion
