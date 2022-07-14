@@ -22,9 +22,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
 This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
 
-The extension `sjroffers <https://github.com/martin-helmich/typo3-sjroffers>`__
-is used as an example in this book.
-
 ----
 
 **Table of Contents:**
