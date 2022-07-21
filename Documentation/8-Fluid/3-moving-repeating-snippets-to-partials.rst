@@ -11,5 +11,5 @@ Moving repeating snippets to partials
 
 .. note::
 
-   This part has been moved to TYPO3 Explained :ref:`t3coreapi:fluid-partials`
+   This section has been moved to TYPO3 Explained :ref:`t3coreapi:fluid-partials`
    for TYPO3 >= v11.5.
