@@ -137,10 +137,6 @@ in the Frontend (i.e., when its hidden value got non-zero). As well as with
 the *starttime* field, Extbase uses this value when
 it reads from the database.
 
-`cruser_id` The UID of the Backend user who created the
-record. Currently, Extbase neither sets nor reads this value. Whenever a
-domain object is created in the Frontend, this field is set to 0.
-
 `fe_group` A list of Frontend-Usergroups that can access
 the recordset. The logged-in Frontend-User must at least belong to this
 group.
