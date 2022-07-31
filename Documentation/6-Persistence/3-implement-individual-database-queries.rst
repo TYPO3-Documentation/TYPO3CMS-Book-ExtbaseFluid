@@ -510,7 +510,7 @@ from the ``Query`` object with ``getQuerySettings()``. In table 6-3, you find al
 |                               | or for all languages (e.g. ``sys_language_uid IN (-1,0)``)  |         |
 |                               | This setting is mostly used for internal purposes.          |         |
 +-------------------------------+-------------------------------------------------------------+---------+
-| ``setIgnoreEnableFields()``  | ... the result set is limited to these tuples/objects that  | false    |
+| ``setIgnoreEnableFields()``   | ... the result set is limited to these tuples/objects that  | false   |
 |                               | at the present moment can be viewed by the current user     |         |
 |                               | (e.g. ``deleted=0 AND hidden=0``)                           |         |
 +-------------------------------+-------------------------------------------------------------+---------+
