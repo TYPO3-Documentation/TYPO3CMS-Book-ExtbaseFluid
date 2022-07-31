@@ -8,6 +8,11 @@
 Styling the output with Fluid
 =============================
 
+.. note::
+
+   The general Fluid information has been moved to TYPO3 Explained
+   :ref:`t3coreapi:fluid`.
+
 Up to now, you have learned how to represent the business logic of an
 application with a model and how to manipulate the model with the use of
 controllers. So far, we have covered the output of data for the user only
