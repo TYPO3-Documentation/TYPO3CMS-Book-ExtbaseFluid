@@ -35,8 +35,8 @@ have been manipulated.
 Always check if the format of the data corresponds
 with the format you expected. For example, for a
 field that contains an email address, you should check that a valid email address was entered
-and not any other text. For this, the :ref:`validating framework <validating-domain-objects>`
-of Extbase (which we covered in the previous chapter), may be helpful.
+and not any other text. For this, the :ref:`validating framework <t3coreapi:extbase_validation>`
+of Extbase, may be helpful.
 
 All data that comes from the user should be validated. This is especially critical
 where data is written to the database.
