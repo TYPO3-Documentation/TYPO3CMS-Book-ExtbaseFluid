@@ -21,6 +21,5 @@ security of the extension.
    :hidden:
 
    1-localizing-and-internationalizing-an-extension
-   2-validating-domain-objects
    3-programming-secure-extensions
    4-conclusion

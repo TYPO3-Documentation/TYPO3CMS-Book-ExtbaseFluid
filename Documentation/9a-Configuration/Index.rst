@@ -28,7 +28,7 @@ The changes apply to the current page and all subpages.
 
 .. seealso::
 
-   * :ref:`typoscript_configuration`
+   * :ref:`t3coreapi:extbase_typoscript_configuration`
 
    * :ref:`t3tsref:typoscript-syntax-what-are-constants`
 

@@ -363,7 +363,7 @@ method ``newAction()``.
    object's property values, the above-mentioned ``PropertyMapper`` checks if any errors are encountered
    during the validation. The validation effected on the base of the property
    definitions of the target object. More about the subject validating you will find
-   in the section :ref:`validating-domain-objects`.
+   in :ref:`TYPO3 Explained, Extbase validation <t3coreapi:extbase_validation>`.
 
 The post is added to the blog with ``$blog->addPost($newPost)``. After that, the
 following processing is forwarded by ``$this->redirect('index', ...)`` to the method
