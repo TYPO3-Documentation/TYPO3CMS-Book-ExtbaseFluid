@@ -187,7 +187,7 @@ Recursive transformation of properties
 --------------------------------------
 
 .. versionadded:: 11.4
-   Since TYPO3 11.4 recursive tranformations of properties are available in
+   Since TYPO3 v11.4 recursive tranformations of properties are available in
    the build-in JsonView.
 
 The Extbase :php:`JsonView` is able to resolve recursive properties of

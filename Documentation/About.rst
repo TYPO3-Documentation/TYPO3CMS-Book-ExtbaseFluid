@@ -155,7 +155,7 @@ the title "Zukunftssichere TYPO3-Extensions mit Extbase und Fluid" by
 Jochen Rau and Sebastian Kurfürst.
 This book was translated into English by the TYPO3 community.
 
-The latest version of the book (second edition) targeted TYPO3 6.2.
+The latest version of the book (second edition) targeted TYPO3 v6.2.
 
 Meanwhile, the book is no longer an exact translation. Several
 the TYPO3 community made changes to reflect

@@ -233,7 +233,7 @@ See `Send mail with FluidEmail <t3coreapi:send-mail-with-fluidemail>`__
 Can I compare strings with the if view helper?
 ----------------------------------------------
 
-Starting from TYPO3 6.1 this is possible as expected and you can use
+Starting from TYPO3 v6.1 this is possible as expected and you can use
 constant strings in if view helper as follows:
 
 .. code-block:: html

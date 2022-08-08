@@ -348,4 +348,4 @@ In the first example, Extbase will build the URL and call :php:`redirectToUri()`
    Formerly the methods :php:`redirect` and :php:`redirectToUri` depended on
    throwing a :php:`StopActionException`. This Exception has however been
    deprecated with 11.3 as it is not PSR-7 conform. Therefore returning the
-   results of the redirect methods becomes mandatory with TYPO3 12.
+   results of the redirect methods becomes mandatory with TYPO3 v12.
