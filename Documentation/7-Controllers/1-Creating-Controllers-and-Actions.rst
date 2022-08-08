@@ -167,7 +167,7 @@ Extbase fetches the type of this Argument from the method signature:
 :php:`showAction(*\MyVendor\SjrOffers\Domain\Model\Offer* $offer)`.
 
 .. deprecated:: 11.3
-   Starting with TYPO3 11.3 omitting the PHP type declaration and only using
+   Starting with TYPO3 v11.3 omitting the PHP type declaration and only using
    the DocBlock annotation :php:`@param` has been deprecated.
 
 After successfully assigning, the incoming argument's value has
@@ -446,7 +446,7 @@ displayed if the template is intending so.
 .. tip::
 
     Standard error messages of Extbase are not yet localized in
-    Version 1.2 (TYPO3 4.4). In the section "Localize error messages" in chapter 8
+    Version 1.2 (TYPO3 v4.4). In the section "Localize error messages" in chapter 8
     a possibility is described how to translate them.
 
 Using the hidden field :php:`__trustedProperties`, the Extbase property

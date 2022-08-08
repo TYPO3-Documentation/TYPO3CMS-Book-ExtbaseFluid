@@ -276,7 +276,7 @@ partial, the name of the form that relates to the error message is given as
 .. sidebar:: Localize error messages
 
    The error messages of the default validators that are delivered
-   with Extbase are not localized in version 1.2 (TYPO3 4.4). You can translate the
+   with Extbase are not localized in version 1.2 (TYPO3 v4.4). You can translate the
    messages yourself by replacing the before described partial
    ``formErrors`` with the following code:
 
