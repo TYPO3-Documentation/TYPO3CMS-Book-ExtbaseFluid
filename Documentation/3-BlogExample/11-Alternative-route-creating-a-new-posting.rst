@@ -133,7 +133,7 @@ param notations in the comments as well:
 
 .. deprecated:: 11.3
    Using the :php:`@param` DocBlock annotation without adding the actual PHP
-   type declaration has been deprecated with TYPO3 11.3.
+   type declaration has been deprecated with TYPO3 v11.3.
 
 
 .. index:: Action; Parameters

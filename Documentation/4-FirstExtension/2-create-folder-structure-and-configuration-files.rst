@@ -103,7 +103,7 @@ of the *Core Api Reference* manual.
 .. index:: Files; Resources/Public/Icons/Extension.svg
 
 In previous versions of TYPO3, the extension icon was named :file:`ext_icon.gif`.
-Starting with TYPO3 8, you can choose between PNG or SVG format.
+Starting with TYPO3 v8, you can choose between PNG or SVG format.
 It is recommended to call the file :file:`Extension.png` or
 :file:`Extension.svg` and store it in the directory :file:`Resources/Public/Icons/`.
 The icon will be displayed in the extension manager and in the TYPO3 extension repository (TER).
