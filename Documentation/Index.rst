@@ -39,7 +39,6 @@ This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
    :caption: GETTING STARTED
 
    1-Installation/Index
-   4-FirstExtension/Index
    5-Domain/Index
    6-Persistence/Index
    7-Controllers/Index
