@@ -63,14 +63,6 @@ and three appendices. The chapters discuss the following topics:
   effective as possible, we give suggestions for development environments and tips and
   tricks for debugging.
 
-.. In chapter 4, **Creating a first extension**
-
-* In :ref:`creating-store-inventory-extension`, we show
-  you a minimal extension. With this extension, data is managed through the
-  TYPO3 backend and displayed in the frontend.
-
-.. Chapter 5, **Modeling the Domain**,
-
 * :ref:`modeling-the-domain` shows
   domain-driven design with a practical example. It shows how a model can be
   planned and implemented.
