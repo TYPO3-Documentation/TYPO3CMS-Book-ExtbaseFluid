@@ -309,21 +309,16 @@ via :ref:`dependency injection<t3coreapi:dependency-injection>` first.
    :caption: Dependency injection example from chapter 2
    :name:
 
-   // use \MyVendor\StoreInventory\Domain\Repository\ProductRepository
+   use FriendsOfTYPO3\BlogExample\Domain\Repository\BlogRepository;
 
-   /**
-   * @var ProductRepository
-   */
-   private $productRepository;
+   private BlogRepository $blogRepository;
 
    /**
    * Inject the product repository
-   *
-   * @param ProductRepository $productRepository
    */
-   public function injectProductRepository(ProductRepository $productRepository)
+   public function injectProductRepository(BlogRepository $blogRepository)
    {
-      $this->productRepository = $productRepository;
+      $this->blogRepository = $blogRepository;
    }
 
 
