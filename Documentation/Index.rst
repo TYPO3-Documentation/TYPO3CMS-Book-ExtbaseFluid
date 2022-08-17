@@ -32,7 +32,6 @@ This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
 
    0-Introduction/Index
    2-BasicPrinciples/Index
-   3-BlogExample/Index
 
 .. toctree::
    :maxdepth: 1
