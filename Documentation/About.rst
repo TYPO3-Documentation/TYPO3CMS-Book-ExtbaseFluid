@@ -7,7 +7,7 @@ About This Manual
 =================
 
 .. attention::
-   This book has been here since TYPO3 v6.2. By now (2022) it is severely outdated
+   This book has been here since TYPO3 v6.2. By now (2022) it is severely outdated.
    we are therefore in the process of reviewing, moving and removing its content.
 
    The Extbase reference can now be found in :ref:`TYPO3 Explained, Extbase
