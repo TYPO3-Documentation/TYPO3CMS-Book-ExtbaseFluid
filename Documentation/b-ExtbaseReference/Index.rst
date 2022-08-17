@@ -520,6 +520,44 @@ Default values can, as usual in PHP, just be indicated in the method signature. 
 the default value of the parameter `$newBlog` is set to NULL. If an action returns `NULL` or nothing,
 then automatically `$this->view->render()` is called, and thus the view is rendered.
 
+Forwarding to another extension
+-------------------------------
+
+It is possible to forward from one controller action to an action of a different
+controller. This is even possible if the controller is in another extension.
+
+In the following example if the current blog is not found in the
+:php:`PostController`s index action we follow to the list of blogs which
+is displayed by the :php:`indexAction` of the :php:`BlogController`.
+
+.. code-block:: php
+   :caption: EXT:blog_example/Classes/Controller/PostController.php
+
+    /**
+     * Displays a list of posts. If $tag is set only posts matching this tag are shown
+     *
+     * @param \FriendsOfTYPO3\BlogExample\Domain\Model\Blog $blog The blog to show the posts of
+     * @param null $tag The name of the tag to show the posts for
+     * @param int $currentPage
+     * @return void
+     */
+    public function indexAction(?Blog $blog = null, $tag = null, int $currentPage = 1): void
+    {
+        if ($blog == null) {
+            $this->request->setControllerAliasToClassNameMapping (
+                ['BlogController' => 'FriendsOfTYPO3\BlogExample\Controller\BlogController']
+            );
+            $this->forward( 'index', 'BlogController', 'BlogExample',
+                array(
+                    'currentPage' => $currentPage
+                )
+            );
+        } else {
+            // ...
+        }
+    }
+
+
 .. _class_hierarchy-define_initialization_code:
 
 Define initialization code
