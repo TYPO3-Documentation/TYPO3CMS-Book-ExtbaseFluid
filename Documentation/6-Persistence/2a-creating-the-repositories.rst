@@ -5,8 +5,8 @@
 Creating the repositories
 =========================
 
-We have already introduced the repositories in :ref:`the-blog-example`. They serve with
-capabilities to save and reaccess our objects. We set up such a repository
+Repositories serve with
+capabilities to save and reaccess objects. We set up such a repository
 object for every Aggregate-Root object which is, then again, used for accessing
 all the Aggregate-Root's corresponding objects. In our concrete example
 :php:`\MyVendor\SjrOffers\Domain\Model\Organization` is such an Aggregate-Root object. The

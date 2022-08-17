@@ -34,7 +34,7 @@ and three appendices. The chapters discuss the following topics:
 
 .. **Introduction**
 
-* :ref:`introduction` is a very brief introduction to the topic Extbae and Fluid.
+* :ref:`introduction` is a very brief introduction to the topic Extbase and Fluid.
 
 .. **Basic principles**
 
@@ -45,14 +45,6 @@ and three appendices. The chapters discuss the following topics:
   Extbase. After that, you'll learn the design pattern model-view-controller,
   which is the technical basis of every Extbase Extension. Finally, the
   chapter explains test-driven development to the reader.
-
-.. **Journey through the Blog Example**
-
-* :ref:`The-Blog-Example`
-  should give you a feeling of how the concepts from chapter 2 are implemented
-  in Extbase. Based on a provided example extension, we explain how a blog post
-  is created and progresses through various stages until it is
-  displayed.
 
 .. getting started
 
