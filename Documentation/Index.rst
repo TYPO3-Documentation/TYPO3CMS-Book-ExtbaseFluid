@@ -52,7 +52,6 @@ This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
    9-CrosscuttingConcerns/Index
    Backend-modules   ➜  <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/BackendModules/BackendModuleApi/Index.html>
    10-Outlook/3-Command-controllers
-   10-Outlook/4-Property-mapping
    10-Outlook/5-error-action
    10-Outlook/6-dispatching
 
