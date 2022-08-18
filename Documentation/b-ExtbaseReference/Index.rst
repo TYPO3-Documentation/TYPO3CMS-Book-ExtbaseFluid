@@ -523,7 +523,7 @@ then automatically `$this->view->render()` is called, and thus the view is rende
 Forwarding to another extension
 -------------------------------
 
-It is possible to forward from one controller action to an action of a different
+It is possible to forward from one controller action to an action of the same or a different
 controller. This is even possible if the controller is in another extension.
 
 In the following example if the current blog is not found in the
