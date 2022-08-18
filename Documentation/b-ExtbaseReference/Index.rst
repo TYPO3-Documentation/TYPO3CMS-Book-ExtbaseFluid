@@ -547,7 +547,7 @@ displayed by the :php:`indexAction` of the :php:`BlogController`.
             $this->request->setControllerAliasToClassNameMapping (
                 ['BlogController' => 'FriendsOfTYPO3\BlogExample\Controller\BlogController']
             );
-            $this->forward( 'index', 'BlogController', 'BlogExample',
+            $this->forward('index', 'BlogController', 'BlogExample',
                 array(
                     'currentPage' => $currentPage
                 )
