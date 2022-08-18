@@ -528,7 +528,7 @@ controller. This is even possible if the controller is in another extension.
 
 In the following example, if the current blog is not found in the
 index action of the :php:`PostController`, we follow to the list of blogs
-is displayed by the :php:`indexAction` of the :php:`BlogController`.
+displayed by the :php:`indexAction` of the :php:`BlogController`.
 
 .. code-block:: php
    :caption: EXT:blog_example/Classes/Controller/PostController.php
