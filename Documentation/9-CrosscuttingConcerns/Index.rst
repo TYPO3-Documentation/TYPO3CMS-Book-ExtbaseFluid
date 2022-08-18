@@ -1,9 +1,9 @@
 .. include:: /Includes.rst.txt
 .. _internationalization:
 
-==============================================
-Internationalization, validation and security
-==============================================
+=====================
+Internationalization
+=====================
 
 In the previous chapters we examined all levels of the MVC
 pattern, exploring each aspect in detail. This will change
@@ -21,6 +21,3 @@ security of the extension.
    :hidden:
 
    1-localizing-and-internationalizing-an-extension
-   2-validating-domain-objects
-   3-programming-secure-extensions
-   4-conclusion
