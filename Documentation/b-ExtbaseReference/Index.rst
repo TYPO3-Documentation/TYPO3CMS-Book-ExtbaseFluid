@@ -543,7 +543,7 @@ displayed by the :php:`indexAction` of the :php:`BlogController`.
      */
     public function indexAction(?Blog $blog = null, $tag = null, int $currentPage = 1): void
     {
-        if ($blog == null) {
+        if ($blog === null) {
             $this->request->setControllerAliasToClassNameMapping (
                 ['BlogController' => 'FriendsOfTYPO3\BlogExample\Controller\BlogController']
             );
