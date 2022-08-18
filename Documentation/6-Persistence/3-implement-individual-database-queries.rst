@@ -542,7 +542,7 @@ RELATION_HAS_MANY (1:n) and RELATION_HAS_AND_BELONGS_TO_MANY (m:n).
 
 Using these types in individual queries will result in invoking an implicit
 `LEFT JOIN` on the database layer. The following sections are using the
-:ref:`Blog Example <The-Blog-Example>` to explain what happens under the hood in terms of database
+EXT:blog_example to explain what happens under the hood in terms of database
 queries. The used entities are the following:
 
 * `Blog.posts` having 1:n relation to `Post`

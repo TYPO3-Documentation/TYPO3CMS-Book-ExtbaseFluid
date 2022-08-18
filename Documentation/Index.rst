@@ -40,7 +40,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
    0-Introduction/Index
    2-BasicPrinciples/Index
-   3-BlogExample/Index
 
 .. toctree::
    :maxdepth: 1
@@ -59,7 +58,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
    9a-Configuration/Index
    9-CrosscuttingConcerns/Index
    Backend-modules   ➜  <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/BackendModules/BackendModuleApi/Index.html>
-   10-Outlook/4-Property-mapping
    10-Outlook/5-error-action
 
 .. toctree::
