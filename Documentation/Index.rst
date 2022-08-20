@@ -38,14 +38,12 @@ Developing TYPO3 Extensions with Extbase and Fluid
    :maxdepth: 1
    :caption: INTRODUCTION
 
-   0-Introduction/Index
    2-BasicPrinciples/Index
 
 .. toctree::
    :maxdepth: 1
    :caption: GETTING STARTED
 
-   1-Installation/Index
    5-Domain/Index
    6-Persistence/Index
    7-Controllers/Index
