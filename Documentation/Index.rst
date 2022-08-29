@@ -59,11 +59,7 @@ Developing TYPO3 Extensions with Extbase and Fluid
    :maxdepth: 1
    :caption: REFERENCES
 
-   a-CodingGuidelines/Index
-   Extbase Reference    ➜  <https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/ExtensionArchitecture/Concepts/Extbase/Reference/Index.html>
    c-FAQ/Index
-   ViewHelper Reference    ➜  <https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/>
-   TYPO3 Fluid Rendering Engine  ➜  <https://github.com/TYPO3/Fluid>
 
 .. Meta Menu
 
