@@ -54,7 +54,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
    :caption: ADVANCED
 
    9a-Configuration/Index
-   9-CrosscuttingConcerns/Index
    Backend-modules   ➜  <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/BackendModules/BackendModuleApi/Index.html>
    10-Outlook/5-error-action
 
