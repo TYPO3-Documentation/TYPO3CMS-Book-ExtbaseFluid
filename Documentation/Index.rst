@@ -55,12 +55,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
    10-Outlook/5-error-action
 
-.. toctree::
-   :maxdepth: 1
-   :caption: REFERENCES
-
-   c-FAQ/Index
-
 .. Meta Menu
 
 .. toctree::
