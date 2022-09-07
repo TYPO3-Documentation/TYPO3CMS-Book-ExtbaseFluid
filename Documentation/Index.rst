@@ -41,18 +41,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
    6-Persistence/Index
    8-Fluid/Index
 
-.. toctree::
-   :maxdepth: 1
-   :caption: ADVANCED
-
-   10-Outlook/5-error-action
-
-.. toctree::
-   :maxdepth: 1
-   :caption: REFERENCES
-
-   c-FAQ/Index
-
 .. Meta Menu
 
 .. toctree::
