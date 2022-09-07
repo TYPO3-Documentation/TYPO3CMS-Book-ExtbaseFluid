@@ -48,9 +48,4 @@ Let's start with the database.
 .. toctree::
    :hidden:
 
-   1-prepare-the-database
-   2-configure-the-backends-inputforms
-   2a-creating-the-repositories
-   3-implement-individual-database-queries
-   4-use-foreign-data-sources
    5-modeling-the-class-hierarchy
