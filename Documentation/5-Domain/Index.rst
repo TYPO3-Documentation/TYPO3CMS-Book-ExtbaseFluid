@@ -38,4 +38,3 @@ at the TER.
    :hidden:
 
    1-the-application-domain
-   2-implementing-the-domain-model
