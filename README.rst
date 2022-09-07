@@ -2,10 +2,12 @@
 Developing TYPO3 Extensions with Extbase and Fluid
 ==================================================
 
-This manual teaches how to develop TYPO3 extensions with Extbase and Fluid.
+This book has been here since TYPO3 v6.2. By now (2022) it is severely outdated.
+We are therefore in the process of reviewing, moving and removing its content.
 
-The extension `sjroffers <https://github.com/martin-helmich/typo3-sjroffers>`__
-is used as an example in this book.
+The Extbase reference can now be found in `TYPO3 Explained, Extbase
+reference <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/Extbase/Reference/Index.html>`__.
 
-:Repository:  https://github.com/TYPO3-Documentation/TYPO3CMS-Book-ExtbaseFluid
-:Read online: https://docs.typo3.org/m/typo3/book-extbasefluid/main/en-us/
+New tutorials can be found at
+`TYPO3 Explained, Extension development tutorials <https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/Tutorials/Index.html>`__.
+
