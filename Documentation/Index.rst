@@ -46,7 +46,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
    5-Domain/Index
    6-Persistence/Index
-   7-Controllers/Index
    8-Fluid/Index
 
 .. toctree::
