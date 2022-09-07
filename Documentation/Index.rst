@@ -22,12 +22,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
 
 **Table of Contents:**
 
-.. toctree::
-   :maxdepth: 1
-   :caption: GETTING STARTED
-
-   6-Persistence/Index
-
 .. Meta Menu
 
 .. toctree::
