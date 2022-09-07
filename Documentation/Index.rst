@@ -39,7 +39,6 @@ Developing TYPO3 Extensions with Extbase and Fluid
    :caption: GETTING STARTED
 
    6-Persistence/Index
-   8-Fluid/Index
 
 .. Meta Menu
 
