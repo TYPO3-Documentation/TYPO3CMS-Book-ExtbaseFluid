@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 Calling the extension
 =====================
 
@@ -23,9 +25,9 @@ of the page.
 
 The process of eradication is first forwarded to the *dispatcher*
 of Extbase by TYPO3.
-Before the execution is handed to our own controller code, the 
-dispatcher and the parent `ActionController` complete several 
-preliminary tasks before they hand the further processing on 
+Before the execution is handed to our own controller code, the
+dispatcher and the parent `ActionController` complete several
+preliminary tasks before they hand the further processing on
 to the according position within the code of our blog example:
 
 * It interprets the incoming request and bundles all relevant

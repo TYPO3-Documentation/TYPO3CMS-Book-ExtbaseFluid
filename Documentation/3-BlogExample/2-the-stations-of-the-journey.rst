@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 The stations of the journey
 ===========================================
 
