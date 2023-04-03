@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 Adding additional tag attributes with additionalAttributes
 ==========================================================
 
@@ -38,6 +40,6 @@ few of this additional attributes are needed. Otherwise it is often
 reasonable to write an own ViewHelper which extends the corresponding
 ViewHelper.
 
-`additionalAttributes` is provided by the `TagBasedViewHelper`, the 
-base class for tag based ViewHelpers (see appendix C) and it allows 
+`additionalAttributes` is provided by the `TagBasedViewHelper`, the
+base class for tag based ViewHelpers (see appendix C) and it allows
 the adding of optional attributes for the HTML tag output.
