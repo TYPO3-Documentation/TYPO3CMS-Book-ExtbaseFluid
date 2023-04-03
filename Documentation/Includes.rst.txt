@@ -40,4 +40,4 @@
 .. attention::
    This manual is no longer being maintained for TYPO3 versions 11.5 and above. The majority of the content has been
    migrated to the :ref:`Extbase <t3coreapi_v11:extbase>` or :ref:`Fluid <t3coreapi_v11:fluid>` sections in
-   "TYPO3 Explained" or respective sections in the :ref:`TypoScript Reference <t3tsref_v11:start>`
+   "TYPO3 Explained".
